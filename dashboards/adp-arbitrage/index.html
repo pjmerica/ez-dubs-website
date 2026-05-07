@@ -359,6 +359,16 @@
                 .replace(/\s+/g, ' ').trim();
         }
 
+        // Floor sentinels: starting 2026-05-07 the upstream sheet reports a
+        // single per-platform ADP for every undrafted player instead of a blank.
+        // Treat any value at or above the floor as "no real ADP" so we don't
+        // generate phantom arbitrage gaps (e.g. a player UD 52.5 / DK 240).
+        const DK_ADP_FLOOR = 240;
+        const UD_ADP_FLOOR = 216;
+        function isRealAdp(adp, floor) {
+            return !isNaN(adp) && adp < floor;
+        }
+
         // ── TAB 1: ARBITRAGE ──────────────────────────────────────────
         let players = [];
         let sortCol = 'avgAdp', sortAsc = true;
@@ -373,7 +383,7 @@
             ]);
             const [dkText, udText] = await Promise.all([dkResp.text(), udResp.text()]);
 
-            function latestMap(rows) {
+            function latestMap(rows, floor) {
                 if (rows.length < 2) return { map: {}, date: null };
                 let latest = '';
                 for (let i = 1; i < rows.length; i++) {
@@ -386,15 +396,15 @@
                     if (r[0] !== latest || r.length < 5 || !r[1]) continue;
                     const name = r[1], pos = r[2] || '', team = r[3] || '', source = r[5] || '';
                     const adp = parseFloat(r[4]);
-                    if (isNaN(adp)) continue;
+                    if (!isRealAdp(adp, floor)) continue;
                     const target = source === 'manual' ? manual : auto;
                     target[normalizeName(name)] = { name, pos, adp, team };
                 }
                 return { map: Object.keys(manual).length ? manual : auto, date: latest };
             }
 
-            const dk = latestMap(parseCSV(dkText));
-            const ud = latestMap(parseCSV(udText));
+            const dk = latestMap(parseCSV(dkText), DK_ADP_FLOOR);
+            const ud = latestMap(parseCSV(udText), UD_ADP_FLOOR);
             const dkMap = dk.map, udMap = ud.map;
 
             const latestDate = [dk.date, ud.date].filter(Boolean).sort().pop();
@@ -542,14 +552,14 @@
             // Long-format: header = date,name,pos,team,adp,source
             // The same date can appear from both manual and auto sources during the
             // parallel-run period; manual wins (it's the legacy of record).
-            function buildSnapshotMaps(rows) {
+            function buildSnapshotMaps(rows, floor) {
                 const byDate = new Map();
                 for (let i = 1; i < rows.length; i++) {
                     const r = rows[i];
                     if (r.length < 5 || !r[0] || !r[1]) continue;
                     const date = r[0], name = r[1], pos = r[2] || '', source = r[5] || '';
                     const adp = parseFloat(r[4]);
-                    if (isNaN(adp)) continue;
+                    if (!isRealAdp(adp, floor)) continue;
                     let bucket = byDate.get(date);
                     if (!bucket) { bucket = { manual: {}, auto: {} }; byDate.set(date, bucket); }
                     const target = source === 'manual' ? bucket.manual : bucket.auto;
@@ -562,8 +572,8 @@
                 fetch('dk_adp_history.csv'), fetch('ud_adp_history.csv'),
             ]);
             const [dkText, udText] = await Promise.all([dkResp.text(), udResp.text()]);
-            const dkByDate = buildSnapshotMaps(parseCSV(dkText));
-            const udByDate = buildSnapshotMaps(parseCSV(udText));
+            const dkByDate = buildSnapshotMaps(parseCSV(dkText), DK_ADP_FLOOR);
+            const udByDate = buildSnapshotMaps(parseCSV(udText), UD_ADP_FLOOR);
 
             const allDates = new Set([...dkByDate.keys(), ...udByDate.keys()]);
             const snapshots = [...allDates].sort().map(date => {
