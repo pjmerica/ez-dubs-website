@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Best Ball Arbitrage — EZ Dubs Analytics</title>
+    <title>Best Ball Price Differences — EZ Dubs Analytics</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -30,7 +30,29 @@
         }
         .site-nav .nav-tabs a:hover { border-color: #4a9eff; color: #fff; }
         .site-nav .nav-tabs a.active { border-color: #4a9eff; color: #4a9eff; }
+        .site-nav .nav-spacer { flex: 1; }
+        .site-nav .patreon-btn {
+            padding: 8px 16px; border-radius: 8px;
+            background: #ff424d; color: #fff; text-decoration: none;
+            font-size: 0.9rem; font-weight: 700; transition: opacity 0.15s;
+            white-space: nowrap;
+        }
+        .site-nav .patreon-btn:hover { opacity: 0.85; }
         .page { padding: 20px; }
+        .source-picker {
+            display: flex; gap: 14px; align-items: center; justify-content: center;
+            flex-wrap: wrap; margin-bottom: 18px;
+        }
+        .source-picker label { color: #99aabb; font-size: 0.88rem; font-weight: 600; }
+        .source-picker select {
+            padding: 8px 14px; border-radius: 8px; border: 1px solid #2a3a4a;
+            background: #1a2634; color: #fff; font-size: 0.9rem; font-weight: 600;
+        }
+        .source-picker .vs { color: #555; font-size: 0.85rem; }
+        .source-a { color: #4a9eff; }
+        .source-b { color: #f7b500; }
+        .header-a { color: #4a9eff !important; }
+        .header-b { color: #f7b500 !important; }
         h1 { text-align: center; margin-bottom: 6px; color: #fff; font-size: 1.8rem; }
         .subtitle { text-align: center; color: #888; margin-bottom: 12px; font-size: 0.9rem; }
         .updated { text-align: center; color: #556; font-size: 0.8rem; margin-bottom: 16px; }
@@ -194,12 +216,18 @@
         <a class="brand" href="../../">EZ Dubs <span class="accent">Analytics</span></a>
         <div class="nav-tabs">
             <a href="../../">Home</a>
-            <a href="./" class="active">Best Ball Arbitrage</a>
+            <a href="./" class="active">Best Ball Price Differences</a>
+            <a href="../prediction-arbitrage/">Prediction Market Arbitrage</a>
+            <!-- TODO: replace # with the Substack URL -->
+            <a href="#" target="_blank" rel="noopener">Blog</a>
         </div>
+        <div class="nav-spacer"></div>
+        <!-- TODO: replace # with the Patreon URL -->
+        <a class="patreon-btn" href="#" target="_blank" rel="noopener">Support on Patreon</a>
     </nav>
     <div class="page">
-    <h1>Best Ball ADP Arbitrage</h1>
-    <p class="subtitle">DraftKings vs Underdog | 2026 Season</p>
+    <h1>Best Ball Price Differences</h1>
+    <p class="subtitle">DraftKings · Underdog · FFPC · Drafters | 2026 Season</p>
     <p class="updated">Last updated: <span id="last-updated">loading...</span></p>
 
     <div class="tabs">
@@ -210,11 +238,14 @@
     <!-- TAB 1: ARBITRAGE -->
     <div class="tab-panel active" id="tab-arbitrage">
         <p class="blurb">
-            This tool shows the ADP differences between the DraftKings and Underdog best ball markets. Use it to find where the two platforms disagree and exploit the gap.
+            Compare best-ball ADPs across DraftKings, Underdog, FFPC, and Drafters. Pick any two markets to find the spots where they disagree.
         </p>
-        <div class="legend">
-            <div class="legend-item"><span class="legend-dot dk"></span> DraftKings</div>
-            <div class="legend-item"><span class="legend-dot ud"></span> Underdog</div>
+        <div class="source-picker">
+            <label for="srcA">Compare</label>
+            <select id="srcA"></select>
+            <span class="vs">vs</span>
+            <select id="srcB"></select>
+            <button id="srcSwap" class="pos-btn" type="button" title="Swap A and B">⇄</button>
         </div>
         <div class="controls" style="margin-bottom: 20px;">
             <div class="pos-filters">
@@ -226,21 +257,21 @@
             </div>
         </div>
         <div class="recs-container">
-            <div class="rec-bubble ud-bubble">
-                <h3 id="title-ud-pct">Biggest % Diff — Cheaper on Underdog</h3>
-                <ol class="rec-list" id="rec-ud-pct"></ol>
+            <div class="rec-bubble">
+                <h3 id="title-b-pct"></h3>
+                <ol class="rec-list" id="rec-b-pct"></ol>
             </div>
-            <div class="rec-bubble dk-bubble">
-                <h3 id="title-dk-pct">Biggest % Diff — Cheaper on DraftKings</h3>
-                <ol class="rec-list" id="rec-dk-pct"></ol>
+            <div class="rec-bubble">
+                <h3 id="title-a-pct"></h3>
+                <ol class="rec-list" id="rec-a-pct"></ol>
             </div>
-            <div class="rec-bubble ud-bubble">
-                <h3 id="title-ud-raw">Biggest ADP Gap — Cheaper on Underdog</h3>
-                <ol class="rec-list" id="rec-ud-raw"></ol>
+            <div class="rec-bubble">
+                <h3 id="title-b-raw"></h3>
+                <ol class="rec-list" id="rec-b-raw"></ol>
             </div>
-            <div class="rec-bubble dk-bubble">
-                <h3 id="title-dk-raw">Biggest ADP Gap — Cheaper on DraftKings</h3>
-                <ol class="rec-list" id="rec-dk-raw"></ol>
+            <div class="rec-bubble">
+                <h3 id="title-a-raw"></h3>
+                <ol class="rec-list" id="rec-a-raw"></ol>
             </div>
         </div>
         <div class="controls">
@@ -263,8 +294,8 @@
                         <th data-col="name">Name <span class="arrow"></span></th>
                         <th data-col="pos">Pos <span class="arrow"></span></th>
                         <th data-col="team">Team <span class="arrow"></span></th>
-                        <th data-col="dkAdp" class="header-dk">DK ADP <span class="arrow"></span></th>
-                        <th data-col="udAdp" class="header-ud">UD ADP <span class="arrow"></span></th>
+                        <th data-col="aAdp" id="th-a" class="header-a"><span class="th-label">A ADP</span> <span class="arrow"></span></th>
+                        <th data-col="bAdp" id="th-b" class="header-b"><span class="th-label">B ADP</span> <span class="arrow"></span></th>
                         <th data-col="diff">Diff <span class="arrow"></span></th>
                         <th data-col="pctDiff">% Diff <span class="arrow"></span></th>
                     </tr>
@@ -391,25 +422,32 @@
         // single per-platform ADP for every undrafted player instead of a blank.
         // Treat any value at or above the floor as "no real ADP" so we don't
         // generate phantom arbitrage gaps (e.g. a player UD 52.5 / DK 240).
-        const DK_ADP_FLOOR = 240;
-        const UD_ADP_FLOOR = 216;
+        // FFPC and Drafters: no floor confirmed yet — pass through as-is.
+        const ADP_FLOORS = { DK: 240, UD: 216, FFPC: Infinity, Drafters: Infinity };
         function isRealAdp(adp, floor) {
             return !isNaN(adp) && adp < floor;
         }
 
         // ── TAB 1: ARBITRAGE ──────────────────────────────────────────
+        const SOURCES = [
+            { id: 'DK',       label: 'DraftKings', file: 'dk_adp_history.csv'       },
+            { id: 'UD',       label: 'Underdog',   file: 'ud_adp_history.csv'       },
+            { id: 'FFPC',     label: 'FFPC',       file: 'ffpc_adp_history.csv'     },
+            { id: 'Drafters', label: 'Drafters',   file: 'drafters_adp_history.csv' },
+        ];
+        // Players keyed by normalized name, with one ADP per source where present.
+        const playersByKey = {};
         let players = [];
         let sortCol = 'avgAdp', sortAsc = true;
         let posFilter = 'ALL', recPosFilter = 'ALL';
+        let srcA = 'DK', srcB = 'UD';
 
         async function loadData() {
-            // Pull the two stacked histories. The "current" snapshot for the
-            // arbitrage tab is the most recent date present in each file,
-            // preferring manual rows when both sources contain that date.
-            const [dkResp, udResp] = await Promise.all([
-                fetch('dk_adp_history.csv'), fetch('ud_adp_history.csv'),
-            ]);
-            const [dkText, udText] = await Promise.all([dkResp.text(), udResp.text()]);
+            // Pull all four stacked histories. The "current" snapshot for each
+            // source is the most recent date present in that file, preferring
+            // manual rows when both sources contain that date.
+            const responses = await Promise.all(SOURCES.map(s => fetch(s.file).catch(() => null)));
+            const texts = await Promise.all(responses.map(r => (r && r.ok) ? r.text() : ''));
 
             function latestMap(rows, floor) {
                 if (rows.length < 2) return { map: {}, date: null };
@@ -431,62 +469,120 @@
                 return { map: Object.keys(manual).length ? manual : auto, date: latest };
             }
 
-            const dk = latestMap(parseCSV(dkText), DK_ADP_FLOOR);
-            const ud = latestMap(parseCSV(udText), UD_ADP_FLOOR);
-            const dkMap = dk.map, udMap = ud.map;
+            const maps = {};         // sourceId -> { key -> {name,pos,team,adp} }
+            const sourceDates = [];  // for "last updated"
+            const availableSources = [];
+            SOURCES.forEach((s, i) => {
+                if (!texts[i]) { maps[s.id] = {}; return; }
+                const res = latestMap(parseCSV(texts[i]), ADP_FLOORS[s.id] ?? Infinity);
+                maps[s.id] = res.map;
+                if (res.date) sourceDates.push(res.date);
+                if (Object.keys(res.map).length) availableSources.push(s.id);
+            });
 
-            const latestDate = [dk.date, ud.date].filter(Boolean).sort().pop();
+            const latestDate = sourceDates.sort().pop();
             if (latestDate) {
                 const [y, m, d] = latestDate.split('-');
                 const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
                 document.getElementById('last-updated').textContent = `${months[parseInt(m,10)-1]} ${parseInt(d,10)}, ${y}`;
             }
-            const allKeys = new Set([...Object.keys(dkMap), ...Object.keys(udMap)]);
+
+            // Merge across sources.
+            const allKeys = new Set();
+            SOURCES.forEach(s => Object.keys(maps[s.id]).forEach(k => allKeys.add(k)));
             for (const key of allKeys) {
-                const dk = dkMap[key], ud = udMap[key];
-                const name = (dk && dk.name) || (ud && ud.name) || key;
-                const pos = (dk && dk.pos) || (ud && ud.pos) || '';
-                const team = (dk && dk.team) || (ud && ud.team) || '';
-                const dkAdp = dk ? dk.adp : null;
-                const udAdp = ud ? ud.adp : null;
-                const diff = (dkAdp !== null && udAdp !== null) ? dkAdp - udAdp : null;
-                const avg = (dkAdp !== null && udAdp !== null) ? (dkAdp + udAdp) / 2 : null;
-                const pctDiff = (diff !== null && avg !== null && avg !== 0) ? (diff / avg) * 100 : null;
-                const avgAdp = (dkAdp !== null && udAdp !== null) ? avg : (dkAdp !== null ? dkAdp : (udAdp !== null ? udAdp : 9999));
-                players.push({ name, pos, team, dkAdp, udAdp, diff, pctDiff, avgAdp });
+                let name = key, pos = '', team = '';
+                const adps = {};
+                for (const s of SOURCES) {
+                    const e = maps[s.id][key];
+                    if (e) {
+                        name = e.name; pos = pos || e.pos; team = team || e.team;
+                        adps[s.id] = e.adp;
+                    } else {
+                        adps[s.id] = null;
+                    }
+                }
+                playersByKey[key] = { name, pos, team, adps };
             }
+            players = Object.values(playersByKey);
+
+            // Initialize source picker. Default to DK vs UD when both available;
+            // otherwise pick the first two available sources.
+            const selA = document.getElementById('srcA');
+            const selB = document.getElementById('srcB');
+            const optHTML = SOURCES.map(s => {
+                const has = availableSources.includes(s.id);
+                return `<option value="${s.id}"${has ? '' : ' disabled'}>${s.label}${has ? '' : ' (no data)'}</option>`;
+            }).join('');
+            selA.innerHTML = optHTML;
+            selB.innerHTML = optHTML;
+            const fallback = availableSources.length ? availableSources : SOURCES.map(s => s.id);
+            srcA = availableSources.includes('DK') ? 'DK' : fallback[0];
+            srcB = availableSources.includes('UD') ? 'UD' : (fallback.find(x => x !== srcA) || fallback[0]);
+            selA.value = srcA;
+            selB.value = srcB;
+            selA.addEventListener('change', () => { srcA = selA.value; if (srcB === srcA) { srcB = SOURCES.find(s => s.id !== srcA).id; selB.value = srcB; } refresh(); });
+            selB.addEventListener('change', () => { srcB = selB.value; if (srcA === srcB) { srcA = SOURCES.find(s => s.id !== srcB).id; selA.value = srcA; } refresh(); });
+            document.getElementById('srcSwap').addEventListener('click', () => {
+                [srcA, srcB] = [srcB, srcA]; selA.value = srcA; selB.value = srcB; refresh();
+            });
+
+            refresh();
+        }
+
+        function srcLabel(id) { const s = SOURCES.find(x => x.id === id); return s ? s.label : id; }
+
+        // Recompute aAdp/bAdp/diff/pctDiff/avgAdp for the current source pair.
+        function withPair(p) {
+            const aAdp = p.adps[srcA] ?? null;
+            const bAdp = p.adps[srcB] ?? null;
+            const diff = (aAdp !== null && bAdp !== null) ? aAdp - bAdp : null;
+            const avg  = (aAdp !== null && bAdp !== null) ? (aAdp + bAdp) / 2 : null;
+            const pctDiff = (diff !== null && avg !== null && avg !== 0) ? (diff / avg) * 100 : null;
+            const avgAdp = (aAdp !== null && bAdp !== null) ? avg
+                : (aAdp !== null ? aAdp : (bAdp !== null ? bAdp : 9999));
+            return { ...p, aAdp, bAdp, diff, pctDiff, avgAdp };
+        }
+
+        function refresh() {
+            // Update column headers and labels driven by current source pair.
+            document.querySelector('#th-a .th-label').textContent = `${srcLabel(srcA)} ADP`;
+            document.querySelector('#th-b .th-label').textContent = `${srcLabel(srcB)} ADP`;
             renderRecs();
             render();
         }
 
         function renderRecs() {
-            const matched = players.filter(p => p.dkAdp !== null && p.udAdp !== null && p.pctDiff !== null && p.avgAdp <= 350
+            const aLabel = srcLabel(srcA), bLabel = srcLabel(srcB);
+            const matched = players.map(withPair).filter(p =>
+                p.aAdp !== null && p.bAdp !== null && p.pctDiff !== null && p.avgAdp <= 350
                 && (recPosFilter === 'ALL' || p.pos === recPosFilter));
-            const dkByPct = [...matched].filter(p => p.pctDiff > 0).sort((a, b) => b.pctDiff - a.pctDiff).slice(0, 10);
-            const udByPct = [...matched].filter(p => p.pctDiff < 0).sort((a, b) => a.pctDiff - b.pctDiff).slice(0, 10);
-            const dkByRaw = [...matched].filter(p => p.diff > 0).sort((a, b) => b.diff - a.diff).slice(0, 10);
-            const udByRaw = [...matched].filter(p => p.diff < 0).sort((a, b) => a.diff - b.diff).slice(0, 10);
+            // diff > 0 means A's ADP is higher (drafted later on A) -> cheaper on A.
+            const aByPct = [...matched].filter(p => p.pctDiff > 0).sort((a, b) => b.pctDiff - a.pctDiff).slice(0, 10);
+            const bByPct = [...matched].filter(p => p.pctDiff < 0).sort((a, b) => a.pctDiff - b.pctDiff).slice(0, 10);
+            const aByRaw = [...matched].filter(p => p.diff > 0).sort((a, b) => b.diff - a.diff).slice(0, 10);
+            const bByRaw = [...matched].filter(p => p.diff < 0).sort((a, b) => a.diff - b.diff).slice(0, 10);
             function recHTML(list, valFn) {
                 return list.map((p, i) => {
-                    const { text, cls } = valFn(p);
-                    return `<li><span class="rec-rank">${i + 1}.</span><span class="rec-name">${p.name}</span><span class="rec-pos"><span class="pos-badge pos-${p.pos}">${p.pos}</span></span><span class="rec-adps">DK ${p.dkAdp.toFixed(1)} / UD ${p.udAdp.toFixed(1)}</span><span class="rec-val ${cls}">${text}</span></li>`;
+                    const { text } = valFn(p);
+                    return `<li><span class="rec-rank">${i + 1}.</span><span class="rec-name">${p.name}</span><span class="rec-pos"><span class="pos-badge pos-${p.pos}">${p.pos}</span></span><span class="rec-adps">${aLabel} ${p.aAdp.toFixed(1)} / ${bLabel} ${p.bAdp.toFixed(1)}</span><span class="rec-val">${text}</span></li>`;
                 }).join('');
             }
             const posLabel = recPosFilter === 'ALL' ? '' : ` (${recPosFilter})`;
-            document.getElementById('title-ud-pct').textContent = `Top ${udByPct.length}${posLabel}: Biggest % Diff, Cheaper on Underdog`;
-            document.getElementById('title-dk-pct').textContent = `Top ${dkByPct.length}${posLabel}: Biggest % Diff, Cheaper on DraftKings`;
-            document.getElementById('title-ud-raw').textContent = `Top ${udByRaw.length}${posLabel}: Biggest ADP Gap, Cheaper on Underdog`;
-            document.getElementById('title-dk-raw').textContent = `Top ${dkByRaw.length}${posLabel}: Biggest ADP Gap, Cheaper on DraftKings`;
-            document.getElementById('rec-ud-pct').innerHTML = recHTML(udByPct, p => ({ text: Math.abs(p.pctDiff).toFixed(1) + '%', cls: 'ud' }));
-            document.getElementById('rec-dk-pct').innerHTML = recHTML(dkByPct, p => ({ text: Math.abs(p.pctDiff).toFixed(1) + '%', cls: 'dk' }));
-            document.getElementById('rec-ud-raw').innerHTML = recHTML(udByRaw, p => ({ text: Math.abs(p.diff).toFixed(1), cls: 'ud' }));
-            document.getElementById('rec-dk-raw').innerHTML = recHTML(dkByRaw, p => ({ text: Math.abs(p.diff).toFixed(1), cls: 'dk' }));
+            document.getElementById('title-b-pct').textContent = `Top ${bByPct.length}${posLabel}: Biggest % Diff, Cheaper on ${bLabel}`;
+            document.getElementById('title-a-pct').textContent = `Top ${aByPct.length}${posLabel}: Biggest % Diff, Cheaper on ${aLabel}`;
+            document.getElementById('title-b-raw').textContent = `Top ${bByRaw.length}${posLabel}: Biggest ADP Gap, Cheaper on ${bLabel}`;
+            document.getElementById('title-a-raw').textContent = `Top ${aByRaw.length}${posLabel}: Biggest ADP Gap, Cheaper on ${aLabel}`;
+            document.getElementById('rec-b-pct').innerHTML = recHTML(bByPct, p => ({ text: Math.abs(p.pctDiff).toFixed(1) + '%' }));
+            document.getElementById('rec-a-pct').innerHTML = recHTML(aByPct, p => ({ text: Math.abs(p.pctDiff).toFixed(1) + '%' }));
+            document.getElementById('rec-b-raw').innerHTML = recHTML(bByRaw, p => ({ text: Math.abs(p.diff).toFixed(1) }));
+            document.getElementById('rec-a-raw').innerHTML = recHTML(aByRaw, p => ({ text: Math.abs(p.diff).toFixed(1) }));
         }
 
         function render() {
             const search = document.getElementById('search').value.toLowerCase();
             const maxAdpVal = parseFloat(document.getElementById('maxAdp').value);
-            let filtered = players.filter(p => {
+            let filtered = players.map(withPair).filter(p => {
                 if (posFilter !== 'ALL' && p.pos !== posFilter) return false;
                 if (search && !p.name.toLowerCase().includes(search) && !p.team.toLowerCase().includes(search)) return false;
                 if (!isNaN(maxAdpVal) && maxAdpVal > 0 && p.avgAdp > maxAdpVal) return false;
@@ -506,7 +602,7 @@
                 const diffText = p.diff !== null ? (p.diff > 0 ? '+' : '') + p.diff.toFixed(1) : '—';
                 const pctClass = p.pctDiff !== null ? (p.pctDiff > 0 ? 'diff-positive' : p.pctDiff < 0 ? 'diff-negative' : 'diff-neutral') : 'diff-neutral';
                 const pctText = p.pctDiff !== null ? (p.pctDiff > 0 ? '+' : '') + p.pctDiff.toFixed(1) + '%' : '—';
-                return `<tr><td class="rank-cell">${i + 1}</td><td class="name-cell">${p.name}</td><td><span class="pos-badge pos-${p.pos}">${p.pos}</span></td><td class="team-cell">${p.team}</td><td class="adp-cell source-dk">${p.dkAdp !== null ? p.dkAdp.toFixed(1) : '<span class="no-adp">—</span>'}</td><td class="adp-cell source-ud">${p.udAdp !== null ? p.udAdp.toFixed(1) : '<span class="no-adp">—</span>'}</td><td class="${diffClass}">${diffText}</td><td class="${pctClass}">${pctText}</td></tr>`;
+                return `<tr><td class="rank-cell">${i + 1}</td><td class="name-cell">${p.name}</td><td><span class="pos-badge pos-${p.pos}">${p.pos}</span></td><td class="team-cell">${p.team}</td><td class="adp-cell source-a">${p.aAdp !== null ? p.aAdp.toFixed(1) : '<span class="no-adp">—</span>'}</td><td class="adp-cell source-b">${p.bAdp !== null ? p.bAdp.toFixed(1) : '<span class="no-adp">—</span>'}</td><td class="${diffClass}">${diffText}</td><td class="${pctClass}">${pctText}</td></tr>`;
             }).join('');
             document.querySelectorAll('thead th').forEach(th => {
                 const arrow = th.querySelector('.arrow');
@@ -600,8 +696,8 @@
                 fetch('dk_adp_history.csv'), fetch('ud_adp_history.csv'),
             ]);
             const [dkText, udText] = await Promise.all([dkResp.text(), udResp.text()]);
-            const dkByDate = buildSnapshotMaps(parseCSV(dkText), DK_ADP_FLOOR);
-            const udByDate = buildSnapshotMaps(parseCSV(udText), UD_ADP_FLOOR);
+            const dkByDate = buildSnapshotMaps(parseCSV(dkText), ADP_FLOORS.DK);
+            const udByDate = buildSnapshotMaps(parseCSV(udText), ADP_FLOORS.UD);
 
             const allDates = new Set([...dkByDate.keys(), ...udByDate.keys()]);
             const snapshots = [...allDates].sort().map(date => {

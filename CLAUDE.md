@@ -4,22 +4,29 @@ Context for future Claude sessions in this repo. Read `README.md` first for the 
 
 ## What this is
 
-`ez-dubs-website` — personal site published via GitHub Pages at https://pjmerica.github.io/ez-dubs-website/. First dashboard is **Best Ball ADP Arbitrage** at `dashboards/adp-arbitrage/`.
+`ez-dubs-website` — personal site (brand: **EZ Dubs Analytics**) published via GitHub Pages at https://pjmerica.github.io/ez-dubs-website/. Tabs in the shared top nav:
+
+- **Best Ball Price Differences** at `dashboards/best-ball-prices/` (formerly "Best Ball ADP Arbitrage" at `dashboards/adp-arbitrage/`). Source-picker UI lets the user compare any 2 of DK / UD / FFPC / Drafters.
+- **Prediction Market Arbitrage** at `dashboards/prediction-arbitrage/` — placeholder page only.
+- **Blog** — external link to Substack (placeholder `href="#"` with TODO comments in each page; user hasn't supplied the URL yet).
+- **Support on Patreon** button — external link in nav (placeholder `href="#"` with TODO comments).
 
 ## Two pipelines run in parallel — don't conflate them
 
-There is a **legacy** repo at `c:/Users/pjmer/Documents/AI Testing/best-ball-adp-arbitrage-testing/` (GitHub: `pjmerica/best-ball-adp-arbitrage-testing`) that the user is still updating manually. Do not touch it from this repo's session unless explicitly asked. It exists as a fallback during the parallel-run period (a few weeks). Backfilled manual history is already merged into `dk_adp_history.csv` / `ud_adp_history.csv` here, so the new repo doesn't need any further manual file drops.
+There is a **legacy** repo at `c:/Users/pjmer/Documents/AI Testing/best-ball-adp-arbitrage-testing/` (GitHub: `pjmerica/best-ball-adp-arbitrage-testing`) that the user is still updating manually. Do not touch it from this repo's session unless explicitly asked. It exists as a fallback during the parallel-run period (a few weeks). The legacy data covered DK/UD only; backfilled manual history is already merged into `dk_adp_history.csv` / `ud_adp_history.csv` here. FFPC and Drafters histories start fresh on 2026-05-07 (no legacy backfill).
 
 The new automated pipeline pulls from a Google Sheet daily.
 
 ## Storage model — important
 
-Two long-format CSVs hold all per-day ADPs:
+Four long-format CSVs (one per market) hold all per-day ADPs:
 
-- `dashboards/adp-arbitrage/dk_adp_history.csv`
-- `dashboards/adp-arbitrage/ud_adp_history.csv`
+- `dashboards/best-ball-prices/dk_adp_history.csv`
+- `dashboards/best-ball-prices/ud_adp_history.csv`
+- `dashboards/best-ball-prices/ffpc_adp_history.csv`
+- `dashboards/best-ball-prices/drafters_adp_history.csv`
 
-Schema for both:
+Schema for all four:
 
 ```
 date,name,pos,team,adp,source
@@ -28,13 +35,13 @@ date,name,pos,team,adp,source
 
 `source` is `manual` or `auto`. The same date can appear from both sources during the parallel-run period; the dashboard prefers `manual` rows when both exist for a date. After the parallel-run period ends, manual rows can be deleted and the dashboard falls back to auto.
 
-**Do not** reintroduce per-day CSV files (`dk_adp_2026-05-07.csv` etc.). The previous design used those and we deliberately moved away. The dashboard reads only the two stacked files.
+**Do not** reintroduce per-day CSV files (`dk_adp_2026-05-07.csv` etc.). The previous design used those and we deliberately moved away. The dashboard reads only the four stacked files.
 
 ## The Google Sheet
 
 - URL: https://docs.google.com/spreadsheets/d/1OMi92b1Glfb3Q8s48h4DotP6_9DQb5UwnwFELjpuccs/edit?gid=420942436
 - Sharing: "anyone with the link can view." No credentials are stored anywhere. The puller fetches `…/export?format=csv&gid=420942436`.
-- Schema (header row): `Name, Pos, Team, UD ADP, DK ADP, FFPC ADP, Drafters ADP, …`. The puller only consumes `Name`, `Pos`, `Team`, `UD ADP`, `DK ADP`. If those column headers change or move, `_REQUIRED_COLS` in `scripts/pull_adp.py` will fail loudly — that's intentional.
+- Schema (header row): `Name, Pos, Team, UD ADP, DK ADP, FFPC ADP, Drafters ADP, …`. The puller consumes `Name`, `Pos`, `Team`, `UD ADP`, `DK ADP`, `FFPC ADP`, `Drafters ADP`. If those column headers change or move, `_REQUIRED_COLS` in `scripts/pull_adp.py` will fail loudly — that's intentional.
 
 ## How the auto pipeline works
 
@@ -44,8 +51,8 @@ date,name,pos,team,adp,source
 2. `python scripts/pull_adp.py`:
    - Fetches the sheet.
    - Writes a raw copy to `_local/adp-daily/sheet_YYYY-MM-DD.csv` (gitignored, QC).
-   - Appends today's `auto` rows to the two history files. **Skips the append** if a row with `(date=today, source=auto)` already exists, so re-running is a no-op.
-3. `git add` the two history files and commit/push if anything changed.
+   - Appends today's `auto` rows to each of the four history files. **Skips the append** per file if a row with `(date=today, source=auto)` already exists in that file, so re-running is a no-op.
+3. `git add` the four history files and commit/push if anything changed.
 
 ## Local-only files
 
@@ -67,7 +74,7 @@ gh run list -R pjmerica/ez-dubs-website --limit 3
 
 **Inspect history file shape:**
 ```
-py -c "import csv; r=list(csv.DictReader(open('dashboards/adp-arbitrage/dk_adp_history.csv'))); print(len(r), 'rows'); print(set(x['source'] for x in r))"
+py -c "import csv; r=list(csv.DictReader(open('dashboards/best-ball-prices/dk_adp_history.csv'))); print(len(r), 'rows'); print(set(x['source'] for x in r))"
 ```
 
 ## Things that are easy to get wrong

@@ -1,6 +1,11 @@
 # EZ Dubs Analytics
 
-Personal site for football analytics. The site lives at `index.html` (Home) with a shared top nav linking to each tab. First tab: **Best Ball Arbitrage** at `dashboards/adp-arbitrage/`, comparing DraftKings vs Underdog ADPs for the upcoming NFL season.
+Personal site for football analytics. The site lives at `index.html` (Home) with a shared top nav linking to each tab. Tabs:
+
+- **Best Ball Price Differences** — `dashboards/best-ball-prices/`. Compare ADPs across DraftKings, Underdog, FFPC, and Drafters (pick any two as A/B in the source picker).
+- **Prediction Market Arbitrage** — `dashboards/prediction-arbitrage/`. Placeholder; coming soon.
+- **Blog** — external link to Substack.
+- **Support on Patreon** — external link.
 
 ## Layout
 
@@ -13,10 +18,14 @@ EZ Dubs Website/
 │   ├── README.md
 │   └── adp-daily/sheet_YYYY-MM-DD.csv
 ├── dashboards/
-│   └── adp-arbitrage/
-│       ├── index.html                   # the dashboard
-│       ├── dk_adp_history.csv           # long-format: date,name,pos,team,adp,source
-│       └── ud_adp_history.csv           # same shape
+│   ├── best-ball-prices/
+│   │   ├── index.html                   # the dashboard
+│   │   ├── dk_adp_history.csv           # long-format: date,name,pos,team,adp,source
+│   │   ├── ud_adp_history.csv           # same shape
+│   │   ├── ffpc_adp_history.csv         # same shape
+│   │   └── drafters_adp_history.csv     # same shape
+│   └── prediction-arbitrage/
+│       └── index.html                   # placeholder (coming soon)
 ├── scripts/
 │   ├── pull_adp.py                      # appends today's auto rows to history files
 │   ├── backfill_history.py              # one-shot migration from per-day CSVs (already run)
@@ -26,9 +35,9 @@ EZ Dubs Website/
 
 ## Storage strategy
 
-Two committed CSVs instead of 60+ per-day files. ~2,200 rows added per day; ~80k rows after a year. Still tiny, and the dashboard fetches them with two HTTP requests instead of one per snapshot.
+Four committed CSVs (one per market: DK, UD, FFPC, Drafters) instead of dozens of per-day files. The dashboard fetches them with four HTTP requests instead of one per snapshot.
 
-Schema (both files):
+Schema (all four files):
 
 ```
 date,name,pos,team,adp,source
@@ -52,7 +61,7 @@ Source: a public Google Sheet I control where ADPs land daily via my own automat
 `scripts/pull_adp.py` runs daily via GitHub Actions:
 1. Fetches the sheet as CSV.
 2. Writes a raw copy to `_local/adp-daily/sheet_YYYY-MM-DD.csv` (gitignored, QC).
-3. Appends today's `auto` rows to `dk_adp_history.csv` and `ud_adp_history.csv`. Skips append if today's `auto` rows are already present.
+3. Appends today's `auto` rows to each of the four history files (`dk_`, `ud_`, `ffpc_`, `drafters_`). Skips append per file if today's `auto` rows are already present.
 4. Commits and pushes if anything changed.
 
 ## Hosting

@@ -3,23 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EZ Dubs Analytics</title>
+    <title>Prediction Market Arbitrage — EZ Dubs Analytics</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
                background: #0f1923; color: #e0e0e0; }
 
-        /* Site nav */
         .site-nav {
             position: sticky; top: 0; z-index: 50;
             display: flex; align-items: center; gap: 28px;
             padding: 14px 28px;
             background: #0f1923; border-bottom: 1px solid #1e2d3d;
         }
-        .site-nav .brand {
-            font-weight: 700; font-size: 1.05rem; color: #fff;
-            text-decoration: none; white-space: nowrap;
-        }
+        .site-nav .brand { font-weight: 700; font-size: 1.05rem; color: #fff;
+            text-decoration: none; white-space: nowrap; }
         .site-nav .brand .accent { color: #4a9eff; }
         .site-nav .nav-tabs { display: flex; gap: 6px; flex-wrap: wrap; }
         .site-nav .nav-tabs a {
@@ -38,25 +35,25 @@
         }
         .site-nav .patreon-btn:hover { opacity: 0.85; }
 
-        /* Page */
-        main { max-width: 720px; margin: 0 auto; padding: 60px 20px; }
-        h1 { color: #fff; font-size: 2.4rem; margin: 0 0 8px; }
-        p.lede { color: #99aabb; font-size: 1rem; margin: 0 0 32px; }
-        a.tile { display: block; padding: 20px 24px; margin-bottom: 12px;
-                 background: #1a2634; border: 1px solid #2a3a4a; border-radius: 12px;
-                 color: #4a9eff; text-decoration: none; transition: border-color 0.15s; }
-        a.tile:hover { border-color: #4a9eff; }
-        a.tile h2 { margin: 0 0 4px; font-size: 1.1rem; }
-        a.tile p { margin: 0; color: #888; font-size: 0.88rem; }
+        main { max-width: 720px; margin: 0 auto; padding: 80px 20px; text-align: center; }
+        h1 { color: #fff; font-size: 2.2rem; margin: 0 0 12px; }
+        p.lede { color: #99aabb; font-size: 1rem; margin: 0 0 24px; line-height: 1.6; }
+        .badge {
+            display: inline-block; padding: 6px 14px; border-radius: 999px;
+            background: rgba(74,158,255,0.12); color: #4a9eff;
+            border: 1px solid rgba(74,158,255,0.35);
+            font-size: 0.82rem; font-weight: 700; letter-spacing: 0.04em;
+            text-transform: uppercase; margin-bottom: 24px;
+        }
     </style>
 </head>
 <body>
     <nav class="site-nav">
-        <a class="brand" href="./">EZ Dubs <span class="accent">Analytics</span></a>
+        <a class="brand" href="../../">EZ Dubs <span class="accent">Analytics</span></a>
         <div class="nav-tabs">
-            <a href="./" class="active">Home</a>
-            <a href="dashboards/best-ball-prices/">Best Ball Price Differences</a>
-            <a href="dashboards/prediction-arbitrage/">Prediction Market Arbitrage</a>
+            <a href="../../">Home</a>
+            <a href="../best-ball-prices/">Best Ball Price Differences</a>
+            <a href="./" class="active">Prediction Market Arbitrage</a>
             <!-- TODO: replace # with the Substack URL -->
             <a href="#" target="_blank" rel="noopener">Blog</a>
         </div>
@@ -65,16 +62,9 @@
         <a class="patreon-btn" href="#" target="_blank" rel="noopener">Support on Patreon</a>
     </nav>
     <main>
-        <h1>EZ Dubs Analytics</h1>
-        <p class="lede">Best ball, DFS, and football analytics.</p>
-        <a class="tile" href="dashboards/best-ball-prices/">
-            <h2>Best Ball Price Differences &rarr;</h2>
-            <p>DK / UD / FFPC / Drafters ADP gaps for the 2026 NFL season.</p>
-        </a>
-        <a class="tile" href="dashboards/prediction-arbitrage/">
-            <h2>Prediction Market Arbitrage &rarr;</h2>
-            <p>Coming soon.</p>
-        </a>
+        <div class="badge">Coming Soon</div>
+        <h1>Prediction Market Arbitrage</h1>
+        <p class="lede">A dashboard for surfacing pricing gaps across prediction markets is in the works. Check back soon.</p>
     </main>
 </body>
 </html>

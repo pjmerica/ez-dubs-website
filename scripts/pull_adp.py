@@ -29,9 +29,11 @@ SHEET_CSV_URL = (
 )
 
 REPO_ROOT      = Path(__file__).resolve().parents[1]
-DASHBOARD_DIR  = REPO_ROOT / "dashboards" / "adp-arbitrage"
+DASHBOARD_DIR  = REPO_ROOT / "dashboards" / "best-ball-prices"
 DK_HISTORY     = DASHBOARD_DIR / "dk_adp_history.csv"
 UD_HISTORY     = DASHBOARD_DIR / "ud_adp_history.csv"
+FFPC_HISTORY      = DASHBOARD_DIR / "ffpc_adp_history.csv"
+DRAFTERS_HISTORY  = DASHBOARD_DIR / "drafters_adp_history.csv"
 
 # Local-only daily snapshots kept for QC. Gitignored.
 LOCAL_DIR      = REPO_ROOT / "_local" / "adp-daily"
@@ -41,7 +43,7 @@ DRAFT_CUTOVER_DATE = "2026-04-24"
 
 STACKED_HEADER = ["date", "name", "pos", "team", "adp", "source"]
 
-_REQUIRED_COLS = ("Name", "Pos", "Team", "UD ADP", "DK ADP")
+_REQUIRED_COLS = ("Name", "Pos", "Team", "UD ADP", "DK ADP", "FFPC ADP", "Drafters ADP")
 
 
 # ---- Sheet fetch ----------------------------------------------------------
@@ -128,19 +130,19 @@ def main() -> int:
 
     _write_local_qc(rows, today)
 
-    if _date_already_in_history(DK_HISTORY, today, "auto"):
-        print(f"DK history already has auto rows for {today}; skipping append.")
-    else:
-        dk_rows = _build_rows(rows, "DK ADP", today, "auto")
-        _append_history(DK_HISTORY, dk_rows)
-        print(f"Appended {len(dk_rows)} DK rows to {DK_HISTORY.name}.")
-
-    if _date_already_in_history(UD_HISTORY, today, "auto"):
-        print(f"UD history already has auto rows for {today}; skipping append.")
-    else:
-        ud_rows = _build_rows(rows, "UD ADP", today, "auto")
-        _append_history(UD_HISTORY, ud_rows)
-        print(f"Appended {len(ud_rows)} UD rows to {UD_HISTORY.name}.")
+    sources = [
+        ("DK",       "DK ADP",       DK_HISTORY),
+        ("UD",       "UD ADP",       UD_HISTORY),
+        ("FFPC",     "FFPC ADP",     FFPC_HISTORY),
+        ("Drafters", "Drafters ADP", DRAFTERS_HISTORY),
+    ]
+    for label, col, path in sources:
+        if _date_already_in_history(path, today, "auto"):
+            print(f"{label} history already has auto rows for {today}; skipping append.")
+            continue
+        out_rows = _build_rows(rows, col, today, "auto")
+        _append_history(path, out_rows)
+        print(f"Appended {len(out_rows)} {label} rows to {path.name}.")
 
     return 0
 
