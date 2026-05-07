@@ -1,6 +1,6 @@
-# EZ Dubs Website
+# EZ Dubs Analytics
 
-Personal site for blogging and dashboards. First public dashboard: the **Best Ball ADP Arbitrage** tool comparing DraftKings vs Underdog ADPs for the upcoming NFL season.
+Personal site for football analytics. The site lives at `index.html` (Home) with a shared top nav linking to each tab. First tab: **Best Ball Arbitrage** at `dashboards/adp-arbitrage/`, comparing DraftKings vs Underdog ADPs for the upcoming NFL season.
 
 ## Layout
 
