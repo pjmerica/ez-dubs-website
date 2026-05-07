@@ -28,7 +28,7 @@ jobs:
         run: |
           git config user.name  "ezdubs-bot"
           git config user.email "ezdubs-bot@users.noreply.github.com"
-          git add dashboards/adp-arbitrage/data/auto dashboards/adp-arbitrage/SNAPSHOTS.json
+          git add dashboards/adp-arbitrage/dk_adp_history.csv dashboards/adp-arbitrage/ud_adp_history.csv
           if git diff --cached --quiet; then
             echo "No new data to commit."
           else
