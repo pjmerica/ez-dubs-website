@@ -49,10 +49,16 @@
             background: #1a2634; color: #fff; font-size: 0.9rem; font-weight: 600;
         }
         .source-picker .vs { color: #555; font-size: 0.85rem; }
-        .source-a { color: #4a9eff; }
-        .source-b { color: #f7b500; }
-        .header-a { color: #4a9eff !important; }
-        .header-b { color: #f7b500 !important; }
+        /* Source colors are set per-render via --src-a-color and --src-b-color
+           on the arbitrage tab panel based on the active A/B sources. */
+        .source-a { color: var(--src-a-color, #4a9eff); }
+        .source-b { color: var(--src-b-color, #f7b500); }
+        .header-a { color: var(--src-a-color, #4a9eff) !important; }
+        .header-b { color: var(--src-b-color, #f7b500) !important; }
+        .rec-bubble.bubble-a h3 { color: var(--src-a-color, #4a9eff); }
+        .rec-bubble.bubble-b h3 { color: var(--src-b-color, #f7b500); }
+        .rec-val.rec-val-a { color: var(--src-a-color, #4a9eff); }
+        .rec-val.rec-val-b { color: var(--src-b-color, #f7b500); }
         h1 { text-align: center; margin-bottom: 6px; color: #fff; font-size: 1.8rem; }
         .subtitle { text-align: center; color: #888; margin-bottom: 12px; font-size: 0.9rem; }
         .updated { text-align: center; color: #556; font-size: 0.8rem; margin-bottom: 16px; }
@@ -257,19 +263,19 @@
             </div>
         </div>
         <div class="recs-container">
-            <div class="rec-bubble">
+            <div class="rec-bubble bubble-b">
                 <h3 id="title-b-pct"></h3>
                 <ol class="rec-list" id="rec-b-pct"></ol>
             </div>
-            <div class="rec-bubble">
+            <div class="rec-bubble bubble-a">
                 <h3 id="title-a-pct"></h3>
                 <ol class="rec-list" id="rec-a-pct"></ol>
             </div>
-            <div class="rec-bubble">
+            <div class="rec-bubble bubble-b">
                 <h3 id="title-b-raw"></h3>
                 <ol class="rec-list" id="rec-b-raw"></ol>
             </div>
-            <div class="rec-bubble">
+            <div class="rec-bubble bubble-a">
                 <h3 id="title-a-raw"></h3>
                 <ol class="rec-list" id="rec-a-raw"></ol>
             </div>
@@ -435,6 +441,13 @@
             { id: 'FFPC',     label: 'FFPC',       file: 'ffpc_adp_history.csv'     },
             { id: 'Drafters', label: 'Drafters',   file: 'drafters_adp_history.csv' },
         ];
+        // Per-source brand colors used for column headers, ADP cells, and rec lists.
+        const SOURCE_COLORS = {
+            DK:       '#00c46a', // green
+            UD:       '#ffd700', // yellow
+            FFPC:     '#4a9eff', // blue
+            Drafters: '#e67e22', // orange
+        };
         // Players keyed by normalized name, with one ADP per source where present.
         const playersByKey = {};
         let players = [];
@@ -548,6 +561,10 @@
             // Update column headers and labels driven by current source pair.
             document.querySelector('#th-a .th-label').textContent = `${srcLabel(srcA)} ADP`;
             document.querySelector('#th-b .th-label').textContent = `${srcLabel(srcB)} ADP`;
+            // Drive A/B colors from the active source pair (CSS custom props).
+            const panel = document.getElementById('tab-arbitrage');
+            panel.style.setProperty('--src-a-color', SOURCE_COLORS[srcA] || '#4a9eff');
+            panel.style.setProperty('--src-b-color', SOURCE_COLORS[srcB] || '#f7b500');
             renderRecs();
             render();
         }
@@ -562,10 +579,10 @@
             const bByPct = [...matched].filter(p => p.pctDiff < 0).sort((a, b) => a.pctDiff - b.pctDiff).slice(0, 10);
             const aByRaw = [...matched].filter(p => p.diff > 0).sort((a, b) => b.diff - a.diff).slice(0, 10);
             const bByRaw = [...matched].filter(p => p.diff < 0).sort((a, b) => a.diff - b.diff).slice(0, 10);
-            function recHTML(list, valFn) {
+            function recHTML(list, valCls, valFn) {
                 return list.map((p, i) => {
                     const { text } = valFn(p);
-                    return `<li><span class="rec-rank">${i + 1}.</span><span class="rec-name">${p.name}</span><span class="rec-pos"><span class="pos-badge pos-${p.pos}">${p.pos}</span></span><span class="rec-adps">${aLabel} ${p.aAdp.toFixed(1)} / ${bLabel} ${p.bAdp.toFixed(1)}</span><span class="rec-val">${text}</span></li>`;
+                    return `<li><span class="rec-rank">${i + 1}.</span><span class="rec-name">${p.name}</span><span class="rec-pos"><span class="pos-badge pos-${p.pos}">${p.pos}</span></span><span class="rec-adps">${aLabel} ${p.aAdp.toFixed(1)} / ${bLabel} ${p.bAdp.toFixed(1)}</span><span class="rec-val ${valCls}">${text}</span></li>`;
                 }).join('');
             }
             const posLabel = recPosFilter === 'ALL' ? '' : ` (${recPosFilter})`;
@@ -573,10 +590,10 @@
             document.getElementById('title-a-pct').textContent = `Top ${aByPct.length}${posLabel}: Biggest % Diff, Cheaper on ${aLabel}`;
             document.getElementById('title-b-raw').textContent = `Top ${bByRaw.length}${posLabel}: Biggest ADP Gap, Cheaper on ${bLabel}`;
             document.getElementById('title-a-raw').textContent = `Top ${aByRaw.length}${posLabel}: Biggest ADP Gap, Cheaper on ${aLabel}`;
-            document.getElementById('rec-b-pct').innerHTML = recHTML(bByPct, p => ({ text: Math.abs(p.pctDiff).toFixed(1) + '%' }));
-            document.getElementById('rec-a-pct').innerHTML = recHTML(aByPct, p => ({ text: Math.abs(p.pctDiff).toFixed(1) + '%' }));
-            document.getElementById('rec-b-raw').innerHTML = recHTML(bByRaw, p => ({ text: Math.abs(p.diff).toFixed(1) }));
-            document.getElementById('rec-a-raw').innerHTML = recHTML(aByRaw, p => ({ text: Math.abs(p.diff).toFixed(1) }));
+            document.getElementById('rec-b-pct').innerHTML = recHTML(bByPct, 'rec-val-b', p => ({ text: Math.abs(p.pctDiff).toFixed(1) + '%' }));
+            document.getElementById('rec-a-pct').innerHTML = recHTML(aByPct, 'rec-val-a', p => ({ text: Math.abs(p.pctDiff).toFixed(1) + '%' }));
+            document.getElementById('rec-b-raw').innerHTML = recHTML(bByRaw, 'rec-val-b', p => ({ text: Math.abs(p.diff).toFixed(1) }));
+            document.getElementById('rec-a-raw').innerHTML = recHTML(aByRaw, 'rec-val-a', p => ({ text: Math.abs(p.diff).toFixed(1) }));
         }
 
         function render() {
