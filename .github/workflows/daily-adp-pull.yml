@@ -2,8 +2,11 @@ name: Daily ADP Pull
 
 on:
   schedule:
-    # 14:00 UTC = 10:00 EDT / 09:00 EST. Adjust as needed.
+    # 14:00 UTC = 10:00 EDT / 09:00 EST. Primary daily run.
     - cron: '0 14 * * *'
+    # Backup at 15:30 UTC in case the 14:00 slot was skipped by GH Actions.
+    # Idempotent: the puller no-ops if today's auto rows are already present.
+    - cron: '30 15 * * *'
   workflow_dispatch:  # also allow manual triggering from the Actions UI
 
 jobs:
