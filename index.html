@@ -6,10 +6,14 @@
     <title>EZ Dubs Analytics</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-               background: #0f1923; color: #e0e0e0; }
+        html, body { height: 100%; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0f1923; color: #e0e0e0;
+            display: flex; flex-direction: column;
+        }
 
-        /* Site nav */
+        /* Site nav (matches dashboard) */
         .site-nav {
             position: sticky; top: 0; z-index: 50;
             display: flex; align-items: center; gap: 28px;
@@ -39,15 +43,88 @@
         .site-nav .patreon-btn:hover { opacity: 0.85; }
 
         /* Page */
-        main { max-width: 720px; margin: 0 auto; padding: 60px 20px; }
-        h1 { color: #fff; font-size: 2.4rem; margin: 0 0 8px; }
-        p.lede { color: #99aabb; font-size: 1rem; margin: 0 0 32px; }
-        a.tile { display: block; padding: 20px 24px; margin-bottom: 12px;
-                 background: #1a2634; border: 1px solid #2a3a4a; border-radius: 12px;
-                 color: #4a9eff; text-decoration: none; transition: border-color 0.15s; }
-        a.tile:hover { border-color: #4a9eff; }
-        a.tile h2 { margin: 0 0 4px; font-size: 1.1rem; }
-        a.tile p { margin: 0; color: #888; font-size: 0.88rem; }
+        main { flex: 1; max-width: 960px; margin: 0 auto; padding: 96px 32px 64px;
+               width: 100%; }
+        .eyebrow {
+            color: #4a9eff; font-size: 0.78rem; font-weight: 700;
+            letter-spacing: 0.18em; text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+        h1 {
+            font-size: clamp(2.4rem, 5vw, 3.8rem);
+            font-weight: 800; line-height: 1.05; color: #fff;
+            letter-spacing: -0.02em; margin: 0 0 18px;
+        }
+        h1 .accent { color: #4a9eff; }
+        .lede {
+            font-size: 1.1rem; color: #99aabb; line-height: 1.55;
+            max-width: 560px; margin: 0 0 56px;
+        }
+
+        .section-label {
+            display: flex; align-items: center; gap: 12px;
+            color: #6f7e8d; font-size: 0.78rem; font-weight: 700;
+            letter-spacing: 0.16em; text-transform: uppercase;
+            margin-bottom: 18px;
+        }
+        .section-label::after {
+            content: ''; flex: 1; height: 1px; background: #1e2d3d;
+        }
+
+        /* Tool grid */
+        .tool-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+        }
+        .tool-card {
+            display: block; text-decoration: none; color: inherit;
+            background: #131f2c; border: 1px solid #1e2d3d; border-radius: 14px;
+            padding: 28px 26px; position: relative; overflow: hidden;
+            transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+        }
+        .tool-card::before {
+            content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+            width: 3px; background: var(--accent, #4a9eff);
+            opacity: 0.65; transition: opacity 0.18s ease, width 0.18s ease;
+        }
+        .tool-card:hover {
+            border-color: var(--accent, #4a9eff);
+            background: #16243380;
+            transform: translateY(-2px);
+        }
+        .tool-card:hover::before { opacity: 1; width: 4px; }
+        .tool-card.coming-soon { opacity: 0.7; cursor: default; }
+        .tool-card.coming-soon:hover { transform: none; }
+        .tool-tag {
+            display: inline-block; font-size: 0.7rem; font-weight: 700;
+            letter-spacing: 0.12em; text-transform: uppercase;
+            color: var(--accent, #4a9eff);
+            padding: 3px 9px; border-radius: 999px;
+            border: 1px solid color-mix(in srgb, var(--accent, #4a9eff) 40%, transparent);
+            background: color-mix(in srgb, var(--accent, #4a9eff) 10%, transparent);
+            margin-bottom: 14px;
+        }
+        .tool-card h2 {
+            font-size: 1.3rem; font-weight: 700; color: #fff;
+            margin: 0 0 8px; letter-spacing: -0.01em;
+        }
+        .tool-card p {
+            font-size: 0.92rem; color: #8a9aab; line-height: 1.55; margin: 0;
+        }
+        .tool-card .arrow {
+            display: inline-block; margin-top: 16px; font-size: 0.85rem;
+            color: var(--accent, #4a9eff); font-weight: 600;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid #1e2d3d; padding: 28px 32px;
+            color: #556877; font-size: 0.82rem;
+            display: flex; justify-content: space-between; align-items: center;
+            flex-wrap: wrap; gap: 12px;
+        }
+        footer a { color: #99aabb; text-decoration: none; }
+        footer a:hover { color: #4a9eff; }
     </style>
 </head>
 <body>
@@ -64,17 +141,40 @@
         <!-- TODO: replace # with the Patreon URL -->
         <a class="patreon-btn" href="#" target="_blank" rel="noopener">Support on Patreon</a>
     </nav>
+
     <main>
-        <h1>EZ Dubs Analytics</h1>
-        <p class="lede">Best ball, DFS, and football analytics.</p>
-        <a class="tile" href="dashboards/best-ball-prices/">
-            <h2>Best Ball Price Differences &rarr;</h2>
-            <p>DK / UD / FFPC / Drafters ADP gaps for the 2026 NFL season.</p>
-        </a>
-        <a class="tile" href="dashboards/prediction-arbitrage/">
-            <h2>Prediction Market Arbitrage &rarr;</h2>
-            <p>Coming soon.</p>
-        </a>
+        <p class="eyebrow">EZ Dubs Analytics</p>
+        <h1>Football data, <span class="accent">priced honestly.</span></h1>
+        <p class="lede">
+            Dashboards and notes on best-ball drafting and prediction markets.
+            Built to surface where prices disagree — and what to do about it.
+        </p>
+
+        <p class="section-label">Tools</p>
+        <div class="tool-grid">
+            <a class="tool-card" href="dashboards/best-ball-prices/" style="--accent:#00c46a;">
+                <span class="tool-tag">Live</span>
+                <h2>Best Ball Price Differences</h2>
+                <p>Compare ADPs across DraftKings, Underdog, FFPC, and Drafters. Find the spots where the books disagree.</p>
+                <span class="arrow">Open dashboard &rarr;</span>
+            </a>
+            <div class="tool-card coming-soon" style="--accent:#f7b500;">
+                <span class="tool-tag">Coming Soon</span>
+                <h2>Prediction Market Arbitrage</h2>
+                <p>Pricing gaps across prediction markets on the same event. In the works.</p>
+            </div>
+        </div>
     </main>
+
+    <footer>
+        <span>&copy; EZ Dubs Analytics</span>
+        <span>
+            <!-- TODO: replace # with the Substack URL -->
+            <a href="#" target="_blank" rel="noopener">Blog</a>
+            &nbsp;·&nbsp;
+            <!-- TODO: replace # with the Patreon URL -->
+            <a href="#" target="_blank" rel="noopener">Patreon</a>
+        </span>
+    </footer>
 </body>
 </html>
