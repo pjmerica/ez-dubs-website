@@ -125,6 +125,48 @@
         }
         footer a { color: #99aabb; text-decoration: none; }
         footer a:hover { color: #4a9eff; }
+
+        /* Reviews section */
+        .reviews-wrap { margin-top: 72px; }
+        .reviews-header {
+            display: flex; align-items: baseline; gap: 12px;
+            margin-bottom: 6px;
+        }
+        .reviews-header h2 {
+            font-size: 1.5rem; font-weight: 800; color: #fff;
+            letter-spacing: -0.01em;
+        }
+        .reviews-header .tm { color: #6f7e8d; font-size: 0.95rem; font-weight: 600; }
+        .reviews-sub {
+            color: #6f7e8d; font-size: 0.85rem; margin-bottom: 24px;
+        }
+        .review-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 14px;
+        }
+        .review-card {
+            background: #131f2c; border: 1px solid #1e2d3d; border-radius: 12px;
+            padding: 20px 22px;
+        }
+        .review-card .stars {
+            color: #f7b500; font-size: 0.95rem; letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+        .review-card blockquote {
+            color: #d4dde6; font-size: 0.95rem; line-height: 1.5;
+            margin: 0 0 12px; font-style: italic;
+        }
+        .review-card blockquote::before { content: '“'; }
+        .review-card blockquote::after  { content: '”'; }
+        .review-card cite {
+            display: block; color: #8a9aab; font-size: 0.82rem;
+            font-style: normal; font-weight: 600;
+        }
+        .review-card cite .verified {
+            display: inline-block; margin-left: 6px;
+            color: #00c46a; font-size: 0.7rem; font-weight: 700;
+            letter-spacing: 0.08em; text-transform: uppercase;
+        }
     </style>
 </head>
 <body>
@@ -156,6 +198,55 @@
                 <p>Pricing gaps across prediction markets on the same event. In the works.</p>
             </div>
         </div>
+
+        <section class="reviews-wrap">
+            <div class="reviews-header">
+                <h2>What People Are Saying</h2><span class="tm">™</span>
+            </div>
+            <p class="reviews-sub">Real, definitely-not-fabricated testimonials from real, definitely-not-fabricated humans.</p>
+            <div class="review-grid">
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <blockquote>Wow this guy knows ball.</blockquote>
+                    <cite>BiggusDiggusRBs <span class="verified">Verified Drafter</span></cite>
+                </div>
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <blockquote>This website saved my marriage and annulled it at the same time.</blockquote>
+                    <cite>HuddleHusband42 <span class="verified">Verified Drafter</span></cite>
+                </div>
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <blockquote>I came for the ADPs and stayed because I forgot my password to every other website.</blockquote>
+                    <cite>ChetHankoff <span class="verified">Verified Drafter</span></cite>
+                </div>
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <blockquote>I no longer fade my own running backs. My wife is afraid of me.</blockquote>
+                    <cite>StanleyTheStanchion <span class="verified">Verified Drafter</span></cite>
+                </div>
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <blockquote>Showed me an arbitrage that paid for my divorce lawyer. Worth every penny.</blockquote>
+                    <cite>Dadbod_Goff <span class="verified">Verified Drafter</span></cite>
+                </div>
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <blockquote>The only website where I'm allowed to type "DJ Moore" without my therapist getting involved.</blockquote>
+                    <cite>GregFromAccounting <span class="verified">Verified Drafter</span></cite>
+                </div>
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <blockquote>I sent this to my dad. We haven't spoken in years. He drafted me 47th overall.</blockquote>
+                    <cite>WaiverWireWendell <span class="verified">Verified Drafter</span></cite>
+                </div>
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <blockquote>Five stars. Six if my keyboard had one.</blockquote>
+                    <cite>TheRealBijansMom <span class="verified">Verified Drafter</span></cite>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer>
