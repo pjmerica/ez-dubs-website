@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-25T18:28:06+00:00",
+  "generated_at": "2026-05-25T18:46:14+00:00",
   "sources": [
     {
       "id": "pred-arbitrage",
@@ -7,7 +7,7 @@
       "ok": true,
       "updated_at": "2026-05-25T18:06:21.090041+00:00",
       "total": 350,
-      "guaranteed_kept": 35
+      "guaranteed_kept": 30
     },
     {
       "id": "polling-agg-2026",
@@ -354,123 +354,6 @@
       "volume_b": 45211.22,
       "suspicious": false,
       "suspicion_reasons": []
-    },
-    {
-      "source": "pred-arbitrage",
-      "category": "Elections",
-      "label": "",
-      "platform_a": "kalshi",
-      "platform_b": "polymarket",
-      "question_a": "IA-02 Democratic nominee? \u2014 Clint Twedt-Ball",
-      "question_b": "Will Clint Twedt-Ball be the Democratic Nominee for IA-02?",
-      "url_a": "https://kalshi.com/markets/KXIAPRIMARY",
-      "url_b": "https://polymarket.com/event/ia-02-democratic-primary-winner-845",
-      "prob_a": 0.99,
-      "prob_b": 0.0175,
-      "stake_a": 63.64,
-      "stake_b": 36.36,
-      "return_pct": 91.25,
-      "settle_date": "2027-11-03",
-      "volume_a": 50.0,
-      "volume_b": 1805.56,
-      "suspicious": true,
-      "suspicion_reasons": [
-        "wide_gap",
-        "one_sided_a"
-      ]
-    },
-    {
-      "source": "pred-arbitrage",
-      "category": "Politics",
-      "label": "",
-      "platform_a": "kalshi",
-      "platform_b": "polymarket",
-      "question_a": "Who will be arrested before 2027? \u2014 James Comey",
-      "question_b": "Will James Comey be arrested before 2027?",
-      "url_a": "https://kalshi.com/markets/KXARREST",
-      "url_b": "https://polymarket.com/event/who-will-be-arrested-before-2027",
-      "prob_a": 0.995,
-      "prob_b": 0.228,
-      "stake_a": 97.85,
-      "stake_b": 2.15,
-      "return_pct": 70.7,
-      "settle_date": "2026-04-29",
-      "volume_a": 1139021.35,
-      "volume_b": 9214.48,
-      "suspicious": true,
-      "suspicion_reasons": [
-        "wide_gap",
-        "wide_spread_b"
-      ]
-    },
-    {
-      "source": "pred-arbitrage",
-      "category": "Financials",
-      "label": "",
-      "platform_a": "kalshi",
-      "platform_b": "polymarket",
-      "question_a": "Will OpenAI or Anthropic IPO first? \u2014 OpenAI",
-      "question_b": "Will Anthropic or OpenAI IPO first?",
-      "url_a": "https://kalshi.com/markets/KXOAIANTH",
-      "url_b": "https://polymarket.com/event/will-anthropic-or-openai-ipo-first",
-      "prob_a": 0.805,
-      "prob_b": 0.245,
-      "stake_a": 55.68,
-      "stake_b": 44.32,
-      "return_pct": 50.0,
-      "settle_date": "2040-01-01",
-      "volume_a": 82439.42,
-      "volume_b": 63370.9,
-      "suspicious": true,
-      "suspicion_reasons": [
-        "wide_gap"
-      ]
-    },
-    {
-      "source": "pred-arbitrage",
-      "category": "Politics",
-      "label": "",
-      "platform_a": "kalshi",
-      "platform_b": "polymarket",
-      "question_a": "Will Trump be photographed every day this week? (5/25-5/31)",
-      "question_b": "Will Trump be photographed every day this week? (5/18-5/24)",
-      "url_a": "https://kalshi.com/markets/KXTRUMPPHOTO",
-      "url_b": "https://polymarket.com/event/will-trump-be-photographed-every-day-this-week-518-524",
-      "prob_a": 0.295,
-      "prob_b": 0.0035,
-      "stake_a": 0.49,
-      "stake_b": 99.51,
-      "return_pct": 23.15,
-      "settle_date": "2026-06-01",
-      "volume_a": 2270.63,
-      "volume_b": 19961.48,
-      "suspicious": true,
-      "suspicion_reasons": [
-        "wide_gap"
-      ]
-    },
-    {
-      "source": "pred-arbitrage",
-      "category": "Politics",
-      "label": "",
-      "platform_a": "kalshi",
-      "platform_b": "predictit",
-      "question_a": "Who will Trump pardon? \u2014 Elon Musk",
-      "question_b": "Will Trump pardon Elon Musk in 2026? \u2014 Will Trump pardon Elon Musk in 2026?",
-      "url_a": "https://kalshi.com/markets/KXTRUMPPARDONS",
-      "url_b": "https://www.predictit.org/markets/detail/8549",
-      "prob_a": 0.39,
-      "prob_b": 0.07,
-      "stake_a": 10.29,
-      "stake_b": 89.71,
-      "return_pct": 17.0,
-      "settle_date": "2029-01-21",
-      "volume_a": 2879.48,
-      "volume_b": null,
-      "suspicious": true,
-      "suspicion_reasons": [
-        "wide_gap"
-      ]
     },
     {
       "source": "pred-arbitrage",

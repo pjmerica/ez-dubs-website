@@ -27,6 +27,10 @@ REPO_ROOT     = Path(__file__).resolve().parents[1]
 DASHBOARD_DIR = REPO_ROOT / "dashboards" / "prediction-arbitrage"
 OUTPUT_PATH   = DASHBOARD_DIR / "arbs.json"
 
+# Returns above this are almost always upstream data noise (unresolved
+# settlement, thin-liquidity quotes, fuzzy-match false positives). Drop them.
+MAX_RETURN_PCT = 15.0
+
 SOURCES = [
     {
         "id":   "pred-arbitrage",
@@ -57,6 +61,8 @@ def _normalize_race(r: dict, source_id: str) -> dict | None:
     needed = ("platform_a", "platform_b", "implied_prob_a", "implied_prob_b",
               "url_a", "url_b", "guaranteed_return_pct")
     if any(r.get(k) in (None, "") for k in needed):
+        return None
+    if float(r["guaranteed_return_pct"]) > MAX_RETURN_PCT:
         return None
     return {
         "source":   source_id,
