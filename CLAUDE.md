@@ -7,7 +7,7 @@ Context for future Claude sessions in this repo. Read `README.md` first for the 
 `ez-dubs-website` — personal site (brand: **EZ Dubs Analytics**) published via GitHub Pages at https://pjmerica.github.io/ez-dubs-website/. Tabs in the shared top nav:
 
 - **Best Ball Price Differences** at `dashboards/best-ball-prices/` (formerly "Best Ball ADP Arbitrage" at `dashboards/adp-arbitrage/`). Source-picker UI lets the user compare any 2 of DK / UD / FFPC / Drafters.
-- **Prediction Market Arbitrage** at `dashboards/prediction-arbitrage/` — placeholder page only.
+- **Prediction Market Arbitrage** at `dashboards/prediction-arbitrage/`. Pulls 100%-arb (`arb_type=guaranteed`) rows from two sibling sites — `pred-arbitrage` and `polling-agg-2026` — into a committed `arbs.json` once per day. Polling-agg currently has zero guaranteed arbs but is wired up for when it does.
 - **Blog** — external link to Substack (placeholder `href="#"` with TODO comments in each page; user hasn't supplied the URL yet).
 - **Support on Patreon** button — external link in nav (placeholder `href="#"` with TODO comments).
 
@@ -53,6 +53,21 @@ date,name,pos,team,adp,source
    - Writes a raw copy to `_local/adp-daily/sheet_YYYY-MM-DD.csv` (gitignored, QC).
    - Appends today's `auto` rows to each of the four history files. **Skips the append** per file if a row with `(date=today, source=auto)` already exists in that file, so re-running is a no-op.
 3. `git add` the four history files and commit/push if anything changed.
+
+## The prediction-market arb pipeline
+
+`.github/workflows/daily-pred-arbs-pull.yml` runs at 14:00 UTC daily and on `workflow_dispatch`:
+
+1. Checkout, setup Python, `pip install requests`.
+2. `python scripts/pull_pred_arbs.py`:
+   - Fetches `https://pjmerica.github.io/pred-arbitrage/arb_data.js` and `https://pjmerica.github.io/polling-agg-2026/arb_data.js` (both are JS files of the form `const ARB = {...};`).
+   - Filters to `arb_type == "guaranteed"` (100% arbs only).
+   - Normalizes to a single `dashboards/prediction-arbitrage/arbs.json` containing `{generated_at, sources[], arbs[]}`. Sorted: non-suspicious first, then by `return_pct` desc.
+3. `git add` the JSON and commit/push if changed.
+
+The dashboard fetches `arbs.json` client-side. If polling-agg later starts producing `guaranteed` arbs they appear automatically — no code change.
+
+**About the `suspicious` flag:** rows the upstream scanner thinks may be a data error (huge gaps, thin liquidity, wide spreads). They're shown by default but tagged with the reasons; a "Hide suspicious" chip filters them out.
 
 ## Local-only files
 

@@ -35,15 +35,119 @@
         }
         .site-nav .patreon-btn:hover { opacity: 0.85; }
 
-        main { max-width: 720px; margin: 0 auto; padding: 80px 20px; text-align: center; }
-        h1 { color: #fff; font-size: 2.2rem; margin: 0 0 12px; }
-        p.lede { color: #99aabb; font-size: 1rem; margin: 0 0 24px; line-height: 1.6; }
-        .badge {
-            display: inline-block; padding: 6px 14px; border-radius: 999px;
-            background: rgba(74,158,255,0.12); color: #4a9eff;
+        main { max-width: 1080px; margin: 0 auto; padding: 36px 24px 64px; }
+        h1 { color: #fff; font-size: 1.8rem; font-weight: 800; margin: 0 0 6px;
+             letter-spacing: -0.01em; }
+        .subtitle { color: #99aabb; font-size: 0.92rem; margin-bottom: 14px; }
+        .updated { color: #6f7e8d; font-size: 0.82rem; margin-bottom: 10px; }
+        .updated span { color: #4a9eff; }
+        .disclaimer {
+            background: #1a2634; border: 1px solid #2a3a4a;
+            border-left: 3px solid #f7b500;
+            border-radius: 10px; padding: 12px 16px;
+            color: #99aabb; font-size: 0.85rem; line-height: 1.5;
+            margin-bottom: 24px;
+        }
+        .disclaimer strong { color: #f7b500; }
+
+        .filter-row {
+            display: flex; gap: 10px; flex-wrap: wrap; align-items: center;
+            margin-bottom: 18px;
+        }
+        .filter-row .label {
+            color: #6f7e8d; font-size: 0.82rem; font-weight: 600;
+            margin-right: 4px;
+        }
+        .chip {
+            padding: 6px 14px; border-radius: 999px; border: 1px solid #2a3a4a;
+            background: #1a2634; color: #99aabb; cursor: pointer;
+            font-size: 0.82rem; font-weight: 600; transition: all 0.15s;
+        }
+        .chip:hover { border-color: #4a9eff; color: #fff; }
+        .chip.active { border-color: #4a9eff; color: #4a9eff; }
+
+        .count-line { color: #6f7e8d; font-size: 0.85rem; margin-bottom: 14px; }
+        .count-line span { color: #fff; font-weight: 700; }
+
+        /* Arb cards */
+        .arb-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 16px;
+        }
+        .arb-card {
+            background: #131f2c; border: 1px solid #1e2d3d; border-radius: 14px;
+            padding: 18px 20px; display: flex; flex-direction: column;
+        }
+        .arb-card.suspicious { border-left: 3px solid #f7b500; }
+        .arb-head {
+            display: flex; align-items: flex-start; justify-content: space-between;
+            gap: 12px; margin-bottom: 10px;
+        }
+        .arb-category {
+            display: inline-block; font-size: 0.68rem; font-weight: 700;
+            letter-spacing: 0.1em; text-transform: uppercase; color: #4a9eff;
+            padding: 3px 9px; border-radius: 999px;
             border: 1px solid rgba(74,158,255,0.35);
-            font-size: 0.82rem; font-weight: 700; letter-spacing: 0.04em;
-            text-transform: uppercase; margin-bottom: 24px;
+            background: rgba(74,158,255,0.1);
+        }
+        .arb-return {
+            font-size: 1.05rem; font-weight: 800; color: #00c46a;
+            white-space: nowrap; letter-spacing: -0.01em;
+        }
+        .arb-return.small { color: #2ecc71; }
+        .arb-question {
+            color: #fff; font-size: 0.98rem; font-weight: 700;
+            line-height: 1.35; margin-bottom: 14px;
+        }
+        .leg {
+            display: flex; align-items: center; gap: 10px;
+            padding: 10px 12px; border-radius: 10px;
+            background: #0f1923; border: 1px solid #1e2d3d;
+            margin-bottom: 8px;
+        }
+        .leg .platform {
+            font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em;
+            text-transform: uppercase; min-width: 84px;
+        }
+        .leg .platform.kalshi     { color: #00d1a0; }
+        .leg .platform.polymarket { color: #4a9eff; }
+        .leg .platform.predictit  { color: #ff8a3d; }
+        .leg .price {
+            color: #fff; font-weight: 700; font-size: 0.98rem;
+            font-variant-numeric: tabular-nums; min-width: 56px;
+        }
+        .leg .stake {
+            color: #99aabb; font-size: 0.78rem; flex: 1;
+            font-variant-numeric: tabular-nums;
+        }
+        .leg .stake strong { color: #fff; font-weight: 700; }
+        .leg a.btn {
+            font-size: 0.78rem; font-weight: 700; color: #4a9eff;
+            text-decoration: none; padding: 5px 11px; border-radius: 8px;
+            border: 1px solid rgba(74,158,255,0.3);
+            transition: all 0.15s;
+        }
+        .leg a.btn:hover { background: rgba(74,158,255,0.12); border-color: #4a9eff; }
+        .leg-questions {
+            color: #6f7e8d; font-size: 0.75rem; margin-top: 4px;
+            padding: 0 4px;
+        }
+        .leg-questions div { margin-bottom: 2px; }
+        .leg-questions .q-platform { color: #99aabb; font-weight: 700; }
+
+        .arb-foot {
+            margin-top: 10px; display: flex; align-items: center;
+            justify-content: space-between; gap: 12px; flex-wrap: wrap;
+            font-size: 0.75rem; color: #6f7e8d;
+        }
+        .arb-foot .susp {
+            color: #f7b500; font-weight: 700; font-size: 0.72rem;
+            letter-spacing: 0.06em; text-transform: uppercase;
+        }
+
+        .empty {
+            text-align: center; color: #6f7e8d; font-size: 0.95rem;
+            padding: 60px 20px;
         }
     </style>
 </head>
@@ -61,10 +165,156 @@
         <!-- TODO: replace # with the Patreon URL -->
         <a class="patreon-btn" href="#" target="_blank" rel="noopener">Support on Patreon</a>
     </nav>
+
     <main>
-        <div class="badge">Coming Soon</div>
         <h1>Prediction Market Arbitrage</h1>
-        <p class="lede">A dashboard for surfacing pricing gaps across prediction markets is in the works. Check back soon.</p>
+        <p class="subtitle">Guaranteed price gaps across Kalshi, Polymarket, and PredictIt.</p>
+        <p class="updated">Snapshot taken: <span id="generated-at">loading...</span></p>
+
+        <div class="disclaimer">
+            <strong>Heads up:</strong> the scanner only runs once per day, so prices on the live
+            markets may have moved since this snapshot. The arbitrage itself should still be real
+            at the time of the pull, but verify both legs before placing any bets.
+        </div>
+
+        <div class="filter-row">
+            <span class="label">Sort</span>
+            <button class="chip sort-chip active" data-sort="return">Highest return</button>
+            <button class="chip sort-chip" data-sort="volume">Highest volume</button>
+            <span class="label" style="margin-left:8px;">Show</span>
+            <button class="chip susp-chip" data-susp="hide">Hide suspicious</button>
+            <button class="chip susp-chip active" data-susp="all">Show all</button>
+        </div>
+
+        <p class="count-line">Showing <span id="count">0</span> guaranteed arbs</p>
+
+        <div id="arb-grid" class="arb-grid"></div>
+        <div id="empty" class="empty" style="display:none;">No arbs match the current filter.</div>
     </main>
+
+    <script>
+        const PLATFORM_LABELS = {
+            kalshi: 'Kalshi', polymarket: 'Polymarket', predictit: 'PredictIt',
+        };
+        let arbs = [], sortBy = 'return', suspMode = 'all';
+
+        function fmtDate(iso) {
+            if (!iso) return '—';
+            const d = new Date(iso);
+            const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+            return `${months[d.getUTCMonth()]} ${d.getUTCDate()}, ${d.getUTCFullYear()}`;
+        }
+        function fmtPrice(p) {
+            if (p === null || p === undefined || isNaN(p)) return '—';
+            return p.toFixed(2);
+        }
+        function fmtStake(s) {
+            if (s === null || s === undefined || isNaN(s)) return null;
+            return `$${s.toFixed(0)}`;
+        }
+        function escapeHtml(s) {
+            return String(s || '').replace(/[&<>"']/g, c => ({
+                '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;',
+            })[c]);
+        }
+
+        async function load() {
+            try {
+                const resp = await fetch('arbs.json', { cache: 'no-store' });
+                if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+                const data = await resp.json();
+                arbs = data.arbs || [];
+                document.getElementById('generated-at').textContent = fmtDate(data.generated_at);
+            } catch (e) {
+                document.getElementById('generated-at').textContent = 'unavailable';
+                document.getElementById('empty').textContent = `Could not load arbs.json (${e.message}).`;
+                document.getElementById('empty').style.display = 'block';
+                return;
+            }
+            render();
+        }
+
+        function render() {
+            let list = arbs.slice();
+            if (suspMode === 'hide') list = list.filter(a => !a.suspicious);
+            if (sortBy === 'return') {
+                list.sort((a, b) => b.return_pct - a.return_pct);
+            } else if (sortBy === 'volume') {
+                const vol = a => (a.volume_a || 0) + (a.volume_b || 0);
+                list.sort((a, b) => vol(b) - vol(a));
+            }
+
+            const grid = document.getElementById('arb-grid');
+            const empty = document.getElementById('empty');
+            document.getElementById('count').textContent = list.length;
+
+            if (!list.length) {
+                grid.innerHTML = '';
+                empty.style.display = 'block';
+                return;
+            }
+            empty.style.display = 'none';
+            grid.innerHTML = list.map(a => cardHTML(a)).join('');
+        }
+
+        function cardHTML(a) {
+            const pa = PLATFORM_LABELS[a.platform_a] || a.platform_a;
+            const pb = PLATFORM_LABELS[a.platform_b] || a.platform_b;
+            const stakeA = fmtStake(a.stake_a);
+            const stakeB = fmtStake(a.stake_b);
+            const returnClass = a.return_pct >= 5 ? '' : 'small';
+            const title = a.question_a || a.label || '(unnamed)';
+
+            return `
+                <div class="arb-card${a.suspicious ? ' suspicious' : ''}">
+                    <div class="arb-head">
+                        <span class="arb-category">${escapeHtml(a.category || 'Arb')}</span>
+                        <span class="arb-return ${returnClass}">+${a.return_pct.toFixed(1)}%</span>
+                    </div>
+                    <div class="arb-question">${escapeHtml(title)}</div>
+
+                    <div class="leg">
+                        <span class="platform ${a.platform_a}">${pa}</span>
+                        <span class="price">${fmtPrice(a.prob_a)}</span>
+                        <span class="stake">${stakeA ? `Stake <strong>${stakeA}</strong>` : ''}</span>
+                        <a class="btn" href="${escapeHtml(a.url_a)}" target="_blank" rel="noopener">Open ↗</a>
+                    </div>
+                    <div class="leg">
+                        <span class="platform ${a.platform_b}">${pb}</span>
+                        <span class="price">${fmtPrice(a.prob_b)}</span>
+                        <span class="stake">${stakeB ? `Stake <strong>${stakeB}</strong>` : ''}</span>
+                        <a class="btn" href="${escapeHtml(a.url_b)}" target="_blank" rel="noopener">Open ↗</a>
+                    </div>
+                    ${a.question_a && a.question_b && a.question_a !== a.question_b ? `
+                        <div class="leg-questions">
+                            <div><span class="q-platform">${pa}:</span> ${escapeHtml(a.question_a)}</div>
+                            <div><span class="q-platform">${pb}:</span> ${escapeHtml(a.question_b)}</div>
+                        </div>` : ''}
+                    <div class="arb-foot">
+                        <span>${a.settle_date ? `Settles ${a.settle_date}` : ''}</span>
+                        ${a.suspicious ? `<span class="susp" title="${escapeHtml((a.suspicion_reasons || []).join(', '))}">⚠ Flagged: ${escapeHtml((a.suspicion_reasons || []).join(', '))}</span>` : ''}
+                    </div>
+                </div>`;
+        }
+
+        document.querySelectorAll('.sort-chip').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.sort-chip').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                sortBy = btn.dataset.sort;
+                render();
+            });
+        });
+        document.querySelectorAll('.susp-chip').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.susp-chip').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                suspMode = btn.dataset.susp;
+                render();
+            });
+        });
+
+        load();
+    </script>
 </body>
 </html>

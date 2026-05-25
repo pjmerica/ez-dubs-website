@@ -1,0 +1,39 @@
+name: Daily Pred-Mkt Arbs Pull
+
+on:
+  schedule:
+    # 14:00 UTC = 10:00 EDT / 09:00 EST. The two upstream scanners refresh
+    # at 12:30 UTC and 00:30 UTC, so 14:00 UTC catches the latest morning
+    # update with a safety margin.
+    - cron: '0 14 * * *'
+  workflow_dispatch:
+
+jobs:
+  pull:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install deps
+        run: pip install requests
+
+      - name: Pull pred-mkt arbs
+        run: python scripts/pull_pred_arbs.py
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name  "ezdubs-bot"
+          git config user.email "ezdubs-bot@users.noreply.github.com"
+          git add dashboards/prediction-arbitrage/arbs.json
+          if git diff --cached --quiet; then
+            echo "No new data to commit."
+          else
+            git commit -m "Auto: pred-mkt arbs snapshot $(date -u +%Y-%m-%d)"
+            git push
+          fi

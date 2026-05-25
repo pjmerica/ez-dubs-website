@@ -3,7 +3,7 @@
 Personal site for football analytics. The site lives at `index.html` (Home) with a shared top nav linking to each tab. Tabs:
 
 - **Best Ball Price Differences** — `dashboards/best-ball-prices/`. Compare ADPs across DraftKings, Underdog, FFPC, and Drafters (pick any two as A/B in the source picker).
-- **Prediction Market Arbitrage** — `dashboards/prediction-arbitrage/`. Placeholder; coming soon.
+- **Prediction Market Arbitrage** — `dashboards/prediction-arbitrage/`. Daily pull of 100% (`guaranteed`) arbs from the `pred-arbitrage` and `polling-agg-2026` scanners; renders cards with live odds, recommended stakes for a $100 notional, and links to both legs.
 - **Blog** — external link to Substack.
 - **Support on Patreon** — external link.
 
@@ -25,7 +25,8 @@ EZ Dubs Website/
 │   │   ├── ffpc_adp_history.csv         # same shape
 │   │   └── drafters_adp_history.csv     # same shape
 │   └── prediction-arbitrage/
-│       └── index.html                   # placeholder (coming soon)
+│       ├── index.html                   # the dashboard
+│       └── arbs.json                    # normalized 100% arbs from both scanners
 ├── scripts/
 │   ├── pull_adp.py                      # appends today's auto rows to history files
 │   ├── backfill_history.py              # one-shot migration from per-day CSVs (already run)
