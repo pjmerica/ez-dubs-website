@@ -59,6 +59,35 @@
         .rec-bubble.bubble-b h3 { color: var(--src-b-color, #f7b500); }
         .rec-val.rec-val-a { color: var(--src-a-color, #4a9eff); }
         .rec-val.rec-val-b { color: var(--src-b-color, #f7b500); }
+
+        /* Lookback slider */
+        .lookback-wrap {
+            display: flex; flex-direction: column; align-items: center; gap: 8px;
+            max-width: 520px; margin: 0 auto 16px;
+        }
+        .lookback-label {
+            color: #99aabb; font-size: 0.88rem; font-weight: 600;
+        }
+        .lookback-label .days { color: #fff; }
+        .lookback-row {
+            display: flex; align-items: center; gap: 12px; width: 100%;
+        }
+        .lookback-row input[type=range] {
+            flex: 1; accent-color: #4a9eff;
+        }
+        .lookback-row .endpoint {
+            color: #6f7e8d; font-size: 0.78rem; min-width: 28px; text-align: center;
+        }
+        .lookback-presets {
+            display: flex; gap: 6px; flex-wrap: wrap; justify-content: center;
+        }
+        .lookback-presets .preset-btn {
+            padding: 4px 12px; border-radius: 999px; border: 1px solid #2a3a4a;
+            background: #1a2634; color: #99aabb; cursor: pointer;
+            font-size: 0.78rem; font-weight: 600; transition: all 0.15s;
+        }
+        .lookback-presets .preset-btn:hover { border-color: #4a9eff; color: #fff; }
+        .lookback-presets .preset-btn.active { border-color: #4a9eff; color: #4a9eff; }
         h1 { text-align: center; margin-bottom: 6px; color: #fff; font-size: 1.8rem; }
         .subtitle { text-align: center; color: #888; margin-bottom: 12px; font-size: 0.9rem; }
         .updated { text-align: center; color: #556; font-size: 0.8rem; margin-bottom: 16px; }
@@ -322,6 +351,15 @@
         </div>
         <h2 class="section-title">Largest ADP Movers</h2>
         <p class="section-sub" id="movers-subtitle">loading...</p>
+        <div class="lookback-wrap" id="lookback-wrap" style="display:none;">
+            <div class="lookback-label">Lookback: <span class="days" id="lookback-days">7</span> days</div>
+            <div class="lookback-row">
+                <span class="endpoint">1d</span>
+                <input type="range" id="lookback-slider" min="1" max="30" value="7">
+                <span class="endpoint" id="lookback-max-label">30d</span>
+            </div>
+            <div class="lookback-presets" id="lookback-presets"></div>
+        </div>
         <div style="display:flex;justify-content:center;margin-bottom:16px;">
             <div class="pos-filters">
                 <button class="pos-btn active movers-pos-btn" data-pos="ALL">ALL</button>
@@ -677,6 +715,7 @@
         let selectedPlayers = [];
         let moversPosFilter = 'ALL';
         let eraFilter = 'all'; // 'pre' | 'post' | 'all'
+        let moversLookbackDays = 7; // user-controlled, clamped to data span
 
         function getActiveSnapshots() {
             if (!historyData) return [];
@@ -743,8 +782,53 @@
                 if (name) playerIndex[key] = { name, pos, key };
             }
             historyData = { snapshots, playerIndex };
+            initLookbackSlider();
             renderMovers();
             initSearch();
+        }
+
+        function initLookbackSlider() {
+            const snaps = historyData.snapshots;
+            if (snaps.length < 2) return;
+            const parseDate = str => { const [y,m,d] = str.split('-'); return new Date(y, m-1, d); };
+            const first = parseDate(snaps[0].date);
+            const last  = parseDate(snaps[snaps.length - 1].date);
+            const maxDays = Math.max(1, Math.round((last - first) / (1000 * 60 * 60 * 24)));
+            moversLookbackDays = Math.min(7, maxDays);
+
+            const wrap   = document.getElementById('lookback-wrap');
+            const slider = document.getElementById('lookback-slider');
+            const days   = document.getElementById('lookback-days');
+            const maxLbl = document.getElementById('lookback-max-label');
+            const presetWrap = document.getElementById('lookback-presets');
+            wrap.style.display = 'flex';
+            slider.min = 1;
+            slider.max = maxDays;
+            slider.value = moversLookbackDays;
+            days.textContent = moversLookbackDays;
+            maxLbl.textContent = `${maxDays}d`;
+
+            // Quick presets clamped to the available span; always include "Max".
+            const presets = [3, 7, 14, 30].filter(n => n <= maxDays);
+            presetWrap.innerHTML = [
+                ...presets.map(n => `<button class="preset-btn" data-days="${n}">${n}d</button>`),
+                `<button class="preset-btn" data-days="${maxDays}">Max</button>`,
+            ].join('');
+
+            function setDays(n) {
+                moversLookbackDays = Math.max(1, Math.min(maxDays, n));
+                slider.value = moversLookbackDays;
+                days.textContent = moversLookbackDays;
+                presetWrap.querySelectorAll('.preset-btn').forEach(b => {
+                    b.classList.toggle('active', parseInt(b.dataset.days, 10) === moversLookbackDays);
+                });
+                renderMovers();
+            }
+            slider.addEventListener('input', () => setDays(parseInt(slider.value, 10)));
+            presetWrap.querySelectorAll('.preset-btn').forEach(b => {
+                b.addEventListener('click', () => setDays(parseInt(b.dataset.days, 10)));
+            });
+            setDays(moversLookbackDays);
         }
 
         function renderMovers() {
@@ -762,15 +846,16 @@
             // Parse date as local to avoid timezone shifting
             const parseDate = str => { const [y,m,d] = str.split('-'); return new Date(y, m-1, d); };
             const currDate = parseDate(curr.date);
-            const weekAgo = new Date(currDate);
-            weekAgo.setDate(weekAgo.getDate() - 7);
-            // Pick snapshot closest to 7 days ago, excluding curr
+            const target = new Date(currDate);
+            target.setDate(target.getDate() - moversLookbackDays);
+            // Pick snapshot closest to the target lookback date, excluding curr
             const prev = snapshots.slice(0, -1).reduce((best, s) => {
-                const thisDiff = Math.abs(parseDate(s.date) - weekAgo);
-                const bestDiff = Math.abs(parseDate(best.date) - weekAgo);
+                const thisDiff = Math.abs(parseDate(s.date) - target);
+                const bestDiff = Math.abs(parseDate(best.date) - target);
                 return thisDiff < bestDiff ? s : best;
             }, snapshots[0]);
-            document.getElementById('movers-subtitle').textContent = `Comparing ${prev.label} to ${curr.label} (closest available to 7 days)`;
+            const dayWord = moversLookbackDays === 1 ? 'day' : 'days';
+            document.getElementById('movers-subtitle').textContent = `Comparing ${prev.label} to ${curr.label} (closest available to ${moversLookbackDays} ${dayWord})`;
             document.getElementById('title-rising-dk').textContent = `Rising on DraftKings (${prev.label} → ${curr.label})`;
             document.getElementById('title-falling-dk').textContent = `Falling on DraftKings (${prev.label} → ${curr.label})`;
             document.getElementById('title-rising-ud').textContent = `Rising on Underdog (${prev.label} → ${curr.label})`;
