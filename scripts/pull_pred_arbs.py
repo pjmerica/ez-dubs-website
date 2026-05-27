@@ -33,6 +33,17 @@ OUTPUT_PATH   = DASHBOARD_DIR / "arbs.json"
 MIN_RETURN_PCT = 3.0
 MAX_RETURN_PCT = 15.0
 
+# Hand-curated list of pairs the upstream scanner matches but where the two
+# contracts have materially different settlement criteria. Keyed by the
+# (url_a, url_b) pair so it survives upstream re-IDs of the underlying markets.
+EXCLUDED_URL_PAIRS = {
+    # US-Iran nuclear deal before 2027 — different settlement bars. Kalshi
+    # requires a formal signed agreement with verifiable enrichment limits;
+    # Polymarket only requires a publicly announced mutual agreement.
+    ("https://kalshi.com/markets/KXUSAIRANAGREEMENT",
+     "https://polymarket.com/event/us-iran-nuclear-deal-before-2027"),
+}
+
 SOURCES = [
     {
         "id":   "pred-arbitrage",
@@ -67,6 +78,8 @@ def _normalize_race(r: dict, source_id: str) -> dict | None:
     ret = float(r["guaranteed_return_pct"])
     if ret < MIN_RETURN_PCT or ret > MAX_RETURN_PCT:
         return None
+    if (r["url_a"], r["url_b"]) in EXCLUDED_URL_PAIRS:
+        return None
     return {
         "source":   source_id,
         "category": r.get("category") or r.get("office") or "",
@@ -77,6 +90,8 @@ def _normalize_race(r: dict, source_id: str) -> dict | None:
         "question_b": r.get("question_b", ""),
         "url_a":      r["url_a"],
         "url_b":      r["url_b"],
+        "market_id_a": r.get("market_id_a", ""),
+        "market_id_b": r.get("market_id_b", ""),
         "prob_a":     float(r["implied_prob_a"]),
         "prob_b":     float(r["implied_prob_b"]),
         "stake_a":    _to_float(r.get("stake_a_dollars")),

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arb Calculator | EZ Dubs Analytics</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+               background: #0f1923; color: #e0e0e0; }
+
+        .site-nav {
+            position: sticky; top: 0; z-index: 50;
+            display: flex; align-items: center; gap: 28px;
+            padding: 14px 28px;
+            background: #0f1923; border-bottom: 1px solid #1e2d3d;
+        }
+        .site-nav .brand { font-weight: 700; font-size: 1.05rem; color: #fff;
+            text-decoration: none; white-space: nowrap; }
+        .site-nav .brand .accent { color: #4a9eff; }
+        .site-nav .nav-tabs { display: flex; gap: 6px; flex-wrap: wrap; }
+        .site-nav .nav-tabs a {
+            padding: 8px 16px; border-radius: 8px; border: 1px solid #2a3a4a;
+            background: #1a2634; color: #aaa; text-decoration: none;
+            font-size: 0.9rem; font-weight: 600; transition: all 0.15s;
+        }
+        .site-nav .nav-tabs a:hover { border-color: #4a9eff; color: #fff; }
+        .site-nav .nav-tabs a.active { border-color: #4a9eff; color: #4a9eff; }
+        .site-nav .nav-spacer { flex: 1; }
+        .site-nav .patreon-btn {
+            padding: 8px 16px; border-radius: 8px;
+            background: #ff424d; color: #fff; text-decoration: none;
+            font-size: 0.9rem; font-weight: 700; transition: opacity 0.15s;
+            white-space: nowrap;
+        }
+        .site-nav .patreon-btn:hover { opacity: 0.85; }
+
+        main { max-width: 820px; margin: 0 auto; padding: 40px 24px 64px; }
+        h1 { color: #fff; font-size: 1.8rem; font-weight: 800; margin: 0 0 6px;
+             letter-spacing: -0.01em; }
+        .subtitle { color: #99aabb; font-size: 0.92rem; margin-bottom: 22px; line-height: 1.5; }
+
+        .calc-card {
+            background: #131f2c; border: 1px solid #1e2d3d; border-radius: 14px;
+            padding: 24px; margin-bottom: 18px;
+        }
+        .card-title {
+            color: #99aabb; font-size: 0.78rem; font-weight: 700;
+            letter-spacing: 0.14em; text-transform: uppercase;
+            margin-bottom: 14px;
+        }
+        .row {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+            margin-bottom: 12px;
+        }
+        .row:last-child { margin-bottom: 0; }
+        .field { display: flex; flex-direction: column; gap: 6px; }
+        .field label {
+            color: #99aabb; font-size: 0.82rem; font-weight: 600;
+        }
+        .field label .hint { color: #6f7e8d; font-weight: 400; }
+        .field input {
+            padding: 10px 14px; border-radius: 8px; border: 1px solid #2a3a4a;
+            background: #0f1923; color: #fff; font-size: 0.95rem;
+            font-variant-numeric: tabular-nums;
+        }
+        .field input:focus { outline: none; border-color: #4a9eff; }
+        .field input.text {
+            font-family: inherit; font-size: 0.92rem;
+        }
+        .field input.bad { border-color: #ff424d; }
+
+        /* Result panel */
+        .verdict {
+            padding: 18px 22px; border-radius: 12px; margin-bottom: 14px;
+            background: #0f1923; border: 1px solid #1e2d3d;
+        }
+        .verdict.good { border-color: rgba(0,196,106,0.5); }
+        .verdict.bad  { border-color: rgba(255,66,77,0.5); }
+        .verdict-line {
+            font-size: 1.05rem; font-weight: 700; color: #fff; margin-bottom: 4px;
+        }
+        .verdict.good .verdict-line { color: #00c46a; }
+        .verdict.bad  .verdict-line { color: #ff424d; }
+        .verdict-sub { color: #99aabb; font-size: 0.88rem; line-height: 1.5; }
+
+        .legs-out {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+        }
+        .leg-out {
+            background: #0f1923; border: 1px solid #1e2d3d;
+            border-radius: 10px; padding: 14px 16px;
+        }
+        .leg-out .leg-label {
+            color: #99aabb; font-size: 0.78rem; font-weight: 700;
+            letter-spacing: 0.1em; text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+        .leg-out .stake {
+            font-size: 1.4rem; font-weight: 800; color: #fff;
+            font-variant-numeric: tabular-nums; letter-spacing: -0.01em;
+        }
+        .leg-out .side {
+            color: #4a9eff; font-weight: 700; font-size: 0.82rem;
+            letter-spacing: 0.08em; text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+        .leg-out .side.no { color: #f7b500; }
+        .leg-out .meta { color: #6f7e8d; font-size: 0.78rem; margin-top: 6px; }
+        .leg-out .meta strong { color: #99aabb; font-weight: 700; }
+
+        .summary-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+            margin-top: 14px;
+        }
+        .summary-cell {
+            background: #0f1923; border: 1px solid #1e2d3d;
+            border-radius: 10px; padding: 12px 14px; text-align: center;
+        }
+        .summary-cell .v {
+            font-size: 1.15rem; font-weight: 800; color: #fff;
+            font-variant-numeric: tabular-nums;
+        }
+        .summary-cell .l {
+            color: #6f7e8d; font-size: 0.72rem; font-weight: 700;
+            letter-spacing: 0.08em; text-transform: uppercase;
+            margin-top: 2px;
+        }
+        .summary-cell.good .v { color: #00c46a; }
+
+        .notes {
+            color: #6f7e8d; font-size: 0.78rem; line-height: 1.55;
+            margin-top: 16px;
+        }
+        .notes strong { color: #99aabb; }
+    </style>
+</head>
+<body>
+    <nav class="site-nav">
+        <a class="brand" href="../../">EZ Dubs <span class="accent">Analytics</span></a>
+        <div class="nav-tabs">
+            <a href="../../">Home</a>
+            <a href="../best-ball-prices/">Best Ball Price Differences</a>
+            <a href="../prediction-arbitrage/">Prediction Market Arbitrage</a>
+            <a href="./" class="active">Arb Calculator</a>
+            <!-- TODO: replace # with the Substack URL -->
+            <a href="#" target="_blank" rel="noopener">Blog</a>
+        </div>
+        <div class="nav-spacer"></div>
+        <!-- TODO: replace # with the Patreon URL -->
+        <a class="patreon-btn" href="#" target="_blank" rel="noopener">Support on Patreon</a>
+    </nav>
+
+    <main>
+        <h1>Arb Calculator</h1>
+        <p class="subtitle">
+            Plug in the YES prices on two markets covering the same outcome, set a bankroll, and get the optimal split that locks in equal payoffs on either resolution.
+        </p>
+
+        <div class="calc-card">
+            <div class="card-title">Inputs</div>
+            <div class="row">
+                <div class="field">
+                    <label>Side A label <span class="hint">(optional)</span></label>
+                    <input type="text" class="text" id="labelA" placeholder="e.g. Kalshi YES">
+                </div>
+                <div class="field">
+                    <label>Side B label <span class="hint">(optional)</span></label>
+                    <input type="text" class="text" id="labelB" placeholder="e.g. Polymarket YES">
+                </div>
+            </div>
+            <div class="row">
+                <div class="field">
+                    <label>Side A YES price <span class="hint">(0–1)</span></label>
+                    <input type="number" id="priceA" min="0" max="1" step="0.01" placeholder="0.55">
+                </div>
+                <div class="field">
+                    <label>Side B YES price <span class="hint">(0–1)</span></label>
+                    <input type="number" id="priceB" min="0" max="1" step="0.01" placeholder="0.55">
+                </div>
+            </div>
+            <div class="row">
+                <div class="field">
+                    <label>Total bankroll <span class="hint">($)</span></label>
+                    <input type="number" id="bankroll" min="0" step="1" value="100">
+                </div>
+                <div class="field" style="visibility:hidden;">
+                    <label>spacer</label>
+                    <input type="number">
+                </div>
+            </div>
+        </div>
+
+        <div id="output"></div>
+
+        <p class="notes">
+            <strong>How it works.</strong> A two-sided arb means buying YES on one market and NO on the other.
+            "Buy NO at price <em>p</em>" is the same as paying <em>1 − p</em> for a contract that returns $1 if the
+            underlying resolves NO. The calculator picks the orientation that puts you on the cheaper side of
+            each event and splits your bankroll so both legs return the same payoff. If
+            <em>price A + (1 − price B) ≥ 1</em> in <em>both</em> orientations, there's no arb.
+            <br><br>
+            <strong>Caveats not included.</strong> Fees (Kalshi/Polymarket ~3%, PredictIt ~12%) and the order book —
+            the YES price you see is the mid, not the executable ask. A tight arb on paper may not survive either
+            of those.
+        </p>
+    </main>
+
+    <script>
+        const el = id => document.getElementById(id);
+
+        function fmtMoney(n) {
+            if (!isFinite(n)) return '—';
+            return n.toLocaleString('en-US', { style: 'currency', currency: 'USD',
+                                               minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        }
+        function fmtPct(n) {
+            if (!isFinite(n)) return '—';
+            return (n * 100).toFixed(2) + '%';
+        }
+
+        // Given p_yes_A, p_no_B, and bankroll T, compute the stake on A and B
+        // that produces equal payoffs and the resulting profit. Returns null if
+        // no arb (cost >= 1).
+        function arbAtOrientation(pYesA, pNoB, T) {
+            // We buy YES on A at price pYesA and NO on B at price pNoB.
+            // Payout-per-dollar: 1/pYesA on A, 1/pNoB on B.
+            // For equal payoffs, stake_A * (1/pYesA) = stake_B * (1/pNoB),
+            // i.e. stake_A / pYesA = stake_B / pNoB.
+            // Let s = stake_A / pYesA = stake_B / pNoB. Then total = s*(pYesA + pNoB).
+            const cost = pYesA + pNoB;
+            if (!(cost > 0 && cost < 1)) return null;
+            const s = T / cost;
+            const stakeA = s * pYesA;
+            const stakeB = s * pNoB;
+            const payoff = s; // both legs pay s when their side hits
+            const profit = payoff - T;
+            return {
+                stakeA, stakeB, payoff, profit,
+                returnPct: profit / T,
+                cost, // pYesA + pNoB; smaller = better arb
+            };
+        }
+
+        function compute() {
+            const labelA = el('labelA').value.trim() || 'Side A';
+            const labelB = el('labelB').value.trim() || 'Side B';
+            const pA = parseFloat(el('priceA').value);
+            const pB = parseFloat(el('priceB').value);
+            const T  = parseFloat(el('bankroll').value);
+
+            const out = el('output');
+
+            // Field-level validity hints.
+            [['priceA', pA], ['priceB', pB]].forEach(([id, v]) => {
+                el(id).classList.toggle('bad', !(v >= 0 && v <= 1) && el(id).value !== '');
+            });
+            el('bankroll').classList.toggle('bad', !(T > 0) && el('bankroll').value !== '');
+
+            if (!isFinite(pA) || !isFinite(pB) || !isFinite(T) || T <= 0
+                || pA < 0 || pA > 1 || pB < 0 || pB > 1) {
+                out.innerHTML = '';
+                return;
+            }
+
+            // Try both orientations:
+            //   Orientation 1: YES on A, NO on B (cost = pA + (1 - pB))
+            //   Orientation 2: NO on A, YES on B (cost = (1 - pA) + pB)
+            const o1 = arbAtOrientation(pA, 1 - pB, T);
+            const o2 = arbAtOrientation(1 - pA, pB, T);
+
+            // Pick the cheaper cost (= bigger profit) when both exist.
+            let best, sideA, sideB;
+            if (o1 && o2) {
+                if (o1.cost <= o2.cost) { best = o1; sideA = 'YES'; sideB = 'NO'; }
+                else                    { best = o2; sideA = 'NO';  sideB = 'YES'; }
+            } else if (o1) { best = o1; sideA = 'YES'; sideB = 'NO'; }
+            else if (o2)   { best = o2; sideA = 'NO';  sideB = 'YES'; }
+
+            if (!best) {
+                // No arb in either orientation. Show the closer one as the "edge gap."
+                const closer = Math.min(pA + (1 - pB), (1 - pA) + pB);
+                out.innerHTML = `
+                    <div class="calc-card">
+                        <div class="verdict bad">
+                            <div class="verdict-line">No arb at these prices</div>
+                            <div class="verdict-sub">
+                                Best orientation costs ${closer.toFixed(4)} per $1 of payoff (need &lt; 1).
+                                Short by ${((closer - 1) * 100).toFixed(2)}% before fees.
+                            </div>
+                        </div>
+                    </div>`;
+                return;
+            }
+
+            const priceAStr = sideA === 'YES' ? pA.toFixed(2) : (1 - pA).toFixed(2);
+            const priceBStr = sideB === 'YES' ? pB.toFixed(2) : (1 - pB).toFixed(2);
+
+            out.innerHTML = `
+                <div class="calc-card">
+                    <div class="verdict good">
+                        <div class="verdict-line">Arb available — guaranteed ${fmtMoney(best.profit)} on ${fmtMoney(T)}</div>
+                        <div class="verdict-sub">
+                            Cost per $1 of payoff: ${best.cost.toFixed(4)}.
+                            Whichever side resolves, you get back ${fmtMoney(best.payoff)}.
+                        </div>
+                    </div>
+
+                    <div class="legs-out">
+                        <div class="leg-out">
+                            <div class="leg-label">${escapeHtml(labelA)}</div>
+                            <div class="side ${sideA === 'NO' ? 'no' : ''}">Buy ${sideA} @ ${priceAStr}</div>
+                            <div class="stake">${fmtMoney(best.stakeA)}</div>
+                            <div class="meta">Pays <strong>${fmtMoney(best.payoff)}</strong> if ${labelA.toLowerCase().includes('side') ? labelA : labelA + "'s outcome"} resolves ${sideA}</div>
+                        </div>
+                        <div class="leg-out">
+                            <div class="leg-label">${escapeHtml(labelB)}</div>
+                            <div class="side ${sideB === 'NO' ? 'no' : ''}">Buy ${sideB} @ ${priceBStr}</div>
+                            <div class="stake">${fmtMoney(best.stakeB)}</div>
+                            <div class="meta">Pays <strong>${fmtMoney(best.payoff)}</strong> if ${labelB.toLowerCase().includes('side') ? labelB : labelB + "'s outcome"} resolves ${sideB}</div>
+                        </div>
+                    </div>
+
+                    <div class="summary-grid">
+                        <div class="summary-cell"><div class="v">${fmtMoney(best.stakeA + best.stakeB)}</div><div class="l">Total stake</div></div>
+                        <div class="summary-cell good"><div class="v">${fmtMoney(best.profit)}</div><div class="l">Guaranteed profit</div></div>
+                        <div class="summary-cell good"><div class="v">${fmtPct(best.returnPct)}</div><div class="l">Return on bankroll</div></div>
+                    </div>
+                </div>`;
+        }
+
+        function escapeHtml(s) {
+            return String(s || '').replace(/[&<>"']/g, c => ({
+                '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;',
+            })[c]);
+        }
+
+        ['priceA','priceB','bankroll','labelA','labelB'].forEach(id => {
+            el(id).addEventListener('input', compute);
+        });
+        compute();
+    </script>
+</body>
+</html>
