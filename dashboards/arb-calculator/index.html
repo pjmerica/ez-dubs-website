@@ -171,12 +171,22 @@
             </div>
             <div class="row">
                 <div class="field">
-                    <label>Side A YES price <span class="hint">(0–1)</span></label>
-                    <input type="number" id="priceA" min="0" max="1" step="0.01" placeholder="0.55">
+                    <label>Side A — YES price <span class="hint">(0–1)</span></label>
+                    <input type="number" id="ayes" min="0" max="1" step="0.01" placeholder="0.42">
                 </div>
                 <div class="field">
-                    <label>Side B YES price <span class="hint">(0–1)</span></label>
-                    <input type="number" id="priceB" min="0" max="1" step="0.01" placeholder="0.55">
+                    <label>Side A — NO price <span class="hint">(0–1)</span></label>
+                    <input type="number" id="ano"  min="0" max="1" step="0.01" placeholder="0.58">
+                </div>
+            </div>
+            <div class="row">
+                <div class="field">
+                    <label>Side B — YES price <span class="hint">(0–1)</span></label>
+                    <input type="number" id="byes" min="0" max="1" step="0.01" placeholder="0.55">
+                </div>
+                <div class="field">
+                    <label>Side B — NO price <span class="hint">(0–1)</span></label>
+                    <input type="number" id="bno"  min="0" max="1" step="0.01" placeholder="0.45">
                 </div>
             </div>
             <div class="row">
@@ -194,15 +204,18 @@
         <div id="output"></div>
 
         <p class="notes">
-            <strong>How it works.</strong> A two-sided arb means buying YES on one market and NO on the other.
-            "Buy NO at price <em>p</em>" is the same as paying <em>1 − p</em> for a contract that returns $1 if the
-            underlying resolves NO. The calculator picks the orientation that puts you on the cheaper side of
-            each event and splits your bankroll so both legs return the same payoff. If
-            <em>price A + (1 − price B) ≥ 1</em> in <em>both</em> orientations, there's no arb.
+            <strong>How it works.</strong> An arb means buying one outcome on market A and the opposite outcome
+            on market B, so one of the two legs always pays. There are two possible orientations:
+            (1) YES on A + NO on B, or (2) NO on A + YES on B. The calculator tries both, picks whichever has
+            the cheaper combined cost (must be &lt; 1.00 per $1 of payoff), and splits your bankroll so both legs
+            return the same payoff. If neither orientation is &lt; 1.00, there's no arb at these prices.
             <br><br>
-            <strong>Caveats not included.</strong> Fees (Kalshi/Polymarket ~3%, PredictIt ~12%) and the order book —
-            the YES price you see is the mid, not the executable ask. A tight arb on paper may not survive either
-            of those.
+            <strong>Why four prices, not two.</strong> On a real order book, YES + NO often doesn't sum to exactly 1
+            — that gap is the bid/ask spread. Entering all four prices lets the calculator use what you'd
+            actually pay to execute, not a theoretical mid.
+            <br><br>
+            <strong>Caveats not included.</strong> Trading fees (Kalshi/Polymarket ~3%, PredictIt ~12%) and order-book
+            depth — the displayed price may not be the full size you can fill. A tight arb on paper may not survive either.
         </p>
     </main>
 
@@ -219,73 +232,78 @@
             return (n * 100).toFixed(2) + '%';
         }
 
-        // Given p_yes_A, p_no_B, and bankroll T, compute the stake on A and B
-        // that produces equal payoffs and the resulting profit. Returns null if
-        // no arb (cost >= 1).
-        function arbAtOrientation(pYesA, pNoB, T) {
-            // We buy YES on A at price pYesA and NO on B at price pNoB.
-            // Payout-per-dollar: 1/pYesA on A, 1/pNoB on B.
-            // For equal payoffs, stake_A * (1/pYesA) = stake_B * (1/pNoB),
-            // i.e. stake_A / pYesA = stake_B / pNoB.
-            // Let s = stake_A / pYesA = stake_B / pNoB. Then total = s*(pYesA + pNoB).
-            const cost = pYesA + pNoB;
+        // Given two leg costs (cost of $1 YES on each market or $1 NO on each
+        // market, however we're combining them) and a bankroll T, compute the
+        // equal-payoff split. Returns null if no arb (cost >= 1).
+        function arbAtOrientation(pA, pB, T) {
+            // Buy $stake_A of A at price pA -> $1 of payoff per pA.
+            // Buy $stake_B of B at price pB -> $1 of payoff per pB.
+            // Equal payoff: stake_A / pA = stake_B / pB = payoff.
+            // Let payoff P; then stake_A + stake_B = P * (pA + pB) = T.
+            const cost = pA + pB;
             if (!(cost > 0 && cost < 1)) return null;
-            const s = T / cost;
-            const stakeA = s * pYesA;
-            const stakeB = s * pNoB;
-            const payoff = s; // both legs pay s when their side hits
-            const profit = payoff - T;
+            const payoff = T / cost;
             return {
-                stakeA, stakeB, payoff, profit,
-                returnPct: profit / T,
-                cost, // pYesA + pNoB; smaller = better arb
+                stakeA: payoff * pA,
+                stakeB: payoff * pB,
+                payoff,
+                profit: payoff - T,
+                returnPct: (payoff - T) / T,
+                cost,
             };
         }
 
         function compute() {
             const labelA = el('labelA').value.trim() || 'Side A';
             const labelB = el('labelB').value.trim() || 'Side B';
-            const pA = parseFloat(el('priceA').value);
-            const pB = parseFloat(el('priceB').value);
-            const T  = parseFloat(el('bankroll').value);
+            const ayes = parseFloat(el('ayes').value);
+            const ano  = parseFloat(el('ano').value);
+            const byes = parseFloat(el('byes').value);
+            const bno  = parseFloat(el('bno').value);
+            const T    = parseFloat(el('bankroll').value);
 
             const out = el('output');
 
             // Field-level validity hints.
-            [['priceA', pA], ['priceB', pB]].forEach(([id, v]) => {
+            [['ayes', ayes], ['ano', ano], ['byes', byes], ['bno', bno]].forEach(([id, v]) => {
                 el(id).classList.toggle('bad', !(v >= 0 && v <= 1) && el(id).value !== '');
             });
             el('bankroll').classList.toggle('bad', !(T > 0) && el('bankroll').value !== '');
 
-            if (!isFinite(pA) || !isFinite(pB) || !isFinite(T) || T <= 0
-                || pA < 0 || pA > 1 || pB < 0 || pB > 1) {
+            const allValid = [ayes, ano, byes, bno].every(v => isFinite(v) && v >= 0 && v <= 1)
+                          && isFinite(T) && T > 0;
+            if (!allValid) {
                 out.innerHTML = '';
                 return;
             }
 
-            // Try both orientations:
-            //   Orientation 1: YES on A, NO on B (cost = pA + (1 - pB))
-            //   Orientation 2: NO on A, YES on B (cost = (1 - pA) + pB)
-            const o1 = arbAtOrientation(pA, 1 - pB, T);
-            const o2 = arbAtOrientation(1 - pA, pB, T);
+            // Two orientations:
+            //   1: YES on A + NO on B  -> cost = ayes + bno
+            //   2: NO on A + YES on B  -> cost = ano + byes
+            const o1 = arbAtOrientation(ayes, bno,  T);
+            const o2 = arbAtOrientation(ano,  byes, T);
 
             // Pick the cheaper cost (= bigger profit) when both exist.
-            let best, sideA, sideB;
+            let best, sideA, sideB, priceA, priceB;
             if (o1 && o2) {
-                if (o1.cost <= o2.cost) { best = o1; sideA = 'YES'; sideB = 'NO'; }
-                else                    { best = o2; sideA = 'NO';  sideB = 'YES'; }
-            } else if (o1) { best = o1; sideA = 'YES'; sideB = 'NO'; }
-            else if (o2)   { best = o2; sideA = 'NO';  sideB = 'YES'; }
+                if (o1.cost <= o2.cost) { best = o1; sideA = 'YES'; sideB = 'NO';  priceA = ayes; priceB = bno;  }
+                else                    { best = o2; sideA = 'NO';  sideB = 'YES'; priceA = ano;  priceB = byes; }
+            } else if (o1) { best = o1; sideA = 'YES'; sideB = 'NO';  priceA = ayes; priceB = bno;  }
+            else if (o2)   { best = o2; sideA = 'NO';  sideB = 'YES'; priceA = ano;  priceB = byes; }
 
             if (!best) {
                 // No arb in either orientation. Show the closer one as the "edge gap."
-                const closer = Math.min(pA + (1 - pB), (1 - pA) + pB);
+                const c1 = ayes + bno, c2 = ano + byes;
+                const closer = Math.min(c1, c2);
+                const closerLabel = c1 <= c2
+                    ? `YES on ${labelA} + NO on ${labelB}`
+                    : `NO on ${labelA} + YES on ${labelB}`;
                 out.innerHTML = `
                     <div class="calc-card">
                         <div class="verdict bad">
                             <div class="verdict-line">No arb at these prices</div>
                             <div class="verdict-sub">
-                                Best orientation costs ${closer.toFixed(4)} per $1 of payoff (need &lt; 1).
+                                Best orientation (${closerLabel}) costs ${closer.toFixed(4)} per $1 of payoff (need &lt; 1).
                                 Short by ${((closer - 1) * 100).toFixed(2)}% before fees.
                             </div>
                         </div>
@@ -293,8 +311,8 @@
                 return;
             }
 
-            const priceAStr = sideA === 'YES' ? pA.toFixed(2) : (1 - pA).toFixed(2);
-            const priceBStr = sideB === 'YES' ? pB.toFixed(2) : (1 - pB).toFixed(2);
+            const priceAStr = priceA.toFixed(2);
+            const priceBStr = priceB.toFixed(2);
 
             out.innerHTML = `
                 <div class="calc-card">
@@ -335,7 +353,7 @@
             })[c]);
         }
 
-        ['priceA','priceB','bankroll','labelA','labelB'].forEach(id => {
+        ['ayes','ano','byes','bno','bankroll','labelA','labelB'].forEach(id => {
             el(id).addEventListener('input', compute);
         });
         compute();
