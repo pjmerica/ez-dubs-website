@@ -354,10 +354,6 @@
             if (p === null || p === undefined || isNaN(p)) return '—';
             return p.toFixed(2);
         }
-        function fmtStake(s) {
-            if (s === null || s === undefined || isNaN(s)) return null;
-            return `$${s.toFixed(0)}`;
-        }
         function escapeHtml(s) {
             return String(s || '').replace(/[&<>"']/g, c => ({
                 '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;',
@@ -406,8 +402,6 @@
         function cardHTML(a) {
             const pa = escapeHtml(PLATFORM_LABELS[a.platform_a] || a.platform_a);
             const pb = escapeHtml(PLATFORM_LABELS[a.platform_b] || a.platform_b);
-            const stakeA = fmtStake(a.stake_a);
-            const stakeB = fmtStake(a.stake_b);
             const returnClass = a.return_pct >= 5 ? '' : 'small';
             const title = a.question_a || a.label || '(unnamed)';
 
@@ -422,13 +416,11 @@
                     <div class="leg">
                         <span class="platform ${escapeHtml(a.platform_a)}">${pa}</span>
                         <span class="price">${fmtPrice(a.prob_a)}</span>
-                        <span class="stake">${stakeA ? `Stake <strong>${stakeA}</strong>` : ''}</span>
                         <a class="btn" href="${escapeHtml(a.url_a)}" target="_blank" rel="noopener">Open ↗</a>
                     </div>
                     <div class="leg">
                         <span class="platform ${escapeHtml(a.platform_b)}">${pb}</span>
                         <span class="price">${fmtPrice(a.prob_b)}</span>
-                        <span class="stake">${stakeB ? `Stake <strong>${stakeB}</strong>` : ''}</span>
                         <a class="btn" href="${escapeHtml(a.url_b)}" target="_blank" rel="noopener">Open ↗</a>
                     </div>
                     ${a.question_a && a.question_b && a.question_a !== a.question_b ? `
