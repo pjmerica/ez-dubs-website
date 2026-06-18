@@ -436,7 +436,7 @@
         .viz-callout .label {
             font-size: 0.66rem; font-weight: 700;
             letter-spacing: 0.06em; text-transform: uppercase; color: #99aabb;
-            white-space: nowrap;
+            text-align: right; line-height: 1.25;
         }
         .viz-callout.cheaper-a .label { color: var(--src-a-color, #4a9eff); }
         .viz-callout.cheaper-b .label { color: var(--src-b-color, #f7b500); }
@@ -1204,7 +1204,7 @@
                     </div>
                     <div class="viz-callout ${cheaperCls}">
                         <span class="gap">${Math.abs(p.gap).toFixed(0)}</span>
-                        <span class="label">picks pricier ${cheaperLabel}</span>
+                        <span class="label">picks pricier on ${cheaperLabel}</span>
                     </div>
                 </div>`;
             }).join('');
@@ -1268,7 +1268,7 @@
                     </div>
                     <div class="viz-callout ${cheaperCls}">
                         <span class="gap">${Math.abs(p.gap).toFixed(0)}</span>
-                        <span class="label">picks pricier ${cheaperLabel}</span>
+                        <span class="label">picks pricier on ${cheaperLabel}</span>
                     </div>
                 </div>`;
             }).join('');
