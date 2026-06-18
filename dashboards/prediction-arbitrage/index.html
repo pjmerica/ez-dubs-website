@@ -189,6 +189,32 @@
         .gate-error {
             color: #ff424d; font-size: 0.82rem; margin-top: 10px; min-height: 1em;
         }
+
+        /* Flag legend */
+        .flag-legend {
+            background: #131f2c; border: 1px solid #1e2d3d; border-radius: 12px;
+            padding: 8px 16px; margin-bottom: 22px;
+        }
+        .flag-legend summary {
+            color: #99aabb; font-size: 0.88rem; font-weight: 600;
+            cursor: pointer; padding: 8px 0; user-select: none;
+        }
+        .flag-legend summary:hover { color: #fff; }
+        .flag-legend[open] summary { color: #fff; }
+        .flag-legend dl {
+            display: grid; grid-template-columns: max-content 1fr;
+            gap: 8px 16px; padding: 10px 0 14px;
+            font-size: 0.86rem; line-height: 1.5;
+        }
+        .flag-legend dt {
+            color: #f7b500; font-weight: 700; font-family: ui-monospace, Menlo, Consolas, monospace;
+            font-size: 0.82rem; white-space: nowrap; padding-top: 2px;
+        }
+        .flag-legend dd { color: #99aabb; margin: 0; }
+        .flag-legend .legend-foot {
+            color: #6f7e8d; font-size: 0.78rem; line-height: 1.5;
+            padding-top: 6px; border-top: 1px solid #1e2d3d; margin-top: 6px;
+        }
     </style>
 </head>
 <body>
@@ -219,6 +245,29 @@
             <a href="../arb-calculator/" style="color:#f7b500;font-weight:700;text-decoration:underline;">Arb Calculator</a>
             before sizing a bet.
         </div>
+
+        <details class="flag-legend">
+            <summary>What do the ⚠ Flagged tags mean?</summary>
+            <dl>
+                <dt>wide_gap</dt>
+                <dd>The implied probabilities on the two markets differ by more than 20 points. Often signals one side hasn't priced in a real-world event yet (or a contract-definition mismatch). Real-money traders should verify the markets are truly settling the same outcome.</dd>
+
+                <dt>wide_spread_a / wide_spread_b</dt>
+                <dd>The bid–ask spread on the flagged side (A or B) is wider than 15 cents. You can't actually buy at the mid-price; you'd be paying closer to the ask, which can eat the whole edge.</dd>
+
+                <dt>thin_depth_a / thin_depth_b</dt>
+                <dd>Less than $20 of size is available on the flagged side at within 3 cents of the best price. The arb might disappear before you can fill anything meaningful.</dd>
+
+                <dt>one_sided_a / one_sided_b</dt>
+                <dd>The flagged side has an ask but no bid (or vice versa). The market is effectively one-directional; the "price" we see may not be one you can actually trade against.</dd>
+
+                <dt>inferred_a / inferred_b</dt>
+                <dd>The probability on the flagged side was inferred from the order book (mid of best bid/ask) because there was no recent trade to anchor on. Possibly a stale or illiquid market.</dd>
+            </dl>
+            <div class="legend-foot">
+                A flagged arb isn't necessarily fake — it's just one the upstream scanner thinks you should look at carefully before staking. Use the chip above to hide them.
+            </div>
+        </details>
 
         <div id="gate" class="gate">
             <div class="gate-title">🔒 Password required</div>
