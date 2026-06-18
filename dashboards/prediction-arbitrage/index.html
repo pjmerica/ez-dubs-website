@@ -422,8 +422,8 @@
         // Light velvet rope: we store a SHA-256 of the password, not the
         // cleartext. Anyone with devtools can still inspect arbs.json
         // directly — this is friction, not security.
-        const PASSWORD_HASH = '6a3daccc539f03456552b99a15e946015ace98a953937f0f22c0d53b8e2143ff';
-        const UNLOCK_KEY = 'ezdubs-pred-arb-unlocked';
+        const PASSWORD_HASH = 'd3b57762d492f7cb36f5ec7ac8f0e18f9c574a0e14baca5695ac10d77ae86390';
+        const UNLOCK_KEY = 'ezdubs-pred-arb-unlocked-v2';
 
         async function sha256Hex(text) {
             const buf = new TextEncoder().encode(text);
