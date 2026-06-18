@@ -218,6 +218,23 @@
             margin-top: 16px;
         }
         .notes strong { color: #99aabb; }
+
+        /* Mobile layout — affects nothing on ≥721px. */
+        @media (max-width: 720px) {
+            main { padding: 22px 14px 56px; }
+            h1 { font-size: 1.5rem; }
+            .subtitle { font-size: 0.85rem; }
+            .calc-card { padding: 16px 14px; }
+            .row { grid-template-columns: 1fr; gap: 10px; }
+            .legs-out { grid-template-columns: 1fr; gap: 10px; }
+            .summary-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+            .summary-cell .v { font-size: 1rem; }
+            .summary-cell .l { font-size: 0.66rem; }
+            .verdict-line { font-size: 0.95rem; }
+            .verdict-sub { font-size: 0.82rem; }
+            .notes { font-size: 0.74rem; }
+            .leg-out .stake { font-size: 1.2rem; }
+        }
     </style>
 </head>
 <body>

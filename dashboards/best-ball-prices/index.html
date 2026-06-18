@@ -444,9 +444,106 @@
             text-align: center; color: #6f7e8d; font-size: 0.92rem;
             padding: 30px 16px;
         }
+        /* Mobile layout — affects nothing on ≥721px. */
         @media (max-width: 720px) {
-            .viz-row { grid-template-columns: 40px 1fr 100px; }
-            .viz-row .viz-track { display: none; }
+            .page { padding: 16px 12px; }
+
+            /* Hero / titles */
+            h1 { font-size: 1.4rem; }
+            .subtitle { font-size: 0.82rem; }
+            .blurb { font-size: 0.82rem; padding: 12px 14px; margin-bottom: 18px; }
+
+            /* In-page tabs (Numerical / Visualizer / All Platforms) */
+            .tabs { gap: 4px; }
+            .tab-btn {
+                padding: 8px 12px; font-size: 0.82rem;
+                flex: 1; min-width: 0;
+                text-align: center;
+            }
+
+            /* Source pickers stack cleanly */
+            .source-picker { flex-direction: column; align-items: stretch; gap: 8px; }
+            .source-picker label { text-align: center; }
+            .source-picker select { width: 100%; }
+            .source-picker .vs { display: none; }
+
+            /* Filter rows + pagination chips */
+            .controls { gap: 8px; }
+            .pos-filters { gap: 4px; flex-wrap: wrap; justify-content: center; }
+            .pos-btn { padding: 6px 10px; font-size: 0.82rem; }
+            .viz-pagination { gap: 4px; }
+            .viz-pagination .page-btn { padding: 6px 10px; font-size: 0.78rem; }
+
+            /* Numerical Representation table → stacked cards.
+               Each <tr> becomes a card; each <td> becomes a Label / Value row. */
+            .table-container { border: 0; border-radius: 0; overflow: visible; }
+            .table-container table,
+            .table-container thead,
+            .table-container tbody,
+            .table-container tr,
+            .table-container td { display: block; }
+            .table-container thead { display: none; }
+            .table-container tr {
+                background: #131f2c; border: 1px solid #1e2d3d;
+                border-radius: 10px; padding: 10px 12px;
+                margin-bottom: 10px;
+            }
+            .table-container tr:hover { background: #131f2c; }
+            .table-container td {
+                padding: 4px 0; white-space: normal;
+                display: flex; justify-content: space-between; align-items: center;
+                gap: 12px; font-size: 0.88rem;
+            }
+            .table-container td::before {
+                content: attr(data-label);
+                color: #6f7e8d; font-size: 0.74rem; font-weight: 700;
+                text-transform: uppercase; letter-spacing: 0.06em;
+            }
+            /* The rank cell goes full-width at the top of each card */
+            .table-container td.rank-cell {
+                display: flex; justify-content: space-between;
+                border-bottom: 1px solid #1e2d3d;
+                padding-bottom: 6px; margin-bottom: 4px;
+                color: #fff; font-weight: 700; font-size: 1rem;
+            }
+            .table-container td.rank-cell::before { content: '#'; color: #6f7e8d; }
+            /* The name cell shows just the name, big */
+            .table-container td.name-cell {
+                font-size: 1rem; font-weight: 700; color: #fff;
+            }
+            .table-container td.name-cell::before { content: 'Name'; }
+
+            /* Visualizer rows: stack vertically (header / chart / callout) */
+            .viz-row {
+                display: grid;
+                grid-template-columns: auto 1fr;
+                grid-template-areas:
+                    "badge name"
+                    "track track"
+                    "callout callout";
+                row-gap: 10px; column-gap: 10px;
+                padding: 12px 12px;
+            }
+            .viz-row .pos-badge { grid-area: badge; }
+            .viz-row .viz-name  { grid-area: name; }
+            .viz-row .viz-track { grid-area: track; display: block; height: 36px; }
+            .viz-row .viz-callout {
+                grid-area: callout;
+                flex-direction: row; justify-content: space-between;
+                align-items: center; padding: 8px 12px;
+            }
+            .viz-callout .gap { font-size: 1.15rem; }
+            .viz-callout .label { font-size: 0.7rem; }
+
+            /* Rec bubbles full-width */
+            .rec-bubble { min-width: 0; max-width: none; flex-basis: 100%; }
+            .recs-container { gap: 12px; }
+
+            /* History page */
+            .chart-wrap { padding: 12px; }
+            #player-search { width: 100%; max-width: none; }
+            .search-wrap { width: 100%; }
+            .lookback-wrap { max-width: none; }
         }
     </style>
 </head>
@@ -927,7 +1024,9 @@
                 const diffText = p.diff !== null ? (p.diff > 0 ? '+' : '') + p.diff.toFixed(1) : '—';
                 const pctClass = p.pctDiff !== null ? (p.pctDiff > 0 ? 'diff-positive' : p.pctDiff < 0 ? 'diff-negative' : 'diff-neutral') : 'diff-neutral';
                 const pctText = p.pctDiff !== null ? (p.pctDiff > 0 ? '+' : '') + p.pctDiff.toFixed(1) + '%' : '—';
-                return `<tr><td class="rank-cell">${i + 1}</td><td class="name-cell">${escapeHtml(p.name)}</td><td><span class="pos-badge pos-${escapeHtml(p.pos)}">${escapeHtml(p.pos)}</span></td><td class="team-cell">${escapeHtml(p.team)}</td><td class="adp-cell source-a">${p.aAdp !== null ? p.aAdp.toFixed(1) : '<span class="no-adp">—</span>'}</td><td class="adp-cell source-b">${p.bAdp !== null ? p.bAdp.toFixed(1) : '<span class="no-adp">—</span>'}</td><td class="${diffClass}">${diffText}</td><td class="${pctClass}">${pctText}</td></tr>`;
+                const aLab = escapeHtml(srcLabel(srcA) + ' ADP');
+                const bLab = escapeHtml(srcLabel(srcB) + ' ADP');
+                return `<tr><td class="rank-cell">${i + 1}</td><td class="name-cell">${escapeHtml(p.name)}</td><td data-label="Pos"><span class="pos-badge pos-${escapeHtml(p.pos)}">${escapeHtml(p.pos)}</span></td><td class="team-cell" data-label="Team">${escapeHtml(p.team)}</td><td class="adp-cell source-a" data-label="${aLab}">${p.aAdp !== null ? p.aAdp.toFixed(1) : '<span class="no-adp">—</span>'}</td><td class="adp-cell source-b" data-label="${bLab}">${p.bAdp !== null ? p.bAdp.toFixed(1) : '<span class="no-adp">—</span>'}</td><td class="${diffClass}" data-label="Diff">${diffText}</td><td class="${pctClass}" data-label="% Diff">${pctText}</td></tr>`;
             }).join('');
             document.querySelectorAll('thead th').forEach(th => {
                 const arrow = th.querySelector('.arrow');

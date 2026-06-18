@@ -293,6 +293,33 @@
             color: #6f7e8d; font-size: 0.78rem; line-height: 1.5;
             padding-top: 6px; border-top: 1px solid #1e2d3d; margin-top: 6px;
         }
+
+        /* Mobile layout — affects nothing on ≥721px. */
+        @media (max-width: 720px) {
+            main { padding: 22px 14px 56px; }
+            h1 { font-size: 1.5rem; }
+            .subtitle { font-size: 0.85rem; }
+            .updated { font-size: 0.78rem; }
+            .disclaimer { font-size: 0.8rem; padding: 10px 14px; }
+            .arb-grid { grid-template-columns: 1fr; gap: 12px; }
+            .arb-card { padding: 14px 14px; }
+            .arb-question { font-size: 0.92rem; }
+            /* Leg: stack platform/price on top, open button on its own row */
+            .leg {
+                flex-wrap: wrap; gap: 6px 12px; padding: 8px 10px;
+            }
+            .leg .platform { min-width: 0; flex: 1 1 auto; }
+            .leg .price { flex: 0 0 auto; }
+            .leg a.btn { flex: 0 0 auto; margin-left: auto; }
+            .leg-questions { font-size: 0.72rem; }
+            .arb-foot { font-size: 0.72rem; }
+            .filter-row { gap: 6px; }
+            .chip { padding: 5px 10px; font-size: 0.78rem; }
+            .gate { padding: 20px 18px; }
+            .gate .gate-title { font-size: 1rem; }
+            .gate .gate-sub { font-size: 0.82rem; }
+            .gate-form input { font-size: 0.9rem; }
+        }
     </style>
 </head>
 <body>

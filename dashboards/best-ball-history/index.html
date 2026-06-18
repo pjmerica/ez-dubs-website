@@ -232,6 +232,30 @@
         }
         .chart-empty { text-align: center; color: #555; padding: 60px 0; font-size: 0.95rem; }
         .legend-note { text-align: center; color: #555; font-size: 0.78rem; margin-top: 10px; }
+
+        /* Mobile layout — affects nothing on ≥721px. */
+        @media (max-width: 720px) {
+            .page { padding: 16px 12px; }
+            h1 { font-size: 1.4rem; }
+            .subtitle { font-size: 0.82rem; }
+            .section-title { font-size: 1.05rem; }
+            .section-sub { font-size: 0.78rem; }
+            .rec-bubble { min-width: 0; max-width: none; flex-basis: 100%; }
+            .recs-container { gap: 12px; }
+            .pos-filters { gap: 4px; flex-wrap: wrap; justify-content: center; }
+            .pos-btn { padding: 6px 10px; font-size: 0.82rem; }
+            #player-search { width: 100%; }
+            .search-wrap { width: 100%; }
+            .lookback-wrap { max-width: none; }
+            .chart-wrap { padding: 12px; }
+            .rec-list li {
+                flex-wrap: wrap; row-gap: 4px;
+            }
+            .rec-list .rec-adps {
+                flex: 1 0 100%; text-align: left; padding-left: 30px;
+                min-width: 0;
+            }
+        }
     </style>
 </head>
 <body>
