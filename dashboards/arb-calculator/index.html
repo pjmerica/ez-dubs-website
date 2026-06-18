@@ -391,8 +391,8 @@
                 const c1 = ayes + bno, c2 = ano + byes;
                 const closer = Math.min(c1, c2);
                 const closerLabel = c1 <= c2
-                    ? `YES on ${labelA} + NO on ${labelB}`
-                    : `NO on ${labelA} + YES on ${labelB}`;
+                    ? `YES on ${escapeHtml(labelA)} + NO on ${escapeHtml(labelB)}`
+                    : `NO on ${escapeHtml(labelA)} + YES on ${escapeHtml(labelB)}`;
                 out.innerHTML = `
                     <div class="calc-card">
                         <div class="verdict bad">
@@ -424,13 +424,13 @@
                             <div class="leg-label">${escapeHtml(labelA)}</div>
                             <div class="side ${sideA === 'NO' ? 'no' : ''}">Buy ${sideA} @ ${priceAStr}</div>
                             <div class="stake">${fmtMoney(best.stakeA)}</div>
-                            <div class="meta">Pays <strong>${fmtMoney(best.payoff)}</strong> if ${labelA.toLowerCase().includes('side') ? labelA : labelA + "'s outcome"} resolves ${sideA}</div>
+                            <div class="meta">Pays <strong>${fmtMoney(best.payoff)}</strong> if ${escapeHtml(labelA.toLowerCase().includes('side') ? labelA : labelA + "'s outcome")} resolves ${sideA}</div>
                         </div>
                         <div class="leg-out">
                             <div class="leg-label">${escapeHtml(labelB)}</div>
                             <div class="side ${sideB === 'NO' ? 'no' : ''}">Buy ${sideB} @ ${priceBStr}</div>
                             <div class="stake">${fmtMoney(best.stakeB)}</div>
-                            <div class="meta">Pays <strong>${fmtMoney(best.payoff)}</strong> if ${labelB.toLowerCase().includes('side') ? labelB : labelB + "'s outcome"} resolves ${sideB}</div>
+                            <div class="meta">Pays <strong>${fmtMoney(best.payoff)}</strong> if ${escapeHtml(labelB.toLowerCase().includes('side') ? labelB : labelB + "'s outcome")} resolves ${sideB}</div>
                         </div>
                     </div>
 
