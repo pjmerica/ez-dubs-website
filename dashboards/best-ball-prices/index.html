@@ -251,6 +251,104 @@
         }
         .chart-empty { text-align: center; color: #555; padding: 60px 0; font-size: 0.95rem; }
         .legend-note { text-align: center; color: #555; font-size: 0.78rem; margin-top: 10px; }
+
+        /* Visualizer tab */
+        .viz-legend {
+            display: flex; gap: 22px; justify-content: center; align-items: center;
+            margin: 6px 0 18px; font-size: 0.82rem; flex-wrap: wrap;
+        }
+        .viz-legend .pill {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 4px 12px; border-radius: 999px;
+            border: 1px solid #2a3a4a; background: #1a2634;
+        }
+        .viz-legend .dot {
+            width: 12px; height: 12px; border-radius: 50%;
+            display: inline-block;
+        }
+        .viz-legend .a-dot { background: var(--src-a-color, #4a9eff); }
+        .viz-legend .b-dot { background: var(--src-b-color, #f7b500); }
+        .viz-legend .a-label { font-weight: 700; color: var(--src-a-color, #4a9eff); }
+        .viz-legend .b-label { font-weight: 700; color: var(--src-b-color, #f7b500); }
+        .viz-meta {
+            display: flex; justify-content: space-between; align-items: center;
+            color: #6f7e8d; font-size: 0.78rem; padding: 0 8px;
+            margin-bottom: 6px;
+        }
+        .viz-list {
+            display: flex; flex-direction: column; gap: 10px;
+            background: #131f2c; border: 1px solid #1e2d3d;
+            border-radius: 12px; padding: 14px;
+        }
+        .viz-row {
+            display: grid;
+            grid-template-columns: 64px minmax(160px, 1.6fr) 3fr 130px;
+            align-items: center; gap: 14px;
+            padding: 10px 8px; border-radius: 10px;
+            background: #1a2634;
+        }
+        .viz-row .pos-badge { justify-self: center; padding: 4px 12px; font-size: 0.78rem; }
+        .viz-name {
+            display: flex; flex-direction: column; gap: 2px; min-width: 0;
+        }
+        .viz-name .player {
+            color: #fff; font-weight: 700; font-size: 0.95rem;
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+        }
+        .viz-name .ranks {
+            color: #6f7e8d; font-size: 0.72rem; font-weight: 600;
+            letter-spacing: 0.04em;
+        }
+        .viz-name .ranks .a { color: var(--src-a-color, #4a9eff); }
+        .viz-name .ranks .b { color: var(--src-b-color, #f7b500); }
+        .viz-track {
+            position: relative; height: 32px;
+        }
+        .viz-track .axis {
+            position: absolute; top: 50%; left: 0; right: 0; height: 2px;
+            transform: translateY(-50%); background: #2a3a4a;
+        }
+        .viz-track .bar {
+            position: absolute; top: 50%; height: 5px;
+            transform: translateY(-50%);
+            background: linear-gradient(90deg, var(--src-a-color, #4a9eff), var(--src-b-color, #f7b500));
+            border-radius: 3px;
+        }
+        .viz-track .dot {
+            position: absolute; top: 50%; transform: translate(-50%, -50%);
+            width: 30px; height: 30px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: #0f1923; font-weight: 800; font-size: 0.72rem;
+            border: 2px solid #131f2c;
+            font-variant-numeric: tabular-nums;
+        }
+        .viz-track .dot.a { background: var(--src-a-color, #4a9eff); z-index: 2; }
+        .viz-track .dot.b { background: var(--src-b-color, #f7b500); z-index: 2; }
+        .viz-callout {
+            display: flex; flex-direction: column; align-items: flex-end;
+            padding: 6px 10px; border-radius: 8px;
+            background: #0f1923; border: 1px solid #2a3a4a;
+            color: #fff; line-height: 1.1;
+        }
+        .viz-callout .gap {
+            font-size: 1.4rem; font-weight: 800; letter-spacing: -0.02em;
+            font-variant-numeric: tabular-nums;
+        }
+        .viz-callout .label {
+            font-size: 0.66rem; font-weight: 700;
+            letter-spacing: 0.06em; text-transform: uppercase; color: #99aabb;
+            white-space: nowrap;
+        }
+        .viz-callout.cheaper-a .label { color: var(--src-a-color, #4a9eff); }
+        .viz-callout.cheaper-b .label { color: var(--src-b-color, #f7b500); }
+        .viz-empty {
+            text-align: center; color: #6f7e8d; font-size: 0.92rem;
+            padding: 30px 16px;
+        }
+        @media (max-width: 720px) {
+            .viz-row { grid-template-columns: 40px 1fr 100px; }
+            .viz-row .viz-track { display: none; }
+        }
     </style>
 </head>
 <body>
@@ -259,6 +357,7 @@
         <div class="nav-tabs">
             <a href="../../">Home</a>
             <a href="./" class="active">Best Ball Price Differences</a>
+            <a href="../best-ball-history/">History & Risers/Fallers</a>
             <a href="../prediction-arbitrage/">Prediction Market Arbitrage</a>
             <a href="../arb-calculator/">Arb Calculator</a>
             <a href="https://substack.com/@ezdubsanalytics" target="_blank" rel="noopener">Blog</a>
@@ -273,8 +372,9 @@
     <p class="updated">Last updated: <span id="last-updated">loading...</span></p>
 
     <div class="tabs">
-        <button class="tab-btn active" data-tab="arbitrage">Price Differences</button>
-        <button class="tab-btn" data-tab="history">History & Risers/Fallers</button>
+        <button class="tab-btn active" data-tab="arbitrage">Head-to-Head</button>
+        <button class="tab-btn" data-tab="visualizer">Visualizer</button>
+        <button class="tab-btn" data-tab="all4">All 4 Markets</button>
     </div>
 
     <!-- TAB 1: ARBITRAGE -->
@@ -347,68 +447,73 @@
         </div>
     </div>
 
-    <!-- TAB 2: HISTORY & MOVERS -->
-    <div class="tab-panel" id="tab-history">
-        <div style="display:flex;justify-content:center;margin-bottom:20px;">
+    <!-- TAB 2: VISUALIZER -->
+    <div class="tab-panel" id="tab-visualizer">
+        <p class="blurb">
+            Where the two markets disagree most. Each row shows a player's pick number on each platform, the gap between them, and which side is the cheaper draft. Top 10 by absolute ADP gap.
+        </p>
+        <div class="source-picker" style="margin-bottom: 14px;">
+            <label for="vizSrcA">Compare</label>
+            <select id="vizSrcA"></select>
+            <span class="vs">vs</span>
+            <select id="vizSrcB"></select>
+            <button id="vizSrcSwap" class="pos-btn" type="button" title="Swap A and B">⇄</button>
+        </div>
+        <div class="controls" style="margin-bottom: 14px;">
             <div class="pos-filters">
-                <button class="pos-btn era-btn" data-era="pre">Pre-draft</button>
-                <button class="pos-btn era-btn" data-era="post">Post-draft</button>
-                <button class="pos-btn era-btn active" data-era="all">Combined</button>
+                <button class="pos-btn active viz-pos-btn" data-pos="ALL">ALL</button>
+                <button class="pos-btn qb viz-pos-btn" data-pos="QB">QB</button>
+                <button class="pos-btn rb viz-pos-btn" data-pos="RB">RB</button>
+                <button class="pos-btn wr viz-pos-btn" data-pos="WR">WR</button>
+                <button class="pos-btn te viz-pos-btn" data-pos="TE">TE</button>
             </div>
         </div>
-        <h2 class="section-title">Largest ADP Movers</h2>
-        <p class="section-sub" id="movers-subtitle">loading...</p>
-        <div class="lookback-wrap" id="lookback-wrap" style="display:none;">
-            <div class="lookback-label">Lookback: <span class="days" id="lookback-days">7</span> days</div>
-            <div class="lookback-row">
-                <span class="endpoint">1d</span>
-                <input type="range" id="lookback-slider" min="1" max="30" value="7">
-                <span class="endpoint" id="lookback-max-label">30d</span>
-            </div>
-            <div class="lookback-presets" id="lookback-presets"></div>
+        <div class="viz-legend">
+            <span class="pill"><span class="dot a-dot"></span><span class="a-label" id="viz-legend-a">Source A</span> ADP</span>
+            <span class="pill"><span class="dot b-dot"></span><span class="b-label" id="viz-legend-b">Source B</span> ADP</span>
         </div>
-        <div style="display:flex;justify-content:center;margin-bottom:16px;">
-            <div class="pos-filters">
-                <button class="pos-btn active movers-pos-btn" data-pos="ALL">ALL</button>
-                <button class="pos-btn qb movers-pos-btn" data-pos="QB">QB</button>
-                <button class="pos-btn rb movers-pos-btn" data-pos="RB">RB</button>
-                <button class="pos-btn wr movers-pos-btn" data-pos="WR">WR</button>
-                <button class="pos-btn te movers-pos-btn" data-pos="TE">TE</button>
-            </div>
+        <div class="viz-meta">
+            <span id="viz-meta-left">Top 10 by absolute ADP gap</span>
+            <span><span id="viz-axis-min">—</span> ← earlier · later → <span id="viz-axis-max">—</span></span>
         </div>
-        <div class="recs-container">
-            <div class="rec-bubble rising-bubble">
-                <h3 id="title-rising-dk">Rising on DraftKings</h3>
-                <ol class="rec-list" id="rec-rising-dk"></ol>
-            </div>
-            <div class="rec-bubble falling-bubble">
-                <h3 id="title-falling-dk">Falling on DraftKings</h3>
-                <ol class="rec-list" id="rec-falling-dk"></ol>
-            </div>
-            <div class="rec-bubble rising-bubble">
-                <h3 id="title-rising-ud">Rising on Underdog</h3>
-                <ol class="rec-list" id="rec-rising-ud"></ol>
-            </div>
-            <div class="rec-bubble falling-bubble">
-                <h3 id="title-falling-ud">Falling on Underdog</h3>
-                <ol class="rec-list" id="rec-falling-ud"></ol>
-            </div>
-        </div>
+        <div class="viz-list" id="viz-list"></div>
+    </div>
 
-        <h2 class="section-title" style="margin-top:32px;">ADP Over Time</h2>
-        <p class="section-sub">Search and add players to compare their ADP trends. Click a mover above to add them.</p>
+    <!-- TAB 3: ALL 4 MARKETS -->
+    <div class="tab-panel" id="tab-all4">
+        <p class="blurb">
+            All four markets at once. The Top 5 below are players with the largest sum of absolute pairwise ADP differences across DK, UD, FFPC, and Drafters — i.e. the players the books disagree on most overall. Below that, search for any player to see their four-market spread.
+        </p>
+        <div class="controls" style="margin-bottom: 14px;">
+            <div class="pos-filters">
+                <button class="pos-btn active all4-pos-btn" data-pos="ALL">ALL</button>
+                <button class="pos-btn qb all4-pos-btn" data-pos="QB">QB</button>
+                <button class="pos-btn rb all4-pos-btn" data-pos="RB">RB</button>
+                <button class="pos-btn wr all4-pos-btn" data-pos="WR">WR</button>
+                <button class="pos-btn te all4-pos-btn" data-pos="TE">TE</button>
+            </div>
+        </div>
+        <div class="viz-legend" id="all4-legend">
+            <span class="pill"><span class="dot" style="background:#00c46a;"></span><span style="color:#00c46a;font-weight:700;">DraftKings</span></span>
+            <span class="pill"><span class="dot" style="background:#ffd700;"></span><span style="color:#ffd700;font-weight:700;">Underdog</span></span>
+            <span class="pill"><span class="dot" style="background:#4a9eff;"></span><span style="color:#4a9eff;font-weight:700;">FFPC</span></span>
+            <span class="pill"><span class="dot" style="background:#e67e22;"></span><span style="color:#e67e22;font-weight:700;">Drafters</span></span>
+        </div>
+        <div class="viz-meta">
+            <span>Top 5 by total disagreement across all 4 books</span>
+            <span><span id="all4-axis-min">—</span> ← earlier · later → <span id="all4-axis-max">—</span></span>
+        </div>
+        <div class="viz-list" id="all4-top-list"></div>
+
+        <h2 class="section-title" style="margin-top:32px;">Search a player</h2>
+        <p class="section-sub">Type a name to see their ADP on each of the four markets.</p>
         <div style="display:flex;justify-content:center;margin-bottom:12px;">
             <div class="search-wrap">
-                <input type="text" id="player-search" placeholder="Search a player..." autocomplete="off">
-                <div class="suggestions-list" id="suggestions-list" style="display:none;"></div>
+                <input type="text" id="all4-search" placeholder="Search a player..." autocomplete="off">
+                <div class="suggestions-list" id="all4-suggestions" style="display:none;"></div>
             </div>
         </div>
-        <div class="selected-players" id="selected-players"></div>
-        <div class="chart-wrap">
-            <div class="chart-empty" id="chart-empty">Search for a player above to get started</div>
-            <canvas id="adp-chart" style="display:none;"></canvas>
-        </div>
-        <p class="legend-note">Solid lines = DraftKings &nbsp;|&nbsp; Dashed lines = Underdog &nbsp;|&nbsp; Lower ADP = earlier draft pick</p>
+        <div class="viz-list" id="all4-search-list"></div>
     </div>
 
     <script>
@@ -703,311 +808,276 @@
 
         loadData();
 
-        // ── TAB 2: HISTORY & MOVERS ───────────────────────────────────
-        // Snapshots are reconstructed from two long-format CSVs:
-        //   dk_adp_history.csv  → date,name,pos,team,adp,source
-        //   ud_adp_history.csv  → same shape
-        // Anything dated on/after DRAFT_CUTOVER is post-draft.
-        const DRAFT_CUTOVER = '2026-04-24';
-        const COLORS = ['#4a9eff','#e74c3c','#2ecc71','#f39c12','#9b59b6','#1abc9c','#e67e22','#e91e63','#00bcd4','#8bc34a'];
+        // ── (History tab moved to /dashboards/best-ball-history/) ──
+        // The Visualizer and All 4 Markets tabs reuse the same player data
+        // loaded by loadData() above, accessed via playersByKey.
 
-        function _labelFor(date) {
-            const [y, m, d] = date.split('-');
-            const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-            return `${months[parseInt(m, 10) - 1]} ${parseInt(d, 10)}`;
-        }
+        // ── TAB 2: VISUALIZER (placeholder, wiring below) ─────────────
+        // (Visualizer + All-4 JS appended below by build step.)
 
-        let historyData = null;
-        let adpChart = null;
-        let selectedPlayers = [];
-        let moversPosFilter = 'ALL';
-        let eraFilter = 'all'; // 'pre' | 'post' | 'all'
-        let moversLookbackDays = 7; // user-controlled, clamped to data span
+        // ── TAB 2: VISUALIZER (Head-to-Head) ──────────────────────────
+        // Same A/B sources as the H2H tab. Renders top 10 by absolute ADP gap
+        // as a horizontal bar chart with two dots per row positioned at each
+        // source's pick number. Axis scale is shared across all 10 rows.
 
-        function getActiveSnapshots() {
-            if (!historyData) return [];
-            if (eraFilter === 'all') return historyData.snapshots;
-            if (eraFilter === 'pre') return historyData.snapshots.filter(s => s.era === 'pre');
-            // Post-draft: anchor with the last pre-draft snapshot so movers/chart have something
-            // to compare against until multiple post-draft snapshots exist.
-            const post = historyData.snapshots.filter(s => s.era === 'post');
-            const lastPre = [...historyData.snapshots].reverse().find(s => s.era === 'pre');
-            return lastPre ? [lastPre, ...post] : post;
-        }
+        let vizPosFilter = 'ALL';
 
-        async function loadHistoryData() {
-            // Long-format: header = date,name,pos,team,adp,source
-            // The same date can appear from both manual and auto sources during the
-            // parallel-run period; manual wins (it's the legacy of record).
-            function buildSnapshotMaps(rows, floor) {
-                const byDate = new Map();
-                for (let i = 1; i < rows.length; i++) {
-                    const r = rows[i];
-                    if (r.length < 5 || !r[0] || !r[1]) continue;
-                    const date = r[0], name = r[1], pos = r[2] || '', source = r[5] || '';
-                    const adp = parseFloat(r[4]);
-                    if (!isRealAdp(adp, floor)) continue;
-                    let bucket = byDate.get(date);
-                    if (!bucket) { bucket = { manual: {}, auto: {} }; byDate.set(date, bucket); }
-                    const target = source === 'manual' ? bucket.manual : bucket.auto;
-                    target[normalizeName(name)] = { name, pos, adp };
-                }
-                return byDate;
-            }
-
-            const [dkResp, udResp] = await Promise.all([
-                fetch('dk_adp_history.csv'), fetch('ud_adp_history.csv'),
-            ]);
-            const [dkText, udText] = await Promise.all([dkResp.text(), udResp.text()]);
-            const dkByDate = buildSnapshotMaps(parseCSV(dkText), ADP_FLOORS.DK);
-            const udByDate = buildSnapshotMaps(parseCSV(udText), ADP_FLOORS.UD);
-
-            const allDates = new Set([...dkByDate.keys(), ...udByDate.keys()]);
-            const snapshots = [...allDates].sort().map(date => {
-                const dkB = dkByDate.get(date) || { manual: {}, auto: {} };
-                const udB = udByDate.get(date) || { manual: {}, auto: {} };
-                // Prefer manual over auto when both exist for a date.
-                const dkMap = Object.keys(dkB.manual).length ? dkB.manual : dkB.auto;
-                const udMap = Object.keys(udB.manual).length ? udB.manual : udB.auto;
-                return {
-                    label: _labelFor(date),
-                    date,
-                    era: date >= DRAFT_CUTOVER ? 'post' : 'pre',
-                    dkMap, udMap,
-                };
+        function initVizSourcePicker() {
+            const selA = document.getElementById('vizSrcA');
+            const selB = document.getElementById('vizSrcB');
+            const optHTML = SOURCES.map(s => `<option value="${s.id}">${s.label}</option>`).join('');
+            selA.innerHTML = optHTML;
+            selB.innerHTML = optHTML;
+            selA.value = srcA;
+            selB.value = srcB;
+            selA.addEventListener('change', () => {
+                srcA = selA.value;
+                if (srcB === srcA) { srcB = SOURCES.find(s => s.id !== srcA).id; selB.value = srcB; }
+                syncMainPicker(); refresh(); renderViz();
             });
-
-            const allKeys = new Set();
-            snapshots.forEach(s => { Object.keys(s.dkMap).forEach(k => allKeys.add(k)); Object.keys(s.udMap).forEach(k => allKeys.add(k)); });
-            const playerIndex = {};
-            for (const key of allKeys) {
-                let name = null, pos = null;
-                for (const s of snapshots) {
-                    if (s.dkMap[key]) { name = s.dkMap[key].name; pos = s.dkMap[key].pos; break; }
-                    if (s.udMap[key]) { name = s.udMap[key].name; pos = s.udMap[key].pos; break; }
-                }
-                if (name) playerIndex[key] = { name, pos, key };
-            }
-            historyData = { snapshots, playerIndex };
-            initLookbackSlider();
-            renderMovers();
-            initSearch();
+            selB.addEventListener('change', () => {
+                srcB = selB.value;
+                if (srcA === srcB) { srcA = SOURCES.find(s => s.id !== srcB).id; selA.value = srcA; }
+                syncMainPicker(); refresh(); renderViz();
+            });
+            document.getElementById('vizSrcSwap').addEventListener('click', () => {
+                [srcA, srcB] = [srcB, srcA]; selA.value = srcA; selB.value = srcB;
+                syncMainPicker(); refresh(); renderViz();
+            });
         }
 
-        function initLookbackSlider() {
-            const snaps = historyData.snapshots;
-            if (snaps.length < 2) return;
-            const parseDate = str => { const [y,m,d] = str.split('-'); return new Date(y, m-1, d); };
-            const first = parseDate(snaps[0].date);
-            const last  = parseDate(snaps[snaps.length - 1].date);
-            const maxDays = Math.max(1, Math.round((last - first) / (1000 * 60 * 60 * 24)));
-            moversLookbackDays = Math.min(7, maxDays);
+        function syncMainPicker() {
+            const mainA = document.getElementById('srcA');
+            const mainB = document.getElementById('srcB');
+            const vizA  = document.getElementById('vizSrcA');
+            const vizB  = document.getElementById('vizSrcB');
+            if (mainA) mainA.value = srcA;
+            if (mainB) mainB.value = srcB;
+            if (vizA)  vizA.value  = srcA;
+            if (vizB)  vizB.value  = srcB;
+        }
 
-            const wrap   = document.getElementById('lookback-wrap');
-            const slider = document.getElementById('lookback-slider');
-            const days   = document.getElementById('lookback-days');
-            const maxLbl = document.getElementById('lookback-max-label');
-            const presetWrap = document.getElementById('lookback-presets');
-            wrap.style.display = 'flex';
-            slider.min = 1;
-            slider.max = maxDays;
-            slider.value = moversLookbackDays;
-            days.textContent = moversLookbackDays;
-            maxLbl.textContent = `${maxDays}d`;
-
-            // Quick presets clamped to the available span; always include "Max".
-            const presets = [3, 7, 14, 30].filter(n => n <= maxDays);
-            presetWrap.innerHTML = [
-                ...presets.map(n => `<button class="preset-btn" data-days="${n}">${n}d</button>`),
-                `<button class="preset-btn" data-days="${maxDays}">Max</button>`,
-            ].join('');
-
-            function setDays(n) {
-                moversLookbackDays = Math.max(1, Math.min(maxDays, n));
-                slider.value = moversLookbackDays;
-                days.textContent = moversLookbackDays;
-                presetWrap.querySelectorAll('.preset-btn').forEach(b => {
-                    b.classList.toggle('active', parseInt(b.dataset.days, 10) === moversLookbackDays);
+        // Compute position rank within a source (e.g., QB18 = 18th QB by ADP on that source).
+        function computePosRanks(sourceId) {
+            const byPos = {};
+            for (const p of players) {
+                const adp = p.adps[sourceId];
+                if (adp === null || adp === undefined) continue;
+                (byPos[p.pos] = byPos[p.pos] || []).push({ key: normalizeName(p.name), adp });
+            }
+            const rankMap = {};
+            for (const pos in byPos) {
+                byPos[pos].sort((a, b) => a.adp - b.adp).forEach((r, i) => {
+                    rankMap[`${pos}|${r.key}`] = i + 1;
                 });
-                renderMovers();
             }
-            slider.addEventListener('input', () => setDays(parseInt(slider.value, 10)));
-            presetWrap.querySelectorAll('.preset-btn').forEach(b => {
-                b.addEventListener('click', () => setDays(parseInt(b.dataset.days, 10)));
-            });
-            setDays(moversLookbackDays);
+            return rankMap;
         }
 
-        function renderMovers() {
-            const { playerIndex } = historyData;
-            const snapshots = getActiveSnapshots();
-            const movers = ['rec-rising-dk','rec-falling-dk','rec-rising-ud','rec-falling-ud'];
-            if (snapshots.length < 2) {
-                document.getElementById('movers-subtitle').textContent = snapshots.length === 0
-                    ? 'No snapshots in this era yet.'
-                    : `Only one snapshot available (${snapshots[0].label}) — need at least 2 to compute movers.`;
-                movers.forEach(id => document.getElementById(id).innerHTML = '');
+        function renderViz() {
+            const listEl = document.getElementById('viz-list');
+            if (!listEl) return;
+            // Update legend label colors per active sources
+            document.getElementById('viz-legend-a').textContent = srcLabel(srcA);
+            document.getElementById('viz-legend-b').textContent = srcLabel(srcB);
+
+            // Filter to players with both prices, apply pos filter, top 10 by |diff|.
+            const candidates = players
+                .filter(p => p.adps[srcA] !== null && p.adps[srcB] !== null)
+                .filter(p => vizPosFilter === 'ALL' || p.pos === vizPosFilter)
+                .map(p => ({ ...p, aAdp: p.adps[srcA], bAdp: p.adps[srcB], gap: p.adps[srcA] - p.adps[srcB] }))
+                .sort((a, b) => Math.abs(b.gap) - Math.abs(a.gap))
+                .slice(0, 10);
+
+            if (!candidates.length) {
+                listEl.innerHTML = '<div class="viz-empty">No players have prices on both selected sources at this position.</div>';
+                document.getElementById('viz-axis-min').textContent = '—';
+                document.getElementById('viz-axis-max').textContent = '—';
                 return;
             }
-            const curr = snapshots[snapshots.length - 1];
-            // Parse date as local to avoid timezone shifting
-            const parseDate = str => { const [y,m,d] = str.split('-'); return new Date(y, m-1, d); };
-            const currDate = parseDate(curr.date);
-            const target = new Date(currDate);
-            target.setDate(target.getDate() - moversLookbackDays);
-            // Pick snapshot closest to the target lookback date, excluding curr
-            const prev = snapshots.slice(0, -1).reduce((best, s) => {
-                const thisDiff = Math.abs(parseDate(s.date) - target);
-                const bestDiff = Math.abs(parseDate(best.date) - target);
-                return thisDiff < bestDiff ? s : best;
-            }, snapshots[0]);
-            const dayWord = moversLookbackDays === 1 ? 'day' : 'days';
-            document.getElementById('movers-subtitle').textContent = `Comparing ${prev.label} to ${curr.label} (closest available to ${moversLookbackDays} ${dayWord})`;
-            document.getElementById('title-rising-dk').textContent = `Rising on DraftKings (${prev.label} → ${curr.label})`;
-            document.getElementById('title-falling-dk').textContent = `Falling on DraftKings (${prev.label} → ${curr.label})`;
-            document.getElementById('title-rising-ud').textContent = `Rising on Underdog (${prev.label} → ${curr.label})`;
-            document.getElementById('title-falling-ud').textContent = `Falling on Underdog (${prev.label} → ${curr.label})`;
 
-            const dkMovers = [], udMovers = [];
-            for (const key of Object.keys(playerIndex)) {
-                const info = playerIndex[key];
-                if (moversPosFilter !== 'ALL' && info.pos !== moversPosFilter) continue;
-                const prevDk = prev.dkMap[key] ? prev.dkMap[key].adp : null;
-                const currDk = curr.dkMap[key] ? curr.dkMap[key].adp : null;
-                const prevUd = prev.udMap[key] ? prev.udMap[key].adp : null;
-                const currUd = curr.udMap[key] ? curr.udMap[key].adp : null;
-                if (prevDk !== null && currDk !== null) dkMovers.push({ key, name: info.name, pos: info.pos, prev: prevDk, curr: currDk, delta: currDk - prevDk });
-                if (prevUd !== null && currUd !== null) udMovers.push({ key, name: info.name, pos: info.pos, prev: prevUd, curr: currUd, delta: currUd - prevUd });
-            }
+            // Shared axis scale across the top 10 — pad slightly for visual breathing room.
+            const allAdps = candidates.flatMap(c => [c.aAdp, c.bAdp]);
+            const lo = Math.min(...allAdps);
+            const hi = Math.max(...allAdps);
+            const pad = Math.max(2, (hi - lo) * 0.06);
+            const axisMin = Math.max(0, Math.floor(lo - pad));
+            const axisMax = Math.ceil(hi + pad);
+            document.getElementById('viz-axis-min').textContent = `${axisMin}`;
+            document.getElementById('viz-axis-max').textContent = `${axisMax}`;
+            const pct = adp => 100 * (adp - axisMin) / (axisMax - axisMin);
 
-            function moverHTML(list, cls) {
-                return list.map((p, i) => `<li data-key="${p.key}"><span class="rec-rank">${i + 1}.</span><span class="rec-name">${p.name}</span><span class="rec-pos"><span class="pos-badge pos-${p.pos}">${p.pos}</span></span><span class="rec-adps">${p.prev.toFixed(1)} → ${p.curr.toFixed(1)}</span><span class="rec-val ${cls}">${p.delta > 0 ? '+' : ''}${p.delta.toFixed(1)}</span></li>`).join('');
-            }
+            const aRanks = computePosRanks(srcA);
+            const bRanks = computePosRanks(srcB);
 
-            document.getElementById('rec-rising-dk').innerHTML = moverHTML([...dkMovers].sort((a, b) => a.delta - b.delta).slice(0, 10), 'rising');
-            document.getElementById('rec-falling-dk').innerHTML = moverHTML([...dkMovers].sort((a, b) => b.delta - a.delta).slice(0, 10), 'falling');
-            document.getElementById('rec-rising-ud').innerHTML = moverHTML([...udMovers].sort((a, b) => a.delta - b.delta).slice(0, 10), 'rising');
-            document.getElementById('rec-falling-ud').innerHTML = moverHTML([...udMovers].sort((a, b) => b.delta - a.delta).slice(0, 10), 'falling');
-
-            document.querySelectorAll('.rec-list li[data-key]').forEach(li => {
-                li.addEventListener('click', () => addPlayer(li.dataset.key));
-            });
+            listEl.innerHTML = candidates.map(p => {
+                const aPct = pct(p.aAdp);
+                const bPct = pct(p.bAdp);
+                const left  = Math.min(aPct, bPct);
+                const right = Math.max(aPct, bPct);
+                const cheaperLabel = p.gap > 0 ? srcLabel(srcB) : srcLabel(srcA);
+                const cheaperCls   = p.gap > 0 ? 'cheaper-b' : 'cheaper-a';
+                const k = normalizeName(p.name);
+                const aRank = aRanks[`${p.pos}|${k}`];
+                const bRank = bRanks[`${p.pos}|${k}`];
+                const rankLine = (aRank && bRank)
+                    ? `<span class="a">${srcLabel(srcA)} ${p.pos}${aRank}</span> &nbsp;→&nbsp; <span class="b">${srcLabel(srcB)} ${p.pos}${bRank}</span>`
+                    : '';
+                return `<div class="viz-row">
+                    <span class="pos-badge pos-${p.pos}">${p.pos}</span>
+                    <div class="viz-name">
+                        <span class="player">${p.name}</span>
+                        ${rankLine ? `<span class="ranks">${rankLine}</span>` : ''}
+                    </div>
+                    <div class="viz-track">
+                        <div class="axis"></div>
+                        <div class="bar" style="left:${left}%; width:${right - left}%;"></div>
+                        <div class="dot a" style="left:${aPct}%;" title="${srcLabel(srcA)} ${p.aAdp.toFixed(1)}">${Math.round(p.aAdp)}</div>
+                        <div class="dot b" style="left:${bPct}%;" title="${srcLabel(srcB)} ${p.bAdp.toFixed(1)}">${Math.round(p.bAdp)}</div>
+                    </div>
+                    <div class="viz-callout ${cheaperCls}">
+                        <span class="gap">${Math.abs(p.gap).toFixed(0)}</span>
+                        <span class="label">picks pricier ${cheaperLabel}</span>
+                    </div>
+                </div>`;
+            }).join('');
         }
 
-        function renderChart() {
-            const { playerIndex } = historyData;
-            const snapshots = getActiveSnapshots();
-            const labels = snapshots.map(s => s.label);
-            const canvas = document.getElementById('adp-chart');
-            const empty = document.getElementById('chart-empty');
-            if (!selectedPlayers.length) {
-                empty.style.display = 'block'; canvas.style.display = 'none';
-                if (adpChart) { adpChart.destroy(); adpChart = null; }
-                return;
-            }
-            empty.style.display = 'none'; canvas.style.display = 'block';
-            const datasets = [];
-            selectedPlayers.forEach((key, idx) => {
-                const info = playerIndex[key];
-                const color = COLORS[idx % COLORS.length];
-                datasets.push({
-                    label: info.name + ' (DK)',
-                    data: snapshots.map(s => s.dkMap[key] ? s.dkMap[key].adp : null),
-                    borderColor: color, backgroundColor: color + '22', pointBackgroundColor: color,
-                    borderWidth: 2, borderDash: [], tension: 0.3, spanGaps: true,
-                });
-                datasets.push({
-                    label: info.name + ' (UD)',
-                    data: snapshots.map(s => s.udMap[key] ? s.udMap[key].adp : null),
-                    borderColor: color, backgroundColor: color + '11', pointBackgroundColor: color,
-                    borderWidth: 2, borderDash: [5, 4], tension: 0.3, spanGaps: true,
-                });
+        document.querySelectorAll('.viz-pos-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.viz-pos-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                vizPosFilter = btn.dataset.pos;
+                renderViz();
             });
-            if (adpChart) adpChart.destroy();
-            adpChart = new Chart(canvas.getContext('2d'), {
-                type: 'line',
-                data: { labels, datasets },
-                options: {
-                    responsive: true,
-                    plugins: {
-                        legend: { labels: { color: '#ccc', boxWidth: 24 } },
-                        tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': ' + (ctx.parsed.y !== null ? ctx.parsed.y.toFixed(1) : 'N/A') } }
-                    },
-                    scales: {
-                        x: { ticks: { color: '#aaa' }, grid: { color: '#1e2d3d' } },
-                        y: { reverse: true, ticks: { color: '#aaa' }, grid: { color: '#1e2d3d' }, title: { display: true, text: 'ADP (lower = earlier pick)', color: '#888' } }
+        });
+
+        // Patch the main source-picker handlers so the viz also re-renders.
+        // (initVizSourcePicker runs after loadData; the main picker is wired
+        // in loadData itself. We hook into refresh() via a wrapper.)
+        const _origRefresh = refresh;
+        refresh = function() { _origRefresh(); syncMainPicker(); renderViz(); renderAll4(); };
+
+        // ── TAB 3: ALL 4 MARKETS ──────────────────────────────────────
+        let all4PosFilter = 'ALL';
+        const PLATFORM_COLORS = { DK: '#00c46a', UD: '#ffd700', FFPC: '#4a9eff', Drafters: '#e67e22' };
+
+        function renderAll4() {
+            renderAll4Top();
+            renderAll4Search();
+        }
+
+        // Players with prices on all 4 sources, sorted by sum of |pairwise diffs|.
+        function getAll4Ranked() {
+            const all4 = players.filter(p =>
+                p.adps.DK !== null && p.adps.UD !== null &&
+                p.adps.FFPC !== null && p.adps.Drafters !== null);
+            const ids = ['DK','UD','FFPC','Drafters'];
+            return all4.map(p => {
+                let sum = 0;
+                for (let i = 0; i < ids.length; i++) {
+                    for (let j = i + 1; j < ids.length; j++) {
+                        sum += Math.abs(p.adps[ids[i]] - p.adps[ids[j]]);
                     }
                 }
+                return { ...p, spread: sum };
             });
         }
 
-        function addPlayer(key) {
-            if (!historyData.playerIndex[key] || selectedPlayers.includes(key) || selectedPlayers.length >= 10) return;
-            selectedPlayers.push(key);
-            renderTags(); renderChart();
+        function renderAll4Top() {
+            const listEl = document.getElementById('all4-top-list');
+            if (!listEl) return;
+            const all4 = getAll4Ranked()
+                .filter(p => all4PosFilter === 'ALL' || p.pos === all4PosFilter)
+                .sort((a, b) => b.spread - a.spread)
+                .slice(0, 5);
+            if (!all4.length) {
+                listEl.innerHTML = '<div class="viz-empty">No players have prices on all four sources at this position.</div>';
+                document.getElementById('all4-axis-min').textContent = '—';
+                document.getElementById('all4-axis-max').textContent = '—';
+                return;
+            }
+            const allAdps = all4.flatMap(p => ['DK','UD','FFPC','Drafters'].map(s => p.adps[s]));
+            const lo = Math.min(...allAdps), hi = Math.max(...allAdps);
+            const pad = Math.max(2, (hi - lo) * 0.06);
+            const axisMin = Math.max(0, Math.floor(lo - pad));
+            const axisMax = Math.ceil(hi + pad);
+            document.getElementById('all4-axis-min').textContent = `${axisMin}`;
+            document.getElementById('all4-axis-max').textContent = `${axisMax}`;
+            listEl.innerHTML = all4.map(p => renderAll4Row(p, axisMin, axisMax)).join('');
         }
 
-        function removePlayer(key) {
-            selectedPlayers = selectedPlayers.filter(k => k !== key);
-            renderTags(); renderChart();
-        }
-
-        function renderTags() {
-            const wrap = document.getElementById('selected-players');
-            wrap.innerHTML = selectedPlayers.map((key, idx) => {
-                const info = historyData.playerIndex[key];
-                const color = COLORS[idx % COLORS.length];
-                return `<span class="player-tag" data-key="${key}" style="color:${color};border-color:${color};background:${color}22;">${info.name} <span class="pos-badge pos-${info.pos}" style="font-size:0.7rem;padding:1px 6px;">${info.pos}</span> <span class="remove">×</span></span>`;
+        function renderAll4Row(p, axisMin, axisMax) {
+            const pct = adp => 100 * (adp - axisMin) / (axisMax - axisMin);
+            const ids = ['DK','UD','FFPC','Drafters'];
+            const adps = ids.map(s => p.adps[s]);
+            const lo = Math.min(...adps), hi = Math.max(...adps);
+            const dots = ids.map(s => {
+                const v = p.adps[s];
+                return `<div class="dot" style="left:${pct(v)}%; background:${PLATFORM_COLORS[s]};" title="${s} ${v.toFixed(1)}">${Math.round(v)}</div>`;
             }).join('');
-            wrap.querySelectorAll('.player-tag').forEach(tag => {
-                tag.addEventListener('click', () => removePlayer(tag.dataset.key));
-            });
+            return `<div class="viz-row">
+                <span class="pos-badge pos-${p.pos}">${p.pos}</span>
+                <div class="viz-name">
+                    <span class="player">${p.name}</span>
+                    <span class="ranks">${p.team || ''}</span>
+                </div>
+                <div class="viz-track">
+                    <div class="axis"></div>
+                    <div class="bar" style="left:${pct(lo)}%; width:${pct(hi) - pct(lo)}%; background:#3a4d63;"></div>
+                    ${dots}
+                </div>
+                <div class="viz-callout">
+                    <span class="gap">${(hi - lo).toFixed(0)}</span>
+                    <span class="label">spread (high − low)</span>
+                </div>
+            </div>`;
         }
 
-        function initSearch() {
-            const input = document.getElementById('player-search');
-            const list = document.getElementById('suggestions-list');
-            input.addEventListener('input', () => {
-                const val = input.value.toLowerCase().trim();
-                if (!val) { list.style.display = 'none'; return; }
-                const matches = Object.values(historyData.playerIndex)
-                    .filter(p => p.name && p.name.toLowerCase().includes(val))
-                    .sort((a, b) => a.name.localeCompare(b.name)).slice(0, 12);
-                if (!matches.length) { list.style.display = 'none'; return; }
-                list.innerHTML = matches.map(p => `<div data-key="${p.key}">${p.name} <span style="color:#666;font-size:0.8rem">${p.pos}</span></div>`).join('');
-                list.style.display = 'block';
-            });
-            list.addEventListener('click', e => {
-                const div = e.target.closest('[data-key]');
-                if (!div) return;
-                addPlayer(div.dataset.key);
-                input.value = ''; list.style.display = 'none';
-            });
-            document.addEventListener('click', e => {
-                if (!input.contains(e.target) && !list.contains(e.target)) list.style.display = 'none';
-            });
+        function renderAll4Search() {
+            const listEl = document.getElementById('all4-search-list');
+            const input  = document.getElementById('all4-search');
+            if (!listEl || !input) return;
+            const val = (input.value || '').toLowerCase().trim();
+            if (!val) { listEl.innerHTML = ''; return; }
+            const matches = players
+                .filter(p => p.name.toLowerCase().includes(val) || (p.team || '').toLowerCase().includes(val))
+                .filter(p => p.adps.DK !== null && p.adps.UD !== null && p.adps.FFPC !== null && p.adps.Drafters !== null)
+                .slice(0, 10);
+            if (!matches.length) {
+                listEl.innerHTML = '<div class="viz-empty">No match (or player missing prices on one of the four books).</div>';
+                return;
+            }
+            const allAdps = matches.flatMap(p => ['DK','UD','FFPC','Drafters'].map(s => p.adps[s]));
+            const lo = Math.min(...allAdps), hi = Math.max(...allAdps);
+            const pad = Math.max(2, (hi - lo) * 0.06);
+            const axisMin = Math.max(0, Math.floor(lo - pad));
+            const axisMax = Math.ceil(hi + pad);
+            listEl.innerHTML = matches.map(p => renderAll4Row(p, axisMin, axisMax)).join('');
         }
 
-        document.querySelectorAll('.movers-pos-btn').forEach(btn => {
+        document.querySelectorAll('.all4-pos-btn').forEach(btn => {
             btn.addEventListener('click', () => {
-                document.querySelectorAll('.movers-pos-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.all4-pos-btn').forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
-                moversPosFilter = btn.dataset.pos;
-                renderMovers();
+                all4PosFilter = btn.dataset.pos;
+                renderAll4Top();
             });
         });
+        const _all4SearchEl = document.getElementById('all4-search');
+        if (_all4SearchEl) _all4SearchEl.addEventListener('input', renderAll4Search);
 
-        document.querySelectorAll('.era-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.querySelectorAll('.era-btn').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                eraFilter = btn.dataset.era;
-                renderMovers();
-                renderChart();
-            });
-        });
-
-        loadHistoryData();
+        // Initialize the Viz + All-4 tabs once loadData() has populated `players`.
+        // loadData() was kicked off above; poll briefly until it's done.
+        (function waitForPlayers() {
+            if (players.length > 0) {
+                initVizSourcePicker();
+                renderViz();
+                renderAll4();
+            } else {
+                setTimeout(waitForPlayers, 80);
+            }
+        })();
     </script>
     </div>
 </body>
