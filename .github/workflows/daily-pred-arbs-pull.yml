@@ -33,7 +33,17 @@ jobs:
           git add dashboards/prediction-arbitrage/arbs.json
           if git diff --cached --quiet; then
             echo "No new data to commit."
-          else
-            git commit -m "Auto: pred-mkt arbs snapshot $(date -u +%Y-%m-%d)"
-            git push
+            exit 0
           fi
+          git commit -m "Auto: pred-mkt arbs snapshot $(date -u +%Y-%m-%d)"
+          # Retry push with rebase to handle races against the ADP workflow.
+          for i in 1 2 3 4 5; do
+            if git push; then
+              echo "Pushed on attempt $i."
+              exit 0
+            fi
+            echo "Push attempt $i failed; rebasing on remote."
+            git pull --rebase --autostash origin main
+          done
+          echo "Push failed after 5 attempts." >&2
+          exit 1
