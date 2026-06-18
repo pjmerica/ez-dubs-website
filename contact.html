@@ -73,6 +73,53 @@
         }
         .site-nav .bmc-btn:hover { opacity: 0.85; }
 
+        /* ─── Mobile nav (≤720px) ─────────────────────────────── */
+        .nav-toggle { display: none; }
+        .nav-toggle-label { display: none; }
+        @media (max-width: 720px) {
+            .site-nav { flex-wrap: wrap; gap: 12px; padding: 12px 16px; }
+            .site-nav .nav-toggle-label {
+                display: flex; flex-direction: column; gap: 4px;
+                cursor: pointer; padding: 8px; margin-left: auto;
+                background: transparent; border: 0;
+            }
+            .site-nav .nav-toggle-label span {
+                display: block; width: 22px; height: 2px;
+                background: #aaa; border-radius: 1px;
+                transition: transform 0.2s, opacity 0.2s;
+            }
+            .nav-toggle:checked ~ .nav-toggle-label span:nth-child(1) {
+                transform: translateY(6px) rotate(45deg);
+            }
+            .nav-toggle:checked ~ .nav-toggle-label span:nth-child(2) { opacity: 0; }
+            .nav-toggle:checked ~ .nav-toggle-label span:nth-child(3) {
+                transform: translateY(-6px) rotate(-45deg);
+            }
+            .site-nav .nav-spacer { display: none; }
+            .site-nav .nav-tabs {
+                order: 99; flex-basis: 100%;
+                flex-direction: column; gap: 6px;
+                display: none;
+            }
+            .nav-toggle:checked ~ .nav-tabs { display: flex; }
+            .site-nav .nav-tabs a,
+            .site-nav .nav-dd-btn { width: 100%; text-align: left; }
+            .site-nav .nav-dd { width: 100%; }
+            .site-nav .nav-dd-menu {
+                position: static; display: flex !important;
+                min-width: 0; width: 100%; margin-top: 4px;
+                box-shadow: none; background: #0f1923;
+            }
+            .site-nav .nav-dd-menu::before { display: none; }
+            .site-nav .patreon-btn,
+            .site-nav .bmc-btn {
+                order: 100; flex-basis: 100%; text-align: center;
+                margin-left: 0; display: none;
+            }
+            .nav-toggle:checked ~ .patreon-btn,
+            .nav-toggle:checked ~ .bmc-btn { display: block; }
+        }
+
         main { max-width: 640px; margin: 0 auto; padding: 60px 24px 80px; }
         h1 { color: #fff; font-size: 2.2rem; font-weight: 800;
              letter-spacing: -0.02em; margin: 0 0 10px; }
@@ -120,6 +167,10 @@
 <body>
     <nav class="site-nav">
         <a class="brand" href="./">EZ Dubs <span class="accent">Analytics</span></a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle">
+        <label for="nav-toggle" class="nav-toggle-label" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </label>
         <div class="nav-tabs">
             <a href="./">Home</a>
             <div class="nav-dd">
