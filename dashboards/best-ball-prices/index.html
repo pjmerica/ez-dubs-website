@@ -306,6 +306,25 @@
             color: #6f7e8d; font-size: 0.78rem; padding: 0 8px;
             margin-bottom: 6px;
         }
+        .viz-section-title {
+            color: #fff; font-size: 1.35rem; font-weight: 800;
+            letter-spacing: -0.01em; margin: 0 0 4px;
+        }
+        .viz-section-sub {
+            color: #6f7e8d; font-size: 0.84rem; margin-bottom: 10px;
+        }
+        .viz-pagination {
+            display: flex; gap: 6px; flex-wrap: wrap; justify-content: center;
+            margin: 12px 0 16px;
+        }
+        .viz-pagination .page-btn {
+            padding: 6px 14px; border-radius: 999px; border: 1px solid #2a3a4a;
+            background: #1a2634; color: #99aabb; cursor: pointer;
+            font-size: 0.82rem; font-weight: 600; transition: all 0.15s;
+            font-family: inherit;
+        }
+        .viz-pagination .page-btn:hover { border-color: #4a9eff; color: #fff; }
+        .viz-pagination .page-btn.active { border-color: #4a9eff; color: #4a9eff; }
         .viz-list {
             display: flex; flex-direction: column; gap: 10px;
             background: #131f2c; border: 1px solid #1e2d3d;
@@ -487,7 +506,7 @@
     <!-- TAB 2: VISUALIZER -->
     <div class="tab-panel" id="tab-visualizer">
         <p class="blurb">
-            Where the two markets disagree most. Each row shows a player's pick number on each platform, the gap between them, and which side is the cheaper draft. Top 10 by absolute ADP gap.
+            Where the two markets disagree most. Each row shows a player's pick number on each platform, the gap between them, and which side is the cheaper draft.
         </p>
         <div class="source-picker" style="margin-bottom: 14px;">
             <label for="vizSrcA">Compare</label>
@@ -505,9 +524,28 @@
                 <button class="pos-btn te viz-pos-btn" data-pos="TE">TE</button>
             </div>
         </div>
+
+        <h2 class="viz-section-title">Search a player</h2>
+        <p class="viz-section-sub">Look up any specific player and see how the two markets price them.</p>
+        <div style="display:flex;justify-content:center;margin-bottom:12px;">
+            <div class="search-wrap">
+                <input type="text" id="viz-search" placeholder="Search a player..." autocomplete="off">
+                <div class="suggestions-list" id="viz-suggestions" style="display:none;"></div>
+            </div>
+        </div>
+        <div class="viz-list" id="viz-search-list" style="margin-bottom:24px;"></div>
+
+        <h2 class="viz-section-title">Biggest Disagreements</h2>
+        <p class="viz-section-sub">Players the two markets disagree on the most, sorted by absolute ADP gap.</p>
         <div class="viz-legend">
             <span class="pill"><span class="dot a-dot"></span><span class="a-label" id="viz-legend-a">Source A</span> ADP</span>
             <span class="pill"><span class="dot b-dot"></span><span class="b-label" id="viz-legend-b">Source B</span> ADP</span>
+        </div>
+        <div class="viz-pagination" id="viz-pagination">
+            <button class="page-btn active" data-limit="10">Top 10</button>
+            <button class="page-btn" data-limit="25">Top 25</button>
+            <button class="page-btn" data-limit="50">Top 50</button>
+            <button class="page-btn" data-limit="all">All</button>
         </div>
         <div class="viz-meta">
             <span id="viz-meta-left">Top 10 by absolute ADP gap</span>
@@ -519,7 +557,7 @@
     <!-- TAB 3: ALL 4 MARKETS -->
     <div class="tab-panel" id="tab-all4">
         <p class="blurb">
-            All four markets at once. The Top 5 below are players with the largest sum of absolute pairwise ADP differences across DK, UD, FFPC, and Drafters — i.e. the players the books disagree on most overall. Below that, search for any player to see their four-market spread.
+            All four markets at once. Search for any specific player below, then scroll for the players the books disagree on most overall — ranked by the sum of absolute pairwise ADP differences across DK, UD, FFPC, and Drafters.
         </p>
         <div class="controls" style="margin-bottom: 14px;">
             <div class="pos-filters">
@@ -530,27 +568,36 @@
                 <button class="pos-btn te all4-pos-btn" data-pos="TE">TE</button>
             </div>
         </div>
-        <div class="viz-legend" id="all4-legend">
-            <span class="pill"><span class="dot" style="background:#00c46a;"></span><span style="color:#00c46a;font-weight:700;">DraftKings</span></span>
-            <span class="pill"><span class="dot" style="background:#ffd700;"></span><span style="color:#ffd700;font-weight:700;">Underdog</span></span>
-            <span class="pill"><span class="dot" style="background:#4a9eff;"></span><span style="color:#4a9eff;font-weight:700;">FFPC</span></span>
-            <span class="pill"><span class="dot" style="background:#e67e22;"></span><span style="color:#e67e22;font-weight:700;">Drafters</span></span>
-        </div>
-        <div class="viz-meta">
-            <span>Top 5 by total disagreement across all 4 books</span>
-            <span><span id="all4-axis-min">—</span> ← earlier · later → <span id="all4-axis-max">—</span></span>
-        </div>
-        <div class="viz-list" id="all4-top-list"></div>
 
-        <h2 class="section-title" style="margin-top:32px;">Search a player</h2>
-        <p class="section-sub">Type a name to see their ADP on each of the four markets.</p>
+        <h2 class="viz-section-title">Search a player</h2>
+        <p class="viz-section-sub">Type a name to see their ADP on each of the four markets.</p>
         <div style="display:flex;justify-content:center;margin-bottom:12px;">
             <div class="search-wrap">
                 <input type="text" id="all4-search" placeholder="Search a player..." autocomplete="off">
                 <div class="suggestions-list" id="all4-suggestions" style="display:none;"></div>
             </div>
         </div>
-        <div class="viz-list" id="all4-search-list"></div>
+        <div class="viz-list" id="all4-search-list" style="margin-bottom:24px;"></div>
+
+        <h2 class="viz-section-title">Biggest Disagreements</h2>
+        <p class="viz-section-sub">Players the four markets disagree on most overall, ranked by sum of pairwise absolute ADP differences.</p>
+        <div class="viz-legend" id="all4-legend">
+            <span class="pill"><span class="dot" style="background:#00c46a;"></span><span style="color:#00c46a;font-weight:700;">DraftKings</span></span>
+            <span class="pill"><span class="dot" style="background:#ffd700;"></span><span style="color:#ffd700;font-weight:700;">Underdog</span></span>
+            <span class="pill"><span class="dot" style="background:#4a9eff;"></span><span style="color:#4a9eff;font-weight:700;">FFPC</span></span>
+            <span class="pill"><span class="dot" style="background:#e67e22;"></span><span style="color:#e67e22;font-weight:700;">Drafters</span></span>
+        </div>
+        <div class="viz-pagination" id="all4-pagination">
+            <button class="page-btn active" data-limit="10">Top 10</button>
+            <button class="page-btn" data-limit="25">Top 25</button>
+            <button class="page-btn" data-limit="50">Top 50</button>
+            <button class="page-btn" data-limit="all">All</button>
+        </div>
+        <div class="viz-meta">
+            <span id="all4-meta-left">Top 10 by total disagreement across all 4 books</span>
+            <span><span id="all4-axis-min">—</span> ← earlier · later → <span id="all4-axis-max">—</span></span>
+        </div>
+        <div class="viz-list" id="all4-top-list"></div>
     </div>
 
     <script>
@@ -879,6 +926,7 @@
         // source's pick number. Axis scale is shared across all 10 rows.
 
         let vizPosFilter = 'ALL';
+        let vizLimit = 10; // 10 / 25 / 50 / Infinity ("All")
 
         function initVizSourcePicker() {
             const selA = document.getElementById('vizSrcA');
@@ -939,13 +987,22 @@
             document.getElementById('viz-legend-a').textContent = srcLabel(srcA);
             document.getElementById('viz-legend-b').textContent = srcLabel(srcB);
 
-            // Filter to players with both prices, apply pos filter, top 10 by |diff|.
-            const candidates = players
+            // Filter to players with both prices, apply pos filter, slice by limit.
+            const ranked = players
                 .filter(p => p.adps[srcA] !== null && p.adps[srcB] !== null)
                 .filter(p => vizPosFilter === 'ALL' || p.pos === vizPosFilter)
                 .map(p => ({ ...p, aAdp: p.adps[srcA], bAdp: p.adps[srcB], gap: p.adps[srcA] - p.adps[srcB] }))
-                .sort((a, b) => Math.abs(b.gap) - Math.abs(a.gap))
-                .slice(0, 10);
+                .sort((a, b) => Math.abs(b.gap) - Math.abs(a.gap));
+            const candidates = vizLimit === Infinity ? ranked : ranked.slice(0, vizLimit);
+
+            // Update meta text describing the active slice.
+            const totalAvail = ranked.length;
+            const metaLeft = document.getElementById('viz-meta-left');
+            if (metaLeft) {
+                metaLeft.textContent = vizLimit === Infinity
+                    ? `All ${totalAvail} by absolute ADP gap`
+                    : `Top ${Math.min(vizLimit, totalAvail)} by absolute ADP gap`;
+            }
 
             if (!candidates.length) {
                 listEl.innerHTML = '<div class="viz-empty">No players have prices on both selected sources at this position.</div>';
@@ -954,7 +1011,7 @@
                 return;
             }
 
-            // Shared axis scale across the top 10 — pad slightly for visual breathing room.
+            // Shared axis scale across the active slice — pad slightly for visual breathing room.
             const allAdps = candidates.flatMap(c => [c.aAdp, c.bAdp]);
             const lo = Math.min(...allAdps);
             const hi = Math.max(...allAdps);
@@ -1010,14 +1067,72 @@
             });
         });
 
+        // Pagination chips for the disagreements ranking.
+        document.querySelectorAll('#viz-pagination .page-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('#viz-pagination .page-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const v = btn.dataset.limit;
+                vizLimit = v === 'all' ? Infinity : parseInt(v, 10);
+                renderViz();
+            });
+        });
+
+        // Player search for the Market to Market Visualizer.
+        function renderVizSearch() {
+            const listEl = document.getElementById('viz-search-list');
+            const input  = document.getElementById('viz-search');
+            if (!listEl || !input) return;
+            const val = (input.value || '').toLowerCase().trim();
+            if (!val) { listEl.innerHTML = ''; return; }
+            const matches = players
+                .filter(p => p.name.toLowerCase().includes(val) || (p.team || '').toLowerCase().includes(val))
+                .filter(p => p.adps[srcA] !== null && p.adps[srcB] !== null)
+                .slice(0, 10)
+                .map(p => ({ ...p, aAdp: p.adps[srcA], bAdp: p.adps[srcB], gap: p.adps[srcA] - p.adps[srcB] }));
+            if (!matches.length) {
+                listEl.innerHTML = '<div class="viz-empty">No match (or player missing a price on one of the two selected sources).</div>';
+                return;
+            }
+            const allAdps = matches.flatMap(p => [p.aAdp, p.bAdp]);
+            const lo = Math.min(...allAdps), hi = Math.max(...allAdps);
+            const pad = Math.max(2, (hi - lo) * 0.06);
+            const axisMin = Math.max(0, Math.floor(lo - pad));
+            const axisMax = Math.ceil(hi + pad);
+            const pct = adp => 100 * (adp - axisMin) / (axisMax - axisMin);
+            listEl.innerHTML = matches.map(p => {
+                const aPct = pct(p.aAdp), bPct = pct(p.bAdp);
+                const left = Math.min(aPct, bPct), right = Math.max(aPct, bPct);
+                const cheaperLabel = p.gap > 0 ? srcLabel(srcB) : srcLabel(srcA);
+                const cheaperCls   = p.gap > 0 ? 'cheaper-b' : 'cheaper-a';
+                return `<div class="viz-row">
+                    <span class="pos-badge pos-${escapeHtml(p.pos)}">${escapeHtml(p.pos)}</span>
+                    <div class="viz-name"><span class="player">${escapeHtml(p.name)}</span></div>
+                    <div class="viz-track">
+                        <div class="axis"></div>
+                        <div class="bar" style="left:${left}%; width:${right - left}%;"></div>
+                        <div class="dot a" style="left:${aPct}%;" title="${srcLabel(srcA)} ${p.aAdp.toFixed(1)}">${Math.round(p.aAdp)}</div>
+                        <div class="dot b" style="left:${bPct}%;" title="${srcLabel(srcB)} ${p.bAdp.toFixed(1)}">${Math.round(p.bAdp)}</div>
+                    </div>
+                    <div class="viz-callout ${cheaperCls}">
+                        <span class="gap">${Math.abs(p.gap).toFixed(0)}</span>
+                        <span class="label">picks pricier ${cheaperLabel}</span>
+                    </div>
+                </div>`;
+            }).join('');
+        }
+        const _vizSearchEl = document.getElementById('viz-search');
+        if (_vizSearchEl) _vizSearchEl.addEventListener('input', renderVizSearch);
+
         // Patch the main source-picker handlers so the viz also re-renders.
         // (initVizSourcePicker runs after loadData; the main picker is wired
         // in loadData itself. We hook into refresh() via a wrapper.)
         const _origRefresh = refresh;
-        refresh = function() { _origRefresh(); syncMainPicker(); renderViz(); renderAll4(); };
+        refresh = function() { _origRefresh(); syncMainPicker(); renderViz(); renderVizSearch(); renderAll4(); };
 
         // ── TAB 3: ALL 4 MARKETS ──────────────────────────────────────
         let all4PosFilter = 'ALL';
+        let all4Limit = 10; // 10 / 25 / 50 / Infinity
         const PLATFORM_COLORS = { DK: '#00c46a', UD: '#ffd700', FFPC: '#4a9eff', Drafters: '#e67e22' };
 
         function renderAll4() {
@@ -1045,10 +1160,19 @@
         function renderAll4Top() {
             const listEl = document.getElementById('all4-top-list');
             if (!listEl) return;
-            const all4 = getAll4Ranked()
+            const ranked = getAll4Ranked()
                 .filter(p => all4PosFilter === 'ALL' || p.pos === all4PosFilter)
-                .sort((a, b) => b.spread - a.spread)
-                .slice(0, 5);
+                .sort((a, b) => b.spread - a.spread);
+            const all4 = all4Limit === Infinity ? ranked : ranked.slice(0, all4Limit);
+
+            const totalAvail = ranked.length;
+            const metaLeft = document.getElementById('all4-meta-left');
+            if (metaLeft) {
+                metaLeft.textContent = all4Limit === Infinity
+                    ? `All ${totalAvail} by total disagreement across all 4 books`
+                    : `Top ${Math.min(all4Limit, totalAvail)} by total disagreement across all 4 books`;
+            }
+
             if (!all4.length) {
                 listEl.innerHTML = '<div class="viz-empty">No players have prices on all four sources at this position.</div>';
                 document.getElementById('all4-axis-min').textContent = '—';
@@ -1119,6 +1243,16 @@
                 document.querySelectorAll('.all4-pos-btn').forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
                 all4PosFilter = btn.dataset.pos;
+                renderAll4Top();
+            });
+        });
+        // Pagination chips for the All Platforms disagreements ranking.
+        document.querySelectorAll('#all4-pagination .page-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('#all4-pagination .page-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const v = btn.dataset.limit;
+                all4Limit = v === 'all' ? Infinity : parseInt(v, 10);
                 renderAll4Top();
             });
         });
