@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | EZ Dubs Analytics</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+               background: #0f1923; color: #e0e0e0; }
+
+        .site-nav {
+            position: sticky; top: 0; z-index: 50;
+            display: flex; align-items: center; gap: 28px;
+            padding: 14px 28px;
+            background: #0f1923; border-bottom: 1px solid #1e2d3d;
+        }
+        .site-nav .brand { font-weight: 700; font-size: 1.05rem; color: #fff;
+            text-decoration: none; white-space: nowrap; }
+        .site-nav .brand .accent { color: #4a9eff; }
+        .site-nav .nav-tabs { display: flex; gap: 6px; flex-wrap: wrap; }
+        .site-nav .nav-tabs a {
+            padding: 8px 16px; border-radius: 8px; border: 1px solid #2a3a4a;
+            background: #1a2634; color: #aaa; text-decoration: none;
+            font-size: 0.9rem; font-weight: 600; transition: all 0.15s;
+        }
+        .site-nav .nav-tabs a:hover { border-color: #4a9eff; color: #fff; }
+        .site-nav .nav-tabs a.active { border-color: #4a9eff; color: #4a9eff; }
+        .site-nav .nav-dd { position: relative; }
+        .site-nav .nav-dd-btn {
+            padding: 8px 16px; border-radius: 8px; border: 1px solid #2a3a4a;
+            background: #1a2634; color: #aaa; cursor: pointer;
+            font-size: 0.9rem; font-weight: 600; transition: all 0.15s;
+            font-family: inherit;
+        }
+        .site-nav .nav-dd-btn:hover { border-color: #4a9eff; color: #fff; }
+        .site-nav .nav-dd-btn.has-active { border-color: #4a9eff; color: #4a9eff; }
+        .site-nav .nav-dd-btn .caret { font-size: 0.7rem; margin-left: 4px; opacity: 0.7; }
+        .site-nav .nav-dd-menu {
+            position: absolute; top: calc(100% + 6px); left: 0; min-width: 280px;
+            background: #131f2c; border: 1px solid #2a3a4a; border-radius: 10px;
+            padding: 6px; z-index: 100;
+            display: none; flex-direction: column; gap: 2px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+        }
+        .site-nav .nav-dd:hover .nav-dd-menu,
+        .site-nav .nav-dd:focus-within .nav-dd-menu { display: flex; }
+        .site-nav .nav-dd-menu a {
+            padding: 8px 12px; border-radius: 6px; border: 0; background: transparent;
+            color: #aaa; text-decoration: none; font-size: 0.88rem; font-weight: 600;
+        }
+        .site-nav .nav-dd-menu a:hover { background: #1e2d3d; color: #fff; }
+        .site-nav .nav-dd-menu a.active { color: #4a9eff; background: #1e2d3d; }
+        .site-nav .nav-spacer { flex: 1; }
+        .site-nav .patreon-btn {
+            padding: 8px 16px; border-radius: 8px;
+            background: #ff424d; color: #fff; text-decoration: none;
+            font-size: 0.9rem; font-weight: 700; transition: opacity 0.15s;
+            white-space: nowrap;
+        }
+        .site-nav .patreon-btn:hover { opacity: 0.85; }
+        .site-nav .bmc-btn {
+            padding: 8px 16px; border-radius: 8px;
+            background: #FFDD00; color: #1a1a1a; text-decoration: none;
+            font-size: 0.9rem; font-weight: 700; transition: opacity 0.15s;
+            white-space: nowrap; margin-left: 8px;
+        }
+        .site-nav .bmc-btn:hover { opacity: 0.85; }
+
+        main { max-width: 640px; margin: 0 auto; padding: 60px 24px 80px; }
+        h1 { color: #fff; font-size: 2.2rem; font-weight: 800;
+             letter-spacing: -0.02em; margin: 0 0 10px; }
+        .lede { color: #99aabb; font-size: 1rem; line-height: 1.55;
+                margin: 0 0 32px; }
+
+        form { display: flex; flex-direction: column; gap: 14px; }
+        .field { display: flex; flex-direction: column; gap: 6px; }
+        .field label {
+            color: #99aabb; font-size: 0.85rem; font-weight: 600;
+        }
+        .field input, .field textarea {
+            padding: 10px 14px; border-radius: 8px; border: 1px solid #2a3a4a;
+            background: #131f2c; color: #fff; font-size: 0.95rem;
+            font-family: inherit;
+        }
+        .field input:focus, .field textarea:focus {
+            outline: none; border-color: #4a9eff;
+        }
+        .field textarea { min-height: 140px; resize: vertical; }
+        .submit-btn {
+            padding: 12px 22px; border-radius: 8px; border: 0;
+            background: #4a9eff; color: #fff; font-weight: 700;
+            font-size: 0.95rem; cursor: pointer; align-self: flex-start;
+            transition: opacity 0.15s;
+        }
+        .submit-btn:hover { opacity: 0.9; }
+        .submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        .form-status {
+            min-height: 1em; font-size: 0.88rem; color: #99aabb;
+        }
+        .form-status.success { color: #00c46a; }
+        .form-status.error   { color: #ff424d; }
+
+        .alt {
+            margin-top: 36px; padding-top: 24px;
+            border-top: 1px solid #1e2d3d;
+            color: #6f7e8d; font-size: 0.85rem; line-height: 1.6;
+        }
+        .alt a { color: #99aabb; text-decoration: none; }
+        .alt a:hover { color: #4a9eff; }
+    </style>
+</head>
+<body>
+    <nav class="site-nav">
+        <a class="brand" href="./">EZ Dubs <span class="accent">Analytics</span></a>
+        <div class="nav-tabs">
+            <a href="./">Home</a>
+            <div class="nav-dd">
+                <button type="button" class="nav-dd-btn">Dashboards <span class="caret">▾</span></button>
+                <div class="nav-dd-menu">
+                    <a href="dashboards/best-ball-prices/">Best Ball Price Differences</a>
+                    <a href="dashboards/best-ball-history/">History & Risers/Fallers</a>
+                    <a href="dashboards/prediction-arbitrage/">Prediction Market Arbitrage</a>
+                    <a href="dashboards/arb-calculator/">Prediction Market Arbitrage Calculator</a>
+                </div>
+            </div>
+            <a href="https://substack.com/@ezdubsanalytics" target="_blank" rel="noopener">Blog (Substack) ↗</a>
+            <a href="contact.html" class="active">Contact</a>
+        </div>
+        <div class="nav-spacer"></div>
+        <a class="patreon-btn" href="https://www.patreon.com/cw/EzDubsAnalytics" target="_blank" rel="noopener">Support on Patreon</a>
+        <a class="bmc-btn" href="https://buymeacoffee.com/ezdubsanalytics" target="_blank" rel="noopener">☕ Buy Me a Coffee</a>
+    </nav>
+
+    <main>
+        <h1>Contact</h1>
+        <p class="lede">
+            Questions, feedback, dashboard requests, prediction-market arb tips — send them along. I read everything.
+        </p>
+
+        <!-- TODO: replace FORMSPREE_FORM_ID with the actual ID from formspree.io (looks like 'abc12xyz') -->
+        <form id="contact-form" action="https://formspree.io/f/FORMSPREE_FORM_ID" method="POST">
+            <div class="field">
+                <label for="name">Your name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="field">
+                <label for="email">Email (so I can reply)</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="field">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" required placeholder="What's on your mind?"></textarea>
+            </div>
+            <!-- Honeypot field: bots fill this in; real users won't see it. -->
+            <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+            <button type="submit" class="submit-btn" id="submit-btn">Send message</button>
+            <div class="form-status" id="form-status"></div>
+        </form>
+
+        <div class="alt">
+            Or reach me on
+            <a href="https://substack.com/@ezdubsanalytics" target="_blank" rel="noopener">Substack</a>
+            ·
+            <a href="https://buymeacoffee.com/ezdubsanalytics" target="_blank" rel="noopener">Buy Me a Coffee</a>
+            ·
+            <a href="https://www.patreon.com/cw/EzDubsAnalytics" target="_blank" rel="noopener">Patreon</a>.
+        </div>
+    </main>
+
+    <script>
+        // Async submit so we can show inline success/error without leaving the page.
+        const form = document.getElementById('contact-form');
+        const status = document.getElementById('form-status');
+        const btn = document.getElementById('submit-btn');
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            status.textContent = ''; status.className = 'form-status';
+            btn.disabled = true; btn.textContent = 'Sending…';
+            try {
+                const data = new FormData(form);
+                const resp = await fetch(form.action, {
+                    method: 'POST',
+                    headers: { 'Accept': 'application/json' },
+                    body: data,
+                });
+                if (resp.ok) {
+                    status.textContent = 'Sent — thanks. I’ll reply when I can.';
+                    status.classList.add('success');
+                    form.reset();
+                } else {
+                    const j = await resp.json().catch(() => ({}));
+                    const msg = j.errors ? j.errors.map(e => e.message).join(', ') : `HTTP ${resp.status}`;
+                    status.textContent = `Couldn’t send (${msg}). Try one of the other channels below.`;
+                    status.classList.add('error');
+                }
+            } catch (err) {
+                status.textContent = `Network error (${err.message}). Try one of the other channels below.`;
+                status.classList.add('error');
+            } finally {
+                btn.disabled = false; btn.textContent = 'Send message';
+            }
+        });
+    </script>
+</body>
+</html>

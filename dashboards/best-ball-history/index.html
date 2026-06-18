@@ -28,6 +28,31 @@
         }
         .site-nav .nav-tabs a:hover { border-color: #4a9eff; color: #fff; }
         .site-nav .nav-tabs a.active { border-color: #4a9eff; color: #4a9eff; }
+        .site-nav .nav-dd { position: relative; }
+        .site-nav .nav-dd-btn {
+            padding: 8px 16px; border-radius: 8px; border: 1px solid #2a3a4a;
+            background: #1a2634; color: #aaa; cursor: pointer;
+            font-size: 0.9rem; font-weight: 600; transition: all 0.15s;
+            font-family: inherit;
+        }
+        .site-nav .nav-dd-btn:hover { border-color: #4a9eff; color: #fff; }
+        .site-nav .nav-dd-btn.has-active { border-color: #4a9eff; color: #4a9eff; }
+        .site-nav .nav-dd-btn .caret { font-size: 0.7rem; margin-left: 4px; opacity: 0.7; }
+        .site-nav .nav-dd-menu {
+            position: absolute; top: calc(100% + 6px); left: 0; min-width: 280px;
+            background: #131f2c; border: 1px solid #2a3a4a; border-radius: 10px;
+            padding: 6px; z-index: 100;
+            display: none; flex-direction: column; gap: 2px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+        }
+        .site-nav .nav-dd:hover .nav-dd-menu,
+        .site-nav .nav-dd:focus-within .nav-dd-menu { display: flex; }
+        .site-nav .nav-dd-menu a {
+            padding: 8px 12px; border-radius: 6px; border: 0; background: transparent;
+            color: #aaa; text-decoration: none; font-size: 0.88rem; font-weight: 600;
+        }
+        .site-nav .nav-dd-menu a:hover { background: #1e2d3d; color: #fff; }
+        .site-nav .nav-dd-menu a.active { color: #4a9eff; background: #1e2d3d; }
         .site-nav .nav-spacer { flex: 1; }
         .site-nav .patreon-btn {
             padding: 8px 16px; border-radius: 8px;
@@ -159,11 +184,17 @@
         <a class="brand" href="../../">EZ Dubs <span class="accent">Analytics</span></a>
         <div class="nav-tabs">
             <a href="../../">Home</a>
-            <a href="../best-ball-prices/">Best Ball Price Differences</a>
-            <a href="./" class="active">History & Risers/Fallers</a>
-            <a href="../prediction-arbitrage/">Prediction Market Arbitrage</a>
-            <a href="../arb-calculator/">Arb Calculator</a>
-            <a href="https://substack.com/@ezdubsanalytics" target="_blank" rel="noopener">Blog</a>
+            <div class="nav-dd">
+                <button type="button" class="nav-dd-btn has-active">Dashboards <span class="caret">▾</span></button>
+                <div class="nav-dd-menu">
+                    <a href="../best-ball-prices/">Best Ball Price Differences</a>
+                    <a href="./" class="active">History & Risers/Fallers</a>
+                    <a href="../prediction-arbitrage/">Prediction Market Arbitrage</a>
+                    <a href="../arb-calculator/">Prediction Market Arbitrage Calculator</a>
+                </div>
+            </div>
+            <a href="https://substack.com/@ezdubsanalytics" target="_blank" rel="noopener">Blog (Substack) ↗</a>
+            <a href="../../contact.html">Contact</a>
         </div>
         <div class="nav-spacer"></div>
         <a class="patreon-btn" href="https://www.patreon.com/cw/EzDubsAnalytics" target="_blank" rel="noopener">Support on Patreon</a>
