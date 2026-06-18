@@ -320,7 +320,7 @@
         <div id="gated" style="display:none;">
             <div class="filter-row">
                 <span class="label">Sort</span>
-                <button class="chip sort-chip active" data-sort="return">Highest return</button>
+                <button class="chip sort-chip active" data-sort="return">Biggest price gap</button>
                 <button class="chip sort-chip" data-sort="volume">Highest volume</button>
                 <span class="label" style="margin-left:8px;">Show</span>
                 <button class="chip susp-chip" data-susp="hide">Hide suspicious</button>
@@ -380,7 +380,8 @@
             let list = arbs.slice();
             if (suspMode === 'hide') list = list.filter(a => !a.suspicious);
             if (sortBy === 'return') {
-                list.sort((a, b) => b.return_pct - a.return_pct);
+                // Sort by absolute price gap (cents), biggest first.
+                list.sort((a, b) => Math.abs(b.prob_a - b.prob_b) - Math.abs(a.prob_a - a.prob_b));
             } else if (sortBy === 'volume') {
                 const vol = a => (a.volume_a || 0) + (a.volume_b || 0);
                 list.sort((a, b) => vol(b) - vol(a));
@@ -402,14 +403,15 @@
         function cardHTML(a) {
             const pa = escapeHtml(PLATFORM_LABELS[a.platform_a] || a.platform_a);
             const pb = escapeHtml(PLATFORM_LABELS[a.platform_b] || a.platform_b);
-            const returnClass = a.return_pct >= 5 ? '' : 'small';
+            const gapCents = Math.round(Math.abs(a.prob_a - a.prob_b) * 100);
+            const returnClass = gapCents >= 5 ? '' : 'small';
             const title = a.question_a || a.label || '(unnamed)';
 
             return `
                 <div class="arb-card${a.suspicious ? ' suspicious' : ''}">
                     <div class="arb-head">
                         <span class="arb-category">${escapeHtml(a.category || 'Arb')}</span>
-                        <span class="arb-return ${returnClass}">+${a.return_pct.toFixed(1)}%</span>
+                        <span class="arb-return ${returnClass}" title="Difference between the two platforms' implied probabilities, before fees">+${gapCents}¢</span>
                     </div>
                     <div class="arb-question">${escapeHtml(title)}</div>
 
