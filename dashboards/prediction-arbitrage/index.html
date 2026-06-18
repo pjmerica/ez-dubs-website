@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://formspree.io; font-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://formspree.io">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
     <title>Prediction Market Arbitrage | EZ Dubs Analytics</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -337,8 +339,12 @@
         function fmtDate(iso) {
             if (!iso) return '—';
             const d = new Date(iso);
+            // Render in the visitor's local timezone for clarity.
             const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-            return `${months[d.getUTCMonth()]} ${d.getUTCDate()}, ${d.getUTCFullYear()}`;
+            const hh = String(d.getHours()).padStart(2, '0');
+            const mm = String(d.getMinutes()).padStart(2, '0');
+            const tz = d.toLocaleTimeString(undefined, { timeZoneName: 'short' }).split(' ').pop();
+            return `${months[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()} at ${hh}:${mm} ${tz}`;
         }
         function fmtPrice(p) {
             if (p === null || p === undefined || isNaN(p)) return '—';
@@ -394,8 +400,8 @@
         }
 
         function cardHTML(a) {
-            const pa = PLATFORM_LABELS[a.platform_a] || a.platform_a;
-            const pb = PLATFORM_LABELS[a.platform_b] || a.platform_b;
+            const pa = escapeHtml(PLATFORM_LABELS[a.platform_a] || a.platform_a);
+            const pb = escapeHtml(PLATFORM_LABELS[a.platform_b] || a.platform_b);
             const stakeA = fmtStake(a.stake_a);
             const stakeB = fmtStake(a.stake_b);
             const returnClass = a.return_pct >= 5 ? '' : 'small';
@@ -410,13 +416,13 @@
                     <div class="arb-question">${escapeHtml(title)}</div>
 
                     <div class="leg">
-                        <span class="platform ${a.platform_a}">${pa}</span>
+                        <span class="platform ${escapeHtml(a.platform_a)}">${pa}</span>
                         <span class="price">${fmtPrice(a.prob_a)}</span>
                         <span class="stake">${stakeA ? `Stake <strong>${stakeA}</strong>` : ''}</span>
                         <a class="btn" href="${escapeHtml(a.url_a)}" target="_blank" rel="noopener">Open ↗</a>
                     </div>
                     <div class="leg">
-                        <span class="platform ${a.platform_b}">${pb}</span>
+                        <span class="platform ${escapeHtml(a.platform_b)}">${pb}</span>
                         <span class="price">${fmtPrice(a.prob_b)}</span>
                         <span class="stake">${stakeB ? `Stake <strong>${stakeB}</strong>` : ''}</span>
                         <a class="btn" href="${escapeHtml(a.url_b)}" target="_blank" rel="noopener">Open ↗</a>

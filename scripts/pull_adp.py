@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import csv
 import io
+import json
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -34,6 +35,7 @@ DK_HISTORY     = DASHBOARD_DIR / "dk_adp_history.csv"
 UD_HISTORY     = DASHBOARD_DIR / "ud_adp_history.csv"
 FFPC_HISTORY      = DASHBOARD_DIR / "ffpc_adp_history.csv"
 DRAFTERS_HISTORY  = DASHBOARD_DIR / "drafters_adp_history.csv"
+LAST_PULL_META    = DASHBOARD_DIR / "last_pull.json"
 
 # Local-only daily snapshots kept for QC. Gitignored.
 LOCAL_DIR      = REPO_ROOT / "_local" / "adp-daily"
@@ -143,6 +145,16 @@ def main() -> int:
         out_rows = _build_rows(rows, col, today, "auto")
         _append_history(path, out_rows)
         print(f"Appended {len(out_rows)} {label} rows to {path.name}.")
+
+    # Surface a precise pull timestamp for the dashboard to display.
+    LAST_PULL_META.write_text(
+        json.dumps({
+            "pulled_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+            "date":      today,
+        }, indent=2) + "\n",
+        encoding="utf-8",
+    )
+    print(f"Wrote {LAST_PULL_META.name}.")
 
     return 0
 

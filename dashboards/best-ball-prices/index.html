@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://formspree.io; font-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://formspree.io">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
     <title>Best Ball Price Differences | EZ Dubs Analytics</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <style>
@@ -597,6 +599,12 @@
             'Arizona Cardinals':'ARI','Baltimore Ravens':'BAL',
         };
 
+        function escapeHtml(s) {
+            return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({
+                '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;',
+            })[c]);
+        }
+
         function normalizeName(name) {
             return name.toLowerCase()
                 .replace(/[.']/g, '')
@@ -680,6 +688,20 @@
                 const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
                 document.getElementById('last-updated').textContent = `${months[parseInt(m,10)-1]} ${parseInt(d,10)}, ${y}`;
             }
+            // If the puller has written last_pull.json, prefer its precise timestamp.
+            fetch('last_pull.json', { cache: 'no-store' })
+                .then(r => r.ok ? r.json() : null)
+                .then(meta => {
+                    if (!meta || !meta.pulled_at) return;
+                    const dt = new Date(meta.pulled_at);
+                    const monthsShort = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+                    const hh = String(dt.getHours()).padStart(2, '0');
+                    const mm = String(dt.getMinutes()).padStart(2, '0');
+                    const tz = dt.toLocaleTimeString(undefined, { timeZoneName: 'short' }).split(' ').pop();
+                    document.getElementById('last-updated').textContent =
+                        `${monthsShort[dt.getMonth()]} ${dt.getDate()}, ${dt.getFullYear()} at ${hh}:${mm} ${tz}`;
+                })
+                .catch(() => {});
 
             // Merge across sources.
             const allKeys = new Set();
@@ -764,7 +786,7 @@
             function recHTML(list, valCls, valFn) {
                 return list.map((p, i) => {
                     const { text } = valFn(p);
-                    return `<li><span class="rec-rank">${i + 1}.</span><span class="rec-name">${p.name}</span><span class="rec-pos"><span class="pos-badge pos-${p.pos}">${p.pos}</span></span><span class="rec-adps">${aLabel} ${p.aAdp.toFixed(1)} / ${bLabel} ${p.bAdp.toFixed(1)}</span><span class="rec-val ${valCls}">${text}</span></li>`;
+                    return `<li><span class="rec-rank">${i + 1}.</span><span class="rec-name">${escapeHtml(p.name)}</span><span class="rec-pos"><span class="pos-badge pos-${escapeHtml(p.pos)}">${escapeHtml(p.pos)}</span></span><span class="rec-adps">${aLabel} ${p.aAdp.toFixed(1)} / ${bLabel} ${p.bAdp.toFixed(1)}</span><span class="rec-val ${valCls}">${text}</span></li>`;
                 }).join('');
             }
             const posLabel = recPosFilter === 'ALL' ? '' : ` (${recPosFilter})`;
@@ -801,7 +823,7 @@
                 const diffText = p.diff !== null ? (p.diff > 0 ? '+' : '') + p.diff.toFixed(1) : '—';
                 const pctClass = p.pctDiff !== null ? (p.pctDiff > 0 ? 'diff-positive' : p.pctDiff < 0 ? 'diff-negative' : 'diff-neutral') : 'diff-neutral';
                 const pctText = p.pctDiff !== null ? (p.pctDiff > 0 ? '+' : '') + p.pctDiff.toFixed(1) + '%' : '—';
-                return `<tr><td class="rank-cell">${i + 1}</td><td class="name-cell">${p.name}</td><td><span class="pos-badge pos-${p.pos}">${p.pos}</span></td><td class="team-cell">${p.team}</td><td class="adp-cell source-a">${p.aAdp !== null ? p.aAdp.toFixed(1) : '<span class="no-adp">—</span>'}</td><td class="adp-cell source-b">${p.bAdp !== null ? p.bAdp.toFixed(1) : '<span class="no-adp">—</span>'}</td><td class="${diffClass}">${diffText}</td><td class="${pctClass}">${pctText}</td></tr>`;
+                return `<tr><td class="rank-cell">${i + 1}</td><td class="name-cell">${escapeHtml(p.name)}</td><td><span class="pos-badge pos-${escapeHtml(p.pos)}">${escapeHtml(p.pos)}</span></td><td class="team-cell">${escapeHtml(p.team)}</td><td class="adp-cell source-a">${p.aAdp !== null ? p.aAdp.toFixed(1) : '<span class="no-adp">—</span>'}</td><td class="adp-cell source-b">${p.bAdp !== null ? p.bAdp.toFixed(1) : '<span class="no-adp">—</span>'}</td><td class="${diffClass}">${diffText}</td><td class="${pctClass}">${pctText}</td></tr>`;
             }).join('');
             document.querySelectorAll('thead th').forEach(th => {
                 const arrow = th.querySelector('.arrow');
@@ -953,12 +975,12 @@
                 const aRank = aRanks[`${p.pos}|${k}`];
                 const bRank = bRanks[`${p.pos}|${k}`];
                 const rankLine = (aRank && bRank)
-                    ? `<span class="a">${srcLabel(srcA)} ${p.pos}${aRank}</span> &nbsp;→&nbsp; <span class="b">${srcLabel(srcB)} ${p.pos}${bRank}</span>`
+                    ? `<span class="a">${srcLabel(srcA)} ${escapeHtml(p.pos)}${aRank}</span> &nbsp;→&nbsp; <span class="b">${srcLabel(srcB)} ${escapeHtml(p.pos)}${bRank}</span>`
                     : '';
                 return `<div class="viz-row">
-                    <span class="pos-badge pos-${p.pos}">${p.pos}</span>
+                    <span class="pos-badge pos-${escapeHtml(p.pos)}">${escapeHtml(p.pos)}</span>
                     <div class="viz-name">
-                        <span class="player">${p.name}</span>
+                        <span class="player">${escapeHtml(p.name)}</span>
                         ${rankLine ? `<span class="ranks">${rankLine}</span>` : ''}
                     </div>
                     <div class="viz-track">
@@ -1049,10 +1071,10 @@
                 return `<div class="dot" style="left:${pct(v)}%; background:${PLATFORM_COLORS[s]};" title="${s} ${v.toFixed(1)}">${Math.round(v)}</div>`;
             }).join('');
             return `<div class="viz-row">
-                <span class="pos-badge pos-${p.pos}">${p.pos}</span>
+                <span class="pos-badge pos-${escapeHtml(p.pos)}">${escapeHtml(p.pos)}</span>
                 <div class="viz-name">
-                    <span class="player">${p.name}</span>
-                    <span class="ranks">${p.team || ''}</span>
+                    <span class="player">${escapeHtml(p.name)}</span>
+                    <span class="ranks">${escapeHtml(p.team || '')}</span>
                 </div>
                 <div class="viz-track">
                     <div class="axis"></div>

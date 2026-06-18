@@ -6,6 +6,9 @@ on:
     # at 12:30 UTC and 00:30 UTC, so 14:00 UTC catches the latest morning
     # update with a safety margin.
     - cron: '0 14 * * *'
+    # Backup at 15:30 UTC in case the 14:00 slot was skipped by GH Actions.
+    # Idempotent: writes the same JSON if no new arbs are present upstream.
+    - cron: '30 15 * * *'
   workflow_dispatch:
 
 jobs:

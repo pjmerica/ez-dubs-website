@@ -34,7 +34,8 @@ jobs:
           git add dashboards/best-ball-prices/dk_adp_history.csv \
                   dashboards/best-ball-prices/ud_adp_history.csv \
                   dashboards/best-ball-prices/ffpc_adp_history.csv \
-                  dashboards/best-ball-prices/drafters_adp_history.csv
+                  dashboards/best-ball-prices/drafters_adp_history.csv \
+                  dashboards/best-ball-prices/last_pull.json
           if git diff --cached --quiet; then
             echo "No new data to commit."
             exit 0
