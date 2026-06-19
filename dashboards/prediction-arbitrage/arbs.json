@@ -1,20 +1,20 @@
 {
-  "generated_at": "2026-06-18T20:38:18+00:00",
+  "generated_at": "2026-06-19T16:31:22+00:00",
   "sources": [
     {
       "id": "pred-arbitrage",
       "name": "Pred Arbitrage Scanner",
       "ok": true,
-      "updated_at": "2026-06-18T16:01:01.318026+00:00",
-      "total": 182,
+      "updated_at": "2026-06-19T15:49:31.293177+00:00",
+      "total": 171,
       "guaranteed_kept": 2
     },
     {
       "id": "polling-agg-2026",
       "name": "Polling Agg 2026 Arb Scanner",
       "ok": true,
-      "updated_at": "2026-06-18T15:41:27.854829+00:00",
-      "total": 293,
+      "updated_at": "2026-06-19T15:33:52.769643+00:00",
+      "total": 297,
       "guaranteed_kept": 0
     }
   ],
@@ -31,11 +31,11 @@
       "url_b": "https://polymarket.com/event/which-countries-will-recognize-palestine-before-2027",
       "market_id_a": "KXRECOGPALESTINE-27-FIN",
       "market_id_b": "91293556511988900538926806981948713907225537435439161744582315555436298554300",
-      "prob_a": 0.069,
+      "prob_a": 0.065,
       "prob_b": 0.25,
-      "stake_a": 91.58,
-      "stake_b": 8.42,
-      "return_pct": 12.1,
+      "stake_a": 92.02,
+      "stake_b": 7.98,
+      "return_pct": 12.5,
       "settle_date": "2027-01-01",
       "volume_a": 9372.28,
       "volume_b": 37844.95,
@@ -44,28 +44,26 @@
     },
     {
       "source": "pred-arbitrage",
-      "category": "Elections",
+      "category": "Politics",
       "label": "",
       "platform_a": "kalshi",
       "platform_b": "polymarket",
-      "question_a": "CA-14 special election winner \u2014 Matt Ortega",
-      "question_b": "Will Matt Ortega win the CA-14 special election?",
-      "url_a": "https://kalshi.com/markets/KXCA14SWINNER",
-      "url_b": "https://polymarket.com/event/ca-14-special-election-winner",
-      "market_id_a": "KXCA14SWINNER-26-MORT",
-      "market_id_b": "21291537759497146113337598498199321528119326969966493762341465736249986060435",
-      "prob_a": 0.01,
-      "prob_b": 0.12,
-      "stake_a": 98.88,
-      "stake_b": 1.12,
-      "return_pct": 5.0,
-      "settle_date": "2027-11-03",
-      "volume_a": 125.0,
-      "volume_b": 484.88,
-      "suspicious": true,
-      "suspicion_reasons": [
-        "one_sided_a"
-      ]
+      "question_a": "Who will recognize Palestine before 2027? \u2014 New Zealand",
+      "question_b": "Will New Zealand recognize Palestine before 2027?",
+      "url_a": "https://kalshi.com/markets/KXRECOGPALESTINE",
+      "url_b": "https://polymarket.com/event/which-countries-will-recognize-palestine-before-2027",
+      "market_id_a": "KXRECOGPALESTINE-27-NZ",
+      "market_id_b": "65570926759968481664272006070778261573308784359007307417544721102990194386816",
+      "prob_a": 0.135,
+      "prob_b": 0.23,
+      "stake_a": 85.08,
+      "stake_b": 14.92,
+      "return_pct": 3.5,
+      "settle_date": "2027-01-01",
+      "volume_a": 9484.61,
+      "volume_b": 121867.59,
+      "suspicious": false,
+      "suspicion_reasons": []
     }
   ]
 }
