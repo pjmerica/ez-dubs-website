@@ -677,16 +677,6 @@
             </div>
         </div>
 
-        <h2 class="viz-section-title">Search a player</h2>
-        <p class="viz-section-sub">Look up any specific player and see how the best ball markets price them.</p>
-        <div style="display:flex;justify-content:center;margin-bottom:12px;">
-            <div class="search-wrap">
-                <input type="text" id="viz-search" placeholder="Search a player..." autocomplete="off">
-                <div class="suggestions-list" id="viz-suggestions" style="display:none;"></div>
-            </div>
-        </div>
-        <div class="viz-list" id="viz-search-list" style="margin-bottom:24px;"></div>
-
         <h2 class="viz-section-title">Biggest Disagreements</h2>
         <p class="viz-section-sub">Players the best ball markets disagree on the most, sorted by absolute ADP gap.</p>
         <div class="viz-legend">
@@ -703,13 +693,24 @@
             <span id="viz-meta-left">Top 10 by absolute ADP gap</span>
             <span><span id="viz-axis-min">—</span> ← earlier · later → <span id="viz-axis-max">—</span></span>
         </div>
-        <div class="viz-list" id="viz-list"></div>
+        <div class="viz-list" id="viz-list" style="margin-bottom:32px;"></div>
+
+        <h2 class="viz-section-title">Search players</h2>
+        <p class="viz-section-sub">Search and add multiple players to compare. Click a tag to remove it.</p>
+        <div style="display:flex;justify-content:center;margin-bottom:12px;">
+            <div class="search-wrap">
+                <input type="text" id="viz-search" placeholder="Search a player..." autocomplete="off">
+                <div class="suggestions-list" id="viz-suggestions" style="display:none;"></div>
+            </div>
+        </div>
+        <div class="selected-players" id="viz-selected-tags"></div>
+        <div class="viz-list" id="viz-search-list"></div>
     </div>
 
     <!-- TAB 3: ALL 4 MARKETS -->
     <div class="tab-panel" id="tab-all4">
         <p class="blurb">
-            All four markets at once. Search for any specific player below, then scroll for the players the books disagree on most overall — ranked by the sum of absolute pairwise ADP differences across DK, UD, FFPC, and Drafters.
+            All four markets at once.
         </p>
         <div class="controls" style="margin-bottom: 14px;">
             <div class="pos-filters">
@@ -720,16 +721,6 @@
                 <button class="pos-btn te all4-pos-btn" data-pos="TE">TE</button>
             </div>
         </div>
-
-        <h2 class="viz-section-title">Search a player</h2>
-        <p class="viz-section-sub">Type a name to see their ADP on each of the four markets.</p>
-        <div style="display:flex;justify-content:center;margin-bottom:12px;">
-            <div class="search-wrap">
-                <input type="text" id="all4-search" placeholder="Search a player..." autocomplete="off">
-                <div class="suggestions-list" id="all4-suggestions" style="display:none;"></div>
-            </div>
-        </div>
-        <div class="viz-list" id="all4-search-list" style="margin-bottom:24px;"></div>
 
         <h2 class="viz-section-title">Biggest Disagreements</h2>
         <p class="viz-section-sub">Players the four markets disagree on most overall, ranked by sum of pairwise absolute ADP differences.</p>
@@ -749,7 +740,18 @@
             <span id="all4-meta-left">Top 10 by total disagreement across all 4 books</span>
             <span><span id="all4-axis-min">—</span> ← earlier · later → <span id="all4-axis-max">—</span></span>
         </div>
-        <div class="viz-list" id="all4-top-list"></div>
+        <div class="viz-list" id="all4-top-list" style="margin-bottom:32px;"></div>
+
+        <h2 class="viz-section-title">Search players</h2>
+        <p class="viz-section-sub">Search and add multiple players to compare their four-market spread. Click a tag to remove it.</p>
+        <div style="display:flex;justify-content:center;margin-bottom:12px;">
+            <div class="search-wrap">
+                <input type="text" id="all4-search" placeholder="Search a player..." autocomplete="off">
+                <div class="suggestions-list" id="all4-suggestions" style="display:none;"></div>
+            </div>
+        </div>
+        <div class="selected-players" id="all4-selected-tags"></div>
+        <div class="viz-list" id="all4-search-list"></div>
     </div>
 
     <script>
@@ -1233,28 +1235,45 @@
         });
 
         // Player search for the Market to Market Visualizer.
+        // Multi-select: typing in the search box shows suggestions; clicking
+        // a suggestion adds the player to vizSelected. Selected players render
+        // as rows in the list AND as removable tags above it.
+        const vizSelected = new Set(); // normalized-name keys
+
+        function vizPlayerByKey(key) {
+            return players.find(p => normalizeName(p.name) === key);
+        }
+
         function renderVizSearch() {
             const listEl = document.getElementById('viz-search-list');
-            const input  = document.getElementById('viz-search');
-            if (!listEl || !input) return;
-            const val = (input.value || '').toLowerCase().trim();
-            if (!val) { listEl.innerHTML = ''; return; }
-            const matches = players
-                .filter(p => p.name.toLowerCase().includes(val) || (p.team || '').toLowerCase().includes(val))
-                .filter(p => p.adps[srcA] !== null && p.adps[srcB] !== null)
-                .slice(0, 10)
+            const tagsEl = document.getElementById('viz-selected-tags');
+            if (!listEl || !tagsEl) return;
+
+            // Build the visible row set from selected keys (only those with both prices).
+            const selected = [...vizSelected]
+                .map(k => vizPlayerByKey(k))
+                .filter(p => p && p.adps[srcA] !== null && p.adps[srcB] !== null)
                 .map(p => ({ ...p, aAdp: p.adps[srcA], bAdp: p.adps[srcB], gap: p.adps[srcA] - p.adps[srcB] }));
-            if (!matches.length) {
-                listEl.innerHTML = '<div class="viz-empty">No match (or player missing a price on one of the two selected sources).</div>';
-                return;
-            }
-            const allAdps = matches.flatMap(p => [p.aAdp, p.bAdp]);
+
+            // Render selected tags.
+            tagsEl.innerHTML = [...vizSelected].map(k => {
+                const p = vizPlayerByKey(k);
+                if (!p) return '';
+                return `<span class="player-tag" data-key="${escapeHtml(k)}" style="color:#4a9eff;border-color:#4a9eff;background:rgba(74,158,255,0.15);">${escapeHtml(p.name)} <span class="pos-badge pos-${escapeHtml(p.pos)}" style="font-size:0.7rem;padding:1px 6px;">${escapeHtml(p.pos)}</span> <span class="remove">×</span></span>`;
+            }).join('');
+            tagsEl.querySelectorAll('.player-tag').forEach(t => {
+                t.addEventListener('click', () => { vizSelected.delete(t.dataset.key); renderVizSearch(); });
+            });
+
+            if (!selected.length) { listEl.innerHTML = ''; return; }
+
+            const allAdps = selected.flatMap(p => [p.aAdp, p.bAdp]);
             const lo = Math.min(...allAdps), hi = Math.max(...allAdps);
             const pad = Math.max(2, (hi - lo) * 0.06);
             const axisMin = Math.max(0, Math.floor(lo - pad));
             const axisMax = Math.ceil(hi + pad);
             const pct = adp => 100 * (adp - axisMin) / (axisMax - axisMin);
-            listEl.innerHTML = matches.map(p => {
+            listEl.innerHTML = selected.map(p => {
                 const aPct = pct(p.aAdp), bPct = pct(p.bAdp);
                 const left = Math.min(aPct, bPct), right = Math.max(aPct, bPct);
                 const cheaperLabel = p.gap > 0 ? srcLabel(srcB) : srcLabel(srcA);
@@ -1275,8 +1294,39 @@
                 </div>`;
             }).join('');
         }
-        const _vizSearchEl = document.getElementById('viz-search');
-        if (_vizSearchEl) _vizSearchEl.addEventListener('input', renderVizSearch);
+
+        // Suggestion-list-driven autocomplete: typing shows up to 12 matches,
+        // clicking adds to the selected set.
+        (function initVizSearchInput() {
+            const input = document.getElementById('viz-search');
+            const sugg  = document.getElementById('viz-suggestions');
+            if (!input || !sugg) return;
+            input.addEventListener('input', () => {
+                const val = input.value.toLowerCase().trim();
+                if (!val) { sugg.style.display = 'none'; return; }
+                const matches = players
+                    .filter(p => p.name.toLowerCase().includes(val) || (p.team || '').toLowerCase().includes(val))
+                    .filter(p => !vizSelected.has(normalizeName(p.name)))
+                    .sort((a, b) => a.name.localeCompare(b.name))
+                    .slice(0, 12);
+                if (!matches.length) { sugg.style.display = 'none'; return; }
+                sugg.innerHTML = matches.map(p =>
+                    `<div data-key="${escapeHtml(normalizeName(p.name))}">${escapeHtml(p.name)} <span style="color:#666;font-size:0.8rem">${escapeHtml(p.pos)}</span></div>`
+                ).join('');
+                sugg.style.display = 'block';
+            });
+            sugg.addEventListener('click', e => {
+                const div = e.target.closest('[data-key]');
+                if (!div) return;
+                vizSelected.add(div.dataset.key);
+                input.value = '';
+                sugg.style.display = 'none';
+                renderVizSearch();
+            });
+            document.addEventListener('click', e => {
+                if (!input.contains(e.target) && !sugg.contains(e.target)) sugg.style.display = 'none';
+            });
+        })();
 
         // Patch the main source-picker handlers so the viz also re-renders.
         // (initVizSourcePicker runs after loadData; the main picker is wired
@@ -1370,26 +1420,39 @@
             </div>`;
         }
 
+        // Multi-select for All Platforms — same pattern as Market to Market.
+        const all4Selected = new Set();
+
+        function all4PlayerByKey(key) {
+            return players.find(p => normalizeName(p.name) === key);
+        }
+
         function renderAll4Search() {
             const listEl = document.getElementById('all4-search-list');
-            const input  = document.getElementById('all4-search');
-            if (!listEl || !input) return;
-            const val = (input.value || '').toLowerCase().trim();
-            if (!val) { listEl.innerHTML = ''; return; }
-            const matches = players
-                .filter(p => p.name.toLowerCase().includes(val) || (p.team || '').toLowerCase().includes(val))
-                .filter(p => p.adps.DK !== null && p.adps.UD !== null && p.adps.FFPC !== null && p.adps.Drafters !== null)
-                .slice(0, 10);
-            if (!matches.length) {
-                listEl.innerHTML = '<div class="viz-empty">No match (or player missing prices on one of the four books).</div>';
-                return;
-            }
-            const allAdps = matches.flatMap(p => ['DK','UD','FFPC','Drafters'].map(s => p.adps[s]));
+            const tagsEl = document.getElementById('all4-selected-tags');
+            if (!listEl || !tagsEl) return;
+
+            const selected = [...all4Selected]
+                .map(k => all4PlayerByKey(k))
+                .filter(p => p && p.adps.DK !== null && p.adps.UD !== null && p.adps.FFPC !== null && p.adps.Drafters !== null);
+
+            tagsEl.innerHTML = [...all4Selected].map(k => {
+                const p = all4PlayerByKey(k);
+                if (!p) return '';
+                return `<span class="player-tag" data-key="${escapeHtml(k)}" style="color:#4a9eff;border-color:#4a9eff;background:rgba(74,158,255,0.15);">${escapeHtml(p.name)} <span class="pos-badge pos-${escapeHtml(p.pos)}" style="font-size:0.7rem;padding:1px 6px;">${escapeHtml(p.pos)}</span> <span class="remove">×</span></span>`;
+            }).join('');
+            tagsEl.querySelectorAll('.player-tag').forEach(t => {
+                t.addEventListener('click', () => { all4Selected.delete(t.dataset.key); renderAll4Search(); });
+            });
+
+            if (!selected.length) { listEl.innerHTML = ''; return; }
+
+            const allAdps = selected.flatMap(p => ['DK','UD','FFPC','Drafters'].map(s => p.adps[s]));
             const lo = Math.min(...allAdps), hi = Math.max(...allAdps);
             const pad = Math.max(2, (hi - lo) * 0.06);
             const axisMin = Math.max(0, Math.floor(lo - pad));
             const axisMax = Math.ceil(hi + pad);
-            listEl.innerHTML = matches.map(p => renderAll4Row(p, axisMin, axisMax)).join('');
+            listEl.innerHTML = selected.map(p => renderAll4Row(p, axisMin, axisMax)).join('');
         }
 
         document.querySelectorAll('.all4-pos-btn').forEach(btn => {
@@ -1410,8 +1473,38 @@
                 renderAll4Top();
             });
         });
-        const _all4SearchEl = document.getElementById('all4-search');
-        if (_all4SearchEl) _all4SearchEl.addEventListener('input', renderAll4Search);
+        // Suggestion-list-driven autocomplete for All Platforms.
+        (function initAll4SearchInput() {
+            const input = document.getElementById('all4-search');
+            const sugg  = document.getElementById('all4-suggestions');
+            if (!input || !sugg) return;
+            input.addEventListener('input', () => {
+                const val = input.value.toLowerCase().trim();
+                if (!val) { sugg.style.display = 'none'; return; }
+                const matches = players
+                    .filter(p => p.name.toLowerCase().includes(val) || (p.team || '').toLowerCase().includes(val))
+                    .filter(p => p.adps.DK !== null && p.adps.UD !== null && p.adps.FFPC !== null && p.adps.Drafters !== null)
+                    .filter(p => !all4Selected.has(normalizeName(p.name)))
+                    .sort((a, b) => a.name.localeCompare(b.name))
+                    .slice(0, 12);
+                if (!matches.length) { sugg.style.display = 'none'; return; }
+                sugg.innerHTML = matches.map(p =>
+                    `<div data-key="${escapeHtml(normalizeName(p.name))}">${escapeHtml(p.name)} <span style="color:#666;font-size:0.8rem">${escapeHtml(p.pos)}</span></div>`
+                ).join('');
+                sugg.style.display = 'block';
+            });
+            sugg.addEventListener('click', e => {
+                const div = e.target.closest('[data-key]');
+                if (!div) return;
+                all4Selected.add(div.dataset.key);
+                input.value = '';
+                sugg.style.display = 'none';
+                renderAll4Search();
+            });
+            document.addEventListener('click', e => {
+                if (!input.contains(e.target) && !sugg.contains(e.target)) sugg.style.display = 'none';
+            });
+        })();
 
         // Initialize the Viz + All-4 tabs once loadData() has populated `players`.
         // loadData() was kicked off above; poll briefly until it's done.
