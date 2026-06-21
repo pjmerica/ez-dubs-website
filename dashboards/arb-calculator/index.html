@@ -154,6 +154,28 @@
             font-family: inherit; font-size: 0.92rem;
         }
         .field input.bad { border-color: #ff424d; }
+        .field-err {
+            display: block; min-height: 0;
+            color: #ff424d; font-size: 0.75rem; font-weight: 600;
+            margin-top: 4px;
+        }
+        .field-err:empty { display: none; }
+
+        .calc-btn {
+            padding: 12px 20px; border-radius: 8px; border: 0;
+            background: #4a9eff; color: #fff; font-weight: 700;
+            font-size: 0.95rem; cursor: pointer; font-family: inherit;
+            transition: opacity 0.15s;
+            width: 100%;
+        }
+        .calc-btn:hover { opacity: 0.9; }
+        .form-error {
+            background: rgba(255, 66, 77, 0.1);
+            border: 1px solid rgba(255, 66, 77, 0.5);
+            border-radius: 10px; padding: 12px 16px;
+            color: #ff8a93; font-size: 0.88rem; line-height: 1.45;
+            margin-bottom: 14px;
+        }
 
         /* Result panel */
         .verdict {
@@ -251,7 +273,7 @@
                 <div class="nav-dd-menu">
                     <a href="../best-ball-prices/">Best Ball Price Differences</a>
                     <a href="../best-ball-history/">Best Ball History Risers/Fallers</a>
-                    <a href="../prediction-arbitrage/">Prediction Market Arbitrage</a>
+                    <a href="../prediction-arbitrage/">Prediction Market Arbitrage Opportunities</a>
                     <a href="./" class="active">Prediction Market Arbitrage Calculator</a>
                 </div>
             </div>
@@ -285,46 +307,57 @@
                 <div class="field">
                     <label>Side A — YES price <span class="hint">(0–1)</span></label>
                     <input type="number" id="ayes" min="0" max="1" step="0.01" placeholder="0.42">
+                    <span class="field-err" id="err-ayes"></span>
                 </div>
                 <div class="field">
                     <label>Side B — YES price <span class="hint">(0–1)</span></label>
                     <input type="number" id="byes" min="0" max="1" step="0.01" placeholder="0.55">
+                    <span class="field-err" id="err-byes"></span>
                 </div>
             </div>
             <div class="row">
                 <div class="field">
                     <label>Side A — NO price <span class="hint">(0–1)</span></label>
                     <input type="number" id="ano"  min="0" max="1" step="0.01" placeholder="0.58">
+                    <span class="field-err" id="err-ano"></span>
                 </div>
                 <div class="field">
                     <label>Side B — NO price <span class="hint">(0–1)</span></label>
                     <input type="number" id="bno"  min="0" max="1" step="0.01" placeholder="0.45">
+                    <span class="field-err" id="err-bno"></span>
                 </div>
             </div>
             <div class="row">
                 <div class="field">
                     <label>Total bankroll <span class="hint">($)</span></label>
                     <input type="number" id="bankroll" min="0" step="1" value="100">
+                    <span class="field-err" id="err-bankroll"></span>
                 </div>
                 <div class="field" style="visibility:hidden;">
                     <label>spacer</label>
                     <input type="number">
                 </div>
             </div>
+            <div class="row" style="grid-template-columns: 1fr;">
+                <div class="field">
+                    <button type="button" id="calc-btn" class="calc-btn">Calculate</button>
+                </div>
+            </div>
         </div>
 
+        <div id="form-error" class="form-error" style="display:none;"></div>
         <div id="output"></div>
 
         <p class="notes">
             <strong>How it works.</strong> An arb means buying one outcome on market A and the opposite outcome
-            on market B, so one of the two legs always pays. There are two possible orientations:
-            (1) YES on A + NO on B, or (2) NO on A + YES on B. The calculator tries both, picks whichever has
-            the cheaper combined cost (must be &lt; 1.00 per $1 of payoff), and splits your bankroll so both legs
-            return the same payoff. If neither orientation is &lt; 1.00, there's no arb at these prices.
+            on market B, so one of the two legs always pays. Fill in the two opposing legs you'd actually take —
+            either Side A YES + Side B NO, or Side A NO + Side B YES — plus your bankroll, then hit Calculate.
+            If the combined cost-per-$1 is less than 1.00 there's an arb; the calculator splits your bankroll
+            so both legs return the same payoff.
             <br><br>
-            <strong>Why four prices, not two.</strong> On a real order book, YES + NO often doesn't sum to exactly 1
-            — that gap is the bid/ask spread. Entering all four prices lets the calculator use what you'd
-            actually pay to execute, not a theoretical mid.
+            <strong>Optional: all four prices.</strong> On a real order book YES + NO usually doesn't sum to
+            exactly 1 (that gap is the bid/ask spread). If you fill all four prices, the calculator considers
+            both orientations and picks whichever is cheaper.
             <br><br>
             <strong>Caveats not included.</strong> Trading fees (Kalshi/Polymarket ~3%, PredictIt ~12%) and order-book
             depth — the displayed price may not be the full size you can fill. A tight arb on paper may not survive either.
@@ -365,49 +398,140 @@
             };
         }
 
+        // Parse a price field. Returns:
+        //   null   — empty (user didn't fill it)
+        //   NaN    — filled but unparseable
+        //   number — parsed value (may still be out of [0,1])
+        function readPrice(id) {
+            const raw = el(id).value;
+            if (raw === '' || raw === null || raw === undefined) return null;
+            return parseFloat(raw);
+        }
+
+        function clearErrors() {
+            ['ayes','ano','byes','bno','bankroll'].forEach(id => {
+                el(id).classList.remove('bad');
+                const errEl = el('err-' + id);
+                if (errEl) errEl.textContent = '';
+            });
+            const banner = el('form-error');
+            banner.style.display = 'none';
+            banner.textContent = '';
+        }
+
+        function setFieldError(id, msg) {
+            el(id).classList.add('bad');
+            const errEl = el('err-' + id);
+            if (errEl) errEl.textContent = msg;
+        }
+
+        function setBannerError(msg) {
+            const banner = el('form-error');
+            banner.textContent = msg;
+            banner.style.display = 'block';
+        }
+
         function compute() {
+            clearErrors();
+            const out = el('output');
+            out.innerHTML = '';
+
             const labelA = el('labelA').value.trim() || 'Side A';
             const labelB = el('labelB').value.trim() || 'Side B';
-            const ayes = parseFloat(el('ayes').value);
-            const ano  = parseFloat(el('ano').value);
-            const byes = parseFloat(el('byes').value);
-            const bno  = parseFloat(el('bno').value);
-            const T    = parseFloat(el('bankroll').value);
+            const ayes = readPrice('ayes');
+            const ano  = readPrice('ano');
+            const byes = readPrice('byes');
+            const bno  = readPrice('bno');
+            const Traw = el('bankroll').value;
+            const T    = Traw === '' ? null : parseFloat(Traw);
 
-            const out = el('output');
-
-            // Field-level validity hints.
-            [['ayes', ayes], ['ano', ano], ['byes', byes], ['bno', bno]].forEach(([id, v]) => {
-                el(id).classList.toggle('bad', !(v >= 0 && v <= 1) && el(id).value !== '');
+            // Range-check each filled price field. Empties are allowed.
+            const priceFields = [['ayes', ayes], ['ano', ano], ['byes', byes], ['bno', bno]];
+            let anyRangeBad = false;
+            priceFields.forEach(([id, v]) => {
+                if (v === null) return;
+                if (!isFinite(v) || v < 0 || v > 1) {
+                    setFieldError(id, 'Must be between 0 and 1.');
+                    anyRangeBad = true;
+                }
             });
-            el('bankroll').classList.toggle('bad', !(T > 0) && el('bankroll').value !== '');
 
-            const allValid = [ayes, ano, byes, bno].every(v => isFinite(v) && v >= 0 && v <= 1)
-                          && isFinite(T) && T > 0;
-            if (!allValid) {
-                out.innerHTML = '';
+            // Bankroll validation
+            let bankrollOk = true;
+            if (T === null || !isFinite(T) || T <= 0) {
+                setFieldError('bankroll', T === null ? 'Required.' : 'Must be greater than 0.');
+                bankrollOk = false;
+            }
+
+            if (anyRangeBad || !bankrollOk) return;
+
+            // Identify which orientations have BOTH legs filled.
+            // Orientation 1: YES on A + NO on B
+            // Orientation 2: NO on A + YES on B
+            const o1Ready = (ayes !== null) && (bno !== null);
+            const o2Ready = (ano !== null) && (byes !== null);
+
+            if (!o1Ready && !o2Ready) {
+                // The user hasn't filled a complete opposing pair.
+                // Figure out the most helpful per-field message based on what they did fill.
+                const filled = priceFields.filter(([_, v]) => v !== null);
+                if (filled.length === 0) {
+                    setBannerError(
+                        'Enter two opposing prices: either ' +
+                        'Side A YES + Side B NO, or Side A NO + Side B YES.'
+                    );
+                } else if (filled.length === 1) {
+                    // Suggest the opposite leg they need.
+                    const filledId = filled[0][0];
+                    const need = { ayes: 'bno', ano: 'byes', byes: 'ano', bno: 'ayes' }[filledId];
+                    const needLabel = {
+                        ayes: 'Side A YES', ano: 'Side A NO',
+                        byes: 'Side B YES', bno: 'Side B NO',
+                    }[need];
+                    setFieldError(need, 'Required: pair this with a price on the opposite side.');
+                    setBannerError(
+                        `Add a ${needLabel} price (the opposite leg).`
+                    );
+                } else {
+                    // 2+ fields filled, but no valid orientation. Means they entered
+                    // legs that don't oppose each other (e.g. YES on both sides).
+                    setBannerError(
+                        'Need one leg on Side A and the OPPOSITE outcome on Side B. ' +
+                        'Either YES/A + NO/B, or NO/A + YES/B.'
+                    );
+                }
                 return;
             }
 
-            // Two orientations:
-            //   1: YES on A + NO on B  -> cost = ayes + bno
-            //   2: NO on A + YES on B  -> cost = ano + byes
-            const o1 = arbAtOrientation(ayes, bno,  T);
-            const o2 = arbAtOrientation(ano,  byes, T);
+            // Compute whichever orientations are ready; pick the cheaper.
+            const o1 = o1Ready ? arbAtOrientation(ayes, bno,  T) : null;
+            const o2 = o2Ready ? arbAtOrientation(ano,  byes, T) : null;
 
-            // Pick the cheaper cost (= bigger profit) when both exist.
             let best, sideA, sideB, priceA, priceB;
-            if (o1 && o2) {
-                if (o1.cost <= o2.cost) { best = o1; sideA = 'YES'; sideB = 'NO';  priceA = ayes; priceB = bno;  }
-                else                    { best = o2; sideA = 'NO';  sideB = 'YES'; priceA = ano;  priceB = byes; }
-            } else if (o1) { best = o1; sideA = 'YES'; sideB = 'NO';  priceA = ayes; priceB = bno;  }
-            else if (o2)   { best = o2; sideA = 'NO';  sideB = 'YES'; priceA = ano;  priceB = byes; }
+            // candidates is an array of objects we can compare on .cost (even if not arb-able)
+            const considered = [];
+            if (o1Ready) considered.push({ res: o1, costRaw: ayes + bno, sideA: 'YES', sideB: 'NO',  priceA: ayes, priceB: bno  });
+            if (o2Ready) considered.push({ res: o2, costRaw: ano + byes, sideA: 'NO',  sideB: 'YES', priceA: ano,  priceB: byes });
+
+            // Pick orientation: prefer one with a valid arb (.res not null); among those, cheapest cost.
+            // If none arb, just keep the one with the lower costRaw for the "no arb" message.
+            considered.sort((a, b) => {
+                const aOk = !!a.res, bOk = !!b.res;
+                if (aOk !== bOk) return aOk ? -1 : 1;       // arb-able first
+                return (a.res ? a.res.cost : a.costRaw) - (b.res ? b.res.cost : b.costRaw);
+            });
+            const pick = considered[0];
+            if (pick.res) {
+                best   = pick.res;
+                sideA  = pick.sideA;  sideB  = pick.sideB;
+                priceA = pick.priceA; priceB = pick.priceB;
+            }
 
             if (!best) {
-                // No arb in either orientation. Show the closer one as the "edge gap."
-                const c1 = ayes + bno, c2 = ano + byes;
-                const closer = Math.min(c1, c2);
-                const closerLabel = c1 <= c2
+                // No arb in any of the orientations the user supplied.
+                // Show the cheapest-tried orientation as the "edge gap."
+                const closest = considered[0]; // already sorted; first is cheapest cost
+                const closerLabel = closest.sideA === 'YES'
                     ? `YES on ${escapeHtml(labelA)} + NO on ${escapeHtml(labelB)}`
                     : `NO on ${escapeHtml(labelA)} + YES on ${escapeHtml(labelB)}`;
                 out.innerHTML = `
@@ -415,8 +539,8 @@
                         <div class="verdict bad">
                             <div class="verdict-line">No arb at these prices</div>
                             <div class="verdict-sub">
-                                Best orientation (${closerLabel}) costs ${closer.toFixed(4)} per $1 of payoff (need &lt; 1).
-                                Short by ${((closer - 1) * 100).toFixed(2)}% before fees.
+                                ${closerLabel} costs ${closest.costRaw.toFixed(4)} per $1 of payoff (need &lt; 1).
+                                Short by ${((closest.costRaw - 1) * 100).toFixed(2)}% before fees.
                             </div>
                         </div>
                     </div>`;
@@ -465,10 +589,15 @@
             })[c]);
         }
 
+        // Compute only on Calculate click. Inputs no longer trigger live recompute,
+        // so users see persistent errors until they fix them and click again.
+        el('calc-btn').addEventListener('click', compute);
+        // Enter key inside any input also fires Calculate.
         ['ayes','ano','byes','bno','bankroll','labelA','labelB'].forEach(id => {
-            el(id).addEventListener('input', compute);
+            el(id).addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') { e.preventDefault(); compute(); }
+            });
         });
-        compute();
     </script>
 </body>
 </html>
