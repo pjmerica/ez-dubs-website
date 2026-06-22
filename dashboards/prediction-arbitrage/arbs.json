@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-06-21T17:03:01+00:00",
+  "generated_at": "2026-06-22T02:39:21+00:00",
   "sources": [
     {
       "id": "pred-arbitrage",
       "name": "Pred Arbitrage Scanner",
       "ok": true,
-      "updated_at": "2026-06-21T16:49:07.046121+00:00",
-      "total": 46,
-      "guaranteed_kept": 0
+      "updated_at": "2026-06-21T22:17:28.358747+00:00",
+      "total": 239,
+      "guaranteed_kept": 2
     },
     {
       "id": "polling-agg-2026",
@@ -18,5 +18,54 @@
       "guaranteed_kept": 0
     }
   ],
-  "arbs": []
+  "arbs": [
+    {
+      "source": "pred-arbitrage",
+      "category": "Politics",
+      "label": "",
+      "platform_a": "kalshi",
+      "platform_b": "polymarket",
+      "question_a": "Will Trump recognize Somaliland? \u2014 Before 2027",
+      "question_b": "Will Trump recognize Somaliland before 2027?",
+      "url_a": "https://kalshi.com/markets/KXRECOGSOMALI",
+      "url_b": "https://polymarket.com/event/will-trump-recognize-somaliland-before-2027",
+      "market_id_a": "KXRECOGSOMALI-29-27",
+      "market_id_b": "102929345572635447239887363328073498574489822201252070158392894695407110289078",
+      "prob_a": 0.14,
+      "prob_b": 0.0735,
+      "stake_a": 8.21,
+      "stake_b": 91.79,
+      "return_pct": 3.4,
+      "settle_date": "2027-01-01",
+      "volume_a": 7077.2,
+      "volume_b": 157285.73,
+      "suspicious": false,
+      "suspicion_reasons": []
+    },
+    {
+      "source": "pred-arbitrage",
+      "category": "Politics",
+      "label": "",
+      "platform_a": "kalshi",
+      "platform_b": "predictit",
+      "question_a": "Who will Trump pardon? \u2014 Elon Musk",
+      "question_b": "Will Trump pardon Elon Musk in 2026? \u2014 Will Trump pardon Elon Musk in 2026?",
+      "url_a": "https://kalshi.com/markets/KXTRUMPPARDONS",
+      "url_b": "https://www.predictit.org/markets/detail/8549",
+      "market_id_a": "KXTRUMPPARDONS-29JAN21-EMUS",
+      "market_id_b": "33641",
+      "prob_a": 0.43,
+      "prob_b": 0.075,
+      "stake_a": 17.24,
+      "stake_b": 82.76,
+      "return_pct": 13.5,
+      "settle_date": "2029-01-21",
+      "volume_a": 3357.09,
+      "volume_b": null,
+      "suspicious": true,
+      "suspicion_reasons": [
+        "wide_gap"
+      ]
+    }
+  ]
 }
