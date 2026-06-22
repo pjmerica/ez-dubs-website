@@ -27,11 +27,18 @@ REPO_ROOT     = Path(__file__).resolve().parents[1]
 DASHBOARD_DIR = REPO_ROOT / "dashboards" / "prediction-arbitrage"
 OUTPUT_PATH   = DASHBOARD_DIR / "arbs.json"
 
-# Returns above MAX are almost always upstream data noise (unresolved
-# settlement, thin-liquidity quotes, fuzzy-match false positives).
-# Returns below MIN aren't worth the fee/execution-risk surface area.
-MIN_RETURN_PCT = 3.0
-MAX_RETURN_PCT = 15.0
+# Filter on raw price gap (in percentage points) rather than guaranteed_return_pct.
+# raw_gap_pp = |implied_prob_a - implied_prob_b| * 100 — i.e., how many cents
+# apart the two markets price the same outcome. This is a more honest filter
+# than return %, which blows up when both prices are small (a 5pp gap on 10c
+# vs 13c looks like 72% return because the denominators are tiny, but the real
+# edge is just 5 cents).
+#
+# Gaps above MAX are almost always upstream data noise (settlement-window
+# mismatches, fuzzy-match false positives). Gaps below MIN aren't worth the
+# fee/execution-risk surface area.
+MIN_GAP_PP = 3.0
+MAX_GAP_PP = 15.0
 
 # Hand-curated list of pairs the upstream scanner matches but where the two
 # contracts have materially different settlement criteria. Keyed by the
@@ -80,11 +87,13 @@ def _normalize_race(r: dict, source_id: str) -> dict | None:
     if r.get("arb_type") != "guaranteed":
         return None
     needed = ("platform_a", "platform_b", "implied_prob_a", "implied_prob_b",
-              "url_a", "url_b", "guaranteed_return_pct")
+              "url_a", "url_b")
     if any(r.get(k) in (None, "") for k in needed):
         return None
-    ret = float(r["guaranteed_return_pct"])
-    if ret < MIN_RETURN_PCT or ret > MAX_RETURN_PCT:
+    # Filter on raw price gap (in cents) rather than the return % the upstream
+    # publishes. The return % balloons when both probs are small.
+    gap_pp = abs(float(r["implied_prob_a"]) - float(r["implied_prob_b"])) * 100.0
+    if gap_pp < MIN_GAP_PP or gap_pp > MAX_GAP_PP:
         return None
     if (r["url_a"], r["url_b"]) in EXCLUDED_URL_PAIRS:
         return None
@@ -104,7 +113,8 @@ def _normalize_race(r: dict, source_id: str) -> dict | None:
         "prob_b":     float(r["implied_prob_b"]),
         "stake_a":    _to_float(r.get("stake_a_dollars")),
         "stake_b":    _to_float(r.get("stake_b_dollars")),
-        "return_pct": float(r["guaranteed_return_pct"]),
+        "return_pct": _to_float(r.get("guaranteed_return_pct")),
+        "gap_pp":     gap_pp,
         "settle_date": r.get("settle_date", ""),
         "volume_a":   _to_float(r.get("volume_a")),
         "volume_b":   _to_float(r.get("volume_b")),
@@ -149,7 +159,8 @@ def main() -> int:
         print(f"{src['id']}: kept {len(kept)} guaranteed arbs of {len(races)} races")
 
     # Sort: non-suspicious first, then by guaranteed return % desc.
-    arbs.sort(key=lambda a: (a["suspicious"], -a["return_pct"]))
+    # Non-suspicious first, then biggest raw gap first.
+    arbs.sort(key=lambda a: (a["suspicious"], -(a["gap_pp"] or 0)))
 
     out = {
         "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
