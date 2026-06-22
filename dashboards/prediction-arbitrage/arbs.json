@@ -1,20 +1,20 @@
 {
-  "generated_at": "2026-06-22T15:25:33+00:00",
+  "generated_at": "2026-06-22T18:12:05+00:00",
   "sources": [
     {
       "id": "pred-arbitrage",
       "name": "Pred Arbitrage Scanner",
       "ok": true,
-      "updated_at": "2026-06-22T05:39:57.202372+00:00",
-      "total": 239,
+      "updated_at": "2026-06-22T17:19:36.075027+00:00",
+      "total": 308,
       "guaranteed_kept": 3
     },
     {
       "id": "polling-agg-2026",
       "name": "Polling Agg 2026 Arb Scanner",
       "ok": true,
-      "updated_at": "2026-06-22T04:06:43.092981+00:00",
-      "total": 312,
+      "updated_at": "2026-06-22T17:12:11.863868+00:00",
+      "total": 295,
       "guaranteed_kept": 0
     }
   ],
@@ -25,33 +25,9 @@
       "label": "",
       "platform_a": "kalshi",
       "platform_b": "polymarket",
-      "question_a": "NH-01 Republican nominee? \u2014 Hollie Noveletsky",
-      "question_b": "Will Hollie Noveletsky be the Republican Nominee for NH-01?",
-      "url_a": "https://kalshi.com/markets/KXNHPRIMARY",
-      "url_b": "https://polymarket.com/event/nh-01-republican-primary-winner",
-      "market_id_a": "KXNHPRIMARY-01R26-HNOV",
-      "market_id_b": "1011284465704289713458856255421928580861837299042990866147924658223909019383",
-      "prob_a": 0.27,
-      "prob_b": 0.135,
-      "stake_a": 18.75,
-      "stake_b": 81.25,
-      "return_pct": 0.0,
-      "gap_pp": 13.5,
-      "settle_date": "2027-11-03",
-      "volume_a": 238.3,
-      "volume_b": 22887.64,
-      "suspicious": false,
-      "suspicion_reasons": []
-    },
-    {
-      "source": "pred-arbitrage",
-      "category": "Elections",
-      "label": "",
-      "platform_a": "kalshi",
-      "platform_b": "polymarket",
       "question_a": "Who will win the 2027 French presidential election? \u2014 Jordan Bardella",
       "question_b": "Will Jordan Bardella win the 2027 French presidential election?",
-      "url_a": "https://kalshi.com/markets/KXFRENCHPRES",
+      "url_a": "https://kalshi.com/markets/kxfrenchpres/kxfrenchpres-27",
       "url_b": "https://polymarket.com/event/next-french-presidential-election",
       "market_id_a": "KXFRENCHPRES-27-JBAR",
       "market_id_b": "1114938555853162662375805609341386795965961002028313810409954359771505507177",
@@ -62,8 +38,8 @@
       "return_pct": 1.0,
       "gap_pp": 8.500000000000002,
       "settle_date": "2028-05-30",
-      "volume_a": 52513.37,
-      "volume_b": 1148510.15,
+      "volume_a": 52537.48,
+      "volume_b": 1149247.14,
       "suspicious": false,
       "suspicion_reasons": []
     },
@@ -75,7 +51,7 @@
       "platform_b": "polymarket",
       "question_a": "New York Governor winner? \u2014 Republican party",
       "question_b": "[flipped] Will the Democrats win the New York governor race in 2026?",
-      "url_a": "https://kalshi.com/markets/GOVPARTYNY",
+      "url_a": "https://kalshi.com/markets/govpartyny/govpartyny-26",
       "url_b": "https://polymarket.com/event/new-york-governor-winner-2026",
       "market_id_a": "GOVPARTYNY-26-R",
       "market_id_b": "64050273355694113671090110638685043795558853994186493795797238541534244584786",
@@ -90,6 +66,32 @@
       "volume_b": 37823.99,
       "suspicious": false,
       "suspicion_reasons": []
+    },
+    {
+      "source": "pred-arbitrage",
+      "category": "Elections",
+      "label": "2026-GOV-SD",
+      "platform_a": "kalshi",
+      "platform_b": "polymarket",
+      "question_a": "Kalshi: 2026-GOV-SD Dem win",
+      "question_b": "Polymarket: 2026-GOV-SD Dem win",
+      "url_a": "https://kalshi.com/markets/govpartysd/govpartysd-26",
+      "url_b": "https://polymarket.com/event/south-dakota-governor-winner-2026",
+      "market_id_a": "GOVPARTYSD-26-D",
+      "market_id_b": "19857809653204352084235953967001149759321806996646353766198011041287290557051",
+      "prob_a": 0.038,
+      "prob_b": 0.1075,
+      "stake_a": 95.95,
+      "stake_b": 4.05,
+      "return_pct": 2.2,
+      "gap_pp": 6.950000000000001,
+      "settle_date": "2026-11-03",
+      "volume_a": 3423.1,
+      "volume_b": 9284.81,
+      "suspicious": true,
+      "suspicion_reasons": [
+        "thin_depth_b"
+      ]
     }
   ]
 }
