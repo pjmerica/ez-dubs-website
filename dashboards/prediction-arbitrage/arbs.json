@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-22T02:39:21+00:00",
+  "generated_at": "2026-06-22T02:42:37+00:00",
   "sources": [
     {
       "id": "pred-arbitrage",
@@ -7,7 +7,7 @@
       "ok": true,
       "updated_at": "2026-06-21T22:17:28.358747+00:00",
       "total": 239,
-      "guaranteed_kept": 2
+      "guaranteed_kept": 1
     },
     {
       "id": "polling-agg-2026",
@@ -41,31 +41,6 @@
       "volume_b": 157285.73,
       "suspicious": false,
       "suspicion_reasons": []
-    },
-    {
-      "source": "pred-arbitrage",
-      "category": "Politics",
-      "label": "",
-      "platform_a": "kalshi",
-      "platform_b": "predictit",
-      "question_a": "Who will Trump pardon? \u2014 Elon Musk",
-      "question_b": "Will Trump pardon Elon Musk in 2026? \u2014 Will Trump pardon Elon Musk in 2026?",
-      "url_a": "https://kalshi.com/markets/KXTRUMPPARDONS",
-      "url_b": "https://www.predictit.org/markets/detail/8549",
-      "market_id_a": "KXTRUMPPARDONS-29JAN21-EMUS",
-      "market_id_b": "33641",
-      "prob_a": 0.43,
-      "prob_b": 0.075,
-      "stake_a": 17.24,
-      "stake_b": 82.76,
-      "return_pct": 13.5,
-      "settle_date": "2029-01-21",
-      "volume_a": 3357.09,
-      "volume_b": null,
-      "suspicious": true,
-      "suspicion_reasons": [
-        "wide_gap"
-      ]
     }
   ]
 }

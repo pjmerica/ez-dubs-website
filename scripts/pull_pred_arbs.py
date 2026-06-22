@@ -42,6 +42,14 @@ EXCLUDED_URL_PAIRS = {
     # Polymarket only requires a publicly announced mutual agreement.
     ("https://kalshi.com/markets/KXUSAIRANAGREEMENT",
      "https://polymarket.com/event/us-iran-nuclear-deal-before-2027"),
+
+    # Trump pardons Elon Musk — different resolution windows. Kalshi's
+    # KXTRUMPPARDONS series resolves any time before Trump leaves office
+    # (Jan 21, 2029); PredictIt market 8549 only covers calendar year 2026.
+    # Kalshi's higher price is correct probability under its longer window,
+    # not an arb against the shorter PredictIt window.
+    ("https://kalshi.com/markets/KXTRUMPPARDONS",
+     "https://www.predictit.org/markets/detail/8549"),
 }
 
 SOURCES = [
