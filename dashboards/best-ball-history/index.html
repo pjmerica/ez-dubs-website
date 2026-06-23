@@ -521,7 +521,7 @@
             if (snapshots.length < 2) {
                 document.getElementById('movers-subtitle').textContent = snapshots.length === 0
                     ? 'No snapshots in this era yet.'
-                    : `Only one snapshot available (${snapshots[0].label}) — need at least 2 to compute movers.`;
+                    : `Only one snapshot available (${snapshots[0].label}). Need at least 2 to compute movers.`;
                 movers.forEach(id => document.getElementById(id).innerHTML = '');
                 return;
             }

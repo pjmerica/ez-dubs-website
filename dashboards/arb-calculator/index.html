@@ -132,6 +132,10 @@
         .card-title {
             color: #99aabb; font-size: 0.78rem; font-weight: 700;
             letter-spacing: 0.14em; text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+        .input-help {
+            color: #8a9aab; font-size: 0.82rem; line-height: 1.5;
             margin-bottom: 14px;
         }
         .row {
@@ -293,11 +297,14 @@
     <main>
         <h1>Prediction Market Arbitrage Calculator</h1>
         <p class="subtitle">
-            Plug in the YES prices on two markets covering the same outcome, set a bankroll, and get the optimal split that locks in equal payoffs on either resolution.
+            Enter the two prices you'd actually take, set a bankroll, and get the optimal split that locks in equal payoffs on either resolution.
         </p>
 
         <div class="calc-card">
             <div class="card-title">Inputs</div>
+            <p class="input-help">
+                Fill any two opposing prices (e.g. Side A YES and Side B NO). The other two are optional, for handling bid/ask spread.
+            </p>
             <div class="row">
                 <div class="field">
                     <label>Side A label <span class="hint">(optional)</span></label>
@@ -310,24 +317,24 @@
             </div>
             <div class="row">
                 <div class="field">
-                    <label>Side A — YES price <span class="hint">(0–1)</span></label>
+                    <label>Side A YES price <span class="hint">(0–1)</span></label>
                     <input type="number" id="ayes" min="0" max="1" step="0.01" placeholder="0.42">
                     <span class="field-err" id="err-ayes"></span>
                 </div>
                 <div class="field">
-                    <label>Side B — YES price <span class="hint">(0–1)</span></label>
+                    <label>Side B YES price <span class="hint">(0–1)</span></label>
                     <input type="number" id="byes" min="0" max="1" step="0.01" placeholder="0.55">
                     <span class="field-err" id="err-byes"></span>
                 </div>
             </div>
             <div class="row">
                 <div class="field">
-                    <label>Side A — NO price <span class="hint">(0–1)</span></label>
+                    <label>Side A NO price <span class="hint">(0–1)</span></label>
                     <input type="number" id="ano"  min="0" max="1" step="0.01" placeholder="0.58">
                     <span class="field-err" id="err-ano"></span>
                 </div>
                 <div class="field">
-                    <label>Side B — NO price <span class="hint">(0–1)</span></label>
+                    <label>Side B NO price <span class="hint">(0–1)</span></label>
                     <input type="number" id="bno"  min="0" max="1" step="0.01" placeholder="0.45">
                     <span class="field-err" id="err-bno"></span>
                 </div>
@@ -338,10 +345,7 @@
                     <input type="number" id="bankroll" min="0" step="1" value="100">
                     <span class="field-err" id="err-bankroll"></span>
                 </div>
-                <div class="field" style="visibility:hidden;">
-                    <label>spacer</label>
-                    <input type="number">
-                </div>
+                <div class="field" aria-hidden="true"></div>
             </div>
             <div class="row" style="grid-template-columns: 1fr;">
                 <div class="field">
@@ -355,8 +359,8 @@
 
         <p class="notes">
             <strong>How it works.</strong> An arb means buying one outcome on market A and the opposite outcome
-            on market B, so one of the two legs always pays. Fill in the two opposing legs you'd actually take —
-            either Side A YES + Side B NO, or Side A NO + Side B YES — plus your bankroll, then hit Calculate.
+            on market B, so one of the two legs always pays. Fill in the two opposing legs you'd actually take
+            (either Side A YES + Side B NO, or Side A NO + Side B YES), plus your bankroll, then hit Calculate.
             If the combined cost-per-$1 is less than 1.00 there's an arb; the calculator splits your bankroll
             so both legs return the same payoff.
             <br><br>
@@ -364,8 +368,8 @@
             exactly 1 (that gap is the bid/ask spread). If you fill all four prices, the calculator considers
             both orientations and picks whichever is cheaper.
             <br><br>
-            <strong>Caveats not included.</strong> Trading fees (Kalshi/Polymarket ~3%, PredictIt ~12%) and order-book
-            depth — the displayed price may not be the full size you can fill. A tight arb on paper may not survive either.
+            <strong>Caveats not included.</strong> Trading fees (Kalshi and Polymarket are ~3%) and order-book
+            depth. The displayed price may not be the full size you can fill. A tight arb on paper may not survive either.
         </p>
     </main>
 
@@ -373,12 +377,12 @@
         const el = id => document.getElementById(id);
 
         function fmtMoney(n) {
-            if (!isFinite(n)) return '—';
+            if (!isFinite(n)) return 'N/A';
             return n.toLocaleString('en-US', { style: 'currency', currency: 'USD',
                                                minimumFractionDigits: 2, maximumFractionDigits: 2 });
         }
         function fmtPct(n) {
-            if (!isFinite(n)) return '—';
+            if (!isFinite(n)) return 'N/A';
             return (n * 100).toFixed(2) + '%';
         }
 
@@ -558,7 +562,7 @@
             out.innerHTML = `
                 <div class="calc-card">
                     <div class="verdict good">
-                        <div class="verdict-line">Arb available — guaranteed ${fmtMoney(best.profit)} on ${fmtMoney(T)}</div>
+                        <div class="verdict-line">Arb available. Guaranteed ${fmtMoney(best.profit)} on ${fmtMoney(T)}</div>
                         <div class="verdict-sub">
                             Cost per $1 of payoff: ${best.cost.toFixed(4)}.
                             Whichever side resolves, you get back ${fmtMoney(best.payoff)}.

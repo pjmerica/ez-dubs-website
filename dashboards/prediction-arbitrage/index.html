@@ -355,24 +355,20 @@
 
     <main>
         <h1>Today's Arbitrage Picks</h1>
-        <p class="subtitle">Guaranteed price gaps across Kalshi, Polymarket, and PredictIt.</p>
+        <p class="subtitle">Price differences between Kalshi and Polymarket.</p>
         <p class="updated">Snapshot taken: <span id="generated-at">loading...</span></p>
 
         <div class="disclaimer">
-            <strong>Heads up:</strong> the scanner only runs once per day, so prices on the live
-            markets may have moved since this snapshot. The arbitrage itself should still be real
-            at the time of the pull, but verify both legs before placing any bets. Always run the
-            current order-book prices through the
+            <strong>Heads up:</strong> this page refreshes once or twice daily, so prices on the live
+            markets may have moved since the snapshot. Verify both legs before sizing any bets. Always
+            run the current order-book prices through the
             <a href="../arb-calculator/" style="color:#f7b500;font-weight:700;text-decoration:underline;">Arb Calculator</a>
-            before sizing a bet.
+            first.
         </div>
 
         <details class="flag-legend">
             <summary>What do the ⚠ Flagged tags mean?</summary>
             <dl>
-                <dt>wide_gap</dt>
-                <dd>The implied probabilities on the two markets differ by more than 20 points. Often signals one side hasn't priced in a real-world event yet (or a contract-definition mismatch). Real-money traders should verify the markets are truly settling the same outcome.</dd>
-
                 <dt>wide_spread_a / wide_spread_b</dt>
                 <dd>The bid–ask spread on the flagged side (A or B) is wider than 15 cents. You can't actually buy at the mid-price; you'd be paying closer to the ask, which can eat the whole edge.</dd>
 
@@ -386,13 +382,13 @@
                 <dd>The probability on the flagged side was inferred from the order book (mid of best bid/ask) because there was no recent trade to anchor on. Possibly a stale or illiquid market.</dd>
             </dl>
             <div class="legend-foot">
-                A flagged arb isn't necessarily fake — it's just one the upstream scanner thinks you should look at carefully before staking. Use the chip above to hide them.
+                A flagged arb isn't necessarily fake. It's just one the upstream scanner thinks you should look at carefully before staking. Use the chip above to hide them.
             </div>
         </details>
 
         <div id="gate" class="gate">
             <div class="gate-title">🔒 Password required</div>
-            <div class="gate-sub">Enter the password to view today's guaranteed arbs.</div>
+            <div class="gate-sub">Enter the password to view today's arbitrage picks.</div>
             <form class="gate-form" id="gate-form">
                 <input type="password" id="gate-input" placeholder="Password" autocomplete="off" autofocus>
                 <button type="submit">Unlock</button>
@@ -410,10 +406,10 @@
                 <button class="chip susp-chip active" data-susp="all">Show all</button>
             </div>
 
-            <p class="count-line">Showing <span id="count">0</span> guaranteed arbs</p>
+            <p class="count-line">Showing <span id="count">0</span> arbitrage picks</p>
 
             <div id="arb-grid" class="arb-grid"></div>
-            <div id="empty" class="empty" style="display:none;">No arbs match the current filter.</div>
+            <div id="empty" class="empty" style="display:none;"></div>
         </div>
     </main>
 
@@ -424,7 +420,7 @@
         let arbs = [], sortBy = 'return', suspMode = 'all';
 
         function fmtDate(iso) {
-            if (!iso) return '—';
+            if (!iso) return 'N/A';
             const d = new Date(iso);
             // Render in the visitor's local timezone for clarity.
             const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
@@ -434,7 +430,7 @@
             return `${months[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()} at ${hh}:${mm} ${tz}`;
         }
         function fmtPrice(p) {
-            if (p === null || p === undefined || isNaN(p)) return '—';
+            if (p === null || p === undefined || isNaN(p)) return 'N/A';
             return p.toFixed(2);
         }
         function escapeHtml(s) {
@@ -476,6 +472,13 @@
 
             if (!list.length) {
                 grid.innerHTML = '';
+                // Two different empty states: filter removed everything, or
+                // arbs.json itself was empty for today.
+                if (arbs.length === 0) {
+                    empty.innerHTML = `Oops, either the markets are hyper-efficient today, or I messed up somewhere. Feel free to <a href="../../contact.html" style="color:#4a9eff;font-weight:700;">message me</a>.`;
+                } else {
+                    empty.textContent = 'No arbitrage picks match the current filter.';
+                }
                 empty.style.display = 'block';
                 return;
             }

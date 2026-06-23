@@ -593,7 +593,7 @@
     <!-- TAB 1: ARBITRAGE -->
     <div class="tab-panel active" id="tab-arbitrage">
         <p class="blurb">
-            Compare best-ball ADPs across DraftKings, Underdog, FFPC, and Drafters. Pick any best ball markets to find the spots where they disagree.
+            Compare best-ball ADPs across DraftKings, Underdog, FFPC, and Drafters. Pick any two markets to find the spots where they disagree.
         </p>
         <div class="source-picker">
             <label for="srcA">Compare</label>
@@ -663,7 +663,7 @@
     <!-- TAB 2: VISUALIZER -->
     <div class="tab-panel" id="tab-visualizer">
         <p class="blurb">
-            A visual representation comparing best-ball ADPs across DraftKings, Underdog, FFPC, and Drafters. Pick any best ball markets to find the spots where they disagree.
+            A visual representation comparing best-ball ADPs across DraftKings, Underdog, FFPC, and Drafters. Pick any two markets to find the spots where they disagree.
         </p>
         <div class="source-picker" style="margin-bottom: 14px;">
             <label for="vizSrcA">Compare</label>
@@ -696,7 +696,7 @@
         </div>
         <div class="viz-meta">
             <span id="viz-meta-left">Top 10 by absolute ADP gap</span>
-            <span><span id="viz-axis-min">—</span> ← earlier · later → <span id="viz-axis-max">—</span></span>
+            <span><span id="viz-axis-min">N/A</span> ← earlier · later → <span id="viz-axis-max">N/A</span></span>
         </div>
         <div class="viz-list" id="viz-list" style="margin-bottom:32px;"></div>
 
@@ -743,7 +743,7 @@
         </div>
         <div class="viz-meta">
             <span id="all4-meta-left">Top 10 by total disagreement across all 4 books</span>
-            <span><span id="all4-axis-min">—</span> ← earlier · later → <span id="all4-axis-max">—</span></span>
+            <span><span id="all4-axis-min">N/A</span> ← earlier · later → <span id="all4-axis-max">N/A</span></span>
         </div>
         <div class="viz-list" id="all4-top-list" style="margin-bottom:32px;"></div>
 
@@ -1030,12 +1030,12 @@
             document.getElementById('count').textContent = filtered.length;
             document.getElementById('tbody').innerHTML = filtered.map((p, i) => {
                 const diffClass = p.diff !== null ? (p.diff > 0 ? 'diff-positive' : p.diff < 0 ? 'diff-negative' : 'diff-neutral') : 'diff-neutral';
-                const diffText = p.diff !== null ? (p.diff > 0 ? '+' : '') + p.diff.toFixed(1) : '—';
+                const diffText = p.diff !== null ? (p.diff > 0 ? '+' : '') + p.diff.toFixed(1) : 'N/A';
                 const pctClass = p.pctDiff !== null ? (p.pctDiff > 0 ? 'diff-positive' : p.pctDiff < 0 ? 'diff-negative' : 'diff-neutral') : 'diff-neutral';
-                const pctText = p.pctDiff !== null ? (p.pctDiff > 0 ? '+' : '') + p.pctDiff.toFixed(1) + '%' : '—';
+                const pctText = p.pctDiff !== null ? (p.pctDiff > 0 ? '+' : '') + p.pctDiff.toFixed(1) + '%' : 'N/A';
                 const aLab = escapeHtml(srcLabel(srcA) + ' ADP');
                 const bLab = escapeHtml(srcLabel(srcB) + ' ADP');
-                return `<tr><td class="rank-cell">${i + 1}</td><td class="name-cell">${escapeHtml(p.name)}</td><td data-label="Pos"><span class="pos-badge pos-${escapeHtml(p.pos)}">${escapeHtml(p.pos)}</span></td><td class="team-cell" data-label="Team">${escapeHtml(p.team)}</td><td class="adp-cell source-a" data-label="${aLab}">${p.aAdp !== null ? p.aAdp.toFixed(1) : '<span class="no-adp">—</span>'}</td><td class="adp-cell source-b" data-label="${bLab}">${p.bAdp !== null ? p.bAdp.toFixed(1) : '<span class="no-adp">—</span>'}</td><td class="${diffClass}" data-label="Diff">${diffText}</td><td class="${pctClass}" data-label="% Diff">${pctText}</td></tr>`;
+                return `<tr><td class="rank-cell">${i + 1}</td><td class="name-cell">${escapeHtml(p.name)}</td><td data-label="Pos"><span class="pos-badge pos-${escapeHtml(p.pos)}">${escapeHtml(p.pos)}</span></td><td class="team-cell" data-label="Team">${escapeHtml(p.team)}</td><td class="adp-cell source-a" data-label="${aLab}">${p.aAdp !== null ? p.aAdp.toFixed(1) : '<span class="no-adp">N/A</span>'}</td><td class="adp-cell source-b" data-label="${bLab}">${p.bAdp !== null ? p.bAdp.toFixed(1) : '<span class="no-adp">N/A</span>'}</td><td class="${diffClass}" data-label="Diff">${diffText}</td><td class="${pctClass}" data-label="% Diff">${pctText}</td></tr>`;
             }).join('');
             document.querySelectorAll('thead th').forEach(th => {
                 const arrow = th.querySelector('.arrow');
@@ -1167,8 +1167,8 @@
 
             if (!candidates.length) {
                 listEl.innerHTML = '<div class="viz-empty">No players have prices on both selected sources at this position.</div>';
-                document.getElementById('viz-axis-min').textContent = '—';
-                document.getElementById('viz-axis-max').textContent = '—';
+                document.getElementById('viz-axis-min').textContent = 'N/A';
+                document.getElementById('viz-axis-max').textContent = 'N/A';
                 return;
             }
 
@@ -1261,13 +1261,21 @@
                 .map(p => ({ ...p, aAdp: p.adps[srcA], bAdp: p.adps[srcB], gap: p.adps[srcA] - p.adps[srcB] }));
 
             // Render selected tags.
-            tagsEl.innerHTML = [...vizSelected].map(k => {
+            const vizTagsHTML = [...vizSelected].map(k => {
                 const p = vizPlayerByKey(k);
                 if (!p) return '';
                 return `<span class="player-tag" data-key="${escapeHtml(k)}" style="color:#4a9eff;border-color:#4a9eff;background:rgba(74,158,255,0.15);">${escapeHtml(p.name)} <span class="pos-badge pos-${escapeHtml(p.pos)}" style="font-size:0.7rem;padding:1px 6px;">${escapeHtml(p.pos)}</span> <span class="remove">×</span></span>`;
             }).join('');
+            const vizClearLink = vizSelected.size >= 2
+                ? `<a href="#" class="clear-all" id="viz-clear-all" style="color:#6f7e8d;font-size:0.78rem;font-weight:600;text-decoration:underline;align-self:center;margin-left:6px;">Clear all</a>`
+                : '';
+            tagsEl.innerHTML = vizTagsHTML + vizClearLink;
             tagsEl.querySelectorAll('.player-tag').forEach(t => {
                 t.addEventListener('click', () => { vizSelected.delete(t.dataset.key); renderVizSearch(); });
+            });
+            const vizClearEl = document.getElementById('viz-clear-all');
+            if (vizClearEl) vizClearEl.addEventListener('click', (e) => {
+                e.preventDefault(); vizSelected.clear(); renderVizSearch();
             });
 
             if (!selected.length) { listEl.innerHTML = ''; return; }
@@ -1384,8 +1392,8 @@
 
             if (!all4.length) {
                 listEl.innerHTML = '<div class="viz-empty">No players have prices on all four sources at this position.</div>';
-                document.getElementById('all4-axis-min').textContent = '—';
-                document.getElementById('all4-axis-max').textContent = '—';
+                document.getElementById('all4-axis-min').textContent = 'N/A';
+                document.getElementById('all4-axis-max').textContent = 'N/A';
                 return;
             }
             const allAdps = all4.flatMap(p => ['DK','UD','FFPC','Drafters'].map(s => p.adps[s]));
@@ -1441,11 +1449,19 @@
                 .map(k => all4PlayerByKey(k))
                 .filter(p => p && p.adps.DK !== null && p.adps.UD !== null && p.adps.FFPC !== null && p.adps.Drafters !== null);
 
-            tagsEl.innerHTML = [...all4Selected].map(k => {
+            const all4TagsHTML = [...all4Selected].map(k => {
                 const p = all4PlayerByKey(k);
                 if (!p) return '';
                 return `<span class="player-tag" data-key="${escapeHtml(k)}" style="color:#4a9eff;border-color:#4a9eff;background:rgba(74,158,255,0.15);">${escapeHtml(p.name)} <span class="pos-badge pos-${escapeHtml(p.pos)}" style="font-size:0.7rem;padding:1px 6px;">${escapeHtml(p.pos)}</span> <span class="remove">×</span></span>`;
             }).join('');
+            const all4ClearLink = all4Selected.size >= 2
+                ? `<a href="#" class="clear-all" id="all4-clear-all" style="color:#6f7e8d;font-size:0.78rem;font-weight:600;text-decoration:underline;align-self:center;margin-left:6px;">Clear all</a>`
+                : '';
+            tagsEl.innerHTML = all4TagsHTML + all4ClearLink;
+            const all4ClearEl = document.getElementById('all4-clear-all');
+            if (all4ClearEl) all4ClearEl.addEventListener('click', (e) => {
+                e.preventDefault(); all4Selected.clear(); renderAll4Search();
+            });
             tagsEl.querySelectorAll('.player-tag').forEach(t => {
                 t.addEventListener('click', () => { all4Selected.delete(t.dataset.key); renderAll4Search(); });
             });

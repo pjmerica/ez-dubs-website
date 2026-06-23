@@ -198,7 +198,7 @@
     <main>
         <h1>Contact</h1>
         <p class="lede">
-            Questions, feedback, dashboard requests, prediction-market arb tips — send them along. I read everything.
+            Questions, feedback, dashboard requests, prediction-market arb tips. Send them along. I read everything.
         </p>
 
         <form id="contact-form" action="https://formspree.io/f/mojzokrg" method="POST">
@@ -247,7 +247,7 @@
                     body: data,
                 });
                 if (resp.ok) {
-                    status.textContent = 'Sent — thanks. I’ll reply when I can.';
+                    status.textContent = 'Sent. Thanks! I’ll reply when I can.';
                     status.classList.add('success');
                     form.reset();
                 } else {
