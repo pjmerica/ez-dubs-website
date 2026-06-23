@@ -486,15 +486,15 @@
         function cardHTML(a) {
             const pa = escapeHtml(PLATFORM_LABELS[a.platform_a] || a.platform_a);
             const pb = escapeHtml(PLATFORM_LABELS[a.platform_b] || a.platform_b);
-            const gapCents = Math.round(Math.abs(a.prob_a - a.prob_b) * 100);
-            const returnClass = gapCents >= 5 ? '' : 'small';
+            const gapPct = Math.round(Math.abs(a.prob_a - a.prob_b) * 100);
+            const returnClass = gapPct >= 5 ? '' : 'small';
             const title = a.question_a || a.label || '(unnamed)';
 
             return `
                 <div class="arb-card${a.suspicious ? ' suspicious' : ''}">
                     <div class="arb-head">
                         <span class="arb-category">${escapeHtml(a.category || 'Arb')}</span>
-                        <span class="arb-return ${returnClass}" title="Difference between the two platforms' implied probabilities, before fees">+${gapCents}¢</span>
+                        <span class="arb-return ${returnClass}" title="Difference between the two platforms' implied probabilities, before fees">+${gapPct}%</span>
                     </div>
                     <div class="arb-question">${escapeHtml(title)}</div>
 
