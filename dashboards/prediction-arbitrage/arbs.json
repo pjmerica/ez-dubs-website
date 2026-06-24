@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-06-24T17:25:44+00:00",
+  "generated_at": "2026-06-24T20:11:12+00:00",
   "sources": [
     {
       "id": "pred-arbitrage",
       "name": "Pred Arbitrage Scanner",
       "ok": true,
-      "updated_at": "2026-06-24T15:21:04.257352+00:00",
-      "total": 353,
-      "guaranteed_kept": 3
+      "updated_at": "2026-06-24T19:34:21.987857+00:00",
+      "total": 398,
+      "guaranteed_kept": 4
     },
     {
       "id": "polling-agg-2026",
@@ -38,8 +38,8 @@
       "return_pct": 1.0,
       "gap_pp": 7.000000000000006,
       "settle_date": "2026-11-03",
-      "volume_a": 70419.23,
-      "volume_b": 22796.93,
+      "volume_a": 70455.23,
+      "volume_b": 22834.78,
       "suspicious": false,
       "suspicion_reasons": []
     },
@@ -62,7 +62,7 @@
       "return_pct": 2.0,
       "gap_pp": 6.5,
       "settle_date": "2026-11-03",
-      "volume_a": 111252.07,
+      "volume_a": 111291.31,
       "volume_b": 22149.15,
       "suspicious": false,
       "suspicion_reasons": []
@@ -90,6 +90,32 @@
       "volume_b": 12748.61,
       "suspicious": false,
       "suspicion_reasons": []
+    },
+    {
+      "source": "pred-arbitrage",
+      "category": "Elections",
+      "label": "2026-H-IA-03",
+      "platform_a": "kalshi",
+      "platform_b": "polymarket",
+      "question_a": "Kalshi: 2026-H-IA-03 Dem win",
+      "question_b": "Polymarket: 2026-H-IA-03 Dem win",
+      "url_a": "https://kalshi.com/markets/houseia3/houseia3-26",
+      "url_b": "https://polymarket.com/event/ia-03-house-election-winner",
+      "market_id_a": "HOUSEIA3-26-D",
+      "market_id_b": "105724155866026243386456609196248574198788679514540436663740641053049222730942",
+      "prob_a": 0.64,
+      "prob_b": 0.695,
+      "stake_a": 33.33,
+      "stake_b": 66.67,
+      "return_pct": 0.0,
+      "gap_pp": 5.499999999999994,
+      "settle_date": "2026-11-03",
+      "volume_a": 6910.97,
+      "volume_b": 1297.81,
+      "suspicious": true,
+      "suspicion_reasons": [
+        "thin_depth_a"
+      ]
     }
   ]
 }
