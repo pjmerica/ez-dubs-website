@@ -682,6 +682,17 @@
             </div>
         </div>
 
+        <h2 class="viz-section-title">Search players</h2>
+        <p class="viz-section-sub">Search and add multiple players to compare. Click a tag to remove it.</p>
+        <div style="display:flex;justify-content:center;margin-bottom:12px;">
+            <div class="search-wrap">
+                <input type="text" id="viz-search" placeholder="Search a player..." autocomplete="off">
+                <div class="suggestions-list" id="viz-suggestions" style="display:none;"></div>
+            </div>
+        </div>
+        <div class="selected-players" id="viz-selected-tags"></div>
+        <div class="viz-list" id="viz-search-list" style="margin-bottom:32px;"></div>
+
         <h2 class="viz-section-title">Biggest Disagreements</h2>
         <p class="viz-section-sub">Players the best ball markets disagree on the most, sorted by absolute ADP gap.</p>
         <div class="viz-legend">
@@ -698,18 +709,7 @@
             <span id="viz-meta-left">Top 10 by absolute ADP gap</span>
             <span><span id="viz-axis-min">N/A</span> ← earlier · later → <span id="viz-axis-max">N/A</span></span>
         </div>
-        <div class="viz-list" id="viz-list" style="margin-bottom:32px;"></div>
-
-        <h2 class="viz-section-title">Search players</h2>
-        <p class="viz-section-sub">Search and add multiple players to compare. Click a tag to remove it.</p>
-        <div style="display:flex;justify-content:center;margin-bottom:12px;">
-            <div class="search-wrap">
-                <input type="text" id="viz-search" placeholder="Search a player..." autocomplete="off">
-                <div class="suggestions-list" id="viz-suggestions" style="display:none;"></div>
-            </div>
-        </div>
-        <div class="selected-players" id="viz-selected-tags"></div>
-        <div class="viz-list" id="viz-search-list"></div>
+        <div class="viz-list" id="viz-list"></div>
     </div>
 
     <!-- TAB 3: ALL 4 MARKETS -->
@@ -726,6 +726,17 @@
                 <button class="pos-btn te all4-pos-btn" data-pos="TE">TE</button>
             </div>
         </div>
+
+        <h2 class="viz-section-title">Search players</h2>
+        <p class="viz-section-sub">Search and add multiple players to compare their four-market spread. Click a tag to remove it.</p>
+        <div style="display:flex;justify-content:center;margin-bottom:12px;">
+            <div class="search-wrap">
+                <input type="text" id="all4-search" placeholder="Search a player..." autocomplete="off">
+                <div class="suggestions-list" id="all4-suggestions" style="display:none;"></div>
+            </div>
+        </div>
+        <div class="selected-players" id="all4-selected-tags"></div>
+        <div class="viz-list" id="all4-search-list" style="margin-bottom:32px;"></div>
 
         <h2 class="viz-section-title">Biggest Disagreements</h2>
         <p class="viz-section-sub">Players the four markets disagree on most overall, ranked by sum of pairwise absolute ADP differences.</p>
@@ -745,18 +756,7 @@
             <span id="all4-meta-left">Top 10 by total disagreement across all 4 books</span>
             <span><span id="all4-axis-min">N/A</span> ← earlier · later → <span id="all4-axis-max">N/A</span></span>
         </div>
-        <div class="viz-list" id="all4-top-list" style="margin-bottom:32px;"></div>
-
-        <h2 class="viz-section-title">Search players</h2>
-        <p class="viz-section-sub">Search and add multiple players to compare their four-market spread. Click a tag to remove it.</p>
-        <div style="display:flex;justify-content:center;margin-bottom:12px;">
-            <div class="search-wrap">
-                <input type="text" id="all4-search" placeholder="Search a player..." autocomplete="off">
-                <div class="suggestions-list" id="all4-suggestions" style="display:none;"></div>
-            </div>
-        </div>
-        <div class="selected-players" id="all4-selected-tags"></div>
-        <div class="viz-list" id="all4-search-list"></div>
+        <div class="viz-list" id="all4-top-list"></div>
     </div>
 
     <script>
@@ -1532,12 +1532,29 @@
         (function waitForPlayers() {
             if (players.length > 0) {
                 initVizSourcePicker();
+                injectDefaultSelections();
                 renderViz();
                 renderAll4();
             } else {
                 setTimeout(waitForPlayers, 80);
             }
         })();
+
+        // Pre-load the biggest-disagreement player into each visualizer's
+        // multi-select so the Search section isn't empty on first paint. Users
+        // can remove the tag; source-pair changes do not re-inject.
+        function injectDefaultSelections() {
+            // Market to Market: largest |A - B| gap for the current pair.
+            const m2mTop = players
+                .filter(p => p.adps[srcA] !== null && p.adps[srcB] !== null)
+                .map(p => ({ key: normalizeName(p.name), gap: Math.abs(p.adps[srcA] - p.adps[srcB]) }))
+                .sort((a, b) => b.gap - a.gap)[0];
+            if (m2mTop) vizSelected.add(m2mTop.key);
+
+            // All Platforms: highest sum of pairwise abs diffs across DK/UD/FFPC/Drafters.
+            const all4Top = getAll4Ranked().sort((a, b) => b.spread - a.spread)[0];
+            if (all4Top) all4Selected.add(normalizeName(all4Top.name));
+        }
     </script>
     </div>
 </body>
