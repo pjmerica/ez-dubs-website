@@ -90,6 +90,13 @@ def _normalize_race(r: dict, source_id: str) -> dict | None:
               "url_a", "url_b")
     if any(r.get(k) in (None, "") for k in needed):
         return None
+    # Defensive: drop rows whose links aren't real http(s) URLs. Protects
+    # against a compromised upstream injecting javascript:/data: URIs that
+    # would otherwise reach the dashboard's anchor hrefs.
+    for k in ("url_a", "url_b"):
+        u = str(r[k])
+        if not (u.startswith("https://") or u.startswith("http://")):
+            return None
     # Filter on raw price gap (in cents) rather than the return % the upstream
     # publishes. The return % balloons when both probs are small.
     gap_pp = abs(float(r["implied_prob_a"]) - float(r["implied_prob_b"])) * 100.0
