@@ -126,6 +126,13 @@
         .subtitle { color: #99aabb; font-size: 0.92rem; margin-bottom: 14px; }
         .updated { color: #6f7e8d; font-size: 0.82rem; margin-bottom: 10px; }
         .updated span { color: #4a9eff; }
+        .inline-spinner {
+            display: inline-block; width: 11px; height: 11px;
+            border: 2px solid currentColor; border-top-color: transparent;
+            border-radius: 50%; vertical-align: -2px; margin-left: 6px;
+            animation: inline-spin 0.7s linear infinite;
+        }
+        @keyframes inline-spin { to { transform: rotate(360deg); } }
         .disclaimer {
             background: #1a2634; border: 1px solid #2a3a4a;
             border-left: 3px solid #f7b500;
@@ -356,7 +363,7 @@
     <main>
         <h1>Today's Arbitrage Picks</h1>
         <p class="subtitle">Price differences between Kalshi and Polymarket.</p>
-        <p class="updated">Snapshot taken: <span id="generated-at">loading...</span></p>
+        <p class="updated">Snapshot taken: <span id="generated-at">loading<span class="inline-spinner"></span></span></p>
 
         <div class="disclaimer">
             <strong>Heads up:</strong> this page refreshes once or twice daily, so prices on the live

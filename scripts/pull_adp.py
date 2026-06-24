@@ -36,6 +36,11 @@ UD_HISTORY     = DASHBOARD_DIR / "ud_adp_history.csv"
 FFPC_HISTORY      = DASHBOARD_DIR / "ffpc_adp_history.csv"
 DRAFTERS_HISTORY  = DASHBOARD_DIR / "drafters_adp_history.csv"
 LAST_PULL_META    = DASHBOARD_DIR / "last_pull.json"
+LATEST_SNAPSHOT   = DASHBOARD_DIR / "latest.json"
+
+# Sentinel floor values for "undrafted" rows. Anything at or above the floor
+# is treated as no real ADP. Matches the constants in the dashboard JS.
+ADP_FLOORS = {"DK": 240.0, "UD": 216.0, "FFPC": float("inf"), "Drafters": float("inf")}
 
 # Local-only daily snapshots kept for QC. Gitignored.
 LOCAL_DIR      = REPO_ROOT / "_local" / "adp-daily"
@@ -93,6 +98,63 @@ def _date_already_in_history(path: Path, date: str, source: str) -> bool:
             if len(row) > max(d_idx, s_idx) and row[d_idx] == date and row[s_idx] == source:
                 return True
     return False
+
+
+def _build_latest_snapshot(sheet_rows: list[list[str]], today: str) -> dict:
+    """Merge today's ADPs across all sources into one player-keyed snapshot.
+
+    Output schema:
+      {pulled_at, date, players: [{name, pos, team, adps: {DK, UD, FFPC, Drafters}}]}
+
+    Sentinel-floored ADPs (e.g. DK 240, UD 216) are omitted from the adps map.
+    Players are sorted by min ADP across their available sources so the table
+    view is roughly draft order out of the gate.
+    """
+    cols = _index_columns(sheet_rows[0])
+    source_cols = {
+        "DK":       "DK ADP",
+        "UD":       "UD ADP",
+        "FFPC":     "FFPC ADP",
+        "Drafters": "Drafters ADP",
+    }
+    by_name: dict[str, dict] = {}
+    for row in sheet_rows[1:]:
+        if not row or len(row) <= cols["Name"]:
+            continue
+        name = row[cols["Name"]].strip()
+        if not name:
+            continue
+        entry = by_name.setdefault(name, {
+            "name": name,
+            "pos":  row[cols["Pos"]].strip() if len(row) > cols["Pos"] else "",
+            "team": row[cols["Team"]].strip() if len(row) > cols["Team"] else "",
+            "adps": {},
+        })
+        for src_id, col_name in source_cols.items():
+            ci = cols.get(col_name)
+            if ci is None or len(row) <= ci:
+                continue
+            raw = row[ci].strip()
+            if not raw:
+                continue
+            try:
+                val = float(raw)
+            except ValueError:
+                continue
+            if val >= ADP_FLOORS.get(src_id, float("inf")):
+                continue  # sentinel
+            entry["adps"][src_id] = val
+
+    # Drop players with zero usable ADPs (all sources were missing or sentinels).
+    players = [p for p in by_name.values() if p["adps"]]
+    # Stable sort by min ADP across present sources.
+    players.sort(key=lambda p: min(p["adps"].values()))
+
+    return {
+        "pulled_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "date":      today,
+        "players":   players,
+    }
 
 
 def _build_rows(sheet_rows: list[list[str]], adp_col: str, date: str, source: str) -> list[list[str]]:
@@ -155,6 +217,15 @@ def main() -> int:
         encoding="utf-8",
     )
     print(f"Wrote {LAST_PULL_META.name}.")
+
+    # Write a small merged snapshot the dashboard can load instead of all
+    # four CSVs. Drops cold-load weight ~100x and parse time ~100x.
+    snapshot = _build_latest_snapshot(rows, today)
+    LATEST_SNAPSHOT.write_text(
+        json.dumps(snapshot, separators=(",", ":")) + "\n",
+        encoding="utf-8",
+    )
+    print(f"Wrote {LATEST_SNAPSHOT.name} ({len(snapshot['players'])} players).")
 
     return 0
 

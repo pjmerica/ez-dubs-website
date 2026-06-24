@@ -6,7 +6,7 @@
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://formspree.io; font-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://formspree.io">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <title>Best Ball History Risers/Fallers | EZ Dubs Analytics</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"
+    <script defer src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"
             integrity="sha384-e6nUZLBkQ86NJ6TVVKAeSaK8jWa3NhkYWZFomE39AvDbQWeie9PlQqM3pmYW5d1g"
             crossorigin="anonymous"></script>
     <style>
@@ -198,6 +198,13 @@
         /* History */
         .section-title { text-align: center; color: #fff; font-size: 1.3rem; margin: 0 0 8px; }
         .section-sub { text-align: center; color: #666; font-size: 0.82rem; margin-bottom: 16px; }
+        .inline-spinner {
+            display: inline-block; width: 11px; height: 11px;
+            border: 2px solid currentColor; border-top-color: transparent;
+            border-radius: 50%; vertical-align: -2px; margin-left: 6px;
+            animation: inline-spin 0.7s linear infinite;
+        }
+        @keyframes inline-spin { to { transform: rotate(360deg); } }
         .search-wrap { position: relative; }
         #player-search {
             padding: 10px 16px; border-radius: 8px; border: 1px solid #333;
@@ -300,7 +307,7 @@
         </div>
     </div>
     <h2 class="section-title">Largest ADP Movers</h2>
-    <p class="section-sub" id="movers-subtitle">loading...</p>
+    <p class="section-sub" id="movers-subtitle">loading<span class="inline-spinner"></span></p>
     <div class="lookback-wrap" id="lookback-wrap" style="display:none;">
         <div class="lookback-label">Lookback: <span class="days" id="lookback-days">7</span> days</div>
         <div class="lookback-row">

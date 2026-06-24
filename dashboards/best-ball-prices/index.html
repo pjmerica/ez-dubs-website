@@ -6,9 +6,6 @@
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://formspree.io; font-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://formspree.io">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <title>Best Ball Price Differences | EZ Dubs Analytics</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"
-            integrity="sha384-e6nUZLBkQ86NJ6TVVKAeSaK8jWa3NhkYWZFomE39AvDbQWeie9PlQqM3pmYW5d1g"
-            crossorigin="anonymous"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -179,6 +176,13 @@
         .subtitle { text-align: center; color: #888; margin-bottom: 12px; font-size: 0.9rem; }
         .updated { text-align: center; color: #556; font-size: 0.8rem; margin-bottom: 16px; }
         .updated span { color: #4a9eff; }
+        .inline-spinner {
+            display: inline-block; width: 11px; height: 11px;
+            border: 2px solid currentColor; border-top-color: transparent;
+            border-radius: 50%; vertical-align: -2px; margin-left: 6px;
+            animation: inline-spin 0.7s linear infinite;
+        }
+        @keyframes inline-spin { to { transform: rotate(360deg); } }
 
         /* Tabs */
         .tabs {
@@ -582,7 +586,7 @@
     <div class="page">
     <h1>Best Ball Price Differences</h1>
     <p class="subtitle">DraftKings · Underdog · FFPC · Drafters | 2026 Season</p>
-    <p class="updated">Last updated: <span id="last-updated">loading...</span></p>
+    <p class="updated">Last updated: <span id="last-updated">loading<span class="inline-spinner"></span></span></p>
 
     <div class="tabs">
         <button class="tab-btn active" data-tab="arbitrage">Numerical Representation</button>
@@ -855,96 +859,65 @@
         let srcA = 'DK', srcB = 'UD';
 
         async function loadData() {
-            // Pull all four stacked histories. The "current" snapshot for each
-            // source is the most recent date present in that file, preferring
-            // manual rows when both sources contain that date.
-            const responses = await Promise.all(SOURCES.map(s => fetch(s.file).catch(() => null)));
-            const texts = await Promise.all(responses.map(r => (r && r.ok) ? r.text() : ''));
+            // Fast path: a small pre-aggregated snapshot. ~30 KB gzipped vs
+            // ~3.4 MB for the four raw CSVs the old path used to fetch.
+            let snapshot = null;
+            try {
+                const resp = await fetch('latest.json', { cache: 'no-cache' });
+                if (resp.ok) snapshot = await resp.json();
+            } catch (e) { /* fall through to CSV path */ }
 
-            function latestMap(rows, floor) {
-                if (rows.length < 2) return { map: {}, date: null };
-                let latest = '';
-                for (let i = 1; i < rows.length; i++) {
-                    const d = rows[i][0];
-                    if (d && d > latest) latest = d;
+            const availableSources = new Set();
+            if (snapshot && Array.isArray(snapshot.players)) {
+                for (const p of snapshot.players) {
+                    // Normalize: every source key present, missing ones set null.
+                    const adps = {};
+                    for (const s of SOURCES) {
+                        adps[s.id] = (p.adps && p.adps[s.id] != null) ? p.adps[s.id] : null;
+                        if (adps[s.id] !== null) availableSources.add(s.id);
+                    }
+                    const key = normalizeName(p.name);
+                    playersByKey[key] = {
+                        name: p.name || key,
+                        pos:  p.pos  || '',
+                        team: p.team || '',
+                        adps,
+                    };
                 }
-                const manual = {}, auto = {};
-                for (let i = 1; i < rows.length; i++) {
-                    const r = rows[i];
-                    if (r[0] !== latest || r.length < 5 || !r[1]) continue;
-                    const name = r[1], pos = r[2] || '', team = r[3] || '', source = r[5] || '';
-                    const adp = parseFloat(r[4]);
-                    if (!isRealAdp(adp, floor)) continue;
-                    const target = source === 'manual' ? manual : auto;
-                    target[normalizeName(name)] = { name, pos, adp, team };
-                }
-                return { map: Object.keys(manual).length ? manual : auto, date: latest };
-            }
-
-            const maps = {};         // sourceId -> { key -> {name,pos,team,adp} }
-            const sourceDates = [];  // for "last updated"
-            const availableSources = [];
-            SOURCES.forEach((s, i) => {
-                if (!texts[i]) { maps[s.id] = {}; return; }
-                const res = latestMap(parseCSV(texts[i]), ADP_FLOORS[s.id] ?? Infinity);
-                maps[s.id] = res.map;
-                if (res.date) sourceDates.push(res.date);
-                if (Object.keys(res.map).length) availableSources.push(s.id);
-            });
-
-            const latestDate = sourceDates.sort().pop();
-            if (latestDate) {
-                const [y, m, d] = latestDate.split('-');
-                const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-                document.getElementById('last-updated').textContent = `${months[parseInt(m,10)-1]} ${parseInt(d,10)}, ${y}`;
-            }
-            // If the puller has written last_pull.json, prefer its precise timestamp.
-            fetch('last_pull.json', { cache: 'no-store' })
-                .then(r => r.ok ? r.json() : null)
-                .then(meta => {
-                    if (!meta || !meta.pulled_at) return;
-                    const dt = new Date(meta.pulled_at);
+                // Render "Last updated" from latest.json's pulled_at when present.
+                const stamp = snapshot.pulled_at || null;
+                if (stamp) {
+                    const dt = new Date(stamp);
                     const monthsShort = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
                     const hh = String(dt.getHours()).padStart(2, '0');
                     const mm = String(dt.getMinutes()).padStart(2, '0');
                     const tz = dt.toLocaleTimeString(undefined, { timeZoneName: 'short' }).split(' ').pop();
                     document.getElementById('last-updated').textContent =
                         `${monthsShort[dt.getMonth()]} ${dt.getDate()}, ${dt.getFullYear()} at ${hh}:${mm} ${tz}`;
-                })
-                .catch(() => {});
-
-            // Merge across sources.
-            const allKeys = new Set();
-            SOURCES.forEach(s => Object.keys(maps[s.id]).forEach(k => allKeys.add(k)));
-            for (const key of allKeys) {
-                let name = key, pos = '', team = '';
-                const adps = {};
-                for (const s of SOURCES) {
-                    const e = maps[s.id][key];
-                    if (e) {
-                        name = e.name; pos = pos || e.pos; team = team || e.team;
-                        adps[s.id] = e.adp;
-                    } else {
-                        adps[s.id] = null;
-                    }
+                } else if (snapshot.date) {
+                    document.getElementById('last-updated').textContent = snapshot.date;
                 }
-                playersByKey[key] = { name, pos, team, adps };
+            } else {
+                // Fallback: latest.json missing or malformed. Surface a clear error.
+                document.getElementById('last-updated').textContent = 'unavailable';
+                console.warn('latest.json missing or malformed; dashboard will be empty.');
             }
             players = Object.values(playersByKey);
 
             // Initialize source picker. Default to DK vs UD when both available;
             // otherwise pick the first two available sources.
+            const availSrcArr = SOURCES.map(s => s.id).filter(id => availableSources.has(id));
             const selA = document.getElementById('srcA');
             const selB = document.getElementById('srcB');
             const optHTML = SOURCES.map(s => {
-                const has = availableSources.includes(s.id);
+                const has = availableSources.has(s.id);
                 return `<option value="${s.id}"${has ? '' : ' disabled'}>${s.label}${has ? '' : ' (no data)'}</option>`;
             }).join('');
             selA.innerHTML = optHTML;
             selB.innerHTML = optHTML;
-            const fallback = availableSources.length ? availableSources : SOURCES.map(s => s.id);
-            srcA = availableSources.includes('DK') ? 'DK' : fallback[0];
-            srcB = availableSources.includes('UD') ? 'UD' : (fallback.find(x => x !== srcA) || fallback[0]);
+            const fallback = availSrcArr.length ? availSrcArr : SOURCES.map(s => s.id);
+            srcA = availableSources.has('DK') ? 'DK' : fallback[0];
+            srcB = availableSources.has('UD') ? 'UD' : (fallback.find(x => x !== srcA) || fallback[0]);
             selA.value = srcA;
             selB.value = srcB;
             selA.addEventListener('change', () => { srcA = selA.value; if (srcB === srcA) { srcB = SOURCES.find(s => s.id !== srcA).id; selB.value = srcB; } refresh(); });
