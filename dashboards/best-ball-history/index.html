@@ -272,6 +272,20 @@
                 min-width: 0;
             }
         }
+        .site-footer {
+            border-top: 1px solid #1e2d3d; padding: 28px 32px;
+            color: #556877; font-size: 0.82rem; margin-top: 48px;
+        }
+        .site-footer .disclaimer-line {
+            text-align: center; color: #6f7e8d; font-size: 0.78rem;
+            max-width: 720px; margin: 0 auto 14px; line-height: 1.5;
+        }
+        .site-footer .footer-row {
+            display: flex; justify-content: space-between; align-items: center;
+            flex-wrap: wrap; gap: 12px;
+        }
+        .site-footer a { color: #99aabb; text-decoration: none; }
+        .site-footer a:hover { color: #4a9eff; }
     </style>
 </head>
 <body>
@@ -286,7 +300,7 @@
             <div class="nav-dd">
                 <button type="button" class="nav-dd-btn has-active">Best Ball (NFL) <span class="caret">▾</span></button>
                 <div class="nav-dd-menu">
-                    <a href="../best-ball-prices/">Price Differences (Arbitrage)</a>
+                    <a href="../best-ball-prices/">Price Differences</a>
                     <a href="./" class="active">History Risers/Fallers</a>
                 </div>
             </div>
@@ -596,6 +610,12 @@
                 return;
             }
             empty.style.display = 'none'; canvas.style.display = 'block';
+            if (typeof Chart === 'undefined') {
+                canvas.style.display = 'none';
+                empty.style.display = 'block';
+                empty.innerHTML = 'Chart library failed to load. Check your network connection or refresh the page.';
+                return;
+            }
             const datasets = [];
             selectedPlayers.forEach((key, idx) => {
                 const info = playerIndex[key];
@@ -696,5 +716,18 @@
         loadHistoryData();
     </script>
     </div>
+    <footer class="site-footer">
+        <p class="disclaimer-line">EZ Dubs Analytics is for entertainment and research only. Prices may be stale. Verify everything before placing bets.</p>
+        <div class="footer-row">
+            <span>&copy; EZ Dubs Analytics</span>
+            <span>
+                <a href="../../contact.html">Contact</a>
+                &nbsp;·&nbsp;
+                <a href="https://substack.com/@ezdubsanalytics" target="_blank" rel="noopener">Blog (Substack)</a>
+                &nbsp;·&nbsp;
+                <a href="https://www.patreon.com/cw/EzDubsAnalytics" target="_blank" rel="noopener">Patreon</a>
+            </span>
+        </div>
+    </footer>
 </body>
 </html>

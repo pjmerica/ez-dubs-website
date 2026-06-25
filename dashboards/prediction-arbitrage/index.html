@@ -368,6 +368,20 @@
             .gate .gate-sub { font-size: 0.82rem; }
             .gate-form input { font-size: 0.9rem; }
         }
+        .site-footer {
+            border-top: 1px solid #1e2d3d; padding: 28px 32px;
+            color: #556877; font-size: 0.82rem; margin-top: 48px;
+        }
+        .site-footer .disclaimer-line {
+            text-align: center; color: #6f7e8d; font-size: 0.78rem;
+            max-width: 720px; margin: 0 auto 14px; line-height: 1.5;
+        }
+        .site-footer .footer-row {
+            display: flex; justify-content: space-between; align-items: center;
+            flex-wrap: wrap; gap: 12px;
+        }
+        .site-footer a { color: #99aabb; text-decoration: none; }
+        .site-footer a:hover { color: #4a9eff; }
     </style>
 </head>
 <body>
@@ -382,7 +396,7 @@
             <div class="nav-dd">
                 <button type="button" class="nav-dd-btn">Best Ball (NFL) <span class="caret">▾</span></button>
                 <div class="nav-dd-menu">
-                    <a href="../best-ball-prices/">Price Differences (Arbitrage)</a>
+                    <a href="../best-ball-prices/">Price Differences</a>
                     <a href="../best-ball-history/">History Risers/Fallers</a>
                 </div>
             </div>
@@ -403,7 +417,7 @@
 
     <main>
         <h1>Today's Arbitrage Picks</h1>
-        <p class="subtitle">Price differences between Kalshi and Polymarket.</p>
+        <p class="subtitle">Arbitrage between Kalshi and Polymarket.</p>
         <p class="updated">Snapshot taken: <span id="generated-at">loading<span class="inline-spinner"></span></span></p>
 
         <div class="disclaimer">
@@ -439,7 +453,7 @@
             <div class="arb-card sample-card">
                 <div class="arb-head">
                     <span class="arb-category">Elections</span>
-                    <span class="arb-return">+??%</span>
+                    <span class="arb-return">??pp gap</span>
                 </div>
                 <div class="arb-question blur-text">Will [redacted] win the [redacted] race?</div>
                 <div class="leg">
@@ -487,10 +501,44 @@
         </div>
     </main>
 
+    <footer class="site-footer">
+        <p class="disclaimer-line">EZ Dubs Analytics is for entertainment and research only. Prices may be stale. Verify everything before placing bets.</p>
+        <div class="footer-row">
+            <span>&copy; EZ Dubs Analytics</span>
+            <span>
+                <a href="../../contact.html">Contact</a>
+                &nbsp;·&nbsp;
+                <a href="https://substack.com/@ezdubsanalytics" target="_blank" rel="noopener">Blog (Substack)</a>
+                &nbsp;·&nbsp;
+                <a href="https://www.patreon.com/cw/EzDubsAnalytics" target="_blank" rel="noopener">Patreon</a>
+            </span>
+        </div>
+    </footer>
+
     <script>
         const PLATFORM_LABELS = {
             kalshi: 'Kalshi', polymarket: 'Polymarket', predictit: 'PredictIt',
         };
+        const SUSPICION_BASE_LABEL = {
+            wide_spread: 'Wide spread',
+            thin_depth:  'Thin order book',
+            one_sided:   'One-sided market',
+            inferred:    'No recent trade',
+        };
+        function humanSuspicionReasons(reasons) {
+            // Map raw codes (e.g. 'wide_spread_a') to short human labels and dedupe.
+            // The which-side detail is in the legend; the pill stays compact.
+            const seen = new Set();
+            const out = [];
+            for (const r of reasons || []) {
+                const base = String(r).replace(/_[ab]$/, '');
+                const label = SUSPICION_BASE_LABEL[base] || base;
+                if (seen.has(label)) continue;
+                seen.add(label);
+                out.push(label);
+            }
+            return out;
+        }
         let arbs = [], sortBy = 'return', suspMode = 'all';
 
         function fmtDate(iso) {
@@ -571,7 +619,7 @@
                 <div class="arb-card${a.suspicious ? ' suspicious' : ''}">
                     <div class="arb-head">
                         <span class="arb-category">${escapeHtml(a.category || 'Arb')}</span>
-                        <span class="arb-return ${returnClass}" title="Difference between the two platforms' implied probabilities, before fees">+${gapPct}%</span>
+                        <span class="arb-return ${returnClass}" title="Price gap in percentage points between the two markets, before fees. Not return on bankroll.">${gapPct}pp gap</span>
                     </div>
                     <div class="arb-question">${escapeHtml(title)}</div>
 
@@ -592,7 +640,7 @@
                         </div>` : ''}
                     <div class="arb-foot">
                         <span>${a.settle_date ? `Settles ${a.settle_date}` : ''}</span>
-                        ${a.suspicious ? `<span class="susp" title="${escapeHtml((a.suspicion_reasons || []).join(', '))}">⚠ Flagged: ${escapeHtml((a.suspicion_reasons || []).join(', '))}</span>` : ''}
+                        ${a.suspicious ? `<span class="susp" title="${escapeHtml((a.suspicion_reasons || []).join(', '))}">⚠ ${escapeHtml(humanSuspicionReasons(a.suspicion_reasons).join(', '))}</span>` : ''}
                     </div>
                 </div>`;
         }
