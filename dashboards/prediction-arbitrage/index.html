@@ -283,6 +283,38 @@
         .gate-error {
             color: #ff424d; font-size: 0.82rem; margin-top: 10px; min-height: 1em;
         }
+        .gate-prelude { margin-bottom: 18px; }
+        .gate-prelude .prelude-label {
+            color: #6f7e8d; font-size: 0.78rem; font-weight: 600;
+            text-align: center; margin-bottom: 8px;
+            letter-spacing: 0.06em; text-transform: uppercase;
+        }
+        .sample-card { opacity: 0.7; pointer-events: none; }
+        .sample-card .blur-text {
+            filter: blur(4px);
+            user-select: none;
+        }
+        .sample-btn {
+            font-size: 0.78rem; font-weight: 700; color: #4a9eff;
+            padding: 5px 11px; border-radius: 8px;
+            border: 1px solid rgba(74,158,255,0.3);
+        }
+        .calc-cta {
+            display: flex; justify-content: space-between; align-items: center;
+            gap: 14px; flex-wrap: wrap;
+            background: rgba(74, 158, 255, 0.08);
+            border: 1px solid rgba(74, 158, 255, 0.35);
+            border-left: 3px solid #4a9eff;
+            border-radius: 10px; padding: 12px 16px;
+            color: #99aabb; font-size: 0.88rem; margin-top: 14px;
+        }
+        .calc-cta .cta-btn {
+            background: #4a9eff; color: #fff; text-decoration: none;
+            padding: 8px 14px; border-radius: 8px;
+            font-weight: 700; font-size: 0.85rem; white-space: nowrap;
+            transition: opacity 0.15s;
+        }
+        .calc-cta .cta-btn:hover { opacity: 0.85; }
 
         /* Flag legend */
         .flag-legend {
@@ -401,6 +433,32 @@
                 A flagged arb isn't necessarily fake. It's just one the upstream scanner thinks you should look at carefully before staking. Use the chip above to hide them.
             </div>
         </details>
+
+        <div class="gate-prelude" id="gate-prelude">
+            <p class="prelude-label">Sample pick (blurred preview):</p>
+            <div class="arb-card sample-card">
+                <div class="arb-head">
+                    <span class="arb-category">Elections</span>
+                    <span class="arb-return">+??%</span>
+                </div>
+                <div class="arb-question blur-text">Will [redacted] win the [redacted] race?</div>
+                <div class="leg">
+                    <span class="platform kalshi">Kalshi</span>
+                    <span class="price blur-text">0.??</span>
+                    <span class="btn sample-btn">Open ↗</span>
+                </div>
+                <div class="leg">
+                    <span class="platform polymarket">Polymarket</span>
+                    <span class="price blur-text">0.??</span>
+                    <span class="btn sample-btn">Open ↗</span>
+                </div>
+            </div>
+
+            <div class="calc-cta">
+                <span>Want to size your own bets? Try the free Arb Calculator.</span>
+                <a href="../arb-calculator/" class="cta-btn">Open Calculator →</a>
+            </div>
+        </div>
 
         <div id="gate" class="gate">
             <div class="gate-title">🔒 Password required</div>
