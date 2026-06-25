@@ -173,7 +173,7 @@
         .lookback-presets .preset-btn:hover { border-color: #4a9eff; color: #fff; }
         .lookback-presets .preset-btn.active { border-color: #4a9eff; color: #4a9eff; }
         h1 { text-align: center; margin-bottom: 6px; color: #fff; font-size: 1.8rem; }
-        .subtitle { text-align: center; color: #888; margin-bottom: 12px; font-size: 0.9rem; }
+        .subtitle { text-align: center; color: #99aabb; margin-bottom: 12px; font-size: 0.9rem; }
         .updated { text-align: center; color: #556; font-size: 0.8rem; margin-bottom: 16px; }
         .updated span { color: #4a9eff; }
         .inline-spinner {
@@ -589,15 +589,15 @@
     <p class="updated">Last updated: <span id="last-updated">loading<span class="inline-spinner"></span></span></p>
 
     <div class="tabs">
-        <button class="tab-btn active" data-tab="arbitrage">Numerical Representation</button>
-        <button class="tab-btn" data-tab="visualizer">Market to Market Visualizer</button>
-        <button class="tab-btn" data-tab="all4">All Platforms Visualizer</button>
+        <button class="tab-btn active" data-tab="arbitrage">Table view</button>
+        <button class="tab-btn" data-tab="visualizer">Two-market chart</button>
+        <button class="tab-btn" data-tab="all4">All 4 markets chart</button>
     </div>
 
     <!-- TAB 1: ARBITRAGE -->
     <div class="tab-panel active" id="tab-arbitrage">
         <p class="blurb">
-            Compare best-ball ADPs across DraftKings, Underdog, FFPC, and Drafters. Pick any two markets to find the spots where they disagree.
+            Ranked table of where two best-ball markets disagree most. Pick any two of DraftKings, Underdog, FFPC, and Drafters to compare.
         </p>
         <div class="source-picker">
             <label for="srcA">Compare</label>
@@ -667,7 +667,7 @@
     <!-- TAB 2: VISUALIZER -->
     <div class="tab-panel" id="tab-visualizer">
         <p class="blurb">
-            A visual representation comparing best-ball ADPs across DraftKings, Underdog, FFPC, and Drafters. Pick any two markets to find the spots where they disagree.
+            See the gaps visually. Each row plots a player's pick number on both markets so you can spot mispricings at a glance.
         </p>
         <div class="source-picker" style="margin-bottom: 14px;">
             <label for="vizSrcA">Compare</label>
