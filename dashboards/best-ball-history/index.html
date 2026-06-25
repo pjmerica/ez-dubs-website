@@ -170,6 +170,19 @@
         .rec-bubble h3 { font-size: 0.95rem; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid #2a3a4a; }
         .rec-bubble.rising-bubble h3 { color: #2ecc71; }
         .rec-bubble.falling-bubble h3 { color: #e74c3c; }
+
+        /* Source picker chips */
+        .source-picker { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-bottom: 16px; align-items: center; }
+        .source-picker .label { color: #99aabb; font-size: 0.85rem; font-weight: 600; margin-right: 4px; }
+        .source-chip {
+            background: #1a2634; border: 1px solid #2a3a4a; color: #99aabb;
+            padding: 6px 14px; border-radius: 999px; font-size: 0.85rem; font-weight: 600;
+            cursor: pointer; font-family: inherit;
+        }
+        .source-chip.active { background: rgba(74,158,255,0.18); border-color: #4a9eff; color: #fff; }
+        .source-chip:hover:not(.active) { border-color: #4a9eff; color: #fff; }
+        .source-chip:disabled { cursor: not-allowed; opacity: 0.5; }
+        .source-hint { color: #6f7e8d; font-size: 0.78rem; margin-left: 6px; }
         .rec-list { list-style: none; padding: 0; margin: 0; }
         .rec-list li {
             display: flex; justify-content: space-between; align-items: center;
@@ -349,24 +362,15 @@
             <button class="pos-btn te movers-pos-btn" data-pos="TE">TE</button>
         </div>
     </div>
-    <div class="recs-container">
-        <div class="rec-bubble rising-bubble">
-            <h3 id="title-rising-dk">Rising on DraftKings</h3>
-            <ol class="rec-list" id="rec-rising-dk"></ol>
-        </div>
-        <div class="rec-bubble falling-bubble">
-            <h3 id="title-falling-dk">Falling on DraftKings</h3>
-            <ol class="rec-list" id="rec-falling-dk"></ol>
-        </div>
-        <div class="rec-bubble rising-bubble">
-            <h3 id="title-rising-ud">Rising on Underdog</h3>
-            <ol class="rec-list" id="rec-rising-ud"></ol>
-        </div>
-        <div class="rec-bubble falling-bubble">
-            <h3 id="title-falling-ud">Falling on Underdog</h3>
-            <ol class="rec-list" id="rec-falling-ud"></ol>
-        </div>
+    <div class="source-picker" id="source-picker">
+        <span class="label">Sources:</span>
+        <button class="source-chip active" data-src="DK">DraftKings</button>
+        <button class="source-chip active" data-src="UD">Underdog</button>
+        <button class="source-chip" data-src="FFPC">FFPC</button>
+        <button class="source-chip" data-src="Drafters">Drafters</button>
+        <span class="source-hint">Pick any 2</span>
     </div>
+    <div class="recs-container" id="recs-container"></div>
 
     <h2 class="section-title" style="margin-top:32px;">ADP Over Time</h2>
     <p class="section-sub">Search and add players to compare their ADP trends. Click a mover above to add them.</p>
@@ -418,6 +422,17 @@
         }
 
         const ADP_FLOORS = { DK: 240, UD: 216, FFPC: Infinity, Drafters: Infinity };
+        const ALL_SOURCES = ['DK','UD','FFPC','Drafters'];
+        const SOURCE_LABEL = { DK: 'DraftKings', UD: 'Underdog', FFPC: 'FFPC', Drafters: 'Drafters' };
+        const SOURCE_CSV = {
+            DK: '../best-ball-prices/dk_adp_history.csv',
+            UD: '../best-ball-prices/ud_adp_history.csv',
+            FFPC: '../best-ball-prices/ffpc_adp_history.csv',
+            Drafters: '../best-ball-prices/drafters_adp_history.csv',
+        };
+        // Solid, dashed, dotted, dot-dashed — one line style per source for the chart.
+        const SOURCE_DASH = { DK: [], UD: [5, 4], FFPC: [2, 3], Drafters: [8, 3, 2, 3] };
+        let activeSources = ['DK','UD'];
         function isRealAdp(adp, floor) {
             return !isNaN(adp) && adp < floor;
         }
@@ -464,41 +479,80 @@
                 return byDate;
             }
 
-            // CSVs live in the best-ball-prices folder.
-            const [dkResp, udResp] = await Promise.all([
-                fetch('../best-ball-prices/dk_adp_history.csv'),
-                fetch('../best-ball-prices/ud_adp_history.csv'),
-            ]);
-            const [dkText, udText] = await Promise.all([dkResp.text(), udResp.text()]);
-            const dkByDate = buildSnapshotMaps(parseCSV(dkText), ADP_FLOORS.DK);
-            const udByDate = buildSnapshotMaps(parseCSV(udText), ADP_FLOORS.UD);
+            // CSVs live in the best-ball-prices folder. Fetch all 4 sources in parallel.
+            const resps = await Promise.all(ALL_SOURCES.map(src => fetch(SOURCE_CSV[src])));
+            const texts = await Promise.all(resps.map(r => r.text()));
+            const byDateBySource = {};
+            ALL_SOURCES.forEach((src, i) => {
+                byDateBySource[src] = buildSnapshotMaps(parseCSV(texts[i]), ADP_FLOORS[src]);
+            });
 
-            const allDates = new Set([...dkByDate.keys(), ...udByDate.keys()]);
+            const allDates = new Set();
+            ALL_SOURCES.forEach(src => byDateBySource[src].forEach((_, d) => allDates.add(d)));
             const snapshots = [...allDates].sort().map(date => {
-                const dkB = dkByDate.get(date) || { manual: {}, auto: {} };
-                const udB = udByDate.get(date) || { manual: {}, auto: {} };
-                const dkMap = Object.keys(dkB.manual).length ? dkB.manual : dkB.auto;
-                const udMap = Object.keys(udB.manual).length ? udB.manual : udB.auto;
+                const maps = {};
+                for (const src of ALL_SOURCES) {
+                    const b = byDateBySource[src].get(date) || { manual: {}, auto: {} };
+                    maps[src] = Object.keys(b.manual).length ? b.manual : b.auto;
+                }
                 return { label: _labelFor(date), date,
                          era: date >= DRAFT_CUTOVER ? 'post' : 'pre',
-                         dkMap, udMap };
+                         maps };
             });
 
             const allKeys = new Set();
-            snapshots.forEach(s => { Object.keys(s.dkMap).forEach(k => allKeys.add(k)); Object.keys(s.udMap).forEach(k => allKeys.add(k)); });
+            snapshots.forEach(s => ALL_SOURCES.forEach(src => Object.keys(s.maps[src]).forEach(k => allKeys.add(k))));
             const playerIndex = {};
             for (const key of allKeys) {
                 let name = null, pos = null;
+                outer:
                 for (const s of snapshots) {
-                    if (s.dkMap[key]) { name = s.dkMap[key].name; pos = s.dkMap[key].pos; break; }
-                    if (s.udMap[key]) { name = s.udMap[key].name; pos = s.udMap[key].pos; break; }
+                    for (const src of ALL_SOURCES) {
+                        if (s.maps[src][key]) { name = s.maps[src][key].name; pos = s.maps[src][key].pos; break outer; }
+                    }
                 }
                 if (name) playerIndex[key] = { name, pos, key };
             }
             historyData = { snapshots, playerIndex };
             initLookbackSlider();
+            initSourcePicker();
             renderMovers();
             initSearch();
+        }
+
+        function initSourcePicker() {
+            const wrap = document.getElementById('source-picker');
+            const chips = wrap.querySelectorAll('.source-chip');
+            function refresh() {
+                chips.forEach(c => {
+                    c.classList.toggle('active', activeSources.includes(c.dataset.src));
+                });
+                // Disable inactive chips when 2 are already picked.
+                if (activeSources.length >= 2) {
+                    chips.forEach(c => {
+                        if (!activeSources.includes(c.dataset.src)) c.setAttribute('disabled','');
+                        else c.removeAttribute('disabled');
+                    });
+                } else {
+                    chips.forEach(c => c.removeAttribute('disabled'));
+                }
+            }
+            chips.forEach(c => {
+                c.addEventListener('click', () => {
+                    const src = c.dataset.src;
+                    if (activeSources.includes(src)) {
+                        if (activeSources.length <= 1) return; // never let user uncheck the last source
+                        activeSources = activeSources.filter(s => s !== src);
+                    } else {
+                        if (activeSources.length >= 2) return; // cap at 2
+                        activeSources.push(src);
+                    }
+                    refresh();
+                    renderMovers();
+                    renderChart();
+                });
+            });
+            refresh();
         }
 
         function initLookbackSlider() {
@@ -547,12 +601,12 @@
         function renderMovers() {
             const { playerIndex } = historyData;
             const snapshots = getActiveSnapshots();
-            const movers = ['rec-rising-dk','rec-falling-dk','rec-rising-ud','rec-falling-ud'];
+            const container = document.getElementById('recs-container');
             if (snapshots.length < 2) {
                 document.getElementById('movers-subtitle').textContent = snapshots.length === 0
                     ? 'No snapshots in this era yet.'
                     : `Only one snapshot available (${snapshots[0].label}). Need at least 2 to compute movers.`;
-                movers.forEach(id => document.getElementById(id).innerHTML = '');
+                container.innerHTML = '';
                 return;
             }
             const curr = snapshots[snapshots.length - 1];
@@ -567,33 +621,36 @@
             }, snapshots[0]);
             const dayWord = moversLookbackDays === 1 ? 'day' : 'days';
             document.getElementById('movers-subtitle').textContent = `Comparing ${prev.label} to ${curr.label} (closest available to ${moversLookbackDays} ${dayWord})`;
-            document.getElementById('title-rising-dk').textContent = `Rising on DraftKings (${prev.label} → ${curr.label})`;
-            document.getElementById('title-falling-dk').textContent = `Falling on DraftKings (${prev.label} → ${curr.label})`;
-            document.getElementById('title-rising-ud').textContent = `Rising on Underdog (${prev.label} → ${curr.label})`;
-            document.getElementById('title-falling-ud').textContent = `Falling on Underdog (${prev.label} → ${curr.label})`;
-
-            const dkMovers = [], udMovers = [];
-            for (const key of Object.keys(playerIndex)) {
-                const info = playerIndex[key];
-                if (moversPosFilter !== 'ALL' && info.pos !== moversPosFilter) continue;
-                const prevDk = prev.dkMap[key] ? prev.dkMap[key].adp : null;
-                const currDk = curr.dkMap[key] ? curr.dkMap[key].adp : null;
-                const prevUd = prev.udMap[key] ? prev.udMap[key].adp : null;
-                const currUd = curr.udMap[key] ? curr.udMap[key].adp : null;
-                if (prevDk !== null && currDk !== null) dkMovers.push({ key, name: info.name, pos: info.pos, prev: prevDk, curr: currDk, delta: currDk - prevDk });
-                if (prevUd !== null && currUd !== null) udMovers.push({ key, name: info.name, pos: info.pos, prev: prevUd, curr: currUd, delta: currUd - prevUd });
-            }
 
             function moverHTML(list, cls) {
                 return list.map((p, i) => `<li data-key="${escapeHtml(p.key)}"><span class="rec-rank">${i + 1}.</span><span class="rec-name">${escapeHtml(p.name)}</span><span class="rec-pos"><span class="pos-badge pos-${escapeHtml(p.pos)}">${escapeHtml(p.pos)}</span></span><span class="rec-adps">${p.prev.toFixed(1)} → ${p.curr.toFixed(1)}</span><span class="rec-val ${cls}">${p.delta > 0 ? '+' : ''}${p.delta.toFixed(1)}</span></li>`).join('');
             }
 
-            document.getElementById('rec-rising-dk').innerHTML = moverHTML([...dkMovers].sort((a, b) => a.delta - b.delta).slice(0, 10), 'rising');
-            document.getElementById('rec-falling-dk').innerHTML = moverHTML([...dkMovers].sort((a, b) => b.delta - a.delta).slice(0, 10), 'falling');
-            document.getElementById('rec-rising-ud').innerHTML = moverHTML([...udMovers].sort((a, b) => a.delta - b.delta).slice(0, 10), 'rising');
-            document.getElementById('rec-falling-ud').innerHTML = moverHTML([...udMovers].sort((a, b) => b.delta - a.delta).slice(0, 10), 'falling');
-
-            document.querySelectorAll('.rec-list li[data-key]').forEach(li => {
+            // Build rising/falling bubbles for each active source.
+            const blocks = [];
+            for (const src of activeSources) {
+                const movers = [];
+                for (const key of Object.keys(playerIndex)) {
+                    const info = playerIndex[key];
+                    if (moversPosFilter !== 'ALL' && info.pos !== moversPosFilter) continue;
+                    const p = prev.maps[src][key] ? prev.maps[src][key].adp : null;
+                    const c = curr.maps[src][key] ? curr.maps[src][key].adp : null;
+                    if (p !== null && c !== null) movers.push({ key, name: info.name, pos: info.pos, prev: p, curr: c, delta: c - p });
+                }
+                const rising  = [...movers].sort((a, b) => a.delta - b.delta).slice(0, 10);
+                const falling = [...movers].sort((a, b) => b.delta - a.delta).slice(0, 10);
+                blocks.push(`
+                    <div class="rec-bubble rising-bubble">
+                        <h3>Rising on ${SOURCE_LABEL[src]} (${prev.label} → ${curr.label})</h3>
+                        <ol class="rec-list">${moverHTML(rising, 'rising')}</ol>
+                    </div>
+                    <div class="rec-bubble falling-bubble">
+                        <h3>Falling on ${SOURCE_LABEL[src]} (${prev.label} → ${curr.label})</h3>
+                        <ol class="rec-list">${moverHTML(falling, 'falling')}</ol>
+                    </div>`);
+            }
+            container.innerHTML = blocks.join('');
+            container.querySelectorAll('.rec-list li[data-key]').forEach(li => {
                 li.addEventListener('click', () => addPlayer(li.dataset.key));
             });
         }
@@ -620,18 +677,17 @@
             selectedPlayers.forEach((key, idx) => {
                 const info = playerIndex[key];
                 const color = COLORS[idx % COLORS.length];
-                datasets.push({
-                    label: info.name + ' (DK)',
-                    data: snapshots.map(s => s.dkMap[key] ? s.dkMap[key].adp : null),
-                    borderColor: color, backgroundColor: color + '22', pointBackgroundColor: color,
-                    borderWidth: 2, borderDash: [], tension: 0.3, spanGaps: true,
-                });
-                datasets.push({
-                    label: info.name + ' (UD)',
-                    data: snapshots.map(s => s.udMap[key] ? s.udMap[key].adp : null),
-                    borderColor: color, backgroundColor: color + '11', pointBackgroundColor: color,
-                    borderWidth: 2, borderDash: [5, 4], tension: 0.3, spanGaps: true,
-                });
+                for (const src of activeSources) {
+                    // Only draw a line if this player has any ADP under this source in the active range.
+                    const data = snapshots.map(s => s.maps[src][key] ? s.maps[src][key].adp : null);
+                    if (data.every(v => v === null)) continue;
+                    datasets.push({
+                        label: info.name + ' (' + src + ')',
+                        data,
+                        borderColor: color, backgroundColor: color + '22', pointBackgroundColor: color,
+                        borderWidth: 2, borderDash: SOURCE_DASH[src], tension: 0.3, spanGaps: true,
+                    });
+                }
             });
             if (adpChart) adpChart.destroy();
             adpChart = new Chart(canvas.getContext('2d'), {
