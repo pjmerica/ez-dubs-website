@@ -25,7 +25,16 @@ jobs:
         run: pip install requests
 
       - name: Pull ADPs from Google Sheet
-        run: python scripts/pull_adp.py
+        id: pull
+        # Exit code 1 from pull_adp.py = stale upstream detected. We still want
+        # to commit the rows (puller wrote them before signaling) and then fail
+        # the job so GitHub Actions emails the failure. The `|| true` swallows
+        # the exit here; the final step re-checks the captured code.
+        run: |
+          set +e
+          python scripts/pull_adp.py
+          echo "exit_code=$?" >> "$GITHUB_OUTPUT"
+          exit 0
 
       - name: Commit and push if changed
         run: |
@@ -52,4 +61,13 @@ jobs:
             git pull --rebase --autostash origin main
           done
           echo "Push failed after 5 attempts." >&2
+          exit 1
+
+      - name: Re-raise staleness signal
+        # If pull_adp.py exited non-zero (stale upstream), fail the job NOW
+        # so GitHub sends the workflow-failure email. The data was already
+        # written and committed in the steps above.
+        if: steps.pull.outputs.exit_code != '0'
+        run: |
+          echo "::error::pull_adp.py reported exit code ${{ steps.pull.outputs.exit_code }} (stale upstream feed). Check the workflow log for details."
           exit 1

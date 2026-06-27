@@ -182,6 +182,80 @@ def _write_local_qc(sheet_rows: list[list[str]], date: str) -> None:
     print(f"Wrote local QC copy: {path}")
 
 
+# ---- Staleness check ------------------------------------------------------
+
+# If >95% of today's ADPs match the most-recent prior auto pull byte-for-byte
+# AND we have at least this many overlapping players, treat as upstream freeze.
+STALE_THRESHOLD_PCT = 95.0
+STALE_MIN_OVERLAP   = 50
+
+
+def _previous_auto_day_map(path: Path, today: str) -> dict[str, str]:
+    """Return {name: adp_string} for the most recent auto pull strictly before `today`.
+
+    Reads the history CSV once, picks rows whose date < today and source='auto',
+    bins by date, returns the highest date's bin. Empty dict if no prior pull.
+    """
+    if not path.exists():
+        return {}
+    by_date: dict[str, dict[str, str]] = {}
+    with path.open("r", encoding="utf-8", newline="") as f:
+        for r in csv.DictReader(f):
+            if r.get("source") != "auto":
+                continue
+            d = r.get("date") or ""
+            if not d or d >= today:
+                continue
+            by_date.setdefault(d, {})[r["name"]] = r["adp"]
+    if not by_date:
+        return {}
+    last = max(by_date.keys())
+    return by_date[last]
+
+
+def _check_staleness(sheet_rows: list[list[str]], today: str) -> list[str]:
+    """Compare today's parsed ADPs to the previous auto pull for each source.
+
+    Returns a list of human-readable warnings (empty if everything looks fresh).
+    A source is flagged when:
+      - we have >= STALE_MIN_OVERLAP players in common with the previous pull, AND
+      - >= STALE_THRESHOLD_PCT of those overlapping ADPs are identical
+    """
+    cols = _index_columns(sheet_rows[0])
+    sources = [
+        ("DK",       "DK ADP",       DK_HISTORY),
+        ("UD",       "UD ADP",       UD_HISTORY),
+        ("FFPC",     "FFPC ADP",     FFPC_HISTORY),
+        ("Drafters", "Drafters ADP", DRAFTERS_HISTORY),
+    ]
+    warnings: list[str] = []
+    for label, col, path in sources:
+        today_map: dict[str, str] = {}
+        for row in sheet_rows[1:]:
+            if not row or len(row) <= cols[col]:
+                continue
+            name = row[cols["Name"]].strip()
+            adp  = row[cols[col]].strip()
+            if not name or not adp:
+                continue
+            today_map[name] = adp
+        prev_map = _previous_auto_day_map(path, today)
+        if not prev_map or not today_map:
+            continue
+        overlap = set(today_map) & set(prev_map)
+        if len(overlap) < STALE_MIN_OVERLAP:
+            continue
+        identical = sum(1 for n in overlap if today_map[n] == prev_map[n])
+        pct = 100.0 * identical / len(overlap)
+        print(f"  staleness check {label}: {identical}/{len(overlap)} identical ({pct:.1f}%)")
+        if pct >= STALE_THRESHOLD_PCT:
+            warnings.append(
+                f"{label}: {pct:.1f}% of {len(overlap)} ADPs unchanged from previous auto pull "
+                f"(threshold {STALE_THRESHOLD_PCT:.0f}%). Upstream feed may be frozen."
+            )
+    return warnings
+
+
 # ---- Main -----------------------------------------------------------------
 
 def main() -> int:
@@ -218,8 +292,25 @@ def main() -> int:
     )
     print(f"Wrote {LAST_PULL_META.name}.")
 
-    # Write a small merged snapshot the dashboard can load instead of all
-    # four CSVs. Drops cold-load weight ~100x and parse time ~100x.
+    # Detect upstream-feed freeze: compare today's parsed ADPs to the previous
+    # auto pull. If any source is >95% identical, treat the Sheet as stale.
+    # Run this BEFORE overwriting latest.json so a stale pull doesn't clobber
+    # the last-known-good (or hand-loaded) snapshot.
+    warnings = _check_staleness(rows, today)
+
+    if warnings:
+        print("STALE DATA DETECTED:", file=sys.stderr)
+        for w in warnings:
+            print(f"  - {w}", file=sys.stderr)
+        print(
+            f"Leaving {LATEST_SNAPSHOT.name} untouched so the dashboard keeps the "
+            "last-known-good snapshot. The history CSVs still got today's rows "
+            "(useful as a record that the cron ran).",
+            file=sys.stderr,
+        )
+        return 1
+
+    # Fresh data confirmed -- write the merged snapshot the dashboard loads.
     snapshot = _build_latest_snapshot(rows, today)
     LATEST_SNAPSHOT.write_text(
         json.dumps(snapshot, separators=(",", ":")) + "\n",
