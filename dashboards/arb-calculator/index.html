@@ -673,6 +673,22 @@
                 if (e.key === 'Enter') { e.preventDefault(); compute(); }
             });
         });
+
+        // If launched from the pred-mkt page (or a shared URL), prefill inputs
+        // from query params and auto-compute so the user sees stakes right away.
+        (function prefillFromQuery() {
+            const p = new URLSearchParams(window.location.search);
+            if (![...p.keys()].length) return;
+            const map = { labelA: 'labelA', labelB: 'labelB',
+                          ayes: 'ayes', ano: 'ano', byes: 'byes', bno: 'bno',
+                          bankroll: 'bankroll' };
+            let touched = false;
+            for (const [key, id] of Object.entries(map)) {
+                const v = p.get(key);
+                if (v !== null && v !== '') { el(id).value = v; touched = true; }
+            }
+            if (touched) compute();
+        })();
     </script>
 </body>
 </html>

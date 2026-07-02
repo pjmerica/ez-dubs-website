@@ -236,6 +236,19 @@
         .leg-questions div { margin-bottom: 2px; }
         .leg-questions .q-platform { color: #99aabb; font-weight: 700; }
 
+        .calc-handoff-btn {
+            display: block; margin-top: 12px; padding: 8px 14px;
+            background: rgba(74,158,255,0.12);
+            border: 1px solid rgba(74,158,255,0.35);
+            border-radius: 8px; text-align: center;
+            color: #4a9eff; font-weight: 700; font-size: 0.85rem;
+            text-decoration: none; transition: background 0.15s, border-color 0.15s;
+        }
+        .calc-handoff-btn:hover {
+            background: rgba(74,158,255,0.22);
+            border-color: #4a9eff;
+        }
+
         .arb-foot {
             margin-top: 10px; display: flex; align-items: center;
             justify-content: space-between; gap: 12px; flex-wrap: wrap;
@@ -537,6 +550,20 @@
             })[c]);
         }
 
+        // Build a calculator URL prefilled with A YES = prob_a and
+        // B NO = 1 - prob_b -- what someone actually buying this arb keys in.
+        // Bankroll defaults to 100 on the calc side.
+        function calcHandoffUrl(a) {
+            const bNoPrice = Math.max(0, Math.min(1, 1 - a.prob_b));
+            const params = new URLSearchParams({
+                labelA: PLATFORM_LABELS[a.platform_a] || a.platform_a,
+                labelB: PLATFORM_LABELS[a.platform_b] || a.platform_b,
+                ayes:   a.prob_a.toFixed(3),
+                bno:    bNoPrice.toFixed(3),
+            });
+            return `../arb-calculator/?${params.toString()}`;
+        }
+
         // Deterministic per-day RNG so the free preview pick stays stable within
         // a UTC day (any two visits show the same card) but rotates daily.
         function pickDailyPreview(pool) {
@@ -648,6 +675,7 @@
                             <div><span class="q-platform">${pa}:</span> ${escapeHtml(a.question_a)}</div>
                             <div><span class="q-platform">${pb}:</span> ${escapeHtml(a.question_b)}</div>
                         </div>` : ''}
+                    <a class="calc-handoff-btn" href="${escapeHtml(calcHandoffUrl(a))}">Size this in the Calculator →</a>
                     <div class="arb-foot">
                         <span>${a.settle_date ? `Settles ${a.settle_date}` : ''}</span>
                         ${a.suspicious ? `<span class="susp" title="${escapeHtml((a.suspicion_reasons || []).join(', '))}">⚠ ${escapeHtml(humanSuspicionReasons(a.suspicion_reasons).join(', '))}</span>` : ''}
