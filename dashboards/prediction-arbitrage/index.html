@@ -550,16 +550,18 @@
             })[c]);
         }
 
-        // Build a calculator URL prefilled with A YES = prob_a and
-        // B NO = 1 - prob_b -- what someone actually buying this arb keys in.
-        // Bankroll defaults to 100 on the calc side.
+        // Build a calculator URL prefilled with all four prices (both YES and
+        // both NO) so the calculator can compare both orientations and pick
+        // whichever is cheaper. Bankroll defaults to 100 on the calc side.
         function calcHandoffUrl(a) {
-            const bNoPrice = Math.max(0, Math.min(1, 1 - a.prob_b));
+            const clip = v => Math.max(0, Math.min(1, v)).toFixed(3);
             const params = new URLSearchParams({
                 labelA: PLATFORM_LABELS[a.platform_a] || a.platform_a,
                 labelB: PLATFORM_LABELS[a.platform_b] || a.platform_b,
-                ayes:   a.prob_a.toFixed(3),
-                bno:    bNoPrice.toFixed(3),
+                ayes:   clip(a.prob_a),
+                ano:    clip(1 - a.prob_a),
+                byes:   clip(a.prob_b),
+                bno:    clip(1 - a.prob_b),
             });
             return `../arb-calculator/?${params.toString()}`;
         }
