@@ -289,16 +289,6 @@
             text-align: center; margin-bottom: 8px;
             letter-spacing: 0.06em; text-transform: uppercase;
         }
-        .sample-card { opacity: 0.7; pointer-events: none; }
-        .sample-card .blur-text {
-            filter: blur(4px);
-            user-select: none;
-        }
-        .sample-btn {
-            font-size: 0.78rem; font-weight: 700; color: #4a9eff;
-            padding: 5px 11px; border-radius: 8px;
-            border: 1px solid rgba(74,158,255,0.3);
-        }
         .calc-cta {
             display: flex; justify-content: space-between; align-items: center;
             gap: 14px; flex-wrap: wrap;
@@ -449,23 +439,9 @@
         </details>
 
         <div class="gate-prelude" id="gate-prelude">
-            <p class="prelude-label">Sample pick (blurred preview):</p>
-            <div class="arb-card sample-card">
-                <div class="arb-head">
-                    <span class="arb-category">Elections</span>
-                    <span class="arb-return">??pp gap</span>
-                </div>
-                <div class="arb-question blur-text">Will [redacted] win the [redacted] race?</div>
-                <div class="leg">
-                    <span class="platform kalshi">Kalshi</span>
-                    <span class="price blur-text">0.??</span>
-                    <span class="btn sample-btn">Open ↗</span>
-                </div>
-                <div class="leg">
-                    <span class="platform polymarket">Polymarket</span>
-                    <span class="price blur-text">0.??</span>
-                    <span class="btn sample-btn">Open ↗</span>
-                </div>
+            <div id="preview-wrap" style="display:none;">
+                <p class="prelude-label">Free preview: today's pick</p>
+                <div id="preview-card"></div>
             </div>
 
             <div class="calc-cta">
@@ -561,6 +537,32 @@
             })[c]);
         }
 
+        // Deterministic per-day RNG so the free preview pick stays stable within
+        // a UTC day (any two visits show the same card) but rotates daily.
+        function pickDailyPreview(pool) {
+            if (!pool.length) return null;
+            const trimmed = pool.length >= 10
+                ? pool.slice(Math.floor(pool.length * 0.2), Math.ceil(pool.length * 0.8))
+                : pool;
+            const seed = new Date().toISOString().slice(0, 10);
+            let h = 2166136261;
+            for (const ch of seed) { h ^= ch.charCodeAt(0); h = (h * 16777619) >>> 0; }
+            return trimmed[h % trimmed.length];
+        }
+
+        function renderPreview() {
+            const wrap = document.getElementById('preview-wrap');
+            const card = document.getElementById('preview-card');
+            const nonSusp = arbs.filter(a => !a.suspicious);
+            const pick = pickDailyPreview(nonSusp);
+            if (!pick) {
+                wrap.style.display = 'none';
+                return;
+            }
+            card.innerHTML = cardHTML(pick);
+            wrap.style.display = 'block';
+        }
+
         async function load() {
             try {
                 const resp = await fetch('arbs.json', { cache: 'no-store' });
@@ -574,7 +576,11 @@
                 document.getElementById('empty').style.display = 'block';
                 return;
             }
-            render();
+            renderPreview();
+            // Only render the gated grid if the user has unlocked.
+            if (document.getElementById('gated').style.display !== 'none') {
+                render();
+            }
         }
 
         function render() {
@@ -678,8 +684,16 @@
         function unlock() {
             document.getElementById('gate').style.display = 'none';
             document.getElementById('gated').style.display = 'block';
-            load();
+            // If arbs are already fetched (from the initial load()), render
+            // the full grid now. Otherwise load() will call render() when it
+            // finishes since #gated is now visible.
+            if (arbs.length) render();
         }
+
+        // Fetch arbs.json unconditionally so the free preview card can render
+        // even for locked visitors. load() itself decides whether to also
+        // render the full grid based on #gated visibility.
+        load();
 
         if (sessionStorage.getItem(UNLOCK_KEY) === '1') {
             unlock();
