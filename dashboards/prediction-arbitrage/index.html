@@ -617,8 +617,12 @@
         function cardHTML(a) {
             const pa = escapeHtml(PLATFORM_LABELS[a.platform_a] || a.platform_a);
             const pb = escapeHtml(PLATFORM_LABELS[a.platform_b] || a.platform_b);
-            const gapPct = Math.round(Math.abs(a.prob_a - a.prob_b) * 100);
-            const returnClass = gapPct >= 5 ? '' : 'small';
+            const gapRaw = Math.abs(a.prob_a - a.prob_b) * 100;
+            // 1 decimal preserves the actual precision so the tag never
+            // contradicts the 2-decimal leg prices (e.g. tag 8pp vs prices
+            // that look like 7pp because of independent rounding).
+            const gapPct = (Math.round(gapRaw * 10) / 10).toFixed(1);
+            const returnClass = gapRaw >= 5 ? '' : 'small';
             const title = a.question_a || a.label || '(unnamed)';
 
             return `
