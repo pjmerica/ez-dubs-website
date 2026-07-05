@@ -40,6 +40,12 @@ OUTPUT_PATH   = DASHBOARD_DIR / "arbs.json"
 MIN_RETURN_PCT = 1.0
 MAX_RETURN_PCT = 25.0
 
+# Minimum tradeable size (contracts fillable within 3pp of best ask,
+# per the upstream depth fetch). A "1% guaranteed" arb capped at 10
+# contracts is ~10 cents of profit — real but not worth showing. Rows
+# where depth is unknown on a leg (e.g. PredictIt) are kept.
+MIN_TRADEABLE = 20.0
+
 # Hand-curated list of pairs the upstream scanner matches but where the two
 # contracts have materially different settlement criteria. Keyed by the
 # (url_a, url_b) pair so it survives upstream re-IDs of the underlying markets.
@@ -133,6 +139,14 @@ def _normalize_race(r: dict, source_id: str) -> dict | None:
     gap_pp = abs(prob_a - prob_b) * 100.0
     if (r["url_a"], r["url_b"]) in EXCLUDED_URL_PAIRS:
         return None
+    # Min tradeable size: drop dust arbs when BOTH legs' depth is known
+    # and the binding (smaller) side can't absorb MIN_TRADEABLE contracts
+    # within 3pp of best ask. Unknown depth (None) doesn't disqualify.
+    trade_a = _to_float(r.get("depth_a_max_at_3pp"))
+    trade_b = _to_float(r.get("depth_b_max_at_3pp"))
+    known = [t for t in (trade_a, trade_b) if t is not None]
+    if known and min(known) < MIN_TRADEABLE:
+        return None
     return {
         "source":   source_id,
         "category": r.get("category") or r.get("office") or "",
@@ -156,6 +170,10 @@ def _normalize_race(r: dict, source_id: str) -> dict | None:
         # annualized number is the "sooner they cash" ranking metric.
         "days_to_settle": _to_float(r.get("days_to_settle")),
         "annualized_return_pct": _to_float(r.get("annualized_return_pct")),
+        # Max contracts fillable within 3pp of best ask, per leg (None =
+        # unknown, e.g. PredictIt). The smaller side caps the trade.
+        "tradeable_a": trade_a,
+        "tradeable_b": trade_b,
         "volume_a":   _to_float(r.get("volume_a")),
         "volume_b":   _to_float(r.get("volume_b")),
         "suspicious": bool(r.get("suspicious")),
