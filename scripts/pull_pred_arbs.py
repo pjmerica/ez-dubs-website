@@ -27,18 +27,18 @@ REPO_ROOT     = Path(__file__).resolve().parents[1]
 DASHBOARD_DIR = REPO_ROOT / "dashboards" / "prediction-arbitrage"
 OUTPUT_PATH   = DASHBOARD_DIR / "arbs.json"
 
-# Filter on raw price gap (in percentage points) rather than guaranteed_return_pct.
-# raw_gap_pp = |implied_prob_a - implied_prob_b| * 100 — i.e., how many cents
-# apart the two markets price the same outcome. This is a more honest filter
-# than return %, which blows up when both prices are small (a 5pp gap on 10c
-# vs 13c looks like 72% return because the denominators are tiny, but the real
-# edge is just 5 cents).
+# Filter on guaranteed_return_pct (2026-07-04; was display-gap 3-15pp).
 #
-# Gaps above MAX are almost always upstream data noise (settlement-window
-# mismatches, fuzzy-match false positives). Gaps below MIN aren't worth the
-# fee/execution-risk surface area.
-MIN_GAP_PP = 3.0
-MAX_GAP_PP = 15.0
+# Why the change: both upstream scanners now compute guaranteed_return_pct
+# from REAL fillable ask prices (live orderbooks), not midpoints — the old
+# "return % blows up when both prices are small" failure mode is gone.
+# Meanwhile the display-gap filter was excluding exactly the best arb
+# class: when a book moves without a trade printing, the display gap can
+# be 0.0pp while a genuine 17% Buy-Yes+Buy-No basket exists (e.g. Kalshi
+# last trade 8c, book bidding 30c, Polymarket asking 9c). Returns above
+# MAX are still treated as upstream noise (criteria-mismatch survivors).
+MIN_RETURN_PCT = 1.0
+MAX_RETURN_PCT = 25.0
 
 # Hand-curated list of pairs the upstream scanner matches but where the two
 # contracts have materially different settlement criteria. Keyed by the
@@ -82,13 +82,42 @@ def _parse_arb_js(text: str) -> dict:
     return json.loads(body[eq + 1 :].strip().rstrip(";"))
 
 
+def _display_probs(r: dict) -> tuple[float | None, float | None]:
+    """Display probabilities for the A/B legs, handling both upstream schemas.
+
+    - pred-arbitrage rows: implied_prob_a / implied_prob_b.
+    - polling-agg-2026 rows: general pairs use f"{platform}_dem" keys
+      (e.g. kalshi_dem / pm... no — polymarket_dem), candidate pairs use
+      prob_a / prob_b. The old code only looked for implied_prob_a/b, so
+      EVERY polling-agg row was silently dropped since the source was
+      wired up (its source_meta always showed guaranteed_kept: 0).
+    """
+    def _f(v):
+        try:
+            return float(v) if v is not None and v != "" else None
+        except (TypeError, ValueError):
+            return None
+    pa = _f(r.get("implied_prob_a"))
+    pb = _f(r.get("implied_prob_b"))
+    if pa is None:
+        pa = _f(r.get("prob_a"))
+    if pb is None:
+        pb = _f(r.get("prob_b"))
+    if pa is None and r.get("platform_a"):
+        pa = _f(r.get(f"{r['platform_a']}_dem"))
+    if pb is None and r.get("platform_b"):
+        pb = _f(r.get(f"{r['platform_b']}_dem"))
+    return pa, pb
+
+
 def _normalize_race(r: dict, source_id: str) -> dict | None:
     """Pick the fields the dashboard needs; skip rows missing essentials."""
     if r.get("arb_type") != "guaranteed":
         return None
-    needed = ("platform_a", "platform_b", "implied_prob_a", "implied_prob_b",
-              "url_a", "url_b")
-    if any(r.get(k) in (None, "") for k in needed):
+    if any(r.get(k) in (None, "") for k in ("platform_a", "platform_b", "url_a", "url_b")):
+        return None
+    prob_a, prob_b = _display_probs(r)
+    if prob_a is None or prob_b is None:
         return None
     # Defensive: drop rows whose links aren't real http(s) URLs. Protects
     # against a compromised upstream injecting javascript:/data: URIs that
@@ -97,11 +126,11 @@ def _normalize_race(r: dict, source_id: str) -> dict | None:
         u = str(r[k])
         if not (u.startswith("https://") or u.startswith("http://")):
             return None
-    # Filter on raw price gap (in cents) rather than the return % the upstream
-    # publishes. The return % balloons when both probs are small.
-    gap_pp = abs(float(r["implied_prob_a"]) - float(r["implied_prob_b"])) * 100.0
-    if gap_pp < MIN_GAP_PP or gap_pp > MAX_GAP_PP:
+    # Filter on locked return (real fillable-ask basket math upstream).
+    ret = _to_float(r.get("guaranteed_return_pct"))
+    if ret is None or ret < MIN_RETURN_PCT or ret > MAX_RETURN_PCT:
         return None
+    gap_pp = abs(prob_a - prob_b) * 100.0
     if (r["url_a"], r["url_b"]) in EXCLUDED_URL_PAIRS:
         return None
     return {
@@ -116,13 +145,17 @@ def _normalize_race(r: dict, source_id: str) -> dict | None:
         "url_b":      r["url_b"],
         "market_id_a": r.get("market_id_a", ""),
         "market_id_b": r.get("market_id_b", ""),
-        "prob_a":     float(r["implied_prob_a"]),
-        "prob_b":     float(r["implied_prob_b"]),
+        "prob_a":     prob_a,
+        "prob_b":     prob_b,
         "stake_a":    _to_float(r.get("stake_a_dollars")),
         "stake_b":    _to_float(r.get("stake_b_dollars")),
-        "return_pct": _to_float(r.get("guaranteed_return_pct")),
+        "return_pct": ret,
         "gap_pp":     gap_pp,
         "settle_date": r.get("settle_date", ""),
+        # Present on polling-agg rows (2026-07-03+); None elsewhere. The
+        # annualized number is the "sooner they cash" ranking metric.
+        "days_to_settle": _to_float(r.get("days_to_settle")),
+        "annualized_return_pct": _to_float(r.get("annualized_return_pct")),
         "volume_a":   _to_float(r.get("volume_a")),
         "volume_b":   _to_float(r.get("volume_b")),
         "suspicious": bool(r.get("suspicious")),
@@ -165,9 +198,9 @@ def main() -> int:
         })
         print(f"{src['id']}: kept {len(kept)} guaranteed arbs of {len(races)} races")
 
-    # Sort: non-suspicious first, then by guaranteed return % desc.
-    # Non-suspicious first, then biggest raw gap first.
-    arbs.sort(key=lambda a: (a["suspicious"], -(a["gap_pp"] or 0)))
+    # Sort: non-suspicious first, then by locked return % desc (matches
+    # the upstream dashboards' ranking since 2026-07-04).
+    arbs.sort(key=lambda a: (a["suspicious"], -(a["return_pct"] or 0)))
 
     out = {
         "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),

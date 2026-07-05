@@ -7,7 +7,7 @@ Context for future Claude sessions in this repo. Read `README.md` first for the 
 `ez-dubs-website` — personal site (brand: **EZ Dubs Analytics**) published via GitHub Pages at https://pjmerica.github.io/ez-dubs-website/. Tabs in the shared top nav:
 
 - **Best Ball Price Differences** at `dashboards/best-ball-prices/` (formerly "Best Ball ADP Arbitrage" at `dashboards/adp-arbitrage/`). Source-picker UI lets the user compare any 2 of DK / UD / FFPC / Drafters.
-- **Prediction Market Arbitrage** at `dashboards/prediction-arbitrage/`. Pulls 100%-arb (`arb_type=guaranteed`) rows from two sibling sites — `pred-arbitrage` and `polling-agg-2026` — into a committed `arbs.json` once per day. Polling-agg currently has zero guaranteed arbs but is wired up for when it does.
+- **Prediction Market Arbitrage** at `dashboards/prediction-arbitrage/`. Pulls 100%-arb (`arb_type=guaranteed`) rows from two sibling sites — `pred-arbitrage` and `polling-agg-2026` — into a committed `arbs.json` once per day. Both sources contribute (polling-agg was silently contributing zero until 2026-07-04: the puller required `implied_prob_a/b` fields polling-agg's schema never had — `_display_probs()` in `pull_pred_arbs.py` now handles both schemas). Filter is on `guaranteed_return_pct` (1–25%), not display gap — upstream returns are computed from real fillable asks since 2026-07-03/04, and display-gap filtering excluded book-driven arbs where the last trade is stale (0.0pp gap, real 17% basket).
 - **Blog** — external link to Substack (placeholder `href="#"` with TODO comments in each page; user hasn't supplied the URL yet).
 - **Support on Patreon** button — external link in nav (placeholder `href="#"` with TODO comments).
 
