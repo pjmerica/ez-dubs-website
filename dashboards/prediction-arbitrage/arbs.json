@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-12T20:26:10+00:00",
+  "generated_at": "2026-07-12T22:30:00+00:00",
   "sources": [
     {
       "id": "pred-arbitrage",
@@ -13,9 +13,9 @@
       "id": "polling-agg-2026",
       "name": "Polling Agg 2026 Arb Scanner",
       "ok": true,
-      "updated_at": "2026-07-12T20:23:11.029537+00:00",
-      "total": 301,
-      "guaranteed_kept": 1
+      "updated_at": "2026-07-12T22:26:13.490678+00:00",
+      "total": 297,
+      "guaranteed_kept": 2
     }
   ],
   "arbs": [
@@ -237,7 +237,7 @@
       "days_to_settle": 175.0,
       "annualized_return_pct": 2.7,
       "tradeable_a": 375.0,
-      "tradeable_b": 3703.17,
+      "tradeable_b": 2869.57,
       "volume_a": 3063.0,
       "volume_b": 2379.1486360000004,
       "suspicious": false,
@@ -380,6 +380,34 @@
       "tradeable_b": 923.37,
       "volume_a": 1567.0,
       "volume_b": 65702.08,
+      "suspicious": false,
+      "suspicion_reasons": []
+    },
+    {
+      "source": "polling-agg-2026",
+      "category": "",
+      "label": "2026-SEN-FL-S",
+      "platform_a": "kalshi",
+      "platform_b": "polymarket",
+      "question_a": null,
+      "question_b": null,
+      "url_a": "https://kalshi.com/markets/SENATEFLS",
+      "url_b": "https://polymarket.com/event/florida-senate-election-winner",
+      "market_id_a": "SENATEFLS-26-D",
+      "market_id_b": "109815773012907461372639157658293071578555374097742562684476865021743386609433",
+      "prob_a": 0.18,
+      "prob_b": 0.125,
+      "stake_a": 13.68,
+      "stake_b": 86.32,
+      "return_pct": 1.0,
+      "gap_pp": 5.499999999999999,
+      "settle_date": "2027-01-04",
+      "days_to_settle": 175.0,
+      "annualized_return_pct": 2.1,
+      "tradeable_a": 8932.0,
+      "tradeable_b": 3539.1,
+      "volume_a": 67751.14,
+      "volume_b": 21275.040153000013,
       "suspicious": false,
       "suspicion_reasons": []
     },
