@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-12T04:58:50+00:00",
+  "generated_at": "2026-07-12T07:48:40+00:00",
   "sources": [
     {
       "id": "pred-arbitrage",
@@ -13,9 +13,9 @@
       "id": "polling-agg-2026",
       "name": "Polling Agg 2026 Arb Scanner",
       "ok": true,
-      "updated_at": "2026-07-12T04:57:09.149257+00:00",
-      "total": 294,
-      "guaranteed_kept": 1
+      "updated_at": "2026-07-12T07:42:02.709546+00:00",
+      "total": 295,
+      "guaranteed_kept": 0
     }
   ],
   "arbs": [
@@ -436,34 +436,6 @@
       "tradeable_b": 5082.93,
       "volume_a": 168608.62,
       "volume_b": 1264602.81,
-      "suspicious": false,
-      "suspicion_reasons": []
-    },
-    {
-      "source": "polling-agg-2026",
-      "category": "",
-      "label": "2026-H-NV-03",
-      "platform_a": "kalshi",
-      "platform_b": "polymarket",
-      "question_a": null,
-      "question_b": null,
-      "url_a": "https://kalshi.com/markets/HOUSENV3",
-      "url_b": "https://polymarket.com/event/nv-03-house-election-winner",
-      "market_id_a": "HOUSENV3-26-D",
-      "market_id_b": "94909040987536769270715360325201420589044604443243218743462043270034738802453",
-      "prob_a": 0.87,
-      "prob_b": 0.815,
-      "stake_a": 86.17,
-      "stake_b": 13.83,
-      "return_pct": 2.0,
-      "gap_pp": 5.500000000000005,
-      "settle_date": "2027-01-04",
-      "days_to_settle": 176.0,
-      "annualized_return_pct": 4.1,
-      "tradeable_a": 840.0,
-      "tradeable_b": 2176.21,
-      "volume_a": 4884.52,
-      "volume_b": 996.069854,
       "suspicious": false,
       "suspicion_reasons": []
     },
