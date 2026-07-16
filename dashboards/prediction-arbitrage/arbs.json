@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-16T11:21:16+00:00",
+  "generated_at": "2026-07-16T13:05:44+00:00",
   "sources": [
     {
       "id": "pred-arbitrage",
@@ -13,9 +13,9 @@
       "id": "polling-agg-2026",
       "name": "Polling Agg 2026 Arb Scanner",
       "ok": true,
-      "updated_at": "2026-07-16T11:19:37.686969+00:00",
+      "updated_at": "2026-07-16T13:03:46.952066+00:00",
       "total": 301,
-      "guaranteed_kept": 1
+      "guaranteed_kept": 2
     }
   ],
   "arbs": [
@@ -412,6 +412,34 @@
       "suspicion_reasons": []
     },
     {
+      "source": "polling-agg-2026",
+      "category": "",
+      "label": "2026-SEN-IA",
+      "platform_a": "kalshi",
+      "platform_b": "polymarket",
+      "question_a": null,
+      "question_b": null,
+      "url_a": "https://kalshi.com/markets/SENATEIA",
+      "url_b": "https://polymarket.com/event/iowa-senate-election-winner",
+      "market_id_a": "SENATEIA-26-D",
+      "market_id_b": "90689690530039118737607894922148077480097700217322320781526913496162509181445",
+      "prob_a": 0.36,
+      "prob_b": 0.44,
+      "stake_a": 60.64,
+      "stake_b": 39.36,
+      "return_pct": 2.0,
+      "gap_pp": 8.000000000000002,
+      "settle_date": "2027-01-04",
+      "days_to_settle": 172.0,
+      "annualized_return_pct": 4.2,
+      "tradeable_a": 1176.0,
+      "tradeable_b": 4113.53,
+      "volume_a": 161508.57,
+      "volume_b": 72056.4441100002,
+      "suspicious": false,
+      "suspicion_reasons": []
+    },
+    {
       "source": "pred-arbitrage",
       "category": "Crypto",
       "label": "",
@@ -517,7 +545,7 @@
       "days_to_settle": 172.0,
       "annualized_return_pct": 2.1,
       "tradeable_a": 750.0,
-      "tradeable_b": 1400.18,
+      "tradeable_b": 1581.7,
       "volume_a": 6792.51,
       "volume_b": 9581.886666000002,
       "suspicious": false,
