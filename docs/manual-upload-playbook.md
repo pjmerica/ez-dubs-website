@@ -19,7 +19,17 @@ When the user gets that email, they pull rankings exports directly from DK / UD 
 
 ---
 
-## Procedure
+## Two ways to run it
+
+**Option A — user runs the notebook themselves:** `scripts/manual_update.ipynb`. Open in Jupyter or VS Code, edit the CONFIG cell (date + 3 filenames), Run All. The notebook does every step below and commits/pushes at the end.
+
+**Option B — Claude runs it via the CLI procedure below.** This is what happens when the user says "manual files are dropped, update the website" without opening the notebook themselves.
+
+Both paths do the same thing; the notebook just packages it up so the user doesn't need Claude. Keep both in sync — if you change the procedure below, update the notebook cells too.
+
+---
+
+## Procedure (CLI, for Claude)
 
 ### 1. Find the dropped files
 
