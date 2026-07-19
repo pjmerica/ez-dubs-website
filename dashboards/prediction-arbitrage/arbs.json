@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-19T18:37:06+00:00",
+  "generated_at": "2026-07-19T20:27:41+00:00",
   "sources": [
     {
       "id": "pred-arbitrage",
@@ -13,9 +13,9 @@
       "id": "polling-agg-2026",
       "name": "Polling Agg 2026 Arb Scanner",
       "ok": true,
-      "updated_at": "2026-07-19T18:30:14.294593+00:00",
-      "total": 296,
-      "guaranteed_kept": 4
+      "updated_at": "2026-07-19T20:25:09.103613+00:00",
+      "total": 297,
+      "guaranteed_kept": 3
     }
   ],
   "arbs": [
@@ -498,34 +498,6 @@
     {
       "source": "polling-agg-2026",
       "category": "",
-      "label": "2026-H-TX-15",
-      "platform_a": "kalshi",
-      "platform_b": "polymarket",
-      "question_a": null,
-      "question_b": null,
-      "url_a": "https://kalshi.com/markets/HOUSETX15",
-      "url_b": "https://polymarket.com/event/tx-15-house-election-winner",
-      "market_id_a": "HOUSETX15-26-D",
-      "market_id_b": "6584875983046678011286869107197719818123093254495444235544680527373303971994",
-      "prob_a": 0.44,
-      "prob_b": 0.52,
-      "stake_a": 53.19,
-      "stake_b": 46.81,
-      "return_pct": 2.0,
-      "gap_pp": 8.000000000000002,
-      "settle_date": "2027-01-04",
-      "days_to_settle": 168.0,
-      "annualized_return_pct": 4.3,
-      "tradeable_a": 100755.0,
-      "tradeable_b": 662.16,
-      "volume_a": 20137.66,
-      "volume_b": 1787.1286280000004,
-      "suspicious": false,
-      "suspicion_reasons": []
-    },
-    {
-      "source": "polling-agg-2026",
-      "category": "",
       "label": "2026-H-WI-01",
       "platform_a": "kalshi",
       "platform_b": "polymarket",
@@ -545,7 +517,7 @@
       "days_to_settle": 168.0,
       "annualized_return_pct": 4.3,
       "tradeable_a": 750.0,
-      "tradeable_b": 797.13,
+      "tradeable_b": 2308.22,
       "volume_a": 4961.1,
       "volume_b": 1639.153632,
       "suspicious": false,
@@ -685,9 +657,9 @@
       "days_to_settle": 168.0,
       "annualized_return_pct": 2.2,
       "tradeable_a": 750.0,
-      "tradeable_b": 2914.78,
+      "tradeable_b": 2209.83,
       "volume_a": 9125.21,
-      "volume_b": 6400.256265,
+      "volume_b": 6418.519597,
       "suspicious": false,
       "suspicion_reasons": []
     },
@@ -713,7 +685,7 @@
       "days_to_settle": 168.0,
       "annualized_return_pct": 2.2,
       "tradeable_a": 750.0,
-      "tradeable_b": 633.03,
+      "tradeable_b": 747.23,
       "volume_a": 6262.76,
       "volume_b": 863.454735,
       "suspicious": false,
