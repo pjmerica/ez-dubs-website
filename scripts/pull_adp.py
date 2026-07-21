@@ -100,6 +100,21 @@ def _date_already_in_history(path: Path, date: str, source: str) -> bool:
     return False
 
 
+import re as _re
+
+# Strips punctuation and common name suffixes so cross-source rows collapse
+# ('Marvin Harrison Jr.' == 'Marvin Harrison' == 'marvin harrison jr'). Matches
+# the JS normalizeName() in dashboards/best-ball-prices/index.html; keep them in sync.
+_SUFFIX_RE = _re.compile(r"\s+(jr|sr|i{1,3}|iv|v|1st|2nd|3rd|4th|5th)\.?$", _re.IGNORECASE)
+
+def normalize_player_name(name: str) -> str:
+    n = (name or "").lower().replace(".", "").replace("'", "")
+    # Two passes so 'John Smith III Jr' (rare) still collapses fully.
+    n = _SUFFIX_RE.sub("", n)
+    n = _SUFFIX_RE.sub("", n)
+    return _re.sub(r"\s+", " ", n).strip()
+
+
 def _build_latest_snapshot(sheet_rows: list[list[str]], today: str) -> dict:
     """Merge today's ADPs across all sources into one player-keyed snapshot.
 
@@ -109,6 +124,10 @@ def _build_latest_snapshot(sheet_rows: list[list[str]], today: str) -> dict:
     Sentinel-floored ADPs (e.g. DK 240, UD 216) are omitted from the adps map.
     Players are sorted by min ADP across their available sources so the table
     view is roughly draft order out of the gate.
+
+    Merge is keyed by normalize_player_name so suffix inconsistencies across
+    sources ('Marvin Harrison Jr.' vs 'Marvin Harrison') collapse to one player.
+    The longest name variant seen wins as the display name.
     """
     cols = _index_columns(sheet_rows[0])
     source_cols = {
@@ -117,19 +136,25 @@ def _build_latest_snapshot(sheet_rows: list[list[str]], today: str) -> dict:
         "FFPC":     "FFPC ADP",
         "Drafters": "Drafters ADP",
     }
-    by_name: dict[str, dict] = {}
+    by_key: dict[str, dict] = {}
     for row in sheet_rows[1:]:
         if not row or len(row) <= cols["Name"]:
             continue
         name = row[cols["Name"]].strip()
         if not name:
             continue
-        entry = by_name.setdefault(name, {
+        key = normalize_player_name(name)
+        if not key:
+            continue
+        entry = by_key.setdefault(key, {
             "name": name,
             "pos":  row[cols["Pos"]].strip() if len(row) > cols["Pos"] else "",
             "team": row[cols["Team"]].strip() if len(row) > cols["Team"] else "",
             "adps": {},
         })
+        # Prefer the longest display name seen (usually the one with 'Jr.'/'III').
+        if len(name) > len(entry["name"]):
+            entry["name"] = name
         for src_id, col_name in source_cols.items():
             ci = cols.get(col_name)
             if ci is None or len(row) <= ci:
@@ -146,7 +171,7 @@ def _build_latest_snapshot(sheet_rows: list[list[str]], today: str) -> dict:
             entry["adps"][src_id] = val
 
     # Drop players with zero usable ADPs (all sources were missing or sentinels).
-    players = [p for p in by_name.values() if p["adps"]]
+    players = [p for p in by_key.values() if p["adps"]]
     # Stable sort by min ADP across present sources.
     players.sort(key=lambda p: min(p["adps"].values()))
 
