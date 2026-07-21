@@ -25,13 +25,22 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
-# Suffix-aware name normalization -- keep in sync with pull_adp.py and the JS.
+# Suffix-aware name normalization + first-name alias -- keep in sync with
+# pull_adp.py, the notebook, and the JS.
 _SUFFIX_RE = re.compile(r"\s+(jr|sr|i{1,3}|iv|v|1st|2nd|3rd|4th|5th)\.?$", re.IGNORECASE)
+_FIRST_NAME_ALIASES = {
+    "kenneth": "kenny",  # Kenny/Kenneth Gainwell
+}
 def normalize_player_name(name: str) -> str:
     n = (name or "").lower().replace(".", "").replace("'", "")
     n = _SUFFIX_RE.sub("", n)
     n = _SUFFIX_RE.sub("", n)
-    return re.sub(r"\s+", " ", n).strip()
+    n = re.sub(r"\s+", " ", n).strip()
+    if " " in n:
+        first, rest = n.split(" ", 1)
+        first = _FIRST_NAME_ALIASES.get(first, first)
+        n = f"{first} {rest}"
+    return n
 
 REPO_ROOT     = Path(__file__).resolve().parents[1]
 DASHBOARD_DIR = REPO_ROOT / "dashboards" / "best-ball-prices"
@@ -189,7 +198,18 @@ def _rebuild_latest(today: str) -> dict:
                 if k:
                     ffpc_carryover[k] = (float(v), p["name"])
 
-    # Merge across sources keyed by normalized name. Longest display name wins.
+    # Merge across sources keyed by normalized name. Display name is picked
+    # to prefer alias TARGETS ('Kenny' over 'Kenneth'), then longest variant.
+    _ALIAS_TARGETS = set(_FIRST_NAME_ALIASES.values())
+    _ALIAS_SOURCES = set(_FIRST_NAME_ALIASES.keys())
+    def _pick_display(current, incoming):
+        def _first(s):
+            return s.strip().split(" ", 1)[0].lower().rstrip(".").replace("'", "")
+        cur_first, inc_first = _first(current), _first(incoming)
+        if inc_first in _ALIAS_TARGETS and cur_first in _ALIAS_SOURCES: return incoming
+        if cur_first in _ALIAS_TARGETS and inc_first in _ALIAS_SOURCES: return current
+        return incoming if len(incoming) > len(current) else current
+
     by_key: dict[str, dict] = {}
     for src in ("DK", "UD", "Drafters"):
         for key, row in by_src_today[src].items():
@@ -199,8 +219,7 @@ def _rebuild_latest(today: str) -> dict:
                 "team": row["team"],
                 "adps": {},
             })
-            if len(row["name"]) > len(entry["name"]):
-                entry["name"] = row["name"]
+            entry["name"] = _pick_display(entry["name"], row["name"])
             try:
                 val = float(row["adp"])
             except ValueError:
@@ -222,8 +241,7 @@ def _rebuild_latest(today: str) -> dict:
             continue
         if key in by_name:
             by_name[key]["adps"]["FFPC"] = ffpc_adp
-            if len(ffpc_name) > len(by_name[key]["name"]):
-                by_name[key]["name"] = ffpc_name
+            by_name[key]["name"] = _pick_display(by_name[key]["name"], ffpc_name)
         else:
             # Player exists only in carryover. Pull pos/team from old snapshot.
             # Cheap second pass — old snapshot already in memory above.

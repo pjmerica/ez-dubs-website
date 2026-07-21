@@ -107,12 +107,27 @@ import re as _re
 # the JS normalizeName() in dashboards/best-ball-prices/index.html; keep them in sync.
 _SUFFIX_RE = _re.compile(r"\s+(jr|sr|i{1,3}|iv|v|1st|2nd|3rd|4th|5th)\.?$", _re.IGNORECASE)
 
+# Hand-curated first-name aliases: sources disagree on formal vs nickname.
+# Left side is what one source writes, right side is what we normalize to.
+# Add new entries here as mismatches are spotted; the list is small on purpose
+# to avoid accidentally merging distinct players. Expect to refresh yearly as
+# the player pool turns over.
+_FIRST_NAME_ALIASES = {
+    "kenneth": "kenny",   # Kenny Gainwell (UD/Drafters) vs Kenneth Gainwell (DK/FFPC)
+}
+
 def normalize_player_name(name: str) -> str:
     n = (name or "").lower().replace(".", "").replace("'", "")
     # Two passes so 'John Smith III Jr' (rare) still collapses fully.
     n = _SUFFIX_RE.sub("", n)
     n = _SUFFIX_RE.sub("", n)
-    return _re.sub(r"\s+", " ", n).strip()
+    n = _re.sub(r"\s+", " ", n).strip()
+    # Alias only the first token (the first name).
+    if " " in n:
+        first, rest = n.split(" ", 1)
+        first = _FIRST_NAME_ALIASES.get(first, first)
+        n = f"{first} {rest}"
+    return n
 
 
 def _build_latest_snapshot(sheet_rows: list[list[str]], today: str) -> dict:
@@ -136,6 +151,30 @@ def _build_latest_snapshot(sheet_rows: list[list[str]], today: str) -> dict:
         "FFPC":     "FFPC ADP",
         "Drafters": "Drafters ADP",
     }
+    _ALIAS_TARGETS = set(_FIRST_NAME_ALIASES.values())
+    _ALIAS_SOURCES = set(_FIRST_NAME_ALIASES.keys())
+
+    def _pick_display(current: str, incoming: str) -> str:
+        """Choose the better display name between two variants.
+
+        Rules, in priority order:
+          1. Prefer any variant whose first name is the alias TARGET
+             (e.g. 'Kenny' beats 'Kenneth' when 'kenneth' -> 'kenny').
+          2. Otherwise, prefer the longer variant (captures 'Jr.'/'III').
+        """
+        def _first(s: str) -> str:
+            return s.strip().split(" ", 1)[0].lower().rstrip(".").replace("'", "")
+        cur_first, inc_first = _first(current), _first(incoming)
+        cur_is_target = cur_first in _ALIAS_TARGETS
+        inc_is_target = inc_first in _ALIAS_TARGETS
+        cur_is_source = cur_first in _ALIAS_SOURCES
+        inc_is_source = inc_first in _ALIAS_SOURCES
+        if inc_is_target and cur_is_source:
+            return incoming
+        if cur_is_target and inc_is_source:
+            return current
+        return incoming if len(incoming) > len(current) else current
+
     by_key: dict[str, dict] = {}
     for row in sheet_rows[1:]:
         if not row or len(row) <= cols["Name"]:
@@ -152,9 +191,7 @@ def _build_latest_snapshot(sheet_rows: list[list[str]], today: str) -> dict:
             "team": row[cols["Team"]].strip() if len(row) > cols["Team"] else "",
             "adps": {},
         })
-        # Prefer the longest display name seen (usually the one with 'Jr.'/'III').
-        if len(name) > len(entry["name"]):
-            entry["name"] = name
+        entry["name"] = _pick_display(entry["name"], name)
         for src_id, col_name in source_cols.items():
             ci = cols.get(col_name)
             if ci is None or len(row) <= ci:
