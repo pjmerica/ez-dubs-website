@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-22T11:29:14+00:00",
+  "generated_at": "2026-07-22T13:09:03+00:00",
   "sources": [
     {
       "id": "pred-arbitrage",
@@ -13,9 +13,9 @@
       "id": "polling-agg-2026",
       "name": "Polling Agg 2026 Arb Scanner",
       "ok": true,
-      "updated_at": "2026-07-22T11:27:14.096316+00:00",
+      "updated_at": "2026-07-22T13:05:51.241147+00:00",
       "total": 299,
-      "guaranteed_kept": 4
+      "guaranteed_kept": 3
     }
   ],
   "arbs": [
@@ -489,7 +489,7 @@
       "days_to_settle": 166.0,
       "annualized_return_pct": 4.4,
       "tradeable_a": 750.0,
-      "tradeable_b": 2624.86,
+      "tradeable_b": 2536.09,
       "volume_a": 9499.1,
       "volume_b": 6758.876292000002,
       "suspicious": false,
@@ -517,7 +517,7 @@
       "days_to_settle": 166.0,
       "annualized_return_pct": 4.4,
       "tradeable_a": 850.0,
-      "tradeable_b": 1531.53,
+      "tradeable_b": 2140.36,
       "volume_a": 6262.76,
       "volume_b": 884.454735,
       "suspicious": false,
@@ -582,34 +582,6 @@
     {
       "source": "polling-agg-2026",
       "category": "",
-      "label": "2026-H-NV-03",
-      "platform_a": "kalshi",
-      "platform_b": "polymarket",
-      "question_a": null,
-      "question_b": null,
-      "url_a": "https://kalshi.com/markets/HOUSENV3",
-      "url_b": "https://polymarket.com/event/nv-03-house-election-winner",
-      "market_id_a": "HOUSENV3-26-D",
-      "market_id_b": "94909040987536769270715360325201420589044604443243218743462043270034738802453",
-      "prob_a": 0.87,
-      "prob_b": 0.805,
-      "stake_a": 86.32,
-      "stake_b": 13.68,
-      "return_pct": 1.0,
-      "gap_pp": 6.499999999999995,
-      "settle_date": "2027-01-04",
-      "days_to_settle": 166.0,
-      "annualized_return_pct": 2.2,
-      "tradeable_a": 750.0,
-      "tradeable_b": 6242.62,
-      "volume_a": 4904.52,
-      "volume_b": 1306.045218000001,
-      "suspicious": false,
-      "suspicion_reasons": []
-    },
-    {
-      "source": "polling-agg-2026",
-      "category": "",
       "label": "2026-H-NC-11",
       "platform_a": "kalshi",
       "platform_b": "polymarket",
@@ -629,9 +601,9 @@
       "days_to_settle": 166.0,
       "annualized_return_pct": 2.2,
       "tradeable_a": 750.0,
-      "tradeable_b": 532.66,
+      "tradeable_b": 1393.74,
       "volume_a": 11031.94,
-      "volume_b": 4180.711446999999,
+      "volume_b": 4189.481446999999,
       "suspicious": false,
       "suspicion_reasons": []
     },
