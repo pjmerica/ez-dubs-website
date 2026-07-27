@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-27T19:01:05+00:00",
+  "generated_at": "2026-07-27T20:52:45+00:00",
   "sources": [
     {
       "id": "pred-arbitrage",
@@ -13,9 +13,9 @@
       "id": "polling-agg-2026",
       "name": "Polling Agg 2026 Arb Scanner",
       "ok": true,
-      "updated_at": "2026-07-27T18:58:09.083846+00:00",
+      "updated_at": "2026-07-27T20:51:48.138465+00:00",
       "total": 279,
-      "guaranteed_kept": 2
+      "guaranteed_kept": 1
     }
   ],
   "arbs": [
@@ -526,34 +526,6 @@
     {
       "source": "polling-agg-2026",
       "category": "",
-      "label": "2026-SEN-SC",
-      "platform_a": "kalshi",
-      "platform_b": "polymarket",
-      "question_a": null,
-      "question_b": null,
-      "url_a": "https://kalshi.com/markets/SENATESC",
-      "url_b": "https://polymarket.com/event/south-carolina-senate-election-winner",
-      "market_id_a": "SENATESC-26-D",
-      "market_id_b": "30718966535311015751929217398361750334834655110246828806892843311659716192347",
-      "prob_a": 0.13,
-      "prob_b": 0.075,
-      "stake_a": 8.42,
-      "stake_b": 91.58,
-      "return_pct": 1.0,
-      "gap_pp": 5.500000000000001,
-      "settle_date": "2027-01-04",
-      "days_to_settle": 160.0,
-      "annualized_return_pct": 2.3,
-      "tradeable_a": 26484.17,
-      "tradeable_b": 7627.49,
-      "volume_a": 328941.87,
-      "volume_b": 66264.969422,
-      "suspicious": false,
-      "suspicion_reasons": []
-    },
-    {
-      "source": "polling-agg-2026",
-      "category": "",
       "label": "2026-H-NC-11",
       "platform_a": "kalshi",
       "platform_b": "polymarket",
@@ -573,7 +545,7 @@
       "days_to_settle": 160.0,
       "annualized_return_pct": 2.3,
       "tradeable_a": 750.4,
-      "tradeable_b": 3842.0,
+      "tradeable_b": 2855.0,
       "volume_a": 11088.54,
       "volume_b": 5029.851447,
       "suspicious": false,
