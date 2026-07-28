@@ -176,6 +176,10 @@
         .subtitle { text-align: center; color: #99aabb; margin-bottom: 12px; font-size: 0.9rem; }
         .updated { text-align: center; color: #556; font-size: 0.8rem; margin-bottom: 16px; }
         .updated span { color: #4a9eff; }
+        .stale-note {
+            text-align: center; font-size: 0.78rem; color: #b3873f;
+            margin: -8px auto 16px; max-width: 640px; line-height: 1.4;
+        }
         .inline-spinner {
             display: inline-block; width: 11px; height: 11px;
             border: 2px solid currentColor; border-top-color: transparent;
@@ -600,6 +604,7 @@
     <h1>Best Ball Price Differences</h1>
     <p class="subtitle">DraftKings · Underdog · FFPC · Drafters | 2026 Season</p>
     <p class="updated">Last updated: <span id="last-updated">loading<span class="inline-spinner"></span></span></p>
+    <p class="stale-note" id="stale-note" style="display:none;"></p>
 
     <div class="tabs">
         <button class="tab-btn active" data-tab="arbitrage">Table view</button>
@@ -870,6 +875,16 @@
         let sortCol = 'avgAdp', sortAsc = true;
         let posFilter = 'ALL', recPosFilter = 'ALL';
         let srcA = 'DK', srcB = 'UD';
+        // Sources whose values in latest.json were carried forward from a prior
+        // snapshot because the upstream sheet reported them as unchanged. The
+        // puller populates snapshot.stale_sources; UI renders a ⚠ next to
+        // these source names so users know the numbers aren't fresh.
+        const staleSources = new Set();
+        const STALE_WARN = ' ⚠';
+        const STALE_TOOLTIP = 'Upstream feed is frozen for this source. Values shown are the last-known-good, not today’s.';
+        function srcLabelWithWarn(id, label) {
+            return staleSources.has(id) ? `${label}${STALE_WARN}` : label;
+        }
 
         async function loadData() {
             // Fast path: a small pre-aggregated snapshot. ~30 KB gzipped vs
@@ -881,6 +896,21 @@
             } catch (e) { /* fall through to CSV path */ }
 
             const availableSources = new Set();
+            if (snapshot && Array.isArray(snapshot.stale_sources)) {
+                staleSources.clear();
+                for (const s of snapshot.stale_sources) staleSources.add(s);
+            }
+            // If any source is stale, surface the reason once at the top of the
+            // page. Individual dropdowns/headers get a ⚠ next to the source name.
+            const noteEl = document.getElementById('stale-note');
+            if (noteEl && staleSources.size) {
+                const names = [...staleSources].map(id => {
+                    const s = SOURCES.find(x => x.id === id);
+                    return s ? s.label : id;
+                }).join(' and ');
+                noteEl.textContent = `⚠ ${names} upstream is frozen. Values shown for ${names} are the last-known-good, not today’s.`;
+                noteEl.style.display = 'block';
+            }
             if (snapshot && Array.isArray(snapshot.players)) {
                 for (const p of snapshot.players) {
                     // Normalize: every source key present, missing ones set null.
@@ -924,7 +954,8 @@
             const selB = document.getElementById('srcB');
             const optHTML = SOURCES.map(s => {
                 const has = availableSources.has(s.id);
-                return `<option value="${s.id}"${has ? '' : ' disabled'}>${s.label}${has ? '' : ' (no data)'}</option>`;
+                const label = srcLabelWithWarn(s.id, s.label);
+                return `<option value="${s.id}"${has ? '' : ' disabled'}>${label}${has ? '' : ' (no data)'}</option>`;
             }).join('');
             selA.innerHTML = optHTML;
             selB.innerHTML = optHTML;
@@ -942,7 +973,7 @@
             refresh();
         }
 
-        function srcLabel(id) { const s = SOURCES.find(x => x.id === id); return s ? s.label : id; }
+        function srcLabel(id) { const s = SOURCES.find(x => x.id === id); return srcLabelWithWarn(id, s ? s.label : id); }
 
         // Recompute aAdp/bAdp/diff/pctDiff/avgAdp for the current source pair.
         function withPair(p) {
@@ -1078,7 +1109,7 @@
         function initVizSourcePicker() {
             const selA = document.getElementById('vizSrcA');
             const selB = document.getElementById('vizSrcB');
-            const optHTML = SOURCES.map(s => `<option value="${s.id}">${s.label}</option>`).join('');
+            const optHTML = SOURCES.map(s => `<option value="${s.id}">${srcLabelWithWarn(s.id, s.label)}</option>`).join('');
             selA.innerHTML = optHTML;
             selB.innerHTML = optHTML;
             selA.value = srcA;

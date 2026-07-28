@@ -249,9 +249,12 @@ def _build_latest_snapshot(
     players.sort(key=lambda p: min(p["adps"].values()))
 
     return {
-        "pulled_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-        "date":      today,
-        "players":   players,
+        "pulled_at":     datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "date":          today,
+        "players":       players,
+        # Sources whose values were carried forward from the prior snapshot
+        # (upstream is stale). Dashboard renders a warning next to these.
+        "stale_sources": sorted(carry_forward_sources),
     }
 
 
@@ -395,11 +398,14 @@ def main() -> int:
     )
     print(f"Wrote {LAST_PULL_META.name}.")
 
-    # Detect upstream-feed freeze per source. When SOME sources are stale, we
-    # still write latest.json using fresh sheet values for the good sources
-    # and last-known-good values (from the current latest.json) for the stale
-    # ones. The exit code still signals so GitHub Actions emails on any stale.
+    # Detect upstream-feed freeze per source. Individual stale sources are
+    # normal (FFPC and Drafters have been stuck for weeks); latest.json just
+    # carries them forward from the prior snapshot. We only fail the workflow
+    # (which triggers the GitHub Actions email) when ALL 4 sources are stale,
+    # i.e., the sheet is fully dead.
     warnings, stale_sources = _check_staleness(rows, today)
+    ALL_SOURCES = {"DK", "UD", "FFPC", "Drafters"}
+    total_freeze = stale_sources >= ALL_SOURCES
 
     snapshot = _build_latest_snapshot(rows, today, carry_forward_sources=stale_sources)
     LATEST_SNAPSHOT.write_text(
@@ -409,16 +415,26 @@ def main() -> int:
     print(f"Wrote {LATEST_SNAPSHOT.name} ({len(snapshot['players'])} players).")
 
     if warnings:
+        # Always log warnings so the workflow log shows what's stale, but only
+        # exit non-zero (and thus email) when everything is stale.
         print("STALE DATA DETECTED:", file=sys.stderr)
         for w in warnings:
             print(f"  - {w}", file=sys.stderr)
+        if total_freeze:
+            print(
+                f"All 4 sources are stale; sheet appears fully frozen. "
+                f"latest.json carried forward from the prior snapshot. "
+                f"Exit 1 so the failure email fires.",
+                file=sys.stderr,
+            )
+            return 1
         print(
-            f"latest.json was written using fresh sheet values for the good sources "
-            f"and last-known-good values from the prior snapshot for: "
-            f"{sorted(stale_sources)}. Exit 1 so the failure email fires.",
+            f"Partial staleness only ({sorted(stale_sources)}). latest.json "
+            f"wrote fresh values for the good sources and carried forward the "
+            f"stale ones. Not treating as a failure.",
             file=sys.stderr,
         )
-        return 1
+        return 0
 
     return 0
 

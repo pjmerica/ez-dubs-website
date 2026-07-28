@@ -251,9 +251,12 @@ def _rebuild_latest(today: str) -> dict:
     players.sort(key=lambda p: min(p["adps"].values()))
 
     return {
-        "pulled_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-        "date":      today,
-        "players":   players,
+        "pulled_at":     datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "date":          today,
+        "players":       players,
+        # The manual playbook only refreshes DK/UD/Drafters; FFPC is always
+        # carried forward from the prior snapshot, so mark it stale.
+        "stale_sources": ["FFPC"],
     }
 
 
