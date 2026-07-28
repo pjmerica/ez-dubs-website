@@ -880,8 +880,13 @@
         // puller populates snapshot.stale_sources; UI renders a ⚠ next to
         // these source names so users know the numbers aren't fresh.
         const staleSources = new Set();
+        // Per-source date of the last real update. From snapshot.stale_since.
+        const staleSinceBySource = {};
         const STALE_WARN = ' ⚠';
-        const STALE_TOOLTIP = 'Upstream feed is frozen for this source. Values shown are the last-known-good, not today’s.';
+        function staleTooltip(id) {
+            const since = staleSinceBySource[id];
+            return since ? `Stale since ${since}.` : 'Stale.';
+        }
         function srcLabelWithWarn(id, label) {
             return staleSources.has(id) ? `${label}${STALE_WARN}` : label;
         }
@@ -900,15 +905,26 @@
                 staleSources.clear();
                 for (const s of snapshot.stale_sources) staleSources.add(s);
             }
+            if (snapshot && snapshot.stale_since && typeof snapshot.stale_since === 'object') {
+                for (const k of Object.keys(staleSinceBySource)) delete staleSinceBySource[k];
+                for (const [k, v] of Object.entries(snapshot.stale_since)) {
+                    staleSinceBySource[k] = v;
+                }
+            }
             // If any source is stale, surface the reason once at the top of the
             // page. Individual dropdowns/headers get a ⚠ next to the source name.
             const noteEl = document.getElementById('stale-note');
             if (noteEl && staleSources.size) {
-                const names = [...staleSources].map(id => {
+                const parts = [...staleSources].map(id => {
                     const s = SOURCES.find(x => x.id === id);
-                    return s ? s.label : id;
-                }).join(' and ');
-                noteEl.textContent = `⚠ ${names} upstream is frozen. Values shown for ${names} are the last-known-good, not today’s.`;
+                    const name = s ? s.label : id;
+                    const since = staleSinceBySource[id];
+                    return since ? `${name} (stale since ${since})` : name;
+                });
+                const joined = parts.length === 1
+                    ? parts[0]
+                    : parts.slice(0, -1).join(', ') + ' and ' + parts[parts.length - 1];
+                noteEl.textContent = `⚠ Upstream is frozen for ${joined}. Values shown are last-known-good, not today’s.`;
                 noteEl.style.display = 'block';
             }
             if (snapshot && Array.isArray(snapshot.players)) {
@@ -955,7 +971,8 @@
             const optHTML = SOURCES.map(s => {
                 const has = availableSources.has(s.id);
                 const label = srcLabelWithWarn(s.id, s.label);
-                return `<option value="${s.id}"${has ? '' : ' disabled'}>${label}${has ? '' : ' (no data)'}</option>`;
+                const tip = staleSources.has(s.id) ? ` title="${staleTooltip(s.id)}"` : '';
+                return `<option value="${s.id}"${has ? '' : ' disabled'}${tip}>${label}${has ? '' : ' (no data)'}</option>`;
             }).join('');
             selA.innerHTML = optHTML;
             selB.innerHTML = optHTML;
@@ -991,6 +1008,9 @@
             // Update column headers and labels driven by current source pair.
             document.querySelector('#th-a .th-label').textContent = `${srcLabel(srcA)} ADP`;
             document.querySelector('#th-b .th-label').textContent = `${srcLabel(srcB)} ADP`;
+            // Hover tooltip on the header cell itself when the source is stale.
+            document.getElementById('th-a').title = staleSources.has(srcA) ? staleTooltip(srcA) : '';
+            document.getElementById('th-b').title = staleSources.has(srcB) ? staleTooltip(srcB) : '';
             // Drive A/B colors from the active source pair (CSS custom props).
             // Set on <body> so they cascade into both Numerical Representation
             // and Market to Market Visualizer tabs.
@@ -1109,7 +1129,10 @@
         function initVizSourcePicker() {
             const selA = document.getElementById('vizSrcA');
             const selB = document.getElementById('vizSrcB');
-            const optHTML = SOURCES.map(s => `<option value="${s.id}">${srcLabelWithWarn(s.id, s.label)}</option>`).join('');
+            const optHTML = SOURCES.map(s => {
+                const tip = staleSources.has(s.id) ? ` title="${staleTooltip(s.id)}"` : '';
+                return `<option value="${s.id}"${tip}>${srcLabelWithWarn(s.id, s.label)}</option>`;
+            }).join('');
             selA.innerHTML = optHTML;
             selB.innerHTML = optHTML;
             selA.value = srcA;

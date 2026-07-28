@@ -134,6 +134,7 @@ def _build_latest_snapshot(
     sheet_rows: list[list[str]],
     today: str,
     carry_forward_sources: set[str] | None = None,
+    stale_since: dict[str, str] | None = None,
 ) -> dict:
     """Merge today's ADPs across all sources into one player-keyed snapshot.
 
@@ -255,6 +256,9 @@ def _build_latest_snapshot(
         # Sources whose values were carried forward from the prior snapshot
         # (upstream is stale). Dashboard renders a warning next to these.
         "stale_sources": sorted(carry_forward_sources),
+        # Per-source date of the last real update (last day the source's ADPs
+        # actually changed). Dashboard shows this in the ⚠ hover tooltip.
+        "stale_since":   dict(stale_since or {}),
     }
 
 
@@ -289,6 +293,48 @@ def _write_local_qc(sheet_rows: list[list[str]], date: str) -> None:
 # AND we have at least this many overlapping players, treat as upstream freeze.
 STALE_THRESHOLD_PCT = 95.0
 STALE_MIN_OVERLAP   = 50
+
+
+def _stale_since_date(path: Path, today: str, threshold_pct: float = 5.0) -> str | None:
+    """Return the ISO date of the last auto pull where this source's ADPs
+    actually changed vs. the previous auto pull.
+
+    Walks auto history dates newest-first, comparing each day D to the
+    prior auto day. Returns the first D where >= threshold_pct of overlapping
+    players had different ADPs. Returns the earliest available auto date if
+    no movement is ever found (source has always been frozen), or None if
+    the file has no auto rows at all.
+    """
+    if not path.exists():
+        return None
+    by_date: dict[str, dict[str, str]] = {}
+    with path.open("r", encoding="utf-8", newline="") as f:
+        for r in csv.DictReader(f):
+            if r.get("source") != "auto":
+                continue
+            d = r.get("date") or ""
+            if not d:
+                continue
+            by_date.setdefault(d, {})[r["name"]] = r["adp"]
+    dates = sorted(by_date.keys())  # ascending
+    if not dates:
+        return None
+    if len(dates) < 2:
+        return dates[0]
+    # Walk newest-first, compare consecutive pairs.
+    for i in range(len(dates) - 1, 0, -1):
+        d, prev_d = dates[i], dates[i - 1]
+        m, p = by_date[d], by_date[prev_d]
+        overlap = set(m) & set(p)
+        if len(overlap) < STALE_MIN_OVERLAP:
+            continue
+        different = sum(1 for n in overlap if m[n] != p[n])
+        pct = 100.0 * different / len(overlap)
+        if pct >= threshold_pct:
+            return d
+    # No movement ever detected -> the earliest date is when we started
+    # capturing this source; it may have been frozen since day one.
+    return dates[0]
 
 
 def _previous_auto_day_map(path: Path, today: str) -> dict[str, str]:
@@ -407,7 +453,23 @@ def main() -> int:
     ALL_SOURCES = {"DK", "UD", "FFPC", "Drafters"}
     total_freeze = stale_sources >= ALL_SOURCES
 
-    snapshot = _build_latest_snapshot(rows, today, carry_forward_sources=stale_sources)
+    # For each stale source, find the last day its ADPs actually moved.
+    # Dashboard puts this in the tooltip ("Stale since 2026-06-22").
+    _source_paths = {
+        "DK": DK_HISTORY, "UD": UD_HISTORY,
+        "FFPC": FFPC_HISTORY, "Drafters": DRAFTERS_HISTORY,
+    }
+    stale_since = {}
+    for src in stale_sources:
+        d = _stale_since_date(_source_paths[src], today)
+        if d:
+            stale_since[src] = d
+
+    snapshot = _build_latest_snapshot(
+        rows, today,
+        carry_forward_sources=stale_sources,
+        stale_since=stale_since,
+    )
     LATEST_SNAPSHOT.write_text(
         json.dumps(snapshot, separators=(",", ":")) + "\n",
         encoding="utf-8",

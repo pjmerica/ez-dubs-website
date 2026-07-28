@@ -250,6 +250,16 @@ def _rebuild_latest(today: str) -> dict:
     players = [p for p in by_name.values() if p["adps"]]
     players.sort(key=lambda p: min(p["adps"].values()))
 
+    # Carry FFPC's stale_since date forward from the prior latest.json. The
+    # puller computed it when it last successfully ran; nothing about a
+    # manual DK/UD/Drafters refresh changes FFPC's freeze start date.
+    stale_since_ff = {}
+    if LATEST_SNAPSHOT.exists():
+        prev = json.loads(LATEST_SNAPSHOT.read_text(encoding="utf-8"))
+        ss = prev.get("stale_since") or {}
+        if isinstance(ss.get("FFPC"), str):
+            stale_since_ff["FFPC"] = ss["FFPC"]
+
     return {
         "pulled_at":     datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "date":          today,
@@ -257,6 +267,7 @@ def _rebuild_latest(today: str) -> dict:
         # The manual playbook only refreshes DK/UD/Drafters; FFPC is always
         # carried forward from the prior snapshot, so mark it stale.
         "stale_sources": ["FFPC"],
+        "stale_since":   stale_since_ff,
     }
 
 
