@@ -130,7 +130,11 @@ def normalize_player_name(name: str) -> str:
     return n
 
 
-def _build_latest_snapshot(sheet_rows: list[list[str]], today: str) -> dict:
+def _build_latest_snapshot(
+    sheet_rows: list[list[str]],
+    today: str,
+    carry_forward_sources: set[str] | None = None,
+) -> dict:
     """Merge today's ADPs across all sources into one player-keyed snapshot.
 
     Output schema:
@@ -143,7 +147,13 @@ def _build_latest_snapshot(sheet_rows: list[list[str]], today: str) -> dict:
     Merge is keyed by normalize_player_name so suffix inconsistencies across
     sources ('Marvin Harrison Jr.' vs 'Marvin Harrison') collapse to one player.
     The longest name variant seen wins as the display name.
+
+    carry_forward_sources: source labels whose values are known-stale in the
+    fetched sheet. Their columns are skipped from the merge; instead we splice
+    in values from the CURRENT latest.json (if it exists) so the dashboard
+    keeps showing the last-known-good numbers for those sources.
     """
+    carry_forward_sources = carry_forward_sources or set()
     cols = _index_columns(sheet_rows[0])
     source_cols = {
         "DK":       "DK ADP",
@@ -193,6 +203,8 @@ def _build_latest_snapshot(sheet_rows: list[list[str]], today: str) -> dict:
         })
         entry["name"] = _pick_display(entry["name"], name)
         for src_id, col_name in source_cols.items():
+            if src_id in carry_forward_sources:
+                continue  # skip stale source; will splice from old snapshot below
             ci = cols.get(col_name)
             if ci is None or len(row) <= ci:
                 continue
@@ -206,6 +218,30 @@ def _build_latest_snapshot(sheet_rows: list[list[str]], today: str) -> dict:
             if val >= ADP_FLOORS.get(src_id, float("inf")):
                 continue  # sentinel
             entry["adps"][src_id] = val
+
+    # Splice stale sources' last-known-good values from the current latest.json.
+    # Keyed by normalized name to survive suffix/nickname variations between
+    # the old snapshot and today's sheet. Also let the old snapshot's display
+    # name win when it's a better variant (e.g. 'Marvin Harrison Jr.' vs the
+    # sheet's 'Marvin Harrison'), applying the same _pick_display rules.
+    if LATEST_SNAPSHOT.exists():
+        old = json.loads(LATEST_SNAPSHOT.read_text(encoding="utf-8"))
+        old_by_key: dict[str, dict] = {}
+        for p in old.get("players", []):
+            k = normalize_player_name(p["name"])
+            if k:
+                old_by_key[k] = p
+        for key, entry in by_key.items():
+            old_p = old_by_key.get(key)
+            if not old_p:
+                continue
+            # Always let the old display name compete (preserves aliases + suffixes).
+            entry["name"] = _pick_display(entry["name"], old_p.get("name", ""))
+            # Only splice ADP values for the stale sources.
+            for src in carry_forward_sources:
+                v = old_p.get("adps", {}).get(src)
+                if isinstance(v, (int, float)) and v < ADP_FLOORS.get(src, float("inf")):
+                    entry["adps"][src] = float(v)
 
     # Drop players with zero usable ADPs (all sources were missing or sentinels).
     players = [p for p in by_key.values() if p["adps"]]
@@ -275,10 +311,13 @@ def _previous_auto_day_map(path: Path, today: str) -> dict[str, str]:
     return by_date[last]
 
 
-def _check_staleness(sheet_rows: list[list[str]], today: str) -> list[str]:
+def _check_staleness(sheet_rows: list[list[str]], today: str) -> tuple[list[str], set[str]]:
     """Compare today's parsed ADPs to the previous auto pull for each source.
 
-    Returns a list of human-readable warnings (empty if everything looks fresh).
+    Returns (warnings, stale_sources) where:
+      - warnings: human-readable strings, one per stale source (empty if all fresh)
+      - stale_sources: set of source labels ("DK", "UD", ...) that were flagged
+
     A source is flagged when:
       - we have >= STALE_MIN_OVERLAP players in common with the previous pull, AND
       - >= STALE_THRESHOLD_PCT of those overlapping ADPs are identical
@@ -291,6 +330,7 @@ def _check_staleness(sheet_rows: list[list[str]], today: str) -> list[str]:
         ("Drafters", "Drafters ADP", DRAFTERS_HISTORY),
     ]
     warnings: list[str] = []
+    stale_sources: set[str] = set()
     for label, col, path in sources:
         today_map: dict[str, str] = {}
         for row in sheet_rows[1:]:
@@ -315,7 +355,8 @@ def _check_staleness(sheet_rows: list[list[str]], today: str) -> list[str]:
                 f"{label}: {pct:.1f}% of {len(overlap)} ADPs unchanged from previous auto pull "
                 f"(threshold {STALE_THRESHOLD_PCT:.0f}%). Upstream feed may be frozen."
             )
-    return warnings
+            stale_sources.add(label)
+    return warnings, stale_sources
 
 
 # ---- Main -----------------------------------------------------------------
@@ -354,31 +395,30 @@ def main() -> int:
     )
     print(f"Wrote {LAST_PULL_META.name}.")
 
-    # Detect upstream-feed freeze: compare today's parsed ADPs to the previous
-    # auto pull. If any source is >95% identical, treat the Sheet as stale.
-    # Run this BEFORE overwriting latest.json so a stale pull doesn't clobber
-    # the last-known-good (or hand-loaded) snapshot.
-    warnings = _check_staleness(rows, today)
+    # Detect upstream-feed freeze per source. When SOME sources are stale, we
+    # still write latest.json using fresh sheet values for the good sources
+    # and last-known-good values (from the current latest.json) for the stale
+    # ones. The exit code still signals so GitHub Actions emails on any stale.
+    warnings, stale_sources = _check_staleness(rows, today)
+
+    snapshot = _build_latest_snapshot(rows, today, carry_forward_sources=stale_sources)
+    LATEST_SNAPSHOT.write_text(
+        json.dumps(snapshot, separators=(",", ":")) + "\n",
+        encoding="utf-8",
+    )
+    print(f"Wrote {LATEST_SNAPSHOT.name} ({len(snapshot['players'])} players).")
 
     if warnings:
         print("STALE DATA DETECTED:", file=sys.stderr)
         for w in warnings:
             print(f"  - {w}", file=sys.stderr)
         print(
-            f"Leaving {LATEST_SNAPSHOT.name} untouched so the dashboard keeps the "
-            "last-known-good snapshot. The history CSVs still got today's rows "
-            "(useful as a record that the cron ran).",
+            f"latest.json was written using fresh sheet values for the good sources "
+            f"and last-known-good values from the prior snapshot for: "
+            f"{sorted(stale_sources)}. Exit 1 so the failure email fires.",
             file=sys.stderr,
         )
         return 1
-
-    # Fresh data confirmed -- write the merged snapshot the dashboard loads.
-    snapshot = _build_latest_snapshot(rows, today)
-    LATEST_SNAPSHOT.write_text(
-        json.dumps(snapshot, separators=(",", ":")) + "\n",
-        encoding="utf-8",
-    )
-    print(f"Wrote {LATEST_SNAPSHOT.name} ({len(snapshot['players'])} players).")
 
     return 0
 
