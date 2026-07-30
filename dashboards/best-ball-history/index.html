@@ -421,7 +421,19 @@
             Drafters: '../best-ball-prices/drafters_adp_history.csv',
         };
         // Solid, dashed, dotted, dot-dashed — one line style per source for the chart.
-        const SOURCE_DASH = { DK: [], UD: [5, 4], FFPC: [2, 3], Drafters: [8, 3, 2, 3] };
+        // Colors match the Best Ball Price Differences page for consistency
+        // (DK green, UD yellow, FFPC blue, Drafters orange). When multiple
+        // players are on the chart, we distinguish them with the dash pattern
+        // instead of the color -- see PLAYER_DASH below.
+        const SOURCE_COLORS = {
+            DK:       '#00c46a',
+            UD:       '#ffd700',
+            FFPC:     '#4a9eff',
+            Drafters: '#e67e22',
+        };
+        // Line dash patterns cycled per player index so overlapping series
+        // with the same source color are still distinguishable.
+        const PLAYER_DASH = [[], [6, 4], [2, 3], [8, 3, 2, 3], [10, 5, 2, 5], [4, 2, 2, 2]];
         let activeSources = ['DK','UD'];
         function isRealAdp(adp, floor) {
             return !isNaN(adp) && adp < floor;
@@ -666,16 +678,21 @@
             const datasets = [];
             selectedPlayers.forEach((key, idx) => {
                 const info = playerIndex[key];
-                const color = COLORS[idx % COLORS.length];
+                const dash = PLAYER_DASH[idx % PLAYER_DASH.length];
                 for (const src of activeSources) {
                     // Only draw a line if this player has any ADP under this source in the active range.
                     const data = snapshots.map(s => s.maps[src][key] ? s.maps[src][key].adp : null);
                     if (data.every(v => v === null)) continue;
+                    // Color = source (green DK, yellow UD, blue FFPC, orange
+                    // Drafters) so the chart matches the rest of the site.
+                    // Dash pattern = player index, so multiple players'
+                    // same-source lines stay distinguishable.
+                    const color = SOURCE_COLORS[src] || '#888';
                     datasets.push({
                         label: info.name + ' (' + src + ')',
                         data,
                         borderColor: color, backgroundColor: color + '22', pointBackgroundColor: color,
-                        borderWidth: 2, borderDash: SOURCE_DASH[src], tension: 0.3, spanGaps: true,
+                        borderWidth: 2, borderDash: dash, tension: 0.3, spanGaps: true,
                     });
                 }
             });
