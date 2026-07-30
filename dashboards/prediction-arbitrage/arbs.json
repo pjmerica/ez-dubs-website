@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-30T07:56:44+00:00",
+  "generated_at": "2026-07-30T11:32:20+00:00",
   "sources": [
     {
       "id": "pred-arbitrage",
@@ -13,9 +13,9 @@
       "id": "polling-agg-2026",
       "name": "Polling Agg 2026 Arb Scanner",
       "ok": true,
-      "updated_at": "2026-07-30T07:55:44.933699+00:00",
+      "updated_at": "2026-07-30T11:31:01.302785+00:00",
       "total": 273,
-      "guaranteed_kept": 2
+      "guaranteed_kept": 3
     }
   ],
   "arbs": [
@@ -554,6 +554,34 @@
     {
       "source": "polling-agg-2026",
       "category": "",
+      "label": "2026-H-IA-01",
+      "platform_a": "kalshi",
+      "platform_b": "polymarket",
+      "question_a": null,
+      "question_b": null,
+      "url_a": "https://kalshi.com/markets/HOUSEIA1",
+      "url_b": "https://polymarket.com/event/ia-01-house-election-winner",
+      "market_id_a": "HOUSEIA1-26-D",
+      "market_id_b": "70626084342654528512319514273738308837103071303735022481383733918592331109261",
+      "prob_a": 0.77,
+      "prob_b": 0.68,
+      "stake_a": 72.63,
+      "stake_b": 27.37,
+      "return_pct": 1.0,
+      "gap_pp": 8.999999999999996,
+      "settle_date": "2027-01-04",
+      "days_to_settle": 158.0,
+      "annualized_return_pct": 2.3,
+      "tradeable_a": 852.0,
+      "tradeable_b": 737.5,
+      "volume_a": 4658.56,
+      "volume_b": 1759.979713,
+      "suspicious": false,
+      "suspicion_reasons": []
+    },
+    {
+      "source": "polling-agg-2026",
+      "category": "",
       "label": "2026-H-AZ-01",
       "platform_a": "kalshi",
       "platform_b": "polymarket",
@@ -573,7 +601,7 @@
       "days_to_settle": 158.0,
       "annualized_return_pct": 2.3,
       "tradeable_a": 40.95,
-      "tradeable_b": 663.43,
+      "tradeable_b": 339.07,
       "volume_a": 7021.14,
       "volume_b": 3647.518088,
       "suspicious": false,
@@ -601,7 +629,7 @@
       "days_to_settle": 158.0,
       "annualized_return_pct": 2.3,
       "tradeable_a": 750.82,
-      "tradeable_b": 1180.48,
+      "tradeable_b": 943.48,
       "volume_a": 11094.12,
       "volume_b": 5029.851447,
       "suspicious": false,
