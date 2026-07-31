@@ -1,31 +1,32 @@
 # Manual ADP Upload Playbook
 
-What to do when the daily auto-pull breaks and the user provides hand-pulled CSVs from DK / UD / Drafters / FFPC.
+What to do when the daily auto-pull breaks and the user provides hand-pulled CSVs from DK / UD.
 
 This is the **canonical procedure** — when the user says some variant of "the pull failed, here are the manual CSVs," Claude MUST follow this file rather than improvising. Future Claude sessions: read this end-to-end before touching any data.
+
+**Note (2026-07-31):** FFPC and Drafters were archived. The site now only tracks DK and UD. The old ffpc_adp_history.csv + drafters_adp_history.csv are in `_local/archive/` if we ever bring those sources back. Any references below to FFPC or Drafters in the CSV / dashboard / puller code have been removed. If a manual upload day ever includes an FFPC or Drafters file, flag it and ask the user whether they want to bring those sources back into the site before proceeding.
 
 ---
 
 ## When this applies
 
-The site's daily cron (`pull_adp.py`) fetches a Google Sheet that occasionally freezes — the Sheet keeps returning the same numbers for days. The cron now has a **staleness detector** (added 2026-06-27) that:
+The site's daily cron (`pull_adp.py`) fetches a Google Sheet that occasionally freezes. The cron has a **staleness detector** that:
 
-1. Compares today's fetched ADPs to the previous auto pull
-2. If ≥95% identical (with ≥50 overlapping players) on any of the 4 sources, exits 1
-3. GitHub Actions emails the user
-4. The puller leaves `latest.json` untouched so the dashboard keeps the last-known-good snapshot
+1. Compares today's fetched ADPs to the previous auto pull for DK and UD
+2. Only exits with a failure (which emails the user) when BOTH sources look frozen — partial freezes just carry values forward silently
+3. Always writes `latest.json`; stale sources get their values carried forward from the prior snapshot
 
-When the user gets that email, they pull rankings exports directly from DK / UD / Drafters / FFPC native sites and drop the CSVs in the repo root (or `_local/manual-snapshots/`). They will not necessarily provide all four sources — they'll get what they can.
+When the user gets the failure email (or the site otherwise looks stuck), they pull rankings exports directly from DK and UD native sites and drop the CSVs in the repo root (or `_local/manual-snapshots/`).
 
 ---
 
 ## Two ways to run it
 
-**Option A — user runs the notebook themselves:** `scripts/manual_update.ipynb`. Open in Jupyter or VS Code, edit the CONFIG cell (date + 3 filenames), Run All. The notebook does every step below and commits/pushes at the end.
+**Option A — user runs the notebook themselves:** `scripts/manual_update.ipynb`. Open in Jupyter or VS Code, edit the CONFIG cell (date + 2 filenames), Run All. The notebook does every step below and commits/pushes at the end.
 
 **Option B — Claude runs it via the CLI procedure below.** This is what happens when the user says "manual files are dropped, update the website" without opening the notebook themselves.
 
-Both paths do the same thing; the notebook just packages it up so the user doesn't need Claude. Keep both in sync — if you change the procedure below, update the notebook cells too.
+Both paths do the same thing. Keep them in sync — if you change the procedure below, update the notebook cells too.
 
 ---
 
@@ -38,18 +39,15 @@ ls -lat "c:/Users/pjmer/Documents/EZ Dubs Website" | head -10
 ```
 
 Expected filenames (they vary slightly day-to-day — match by content not filename):
-- `Underdog Rankings*.csv` (may have a date suffix like `0629`)
+- `Underdog Rankings*.csv` or `rankings-*.csv` (may have a date suffix like `0629`)
 - `DkPreDraftRankings(NN).csv` (NN increments)
-- `drafters_players(N).csv` (N increments)
-
-If FFPC is included it will be something like `ffpc_*.csv` (no example seen yet — flag to user if it appears so we can verify the schema).
 
 ### 2. Sync with remote first
 
 The morning cron already pushed today's (stale) auto rows. Your local copy is behind. Sync before doing anything:
 
 ```bash
-cd "c:/Users/pjmer/Documents/EZ Dubs Website" && git pull --rebase --quiet
+cd "c:/Users/pjmer/Documents/EZ Dubs Website" && git pull --ff-only
 ```
 
 Then verify what's currently in the history files for today's date:
@@ -57,7 +55,7 @@ Then verify what's currently in the history files for today's date:
 ```bash
 py -c "
 import csv
-for src in ['dk','ud','ffpc','drafters']:
+for src in ['dk','ud']:
     rows = list(csv.DictReader(open(f'dashboards/best-ball-prices/{src}_adp_history.csv')))
     today = [r for r in rows if r['date'] == 'YYYY-MM-DD']  # << today
     by_source = {}
@@ -68,55 +66,52 @@ for src in ['dk','ud','ffpc','drafters']:
 
 Expected: each source shows `{'auto': N}` from the morning cron's stale write. If you see `manual` rows already, the upload was already done today — STOP and ask the user.
 
-### 3. Move drop files into `_local/manual-snapshots/`
+### 3. Verify DK is NFL (NOT MLB)
 
-```bash
-mv "Underdog Rankings*.csv" "DkPreDraftRankings*.csv" "drafters_players*.csv" \
-   _local/manual-snapshots/
-```
-
-This directory is gitignored. The dropped raw CSVs are not committed (the long-format history files capture all the real data).
-
-### 4. Clone the previous day's one-off script
-
-Each day gets its own dated script in `scripts/` for traceability. The naming convention is `one_off_manual_snapshot_YYYY_MM_DD.py`.
-
-Pick the most recent existing one as the template:
-
-```bash
-ls scripts/one_off_manual_snapshot_*.py
-```
-
-Copy it to today's name and bump the date:
-
-```bash
-cp scripts/one_off_manual_snapshot_2026_06_NN.py scripts/one_off_manual_snapshot_2026_06_MM.py
-
-py -c "
-p = 'scripts/one_off_manual_snapshot_2026_06_MM.py'
-s = open(p, encoding='utf-8').read()
-s = s.replace('TODAY = \"2026-06-NN\"', 'TODAY = \"2026-06-MM\"')
-s = s.replace('2026-06-NN', '2026-06-MM')
-# Update file paths if today's drop filenames differ from yesterday's:
-# s = s.replace('Underdog Rankings.csv', 'Underdog Rankings 0629.csv')
-# s = s.replace('DkPreDraftRankings(NN).csv', 'DkPreDraftRankings(MM).csv')
-# s = s.replace('drafters_players(N).csv', 'drafters_players(N+1).csv')
-open(p, 'w', encoding='utf-8').write(s)
-"
-```
-
-Then `grep -n 'TODAY = \|DROP ' scripts/one_off_manual_snapshot_2026_06_MM.py` to confirm date and paths look right.
-
-### 5. Strip today's stale auto rows for sources the user provided
-
-Only do this for sources the user gave you a manual CSV for. **Leave the others' stale auto rows in place** — they'll show as stale in the dashboard but the History page can still compute deltas (just zero ones).
-
-Default case (user gave DK/UD/Drafters but not FFPC):
+This exists because a DK MLB export slipped through once. NFL positions are QB/RB/WR/TE; MLB positions are P/IF/OF.
 
 ```bash
 py -c "
 import csv
-for src in ['dk','ud','drafters']:  # << only sources with manual files
+from collections import Counter
+rows = list(csv.DictReader(open('DkPreDraftRankings(NN).csv')))
+positions = Counter()
+for r in rows:
+    if r.get('ADP', '').strip(): positions[r.get('Position', '?')] += 1
+print(positions)
+"
+```
+
+If you see P/IF/OF, STOP and ask the user for the NFL export.
+
+### 4. Move drops into `_local/manual-snapshots/`
+
+Use a date prefix (MMDD) to avoid filename collisions with previous days:
+
+```bash
+mv "Underdog Rankings*.csv" "_local/manual-snapshots/MMDD Underdog Rankings*.csv"
+mv "DkPreDraftRankings*.csv" "_local/manual-snapshots/MMDD DkPreDraftRankings*.csv"
+```
+
+This directory is gitignored. The raw drop CSVs are not committed (the long-format history files capture all the real data).
+
+### 5. Clone the previous day's one-off script
+
+Each day gets its own dated script in `scripts/` for traceability. Naming: `one_off_manual_snapshot_YYYY_MM_DD.py`.
+
+```bash
+ls scripts/one_off_manual_snapshot_*.py | tail -3
+cp scripts/one_off_manual_snapshot_2026_MM_NN.py scripts/one_off_manual_snapshot_2026_MM_MM+1.py
+```
+
+Then edit the new script — bump `TODAY`, update the two DROP filenames (matching what you moved into `_local/manual-snapshots/`).
+
+### 6. Strip today's stale auto rows for DK and UD
+
+```bash
+py -c "
+import csv
+for src in ['dk','ud']:
     path = f'dashboards/best-ball-prices/{src}_adp_history.csv'
     rows = list(csv.DictReader(open(path, encoding='utf-8')))
     before = len(rows)
@@ -129,83 +124,70 @@ for src in ['dk','ud','drafters']:  # << only sources with manual files
 "
 ```
 
-### 6. Run today's script
+### 7. Run today's script
 
 ```bash
-py scripts/one_off_manual_snapshot_2026_06_MM.py
+py scripts/one_off_manual_snapshot_YYYY_MM_DD.py
 ```
 
 Expected output:
 ```
 DK: appended ~380 manual rows -> dk_adp_history.csv
-UD: appended ~297 manual rows -> ud_adp_history.csv
-Drafters: appended ~278 manual rows -> drafters_adp_history.csv
+UD: appended ~295 manual rows -> ud_adp_history.csv
 Rewrote latest.json (~410 players, date=YYYY-MM-DD).
 ```
 
 Sanity ranges (gut-check today's pull):
-- **DK**: ~380 ranked players. If you see >1000, the Drafters-style sentinel filter is wrong.
+- **DK**: ~380 ranked players. If you see >1000, the sentinel filter is wrong.
 - **UD**: ~295 ranked players.
-- **Drafters**: ~278 ranked players. NOTE: Drafters uses ADP=`0` for "undrafted" not blank — the parser treats `<= 0` as a sentinel.
-- **latest.json**: ~410 total unique players. If <300 or >600, something's off.
+- **latest.json**: ~400 total unique players. If <300 or >600, something's off.
 
-### 7. Verify locally
+### 8. Verify
 
 ```bash
 py -c "
-import json, csv
-from collections import Counter
+import json
 d = json.load(open('dashboards/best-ball-prices/latest.json'))
-print(f'date={d[\"date\"]} players={len(d[\"players\"])}')
+from collections import Counter
 sources = Counter()
 for p in d['players']:
     for s in p['adps']: sources[s] += 1
-print('source coverage:', dict(sources))
+print(f'date={d[\"date\"]}  players={len(d[\"players\"])}  sources={dict(sources)}')
 print('top 3:')
 for p in d['players'][:3]:
     print(f'  {p[\"name\"]} ({p[\"pos\"]} {p[\"team\"]}): {p[\"adps\"]}')
 "
 ```
 
-The top 3 should be (in some order): Jahmyr Gibbs (RB DET), Bijan Robinson (RB ATL), Ja'Marr Chase (WR CIN), or Puka Nacua (WR LAR). If the top is something like "Devin Neal" or an unfamiliar player, the sentinel handling broke — STOP and debug before pushing.
+The top 3 should be some ordering of: Jahmyr Gibbs (RB DET), Bijan Robinson (RB ATL), Ja'Marr Chase (WR CIN), Puka Nacua (WR LAR). If the top is something unfamiliar, the sentinel handling broke — STOP and debug before pushing.
 
-Optional HTTP smoke:
-
-```bash
-py -m http.server 8765 > /dev/null 2>&1 &
-sleep 2
-curl -sI "http://localhost:8765/dashboards/best-ball-prices/" | head -1
-curl -sI "http://localhost:8765/dashboards/best-ball-prices/latest.json" | head -1
-kill %1
-```
-
-### 8. Commit and push
+### 9. Commit and push (targeted `git add`, never `-A`)
 
 ```bash
-git add -A
-git commit -m "Manual YYYY-MM-DD ADP snapshot for DK, UD, Drafters
+git add dashboards/best-ball-prices/dk_adp_history.csv \
+        dashboards/best-ball-prices/ud_adp_history.csv \
+        dashboards/best-ball-prices/latest.json \
+        scripts/one_off_manual_snapshot_YYYY_MM_DD.py
+git commit -m "Manual YYYY-MM-DD ADP snapshot for DK, UD
 
-[1-2 sentence summary including which sources got manual rows
- and which stayed as stale auto]
+[1-2 sentence summary]
 
 Counts:
-  DK:       NNN manual
-  UD:       NNN manual
-  Drafters: NNN manual
-  FFPC:     NNN stale auto (unchanged)
+  DK: NNN manual
+  UD: NNN manual
 "
-git push
+git pull --rebase && git push
 ```
 
 ---
 
 ## Important rules
 
-- **Append-only.** Never delete historical rows from prior dates. Today's stale auto rows for sources getting a manual override are the one allowed exception. If you have a bug in a *prior day's* manual upload, fix it with a fresh commit that overwrites the file from a re-derived source — don't `sed` it in place.
-- **Don't touch FFPC unless the user provides FFPC.** Default behavior: leave FFPC's stale auto rows alone.
-- **Don't commit the dropped raw CSVs.** They go to `_local/manual-snapshots/` which is gitignored.
-- **Don't touch the legacy repo.** There's an old `best-ball-adp-arbitrage-testing` repo at `c:/Users/pjmer/Documents/AI Testing/`. It is not this one. Never edit it from this session.
-- **The dashboard prefers manual over auto for the same date.** So if you accidentally leave a stale auto row in place AND add a manual row, the dashboard does the right thing. But the file should still be cleaned for clarity (strip the stale auto).
+- **Append-only.** Never delete historical rows from prior dates. Today's stale auto rows for sources getting a manual override are the one allowed exception.
+- **Don't commit raw drop CSVs.** They go to `_local/manual-snapshots/`, which is gitignored.
+- **Don't touch the legacy repo** at `c:/Users/pjmer/Documents/AI Testing/best-ball-adp-arbitrage-testing/`.
+- **The dashboard prefers manual over auto for the same date.** So if a stale auto row survives alongside a fresh manual row, the dashboard does the right thing anyway. Still clean the auto out for clarity.
+- **FFPC / Drafters files:** archived 2026-07-31. If the user hands you one, don't process it silently — ask whether they want to bring the source back into the site.
 
 ---
 
@@ -213,16 +195,16 @@ git push
 
 ### Long-format history files
 
-Path: `dashboards/best-ball-prices/{dk,ud,ffpc,drafters}_adp_history.csv`
+Path: `dashboards/best-ball-prices/{dk,ud}_adp_history.csv`
 
 Schema: `date, name, pos, team, adp, source`
 
-Example: `2026-06-29,Jahmyr Gibbs,RB,DET,1.2,manual`
+Example: `2026-07-29,Jahmyr Gibbs,RB,DET,1.2,manual`
 
-### Drop file schemas (as of 2026-06-29)
+### Drop file schemas
 
-**Underdog** (`Underdog Rankings*.csv`):
-- Columns: `id, firstName, lastName, adp, projectedPoints, salary, positionRank, slotName, teamName, lineupStatus, byeWeek`
+**Underdog** (`Underdog Rankings*.csv` or `rankings-*.csv`):
+- Columns: `id, firstName, lastName, adp, projectedPoints, salary, positionRank, slotName, teamName, lineupStatus, byeWeek` (plus possibly a leading `playerId` column)
 - Name: `firstName + ' ' + lastName`
 - Pos: `slotName`
 - Team: `teamName` (FULL name like "Detroit Lions") — needs mapping to 3-letter code via the `NFL_TEAM_CODE` dict in the one-off script
@@ -236,13 +218,3 @@ Example: `2026-06-29,Jahmyr Gibbs,RB,DET,1.2,manual`
 - Team: `Team` (already 3-letter)
 - ADP: `ADP` (7-decimal precision, round to 1 decimal)
 - Sentinel floor: 240
-
-**Drafters** (`drafters_players(N).csv`):
-- Columns: `id, position, name, preferred, team abbr, ADP, AVG`
-- Name: `name`
-- Pos: `position`
-- Team: `team abbr`
-- ADP: `ADP` — **uses `0` as the undrafted sentinel** (not blank). Filter `<= 0` out.
-- Sentinel floor: infinity (no real sentinel above 0; the `<= 0` filter is what drops noise)
-
-**FFPC**: No manual schema seen yet (user has not provided one through 2026-06-29). Flag to user when one appears so the schema can be added here.

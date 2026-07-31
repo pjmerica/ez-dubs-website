@@ -33,14 +33,17 @@ REPO_ROOT      = Path(__file__).resolve().parents[1]
 DASHBOARD_DIR  = REPO_ROOT / "dashboards" / "best-ball-prices"
 DK_HISTORY     = DASHBOARD_DIR / "dk_adp_history.csv"
 UD_HISTORY     = DASHBOARD_DIR / "ud_adp_history.csv"
-FFPC_HISTORY      = DASHBOARD_DIR / "ffpc_adp_history.csv"
-DRAFTERS_HISTORY  = DASHBOARD_DIR / "drafters_adp_history.csv"
 LAST_PULL_META    = DASHBOARD_DIR / "last_pull.json"
 LATEST_SNAPSHOT   = DASHBOARD_DIR / "latest.json"
 
+# FFPC and Drafters were dropped from the site on 2026-07-31 -- their columns
+# in the upstream sheet had been byte-for-byte frozen for 3+ months. The old
+# ffpc_adp_history.csv + drafters_adp_history.csv are archived in
+# _local/archive/ and can be restored if we ever bring those sources back.
+
 # Sentinel floor values for "undrafted" rows. Anything at or above the floor
 # is treated as no real ADP. Matches the constants in the dashboard JS.
-ADP_FLOORS = {"DK": 240.0, "UD": 216.0, "FFPC": float("inf"), "Drafters": float("inf")}
+ADP_FLOORS = {"DK": 240.0, "UD": 216.0}
 
 # Local-only daily snapshots kept for QC. Gitignored.
 LOCAL_DIR      = REPO_ROOT / "_local" / "adp-daily"
@@ -50,7 +53,7 @@ DRAFT_CUTOVER_DATE = "2026-04-24"
 
 STACKED_HEADER = ["date", "name", "pos", "team", "adp", "source"]
 
-_REQUIRED_COLS = ("Name", "Pos", "Team", "UD ADP", "DK ADP", "FFPC ADP", "Drafters ADP")
+_REQUIRED_COLS = ("Name", "Pos", "Team", "UD ADP", "DK ADP")
 
 
 # ---- Sheet fetch ----------------------------------------------------------
@@ -113,7 +116,7 @@ _SUFFIX_RE = _re.compile(r"\s+(jr|sr|i{1,3}|iv|v|1st|2nd|3rd|4th|5th)\.?$", _re.
 # to avoid accidentally merging distinct players. Expect to refresh yearly as
 # the player pool turns over.
 _FIRST_NAME_ALIASES = {
-    "kenneth": "kenny",   # Kenny Gainwell (UD/Drafters) vs Kenneth Gainwell (DK/FFPC)
+    "kenneth": "kenny",   # Kenny Gainwell (UD) vs Kenneth Gainwell (DK)
 }
 
 def normalize_player_name(name: str) -> str:
@@ -157,10 +160,8 @@ def _build_latest_snapshot(
     carry_forward_sources = carry_forward_sources or set()
     cols = _index_columns(sheet_rows[0])
     source_cols = {
-        "DK":       "DK ADP",
-        "UD":       "UD ADP",
-        "FFPC":     "FFPC ADP",
-        "Drafters": "Drafters ADP",
+        "DK": "DK ADP",
+        "UD": "UD ADP",
     }
     _ALIAS_TARGETS = set(_FIRST_NAME_ALIASES.values())
     _ALIAS_SOURCES = set(_FIRST_NAME_ALIASES.keys())
@@ -373,10 +374,8 @@ def _check_staleness(sheet_rows: list[list[str]], today: str) -> tuple[list[str]
     """
     cols = _index_columns(sheet_rows[0])
     sources = [
-        ("DK",       "DK ADP",       DK_HISTORY),
-        ("UD",       "UD ADP",       UD_HISTORY),
-        ("FFPC",     "FFPC ADP",     FFPC_HISTORY),
-        ("Drafters", "Drafters ADP", DRAFTERS_HISTORY),
+        ("DK", "DK ADP", DK_HISTORY),
+        ("UD", "UD ADP", UD_HISTORY),
     ]
     warnings: list[str] = []
     stale_sources: set[str] = set()
@@ -421,10 +420,8 @@ def main() -> int:
     _write_local_qc(rows, today)
 
     sources = [
-        ("DK",       "DK ADP",       DK_HISTORY),
-        ("UD",       "UD ADP",       UD_HISTORY),
-        ("FFPC",     "FFPC ADP",     FFPC_HISTORY),
-        ("Drafters", "Drafters ADP", DRAFTERS_HISTORY),
+        ("DK", "DK ADP", DK_HISTORY),
+        ("UD", "UD ADP", UD_HISTORY),
     ]
     for label, col, path in sources:
         if _date_already_in_history(path, today, "auto"):
@@ -445,20 +442,16 @@ def main() -> int:
     print(f"Wrote {LAST_PULL_META.name}.")
 
     # Detect upstream-feed freeze per source. Individual stale sources are
-    # normal (FFPC and Drafters have been stuck for weeks); latest.json just
-    # carries them forward from the prior snapshot. We only fail the workflow
-    # (which triggers the GitHub Actions email) when ALL 4 sources are stale,
-    # i.e., the sheet is fully dead.
+    # normal; latest.json just carries them forward from the prior snapshot.
+    # We only fail the workflow (which triggers the GitHub Actions email)
+    # when all active sources are stale, i.e., the sheet is fully dead.
     warnings, stale_sources = _check_staleness(rows, today)
-    ALL_SOURCES = {"DK", "UD", "FFPC", "Drafters"}
+    ALL_SOURCES = {"DK", "UD"}
     total_freeze = stale_sources >= ALL_SOURCES
 
     # For each stale source, find the last day its ADPs actually moved.
     # Dashboard puts this in the tooltip ("Stale since 2026-06-22").
-    _source_paths = {
-        "DK": DK_HISTORY, "UD": UD_HISTORY,
-        "FFPC": FFPC_HISTORY, "Drafters": DRAFTERS_HISTORY,
-    }
+    _source_paths = {"DK": DK_HISTORY, "UD": UD_HISTORY}
     stale_since = {}
     for src in stale_sources:
         d = _stale_since_date(_source_paths[src], today)

@@ -6,10 +6,10 @@
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://formspree.io; font-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://formspree.io">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <title>Best Ball History Risers/Fallers | EZ Dubs Analytics</title>
-    <meta name="description" content="Biggest ADP movers across DraftKings, Underdog, FFPC, and Drafters over a chosen lookback window.">
+    <meta name="description" content="Biggest ADP movers across DraftKings and Underdog over a chosen lookback window.">
     <link rel="icon" href="/EDA.png" type="image/png">
     <meta property="og:title" content="Best Ball History Risers/Fallers | EZ Dubs Analytics">
-    <meta property="og:description" content="Biggest ADP movers across DraftKings, Underdog, FFPC, and Drafters over a chosen lookback window.">
+    <meta property="og:description" content="Biggest ADP movers across DraftKings and Underdog over a chosen lookback window.">
     <meta property="og:url" content="https://ezdubsanalytics.com/dashboards/best-ball-history/">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://ezdubsanalytics.com/EDA.png">
@@ -323,7 +323,7 @@
     </nav>
     <div class="page">
     <h1>Best Ball History Risers/Fallers</h1>
-    <p class="subtitle">Biggest ADP movers across DK, UD, FFPC, and Drafters over a chosen lookback window | 2026 Season</p>
+    <p class="subtitle">Biggest ADP movers on DraftKings and Underdog over a chosen lookback window | 2026 Season</p>
 
     <div style="display:flex;justify-content:center;margin-bottom:20px;">
         <div class="pos-filters">
@@ -351,14 +351,6 @@
             <button class="pos-btn wr movers-pos-btn" data-pos="WR">WR</button>
             <button class="pos-btn te movers-pos-btn" data-pos="TE">TE</button>
         </div>
-    </div>
-    <div class="source-picker" id="source-picker">
-        <span class="label">Sources:</span>
-        <button class="source-chip active" data-src="DK">DraftKings</button>
-        <button class="source-chip active" data-src="UD">Underdog</button>
-        <button class="source-chip" data-src="FFPC">FFPC</button>
-        <button class="source-chip" data-src="Drafters">Drafters</button>
-        <span class="source-hint">Pick any 2</span>
     </div>
     <div class="recs-container" id="recs-container"></div>
 
@@ -411,25 +403,20 @@
                 .replace(/\s+/g, ' ').trim();
         }
 
-        const ADP_FLOORS = { DK: 240, UD: 216, FFPC: Infinity, Drafters: Infinity };
-        const ALL_SOURCES = ['DK','UD','FFPC','Drafters'];
-        const SOURCE_LABEL = { DK: 'DraftKings', UD: 'Underdog', FFPC: 'FFPC', Drafters: 'Drafters' };
+        const ADP_FLOORS = { DK: 240, UD: 216 };
+        const ALL_SOURCES = ['DK','UD'];
+        const SOURCE_LABEL = { DK: 'DraftKings', UD: 'Underdog' };
         const SOURCE_CSV = {
             DK: '../best-ball-prices/dk_adp_history.csv',
             UD: '../best-ball-prices/ud_adp_history.csv',
-            FFPC: '../best-ball-prices/ffpc_adp_history.csv',
-            Drafters: '../best-ball-prices/drafters_adp_history.csv',
         };
-        // Solid, dashed, dotted, dot-dashed — one line style per source for the chart.
         // Colors match the Best Ball Price Differences page for consistency
-        // (DK green, UD yellow, FFPC blue, Drafters orange). When multiple
-        // players are on the chart, we distinguish them with the dash pattern
-        // instead of the color -- see PLAYER_DASH below.
+        // (DK green, UD yellow). When multiple players are on the chart, we
+        // distinguish them with the dash pattern instead of the color --
+        // see PLAYER_DASH below.
         const SOURCE_COLORS = {
-            DK:       '#00c46a',
-            UD:       '#ffd700',
-            FFPC:     '#4a9eff',
-            Drafters: '#e67e22',
+            DK: '#00c46a',
+            UD: '#ffd700',
         };
         // Line dash patterns cycled per player index so overlapping series
         // with the same source color are still distinguishable.
@@ -517,45 +504,13 @@
             }
             historyData = { snapshots, playerIndex };
             initLookbackSlider();
-            initSourcePicker();
             renderMovers();
             initSearch();
         }
 
-        function initSourcePicker() {
-            const wrap = document.getElementById('source-picker');
-            const chips = wrap.querySelectorAll('.source-chip');
-            function refresh() {
-                chips.forEach(c => {
-                    c.classList.toggle('active', activeSources.includes(c.dataset.src));
-                });
-                // Disable inactive chips when 2 are already picked.
-                if (activeSources.length >= 2) {
-                    chips.forEach(c => {
-                        if (!activeSources.includes(c.dataset.src)) c.setAttribute('disabled','');
-                        else c.removeAttribute('disabled');
-                    });
-                } else {
-                    chips.forEach(c => c.removeAttribute('disabled'));
-                }
-            }
-            chips.forEach(c => {
-                c.addEventListener('click', () => {
-                    const src = c.dataset.src;
-                    if (activeSources.includes(src)) {
-                        if (activeSources.length <= 1) return; // never let user uncheck the last source
-                        activeSources = activeSources.filter(s => s !== src);
-                    } else {
-                        if (activeSources.length >= 2) return; // cap at 2
-                        activeSources.push(src);
-                    }
-                    refresh();
-                    renderMovers();
-                    renderChart();
-                });
-            });
-            refresh();
-        }
+        // initSourcePicker was removed 2026-07-31 when FFPC and Drafters were
+        // dropped. activeSources is hardcoded to ['DK','UD']. Restore the
+        // picker + the source-picker HTML from git if bringing sources back.
 
         function initLookbackSlider() {
             const snaps = historyData.snapshots;

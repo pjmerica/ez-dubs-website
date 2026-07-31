@@ -6,10 +6,10 @@
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://formspree.io; font-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://formspree.io">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <title>Best Ball Price Differences | EZ Dubs Analytics</title>
-    <meta name="description" content="Compare best-ball ADPs across DraftKings, Underdog, FFPC, and Drafters. Updated daily.">
+    <meta name="description" content="Compare best-ball ADPs across DraftKings and Underdog. Updated daily.">
     <link rel="icon" href="/EDA.png" type="image/png">
     <meta property="og:title" content="Best Ball Price Differences | EZ Dubs Analytics">
-    <meta property="og:description" content="Compare best-ball ADPs across DraftKings, Underdog, FFPC, and Drafters. Updated daily.">
+    <meta property="og:description" content="Compare best-ball ADPs across DraftKings and Underdog. Updated daily.">
     <meta property="og:url" content="https://ezdubsanalytics.com/dashboards/best-ball-prices/">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://ezdubsanalytics.com/EDA.png">
@@ -602,28 +602,20 @@
     </nav>
     <div class="page">
     <h1>Best Ball Price Differences</h1>
-    <p class="subtitle">DraftKings · Underdog · FFPC · Drafters | 2026 Season</p>
+    <p class="subtitle">DraftKings · Underdog | 2026 Season</p>
     <p class="updated">Last updated: <span id="last-updated">loading<span class="inline-spinner"></span></span></p>
     <p class="stale-note" id="stale-note" style="display:none;"></p>
 
     <div class="tabs">
         <button class="tab-btn active" data-tab="arbitrage">Table view</button>
-        <button class="tab-btn" data-tab="visualizer">Two-market chart</button>
-        <button class="tab-btn" data-tab="all4">All 4 markets chart</button>
+        <button class="tab-btn" data-tab="visualizer">Chart view</button>
     </div>
 
     <!-- TAB 1: ARBITRAGE -->
     <div class="tab-panel active" id="tab-arbitrage">
         <p class="blurb">
-            Ranked table of where two best-ball markets disagree most. Pick any two of DraftKings, Underdog, FFPC, and Drafters to compare.
+            Ranked table of where DraftKings and Underdog disagree most on best-ball ADP.
         </p>
-        <div class="source-picker">
-            <label for="srcA">Compare</label>
-            <select id="srcA"></select>
-            <span class="vs">vs</span>
-            <select id="srcB"></select>
-            <button id="srcSwap" class="pos-btn" type="button" title="Swap A and B">⇄</button>
-        </div>
         <div class="controls" style="margin-bottom: 20px;">
             <div class="pos-filters">
                 <button class="pos-btn active rec-pos-btn" data-pos="ALL">ALL</button>
@@ -687,13 +679,6 @@
         <p class="blurb">
             See the gaps visually. Each row plots a player's pick number on both markets so you can spot mispricings at a glance.
         </p>
-        <div class="source-picker" style="margin-bottom: 14px;">
-            <label for="vizSrcA">Compare</label>
-            <select id="vizSrcA"></select>
-            <span class="vs">vs</span>
-            <select id="vizSrcB"></select>
-            <button id="vizSrcSwap" class="pos-btn" type="button" title="Swap A and B">⇄</button>
-        </div>
         <div class="controls" style="margin-bottom: 14px;">
             <div class="pos-filters">
                 <button class="pos-btn active viz-pos-btn" data-pos="ALL">ALL</button>
@@ -734,52 +719,6 @@
         <div class="viz-list" id="viz-list"></div>
     </div>
 
-    <!-- TAB 3: ALL 4 MARKETS -->
-    <div class="tab-panel" id="tab-all4">
-        <p class="blurb">
-            All four markets at once.
-        </p>
-        <div class="controls" style="margin-bottom: 14px;">
-            <div class="pos-filters">
-                <button class="pos-btn active all4-pos-btn" data-pos="ALL">ALL</button>
-                <button class="pos-btn qb all4-pos-btn" data-pos="QB">QB</button>
-                <button class="pos-btn rb all4-pos-btn" data-pos="RB">RB</button>
-                <button class="pos-btn wr all4-pos-btn" data-pos="WR">WR</button>
-                <button class="pos-btn te all4-pos-btn" data-pos="TE">TE</button>
-            </div>
-        </div>
-
-        <h2 class="viz-section-title">Search players</h2>
-        <p class="viz-section-sub">Search and add multiple players to compare their four-market spread. Click a tag to remove it.</p>
-        <div style="display:flex;justify-content:center;margin-bottom:12px;">
-            <div class="search-wrap">
-                <input type="text" id="all4-search" placeholder="Search a player..." autocomplete="off">
-                <div class="suggestions-list" id="all4-suggestions" style="display:none;"></div>
-            </div>
-        </div>
-        <div class="selected-players" id="all4-selected-tags"></div>
-        <div class="viz-list" id="all4-search-list" style="margin-bottom:32px;"></div>
-
-        <h2 class="viz-section-title">Biggest Disagreements</h2>
-        <p class="viz-section-sub">Players the four markets disagree on most overall, ranked by sum of pairwise absolute ADP differences.</p>
-        <div class="viz-legend" id="all4-legend">
-            <span class="pill"><span class="dot" style="background:#00c46a;"></span><span style="color:#00c46a;font-weight:700;">DraftKings</span></span>
-            <span class="pill"><span class="dot" style="background:#ffd700;"></span><span style="color:#ffd700;font-weight:700;">Underdog</span></span>
-            <span class="pill"><span class="dot" style="background:#4a9eff;"></span><span style="color:#4a9eff;font-weight:700;">FFPC</span></span>
-            <span class="pill"><span class="dot" style="background:#e67e22;"></span><span style="color:#e67e22;font-weight:700;">Drafters</span></span>
-        </div>
-        <div class="viz-pagination" id="all4-pagination">
-            <button class="page-btn active" data-limit="10">Top 10</button>
-            <button class="page-btn" data-limit="25">Top 25</button>
-            <button class="page-btn" data-limit="50">Top 50</button>
-            <button class="page-btn" data-limit="all">All</button>
-        </div>
-        <div class="viz-meta">
-            <span id="all4-meta-left">Top 10 by total disagreement across all 4 books</span>
-            <span><span id="all4-axis-min">N/A</span> ← earlier · later → <span id="all4-axis-max">N/A</span></span>
-        </div>
-        <div class="viz-list" id="all4-top-list"></div>
-    </div>
 
     <script>
         // Tab switching
@@ -849,25 +788,23 @@
         // single per-platform ADP for every undrafted player instead of a blank.
         // Treat any value at or above the floor as "no real ADP" so we don't
         // generate phantom arbitrage gaps (e.g. a player UD 52.5 / DK 240).
-        // FFPC and Drafters: no floor confirmed yet — pass through as-is.
-        const ADP_FLOORS = { DK: 240, UD: 216, FFPC: Infinity, Drafters: Infinity };
+        const ADP_FLOORS = { DK: 240, UD: 216 };
         function isRealAdp(adp, floor) {
             return !isNaN(adp) && adp < floor;
         }
 
         // ── TAB 1: ARBITRAGE ──────────────────────────────────────────
+        // FFPC and Drafters were archived 2026-07-31 (both had been frozen in
+        // the sheet for months). Restore their entries here + in the CSS
+        // if bringing those sources back.
         const SOURCES = [
-            { id: 'DK',       label: 'DraftKings', file: 'dk_adp_history.csv'       },
-            { id: 'UD',       label: 'Underdog',   file: 'ud_adp_history.csv'       },
-            { id: 'FFPC',     label: 'FFPC',       file: 'ffpc_adp_history.csv'     },
-            { id: 'Drafters', label: 'Drafters',   file: 'drafters_adp_history.csv' },
+            { id: 'DK', label: 'DraftKings', file: 'dk_adp_history.csv' },
+            { id: 'UD', label: 'Underdog',   file: 'ud_adp_history.csv' },
         ];
         // Per-source brand colors used for column headers, ADP cells, and rec lists.
         const SOURCE_COLORS = {
-            DK:       '#00c46a', // green
-            UD:       '#ffd700', // yellow
-            FFPC:     '#4a9eff', // blue
-            Drafters: '#e67e22', // orange
+            DK: '#00c46a', // green
+            UD: '#ffd700', // yellow
         };
         // Players keyed by normalized name, with one ADP per source where present.
         const playersByKey = {};
@@ -963,30 +900,9 @@
             }
             players = Object.values(playersByKey);
 
-            // Initialize source picker. Default to DK vs UD when both available;
-            // otherwise pick the first two available sources.
-            const availSrcArr = SOURCES.map(s => s.id).filter(id => availableSources.has(id));
-            const selA = document.getElementById('srcA');
-            const selB = document.getElementById('srcB');
-            const optHTML = SOURCES.map(s => {
-                const has = availableSources.has(s.id);
-                const label = srcLabelWithWarn(s.id, s.label);
-                const tip = staleSources.has(s.id) ? ` title="${staleTooltip(s.id)}"` : '';
-                return `<option value="${s.id}"${has ? '' : ' disabled'}${tip}>${label}${has ? '' : ' (no data)'}</option>`;
-            }).join('');
-            selA.innerHTML = optHTML;
-            selB.innerHTML = optHTML;
-            const fallback = availSrcArr.length ? availSrcArr : SOURCES.map(s => s.id);
-            srcA = availableSources.has('DK') ? 'DK' : fallback[0];
-            srcB = availableSources.has('UD') ? 'UD' : (fallback.find(x => x !== srcA) || fallback[0]);
-            selA.value = srcA;
-            selB.value = srcB;
-            selA.addEventListener('change', () => { srcA = selA.value; if (srcB === srcA) { srcB = SOURCES.find(s => s.id !== srcA).id; selB.value = srcB; } refresh(); });
-            selB.addEventListener('change', () => { srcB = selB.value; if (srcA === srcB) { srcA = SOURCES.find(s => s.id !== srcB).id; selA.value = srcA; } refresh(); });
-            document.getElementById('srcSwap').addEventListener('click', () => {
-                [srcA, srcB] = [srcB, srcA]; selA.value = srcA; selB.value = srcB; refresh();
-            });
-
+            // Source pair is hardcoded to DK vs UD -- pickers were removed
+            // 2026-07-31 when FFPC/Drafters were dropped. If we ever add
+            // more sources back, restore the picker init block from git.
             refresh();
         }
 
@@ -1126,43 +1042,11 @@
         let vizPosFilter = 'ALL';
         let vizLimit = 10; // 10 / 25 / 50 / Infinity ("All")
 
-        function initVizSourcePicker() {
-            const selA = document.getElementById('vizSrcA');
-            const selB = document.getElementById('vizSrcB');
-            const optHTML = SOURCES.map(s => {
-                const tip = staleSources.has(s.id) ? ` title="${staleTooltip(s.id)}"` : '';
-                return `<option value="${s.id}"${tip}>${srcLabelWithWarn(s.id, s.label)}</option>`;
-            }).join('');
-            selA.innerHTML = optHTML;
-            selB.innerHTML = optHTML;
-            selA.value = srcA;
-            selB.value = srcB;
-            selA.addEventListener('change', () => {
-                srcA = selA.value;
-                if (srcB === srcA) { srcB = SOURCES.find(s => s.id !== srcA).id; selB.value = srcB; }
-                syncMainPicker(); refresh(); renderViz();
-            });
-            selB.addEventListener('change', () => {
-                srcB = selB.value;
-                if (srcA === srcB) { srcA = SOURCES.find(s => s.id !== srcB).id; selA.value = srcA; }
-                syncMainPicker(); refresh(); renderViz();
-            });
-            document.getElementById('vizSrcSwap').addEventListener('click', () => {
-                [srcA, srcB] = [srcB, srcA]; selA.value = srcA; selB.value = srcB;
-                syncMainPicker(); refresh(); renderViz();
-            });
-        }
-
-        function syncMainPicker() {
-            const mainA = document.getElementById('srcA');
-            const mainB = document.getElementById('srcB');
-            const vizA  = document.getElementById('vizSrcA');
-            const vizB  = document.getElementById('vizSrcB');
-            if (mainA) mainA.value = srcA;
-            if (mainB) mainB.value = srcB;
-            if (vizA)  vizA.value  = srcA;
-            if (vizB)  vizB.value  = srcB;
-        }
+        // initVizSourcePicker + syncMainPicker were removed 2026-07-31 when
+        // FFPC/Drafters were dropped and the two-source picker became unusable.
+        // Both srcA/srcB are hardcoded to DK/UD.
+        function initVizSourcePicker() { /* no-op */ }
+        function syncMainPicker() { /* no-op */ }
 
         // Compute position rank within a source (e.g., QB18 = 18th QB by ADP on that source).
         function computePosRanks(sourceId) {
@@ -1385,216 +1269,34 @@
         // (initVizSourcePicker runs after loadData; the main picker is wired
         // in loadData itself. We hook into refresh() via a wrapper.)
         const _origRefresh = refresh;
-        refresh = function() { _origRefresh(); syncMainPicker(); renderViz(); renderVizSearch(); renderAll4(); };
+        refresh = function() { _origRefresh(); syncMainPicker(); renderViz(); renderVizSearch(); };
 
-        // ── TAB 3: ALL 4 MARKETS ──────────────────────────────────────
-        let all4PosFilter = 'ALL';
-        let all4Limit = 10; // 10 / 25 / 50 / Infinity
-        // Alias of SOURCE_COLORS; kept for the All 4 markets row renderer.
-        const PLATFORM_COLORS = SOURCE_COLORS;
+        // The "All 4 Markets" tab (getAll4Ranked, renderAll4*, all4Selected,
+        // and the all4-search init IIFE) was removed 2026-07-31 when FFPC and
+        // Drafters were archived. Restore from git history if bringing those
+        // sources back.
 
-        function renderAll4() {
-            renderAll4Top();
-            renderAll4Search();
-        }
-
-        // Players with prices on all 4 sources, sorted by sum of |pairwise diffs|.
-        function getAll4Ranked() {
-            const all4 = players.filter(p =>
-                p.adps.DK !== null && p.adps.UD !== null &&
-                p.adps.FFPC !== null && p.adps.Drafters !== null);
-            const ids = ['DK','UD','FFPC','Drafters'];
-            return all4.map(p => {
-                let sum = 0;
-                for (let i = 0; i < ids.length; i++) {
-                    for (let j = i + 1; j < ids.length; j++) {
-                        sum += Math.abs(p.adps[ids[i]] - p.adps[ids[j]]);
-                    }
-                }
-                return { ...p, spread: sum };
-            });
-        }
-
-        function renderAll4Top() {
-            const listEl = document.getElementById('all4-top-list');
-            if (!listEl) return;
-            const ranked = getAll4Ranked()
-                .filter(p => all4PosFilter === 'ALL' || p.pos === all4PosFilter)
-                .sort((a, b) => b.spread - a.spread);
-            const all4 = all4Limit === Infinity ? ranked : ranked.slice(0, all4Limit);
-
-            const totalAvail = ranked.length;
-            const metaLeft = document.getElementById('all4-meta-left');
-            if (metaLeft) {
-                metaLeft.textContent = all4Limit === Infinity
-                    ? `All ${totalAvail} by total disagreement across all 4 books`
-                    : `Top ${Math.min(all4Limit, totalAvail)} by total disagreement across all 4 books`;
-            }
-
-            if (!all4.length) {
-                listEl.innerHTML = '<div class="viz-empty">No players have prices on all four sources at this position.</div>';
-                document.getElementById('all4-axis-min').textContent = 'N/A';
-                document.getElementById('all4-axis-max').textContent = 'N/A';
-                return;
-            }
-            const allAdps = all4.flatMap(p => ['DK','UD','FFPC','Drafters'].map(s => p.adps[s]));
-            const lo = Math.min(...allAdps), hi = Math.max(...allAdps);
-            const pad = Math.max(2, (hi - lo) * 0.06);
-            const axisMin = Math.max(0, Math.floor(lo - pad));
-            const axisMax = Math.ceil(hi + pad);
-            document.getElementById('all4-axis-min').textContent = `${axisMin}`;
-            document.getElementById('all4-axis-max').textContent = `${axisMax}`;
-            listEl.innerHTML = all4.map(p => renderAll4Row(p, axisMin, axisMax)).join('');
-        }
-
-        function renderAll4Row(p, axisMin, axisMax) {
-            const pct = adp => 100 * (adp - axisMin) / (axisMax - axisMin);
-            const ids = ['DK','UD','FFPC','Drafters'];
-            const adps = ids.map(s => p.adps[s]);
-            const lo = Math.min(...adps), hi = Math.max(...adps);
-            const dots = ids.map(s => {
-                const v = p.adps[s];
-                return `<div class="dot" style="left:${pct(v)}%; background:${PLATFORM_COLORS[s]};" title="${s} ${v.toFixed(1)}">${Math.round(v)}</div>`;
-            }).join('');
-            return `<div class="viz-row">
-                <span class="pos-badge pos-${escapeHtml(p.pos)}">${escapeHtml(p.pos)}</span>
-                <div class="viz-name">
-                    <span class="player">${escapeHtml(p.name)}</span>
-                    <span class="ranks">${escapeHtml(p.team || '')}</span>
-                </div>
-                <div class="viz-track">
-                    <div class="axis"></div>
-                    <div class="bar" style="left:${pct(lo)}%; width:${pct(hi) - pct(lo)}%; background:#3a4d63;"></div>
-                    ${dots}
-                </div>
-                <div class="viz-callout">
-                    <span class="gap">${(hi - lo).toFixed(0)}</span>
-                    <span class="label">spread (high − low)</span>
-                </div>
-            </div>`;
-        }
-
-        // Multi-select for All Platforms — same pattern as Market to Market.
-        const all4Selected = new Set();
-
-        function all4PlayerByKey(key) {
-            return players.find(p => normalizeName(p.name) === key);
-        }
-
-        function renderAll4Search() {
-            const listEl = document.getElementById('all4-search-list');
-            const tagsEl = document.getElementById('all4-selected-tags');
-            if (!listEl || !tagsEl) return;
-
-            const selected = [...all4Selected]
-                .map(k => all4PlayerByKey(k))
-                .filter(p => p && p.adps.DK !== null && p.adps.UD !== null && p.adps.FFPC !== null && p.adps.Drafters !== null);
-
-            const all4TagsHTML = [...all4Selected].map(k => {
-                const p = all4PlayerByKey(k);
-                if (!p) return '';
-                return `<span class="player-tag" data-key="${escapeHtml(k)}" style="color:#4a9eff;border-color:#4a9eff;background:rgba(74,158,255,0.15);">${escapeHtml(p.name)} <span class="pos-badge pos-${escapeHtml(p.pos)}" style="font-size:0.7rem;padding:1px 6px;">${escapeHtml(p.pos)}</span> <span class="remove">×</span></span>`;
-            }).join('');
-            const all4ClearLink = all4Selected.size >= 2
-                ? `<a href="#" class="clear-all" id="all4-clear-all" style="color:#6f7e8d;font-size:0.78rem;font-weight:600;text-decoration:underline;align-self:center;margin-left:6px;">Clear all</a>`
-                : '';
-            tagsEl.innerHTML = all4TagsHTML + all4ClearLink;
-            const all4ClearEl = document.getElementById('all4-clear-all');
-            if (all4ClearEl) all4ClearEl.addEventListener('click', (e) => {
-                e.preventDefault(); all4Selected.clear(); renderAll4Search();
-            });
-            tagsEl.querySelectorAll('.player-tag').forEach(t => {
-                t.addEventListener('click', () => { all4Selected.delete(t.dataset.key); renderAll4Search(); });
-            });
-
-            if (!selected.length) { listEl.innerHTML = ''; return; }
-
-            const allAdps = selected.flatMap(p => ['DK','UD','FFPC','Drafters'].map(s => p.adps[s]));
-            const lo = Math.min(...allAdps), hi = Math.max(...allAdps);
-            const pad = Math.max(2, (hi - lo) * 0.06);
-            const axisMin = Math.max(0, Math.floor(lo - pad));
-            const axisMax = Math.ceil(hi + pad);
-            listEl.innerHTML = selected.map(p => renderAll4Row(p, axisMin, axisMax)).join('');
-        }
-
-        document.querySelectorAll('.all4-pos-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.querySelectorAll('.all4-pos-btn').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                all4PosFilter = btn.dataset.pos;
-                renderAll4Top();
-            });
-        });
-        // Pagination chips for the All Platforms disagreements ranking.
-        document.querySelectorAll('#all4-pagination .page-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.querySelectorAll('#all4-pagination .page-btn').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                const v = btn.dataset.limit;
-                all4Limit = v === 'all' ? Infinity : parseInt(v, 10);
-                renderAll4Top();
-            });
-        });
-        // Suggestion-list-driven autocomplete for All Platforms.
-        (function initAll4SearchInput() {
-            const input = document.getElementById('all4-search');
-            const sugg  = document.getElementById('all4-suggestions');
-            if (!input || !sugg) return;
-            input.addEventListener('input', () => {
-                const val = input.value.toLowerCase().trim();
-                if (!val) { sugg.style.display = 'none'; return; }
-                const matches = players
-                    .filter(p => p.name.toLowerCase().includes(val) || (p.team || '').toLowerCase().includes(val))
-                    .filter(p => p.adps.DK !== null && p.adps.UD !== null && p.adps.FFPC !== null && p.adps.Drafters !== null)
-                    .filter(p => !all4Selected.has(normalizeName(p.name)))
-                    .sort((a, b) => a.name.localeCompare(b.name))
-                    .slice(0, 12);
-                if (!matches.length) { sugg.style.display = 'none'; return; }
-                sugg.innerHTML = matches.map(p =>
-                    `<div data-key="${escapeHtml(normalizeName(p.name))}">${escapeHtml(p.name)} <span style="color:#666;font-size:0.8rem">${escapeHtml(p.pos)}</span></div>`
-                ).join('');
-                sugg.style.display = 'block';
-            });
-            sugg.addEventListener('click', e => {
-                const div = e.target.closest('[data-key]');
-                if (!div) return;
-                all4Selected.add(div.dataset.key);
-                input.value = '';
-                sugg.style.display = 'none';
-                renderAll4Search();
-            });
-            document.addEventListener('click', e => {
-                if (!input.contains(e.target) && !sugg.contains(e.target)) sugg.style.display = 'none';
-            });
-        })();
-
-        // Initialize the Viz + All-4 tabs once loadData() has populated `players`.
+        // Initialize the Viz tab once loadData() has populated `players`.
         // loadData() was kicked off above; poll briefly until it's done.
         (function waitForPlayers() {
             if (players.length > 0) {
                 initVizSourcePicker();
                 injectDefaultSelections();
                 renderViz();
-                renderAll4();
             } else {
                 setTimeout(waitForPlayers, 80);
             }
         })();
 
-        // Pre-load the biggest-disagreement player into each visualizer's
+        // Pre-load the biggest-disagreement player into the visualizer's
         // multi-select so the Search section isn't empty on first paint. Users
         // can remove the tag; source-pair changes do not re-inject.
         function injectDefaultSelections() {
-            // Market to Market: largest |A - B| gap for the current pair.
             const m2mTop = players
                 .filter(p => p.adps[srcA] !== null && p.adps[srcB] !== null)
                 .map(p => ({ key: normalizeName(p.name), gap: Math.abs(p.adps[srcA] - p.adps[srcB]) }))
                 .sort((a, b) => b.gap - a.gap)[0];
             if (m2mTop) vizSelected.add(m2mTop.key);
-
-            // All Platforms: highest sum of pairwise abs diffs across DK/UD/FFPC/Drafters.
-            const all4Top = getAll4Ranked().sort((a, b) => b.spread - a.spread)[0];
-            if (all4Top) all4Selected.add(normalizeName(all4Top.name));
         }
     </script>
     </div>
