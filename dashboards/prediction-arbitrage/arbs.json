@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-04T19:11:07+00:00",
+  "generated_at": "2026-08-04T20:54:23+00:00",
   "sources": [
     {
       "id": "pred-arbitrage",
@@ -13,10 +13,39 @@
       "id": "polling-agg-2026",
       "name": "Polling Agg 2026 Arb Scanner",
       "ok": true,
-      "updated_at": "2026-08-04T19:10:20.050403+00:00",
-      "total": 264,
-      "guaranteed_kept": 0
+      "updated_at": "2026-08-04T20:52:48.746812+00:00",
+      "total": 265,
+      "guaranteed_kept": 1
     }
   ],
-  "arbs": []
+  "arbs": [
+    {
+      "source": "polling-agg-2026",
+      "category": "",
+      "label": "2026-H-PA-07",
+      "platform_a": "kalshi",
+      "platform_b": "polymarket",
+      "question_a": null,
+      "question_b": null,
+      "url_a": "https://kalshi.com/markets/HOUSEPA7",
+      "url_b": "https://polymarket.com/event/pa-07-house-election-winner",
+      "market_id_a": "HOUSEPA7-26-D",
+      "market_id_b": "37713776886536763857380242322222367371582682723176215910322979366716585040762",
+      "prob_a": 0.85,
+      "prob_b": 0.775,
+      "stake_a": 24.21,
+      "stake_b": 75.79,
+      "return_pct": 1.0,
+      "gap_pp": 7.499999999999996,
+      "settle_date": "2027-01-04",
+      "days_to_settle": 152.0,
+      "annualized_return_pct": 2.4,
+      "tradeable_a": 750.0,
+      "tradeable_b": 3068.94,
+      "volume_a": 12178.29,
+      "volume_b": 12148.451260999998,
+      "suspicious": false,
+      "suspicion_reasons": []
+    }
+  ]
 }
