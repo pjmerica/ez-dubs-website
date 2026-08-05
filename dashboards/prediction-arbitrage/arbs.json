@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-05T20:47:01+00:00",
+  "generated_at": "2026-08-05T22:41:22+00:00",
   "sources": [
     {
       "id": "pred-arbitrage",
@@ -13,9 +13,9 @@
       "id": "polling-agg-2026",
       "name": "Polling Agg 2026 Arb Scanner",
       "ok": true,
-      "updated_at": "2026-08-05T20:45:11.603169+00:00",
-      "total": 256,
-      "guaranteed_kept": 0
+      "updated_at": "2026-08-05T22:36:55.557392+00:00",
+      "total": 258,
+      "guaranteed_kept": 1
     }
   ],
   "arbs": [
@@ -1024,6 +1024,34 @@
       "tradeable_b": 718.91,
       "volume_a": 483.77,
       "volume_b": 6653.84,
+      "suspicious": false,
+      "suspicion_reasons": []
+    },
+    {
+      "source": "polling-agg-2026",
+      "category": "",
+      "label": "2026-H-IA-01",
+      "platform_a": "kalshi",
+      "platform_b": "polymarket",
+      "question_a": null,
+      "question_b": null,
+      "url_a": "https://kalshi.com/markets/HOUSEIA1",
+      "url_b": "https://polymarket.com/event/ia-01-house-election-winner",
+      "market_id_a": "HOUSEIA1-26-D",
+      "market_id_b": "70626084342654528512319514273738308837103071303735022481383733918592331109261",
+      "prob_a": 0.77,
+      "prob_b": 0.715,
+      "stake_a": 75.79,
+      "stake_b": 24.21,
+      "return_pct": 1.0,
+      "gap_pp": 5.500000000000005,
+      "settle_date": "2027-01-04",
+      "days_to_settle": 151.0,
+      "annualized_return_pct": 2.4,
+      "tradeable_a": 6250.09,
+      "tradeable_b": 215.4,
+      "volume_a": 5324.5,
+      "volume_b": 2273.9987920000003,
       "suspicious": false,
       "suspicion_reasons": []
     },
