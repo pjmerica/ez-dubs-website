@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-07T08:38:51+00:00",
+  "generated_at": "2026-08-07T10:32:31+00:00",
   "sources": [
     {
       "id": "pred-arbitrage",
@@ -13,9 +13,9 @@
       "id": "polling-agg-2026",
       "name": "Polling Agg 2026 Arb Scanner",
       "ok": true,
-      "updated_at": "2026-08-07T08:35:52.426227+00:00",
-      "total": 257,
-      "guaranteed_kept": 0
+      "updated_at": "2026-08-07T10:28:13.517246+00:00",
+      "total": 258,
+      "guaranteed_kept": 1
     }
   ],
   "arbs": [
@@ -688,6 +688,34 @@
       "tradeable_b": 19770.53,
       "volume_a": 159401.16,
       "volume_b": 179572.57,
+      "suspicious": false,
+      "suspicion_reasons": []
+    },
+    {
+      "source": "polling-agg-2026",
+      "category": "",
+      "label": "2026-H-VA-01",
+      "platform_a": "kalshi",
+      "platform_b": "polymarket",
+      "question_a": null,
+      "question_b": null,
+      "url_a": "https://kalshi.com/markets/HOUSEVA1",
+      "url_b": "https://polymarket.com/event/va-01-house-election-winner",
+      "market_id_a": "HOUSEVA1-26-D",
+      "market_id_b": "88628412725357801969852238315853152041907755032296775468463465337049299853893",
+      "prob_a": 0.49,
+      "prob_b": 0.555,
+      "stake_a": 47.37,
+      "stake_b": 52.63,
+      "return_pct": 1.0,
+      "gap_pp": 6.500000000000005,
+      "settle_date": "2027-01-04",
+      "days_to_settle": 150.0,
+      "annualized_return_pct": 2.4,
+      "tradeable_a": 756.0,
+      "tradeable_b": 414.59,
+      "volume_a": 17491.16,
+      "volume_b": 17909.198346,
       "suspicious": false,
       "suspicion_reasons": []
     },
