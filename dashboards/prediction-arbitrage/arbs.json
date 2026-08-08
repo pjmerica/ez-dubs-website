@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-08T03:12:44+00:00",
+  "generated_at": "2026-08-08T04:38:58+00:00",
   "sources": [
     {
       "id": "pred-arbitrage",
@@ -13,9 +13,9 @@
       "id": "polling-agg-2026",
       "name": "Polling Agg 2026 Arb Scanner",
       "ok": true,
-      "updated_at": "2026-08-08T01:22:56.138883+00:00",
+      "updated_at": "2026-08-08T04:36:49.605104+00:00",
       "total": 261,
-      "guaranteed_kept": 1
+      "guaranteed_kept": 0
     }
   ],
   "arbs": [
@@ -576,34 +576,6 @@
       "tradeable_b": 8857.51,
       "volume_a": 674073.21,
       "volume_b": 3992350.25,
-      "suspicious": false,
-      "suspicion_reasons": []
-    },
-    {
-      "source": "polling-agg-2026",
-      "category": "",
-      "label": "2026-H-TX-35",
-      "platform_a": "kalshi",
-      "platform_b": "polymarket",
-      "question_a": null,
-      "question_b": null,
-      "url_a": "https://kalshi.com/markets/KXHOUSETX35",
-      "url_b": "https://polymarket.com/event/tx-35-house-election-winner",
-      "market_id_a": "KXHOUSETX35-26-D",
-      "market_id_b": "5339899814292845593775846980480523063906400681832167807317855849721141409634",
-      "prob_a": 0.5,
-      "prob_b": 0.58,
-      "stake_a": 45.74,
-      "stake_b": 54.26,
-      "return_pct": 2.0,
-      "gap_pp": 7.9999999999999964,
-      "settle_date": "2027-01-04",
-      "days_to_settle": 149.0,
-      "annualized_return_pct": 4.9,
-      "tradeable_a": 750.0,
-      "tradeable_b": 2752.16,
-      "volume_a": 9690.79,
-      "volume_b": 3584.807873,
       "suspicious": false,
       "suspicion_reasons": []
     },
