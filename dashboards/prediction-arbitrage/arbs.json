@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-08T08:20:48+00:00",
+  "generated_at": "2026-08-08T10:07:02+00:00",
   "sources": [
     {
       "id": "pred-arbitrage",
@@ -13,9 +13,9 @@
       "id": "polling-agg-2026",
       "name": "Polling Agg 2026 Arb Scanner",
       "ok": true,
-      "updated_at": "2026-08-08T08:08:24.243779+00:00",
-      "total": 259,
-      "guaranteed_kept": 0
+      "updated_at": "2026-08-08T10:04:41.849264+00:00",
+      "total": 258,
+      "guaranteed_kept": 2
     }
   ],
   "arbs": [
@@ -664,6 +664,36 @@
       "suspicion_reasons": []
     },
     {
+      "source": "polling-agg-2026",
+      "category": "",
+      "label": "2026-GOV-IA",
+      "platform_a": "predictit",
+      "platform_b": "polymarket",
+      "question_a": null,
+      "question_b": null,
+      "url_a": "https://www.predictit.org/markets/detail/8378",
+      "url_b": "https://polymarket.com/event/iowa-governor-margin-of-victory-2026",
+      "market_id_a": null,
+      "market_id_b": "64312346627522692403300518459951258398296164728787601500434223831342974307333",
+      "prob_a": 0.63,
+      "prob_b": 0.205,
+      "stake_a": 35.94,
+      "stake_b": 64.06,
+      "return_pct": 22.0,
+      "gap_pp": 42.50000000000001,
+      "settle_date": "2026-11-03",
+      "days_to_settle": 87.0,
+      "annualized_return_pct": 92.3,
+      "tradeable_a": null,
+      "tradeable_b": 20.0,
+      "volume_a": null,
+      "volume_b": 38.0,
+      "suspicious": true,
+      "suspicion_reasons": [
+        "wide_gap"
+      ]
+    },
+    {
       "source": "pred-arbitrage",
       "category": "Sports",
       "label": "",
@@ -748,6 +778,36 @@
       "tradeable_b": 609.81,
       "volume_a": 167766.72,
       "volume_b": 1474.77,
+      "suspicious": true,
+      "suspicion_reasons": [
+        "wide_gap"
+      ]
+    },
+    {
+      "source": "polling-agg-2026",
+      "category": "",
+      "label": "2026-GOV-NV",
+      "platform_a": "predictit",
+      "platform_b": "polymarket",
+      "question_a": null,
+      "question_b": null,
+      "url_a": "https://www.predictit.org/markets/detail/8419",
+      "url_b": "https://polymarket.com/event/nevada-governor-margin-of-victory-2026",
+      "market_id_a": null,
+      "market_id_b": "12468542853960559522474000971186996903445803912581821045446682106484942642539",
+      "prob_a": 0.515,
+      "prob_b": 0.095,
+      "stake_a": 17.91,
+      "stake_b": 82.09,
+      "return_pct": 19.0,
+      "gap_pp": 42.00000000000001,
+      "settle_date": "2026-11-03",
+      "days_to_settle": 87.0,
+      "annualized_return_pct": 79.7,
+      "tradeable_a": null,
+      "tradeable_b": 69.81,
+      "volume_a": null,
+      "volume_b": 81.06,
       "suspicious": true,
       "suspicion_reasons": [
         "wide_gap"
