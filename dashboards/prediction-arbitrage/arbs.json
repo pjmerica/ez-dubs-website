@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-09T03:20:30+00:00",
+  "generated_at": "2026-08-09T04:49:38+00:00",
   "sources": [
     {
       "id": "pred-arbitrage",
@@ -13,9 +13,9 @@
       "id": "polling-agg-2026",
       "name": "Polling Agg 2026 Arb Scanner",
       "ok": true,
-      "updated_at": "2026-08-09T03:19:17.546904+00:00",
+      "updated_at": "2026-08-09T04:48:37.726238+00:00",
       "total": 261,
-      "guaranteed_kept": 0
+      "guaranteed_kept": 1
     }
   ],
   "arbs": [
@@ -582,6 +582,36 @@
       "tradeable_b": 140.0,
       "volume_a": 35.25,
       "volume_b": null,
+      "suspicious": true,
+      "suspicion_reasons": [
+        "wide_gap"
+      ]
+    },
+    {
+      "source": "polling-agg-2026",
+      "category": "",
+      "label": "2026-GOV-NV",
+      "platform_a": "predictit",
+      "platform_b": "polymarket",
+      "question_a": null,
+      "question_b": null,
+      "url_a": "https://www.predictit.org/markets/detail/8419",
+      "url_b": "https://polymarket.com/event/nevada-governor-margin-of-victory-2026",
+      "market_id_a": null,
+      "market_id_b": "113816146327539982497301605328634781490284367537349865150091980421665669003569",
+      "prob_a": 0.515,
+      "prob_b": 0.12,
+      "stake_a": 20.29,
+      "stake_b": 79.71,
+      "return_pct": 17.0,
+      "gap_pp": 39.5,
+      "settle_date": "2026-11-03",
+      "days_to_settle": 86.0,
+      "annualized_return_pct": 72.2,
+      "tradeable_a": null,
+      "tradeable_b": 20.0,
+      "volume_a": null,
+      "volume_b": 108.87,
       "suspicious": true,
       "suspicion_reasons": [
         "wide_gap"
