@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-10T09:00:54+00:00",
+  "generated_at": "2026-08-10T10:46:25+00:00",
   "sources": [
     {
       "id": "pred-arbitrage",
@@ -13,8 +13,8 @@
       "id": "polling-agg-2026",
       "name": "Polling Agg 2026 Arb Scanner",
       "ok": true,
-      "updated_at": "2026-08-10T08:59:16.674319+00:00",
-      "total": 265,
+      "updated_at": "2026-08-10T10:45:07.390513+00:00",
+      "total": 266,
       "guaranteed_kept": 1
     }
   ],
@@ -748,34 +748,6 @@
       "suspicion_reasons": []
     },
     {
-      "source": "polling-agg-2026",
-      "category": "",
-      "label": "2026-H-VA-01",
-      "platform_a": "kalshi",
-      "platform_b": "polymarket",
-      "question_a": null,
-      "question_b": null,
-      "url_a": "https://kalshi.com/markets/HOUSEVA1",
-      "url_b": "https://polymarket.com/event/va-01-house-election-winner",
-      "market_id_a": "HOUSEVA1-26-D",
-      "market_id_b": "88628412725357801969852238315853152041907755032296775468463465337049299853893",
-      "prob_a": 0.5,
-      "prob_b": 0.555,
-      "stake_a": 48.42,
-      "stake_b": 51.58,
-      "return_pct": 1.0,
-      "gap_pp": 5.500000000000005,
-      "settle_date": "2027-01-04",
-      "days_to_settle": 147.0,
-      "annualized_return_pct": 2.5,
-      "tradeable_a": 265.0,
-      "tradeable_b": 725.19,
-      "volume_a": 18149.8,
-      "volume_b": 18566.328778000003,
-      "suspicious": false,
-      "suspicion_reasons": []
-    },
-    {
       "source": "pred-arbitrage",
       "category": "Sports",
       "label": "",
@@ -800,6 +772,36 @@
       "tradeable_b": 300.58,
       "volume_a": 0.0,
       "volume_b": 414.17,
+      "suspicious": true,
+      "suspicion_reasons": [
+        "wide_gap"
+      ]
+    },
+    {
+      "source": "polling-agg-2026",
+      "category": "",
+      "label": "2026-GOV-IA",
+      "platform_a": "predictit",
+      "platform_b": "polymarket",
+      "question_a": null,
+      "question_b": null,
+      "url_a": "https://www.predictit.org/markets/detail/8378",
+      "url_b": "https://polymarket.com/event/iowa-governor-margin-of-victory-2026",
+      "market_id_a": null,
+      "market_id_b": "64312346627522692403300518459951258398296164728787601500434223831342974307333",
+      "prob_a": 0.63,
+      "prob_b": 0.2,
+      "stake_a": 37.88,
+      "stake_b": 62.12,
+      "return_pct": 20.0,
+      "gap_pp": 43.0,
+      "settle_date": "2026-11-03",
+      "days_to_settle": 85.0,
+      "annualized_return_pct": 85.9,
+      "tradeable_a": null,
+      "tradeable_b": 135.0,
+      "volume_a": null,
+      "volume_b": 68.772726,
       "suspicious": true,
       "suspicion_reasons": [
         "wide_gap"
