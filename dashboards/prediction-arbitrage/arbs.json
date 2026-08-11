@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-11T14:42:36+00:00",
+  "generated_at": "2026-08-11T16:34:05+00:00",
   "sources": [
     {
       "id": "pred-arbitrage",
@@ -13,9 +13,9 @@
       "id": "polling-agg-2026",
       "name": "Polling Agg 2026 Arb Scanner",
       "ok": true,
-      "updated_at": "2026-08-11T14:38:01.013181+00:00",
-      "total": 253,
-      "guaranteed_kept": 1
+      "updated_at": "2026-08-11T16:26:49.069287+00:00",
+      "total": 235,
+      "guaranteed_kept": 2
     }
   ],
   "arbs": [
@@ -468,6 +468,36 @@
       "suspicion_reasons": []
     },
     {
+      "source": "polling-agg-2026",
+      "category": "",
+      "label": "2026-GOV-IA",
+      "platform_a": "predictit",
+      "platform_b": "polymarket",
+      "question_a": null,
+      "question_b": null,
+      "url_a": "https://www.predictit.org/markets/detail/8378",
+      "url_b": "https://polymarket.com/event/iowa-governor-margin-of-victory-2026",
+      "market_id_a": null,
+      "market_id_b": "64312346627522692403300518459951258398296164728787601500434223831342974307333",
+      "prob_a": 0.63,
+      "prob_b": 0.19,
+      "stake_a": 32.79,
+      "stake_b": 67.21,
+      "return_pct": 25.0,
+      "gap_pp": 44.0,
+      "settle_date": "2026-11-03",
+      "days_to_settle": 83.0,
+      "annualized_return_pct": 109.9,
+      "tradeable_a": null,
+      "tradeable_b": 632.0,
+      "volume_a": null,
+      "volume_b": 83.772726,
+      "suspicious": true,
+      "suspicion_reasons": [
+        "wide_gap"
+      ]
+    },
+    {
       "source": "pred-arbitrage",
       "category": "Elections",
       "label": "2026-GOV-GA",
@@ -628,20 +658,20 @@
       "url_a": "https://www.predictit.org/markets/detail/8419",
       "url_b": "https://polymarket.com/event/nevada-governor-margin-of-victory-2026",
       "market_id_a": null,
-      "market_id_b": "75897128070154013676119260639635530418368195964325853283878385849209186451151",
+      "market_id_b": "103365180959385455067029826059642015741152175202547296499899231384379615679450",
       "prob_a": 0.465,
-      "prob_b": 0.145,
-      "stake_a": 24.66,
-      "stake_b": 75.34,
-      "return_pct": 13.0,
-      "gap_pp": 32.00000000000001,
+      "prob_b": 0.13,
+      "stake_a": 21.43,
+      "stake_b": 78.57,
+      "return_pct": 16.0,
+      "gap_pp": 33.5,
       "settle_date": "2026-11-03",
       "days_to_settle": 83.0,
-      "annualized_return_pct": 57.2,
+      "annualized_return_pct": 70.4,
       "tradeable_a": null,
-      "tradeable_b": 29.0,
+      "tradeable_b": 270.14,
       "volume_a": null,
-      "volume_b": 129.06,
+      "volume_b": 211.355894,
       "suspicious": true,
       "suspicion_reasons": [
         "wide_gap"
