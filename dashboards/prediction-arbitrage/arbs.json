@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-16T04:19:57+00:00",
+  "generated_at": "2026-08-16T05:59:52+00:00",
   "sources": [
     {
       "id": "pred-arbitrage",
@@ -13,9 +13,9 @@
       "id": "polling-agg-2026",
       "name": "Polling Agg 2026 Arb Scanner",
       "ok": true,
-      "updated_at": "2026-08-16T04:09:47.557146+00:00",
-      "total": 247,
-      "guaranteed_kept": 1
+      "updated_at": "2026-08-16T05:56:12.171831+00:00",
+      "total": 248,
+      "guaranteed_kept": 2
     }
   ],
   "arbs": [
@@ -72,6 +72,34 @@
       "tradeable_b": 11394.18,
       "volume_a": 314911.28,
       "volume_b": 445814.27,
+      "suspicious": false,
+      "suspicion_reasons": []
+    },
+    {
+      "source": "polling-agg-2026",
+      "category": "",
+      "label": "2026-SEN-AK",
+      "platform_a": "kalshi",
+      "platform_b": "polymarket",
+      "question_a": null,
+      "question_b": null,
+      "url_a": "https://kalshi.com/markets/SENATEAK",
+      "url_b": "https://polymarket.com/event/alaska-senate-and-governor-combo-20260810210432707",
+      "market_id_a": "SENATEAK-26-D",
+      "market_id_b": "34874731938560335587629129283589355567416405986236960993819726518909793220015",
+      "prob_a": 0.52,
+      "prob_b": 0.345,
+      "stake_a": 42.17,
+      "stake_b": 57.83,
+      "return_pct": 13.0,
+      "gap_pp": 17.500000000000004,
+      "settle_date": "2027-01-04",
+      "days_to_settle": 141.0,
+      "annualized_return_pct": 33.7,
+      "tradeable_a": 25582.55,
+      "tradeable_b": 722.0,
+      "volume_a": 239336.12,
+      "volume_b": 349.8,
       "suspicious": false,
       "suspicion_reasons": []
     },
