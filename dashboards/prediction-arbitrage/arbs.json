@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-17T21:58:21+00:00",
+  "generated_at": "2026-08-17T23:56:50+00:00",
   "sources": [
     {
       "id": "pred-arbitrage",
@@ -13,12 +13,40 @@
       "id": "polling-agg-2026",
       "name": "Polling Agg 2026 Arb Scanner",
       "ok": true,
-      "updated_at": "2026-08-17T21:52:45.223607+00:00",
-      "total": 239,
+      "updated_at": "2026-08-17T23:49:28.959761+00:00",
+      "total": 237,
       "guaranteed_kept": 1
     }
   ],
   "arbs": [
+    {
+      "source": "polling-agg-2026",
+      "category": "",
+      "label": "2026-SEN-AK",
+      "platform_a": "kalshi",
+      "platform_b": "polymarket",
+      "question_a": null,
+      "question_b": null,
+      "url_a": "https://kalshi.com/markets/SENATEAK",
+      "url_b": "https://polymarket.com/event/alaska-senate-and-governor-combo-20260810210432707",
+      "market_id_a": "SENATEAK-26-D",
+      "market_id_b": "34874731938560335587629129283589355567416405986236960993819726518909793220015",
+      "prob_a": 0.53,
+      "prob_b": 0.33,
+      "stake_a": 41.98,
+      "stake_b": 58.02,
+      "return_pct": 15.0,
+      "gap_pp": 20.0,
+      "settle_date": "2027-01-04",
+      "days_to_settle": 139.0,
+      "annualized_return_pct": 39.4,
+      "tradeable_a": 285083.87,
+      "tradeable_b": 630.75,
+      "volume_a": 263419.98,
+      "volume_b": 3587.46162,
+      "suspicious": false,
+      "suspicion_reasons": []
+    },
     {
       "source": "pred-arbitrage",
       "category": "Elections",
@@ -1180,36 +1208,6 @@
       "suspicion_reasons": [
         "wide_gap",
         "wide_spread_a"
-      ]
-    },
-    {
-      "source": "polling-agg-2026",
-      "category": "",
-      "label": "2026-SEN-AK",
-      "platform_a": "kalshi",
-      "platform_b": "polymarket",
-      "question_a": null,
-      "question_b": null,
-      "url_a": "https://kalshi.com/markets/SENATEAK",
-      "url_b": "https://polymarket.com/event/alaska-senate-and-governor-combo-20260810210432707",
-      "market_id_a": "SENATEAK-26-D",
-      "market_id_b": "34874731938560335587629129283589355567416405986236960993819726518909793220015",
-      "prob_a": 0.54,
-      "prob_b": 0.325,
-      "stake_a": 41.98,
-      "stake_b": 58.02,
-      "return_pct": 15.0,
-      "gap_pp": 21.500000000000004,
-      "settle_date": "2027-01-04",
-      "days_to_settle": 139.0,
-      "annualized_return_pct": 39.4,
-      "tradeable_a": 285325.52,
-      "tradeable_b": 740.75,
-      "volume_a": 263409.01,
-      "volume_b": 3587.4616200000005,
-      "suspicious": true,
-      "suspicion_reasons": [
-        "wide_gap"
       ]
     },
     {
