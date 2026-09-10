@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-10T20:00:50+00:00",
+  "generated_at": "2026-09-10T23:23:33+00:00",
   "sources": [
     {
       "id": "pred-arbitrage",
@@ -13,9 +13,9 @@
       "id": "polling-agg-2026",
       "name": "Polling Agg 2026 Arb Scanner",
       "ok": true,
-      "updated_at": "2026-09-10T20:00:00.161449+00:00",
+      "updated_at": "2026-09-10T23:22:09.664242+00:00",
       "total": 221,
-      "guaranteed_kept": 2
+      "guaranteed_kept": 1
     }
   ],
   "arbs": [
@@ -208,9 +208,9 @@
       "settle_date": "2027-01-04",
       "days_to_settle": 115.0,
       "annualized_return_pct": 28.6,
-      "tradeable_a": 319901.86,
+      "tradeable_a": 307182.33,
       "tradeable_b": 53.0,
-      "volume_a": 374780.3,
+      "volume_a": 374821.83,
       "volume_b": 5272.661378000001,
       "suspicious": false,
       "suspicion_reasons": []
@@ -1276,36 +1276,6 @@
       "tradeable_b": 34.1,
       "volume_a": 20647.96,
       "volume_b": 34.03,
-      "suspicious": true,
-      "suspicion_reasons": [
-        "wide_gap"
-      ]
-    },
-    {
-      "source": "polling-agg-2026",
-      "category": "",
-      "label": "2026-GOV-KS",
-      "platform_a": "predictit",
-      "platform_b": "polymarket",
-      "question_a": null,
-      "question_b": null,
-      "url_a": "https://www.predictit.org/markets/detail/8214",
-      "url_b": "https://polymarket.com/event/kansas-governor-margin-of-victory-2026",
-      "market_id_a": null,
-      "market_id_b": "57060784315911700088135257758742959994990030909381672738239680419051923601562",
-      "prob_a": 0.355,
-      "prob_b": 0.15,
-      "stake_a": 19.51,
-      "stake_b": 80.49,
-      "return_pct": 4.0,
-      "gap_pp": 20.5,
-      "settle_date": "2026-11-03",
-      "days_to_settle": 53.0,
-      "annualized_return_pct": 27.5,
-      "tradeable_a": null,
-      "tradeable_b": 418.09,
-      "volume_a": null,
-      "volume_b": 1005.61,
       "suspicious": true,
       "suspicion_reasons": [
         "wide_gap"
