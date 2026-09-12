@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-11T23:31:07+00:00",
+  "generated_at": "2026-09-12T01:33:00+00:00",
   "sources": [
     {
       "id": "pred-arbitrage",
@@ -13,8 +13,8 @@
       "id": "polling-agg-2026",
       "name": "Polling Agg 2026 Arb Scanner",
       "ok": true,
-      "updated_at": "2026-09-11T19:59:50.920587+00:00",
-      "total": 221,
+      "updated_at": "2026-09-12T01:30:50.539595+00:00",
+      "total": 218,
       "guaranteed_kept": 2
     }
   ],
@@ -32,18 +32,18 @@
       "market_id_a": "SENATEAK-26-D",
       "market_id_b": "34874731938560335587629129283589355567416405986236960993819726518909793220015",
       "prob_a": 0.66,
-      "prob_b": 0.505,
+      "prob_b": 0.495,
       "stake_a": 58.62,
       "stake_b": 41.38,
       "return_pct": 9.0,
-      "gap_pp": 15.500000000000004,
+      "gap_pp": 16.500000000000004,
       "settle_date": "2027-01-04",
       "days_to_settle": 114.0,
       "annualized_return_pct": 28.8,
-      "tradeable_a": 306963.59,
-      "tradeable_b": 53.0,
-      "volume_a": 377943.09,
-      "volume_b": 5272.661378000001,
+      "tradeable_a": 307488.13,
+      "tradeable_b": 77.91,
+      "volume_a": 377974.13,
+      "volume_b": 5382.071378,
       "suspicious": false,
       "suspicion_reasons": []
     },
@@ -69,7 +69,7 @@
       "days_to_settle": 52.0,
       "annualized_return_pct": 28.1,
       "tradeable_a": null,
-      "tradeable_b": 416.09,
+      "tradeable_b": 271.09,
       "volume_a": null,
       "volume_b": 1005.61,
       "suspicious": true,
