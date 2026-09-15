@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-15T17:45:44+00:00",
+  "generated_at": "2026-09-15T22:25:59+00:00",
   "sources": [
     {
       "id": "pred-arbitrage",
@@ -13,9 +13,9 @@
       "id": "polling-agg-2026",
       "name": "Polling Agg 2026 Arb Scanner",
       "ok": true,
-      "updated_at": "2026-09-15T16:35:42.391498+00:00",
+      "updated_at": "2026-09-15T22:25:06.305242+00:00",
       "total": 217,
-      "guaranteed_kept": 2
+      "guaranteed_kept": 3
     }
   ],
   "arbs": [
@@ -68,10 +68,10 @@
       "settle_date": "2027-01-04",
       "days_to_settle": 110.0,
       "annualized_return_pct": 39.8,
-      "tradeable_a": 294779.33,
-      "tradeable_b": 324.64,
-      "volume_a": 392505.23,
-      "volume_b": 5972.320081999999,
+      "tradeable_a": 295327.58,
+      "tradeable_b": 304.64,
+      "volume_a": 394381.91,
+      "volume_b": 5975.320081999999,
       "suspicious": false,
       "suspicion_reasons": []
     },
@@ -433,7 +433,7 @@
       "days_to_settle": 48.0,
       "annualized_return_pct": 30.4,
       "tradeable_a": null,
-      "tradeable_b": 345.99,
+      "tradeable_b": 305.99,
       "volume_a": null,
       "volume_b": 1005.61,
       "suspicious": false,
@@ -856,6 +856,34 @@
       "tradeable_b": 131.94,
       "volume_a": 26682.49,
       "volume_b": 375.16,
+      "suspicious": false,
+      "suspicion_reasons": []
+    },
+    {
+      "source": "polling-agg-2026",
+      "category": "",
+      "label": "2026-H-TX-35",
+      "platform_a": "kalshi",
+      "platform_b": "polymarket",
+      "question_a": null,
+      "question_b": null,
+      "url_a": "https://kalshi.com/markets/KXHOUSETX35",
+      "url_b": "https://polymarket.com/event/tx-35-house-election-winner",
+      "market_id_a": "KXHOUSETX35-26-D",
+      "market_id_b": "5339899814292845593775846980480523063906400681832167807317855849721141409634",
+      "prob_a": 0.56,
+      "prob_b": 0.62,
+      "stake_a": 41.05,
+      "stake_b": 58.95,
+      "return_pct": 1.0,
+      "gap_pp": 5.999999999999995,
+      "settle_date": "2027-01-04",
+      "days_to_settle": 110.0,
+      "annualized_return_pct": 3.3,
+      "tradeable_a": 5379.84,
+      "tradeable_b": 6425.72,
+      "volume_a": 21304.68,
+      "volume_b": 7711.840778,
       "suspicious": false,
       "suspicion_reasons": []
     },
