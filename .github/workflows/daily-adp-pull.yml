@@ -1,13 +1,17 @@
 name: Daily ADP Pull
 
+# Scheduled cron disabled 2026-09-19: the 2026 Best Ball season closed on
+# Sept 4 and the dashboards are frozen at that snapshot. Keep the workflow
+# file (workflow_dispatch stays available) so we can reactivate for 2027 by
+# uncommenting the schedule block.
 on:
-  schedule:
-    # 13:30 UTC = 09:30 EDT / 08:30 EST. Primary daily run.
-    - cron: '30 13 * * *'
-    # Backup at 15:30 UTC in case the 13:30 slot was skipped by GH Actions.
-    # Idempotent: the puller no-ops if today's auto rows are already present.
-    - cron: '30 15 * * *'
-  workflow_dispatch:  # also allow manual triggering from the Actions UI
+  # schedule:
+  #   # 13:30 UTC = 09:30 EDT / 08:30 EST. Primary daily run.
+  #   - cron: '30 13 * * *'
+  #   # Backup at 15:30 UTC in case the 13:30 slot was skipped by GH Actions.
+  #   # Idempotent: the puller no-ops if today's auto rows are already present.
+  #   - cron: '30 15 * * *'
+  workflow_dispatch:  # manual triggering still works from the Actions UI
 
 jobs:
   pull:
