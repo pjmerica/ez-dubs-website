@@ -1,79 +1,22 @@
 {
-  "generated_at": "2026-09-24T17:57:06+00:00",
+  "generated_at": "2026-09-24T22:43:40+00:00",
   "sources": [
     {
       "id": "pred-arbitrage",
       "name": "Pred Arbitrage Scanner",
       "ok": true,
-      "updated_at": "2026-09-24T17:38:46.913680+00:00",
-      "total": 511,
-      "guaranteed_kept": 2
+      "updated_at": "2026-09-24T20:43:02.362756+00:00",
+      "total": 507,
+      "guaranteed_kept": 0
     },
     {
       "id": "polling-agg-2026",
       "name": "Polling Agg 2026 Arb Scanner",
       "ok": true,
-      "updated_at": "2026-09-24T16:55:08.556438+00:00",
-      "total": 264,
+      "updated_at": "2026-09-24T22:41:59.975232+00:00",
+      "total": 261,
       "guaranteed_kept": 0
     }
   ],
-  "arbs": [
-    {
-      "source": "pred-arbitrage",
-      "category": "Crypto",
-      "label": "",
-      "platform_a": "kalshi",
-      "platform_b": "polymarket",
-      "question_a": "How high will XRP get in 2026? \u2014 Above $4.00",
-      "question_b": "Will XRP reach $4.00 by December 31, 2026?",
-      "url_a": "https://kalshi.com/markets/kxxrpmaxy/kxxrpmaxy-xrp-26dec31",
-      "url_b": "https://polymarket.com/event/what-price-will-xrp-hit-before-2027/will-xrp-reach-4pt00-by-december-31-2026",
-      "market_id_a": "KXXRPMAXY-XRP-26DEC31-400",
-      "market_id_b": "98453302482655365755754134883620842388466603758249592480783914572096716697930",
-      "prob_a": 0.13,
-      "prob_b": 0.0545,
-      "stake_a": 92.75,
-      "stake_b": 7.25,
-      "return_pct": 2.35,
-      "gap_pp": 7.550000000000001,
-      "settle_date": "2027-01-01",
-      "days_to_settle": null,
-      "annualized_return_pct": null,
-      "tradeable_a": 23.45,
-      "tradeable_b": 75.99,
-      "volume_a": 7170.43,
-      "volume_b": 3383.99,
-      "suspicious": false,
-      "suspicion_reasons": []
-    },
-    {
-      "source": "pred-arbitrage",
-      "category": "Crypto",
-      "label": "",
-      "platform_a": "kalshi",
-      "platform_b": "polymarket",
-      "question_a": "How high will XRP get in 2026? \u2014 Above $3.00",
-      "question_b": "Will XRP reach $3.00 by December 31, 2026?",
-      "url_a": "https://kalshi.com/markets/kxxrpmaxy/kxxrpmaxy-xrp-26dec31",
-      "url_b": "https://polymarket.com/event/what-price-will-xrp-hit-before-2027/will-xrp-reach-3pt00-by-december-31-2026",
-      "market_id_a": "KXXRPMAXY-XRP-26DEC31-300",
-      "market_id_b": "60175835114799931439622839258599029672036461599607782843459740558376415002562",
-      "prob_a": 0.19,
-      "prob_b": 0.1045,
-      "stake_a": 85.44,
-      "stake_b": 14.56,
-      "return_pct": 1.27,
-      "gap_pp": 8.55,
-      "settle_date": "2027-01-01",
-      "days_to_settle": null,
-      "annualized_return_pct": null,
-      "tradeable_a": 3192.8,
-      "tradeable_b": 216.0,
-      "volume_a": 28722.5,
-      "volume_b": 19122.24,
-      "suspicious": false,
-      "suspicion_reasons": []
-    }
-  ]
+  "arbs": []
 }
