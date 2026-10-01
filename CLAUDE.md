@@ -13,6 +13,31 @@ Context for future Claude sessions in this repo. Read `README.md` first for the 
 - **Contact** at `/contact.html`. Formspree form.
 - **Blog** — external link to Substack (`https://substack.com/@ezdubsanalytics`).
 
+
+## NFL Redraft/In-Season pages (2026-10-01)
+
+`dashboards/nfl-start-sit/` and `dashboards/nfl-rooting/`, ported from the
+`lineup/` page in `pjmerica/AI_Agent_work`. Full detail in
+**`dashboards/NFL_REDRAFT.md`** -- read that before changing either page.
+
+Two things that look like mistakes and are not:
+
+- **Both pages load the same `dashboards/nfl-shared/app.js`.** They are two URLs
+  serving one application; each only sets `window.LINEUP_DEFAULT_VIEW` to pick its
+  opening tab. Do not give each page its own copy -- duplicating that logic is how
+  the source repo got two silent drift bugs.
+- **Only `nfl-start-sit/` has a `data/` directory.** `nfl-rooting` points at it, so
+  the ~950 KB of JSON is stored once.
+
+The data is a **static snapshot** as shipped; nothing refreshes it. For a live
+page, add a workflow modelled on `scripts/pull_pred_arbs.py` pointed at
+`https://pjmerica.github.io/AI_Agent_work/nfl-props/*.json`.
+
+The nav gained a second level for this (`NFL > Best Ball / Redraft/In-Season`).
+Since the nav is copy-pasted per page here, that markup and its `.nav-dd-sub` CSS
+are in all eight pages. `port_lineup_to_ezdubs.py` in the source repo rewrites
+them all idempotently -- use it rather than hand-editing eight files.
+
 ## Best Ball is frozen (2026-09-19)
 
 The 2026 Best Ball drafting season closed on Sept 4. The two Best Ball dashboards were frozen at that snapshot:

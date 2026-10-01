@@ -292,7 +292,45 @@
         }
         .site-footer a { color: #99aabb; text-decoration: none; }
         .site-footer a:hover { color: #4a9eff; }
-    </style>
+    
+        /* Second-level nav submenu (added for the NFL > Best Ball / Redraft
+           split). The first level is unchanged; these rules only apply inside a
+           .nav-dd-sub, so existing single-level dropdowns are unaffected. */
+        .site-nav .nav-dd-sub { position: relative; }
+        .site-nav .nav-dd-sub > .nav-dd-sub-btn {
+            display: flex; align-items: center; justify-content: space-between;
+            width: 100%; gap: 8px;
+            background: none; border: 0; cursor: default;
+            padding: 7px 14px; font: inherit; font-size: 0.9rem;
+            color: #cfe0f0; text-align: left;
+        }
+        .site-nav .nav-dd-sub > .nav-dd-sub-btn:hover { background: #1e2d3d; color: #fff; }
+        .site-nav .nav-dd-sub > .nav-dd-sub-btn.has-active { color: #4a9eff; }
+        .site-nav .nav-dd-sub > .nav-dd-sub-btn .caret { font-size: 0.65rem; opacity: 0.7; }
+        .site-nav .nav-dd-sub-menu {
+            display: none; position: absolute; top: 0; left: 100%;
+            min-width: 210px; flex-direction: column;
+            background: #15202b; border: 1px solid #2b3f55; border-radius: 8px;
+            padding: 6px 0; z-index: 60;
+            box-shadow: 0 10px 24px rgba(0,0,0,0.45);
+        }
+        .site-nav .nav-dd-sub:hover > .nav-dd-sub-menu,
+        .site-nav .nav-dd-sub:focus-within > .nav-dd-sub-menu { display: flex; }
+        .site-nav .nav-dd-sub-menu a {
+            padding: 7px 14px; font-size: 0.9rem; color: #cfe0f0; text-decoration: none;
+        }
+        .site-nav .nav-dd-sub-menu a:hover { background: #1e2d3d; color: #fff; }
+        .site-nav .nav-dd-sub-menu a.active { color: #4a9eff; background: #1e2d3d; }
+        @media (max-width: 760px) {
+            /* No room to fly out sideways on a phone: indent in place instead. */
+            .site-nav .nav-dd-sub-menu {
+                display: flex; position: static; left: auto;
+                border: 0; box-shadow: none; background: transparent;
+                padding: 0 0 0 14px; min-width: 0;
+            }
+            .site-nav .nav-dd-sub > .nav-dd-sub-btn { cursor: default; }
+        }
+</style>
 </head>
 <body>
     <nav class="site-nav">
@@ -304,10 +342,22 @@
         <div class="nav-tabs">
             <a href="../../">Home</a>
             <div class="nav-dd">
-                <button type="button" class="nav-dd-btn">Best Ball (NFL) <span class="caret">▾</span></button>
+                <button type="button" class="nav-dd-btn">NFL <span class="caret">▾</span></button>
                 <div class="nav-dd-menu">
-                    <a href="../best-ball-prices/">Price Differences</a>
-                    <a href="../best-ball-history/">History Risers/Fallers</a>
+                    <div class="nav-dd-sub">
+                        <button type="button" class="nav-dd-sub-btn">Best Ball <span class="caret">▸</span></button>
+                        <div class="nav-dd-sub-menu">
+                            <a href="../best-ball-prices/">Price Differences</a>
+                            <a href="../best-ball-history/">History Risers/Fallers</a>
+                        </div>
+                    </div>
+                    <div class="nav-dd-sub">
+                        <button type="button" class="nav-dd-sub-btn">Redraft/In-Season <span class="caret">▸</span></button>
+                        <div class="nav-dd-sub-menu">
+                            <a href="../nfl-start-sit/">Start/Sit</a>
+                            <a href="../nfl-rooting/">Root For/Against</a>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="nav-dd">

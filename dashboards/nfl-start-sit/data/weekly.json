@@ -1,0 +1,7494 @@
+{
+  "lastUpdated": "2026-10-01T14:23:38+00:00",
+  "season": "2026",
+  "source": "Kalshi (per-game)",
+  "note": "Per-game player props for the upcoming slate. Kalshi purges settled markets, so whatever is open is the next set of games -- there is no way to fetch a week that has already been played.",
+  "week": 4,
+  "kickoffs": [
+    "26OCT01",
+    "26OCT04",
+    "26OCT05"
+  ],
+  "gameCount": 16,
+  "playerGameCount": 349,
+  "matchupConflicts": [],
+  "statCounts": {
+    "rush_yds": 85,
+    "pass_yds": 32,
+    "pass_tds": 32,
+    "any_tds": 349,
+    "receptions": 19,
+    "rec_yds": 150
+  },
+  "seriesMarketCounts": {
+    "KXNFLREC": 135,
+    "KXNFLRECYDS": 1206,
+    "KXNFLRSHYDS": 752,
+    "KXNFLPASSYDS": 287,
+    "KXNFLPASSTDS": 133,
+    "KXNFLTD": 670
+  },
+  "players": [
+    {
+      "name": "Aaron Rodgers",
+      "game": "26OCT01:PITCLE",
+      "kickoff": "26OCT01",
+      "matchup": "PITCLE",
+      "stats": {
+        "rush_yds": {
+          "line": 4.6,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 4
+        },
+        "pass_yds": {
+          "line": 214.3,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 8,
+          "confidentRungs": 8
+        },
+        "pass_tds": {
+          "line": 1.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 4
+        },
+        "any_tds": {
+          "line": 0.055,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Ben Skowronek",
+      "game": "26OCT01:PITCLE",
+      "kickoff": "26OCT01",
+      "matchup": "PITCLE",
+      "stats": {
+        "any_tds": {
+          "line": 0.055,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Blake Whiteheart",
+      "game": "26OCT01:PITCLE",
+      "kickoff": "26OCT01",
+      "matchup": "PITCLE",
+      "stats": {
+        "any_tds": {
+          "line": 0.065,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "CLE Browns D/ST",
+      "game": "26OCT01:PITCLE",
+      "kickoff": "26OCT01",
+      "matchup": "PITCLE",
+      "stats": {
+        "any_tds": {
+          "line": 0.15,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "DK Metcalf",
+      "game": "26OCT01:PITCLE",
+      "kickoff": "26OCT01",
+      "matchup": "PITCLE",
+      "stats": {
+        "receptions": {
+          "line": 3.7,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 8,
+          "confidentRungs": 8
+        },
+        "rec_yds": {
+          "line": 46.0,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "any_tds": {
+          "line": 0.325,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Darnell Washington",
+      "game": "26OCT01:PITCLE",
+      "kickoff": "26OCT01",
+      "matchup": "PITCLE",
+      "stats": {
+        "receptions": {
+          "line": 1.9,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 5,
+          "confidentRungs": 5
+        },
+        "rec_yds": {
+          "line": 18.1,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 5,
+          "confidentRungs": 5
+        },
+        "any_tds": {
+          "line": 0.135,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Denzel Boston",
+      "game": "26OCT01:PITCLE",
+      "kickoff": "26OCT01",
+      "matchup": "PITCLE",
+      "stats": {
+        "receptions": {
+          "line": 2.8,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 7,
+          "confidentRungs": 7
+        },
+        "rec_yds": {
+          "line": 37.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "any_tds": {
+          "line": 0.24,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Deshaun Watson",
+      "game": "26OCT01:PITCLE",
+      "kickoff": "26OCT01",
+      "matchup": "PITCLE",
+      "stats": {
+        "rush_yds": {
+          "line": 29.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 8,
+          "confidentRungs": 8
+        },
+        "pass_yds": {
+          "line": 186.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 8,
+          "confidentRungs": 8
+        },
+        "pass_tds": {
+          "line": 0.9,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 4
+        },
+        "any_tds": {
+          "line": 0.18,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Germie Bernard",
+      "game": "26OCT01:PITCLE",
+      "kickoff": "26OCT01",
+      "matchup": "PITCLE",
+      "stats": {
+        "receptions": {
+          "line": 1.2,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 4
+        },
+        "rec_yds": {
+          "line": 11.7,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 4
+        },
+        "any_tds": {
+          "line": 0.08,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Harold Fannin Jr.",
+      "game": "26OCT01:PITCLE",
+      "kickoff": "26OCT01",
+      "matchup": "PITCLE",
+      "stats": {
+        "receptions": {
+          "line": 4.3,
+          "lineSource": "interpolated",
+          "expected": 4.4,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "rec_yds": {
+          "line": 40.4,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "any_tds": {
+          "line": 0.27,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Jaleel McLaughlin",
+      "game": "26OCT01:PITCLE",
+      "kickoff": "26OCT01",
+      "matchup": "PITCLE",
+      "stats": {
+        "any_tds": {
+          "line": 0.045,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Jaylen Warren",
+      "game": "26OCT01:PITCLE",
+      "kickoff": "26OCT01",
+      "matchup": "PITCLE",
+      "stats": {
+        "receptions": {
+          "line": 3.4,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "rec_yds": {
+          "line": 25.4,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 6,
+          "confidentRungs": 6
+        },
+        "rush_yds": {
+          "line": 73.7,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 12,
+          "confidentRungs": 12
+        },
+        "any_tds": {
+          "line": 0.625,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Jerry Jeudy",
+      "game": "26OCT01:PITCLE",
+      "kickoff": "26OCT01",
+      "matchup": "PITCLE",
+      "stats": {
+        "receptions": {
+          "line": 1.4,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 4
+        },
+        "rec_yds": {
+          "line": 14.9,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 5,
+          "confidentRungs": 5
+        },
+        "any_tds": {
+          "line": 0.08,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Michael Pittman Jr.",
+      "game": "26OCT01:PITCLE",
+      "kickoff": "26OCT01",
+      "matchup": "PITCLE",
+      "stats": {
+        "receptions": {
+          "line": 3.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 8,
+          "confidentRungs": 8
+        },
+        "rec_yds": {
+          "line": 33.4,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "any_tds": {
+          "line": 0.22,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "PIT Steelers D/ST",
+      "game": "26OCT01:PITCLE",
+      "kickoff": "26OCT01",
+      "matchup": "PITCLE",
+      "stats": {
+        "any_tds": {
+          "line": 0.155,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Pat Freiermuth",
+      "game": "26OCT01:PITCLE",
+      "kickoff": "26OCT01",
+      "matchup": "PITCLE",
+      "stats": {
+        "receptions": {
+          "line": 3.1,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 8,
+          "confidentRungs": 8
+        },
+        "rec_yds": {
+          "line": 28.7,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 7,
+          "confidentRungs": 7
+        },
+        "any_tds": {
+          "line": 0.2,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Quinshon Judkins",
+      "game": "26OCT01:PITCLE",
+      "kickoff": "26OCT01",
+      "matchup": "PITCLE",
+      "stats": {
+        "receptions": {
+          "line": 2.0,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 5,
+          "confidentRungs": 5
+        },
+        "rec_yds": {
+          "line": 12.5,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 4
+        },
+        "rush_yds": {
+          "line": 55.8,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 11,
+          "confidentRungs": 11
+        },
+        "any_tds": {
+          "line": 0.505,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Raheim Sanders",
+      "game": "26OCT01:PITCLE",
+      "kickoff": "26OCT01",
+      "matchup": "PITCLE",
+      "stats": {
+        "receptions": {
+          "line": 1.8,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 5,
+          "confidentRungs": 5
+        },
+        "rec_yds": {
+          "line": 13.0,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 4
+        },
+        "rush_yds": {
+          "line": 6.6,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 5,
+          "confidentRungs": 5
+        },
+        "any_tds": {
+          "line": 0.1,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Roman Wilson",
+      "game": "26OCT01:PITCLE",
+      "kickoff": "26OCT01",
+      "matchup": "PITCLE",
+      "stats": {
+        "receptions": {
+          "line": 2.0,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 6,
+          "confidentRungs": 6
+        },
+        "rec_yds": {
+          "line": 19.8,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 7,
+          "confidentRungs": 7
+        },
+        "any_tds": {
+          "line": 0.17,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Travis Homer",
+      "game": "26OCT01:PITCLE",
+      "kickoff": "26OCT01",
+      "matchup": "PITCLE",
+      "stats": {
+        "rush_yds": {
+          "line": 8.2,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 6,
+          "confidentRungs": 6
+        },
+        "any_tds": {
+          "line": 0.055,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "AJ Barner",
+      "game": "26OCT04:LACSEA",
+      "kickoff": "26OCT04",
+      "matchup": "LACSEA",
+      "stats": {
+        "rec_yds": {
+          "line": 31.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "any_tds": {
+          "line": 0.285,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "AJ Dillon",
+      "game": "26OCT04:DETCAR",
+      "kickoff": "26OCT04",
+      "matchup": "DETCAR",
+      "stats": {
+        "rush_yds": {
+          "line": 13.3,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 7,
+          "confidentRungs": 7
+        },
+        "any_tds": {
+          "line": 0.115,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "ARI Cardinals D/ST",
+      "game": "26OCT04:ARINYG",
+      "kickoff": "26OCT04",
+      "matchup": "ARINYG",
+      "stats": {
+        "any_tds": {
+          "line": 0.1,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Aaron Jones Sr.",
+      "game": "26OCT04:MIAMIN",
+      "kickoff": "26OCT04",
+      "matchup": "MIAMIN",
+      "stats": {
+        "rec_yds": {
+          "line": 18.6,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 5,
+          "confidentRungs": 5
+        },
+        "rush_yds": {
+          "line": 67.1,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 11,
+          "confidentRungs": 11
+        },
+        "any_tds": {
+          "line": 0.825,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Adam Trautman",
+      "game": "26OCT04:DENSF",
+      "kickoff": "26OCT04",
+      "matchup": "DENSF",
+      "stats": {
+        "any_tds": {
+          "line": 0.09,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Ameer Abdullah",
+      "game": "26OCT04:JACCIN",
+      "kickoff": "26OCT04",
+      "matchup": "JACCIN",
+      "stats": {
+        "any_tds": {
+          "line": 0.085,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Amon-Ra St. Brown",
+      "game": "26OCT04:DETCAR",
+      "kickoff": "26OCT04",
+      "matchup": "DETCAR",
+      "stats": {
+        "rec_yds": {
+          "line": 76.9,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 14,
+          "confidentRungs": 14
+        },
+        "any_tds": {
+          "line": 0.695,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Antonio Williams",
+      "game": "26OCT04:INDWAS",
+      "kickoff": "26OCT04",
+      "matchup": "INDWAS",
+      "stats": {
+        "receptions": {
+          "line": 1.7,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 5,
+          "confidentRungs": 5
+        },
+        "rec_yds": {
+          "line": 17.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 6,
+          "confidentRungs": 6
+        },
+        "any_tds": {
+          "line": 0.145,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Ashton Jeanty",
+      "game": "26OCT04:KCLV",
+      "kickoff": "26OCT04",
+      "matchup": "KCLV",
+      "stats": {
+        "rec_yds": {
+          "line": 19.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 6,
+          "confidentRungs": 6
+        },
+        "rush_yds": {
+          "line": 59.1,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 11,
+          "confidentRungs": 11
+        },
+        "any_tds": {
+          "line": 0.74,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "BAL Ravens D/ST",
+      "game": "26OCT04:TENBAL",
+      "kickoff": "26OCT04",
+      "matchup": "TENBAL",
+      "stats": {
+        "any_tds": {
+          "line": 0.145,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "BUF Bills D/ST",
+      "game": "26OCT04:NEBUF",
+      "kickoff": "26OCT04",
+      "matchup": "NEBUF",
+      "stats": {
+        "any_tds": {
+          "line": 0.125,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Ben Sinnott",
+      "game": "26OCT04:INDWAS",
+      "kickoff": "26OCT04",
+      "matchup": "INDWAS",
+      "stats": {
+        "any_tds": {
+          "line": 0.09,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Bhayshul Tuten",
+      "game": "26OCT04:JACCIN",
+      "kickoff": "26OCT04",
+      "matchup": "JACCIN",
+      "stats": {
+        "rec_yds": {
+          "line": 11.8,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 4
+        },
+        "rush_yds": {
+          "line": 54.9,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "any_tds": {
+          "line": 0.62,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Blake Corum",
+      "game": "26OCT04:LARPHI",
+      "kickoff": "26OCT04",
+      "matchup": "LARPHI",
+      "stats": {
+        "rush_yds": {
+          "line": 40.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "any_tds": {
+          "line": 0.27,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Bo Melton",
+      "game": "26OCT04:GBTB",
+      "kickoff": "26OCT04",
+      "matchup": "GBTB",
+      "stats": {
+        "any_tds": {
+          "line": 0.06,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Bo Nix",
+      "game": "26OCT04:DENSF",
+      "kickoff": "26OCT04",
+      "matchup": "DENSF",
+      "stats": {
+        "rush_yds": {
+          "line": 17.8,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 8,
+          "confidentRungs": 8
+        },
+        "pass_yds": {
+          "line": 223.6,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "pass_tds": {
+          "line": 1.3,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 4
+        },
+        "any_tds": {
+          "line": 0.22,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Braelon Allen",
+      "game": "26OCT04:NYJCHI",
+      "kickoff": "26OCT04",
+      "matchup": "NYJCHI",
+      "stats": {
+        "rec_yds": {
+          "line": 12.0,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 4
+        },
+        "rush_yds": {
+          "line": 55.1,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "any_tds": {
+          "line": 0.525,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Brashard Smith",
+      "game": "26OCT04:KCLV",
+      "kickoff": "26OCT04",
+      "matchup": "KCLV",
+      "stats": {
+        "any_tds": {
+          "line": 0.125,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Braxton Berrios",
+      "game": "26OCT04:ARINYG",
+      "kickoff": "26OCT04",
+      "matchup": "ARINYG",
+      "stats": {
+        "any_tds": {
+          "line": 0.06,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Brenton Strange",
+      "game": "26OCT04:JACCIN",
+      "kickoff": "26OCT04",
+      "matchup": "JACCIN",
+      "stats": {
+        "rec_yds": {
+          "line": 33.8,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "any_tds": {
+          "line": 0.305,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Brevyn Spann-Ford",
+      "game": "26OCT04:DALHOU",
+      "kickoff": "26OCT04",
+      "matchup": "DALHOU",
+      "stats": {
+        "any_tds": {
+          "line": 0.08,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Brian Thomas Jr.",
+      "game": "26OCT04:JACCIN",
+      "kickoff": "26OCT04",
+      "matchup": "JACCIN",
+      "stats": {
+        "rec_yds": {
+          "line": 28.0,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "any_tds": {
+          "line": 0.235,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Brock Bowers",
+      "game": "26OCT04:KCLV",
+      "kickoff": "26OCT04",
+      "matchup": "KCLV",
+      "stats": {
+        "rec_yds": {
+          "line": 71.4,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 13,
+          "confidentRungs": 13
+        },
+        "any_tds": {
+          "line": 0.42,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Brock Purdy",
+      "game": "26OCT04:DENSF",
+      "kickoff": "26OCT04",
+      "matchup": "DENSF",
+      "stats": {
+        "rush_yds": {
+          "line": 16.8,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 7,
+          "confidentRungs": 7
+        },
+        "pass_yds": {
+          "line": 233.7,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "pass_tds": {
+          "line": 1.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 5,
+          "confidentRungs": 5
+        },
+        "any_tds": {
+          "line": 0.24,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Brock Wright",
+      "game": "26OCT04:DETCAR",
+      "kickoff": "26OCT04",
+      "matchup": "DETCAR",
+      "stats": {
+        "any_tds": {
+          "line": 0.11,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Bryce Young",
+      "game": "26OCT04:DETCAR",
+      "kickoff": "26OCT04",
+      "matchup": "DETCAR",
+      "stats": {
+        "rush_yds": {
+          "line": 12.4,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 7,
+          "confidentRungs": 7
+        },
+        "pass_yds": {
+          "line": 247.9,
+          "lineSource": "interpolated",
+          "expected": 238.0,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "pass_tds": {
+          "line": 1.6,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 4
+        },
+        "any_tds": {
+          "line": 0.165,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Brycen Tremayne",
+      "game": "26OCT04:DETCAR",
+      "kickoff": "26OCT04",
+      "matchup": "DETCAR",
+      "stats": {
+        "any_tds": {
+          "line": 0.115,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Bucky Irving",
+      "game": "26OCT04:GBTB",
+      "kickoff": "26OCT04",
+      "matchup": "GBTB",
+      "stats": {
+        "rec_yds": {
+          "line": 13.6,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 5,
+          "confidentRungs": 5
+        },
+        "rush_yds": {
+          "line": 61.3,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "any_tds": {
+          "line": 0.405,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "C.J. Stroud",
+      "game": "26OCT04:DALHOU",
+      "kickoff": "26OCT04",
+      "matchup": "DALHOU",
+      "stats": {
+        "rush_yds": {
+          "line": 11.4,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 7,
+          "confidentRungs": 7
+        },
+        "pass_yds": {
+          "line": 246.7,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 8,
+          "confidentRungs": 8
+        },
+        "pass_tds": {
+          "line": 1.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 4
+        },
+        "any_tds": {
+          "line": 0.145,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "CAR Panthers D/ST",
+      "game": "26OCT04:DETCAR",
+      "kickoff": "26OCT04",
+      "matchup": "DETCAR",
+      "stats": {
+        "any_tds": {
+          "line": 0.12,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "CHI Bears D/ST",
+      "game": "26OCT04:NYJCHI",
+      "kickoff": "26OCT04",
+      "matchup": "NYJCHI",
+      "stats": {
+        "any_tds": {
+          "line": 0.135,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "CIN Bengals D/ST",
+      "game": "26OCT04:JACCIN",
+      "kickoff": "26OCT04",
+      "matchup": "JACCIN",
+      "stats": {
+        "any_tds": {
+          "line": 0.12,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Cade Otton",
+      "game": "26OCT04:GBTB",
+      "kickoff": "26OCT04",
+      "matchup": "GBTB",
+      "stats": {
+        "rec_yds": {
+          "line": 25.8,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 7,
+          "confidentRungs": 7
+        },
+        "any_tds": {
+          "line": 0.135,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Cade Stover",
+      "game": "26OCT04:DALHOU",
+      "kickoff": "26OCT04",
+      "matchup": "DALHOU",
+      "stats": {
+        "any_tds": {
+          "line": 0.05,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Calvin Ridley",
+      "game": "26OCT04:TENBAL",
+      "kickoff": "26OCT04",
+      "matchup": "TENBAL",
+      "stats": {
+        "rec_yds": {
+          "line": 7.9,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 4
+        },
+        "any_tds": {
+          "line": 0.06,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Cam Skattebo",
+      "game": "26OCT04:ARINYG",
+      "kickoff": "26OCT04",
+      "matchup": "ARINYG",
+      "stats": {
+        "rec_yds": {
+          "line": 17.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 6,
+          "confidentRungs": 6
+        },
+        "rush_yds": {
+          "line": 63.0,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 11,
+          "confidentRungs": 11
+        },
+        "any_tds": {
+          "line": 0.72,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Cam Ward",
+      "game": "26OCT04:TENBAL",
+      "kickoff": "26OCT04",
+      "matchup": "TENBAL",
+      "stats": {
+        "rush_yds": {
+          "line": 9.8,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 6,
+          "confidentRungs": 6
+        },
+        "pass_yds": {
+          "line": 183.7,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "pass_tds": {
+          "line": 0.8,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        },
+        "any_tds": {
+          "line": 0.135,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Carnell Tate",
+      "game": "26OCT04:TENBAL",
+      "kickoff": "26OCT04",
+      "matchup": "TENBAL",
+      "stats": {
+        "rec_yds": {
+          "line": 42.3,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "any_tds": {
+          "line": 0.225,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "CeeDee Lamb",
+      "game": "26OCT04:DALHOU",
+      "kickoff": "26OCT04",
+      "matchup": "DALHOU",
+      "stats": {
+        "rec_yds": {
+          "line": 76.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 13,
+          "confidentRungs": 13
+        },
+        "any_tds": {
+          "line": 0.505,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Chase Brown",
+      "game": "26OCT04:JACCIN",
+      "kickoff": "26OCT04",
+      "matchup": "JACCIN",
+      "stats": {
+        "rec_yds": {
+          "line": 18.7,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 5,
+          "confidentRungs": 5
+        },
+        "rush_yds": {
+          "line": 64.1,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 11,
+          "confidentRungs": 11
+        },
+        "any_tds": {
+          "line": 0.815,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Chimere Dike",
+      "game": "26OCT04:TENBAL",
+      "kickoff": "26OCT04",
+      "matchup": "TENBAL",
+      "stats": {
+        "any_tds": {
+          "line": 0.06,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Chris Brooks",
+      "game": "26OCT04:GBTB",
+      "kickoff": "26OCT04",
+      "matchup": "GBTB",
+      "stats": {
+        "any_tds": {
+          "line": 0.14,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Chris Godwin Jr.",
+      "game": "26OCT04:GBTB",
+      "kickoff": "26OCT04",
+      "matchup": "GBTB",
+      "stats": {
+        "rec_yds": {
+          "line": 25.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 7,
+          "confidentRungs": 7
+        },
+        "any_tds": {
+          "line": 0.145,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Chris Moore",
+      "game": "26OCT04:TENBAL",
+      "kickoff": "26OCT04",
+      "matchup": "TENBAL",
+      "stats": {
+        "any_tds": {
+          "line": 0.11,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Chris Rodriguez Jr.",
+      "game": "26OCT04:JACCIN",
+      "kickoff": "26OCT04",
+      "matchup": "JACCIN",
+      "stats": {
+        "rush_yds": {
+          "line": 20.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "any_tds": {
+          "line": 0.275,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Christian McCaffrey",
+      "game": "26OCT04:DENSF",
+      "kickoff": "26OCT04",
+      "matchup": "DENSF",
+      "stats": {
+        "rec_yds": {
+          "line": 38.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "rush_yds": {
+          "line": 65.7,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 11,
+          "confidentRungs": 11
+        },
+        "any_tds": {
+          "line": 0.875,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Christian Watson",
+      "game": "26OCT04:GBTB",
+      "kickoff": "26OCT04",
+      "matchup": "GBTB",
+      "stats": {
+        "rec_yds": {
+          "line": 66.7,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 13,
+          "confidentRungs": 13
+        },
+        "any_tds": {
+          "line": 0.435,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Chuba Hubbard",
+      "game": "26OCT04:DETCAR",
+      "kickoff": "26OCT04",
+      "matchup": "DETCAR",
+      "stats": {
+        "rec_yds": {
+          "line": 19.0,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 6,
+          "confidentRungs": 6
+        },
+        "rush_yds": {
+          "line": 66.6,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 11,
+          "confidentRungs": 11
+        },
+        "any_tds": {
+          "line": 0.715,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Cody White",
+      "game": "26OCT04:KCLV",
+      "kickoff": "26OCT04",
+      "matchup": "KCLV",
+      "stats": {
+        "any_tds": {
+          "line": 0.14,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Cole Kmet",
+      "game": "26OCT04:NYJCHI",
+      "kickoff": "26OCT04",
+      "matchup": "NYJCHI",
+      "stats": {
+        "rec_yds": {
+          "line": 11.2,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 4
+        },
+        "any_tds": {
+          "line": 0.13,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Colston Loveland",
+      "game": "26OCT04:NYJCHI",
+      "kickoff": "26OCT04",
+      "matchup": "NYJCHI",
+      "stats": {
+        "rec_yds": {
+          "line": 33.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 7,
+          "confidentRungs": 7
+        },
+        "any_tds": {
+          "line": 0.3,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Cooper Kupp",
+      "game": "26OCT04:LACSEA",
+      "kickoff": "26OCT04",
+      "matchup": "LACSEA",
+      "stats": {
+        "rec_yds": {
+          "line": 24.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 7,
+          "confidentRungs": 7
+        },
+        "any_tds": {
+          "line": 0.235,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Courtland Sutton",
+      "game": "26OCT04:DENSF",
+      "kickoff": "26OCT04",
+      "matchup": "DENSF",
+      "stats": {
+        "rec_yds": {
+          "line": 38.7,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "any_tds": {
+          "line": 0.33,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "D'Andre Swift",
+      "game": "26OCT04:NYJCHI",
+      "kickoff": "26OCT04",
+      "matchup": "NYJCHI",
+      "stats": {
+        "rec_yds": {
+          "line": 14.7,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 4
+        },
+        "rush_yds": {
+          "line": 66.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 11,
+          "confidentRungs": 11
+        },
+        "any_tds": {
+          "line": 0.69,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "DAL Cowboys D/ST",
+      "game": "26OCT04:DALHOU",
+      "kickoff": "26OCT04",
+      "matchup": "DALHOU",
+      "stats": {
+        "any_tds": {
+          "line": 0.135,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "DEN Broncos D/ST",
+      "game": "26OCT04:DENSF",
+      "kickoff": "26OCT04",
+      "matchup": "DENSF",
+      "stats": {
+        "any_tds": {
+          "line": 0.12,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "DET Lions D/ST",
+      "game": "26OCT04:DETCAR",
+      "kickoff": "26OCT04",
+      "matchup": "DETCAR",
+      "stats": {
+        "any_tds": {
+          "line": 0.13,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "DJ Moore",
+      "game": "26OCT04:NEBUF",
+      "kickoff": "26OCT04",
+      "matchup": "NEBUF",
+      "stats": {
+        "rec_yds": {
+          "line": 49.0,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 12,
+          "confidentRungs": 12
+        },
+        "any_tds": {
+          "line": 0.43,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Dak Prescott",
+      "game": "26OCT04:DALHOU",
+      "kickoff": "26OCT04",
+      "matchup": "DALHOU",
+      "stats": {
+        "rush_yds": {
+          "line": 10.1,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 6,
+          "confidentRungs": 6
+        },
+        "pass_yds": {
+          "line": 270.3,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "pass_tds": {
+          "line": 1.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 4
+        },
+        "any_tds": {
+          "line": 0.13,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Dallen Bentley",
+      "game": "26OCT04:DENSF",
+      "kickoff": "26OCT04",
+      "matchup": "DENSF",
+      "stats": {
+        "any_tds": {
+          "line": 0.055,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Dalton Kincaid",
+      "game": "26OCT04:NEBUF",
+      "kickoff": "26OCT04",
+      "matchup": "NEBUF",
+      "stats": {
+        "rec_yds": {
+          "line": 51.1,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 12,
+          "confidentRungs": 12
+        },
+        "any_tds": {
+          "line": 0.43,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Dalton Schultz",
+      "game": "26OCT04:DALHOU",
+      "kickoff": "26OCT04",
+      "matchup": "DALHOU",
+      "stats": {
+        "rec_yds": {
+          "line": 43.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "any_tds": {
+          "line": 0.33,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Daniel Jones",
+      "game": "26OCT04:INDWAS",
+      "kickoff": "26OCT04",
+      "matchup": "INDWAS",
+      "stats": {
+        "rush_yds": {
+          "line": 11.4,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 7,
+          "confidentRungs": 7
+        },
+        "pass_yds": {
+          "line": 224.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "pass_tds": {
+          "line": 1.4,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 4
+        },
+        "any_tds": {
+          "line": 0.205,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Dareke Young",
+      "game": "26OCT04:KCLV",
+      "kickoff": "26OCT04",
+      "matchup": "KCLV",
+      "stats": {
+        "any_tds": {
+          "line": 0.085,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Darius Cooper",
+      "game": "26OCT04:LARPHI",
+      "kickoff": "26OCT04",
+      "matchup": "LARPHI",
+      "stats": {
+        "any_tds": {
+          "line": 0.095,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Darius Slayton",
+      "game": "26OCT04:INDWAS",
+      "kickoff": "26OCT04",
+      "matchup": "INDWAS",
+      "stats": {
+        "any_tds": {
+          "line": 0.145,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Darnell Mooney",
+      "game": "26OCT04:ARINYG",
+      "kickoff": "26OCT04",
+      "matchup": "ARINYG",
+      "stats": {
+        "rec_yds": {
+          "line": 20.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 7,
+          "confidentRungs": 7
+        },
+        "any_tds": {
+          "line": 0.13,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Darren Waller",
+      "game": "26OCT04:DETCAR",
+      "kickoff": "26OCT04",
+      "matchup": "DETCAR",
+      "stats": {
+        "rec_yds": {
+          "line": 23.6,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 7,
+          "confidentRungs": 7
+        },
+        "any_tds": {
+          "line": 0.305,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Davante Adams",
+      "game": "26OCT04:LARPHI",
+      "kickoff": "26OCT04",
+      "matchup": "LARPHI",
+      "stats": {
+        "rec_yds": {
+          "line": 63.0,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 14,
+          "confidentRungs": 14
+        },
+        "any_tds": {
+          "line": 0.56,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "David Montgomery",
+      "game": "26OCT04:DALHOU",
+      "kickoff": "26OCT04",
+      "matchup": "DALHOU",
+      "stats": {
+        "rec_yds": {
+          "line": 11.3,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 5,
+          "confidentRungs": 5
+        },
+        "rush_yds": {
+          "line": 44.1,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "any_tds": {
+          "line": 0.75,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Davis Allen",
+      "game": "26OCT04:LARPHI",
+      "kickoff": "26OCT04",
+      "matchup": "LARPHI",
+      "stats": {
+        "any_tds": {
+          "line": 0.095,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Dawson Knox",
+      "game": "26OCT04:NEBUF",
+      "kickoff": "26OCT04",
+      "matchup": "NEBUF",
+      "stats": {
+        "any_tds": {
+          "line": 0.145,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "DeMario Douglas",
+      "game": "26OCT04:NEBUF",
+      "kickoff": "26OCT04",
+      "matchup": "NEBUF",
+      "stats": {
+        "rec_yds": {
+          "line": 25.3,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 7,
+          "confidentRungs": 7
+        },
+        "any_tds": {
+          "line": 0.185,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "DeVonta Smith",
+      "game": "26OCT04:LARPHI",
+      "kickoff": "26OCT04",
+      "matchup": "LARPHI",
+      "stats": {
+        "rec_yds": {
+          "line": 64.3,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 12,
+          "confidentRungs": 12
+        },
+        "any_tds": {
+          "line": 0.345,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "DeeJay Dallas",
+      "game": "26OCT04:MIAMIN",
+      "kickoff": "26OCT04",
+      "matchup": "MIAMIN",
+      "stats": {
+        "any_tds": {
+          "line": 0.11,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Deebo Samuel Sr.",
+      "game": "26OCT04:DENSF",
+      "kickoff": "26OCT04",
+      "matchup": "DENSF",
+      "stats": {
+        "any_tds": {
+          "line": 0.43,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Deion Burks",
+      "game": "26OCT04:INDWAS",
+      "kickoff": "26OCT04",
+      "matchup": "INDWAS",
+      "stats": {
+        "any_tds": {
+          "line": 0.055,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Demond Claiborne",
+      "game": "26OCT04:MIAMIN",
+      "kickoff": "26OCT04",
+      "matchup": "MIAMIN",
+      "stats": {
+        "any_tds": {
+          "line": 0.07,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Derrick Henry",
+      "game": "26OCT04:TENBAL",
+      "kickoff": "26OCT04",
+      "matchup": "TENBAL",
+      "stats": {
+        "rec_yds": {
+          "line": 7.9,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 4
+        },
+        "rush_yds": {
+          "line": 96.6,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 13,
+          "confidentRungs": 13
+        },
+        "any_tds": {
+          "line": 0.99,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Devin Singletary",
+      "game": "26OCT04:ARINYG",
+      "kickoff": "26OCT04",
+      "matchup": "ARINYG",
+      "stats": {
+        "any_tds": {
+          "line": 0.06,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Devontez Walker",
+      "game": "26OCT04:TENBAL",
+      "kickoff": "26OCT04",
+      "matchup": "TENBAL",
+      "stats": {
+        "any_tds": {
+          "line": 0.105,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Dohnte Meyers",
+      "game": "26OCT04:JACCIN",
+      "kickoff": "26OCT04",
+      "matchup": "JACCIN",
+      "stats": {
+        "rec_yds": {
+          "line": 19.0,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 6,
+          "confidentRungs": 6
+        },
+        "any_tds": {
+          "line": 0.17,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Dontayvion Wicks",
+      "game": "26OCT04:LARPHI",
+      "kickoff": "26OCT04",
+      "matchup": "LARPHI",
+      "stats": {
+        "rec_yds": {
+          "line": 40.3,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 11,
+          "confidentRungs": 11
+        },
+        "any_tds": {
+          "line": 0.215,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Drake Maye",
+      "game": "26OCT04:NEBUF",
+      "kickoff": "26OCT04",
+      "matchup": "NEBUF",
+      "stats": {
+        "pass_yds": {
+          "line": 230.8,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "pass_tds": {
+          "line": 1.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 4
+        },
+        "any_tds": {
+          "line": 0.17,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Drew Ogletree",
+      "game": "26OCT04:INDWAS",
+      "kickoff": "26OCT04",
+      "matchup": "INDWAS",
+      "stats": {
+        "any_tds": {
+          "line": 0.06,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Drew Sample",
+      "game": "26OCT04:JACCIN",
+      "kickoff": "26OCT04",
+      "matchup": "JACCIN",
+      "stats": {
+        "rec_yds": {
+          "line": 7.9,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        },
+        "any_tds": {
+          "line": 0.11,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Durham Smythe",
+      "game": "26OCT04:TENBAL",
+      "kickoff": "26OCT04",
+      "matchup": "TENBAL",
+      "stats": {
+        "any_tds": {
+          "line": 0.08,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Dyami Brown",
+      "game": "26OCT04:INDWAS",
+      "kickoff": "26OCT04",
+      "matchup": "INDWAS",
+      "stats": {
+        "any_tds": {
+          "line": 0.105,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Efton Chism III",
+      "game": "26OCT04:NEBUF",
+      "kickoff": "26OCT04",
+      "matchup": "NEBUF",
+      "stats": {
+        "any_tds": {
+          "line": 0.055,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Elic Ayomanor",
+      "game": "26OCT04:TENBAL",
+      "kickoff": "26OCT04",
+      "matchup": "TENBAL",
+      "stats": {
+        "rec_yds": {
+          "line": 20.4,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 6,
+          "confidentRungs": 6
+        },
+        "any_tds": {
+          "line": 0.13,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Elijah Arroyo",
+      "game": "26OCT04:LACSEA",
+      "kickoff": "26OCT04",
+      "matchup": "LACSEA",
+      "stats": {
+        "any_tds": {
+          "line": 0.065,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Elijah Higgins",
+      "game": "26OCT04:ARINYG",
+      "kickoff": "26OCT04",
+      "matchup": "ARINYG",
+      "stats": {
+        "any_tds": {
+          "line": 0.07,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Elijah Sarratt",
+      "game": "26OCT04:TENBAL",
+      "kickoff": "26OCT04",
+      "matchup": "TENBAL",
+      "stats": {
+        "any_tds": {
+          "line": 0.065,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Emanuel Wilson",
+      "game": "26OCT04:LACSEA",
+      "kickoff": "26OCT04",
+      "matchup": "LACSEA",
+      "stats": {
+        "rush_yds": {
+          "line": 37.6,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 11,
+          "confidentRungs": 11
+        },
+        "any_tds": {
+          "line": 0.355,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Emari Demercado",
+      "game": "26OCT04:DALHOU",
+      "kickoff": "26OCT04",
+      "matchup": "DALHOU",
+      "stats": {
+        "any_tds": {
+          "line": 0.085,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Emeka Egbuka",
+      "game": "26OCT04:GBTB",
+      "kickoff": "26OCT04",
+      "matchup": "GBTB",
+      "stats": {
+        "rec_yds": {
+          "line": 38.0,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "any_tds": {
+          "line": 0.245,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Emmett Johnson",
+      "game": "26OCT04:KCLV",
+      "kickoff": "26OCT04",
+      "matchup": "KCLV",
+      "stats": {
+        "rec_yds": {
+          "line": 10.5,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 4
+        },
+        "rush_yds": {
+          "line": 15.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 8,
+          "confidentRungs": 8
+        },
+        "any_tds": {
+          "line": 0.19,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Eric Saubert",
+      "game": "26OCT04:LACSEA",
+      "kickoff": "26OCT04",
+      "matchup": "LACSEA",
+      "stats": {
+        "any_tds": {
+          "line": 0.05,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Erick All Jr.",
+      "game": "26OCT04:JACCIN",
+      "kickoff": "26OCT04",
+      "matchup": "JACCIN",
+      "stats": {
+        "any_tds": {
+          "line": 0.08,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Evan Engram",
+      "game": "26OCT04:DENSF",
+      "kickoff": "26OCT04",
+      "matchup": "DENSF",
+      "stats": {
+        "rec_yds": {
+          "line": 17.7,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 5,
+          "confidentRungs": 5
+        },
+        "any_tds": {
+          "line": 0.155,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Foster Moreau",
+      "game": "26OCT04:DALHOU",
+      "kickoff": "26OCT04",
+      "matchup": "DALHOU",
+      "stats": {
+        "any_tds": {
+          "line": 0.105,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "GB Packers D/ST",
+      "game": "26OCT04:GBTB",
+      "kickoff": "26OCT04",
+      "matchup": "GBTB",
+      "stats": {
+        "any_tds": {
+          "line": 0.14,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Garrett Wilson",
+      "game": "26OCT04:NYJCHI",
+      "kickoff": "26OCT04",
+      "matchup": "NYJCHI",
+      "stats": {
+        "rec_yds": {
+          "line": 74.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 13,
+          "confidentRungs": 13
+        },
+        "any_tds": {
+          "line": 0.44,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Gavin Bartholomew",
+      "game": "26OCT04:MIAMIN",
+      "kickoff": "26OCT04",
+      "matchup": "MIAMIN",
+      "stats": {
+        "any_tds": {
+          "line": 0.06,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Geno Smith",
+      "game": "26OCT04:NYJCHI",
+      "kickoff": "26OCT04",
+      "matchup": "NYJCHI",
+      "stats": {
+        "rush_yds": {
+          "line": 11.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 6,
+          "confidentRungs": 6
+        },
+        "pass_yds": {
+          "line": 225.3,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "pass_tds": {
+          "line": 1.1,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 4
+        },
+        "any_tds": {
+          "line": 0.095,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "George Holani",
+      "game": "26OCT04:LACSEA",
+      "kickoff": "26OCT04",
+      "matchup": "LACSEA",
+      "stats": {
+        "any_tds": {
+          "line": 0.245,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "George Kittle",
+      "game": "26OCT04:DENSF",
+      "kickoff": "26OCT04",
+      "matchup": "DENSF",
+      "stats": {
+        "rec_yds": {
+          "line": 64.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 13,
+          "confidentRungs": 13
+        },
+        "any_tds": {
+          "line": 0.445,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "George Pickens",
+      "game": "26OCT04:DALHOU",
+      "kickoff": "26OCT04",
+      "matchup": "DALHOU",
+      "stats": {
+        "rec_yds": {
+          "line": 68.4,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 12,
+          "confidentRungs": 12
+        },
+        "any_tds": {
+          "line": 0.415,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Greg Dulcich",
+      "game": "26OCT04:MIAMIN",
+      "kickoff": "26OCT04",
+      "matchup": "MIAMIN",
+      "stats": {
+        "rec_yds": {
+          "line": 28.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 8,
+          "confidentRungs": 8
+        },
+        "any_tds": {
+          "line": 0.13,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Gunnar Helm",
+      "game": "26OCT04:TENBAL",
+      "kickoff": "26OCT04",
+      "matchup": "TENBAL",
+      "stats": {
+        "rec_yds": {
+          "line": 18.0,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 7,
+          "confidentRungs": 7
+        },
+        "any_tds": {
+          "line": 0.15,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "HOU Texans D/ST",
+      "game": "26OCT04:DALHOU",
+      "kickoff": "26OCT04",
+      "matchup": "DALHOU",
+      "stats": {
+        "any_tds": {
+          "line": 0.135,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Hayden Rucci",
+      "game": "26OCT04:LACSEA",
+      "kickoff": "26OCT04",
+      "matchup": "LACSEA",
+      "stats": {
+        "any_tds": {
+          "line": 0.045,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Hunter Henry",
+      "game": "26OCT04:NEBUF",
+      "kickoff": "26OCT04",
+      "matchup": "NEBUF",
+      "stats": {
+        "rec_yds": {
+          "line": 29.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 8,
+          "confidentRungs": 8
+        },
+        "any_tds": {
+          "line": 0.27,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Hunter Luepke",
+      "game": "26OCT04:DALHOU",
+      "kickoff": "26OCT04",
+      "matchup": "DALHOU",
+      "stats": {
+        "any_tds": {
+          "line": 0.07,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "IND Colts D/ST",
+      "game": "26OCT04:INDWAS",
+      "kickoff": "26OCT04",
+      "matchup": "INDWAS",
+      "stats": {
+        "any_tds": {
+          "line": 0.13,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Isaac TeSlaa",
+      "game": "26OCT04:DETCAR",
+      "kickoff": "26OCT04",
+      "matchup": "DETCAR",
+      "stats": {
+        "rec_yds": {
+          "line": 16.9,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 6,
+          "confidentRungs": 6
+        },
+        "any_tds": {
+          "line": 0.185,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Isaiah Davis",
+      "game": "26OCT04:NYJCHI",
+      "kickoff": "26OCT04",
+      "matchup": "NYJCHI",
+      "stats": {
+        "rec_yds": {
+          "line": 8.6,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 5,
+          "confidentRungs": 5
+        },
+        "rush_yds": {
+          "line": 21.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "any_tds": {
+          "line": 0.235,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Isaiah Likely",
+      "game": "26OCT04:ARINYG",
+      "kickoff": "26OCT04",
+      "matchup": "ARINYG",
+      "stats": {
+        "rec_yds": {
+          "line": 40.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "any_tds": {
+          "line": 0.275,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Isaiah Williams",
+      "game": "26OCT04:NYJCHI",
+      "kickoff": "26OCT04",
+      "matchup": "NYJCHI",
+      "stats": {
+        "rec_yds": {
+          "line": 22.7,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 7,
+          "confidentRungs": 7
+        },
+        "any_tds": {
+          "line": 0.185,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "J.K. Dobbins",
+      "game": "26OCT04:DENSF",
+      "kickoff": "26OCT04",
+      "matchup": "DENSF",
+      "stats": {
+        "rush_yds": {
+          "line": 59.1,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 11,
+          "confidentRungs": 11
+        },
+        "any_tds": {
+          "line": 0.525,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "JAC Jaguars D/ST",
+      "game": "26OCT04:JACCIN",
+      "kickoff": "26OCT04",
+      "matchup": "JACCIN",
+      "stats": {
+        "any_tds": {
+          "line": 0.1,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Ja'Marr Chase",
+      "game": "26OCT04:JACCIN",
+      "kickoff": "26OCT04",
+      "matchup": "JACCIN",
+      "stats": {
+        "rec_yds": {
+          "line": 79.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 13,
+          "confidentRungs": 13
+        },
+        "any_tds": {
+          "line": 0.665,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Jack Endries",
+      "game": "26OCT04:JACCIN",
+      "kickoff": "26OCT04",
+      "matchup": "JACCIN",
+      "stats": {
+        "any_tds": {
+          "line": 0.065,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Jackson Hawes",
+      "game": "26OCT04:NEBUF",
+      "kickoff": "26OCT04",
+      "matchup": "NEBUF",
+      "stats": {
+        "any_tds": {
+          "line": 0.07,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Jacob Cowing",
+      "game": "26OCT04:DENSF",
+      "kickoff": "26OCT04",
+      "matchup": "DENSF",
+      "stats": {
+        "any_tds": {
+          "line": 0.12,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Jacoby Brissett",
+      "game": "26OCT04:ARINYG",
+      "kickoff": "26OCT04",
+      "matchup": "ARINYG",
+      "stats": {
+        "rush_yds": {
+          "line": 8.5,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 6,
+          "confidentRungs": 6
+        },
+        "pass_yds": {
+          "line": 231.3,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "pass_tds": {
+          "line": 1.3,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 4
+        },
+        "any_tds": {
+          "line": 0.145,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Jacory Croskey-Merritt",
+      "game": "26OCT04:INDWAS",
+      "kickoff": "26OCT04",
+      "matchup": "INDWAS",
+      "stats": {
+        "rush_yds": {
+          "line": 55.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 11,
+          "confidentRungs": 11
+        },
+        "any_tds": {
+          "line": 0.575,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Jadarian Price",
+      "game": "26OCT04:LACSEA",
+      "kickoff": "26OCT04",
+      "matchup": "LACSEA",
+      "stats": {
+        "rush_yds": {
+          "line": 41.4,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 11,
+          "confidentRungs": 11
+        },
+        "any_tds": {
+          "line": 0.47,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Jahmyr Gibbs",
+      "game": "26OCT04:DETCAR",
+      "kickoff": "26OCT04",
+      "matchup": "DETCAR",
+      "stats": {
+        "rec_yds": {
+          "line": 35.8,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 8,
+          "confidentRungs": 8
+        },
+        "rush_yds": {
+          "line": 96.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 14,
+          "confidentRungs": 14
+        },
+        "any_tds": {
+          "line": 1.205,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Jake Ferguson",
+      "game": "26OCT04:DALHOU",
+      "kickoff": "26OCT04",
+      "matchup": "DALHOU",
+      "stats": {
+        "rec_yds": {
+          "line": 24.0,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 7,
+          "confidentRungs": 7
+        },
+        "any_tds": {
+          "line": 0.245,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Jakobi Meyers",
+      "game": "26OCT04:JACCIN",
+      "kickoff": "26OCT04",
+      "matchup": "JACCIN",
+      "stats": {
+        "rec_yds": {
+          "line": 40.3,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "any_tds": {
+          "line": 0.29,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Jalen Hurts",
+      "game": "26OCT04:LARPHI",
+      "kickoff": "26OCT04",
+      "matchup": "LARPHI",
+      "stats": {
+        "rush_yds": {
+          "line": 24.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "pass_yds": {
+          "line": 203.7,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "pass_tds": {
+          "line": 1.1,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 4
+        },
+        "any_tds": {
+          "line": 0.425,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Jalen Nailor",
+      "game": "26OCT04:KCLV",
+      "kickoff": "26OCT04",
+      "matchup": "KCLV",
+      "stats": {
+        "rec_yds": {
+          "line": 20.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 7,
+          "confidentRungs": 7
+        },
+        "any_tds": {
+          "line": 0.19,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Jalen Royals",
+      "game": "26OCT04:KCLV",
+      "kickoff": "26OCT04",
+      "matchup": "KCLV",
+      "stats": {
+        "any_tds": {
+          "line": 0.08,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Jalon Daniels",
+      "game": "26OCT04:GBTB",
+      "kickoff": "26OCT04",
+      "matchup": "GBTB",
+      "stats": {
+        "rush_yds": {
+          "line": 34.6,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "pass_yds": {
+          "line": 173.4,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 8,
+          "confidentRungs": 8
+        },
+        "pass_tds": {
+          "line": 0.8,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        },
+        "any_tds": {
+          "line": 0.22,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Jamaal Pritchett",
+      "game": "26OCT04:NYJCHI",
+      "kickoff": "26OCT04",
+      "matchup": "NYJCHI",
+      "stats": {
+        "any_tds": {
+          "line": 0.07,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Jameis Winston",
+      "game": "26OCT04:ARINYG",
+      "kickoff": "26OCT04",
+      "matchup": "ARINYG",
+      "stats": {
+        "rush_yds": {
+          "line": 4.7,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 5,
+          "confidentRungs": 5
+        },
+        "pass_yds": {
+          "line": 208.7,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "pass_tds": {
+          "line": 1.1,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 4
+        },
+        "any_tds": {
+          "line": 0.105,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "James Cook III",
+      "game": "26OCT04:NEBUF",
+      "kickoff": "26OCT04",
+      "matchup": "NEBUF",
+      "stats": {
+        "rec_yds": {
+          "line": 8.8,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 5,
+          "confidentRungs": 5
+        },
+        "rush_yds": {
+          "line": 85.6,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 13,
+          "confidentRungs": 13
+        },
+        "any_tds": {
+          "line": 0.73,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Jameson Williams",
+      "game": "26OCT04:DETCAR",
+      "kickoff": "26OCT04",
+      "matchup": "DETCAR",
+      "stats": {
+        "rec_yds": {
+          "line": 52.3,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 13,
+          "confidentRungs": 13
+        },
+        "any_tds": {
+          "line": 0.355,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Jared Goff",
+      "game": "26OCT04:DETCAR",
+      "kickoff": "26OCT04",
+      "matchup": "DETCAR",
+      "stats": {
+        "rush_yds": {
+          "line": 3.9,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 4
+        },
+        "pass_yds": {
+          "line": 261.1,
+          "lineSource": "interpolated",
+          "expected": 247.9,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "pass_tds": {
+          "line": 1.9,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 5,
+          "confidentRungs": 5
+        },
+        "any_tds": {
+          "line": 0.075,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Jared Wayne",
+      "game": "26OCT04:DALHOU",
+      "kickoff": "26OCT04",
+      "matchup": "DALHOU",
+      "stats": {
+        "any_tds": {
+          "line": 0.11,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Jauan Jennings",
+      "game": "26OCT04:MIAMIN",
+      "kickoff": "26OCT04",
+      "matchup": "MIAMIN",
+      "stats": {
+        "any_tds": {
+          "line": 0.205,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Javonte Williams",
+      "game": "26OCT04:DALHOU",
+      "kickoff": "26OCT04",
+      "matchup": "DALHOU",
+      "stats": {
+        "rec_yds": {
+          "line": 14.3,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 4
+        },
+        "rush_yds": {
+          "line": 60.0,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "any_tds": {
+          "line": 0.71,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Jaxon Smith-Njigba",
+      "game": "26OCT04:LACSEA",
+      "kickoff": "26OCT04",
+      "matchup": "LACSEA",
+      "stats": {
+        "rec_yds": {
+          "line": 91.7,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 15,
+          "confidentRungs": 15
+        },
+        "any_tds": {
+          "line": 0.69,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Jaylen Waddle",
+      "game": "26OCT04:DENSF",
+      "kickoff": "26OCT04",
+      "matchup": "DENSF",
+      "stats": {
+        "rec_yds": {
+          "line": 55.9,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 12,
+          "confidentRungs": 11
+        },
+        "any_tds": {
+          "line": 0.35,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Jaylin Lane",
+      "game": "26OCT04:INDWAS",
+      "kickoff": "26OCT04",
+      "matchup": "INDWAS",
+      "stats": {
+        "any_tds": {
+          "line": 0.05,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Jaylin Noel",
+      "game": "26OCT04:DALHOU",
+      "kickoff": "26OCT04",
+      "matchup": "DALHOU",
+      "stats": {
+        "rec_yds": {
+          "line": 12.9,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 5,
+          "confidentRungs": 5
+        },
+        "any_tds": {
+          "line": 0.12,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Jeremiyah Love",
+      "game": "26OCT04:ARINYG",
+      "kickoff": "26OCT04",
+      "matchup": "ARINYG",
+      "stats": {
+        "rec_yds": {
+          "line": 15.1,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 5,
+          "confidentRungs": 5
+        },
+        "rush_yds": {
+          "line": 64.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 11,
+          "confidentRungs": 11
+        },
+        "any_tds": {
+          "line": 0.72,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Jeremy Ruckert",
+      "game": "26OCT04:NYJCHI",
+      "kickoff": "26OCT04",
+      "matchup": "NYJCHI",
+      "stats": {
+        "any_tds": {
+          "line": 0.105,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Joe Burrow",
+      "game": "26OCT04:JACCIN",
+      "kickoff": "26OCT04",
+      "matchup": "JACCIN",
+      "stats": {
+        "rush_yds": {
+          "line": 9.4,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 6,
+          "confidentRungs": 6
+        },
+        "pass_yds": {
+          "line": 268.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "pass_tds": {
+          "line": 1.9,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 5,
+          "confidentRungs": 5
+        },
+        "any_tds": {
+          "line": 0.095,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "John Bates",
+      "game": "26OCT04:INDWAS",
+      "kickoff": "26OCT04",
+      "matchup": "INDWAS",
+      "stats": {
+        "any_tds": {
+          "line": 0.09,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "John Metchie III",
+      "game": "26OCT04:DETCAR",
+      "kickoff": "26OCT04",
+      "matchup": "DETCAR",
+      "stats": {
+        "any_tds": {
+          "line": 0.12,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Johnny Mundt",
+      "game": "26OCT04:LARPHI",
+      "kickoff": "26OCT04",
+      "matchup": "LARPHI",
+      "stats": {
+        "rec_yds": {
+          "line": 1.4,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 1
+        },
+        "any_tds": {
+          "line": 0.085,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Jonathan Taylor",
+      "game": "26OCT04:INDWAS",
+      "kickoff": "26OCT04",
+      "matchup": "INDWAS",
+      "stats": {
+        "receptions": {
+          "line": 2.6,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 7,
+          "confidentRungs": 6
+        },
+        "rec_yds": {
+          "line": 19.3,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 6,
+          "confidentRungs": 6
+        },
+        "rush_yds": {
+          "line": 89.0,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 14,
+          "confidentRungs": 14
+        },
+        "any_tds": {
+          "line": 1.1,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Jonnu Smith",
+      "game": "26OCT04:GBTB",
+      "kickoff": "26OCT04",
+      "matchup": "GBTB",
+      "stats": {
+        "rec_yds": {
+          "line": 9.0,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        },
+        "any_tds": {
+          "line": 0.12,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Jordan Addison",
+      "game": "26OCT04:MIAMIN",
+      "kickoff": "26OCT04",
+      "matchup": "MIAMIN",
+      "stats": {
+        "any_tds": {
+          "line": 0.485,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Jordan Love",
+      "game": "26OCT04:GBTB",
+      "kickoff": "26OCT04",
+      "matchup": "GBTB",
+      "stats": {
+        "rush_yds": {
+          "line": 5.0,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 6,
+          "confidentRungs": 6
+        },
+        "pass_yds": {
+          "line": 244.3,
+          "lineSource": "interpolated",
+          "expected": 234.9,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "pass_tds": {
+          "line": 1.3,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 4
+        },
+        "any_tds": {
+          "line": 0.12,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Jordan Watkins",
+      "game": "26OCT04:DENSF",
+      "kickoff": "26OCT04",
+      "matchup": "DENSF",
+      "stats": {
+        "any_tds": {
+          "line": 0.07,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Josh Allen",
+      "game": "26OCT04:NEBUF",
+      "kickoff": "26OCT04",
+      "matchup": "NEBUF",
+      "stats": {
+        "rush_yds": {
+          "line": 31.3,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "pass_yds": {
+          "line": 237.8,
+          "lineSource": "interpolated",
+          "expected": 227.8,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "pass_tds": {
+          "line": 1.7,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 5,
+          "confidentRungs": 5
+        },
+        "any_tds": {
+          "line": 0.695,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Josh Cameron",
+      "game": "26OCT04:JACCIN",
+      "kickoff": "26OCT04",
+      "matchup": "JACCIN",
+      "stats": {
+        "any_tds": {
+          "line": 0.125,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Josh Downs",
+      "game": "26OCT04:INDWAS",
+      "kickoff": "26OCT04",
+      "matchup": "INDWAS",
+      "stats": {
+        "receptions": {
+          "line": 4.8,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "rec_yds": {
+          "line": 63.4,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 11,
+          "confidentRungs": 11
+        },
+        "any_tds": {
+          "line": 0.375,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Joshua Palmer",
+      "game": "26OCT04:NEBUF",
+      "kickoff": "26OCT04",
+      "matchup": "NEBUF",
+      "stats": {
+        "any_tds": {
+          "line": 0.15,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Julius Chestnut",
+      "game": "26OCT04:TENBAL",
+      "kickoff": "26OCT04",
+      "matchup": "TENBAL",
+      "stats": {
+        "any_tds": {
+          "line": 0.035,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Justice Hill",
+      "game": "26OCT04:TENBAL",
+      "kickoff": "26OCT04",
+      "matchup": "TENBAL",
+      "stats": {
+        "any_tds": {
+          "line": 0.155,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Justin Herbert",
+      "game": "26OCT04:LACSEA",
+      "kickoff": "26OCT04",
+      "matchup": "LACSEA",
+      "stats": {
+        "rush_yds": {
+          "line": 21.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 8,
+          "confidentRungs": 8
+        },
+        "pass_yds": {
+          "line": 199.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 8,
+          "confidentRungs": 8
+        },
+        "pass_tds": {
+          "line": 0.9,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        },
+        "any_tds": {
+          "line": 0.15,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "KC Chiefs D/ST",
+      "game": "26OCT04:KCLV",
+      "kickoff": "26OCT04",
+      "matchup": "KCLV",
+      "stats": {
+        "any_tds": {
+          "line": 0.115,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "KaVontae Turpin",
+      "game": "26OCT04:DALHOU",
+      "kickoff": "26OCT04",
+      "matchup": "DALHOU",
+      "stats": {
+        "any_tds": {
+          "line": 0.07,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Kaelon Black",
+      "game": "26OCT04:DENSF",
+      "kickoff": "26OCT04",
+      "matchup": "DENSF",
+      "stats": {
+        "rush_yds": {
+          "line": 22.8,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "any_tds": {
+          "line": 0.23,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Kaleb Johnson",
+      "game": "26OCT04:GBTB",
+      "kickoff": "26OCT04",
+      "matchup": "GBTB",
+      "stats": {
+        "rush_yds": {
+          "line": 31.4,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "any_tds": {
+          "line": 0.355,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Kalif Raymond",
+      "game": "26OCT04:NYJCHI",
+      "kickoff": "26OCT04",
+      "matchup": "NYJCHI",
+      "stats": {
+        "rec_yds": {
+          "line": 31.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "any_tds": {
+          "line": 0.215,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Kayshon Boutte",
+      "game": "26OCT04:DALHOU",
+      "kickoff": "26OCT04",
+      "matchup": "DALHOU",
+      "stats": {
+        "rec_yds": {
+          "line": 24.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 8,
+          "confidentRungs": 8
+        },
+        "any_tds": {
+          "line": 0.22,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Kaytron Allen",
+      "game": "26OCT04:INDWAS",
+      "kickoff": "26OCT04",
+      "matchup": "INDWAS",
+      "stats": {
+        "any_tds": {
+          "line": 0.245,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Keaton Mitchell",
+      "game": "26OCT04:LACSEA",
+      "kickoff": "26OCT04",
+      "matchup": "LACSEA",
+      "stats": {
+        "any_tds": {
+          "line": 0.145,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Keenan Allen",
+      "game": "26OCT04:INDWAS",
+      "kickoff": "26OCT04",
+      "matchup": "INDWAS",
+      "stats": {
+        "receptions": {
+          "line": 3.6,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 8,
+          "confidentRungs": 8
+        },
+        "rec_yds": {
+          "line": 34.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "any_tds": {
+          "line": 0.265,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Kendrick Bourne",
+      "game": "26OCT04:ARINYG",
+      "kickoff": "26OCT04",
+      "matchup": "ARINYG",
+      "stats": {
+        "rec_yds": {
+          "line": 18.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 6,
+          "confidentRungs": 6
+        },
+        "any_tds": {
+          "line": 0.165,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Kenneth Walker III",
+      "game": "26OCT04:KCLV",
+      "kickoff": "26OCT04",
+      "matchup": "KCLV",
+      "stats": {
+        "rec_yds": {
+          "line": 20.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 6,
+          "confidentRungs": 6
+        },
+        "rush_yds": {
+          "line": 87.1,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 14,
+          "confidentRungs": 14
+        },
+        "any_tds": {
+          "line": 0.85,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Kenny Gainwell",
+      "game": "26OCT04:GBTB",
+      "kickoff": "26OCT04",
+      "matchup": "GBTB",
+      "stats": {
+        "any_tds": {
+          "line": 0.17,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Keon Coleman",
+      "game": "26OCT04:NEBUF",
+      "kickoff": "26OCT04",
+      "matchup": "NEBUF",
+      "stats": {
+        "rec_yds": {
+          "line": 14.1,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 6,
+          "confidentRungs": 6
+        },
+        "any_tds": {
+          "line": 0.205,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Kevin Coleman Jr.",
+      "game": "26OCT04:MIAMIN",
+      "kickoff": "26OCT04",
+      "matchup": "MIAMIN",
+      "stats": {
+        "any_tds": {
+          "line": 0.075,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "KhaDarel Hodge",
+      "game": "26OCT04:DENSF",
+      "kickoff": "26OCT04",
+      "matchup": "DENSF",
+      "stats": {
+        "any_tds": {
+          "line": 0.105,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Khalil Shakir",
+      "game": "26OCT04:NEBUF",
+      "kickoff": "26OCT04",
+      "matchup": "NEBUF",
+      "stats": {
+        "rec_yds": {
+          "line": 38.0,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "any_tds": {
+          "line": 0.29,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Kimani Vidal",
+      "game": "26OCT04:LACSEA",
+      "kickoff": "26OCT04",
+      "matchup": "LACSEA",
+      "stats": {
+        "any_tds": {
+          "line": 0.055,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Kirk Cousins",
+      "game": "26OCT04:KCLV",
+      "kickoff": "26OCT04",
+      "matchup": "KCLV",
+      "stats": {
+        "rush_yds": {
+          "line": 3.1,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 4
+        },
+        "pass_yds": {
+          "line": 228.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "pass_tds": {
+          "line": 1.3,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 4
+        },
+        "any_tds": {
+          "line": 0.055,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Konata Mumpfield",
+      "game": "26OCT04:LARPHI",
+      "kickoff": "26OCT04",
+      "matchup": "LARPHI",
+      "stats": {
+        "any_tds": {
+          "line": 0.15,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Kyle Juszczyk",
+      "game": "26OCT04:DENSF",
+      "kickoff": "26OCT04",
+      "matchup": "DENSF",
+      "stats": {
+        "any_tds": {
+          "line": 0.135,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Kyle Monangai",
+      "game": "26OCT04:NYJCHI",
+      "kickoff": "26OCT04",
+      "matchup": "NYJCHI",
+      "stats": {
+        "rush_yds": {
+          "line": 38.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "any_tds": {
+          "line": 0.36,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Kyle Williams",
+      "game": "26OCT04:NEBUF",
+      "kickoff": "26OCT04",
+      "matchup": "NEBUF",
+      "stats": {
+        "any_tds": {
+          "line": 0.115,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Kyler Murray",
+      "game": "26OCT04:MIAMIN",
+      "kickoff": "26OCT04",
+      "matchup": "MIAMIN",
+      "stats": {
+        "rush_yds": {
+          "line": 19.7,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 8,
+          "confidentRungs": 8
+        },
+        "pass_yds": {
+          "line": 207.0,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "pass_tds": {
+          "line": 1.4,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 4
+        },
+        "any_tds": {
+          "line": 0.215,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Kyren Williams",
+      "game": "26OCT04:LARPHI",
+      "kickoff": "26OCT04",
+      "matchup": "LARPHI",
+      "stats": {
+        "rec_yds": {
+          "line": 14.8,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 5,
+          "confidentRungs": 5
+        },
+        "rush_yds": {
+          "line": 56.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "any_tds": {
+          "line": 0.655,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "LA Chargers D/ST",
+      "game": "26OCT04:LACSEA",
+      "kickoff": "26OCT04",
+      "matchup": "LACSEA",
+      "stats": {
+        "any_tds": {
+          "line": 0.085,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "LA Rams D/ST",
+      "game": "26OCT04:LARPHI",
+      "kickoff": "26OCT04",
+      "matchup": "LARPHI",
+      "stats": {
+        "any_tds": {
+          "line": 0.16,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "LV Raiders D/ST",
+      "game": "26OCT04:KCLV",
+      "kickoff": "26OCT04",
+      "matchup": "KCLV",
+      "stats": {
+        "any_tds": {
+          "line": 0.12,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Ladd McConkey",
+      "game": "26OCT04:LACSEA",
+      "kickoff": "26OCT04",
+      "matchup": "LACSEA",
+      "stats": {
+        "rec_yds": {
+          "line": 46.0,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 11,
+          "confidentRungs": 11
+        },
+        "any_tds": {
+          "line": 0.25,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Lamar Jackson",
+      "game": "26OCT04:TENBAL",
+      "kickoff": "26OCT04",
+      "matchup": "TENBAL",
+      "stats": {
+        "rush_yds": {
+          "line": 31.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "pass_yds": {
+          "line": 222.6,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "pass_tds": {
+          "line": 1.6,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 5,
+          "confidentRungs": 5
+        },
+        "any_tds": {
+          "line": 0.32,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Laquon Treadwell",
+      "game": "26OCT04:INDWAS",
+      "kickoff": "26OCT04",
+      "matchup": "INDWAS",
+      "stats": {
+        "rec_yds": {
+          "line": 12.0,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 5,
+          "confidentRungs": 5
+        },
+        "any_tds": {
+          "line": 0.155,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "LeQuint Allen Jr.",
+      "game": "26OCT04:JACCIN",
+      "kickoff": "26OCT04",
+      "matchup": "JACCIN",
+      "stats": {
+        "any_tds": {
+          "line": 0.085,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Lil'Jordan Humphrey",
+      "game": "26OCT04:DENSF",
+      "kickoff": "26OCT04",
+      "matchup": "DENSF",
+      "stats": {
+        "any_tds": {
+          "line": 0.065,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Luke Farrell",
+      "game": "26OCT04:DENSF",
+      "kickoff": "26OCT04",
+      "matchup": "DENSF",
+      "stats": {
+        "any_tds": {
+          "line": 0.065,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Luke Schoonmaker",
+      "game": "26OCT04:DALHOU",
+      "kickoff": "26OCT04",
+      "matchup": "DALHOU",
+      "stats": {
+        "any_tds": {
+          "line": 0.055,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Luther Burden III",
+      "game": "26OCT04:NYJCHI",
+      "kickoff": "26OCT04",
+      "matchup": "NYJCHI",
+      "stats": {
+        "rec_yds": {
+          "line": 46.7,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "any_tds": {
+          "line": 0.34,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "MIA Dolphins D/ST",
+      "game": "26OCT04:MIAMIN",
+      "kickoff": "26OCT04",
+      "matchup": "MIAMIN",
+      "stats": {
+        "any_tds": {
+          "line": 0.105,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "MIN Vikings D/ST",
+      "game": "26OCT04:MIAMIN",
+      "kickoff": "26OCT04",
+      "matchup": "MIAMIN",
+      "stats": {
+        "any_tds": {
+          "line": 0.155,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Mack Hollins",
+      "game": "26OCT04:NEBUF",
+      "kickoff": "26OCT04",
+      "matchup": "NEBUF",
+      "stats": {
+        "rec_yds": {
+          "line": 43.0,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 12,
+          "confidentRungs": 12
+        },
+        "any_tds": {
+          "line": 0.25,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Makai Lemon",
+      "game": "26OCT04:LARPHI",
+      "kickoff": "26OCT04",
+      "matchup": "LARPHI",
+      "stats": {
+        "rec_yds": {
+          "line": 26.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 7,
+          "confidentRungs": 7
+        },
+        "any_tds": {
+          "line": 0.15,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Malachi Fields",
+      "game": "26OCT04:ARINYG",
+      "kickoff": "26OCT04",
+      "matchup": "ARINYG",
+      "stats": {
+        "rec_yds": {
+          "line": 23.3,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 8,
+          "confidentRungs": 8
+        },
+        "any_tds": {
+          "line": 0.18,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Malik Benson",
+      "game": "26OCT04:KCLV",
+      "kickoff": "26OCT04",
+      "matchup": "KCLV",
+      "stats": {
+        "any_tds": {
+          "line": 0.06,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Malik McClain",
+      "game": "26OCT04:NYJCHI",
+      "kickoff": "26OCT04",
+      "matchup": "NYJCHI",
+      "stats": {
+        "any_tds": {
+          "line": 0.07,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Malik Nabers",
+      "game": "26OCT04:ARINYG",
+      "kickoff": "26OCT04",
+      "matchup": "ARINYG",
+      "stats": {
+        "rec_yds": {
+          "line": 53.8,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 11,
+          "confidentRungs": 11
+        },
+        "any_tds": {
+          "line": 0.37,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Malik Washington",
+      "game": "26OCT04:MIAMIN",
+      "kickoff": "26OCT04",
+      "matchup": "MIAMIN",
+      "stats": {
+        "rec_yds": {
+          "line": 34.7,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "rush_yds": {
+          "line": 6.3,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 5,
+          "confidentRungs": 5
+        },
+        "any_tds": {
+          "line": 0.175,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Malik Willis",
+      "game": "26OCT04:MIAMIN",
+      "kickoff": "26OCT04",
+      "matchup": "MIAMIN",
+      "stats": {
+        "rush_yds": {
+          "line": 29.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "pass_yds": {
+          "line": 169.4,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 8,
+          "confidentRungs": 8
+        },
+        "pass_tds": {
+          "line": 0.5,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        },
+        "any_tds": {
+          "line": 0.18,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "MarShawn Lloyd",
+      "game": "26OCT04:GBTB",
+      "kickoff": "26OCT04",
+      "matchup": "GBTB",
+      "stats": {
+        "rec_yds": {
+          "line": 7.2,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        },
+        "rush_yds": {
+          "line": 21.8,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "any_tds": {
+          "line": 0.285,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Marcus Mariota",
+      "game": "26OCT04:INDWAS",
+      "kickoff": "26OCT04",
+      "matchup": "INDWAS",
+      "stats": {
+        "rush_yds": {
+          "line": 25.1,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "pass_yds": {
+          "line": 210.4,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "pass_tds": {
+          "line": 1.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 4
+        },
+        "any_tds": {
+          "line": 0.21,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Mark Andrews",
+      "game": "26OCT04:TENBAL",
+      "kickoff": "26OCT04",
+      "matchup": "TENBAL",
+      "stats": {
+        "rec_yds": {
+          "line": 37.1,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 11,
+          "confidentRungs": 11
+        },
+        "any_tds": {
+          "line": 0.43,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Marvin Harrison Jr.",
+      "game": "26OCT04:ARINYG",
+      "kickoff": "26OCT04",
+      "matchup": "ARINYG",
+      "stats": {
+        "rec_yds": {
+          "line": 33.4,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 8,
+          "confidentRungs": 8
+        },
+        "any_tds": {
+          "line": 0.21,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Marvin Mims Jr.",
+      "game": "26OCT04:DENSF",
+      "kickoff": "26OCT04",
+      "matchup": "DENSF",
+      "stats": {
+        "any_tds": {
+          "line": 0.08,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Matt Hibner",
+      "game": "26OCT04:TENBAL",
+      "kickoff": "26OCT04",
+      "matchup": "TENBAL",
+      "stats": {
+        "any_tds": {
+          "line": 0.065,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Matthew Golden",
+      "game": "26OCT04:GBTB",
+      "kickoff": "26OCT04",
+      "matchup": "GBTB",
+      "stats": {
+        "rec_yds": {
+          "line": 56.9,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 12,
+          "confidentRungs": 12
+        },
+        "any_tds": {
+          "line": 0.33,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Matthew Stafford",
+      "game": "26OCT04:LARPHI",
+      "kickoff": "26OCT04",
+      "matchup": "LARPHI",
+      "stats": {
+        "rush_yds": {
+          "line": 3.6,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 4
+        },
+        "pass_yds": {
+          "line": 252.8,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "pass_tds": {
+          "line": 1.6,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 5,
+          "confidentRungs": 5
+        },
+        "any_tds": {
+          "line": 0.045,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Michael Mayer",
+      "game": "26OCT04:KCLV",
+      "kickoff": "26OCT04",
+      "matchup": "KCLV",
+      "stats": {
+        "rec_yds": {
+          "line": 21.9,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 6,
+          "confidentRungs": 6
+        },
+        "any_tds": {
+          "line": 0.195,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Michael Wilson",
+      "game": "26OCT04:ARINYG",
+      "kickoff": "26OCT04",
+      "matchup": "ARINYG",
+      "stats": {
+        "rec_yds": {
+          "line": 57.3,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 11,
+          "confidentRungs": 11
+        },
+        "any_tds": {
+          "line": 0.34,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Mike Gesicki",
+      "game": "26OCT04:JACCIN",
+      "kickoff": "26OCT04",
+      "matchup": "JACCIN",
+      "stats": {
+        "rec_yds": {
+          "line": 28.8,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 8,
+          "confidentRungs": 8
+        },
+        "any_tds": {
+          "line": 0.26,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Mike Washington Jr.",
+      "game": "26OCT04:KCLV",
+      "kickoff": "26OCT04",
+      "matchup": "KCLV",
+      "stats": {
+        "rush_yds": {
+          "line": 15.7,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 8,
+          "confidentRungs": 8
+        },
+        "any_tds": {
+          "line": 0.17,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Mitchell Evans",
+      "game": "26OCT04:DETCAR",
+      "kickoff": "26OCT04",
+      "matchup": "DETCAR",
+      "stats": {
+        "any_tds": {
+          "line": 0.1,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Mitchell Tinsley",
+      "game": "26OCT04:JACCIN",
+      "kickoff": "26OCT04",
+      "matchup": "JACCIN",
+      "stats": {
+        "any_tds": {
+          "line": 0.08,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Mo Alie-Cox",
+      "game": "26OCT04:INDWAS",
+      "kickoff": "26OCT04",
+      "matchup": "INDWAS",
+      "stats": {
+        "any_tds": {
+          "line": 0.07,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Myles Price",
+      "game": "26OCT04:MIAMIN",
+      "kickoff": "26OCT04",
+      "matchup": "MIAMIN",
+      "stats": {
+        "any_tds": {
+          "line": 0.075,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "NE Patriots D/ST",
+      "game": "26OCT04:NEBUF",
+      "kickoff": "26OCT04",
+      "matchup": "NEBUF",
+      "stats": {
+        "any_tds": {
+          "line": 0.105,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "NY Giants D/ST",
+      "game": "26OCT04:ARINYG",
+      "kickoff": "26OCT04",
+      "matchup": "ARINYG",
+      "stats": {
+        "any_tds": {
+          "line": 0.095,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "NY Jets D/ST",
+      "game": "26OCT04:NYJCHI",
+      "kickoff": "26OCT04",
+      "matchup": "NYJCHI",
+      "stats": {
+        "any_tds": {
+          "line": 0.105,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Najee Harris",
+      "game": "26OCT04:ARINYG",
+      "kickoff": "26OCT04",
+      "matchup": "ARINYG",
+      "stats": {
+        "rush_yds": {
+          "line": 23.8,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "any_tds": {
+          "line": 0.23,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Nate Adkins",
+      "game": "26OCT04:DENSF",
+      "kickoff": "26OCT04",
+      "matchup": "DENSF",
+      "stats": {
+        "any_tds": {
+          "line": 0.085,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Nate Boerkircher",
+      "game": "26OCT04:JACCIN",
+      "kickoff": "26OCT04",
+      "matchup": "JACCIN",
+      "stats": {
+        "any_tds": {
+          "line": 0.075,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Nicholas Singleton",
+      "game": "26OCT04:TENBAL",
+      "kickoff": "26OCT04",
+      "matchup": "TENBAL",
+      "stats": {
+        "any_tds": {
+          "line": 0.095,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Noah Gray",
+      "game": "26OCT04:KCLV",
+      "kickoff": "26OCT04",
+      "matchup": "KCLV",
+      "stats": {
+        "rec_yds": {
+          "line": 10.0,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 4
+        },
+        "any_tds": {
+          "line": 0.12,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Ollie Gordon II",
+      "game": "26OCT04:MIAMIN",
+      "kickoff": "26OCT04",
+      "matchup": "MIAMIN",
+      "stats": {
+        "rush_yds": {
+          "line": 30.3,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 12,
+          "confidentRungs": 12
+        },
+        "any_tds": {
+          "line": 0.24,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Omarion Hampton",
+      "game": "26OCT04:LACSEA",
+      "kickoff": "26OCT04",
+      "matchup": "LACSEA",
+      "stats": {
+        "rush_yds": {
+          "line": 45.6,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "any_tds": {
+          "line": 0.555,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Oronde Gadsden",
+      "game": "26OCT04:LACSEA",
+      "kickoff": "26OCT04",
+      "matchup": "LACSEA",
+      "stats": {
+        "rec_yds": {
+          "line": 25.8,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 7,
+          "confidentRungs": 7
+        },
+        "any_tds": {
+          "line": 0.215,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "PHI Eagles D/ST",
+      "game": "26OCT04:LARPHI",
+      "kickoff": "26OCT04",
+      "matchup": "LARPHI",
+      "stats": {
+        "any_tds": {
+          "line": 0.145,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Parker Washington",
+      "game": "26OCT04:JACCIN",
+      "kickoff": "26OCT04",
+      "matchup": "JACCIN",
+      "stats": {
+        "rec_yds": {
+          "line": 73.0,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 13,
+          "confidentRungs": 13
+        },
+        "any_tds": {
+          "line": 0.47,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Pat Bryant",
+      "game": "26OCT04:DENSF",
+      "kickoff": "26OCT04",
+      "matchup": "DENSF",
+      "stats": {
+        "rec_yds": {
+          "line": 23.0,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 6,
+          "confidentRungs": 6
+        },
+        "any_tds": {
+          "line": 0.205,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Patrick Mahomes",
+      "game": "26OCT04:KCLV",
+      "kickoff": "26OCT04",
+      "matchup": "KCLV",
+      "stats": {
+        "rush_yds": {
+          "line": 16.3,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 8,
+          "confidentRungs": 8
+        },
+        "pass_yds": {
+          "line": 240.0,
+          "lineSource": "interpolated",
+          "expected": 228.7,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "pass_tds": {
+          "line": 1.6,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 4
+        },
+        "any_tds": {
+          "line": 0.21,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Quentin Johnston",
+      "game": "26OCT04:LACSEA",
+      "kickoff": "26OCT04",
+      "matchup": "LACSEA",
+      "stats": {
+        "rec_yds": {
+          "line": 35.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "any_tds": {
+          "line": 0.2,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Quintin Morris",
+      "game": "26OCT04:JACCIN",
+      "kickoff": "26OCT04",
+      "matchup": "JACCIN",
+      "stats": {
+        "any_tds": {
+          "line": 0.055,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "RJ Harvey",
+      "game": "26OCT04:DENSF",
+      "kickoff": "26OCT04",
+      "matchup": "DENSF",
+      "stats": {
+        "rec_yds": {
+          "line": 21.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 6,
+          "confidentRungs": 6
+        },
+        "rush_yds": {
+          "line": 16.0,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 8,
+          "confidentRungs": 8
+        },
+        "any_tds": {
+          "line": 0.33,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Rachaad White",
+      "game": "26OCT04:INDWAS",
+      "kickoff": "26OCT04",
+      "matchup": "INDWAS",
+      "stats": {
+        "any_tds": {
+          "line": 0.245,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Rashee Rice",
+      "game": "26OCT04:KCLV",
+      "kickoff": "26OCT04",
+      "matchup": "KCLV",
+      "stats": {
+        "rec_yds": {
+          "line": 55.3,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 12,
+          "confidentRungs": 12
+        },
+        "any_tds": {
+          "line": 0.44,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Rashid Shaheed",
+      "game": "26OCT04:LACSEA",
+      "kickoff": "26OCT04",
+      "matchup": "LACSEA",
+      "stats": {
+        "rec_yds": {
+          "line": 21.3,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 7,
+          "confidentRungs": 7
+        },
+        "any_tds": {
+          "line": 0.255,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Rashod Bateman",
+      "game": "26OCT04:TENBAL",
+      "kickoff": "26OCT04",
+      "matchup": "TENBAL",
+      "stats": {
+        "rec_yds": {
+          "line": 32.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "any_tds": {
+          "line": 0.29,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Rhamondre Stevenson",
+      "game": "26OCT04:NEBUF",
+      "kickoff": "26OCT04",
+      "matchup": "NEBUF",
+      "stats": {
+        "rec_yds": {
+          "line": 16.9,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 5,
+          "confidentRungs": 5
+        },
+        "rush_yds": {
+          "line": 32.1,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "any_tds": {
+          "line": 0.435,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Rome Odunze",
+      "game": "26OCT04:NYJCHI",
+      "kickoff": "26OCT04",
+      "matchup": "NYJCHI",
+      "stats": {
+        "rec_yds": {
+          "line": 30.9,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 8,
+          "confidentRungs": 8
+        },
+        "any_tds": {
+          "line": 0.225,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Romeo Doubs",
+      "game": "26OCT04:NEBUF",
+      "kickoff": "26OCT04",
+      "matchup": "NEBUF",
+      "stats": {
+        "rec_yds": {
+          "line": 39.9,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "any_tds": {
+          "line": 0.26,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Ryan Flournoy",
+      "game": "26OCT04:DALHOU",
+      "kickoff": "26OCT04",
+      "matchup": "DALHOU",
+      "stats": {
+        "rec_yds": {
+          "line": 33.4,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "any_tds": {
+          "line": 0.205,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "SEA Seahawks D/ST",
+      "game": "26OCT04:LACSEA",
+      "kickoff": "26OCT04",
+      "matchup": "LACSEA",
+      "stats": {
+        "any_tds": {
+          "line": 0.12,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "SF 49ers D/ST",
+      "game": "26OCT04:DENSF",
+      "kickoff": "26OCT04",
+      "matchup": "DENSF",
+      "stats": {
+        "any_tds": {
+          "line": 0.125,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Sam Darnold",
+      "game": "26OCT04:LACSEA",
+      "kickoff": "26OCT04",
+      "matchup": "LACSEA",
+      "stats": {
+        "pass_yds": {
+          "line": 231.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "pass_tds": {
+          "line": 1.6,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 5,
+          "confidentRungs": 5
+        },
+        "any_tds": {
+          "line": 0.085,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Sam LaPorta",
+      "game": "26OCT04:DETCAR",
+      "kickoff": "26OCT04",
+      "matchup": "DETCAR",
+      "stats": {
+        "rec_yds": {
+          "line": 48.7,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "any_tds": {
+          "line": 0.385,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Samaje Perine",
+      "game": "26OCT04:JACCIN",
+      "kickoff": "26OCT04",
+      "matchup": "JACCIN",
+      "stats": {
+        "rec_yds": {
+          "line": 10.0,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 5,
+          "confidentRungs": 5
+        },
+        "rush_yds": {
+          "line": 12.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 7,
+          "confidentRungs": 7
+        },
+        "any_tds": {
+          "line": 0.19,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Saquon Barkley",
+      "game": "26OCT04:LARPHI",
+      "kickoff": "26OCT04",
+      "matchup": "LARPHI",
+      "stats": {
+        "rec_yds": {
+          "line": 12.4,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 5,
+          "confidentRungs": 5
+        },
+        "rush_yds": {
+          "line": 75.9,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 12,
+          "confidentRungs": 12
+        },
+        "any_tds": {
+          "line": 0.555,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Sean Tucker",
+      "game": "26OCT04:GBTB",
+      "kickoff": "26OCT04",
+      "matchup": "GBTB",
+      "stats": {
+        "any_tds": {
+          "line": 0.05,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Seth McGowan",
+      "game": "26OCT04:INDWAS",
+      "kickoff": "26OCT04",
+      "matchup": "INDWAS",
+      "stats": {
+        "any_tds": {
+          "line": 0.1,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Sione Vaki",
+      "game": "26OCT04:DETCAR",
+      "kickoff": "26OCT04",
+      "matchup": "DETCAR",
+      "stats": {
+        "rush_yds": {
+          "line": 9.9,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 7,
+          "confidentRungs": 7
+        },
+        "any_tds": {
+          "line": 0.13,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Skyler Bell",
+      "game": "26OCT04:NEBUF",
+      "kickoff": "26OCT04",
+      "matchup": "NEBUF",
+      "stats": {
+        "any_tds": {
+          "line": 0.07,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Skyy Moore",
+      "game": "26OCT04:GBTB",
+      "kickoff": "26OCT04",
+      "matchup": "GBTB",
+      "stats": {
+        "rec_yds": {
+          "line": 18.8,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 8,
+          "confidentRungs": 8
+        },
+        "any_tds": {
+          "line": 0.155,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Stefon Diggs",
+      "game": "26OCT04:INDWAS",
+      "kickoff": "26OCT04",
+      "matchup": "INDWAS",
+      "stats": {
+        "receptions": {
+          "line": 3.9,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "rec_yds": {
+          "line": 42.4,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "any_tds": {
+          "line": 0.31,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "T.J. Hockenson",
+      "game": "26OCT04:MIAMIN",
+      "kickoff": "26OCT04",
+      "matchup": "MIAMIN",
+      "stats": {
+        "any_tds": {
+          "line": 0.39,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "TB Buccaneers D/ST",
+      "game": "26OCT04:GBTB",
+      "kickoff": "26OCT04",
+      "matchup": "GBTB",
+      "stats": {
+        "any_tds": {
+          "line": 0.135,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "TEN Titans D/ST",
+      "game": "26OCT04:TENBAL",
+      "kickoff": "26OCT04",
+      "matchup": "TENBAL",
+      "stats": {
+        "any_tds": {
+          "line": 0.12,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Tai Felton",
+      "game": "26OCT04:MIAMIN",
+      "kickoff": "26OCT04",
+      "matchup": "MIAMIN",
+      "stats": {
+        "any_tds": {
+          "line": 0.105,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Tank Bigsby",
+      "game": "26OCT04:LARPHI",
+      "kickoff": "26OCT04",
+      "matchup": "LARPHI",
+      "stats": {
+        "rush_yds": {
+          "line": 8.2,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 6,
+          "confidentRungs": 5
+        },
+        "any_tds": {
+          "line": 0.1,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Tanner Hudson",
+      "game": "26OCT04:JACCIN",
+      "kickoff": "26OCT04",
+      "matchup": "JACCIN",
+      "stats": {
+        "any_tds": {
+          "line": 0.075,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Ted Hurst III",
+      "game": "26OCT04:GBTB",
+      "kickoff": "26OCT04",
+      "matchup": "GBTB",
+      "stats": {
+        "any_tds": {
+          "line": 0.16,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Tee Higgins",
+      "game": "26OCT04:JACCIN",
+      "kickoff": "26OCT04",
+      "matchup": "JACCIN",
+      "stats": {
+        "rec_yds": {
+          "line": 60.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 12,
+          "confidentRungs": 12
+        },
+        "any_tds": {
+          "line": 0.47,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Terry McLaurin",
+      "game": "26OCT04:INDWAS",
+      "kickoff": "26OCT04",
+      "matchup": "INDWAS",
+      "stats": {
+        "receptions": {
+          "line": 3.8,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 8
+        },
+        "rec_yds": {
+          "line": 51.1,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 12,
+          "confidentRungs": 12
+        },
+        "any_tds": {
+          "line": 0.3,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Tetairoa McMillan",
+      "game": "26OCT04:DETCAR",
+      "kickoff": "26OCT04",
+      "matchup": "DETCAR",
+      "stats": {
+        "rec_yds": {
+          "line": 68.4,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 16,
+          "confidentRungs": 16
+        },
+        "any_tds": {
+          "line": 0.43,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Tez Johnson",
+      "game": "26OCT04:GBTB",
+      "kickoff": "26OCT04",
+      "matchup": "GBTB",
+      "stats": {
+        "any_tds": {
+          "line": 0.1,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Theo Johnson",
+      "game": "26OCT04:ARINYG",
+      "kickoff": "26OCT04",
+      "matchup": "ARINYG",
+      "stats": {
+        "any_tds": {
+          "line": 0.105,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Tommy Tremble",
+      "game": "26OCT04:DETCAR",
+      "kickoff": "26OCT04",
+      "matchup": "DETCAR",
+      "stats": {
+        "any_tds": {
+          "line": 0.16,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Tony Pollard",
+      "game": "26OCT04:TENBAL",
+      "kickoff": "26OCT04",
+      "matchup": "TENBAL",
+      "stats": {
+        "rec_yds": {
+          "line": 10.3,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 4
+        },
+        "rush_yds": {
+          "line": 47.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "any_tds": {
+          "line": 0.34,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Tory Horton",
+      "game": "26OCT04:LACSEA",
+      "kickoff": "26OCT04",
+      "matchup": "LACSEA",
+      "stats": {
+        "any_tds": {
+          "line": 0.1,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Travis Hunter",
+      "game": "26OCT04:JACCIN",
+      "kickoff": "26OCT04",
+      "matchup": "JACCIN",
+      "stats": {
+        "any_tds": {
+          "line": 0.065,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Travis Kelce",
+      "game": "26OCT04:KCLV",
+      "kickoff": "26OCT04",
+      "matchup": "KCLV",
+      "stats": {
+        "rec_yds": {
+          "line": 47.9,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "any_tds": {
+          "line": 0.44,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Tre Tucker",
+      "game": "26OCT04:KCLV",
+      "kickoff": "26OCT04",
+      "matchup": "KCLV",
+      "stats": {
+        "rec_yds": {
+          "line": 38.0,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "any_tds": {
+          "line": 0.235,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Tre' Harris",
+      "game": "26OCT04:LACSEA",
+      "kickoff": "26OCT04",
+      "matchup": "LACSEA",
+      "stats": {
+        "rec_yds": {
+          "line": 33.9,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 8,
+          "confidentRungs": 8
+        },
+        "any_tds": {
+          "line": 0.15,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "TreVeyon Henderson",
+      "game": "26OCT04:NEBUF",
+      "kickoff": "26OCT04",
+      "matchup": "NEBUF",
+      "stats": {
+        "rec_yds": {
+          "line": 8.3,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        },
+        "rush_yds": {
+          "line": 40.6,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "any_tds": {
+          "line": 0.355,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Trevor Lawrence",
+      "game": "26OCT04:JACCIN",
+      "kickoff": "26OCT04",
+      "matchup": "JACCIN",
+      "stats": {
+        "rush_yds": {
+          "line": 13.9,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 6,
+          "confidentRungs": 6
+        },
+        "pass_yds": {
+          "line": 260.4,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "pass_tds": {
+          "line": 1.6,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 5,
+          "confidentRungs": 5
+        },
+        "any_tds": {
+          "line": 0.255,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Trey McBride",
+      "game": "26OCT04:ARINYG",
+      "kickoff": "26OCT04",
+      "matchup": "ARINYG",
+      "stats": {
+        "rec_yds": {
+          "line": 67.3,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 11,
+          "confidentRungs": 11
+        },
+        "any_tds": {
+          "line": 0.475,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Treylon Burks",
+      "game": "26OCT04:INDWAS",
+      "kickoff": "26OCT04",
+      "matchup": "INDWAS",
+      "stats": {
+        "any_tds": {
+          "line": 0.075,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Troy Franklin",
+      "game": "26OCT04:DENSF",
+      "kickoff": "26OCT04",
+      "matchup": "DENSF",
+      "stats": {
+        "any_tds": {
+          "line": 0.075,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Tucker Kraft",
+      "game": "26OCT04:GBTB",
+      "kickoff": "26OCT04",
+      "matchup": "GBTB",
+      "stats": {
+        "rec_yds": {
+          "line": 41.4,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "any_tds": {
+          "line": 0.325,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Tutu Atwell",
+      "game": "26OCT04:LARPHI",
+      "kickoff": "26OCT04",
+      "matchup": "LARPHI",
+      "stats": {
+        "any_tds": {
+          "line": 0.06,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Ty Johnson",
+      "game": "26OCT04:NEBUF",
+      "kickoff": "26OCT04",
+      "matchup": "NEBUF",
+      "stats": {
+        "rec_yds": {
+          "line": 14.1,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 5,
+          "confidentRungs": 5
+        },
+        "any_tds": {
+          "line": 0.16,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Tyjae Spears",
+      "game": "26OCT04:TENBAL",
+      "kickoff": "26OCT04",
+      "matchup": "TENBAL",
+      "stats": {
+        "rush_yds": {
+          "line": 15.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 7,
+          "confidentRungs": 7
+        },
+        "any_tds": {
+          "line": 0.14,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Tyler Allgeier",
+      "game": "26OCT04:ARINYG",
+      "kickoff": "26OCT04",
+      "matchup": "ARINYG",
+      "stats": {
+        "rush_yds": {
+          "line": 18.4,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "any_tds": {
+          "line": 0.26,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Tyler Badie",
+      "game": "26OCT04:DENSF",
+      "kickoff": "26OCT04",
+      "matchup": "DENSF",
+      "stats": {
+        "any_tds": {
+          "line": 0.075,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Tyler Goodson",
+      "game": "26OCT04:DALHOU",
+      "kickoff": "26OCT04",
+      "matchup": "DALHOU",
+      "stats": {
+        "any_tds": {
+          "line": 0.085,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Tyler Higbee",
+      "game": "26OCT04:LARPHI",
+      "kickoff": "26OCT04",
+      "matchup": "LARPHI",
+      "stats": {
+        "any_tds": {
+          "line": 0.235,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Tyler Warren",
+      "game": "26OCT04:INDWAS",
+      "kickoff": "26OCT04",
+      "matchup": "INDWAS",
+      "stats": {
+        "receptions": {
+          "line": 5.1,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "rec_yds": {
+          "line": 47.1,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "any_tds": {
+          "line": 0.41,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Tyquan Thornton",
+      "game": "26OCT04:KCLV",
+      "kickoff": "26OCT04",
+      "matchup": "KCLV",
+      "stats": {
+        "rec_yds": {
+          "line": 20.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 8,
+          "confidentRungs": 8
+        },
+        "any_tds": {
+          "line": 0.175,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Tyson Bagent",
+      "game": "26OCT04:NYJCHI",
+      "kickoff": "26OCT04",
+      "matchup": "NYJCHI",
+      "stats": {
+        "rush_yds": {
+          "line": 13.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 7,
+          "confidentRungs": 7
+        },
+        "pass_yds": {
+          "line": 200.9,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 7,
+          "confidentRungs": 7
+        },
+        "pass_tds": {
+          "line": 1.3,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 4
+        },
+        "any_tds": {
+          "line": 0.16,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "WAS Commanders D/ST",
+      "game": "26OCT04:INDWAS",
+      "kickoff": "26OCT04",
+      "matchup": "INDWAS",
+      "stats": {
+        "any_tds": {
+          "line": 0.115,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Wan'Dale Robinson",
+      "game": "26OCT04:TENBAL",
+      "kickoff": "26OCT04",
+      "matchup": "TENBAL",
+      "stats": {
+        "rec_yds": {
+          "line": 38.0,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "any_tds": {
+          "line": 0.16,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Will Kacmarek",
+      "game": "26OCT04:MIAMIN",
+      "kickoff": "26OCT04",
+      "matchup": "MIAMIN",
+      "stats": {
+        "any_tds": {
+          "line": 0.045,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Will Shipley",
+      "game": "26OCT04:LARPHI",
+      "kickoff": "26OCT04",
+      "matchup": "LARPHI",
+      "stats": {
+        "any_tds": {
+          "line": 0.06,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Woody Marks",
+      "game": "26OCT04:DALHOU",
+      "kickoff": "26OCT04",
+      "matchup": "DALHOU",
+      "stats": {
+        "rec_yds": {
+          "line": 10.2,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 4
+        },
+        "rush_yds": {
+          "line": 35.8,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "any_tds": {
+          "line": 0.375,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Xavier Hutchinson",
+      "game": "26OCT04:DALHOU",
+      "kickoff": "26OCT04",
+      "matchup": "DALHOU",
+      "stats": {
+        "rec_yds": {
+          "line": 26.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 8,
+          "confidentRungs": 8
+        },
+        "any_tds": {
+          "line": 0.2,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Xavier Smith",
+      "game": "26OCT04:LARPHI",
+      "kickoff": "26OCT04",
+      "matchup": "LARPHI",
+      "stats": {
+        "any_tds": {
+          "line": 0.065,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Xavier Worthy",
+      "game": "26OCT04:KCLV",
+      "kickoff": "26OCT04",
+      "matchup": "KCLV",
+      "stats": {
+        "rec_yds": {
+          "line": 34.0,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "any_tds": {
+          "line": 0.3,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Zach Ertz",
+      "game": "26OCT04:LARPHI",
+      "kickoff": "26OCT04",
+      "matchup": "LARPHI",
+      "stats": {
+        "any_tds": {
+          "line": 0.14,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Zay Flowers",
+      "game": "26OCT04:TENBAL",
+      "kickoff": "26OCT04",
+      "matchup": "TENBAL",
+      "stats": {
+        "rec_yds": {
+          "line": 67.4,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 13,
+          "confidentRungs": 13
+        },
+        "any_tds": {
+          "line": 0.46,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "ATL Falcons D/ST",
+      "game": "26OCT05:ATLNO",
+      "kickoff": "26OCT05",
+      "matchup": "ATLNO",
+      "stats": {
+        "any_tds": {
+          "line": 0.12,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Alvin Kamara",
+      "game": "26OCT05:ATLNO",
+      "kickoff": "26OCT05",
+      "matchup": "ATLNO",
+      "stats": {
+        "rec_yds": {
+          "line": 16.7,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 6,
+          "confidentRungs": 6
+        },
+        "rush_yds": {
+          "line": 37.7,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "any_tds": {
+          "line": 0.505,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Austin Hooper",
+      "game": "26OCT05:ATLNO",
+      "kickoff": "26OCT05",
+      "matchup": "ATLNO",
+      "stats": {
+        "rec_yds": {
+          "line": 12.1,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 5,
+          "confidentRungs": 5
+        },
+        "any_tds": {
+          "line": 0.115,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Bijan Robinson",
+      "game": "26OCT05:ATLNO",
+      "kickoff": "26OCT05",
+      "matchup": "ATLNO",
+      "stats": {
+        "rec_yds": {
+          "line": 38.6,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "rush_yds": {
+          "line": 85.8,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 13,
+          "confidentRungs": 13
+        },
+        "any_tds": {
+          "line": 0.9,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Brian Robinson",
+      "game": "26OCT05:ATLNO",
+      "kickoff": "26OCT05",
+      "matchup": "ATLNO",
+      "stats": {
+        "rush_yds": {
+          "line": 29.8,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "any_tds": {
+          "line": 0.24,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Bryce Lance",
+      "game": "26OCT05:ATLNO",
+      "kickoff": "26OCT05",
+      "matchup": "ATLNO",
+      "stats": {
+        "any_tds": {
+          "line": 0.16,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "CJ Donaldson",
+      "game": "26OCT05:ATLNO",
+      "kickoff": "26OCT05",
+      "matchup": "ATLNO",
+      "stats": {
+        "any_tds": {
+          "line": 0.09,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Chris Olave",
+      "game": "26OCT05:ATLNO",
+      "kickoff": "26OCT05",
+      "matchup": "ATLNO",
+      "stats": {
+        "rec_yds": {
+          "line": 85.1,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 13,
+          "confidentRungs": 13
+        },
+        "any_tds": {
+          "line": 0.51,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Devaughn Vele",
+      "game": "26OCT05:ATLNO",
+      "kickoff": "26OCT05",
+      "matchup": "ATLNO",
+      "stats": {
+        "rec_yds": {
+          "line": 44.9,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "any_tds": {
+          "line": 0.325,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Drake London",
+      "game": "26OCT05:ATLNO",
+      "kickoff": "26OCT05",
+      "matchup": "ATLNO",
+      "stats": {
+        "rec_yds": {
+          "line": 77.8,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 14,
+          "confidentRungs": 14
+        },
+        "any_tds": {
+          "line": 0.445,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Jahan Dotson",
+      "game": "26OCT05:ATLNO",
+      "kickoff": "26OCT05",
+      "matchup": "ATLNO",
+      "stats": {
+        "rec_yds": {
+          "line": 18.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 6,
+          "confidentRungs": 6
+        },
+        "any_tds": {
+          "line": 0.165,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Juwan Johnson",
+      "game": "26OCT05:ATLNO",
+      "kickoff": "26OCT05",
+      "matchup": "ATLNO",
+      "stats": {
+        "rec_yds": {
+          "line": 40.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "any_tds": {
+          "line": 0.31,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Kendre Miller",
+      "game": "26OCT05:ATLNO",
+      "kickoff": "26OCT05",
+      "matchup": "ATLNO",
+      "stats": {
+        "rush_yds": {
+          "line": 24.0,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "any_tds": {
+          "line": 0.25,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Kyle Pitts Sr.",
+      "game": "26OCT05:ATLNO",
+      "kickoff": "26OCT05",
+      "matchup": "ATLNO",
+      "stats": {
+        "rec_yds": {
+          "line": 28.6,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 7,
+          "confidentRungs": 7
+        },
+        "any_tds": {
+          "line": 0.185,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Michael Penix Jr.",
+      "game": "26OCT05:ATLNO",
+      "kickoff": "26OCT05",
+      "matchup": "ATLNO",
+      "stats": {
+        "rush_yds": {
+          "line": 6.9,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 5,
+          "confidentRungs": 5
+        },
+        "pass_yds": {
+          "line": 224.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "pass_tds": {
+          "line": 1.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 4
+        },
+        "any_tds": {
+          "line": 0.09,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "NO Saints D/ST",
+      "game": "26OCT05:ATLNO",
+      "kickoff": "26OCT05",
+      "matchup": "ATLNO",
+      "stats": {
+        "any_tds": {
+          "line": 0.12,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Noah Fant",
+      "game": "26OCT05:ATLNO",
+      "kickoff": "26OCT05",
+      "matchup": "ATLNO",
+      "stats": {
+        "rec_yds": {
+          "line": 17.7,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 6,
+          "confidentRungs": 6
+        },
+        "any_tds": {
+          "line": 0.165,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Olamide Zaccheaus",
+      "game": "26OCT05:ATLNO",
+      "kickoff": "26OCT05",
+      "matchup": "ATLNO",
+      "stats": {
+        "any_tds": {
+          "line": 0.105,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Tyler Shough",
+      "game": "26OCT05:ATLNO",
+      "kickoff": "26OCT05",
+      "matchup": "ATLNO",
+      "stats": {
+        "pass_yds": {
+          "line": 255.1,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "pass_tds": {
+          "line": 1.7,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 5,
+          "confidentRungs": 5
+        },
+        "any_tds": {
+          "line": 0.255,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Zachariah Branch",
+      "game": "26OCT05:ATLNO",
+      "kickoff": "26OCT05",
+      "matchup": "ATLNO",
+      "stats": {
+        "any_tds": {
+          "line": 0.075,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    }
+  ]
+}

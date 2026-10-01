@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Root For / Against · EZ Dubs Analytics</title>
+  <link rel="stylesheet" href="../nfl-shared/style.css?v=2026-10-01-tdonly" />
+<style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+               background: #0f1923; color: #e0e0e0; }
+
+        .site-nav {
+            position: sticky; top: 0; z-index: 50;
+            display: flex; align-items: center; gap: 28px;
+            padding: 14px 28px;
+            background: #0f1923; border-bottom: 1px solid #1e2d3d;
+        }
+        .site-nav .brand { font-weight: 700; font-size: 1.05rem; color: #fff;
+            text-decoration: none; white-space: nowrap; }
+        .site-nav .brand .accent { color: #4a9eff; }
+        .site-nav .nav-tabs { display: flex; gap: 6px; flex-wrap: wrap; }
+        .site-nav .nav-tabs a {
+            padding: 8px 16px; border-radius: 8px; border: 1px solid #2a3a4a;
+            background: #1a2634; color: #aaa; text-decoration: none;
+            font-size: 0.9rem; font-weight: 600; transition: all 0.15s;
+        }
+        .site-nav .nav-tabs a:hover { border-color: #4a9eff; color: #fff; }
+        .site-nav .nav-tabs a.active { border-color: #4a9eff; color: #4a9eff; }
+        .site-nav .nav-dd { position: relative; }
+        .site-nav .nav-dd-btn {
+            padding: 8px 16px; border-radius: 8px; border: 1px solid #2a3a4a;
+            background: #1a2634; color: #aaa; cursor: pointer;
+            font-size: 0.9rem; font-weight: 600; transition: all 0.15s;
+            font-family: inherit;
+        }
+        .site-nav .nav-dd-btn:hover { border-color: #4a9eff; color: #fff; }
+        .site-nav .nav-dd-btn.has-active { border-color: #4a9eff; color: #4a9eff; }
+        .site-nav .nav-dd-btn .caret { font-size: 0.7rem; margin-left: 4px; opacity: 0.7; }
+        .site-nav .nav-dd-menu {
+            position: absolute; top: calc(100% + 6px); left: 0; min-width: 280px;
+            background: #131f2c; border: 1px solid #2a3a4a; border-radius: 10px;
+            padding: 6px; z-index: 100;
+            display: none; flex-direction: column; gap: 2px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+        }
+        .site-nav .nav-dd-menu::before {
+            content: ''; position: absolute; left: 0; right: 0;
+            top: -8px; height: 8px;
+        }
+        .site-nav .nav-dd:hover .nav-dd-menu,
+        .site-nav .nav-dd:focus-within .nav-dd-menu { display: flex; }
+        .site-nav .nav-dd-menu a {
+            padding: 8px 12px; border-radius: 6px; border: 0; background: transparent;
+            color: #aaa; text-decoration: none; font-size: 0.88rem; font-weight: 600;
+        }
+        .site-nav .nav-dd-menu a:hover { background: #1e2d3d; color: #fff; }
+        .site-nav .nav-dd-menu a.active { color: #4a9eff; background: #1e2d3d; }
+        .site-nav .nav-spacer { flex: 1; }
+        .site-nav .bmc-btn {
+            padding: 8px 16px; border-radius: 8px;
+            background: #FFDD00; color: #1a1a1a; text-decoration: none;
+            font-size: 0.9rem; font-weight: 700; transition: opacity 0.15s;
+            white-space: nowrap; margin-left: 8px;
+        }
+        .site-nav .bmc-btn:hover { opacity: 0.85; }
+
+        /* ─── Mobile nav (≤720px) ─────────────────────────────── */
+        .nav-toggle { display: none; }
+        .nav-toggle-label { display: none; }
+        @media (max-width: 720px) {
+            .site-nav { flex-wrap: wrap; gap: 12px; padding: 12px 16px; }
+            .site-nav .nav-toggle-label {
+                display: flex; flex-direction: column; gap: 4px;
+                cursor: pointer; padding: 8px; margin-left: auto;
+                background: transparent; border: 0;
+            }
+            .site-nav .nav-toggle-label span {
+                display: block; width: 22px; height: 2px;
+                background: #aaa; border-radius: 1px;
+                transition: transform 0.2s, opacity 0.2s;
+            }
+            .nav-toggle:checked ~ .nav-toggle-label span:nth-child(1) {
+                transform: translateY(6px) rotate(45deg);
+            }
+            .nav-toggle:checked ~ .nav-toggle-label span:nth-child(2) { opacity: 0; }
+            .nav-toggle:checked ~ .nav-toggle-label span:nth-child(3) {
+                transform: translateY(-6px) rotate(-45deg);
+            }
+            .site-nav .nav-spacer { display: none; }
+            .site-nav .nav-tabs {
+                order: 99; flex-basis: 100%;
+                flex-direction: column; gap: 6px;
+                display: none;
+            }
+            .nav-toggle:checked ~ .nav-tabs { display: flex; }
+            .site-nav .nav-tabs a,
+            .site-nav .nav-dd-btn { width: 100%; text-align: left; }
+            .site-nav .nav-dd { width: 100%; }
+            .site-nav .nav-dd-menu {
+                position: static; display: flex !important;
+                min-width: 0; width: 100%; margin-top: 4px;
+                box-shadow: none; background: #0f1923;
+            }
+            .site-nav .nav-dd-menu::before { display: none; }
+            .site-nav .bmc-btn {
+                order: 100; flex-basis: 100%; text-align: center;
+                margin-left: 0; display: none;
+            }
+            .nav-toggle:checked ~ .bmc-btn { display: block; }
+        }
+
+        main { max-width: 820px; margin: 0 auto; padding: 40px 24px 64px; }
+        h1 { color: #fff; font-size: 1.8rem; font-weight: 800; margin: 0 0 6px;
+             letter-spacing: -0.01em; }
+        .subtitle { color: #99aabb; font-size: 0.92rem; margin-bottom: 22px; line-height: 1.5; }
+
+        .calc-card {
+            background: #131f2c; border: 1px solid #1e2d3d; border-radius: 14px;
+            padding: 24px; margin-bottom: 18px;
+        }
+        .card-title {
+            color: #99aabb; font-size: 0.78rem; font-weight: 700;
+            letter-spacing: 0.14em; text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+        .input-help {
+            color: #8a9aab; font-size: 0.82rem; line-height: 1.5;
+            margin-bottom: 14px;
+        }
+        .row {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+            margin-bottom: 12px;
+        }
+        .row:last-child { margin-bottom: 0; }
+        .field { display: flex; flex-direction: column; gap: 6px; }
+        .field label {
+            color: #99aabb; font-size: 0.82rem; font-weight: 600;
+        }
+        .field label .hint { color: #6f7e8d; font-weight: 400; }
+        .field input {
+            padding: 10px 14px; border-radius: 8px; border: 1px solid #2a3a4a;
+            background: #0f1923; color: #fff; font-size: 0.95rem;
+            font-variant-numeric: tabular-nums;
+        }
+        .field input:focus { outline: none; border-color: #4a9eff; }
+        .field input.text {
+            font-family: inherit; font-size: 0.92rem;
+        }
+        .field input.bad { border-color: #ff424d; }
+        .field-err {
+            display: block; min-height: 0;
+            color: #ff424d; font-size: 0.75rem; font-weight: 600;
+            margin-top: 4px;
+        }
+        .field-err:empty { display: none; }
+
+        .calc-btn {
+            padding: 12px 20px; border-radius: 8px; border: 0;
+            background: #4a9eff; color: #fff; font-weight: 700;
+            font-size: 0.95rem; cursor: pointer; font-family: inherit;
+            transition: opacity 0.15s;
+            width: 100%;
+        }
+        .calc-btn:hover { opacity: 0.9; }
+        .clear-btn {
+            padding: 12px 20px; border-radius: 8px;
+            border: 1px solid #2a3a4a; background: #1a2634;
+            color: #99aabb; font-weight: 600; font-size: 0.95rem;
+            cursor: pointer; font-family: inherit; width: 100%;
+            transition: all 0.15s;
+        }
+        .clear-btn:hover { border-color: #4a9eff; color: #fff; }
+        .caveat-card {
+            background: rgba(247, 181, 0, 0.08);
+            border: 1px solid rgba(247, 181, 0, 0.35);
+            border-left: 3px solid #f7b500;
+            border-radius: 10px; padding: 12px 16px;
+            color: #c9b079; font-size: 0.85rem; line-height: 1.5;
+            margin-bottom: 18px;
+        }
+        .caveat-card strong { color: #f7b500; }
+        .form-error {
+            background: rgba(255, 66, 77, 0.1);
+            border: 1px solid rgba(255, 66, 77, 0.5);
+            border-radius: 10px; padding: 12px 16px;
+            color: #ff8a93; font-size: 0.88rem; line-height: 1.45;
+            margin-bottom: 14px;
+        }
+
+        /* Result panel */
+        .verdict {
+            padding: 18px 22px; border-radius: 12px; margin-bottom: 14px;
+            background: #0f1923; border: 1px solid #1e2d3d;
+        }
+        .verdict.good { border-color: rgba(0,196,106,0.5); }
+        .verdict.bad  { border-color: rgba(255,66,77,0.5); }
+        .verdict-line {
+            font-size: 1.05rem; font-weight: 700; color: #fff; margin-bottom: 4px;
+        }
+        .verdict.good .verdict-line { color: #00c46a; }
+        .verdict.bad  .verdict-line { color: #ff424d; }
+        .verdict-sub { color: #99aabb; font-size: 0.88rem; line-height: 1.5; }
+
+        .legs-out {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+        }
+        .leg-out {
+            background: #0f1923; border: 1px solid #1e2d3d;
+            border-radius: 10px; padding: 14px 16px;
+        }
+        .leg-out .leg-label {
+            color: #99aabb; font-size: 0.78rem; font-weight: 700;
+            letter-spacing: 0.1em; text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+        .leg-out .stake {
+            font-size: 1.4rem; font-weight: 800; color: #fff;
+            font-variant-numeric: tabular-nums; letter-spacing: -0.01em;
+        }
+        .leg-out .side {
+            color: #4a9eff; font-weight: 700; font-size: 0.82rem;
+            letter-spacing: 0.08em; text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+        .leg-out .side.no { color: #f7b500; }
+        .leg-out .meta { color: #6f7e8d; font-size: 0.78rem; margin-top: 6px; }
+        .leg-out .meta strong { color: #99aabb; font-weight: 700; }
+
+        .summary-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+            margin-top: 14px;
+        }
+        .summary-cell {
+            background: #0f1923; border: 1px solid #1e2d3d;
+            border-radius: 10px; padding: 12px 14px; text-align: center;
+        }
+        .summary-cell .v {
+            font-size: 1.15rem; font-weight: 800; color: #fff;
+            font-variant-numeric: tabular-nums;
+        }
+        .summary-cell .l {
+            color: #6f7e8d; font-size: 0.72rem; font-weight: 700;
+            letter-spacing: 0.08em; text-transform: uppercase;
+            margin-top: 2px;
+        }
+        .summary-cell.good .v { color: #00c46a; }
+
+        .notes {
+            color: #6f7e8d; font-size: 0.78rem; line-height: 1.55;
+            margin-top: 16px;
+        }
+        .notes strong { color: #99aabb; }
+
+        /* Mobile layout — affects nothing on ≥721px. */
+        @media (max-width: 720px) {
+            main { padding: 22px 14px 56px; }
+            h1 { font-size: 1.5rem; }
+            .subtitle { font-size: 0.85rem; }
+            .calc-card { padding: 16px 14px; }
+            .row { grid-template-columns: 1fr; gap: 10px; }
+            .legs-out { grid-template-columns: 1fr; gap: 10px; }
+            .summary-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+            .summary-cell .v { font-size: 1rem; }
+            .summary-cell .l { font-size: 0.66rem; }
+            .verdict-line { font-size: 0.95rem; }
+            .verdict-sub { font-size: 0.82rem; }
+            .notes { font-size: 0.74rem; }
+            .leg-out .stake { font-size: 1.2rem; }
+        }
+        .site-footer {
+            border-top: 1px solid #1e2d3d; padding: 28px 32px;
+            color: #556877; font-size: 0.82rem; margin-top: 48px;
+        }
+        .site-footer .disclaimer-line {
+            text-align: center; color: #6f7e8d; font-size: 0.78rem;
+            max-width: 720px; margin: 0 auto 14px; line-height: 1.5;
+        }
+        .site-footer .footer-row {
+            display: flex; justify-content: space-between; align-items: center;
+            flex-wrap: wrap; gap: 12px;
+        }
+        .site-footer a { color: #99aabb; text-decoration: none; }
+        .site-footer a:hover { color: #4a9eff; }
+    
+        /* Second-level nav submenu (added for the NFL > Best Ball / Redraft
+           split). The first level is unchanged; these rules only apply inside a
+           .nav-dd-sub, so existing single-level dropdowns are unaffected. */
+        .site-nav .nav-dd-sub { position: relative; }
+        .site-nav .nav-dd-sub > .nav-dd-sub-btn {
+            display: flex; align-items: center; justify-content: space-between;
+            width: 100%; gap: 8px;
+            background: none; border: 0; cursor: default;
+            padding: 7px 14px; font: inherit; font-size: 0.9rem;
+            color: #cfe0f0; text-align: left;
+        }
+        .site-nav .nav-dd-sub > .nav-dd-sub-btn:hover { background: #1e2d3d; color: #fff; }
+        .site-nav .nav-dd-sub > .nav-dd-sub-btn.has-active { color: #4a9eff; }
+        .site-nav .nav-dd-sub > .nav-dd-sub-btn .caret { font-size: 0.65rem; opacity: 0.7; }
+        .site-nav .nav-dd-sub-menu {
+            display: none; position: absolute; top: 0; left: 100%;
+            min-width: 210px; flex-direction: column;
+            background: #15202b; border: 1px solid #2b3f55; border-radius: 8px;
+            padding: 6px 0; z-index: 60;
+            box-shadow: 0 10px 24px rgba(0,0,0,0.45);
+        }
+        .site-nav .nav-dd-sub:hover > .nav-dd-sub-menu,
+        .site-nav .nav-dd-sub:focus-within > .nav-dd-sub-menu { display: flex; }
+        .site-nav .nav-dd-sub-menu a {
+            padding: 7px 14px; font-size: 0.9rem; color: #cfe0f0; text-decoration: none;
+        }
+        .site-nav .nav-dd-sub-menu a:hover { background: #1e2d3d; color: #fff; }
+        .site-nav .nav-dd-sub-menu a.active { color: #4a9eff; background: #1e2d3d; }
+        @media (max-width: 760px) {
+            /* No room to fly out sideways on a phone: indent in place instead. */
+            .site-nav .nav-dd-sub-menu {
+                display: flex; position: static; left: auto;
+                border: 0; box-shadow: none; background: transparent;
+                padding: 0 0 0 14px; min-width: 0;
+            }
+            .site-nav .nav-dd-sub > .nav-dd-sub-btn { cursor: default; }
+        }
+</style>
+</head>
+<body>
+    <nav class="site-nav">
+        <a class="brand" href="../../">EZ Dubs <span class="accent">Analytics</span></a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle">
+        <label for="nav-toggle" class="nav-toggle-label" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </label>
+        <div class="nav-tabs">
+            <a href="../../">Home</a>
+            <div class="nav-dd">
+                <button type="button" class="nav-dd-btn has-active">NFL <span class="caret">▾</span></button>
+                <div class="nav-dd-menu">
+                    <div class="nav-dd-sub">
+                        <button type="button" class="nav-dd-sub-btn">Best Ball <span class="caret">▸</span></button>
+                        <div class="nav-dd-sub-menu">
+                            <a href="../best-ball-prices/">Price Differences</a>
+                            <a href="../best-ball-history/">History Risers/Fallers</a>
+                        </div>
+                    </div>
+                    <div class="nav-dd-sub">
+                        <button type="button" class="nav-dd-sub-btn has-active">Redraft/In-Season <span class="caret">▸</span></button>
+                        <div class="nav-dd-sub-menu">
+                            <a href="../nfl-start-sit/">Start/Sit</a>
+                            <a href="../nfl-rooting/" class="active">Root For/Against</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="nav-dd">
+                <button type="button" class="nav-dd-btn">Prediction Markets <span class="caret">▾</span></button>
+                <div class="nav-dd-menu">
+                    <a href="../prediction-arbitrage/">Today's Arbitrage Picks</a>
+                    <a href="./">Arb Calculator</a>
+                </div>
+            </div>
+            <a href="https://substack.com/@ezdubsanalytics" target="_blank" rel="noopener">Blog (Substack) ↗</a>
+            <a href="../../contact.html">Contact</a>
+        </div>
+        <div class="nav-spacer"></div>
+        <a class="bmc-btn" href="https://buymeacoffee.com/ezdubsanalytics" target="_blank" rel="noopener">☕ Buy Me a Coffee</a>
+    </nav>
+  <script>window.LINEUP_DEFAULT_VIEW = "rooting"; window.LINEUP_DATA_DIR = "../nfl-start-sit/data/";</script>
+
+  <div class="container">
+    <header>
+      
+      <h1>Lineup</h1>
+      <p class="subtitle">
+        Start/sit and waiver calls priced off the betting markets, for
+        <span id="week-label">this week</span>. Priced off the betting markets.
+      </p>
+    </header>
+
+    <div class="view-tabs" id="view-tabs">
+      <button class="view-tab active" data-view="sitstart">Manual Roster</button>
+      <button class="view-tab" data-view="sleeper">Sleeper Start/Sit</button>
+      <button class="view-tab" data-view="rooting">Root For / Against</button>
+    </div>
+
+    <main>
+      <div id="sitstart-view">
+        <div class="callout">
+          <strong>Paste your roster, get the optimal lineup.</strong>
+          One player per line &mdash; names match loosely, so
+          &ldquo;ceedee lamb&rdquo; or &ldquo;D. Lamb&rdquo; both work. Everyone
+          is scored on this week&rsquo;s betting lines, then the best legal
+          lineup is picked for
+          <strong>QB / RB / RB / WR / WR / TE / FLEX / FLEX</strong> in
+          half-PPR. Add two players and it just tells you which to start.
+        </div>
+
+        <details class="help">
+          <summary>How the numbers work</summary>
+          <div class="help-body">
+            <p><strong>Price from these books</strong> re-derives every line
+            from only the sportsbooks you tick. Narrowing to one book drops any
+            stat that book does not post, so totals fall &mdash; Drake Maye
+            reads 9.7 on the full consensus but 2.8 on DraftKings alone,
+            because DK prices his rushing yards and not his passing. That is
+            the filter working. Leave every book ticked for the best
+            projection; untick to ask what <em>one</em> book thinks.</p>
+
+            <p>Hover any chip under a player to see each book by name with its
+            own number. A dotted underline marks the stats books disagree on.
+            A chip marked <strong>&asymp;</strong> is not a market price at all
+            &mdash; it is a season projection divided by 17, used when the only
+            thing anyone priced was a touchdown.</p>
+
+            <p>A row tagged <span class="proj-tag">TD ONLY</span> is one of
+            those: a book priced that player's touchdown and nothing else, so
+            the market has an opinion on <em>whether</em> he scores and none on
+            how much he does. Everything behind the total is a season estimate.
+            It is on the row because a total looks the same either way &mdash;
+            Justin Jefferson read 17.6 in week 4 with only his touchdown
+            actually priced. An injury tag beside it usually explains why. A row
+            reading <span class="proj-tag">EST</span> instead is the rarer case
+            where some other mix of stats is missing.</p>
+
+            <p>A player whose game has kicked off is <strong>locked</strong>:
+            his actual points show, his slot is spent, and the optimizer fills
+            only what is still changeable.</p>
+
+            <p>Anything the market has not priced is listed separately rather
+            than scored as zero. An unpriced player is a gap in coverage, not a
+            projection of nothing &mdash; and midweek there are a lot of them,
+            because books do not post most Sunday props until Thursday night.</p>
+          </div>
+        </details>
+
+        <div class="sitstart-grid">
+          <div class="sitstart-input">
+            <label for="roster-search" class="sitstart-label">Add players</label>
+            <div class="roster-search-wrap">
+              <input type="text" id="roster-search" autocomplete="off" spellcheck="false"
+                     placeholder="Type a name, click to add…" />
+              <div class="suggestions-list" id="roster-suggestions" style="display:none"></div>
+            </div>
+            <div class="selected-players" id="roster-tags"></div>
+            <div class="sitstart-actions">
+              <button id="roster-demo" class="fmt-btn">Load example</button>
+              <button id="roster-clear" class="fmt-btn">Clear</button>
+              <span class="weekly-meta" id="sitstart-meta"></span>
+            </div>
+
+            <div class="market-toggles" id="book-toggles">
+              <div class="sitstart-label" style="margin-bottom:6px">
+                Price from these books
+                <a href="#" id="books-all" class="market-toggle-link">all</a>
+              </div>
+              <div id="book-toggle-list" class="book-toggle-list"></div>
+            </div>
+            <details class="roster-paste">
+              <summary>or paste a list</summary>
+              <textarea id="roster-input" rows="8" spellcheck="false"
+                placeholder="One player per line"></textarea>
+              <button id="roster-go" class="fmt-btn">Add pasted names</button>
+            </details>
+          </div>
+          <div class="sitstart-output" id="sitstart-output">
+            <div class="empty">Add a few players to build a lineup.</div>
+          </div>
+        </div>
+      </div>
+
+      <div id="sleeper-view" class="hidden">
+        <div class="callout">
+          <strong>Sign in with your Sleeper username for start/sit calls on
+          your real teams.</strong>
+          Leagues, rosters and scoring are read live from Sleeper &mdash; no
+          password, nothing stored on a server. Each league gets its own
+          lineup, built for that league&rsquo;s slots and its own scoring
+          rules.
+        </div>
+
+        <details class="help">
+          <summary>How to read the lineup</summary>
+          <div class="help-body">
+            <p>The useful part is the difference from what you have set now.
+            Players the optimizer would start who are currently benched are
+            marked <span class="tag-swap">SWAP IN</span>; starters it would
+            bench are marked <span class="tag-sit">SITTING</span>. If nothing
+            is marked, your lineup is already optimal.</p>
+
+            <p>A player whose game has kicked off is <strong>locked</strong> and
+            listed separately &mdash; his points are banked, so the lineup above
+            covers only who is left to play.</p>
+
+            <p><strong>Kickers and defenses</strong> are projected from the game
+            line rather than player props, which no book posts for them. A
+            team&rsquo;s implied points come from the spread and total; for a
+            defense that drives the points-allowed buckets, and sacks and
+            takeaways scale with how big a favourite it is. Your league&rsquo;s
+            own D/ST and kicker scoring is applied.</p>
+
+            <p><strong>Best available</strong> reads every roster in the league,
+            so whoever is left over is a free agent. They are ranked by the
+            <em>upgrade</em> they would add to your optimal lineup, not by raw
+            points &mdash; an unrostered QB tops any points list while being
+            worthless to a team that already starts one. Kickers and defenses
+            are capped at two each, since they cluster within a point or two
+            and would otherwise crowd out real pickups.</p>
+          </div>
+        </details>
+
+        <div class="sleeper-login">
+          <div class="h2h-picker" style="max-width:320px">
+            <label class="sitstart-label" for="sleeper-user">Sleeper username</label>
+            <input type="text" id="sleeper-user" autocomplete="username"
+                   spellcheck="false" placeholder="e.g. pjmerica" />
+          </div>
+          <button id="sleeper-go" class="fmt-btn active">Load my leagues</button>
+          <button id="sleeper-forget" class="fmt-btn" hidden>Sign out</button>
+          <span class="weekly-meta" id="sleeper-status"></span>
+        </div>
+
+        <div class="sitstart-actions" style="margin-bottom:14px">
+          <div class="chip-group" id="sleeper-league-chips"></div>
+          <span class="weekly-meta" id="sleeper-meta"></span>
+        </div>
+
+        <div class="market-toggles" id="sleeper-book-toggles">
+          <div class="sitstart-label" style="margin-bottom:6px">
+            Price from these books
+            <a href="#" id="sleeper-books-all" class="market-toggle-link">all</a>
+          </div>
+          <div id="sleeper-book-list" class="book-toggle-list"></div>
+        </div>
+
+        <div id="sleeper-output">
+          <div class="empty">Enter a Sleeper username to load your leagues.</div>
+        </div>
+      </div>
+
+      <div id="rooting-view" class="hidden">
+        <div class="callout">
+          <strong>Who to cheer for, and who to cheer against.</strong>
+          One list across <em>every</em> league combined. A player starting for
+          you in one matchup and against you in another cancels out, and the
+          net is the only thing worth knowing when you sit down to watch.
+        </div>
+
+        <div class="sleeper-login" id="rooting-login">
+          <div class="h2h-picker" style="max-width:320px">
+            <label class="sitstart-label" for="rooting-user">Sleeper username</label>
+            <input type="text" id="rooting-user" autocomplete="username"
+                   spellcheck="false" placeholder="e.g. pjmerica" />
+          </div>
+          <button id="rooting-go" class="fmt-btn active">Load my leagues</button>
+          <button id="rooting-forget" class="fmt-btn" hidden>Sign out</button>
+          <span class="weekly-meta" id="rooting-status"></span>
+        </div>
+
+        <details class="help">
+          <summary>What is counted</summary>
+          <div class="help-body">
+            <p>Only players who can still change a result appear &mdash; a
+            starter whose game has finished is history however he did. The
+            <strong>Swings</strong> column counts how many of your matchups he
+            moves the same way, which is what puts him at the top.</p>
+
+            <p>Signing in here and on <strong>Sleeper Start/Sit</strong> is the
+            same sign-in &mdash; do it on whichever tab you happen to be on and
+            the other one is ready too.</p>
+          </div>
+        </details>
+
+        <div id="rooting-output">
+          <div class="empty">Enter a Sleeper username to see who to root for.</div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      Lines from DraftKings, FanDuel, BetMGM, Bovada, BetRivers, BetOnline,
+      Fanatics and Kalshi &middot; data shared with the
+      <a href="../../" style="color:#6a6a8a">EZ Dubs Analytics</a>
+    </footer>
+  </div>
+
+  <script src="../nfl-shared/app.js?v=2026-10-01-tdonly"></script>
+</body>
+</html>

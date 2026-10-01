@@ -1,0 +1,1067 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: #0f0f13;
+  color: #e2e2f0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  min-height: 100vh;
+  padding: 40px 20px;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+a.back {
+  font-size: 13px;
+  color: #6a6a8a;
+  text-decoration: none;
+  margin-bottom: 16px;
+  display: inline-block;
+}
+a.back:hover { color: #5b4cf5; }
+
+header h1 { font-size: 28px; font-weight: 700; color: #fff; }
+.subtitle { font-size: 14px; color: #6a6a8a; margin-top: 6px; }
+
+.view-tabs {
+  display: flex;
+  gap: 4px;
+  background: #14141c;
+  border: 1px solid #2e2e42;
+  border-radius: 12px;
+  padding: 5px;
+  align-self: flex-start;
+}
+.view-tab {
+  font-family: inherit;
+  font-size: 14px;
+  padding: 10px 18px;
+  border: none;
+  background: transparent;
+  color: #a0a0c0;
+  cursor: pointer;
+  border-radius: 8px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  transition: all 0.15s;
+}
+.view-tab.active {
+  background: #5b4cf5;
+  color: white;
+}
+.view-tab:hover:not(.active) {
+  color: #e2e2f0;
+  background: #1e1e2e;
+}
+
+.source-tabs {
+  display: flex;
+  gap: 4px;
+  background: #1a1a24;
+  border: 1px solid #2e2e42;
+  border-radius: 10px;
+  padding: 4px;
+  align-self: flex-start;
+}
+.source-tab {
+  font-family: inherit;
+  font-size: 13px;
+  padding: 8px 14px;
+  border: none;
+  background: transparent;
+  color: #a0a0c0;
+  cursor: pointer;
+  border-radius: 6px;
+  font-weight: 600;
+  transition: all 0.15s;
+}
+.source-tab.active {
+  background: #5b4cf5;
+  color: white;
+}
+.source-tab:hover:not(.active) {
+  color: #e2e2f0;
+}
+.source-tab[data-source="clay"][data-disabled="true"] {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  background: #1a1a24;
+  border: 1px solid #2e2e42;
+  border-radius: 12px;
+  padding: 14px 16px;
+}
+
+.format-group {
+  display: flex;
+  gap: 4px;
+  background: #0f0f13;
+  border: 1px solid #2e2e42;
+  border-radius: 8px;
+  padding: 3px;
+}
+.fmt-btn {
+  font-family: inherit;
+  font-size: 13px;
+  padding: 6px 12px;
+  border: none;
+  background: transparent;
+  color: #a0a0c0;
+  cursor: pointer;
+  border-radius: 6px;
+  font-weight: 600;
+  transition: all 0.15s;
+}
+.fmt-btn.active {
+  background: #5b4cf5;
+  color: white;
+}
+.fmt-btn:hover:not(.active) { color: #e2e2f0; }
+
+#search {
+  flex: 1;
+  min-width: 200px;
+  padding: 8px 12px;
+  font-size: 14px;
+  font-family: inherit;
+  background: #0f0f13;
+  border: 1px solid #2e2e42;
+  border-radius: 8px;
+  color: #e2e2f0;
+  outline: none;
+}
+#search:focus { border-color: #5b4cf5; }
+
+.chip-group {
+  display: flex;
+  gap: 6px;
+}
+
+.chip {
+  font-family: inherit;
+  font-size: 12px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid #2e2e42;
+  background: #0f0f13;
+  color: #a0a0c0;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-weight: 600;
+}
+.chip:hover { color: #e2e2f0; border-color: #5b4cf5; }
+.chip.active { background: #5b4cf5; border-color: #5b4cf5; color: white; }
+
+.table-wrap {
+  background: #1a1a24;
+  border: 1px solid #2e2e42;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.rankings {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.rankings thead th {
+  text-align: left;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #6a6a8a;
+  background: #14141c;
+  padding: 12px 14px;
+  border-bottom: 1px solid #2e2e42;
+  font-weight: 600;
+}
+
+.rankings th.num { text-align: right; }
+.rankings th.rank { width: 50px; }
+.rankings th.sortable { cursor: pointer; user-select: none; }
+.rankings th.sortable:hover { color: #e2e2f0; }
+.caret { color: #5b4cf5; }
+
+.rankings tbody tr {
+  border-bottom: 1px solid #1f1f2c;
+  transition: background 0.1s;
+}
+.rankings tbody tr:hover { background: #1e1e2e; }
+.rankings tbody tr:last-child { border-bottom: none; }
+
+.rankings td {
+  padding: 12px 14px;
+  font-size: 14px;
+  vertical-align: middle;
+}
+
+.rank-num {
+  color: #6a6a8a;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+
+.player-name { font-weight: 600; color: #f0f0f8; }
+
+.pos-badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+}
+.pos-QB    { background: rgba(231, 76, 60, 0.18); color: #ff6b6b; }
+.pos-RB    { background: rgba(52, 152, 219, 0.18); color: #5dade2; }
+.pos-WR    { background: rgba(46, 204, 113, 0.18); color: #58d68d; }
+.pos-TE    { background: rgba(243, 156, 18, 0.18); color: #f5b041; }
+.pos-Q     { background: rgba(108, 122, 137, 0.18); color: #95a5a6; }
+
+.matchup { color: #a0a0c0; font-size: 13px; }
+
+.proj {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  color: #5b4cf5;
+  text-align: right;
+  font-size: 16px;
+}
+
+.markets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.market-tag {
+  font-size: 11px;
+  padding: 3px 7px;
+  border-radius: 4px;
+  background: #0f0f13;
+  border: 1px solid #2e2e42;
+  color: #a0a0c0;
+  font-variant-numeric: tabular-nums;
+}
+
+.market-tag .mk-label { color: #6a6a8a; margin-right: 4px; }
+.market-tag .mk-val { color: #e2e2f0; font-weight: 600; }
+
+.empty {
+  text-align: center;
+  padding: 40px;
+  color: #6a6a8a;
+  font-size: 14px;
+}
+
+/* Must out-specify ID selectors like `#viz-view { display: flex }`, otherwise a
+   .hidden view still lays out (its empty chart boxes bled into other tabs). */
+.hidden,
+#table-view.hidden,
+#viz-view.hidden,
+#vegas-view.hidden,
+#market-view.hidden,
+#weekly-view.hidden,
+#multi-view.hidden,
+#sitstart-view.hidden,
+#h2h-view.hidden,
+#sleeper-view.hidden { display: none !important; }
+
+/* ── Visualizations tab ──────────────────────────────────────────────────── */
+#viz-view {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.viz-section {
+  background: #1a1a24;
+  border: 1px solid #2e2e42;
+  border-radius: 12px;
+  padding: 20px;
+}
+.viz-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #f0f0f8;
+  margin-bottom: 6px;
+}
+.viz-desc {
+  font-size: 13px;
+  color: #6a6a8a;
+  line-height: 1.45;
+  margin-bottom: 14px;
+}
+.viz-controls {
+  margin-bottom: 14px;
+}
+.chart-box {
+  position: relative;
+  height: 420px;
+  width: 100%;
+}
+@media (max-width: 600px) {
+  .chart-box { height: 320px; }
+}
+
+footer {
+  text-align: center;
+  font-size: 12px;
+  color: #6a6a8a;
+  padding-top: 16px;
+}
+
+@media (max-width: 700px) {
+  body { padding: 20px 12px; }
+  header h1 { font-size: 22px; }
+  .rankings thead th { padding: 8px; font-size: 10px; }
+  .rankings td { padding: 8px; font-size: 13px; }
+  .matchup { font-size: 11px; }
+}
+
+/* ── Vegas Lines view ─────────────────────────────────────────────────────── */
+
+.callout {
+  background: rgba(91, 76, 245, 0.08);
+  border: 1px solid rgba(91, 76, 245, 0.35);
+  border-left: 3px solid #5b4cf5;
+  border-radius: 6px;
+  padding: 12px 16px;
+  margin-bottom: 18px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #b8b8cc;
+}
+.callout strong { color: #f0f0f8; }
+.callout em { color: #d8d8e8; font-style: normal; text-decoration: underline dotted; }
+
+.vegas-controls {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.delta-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  color: #9a9ab0;
+  cursor: pointer;
+  user-select: none;
+}
+.delta-toggle:hover { color: #e2e2f0; }
+.delta-toggle input { accent-color: #5b4cf5; cursor: pointer; }
+
+.vegas-table th.sortable { cursor: pointer; user-select: none; }
+.vegas-table th.sortable:hover { color: #e2e2f0; }
+
+.stat-label {
+  font-size: 12px;
+  color: #9a9ab0;
+  white-space: nowrap;
+}
+
+.vegas-line {
+  font-weight: 700;
+  color: #f0f0f8;
+  font-variant-numeric: tabular-nums;
+}
+
+.odds {
+  font-size: 12px;
+  color: #6a6a8a;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.vegas-table td.num { font-variant-numeric: tabular-nums; }
+
+/* Delta vs FantasyPros: green = projections higher than Vegas, red = lower */
+.delta-up   { color: #58d68d; font-weight: 600; }
+.delta-down { color: #ff6b6b; font-weight: 600; }
+.delta-flat { color: #6a6a8a; }
+
+.kalshi-line {
+  font-weight: 600;
+  color: #c9c4ff;
+  font-variant-numeric: tabular-nums;
+}
+.kalshi-line.thin { color: #7a7595; font-weight: 500; }
+.thin-key { color: #7a7595; font-weight: 700; }
+
+/* ── Market Points view ───────────────────────────────────────────────────── */
+
+.market-pts {
+  font-weight: 700;
+  color: #f0f0f8;
+  font-variant-numeric: tabular-nums;
+  font-size: 15px;
+}
+.fit-mark { color: #f5b041; margin-left: 1px; font-weight: 700; }
+.proj-mark { color: #78aaff; margin-left: 2px; font-weight: 700; font-size: 11px; }
+
+.market-nan {
+  color: #6a6a8a;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  cursor: help;
+}
+tr.row-nan { opacity: 0.55; }
+tr.row-nan:hover { opacity: 0.85; }
+
+.market-chip {
+  display: inline-block;
+  font-size: 11px;
+  padding: 3px 7px;
+  margin: 2px 4px 2px 0;
+  border-radius: 4px;
+  background: #21212e;
+  border: 1px solid #2e2e42;
+  color: #c8c8dc;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.market-chip .mk-label { color: #7a7a95; margin-right: 2px; }
+.market-chip.src-fanduel { border-color: rgba(91, 76, 245, 0.4); }
+.market-chip.src-bovada  { border-color: rgba(232, 106, 92, 0.4); }
+/* Projection-filled: dashed, because it is not a market number at all. */
+.market-chip.src-proj {
+  border-style: dashed;
+  border-color: rgba(120, 170, 255, 0.45);
+  color: #bcd3f5;
+}
+.market-chip.src-kalshi  { border-color: rgba(88, 214, 141, 0.35); }
+.market-chip.src-fit     { border-color: rgba(245, 176, 65, 0.4); color: #e8d5b0; }
+.market-chip.src-sigma   { border-color: rgba(245, 176, 65, 0.28); color: #ddd0bb; }
+.market-chip.missing {
+  background: rgba(255, 107, 107, 0.08);
+  border-color: rgba(255, 107, 107, 0.3);
+  color: #ff9b9b;
+}
+
+.nan-key { color: #6a6a8a; font-weight: 700; }
+.fit-key { color: #f5b041; font-weight: 700; }
+.proj-key { color: #78aaff; font-weight: 700; }
+
+.market-table th.sortable { cursor: pointer; user-select: none; }
+.market-table th.sortable:hover { color: #e2e2f0; }
+/* Only the column actually driving the sort is highlighted. */
+.market-table th.sort-active { color: #e2e2f0; }
+
+/* This Week view */
+.weekly-game {
+  font-size: 12px;
+  color: #9a9ab0;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.weekly-meta {
+  font-size: 12px;
+  color: #9a9ab0;
+  margin-left: auto;
+  align-self: center;
+}
+.td-only-mark {
+  color: #78aaff;
+  margin-left: 3px;
+  font-size: 9px;
+  font-weight: 700;
+  vertical-align: super;
+}
+
+/* A book-sourced chip where the books do NOT all agree on the number. The
+   dotted underline is the cue to hover and read the per-book breakdown. */
+.market-chip.book-split {
+  border-bottom-style: dotted;
+  border-bottom-width: 2px;
+}
+
+
+/* ── Start/Sit view ───────────────────────────────────────────────────────── */
+.sitstart-grid {
+  display: grid;
+  grid-template-columns: minmax(240px, 320px) 1fr;
+  gap: 18px;
+  align-items: start;
+}
+@media (max-width: 780px) { .sitstart-grid { grid-template-columns: 1fr; } }
+
+.sitstart-label {
+  display: block;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #6a6a8a;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+#roster-input {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 13px;
+  font-family: inherit;
+  line-height: 1.6;
+  background: #0f0f13;
+  border: 1px solid #2e2e42;
+  border-radius: 8px;
+  color: #e2e2f0;
+  outline: none;
+  resize: vertical;
+}
+#roster-input:focus { border-color: #5b4cf5; }
+.sitstart-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+.sitstart-actions .fmt-btn {
+  border: 1px solid #2e2e42;
+  padding: 8px 14px;
+}
+.sitstart-output {
+  background: #1a1a24;
+  border: 1px solid #2e2e42;
+  border-radius: 12px;
+  overflow: hidden;
+  min-height: 120px;
+}
+.slot-table { width: 100%; border-collapse: collapse; }
+.slot-table th {
+  text-align: left;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #6a6a8a;
+  background: #14141c;
+  padding: 10px 12px;
+  border-bottom: 1px solid #2e2e42;
+  font-weight: 600;
+}
+.slot-table td {
+  padding: 10px 12px;
+  font-size: 14px;
+  border-bottom: 1px solid #1f1f2c;
+}
+.slot-table tr:last-child td { border-bottom: none; }
+.slot-badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+  background: rgba(91, 76, 245, 0.18);
+  color: #9b8cff;
+}
+.slot-badge.flex { background: rgba(46, 204, 113, 0.16); color: #58d68d; }
+.bench-row td { color: #6a6a8a; }
+.sitstart-total {
+  padding: 12px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #f0f0f8;
+  background: #14141c;
+  border-top: 1px solid #2e2e42;
+}
+.sitstart-section {
+  padding: 10px 12px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #6a6a8a;
+  background: #14141c;
+  font-weight: 600;
+}
+.verdict {
+  padding: 16px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: #e2e2f0;
+}
+.verdict strong { color: #58d68d; }
+.unmatched { color: #f5b041; }
+
+
+/* ── Head-to-head view ────────────────────────────────────────────────────── */
+.h2h-pickers {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 14px;
+  align-items: end;
+  margin-bottom: 12px;
+}
+@media (max-width: 620px) {
+  .h2h-pickers { grid-template-columns: 1fr; }
+  .h2h-vs { text-align: left; }
+}
+.h2h-picker input {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 14px;
+  font-family: inherit;
+  background: #0f0f13;
+  border: 1px solid #2e2e42;
+  border-radius: 8px;
+  color: #e2e2f0;
+  outline: none;
+}
+.h2h-picker input:focus { border-color: #5b4cf5; }
+.h2h-vs {
+  font-size: 12px;
+  font-weight: 700;
+  color: #6a6a8a;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding-bottom: 11px;
+}
+
+.h2h-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+@media (max-width: 620px) { .h2h-cards { grid-template-columns: 1fr; } }
+.h2h-card {
+  background: #1a1a24;
+  border: 1px solid #2e2e42;
+  border-radius: 12px;
+  padding: 16px;
+}
+.h2h-card.winner { border-color: rgba(88, 214, 141, 0.55); }
+.h2h-card-name { font-size: 16px; font-weight: 700; color: #f0f0f8; }
+.h2h-card-meta { font-size: 12px; color: #6a6a8a; margin-top: 4px; }
+.h2h-card-pts {
+  font-size: 30px;
+  font-weight: 700;
+  color: #5b4cf5;
+  font-variant-numeric: tabular-nums;
+  margin-top: 10px;
+}
+.h2h-card.winner .h2h-card-pts { color: #58d68d; }
+.h2h-card-sub { font-size: 11px; color: #6a6a8a; text-transform: uppercase; letter-spacing: 1px; }
+
+.h2h-bar-row { margin-top: 10px; }
+.h2h-bar-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #a0a0c0;
+  margin-bottom: 4px;
+  font-variant-numeric: tabular-nums;
+}
+.h2h-bar {
+  display: flex;
+  height: 8px;
+  border-radius: 4px;
+  overflow: hidden;
+  background: #0f0f13;
+}
+.h2h-bar-a { background: #5b4cf5; }
+.h2h-bar-b { background: #58d68d; }
+.h2h-stat-name { color: #6a6a8a; }
+
+
+/* ── Roster picker (type-to-add chips) ────────────────────────────────────── */
+.roster-search-wrap { position: relative; }
+#roster-search {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 14px;
+  font-family: inherit;
+  background: #0f0f13;
+  border: 1px solid #2e2e42;
+  border-radius: 8px;
+  color: #e2e2f0;
+  outline: none;
+}
+#roster-search:focus { border-color: #5b4cf5; }
+.suggestions-list {
+  position: absolute;
+  top: 100%; left: 0; right: 0;
+  background: #14141c;
+  border: 1px solid #2e2e42;
+  border-radius: 8px;
+  z-index: 100;
+  max-height: 260px;
+  overflow-y: auto;
+  margin-top: 4px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+}
+.suggestions-list div {
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 13px;
+  color: #c8c8dc;
+  border-bottom: 1px solid #1f1f2c;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.suggestions-list div:last-child { border-bottom: none; }
+.suggestions-list div:hover,
+.suggestions-list div.active { background: #1e1e2e; color: #fff; }
+.suggestions-list .sugg-pts {
+  margin-left: auto;
+  color: #6a6a8a;
+  font-variant-numeric: tabular-nums;
+}
+
+.selected-players {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+  min-height: 20px;
+}
+.player-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid rgba(91, 76, 245, 0.5);
+  background: rgba(91, 76, 245, 0.14);
+  color: #b9aeff;
+}
+.player-tag:hover { border-color: #5b4cf5; color: #fff; }
+.player-tag .remove { opacity: 0.65; font-size: 13px; }
+.player-tag:hover .remove { opacity: 1; }
+.player-tag.unpriced {
+  border-color: rgba(245, 176, 65, 0.5);
+  background: rgba(245, 176, 65, 0.12);
+  color: #e8d5b0;
+}
+
+.roster-paste { margin-top: 12px; }
+.roster-paste summary {
+  font-size: 12px;
+  color: #6a6a8a;
+  cursor: pointer;
+  user-select: none;
+}
+.roster-paste summary:hover { color: #a0a0c0; }
+.roster-paste textarea {
+  width: 100%;
+  margin-top: 8px;
+  padding: 10px 12px;
+  font-size: 13px;
+  font-family: inherit;
+  line-height: 1.6;
+  background: #0f0f13;
+  border: 1px solid #2e2e42;
+  border-radius: 8px;
+  color: #e2e2f0;
+  outline: none;
+  resize: vertical;
+}
+.roster-paste textarea:focus { border-color: #5b4cf5; }
+.roster-paste .fmt-btn { margin-top: 8px; border: 1px solid #2e2e42; }
+
+
+/* ── Sleeper leagues view ─────────────────────────────────────────────────── */
+#sleeper-league-chips { flex-wrap: wrap; }
+#sleeper-league-chips .chip { max-width: 260px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.league-scoring {
+  font-size: 12px;
+  color: #6a6a8a;
+  margin-bottom: 10px;
+}
+.slot-badge.k-def { background: rgba(108, 122, 137, 0.2); color: #95a5a6; }
+.injury-tag {
+  font-size: 10px;
+  font-weight: 700;
+  color: #ff6b6b;
+  margin-left: 6px;
+  letter-spacing: 0.5px;
+}
+
+
+/* ── Sleeper login row ────────────────────────────────────────────────────── */
+.sleeper-login {
+  display: flex;
+  gap: 10px;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+.sleeper-login .fmt-btn { border: 1px solid #2e2e42; padding: 9px 16px; }
+.sleeper-login .weekly-meta { align-self: center; }
+.sleeper-error { color: #ff6b6b; }
+
+
+/* ── Per-market toggles (Start/Sit) ───────────────────────────────────────── */
+.market-toggles {
+  margin-top: 14px;
+  padding: 12px;
+  background: #14141c;
+  border: 1px solid #2e2e42;
+  border-radius: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+}
+.market-toggles .sitstart-label { width: 100%; margin-bottom: 6px; }
+.market-toggles label {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  color: #a0a0c0;
+  cursor: pointer;
+  user-select: none;
+}
+.market-toggles label:hover { color: #e2e2f0; }
+.market-toggles input { accent-color: #5b4cf5; cursor: pointer; }
+.market-toggle-link {
+  font-size: 11px;
+  color: #5b4cf5;
+  text-decoration: none;
+  margin-left: 8px;
+  text-transform: none;
+  letter-spacing: 0;
+}
+.market-toggle-link:hover { text-decoration: underline; }
+.stat-off { opacity: 0.35; text-decoration: line-through; }
+
+.book-toggle-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  width: 100%;
+}
+.book-toggle-list label { display: inline-flex; align-items: center; gap: 5px;
+  font-size: 12px; color: #a0a0c0; cursor: pointer; user-select: none; }
+.book-toggle-list label:hover { color: #e2e2f0; }
+.book-toggle-list input { accent-color: #5b4cf5; cursor: pointer; }
+.book-count { color: #6a6a8a; font-size: 11px; }
+
+/* A lineup slot whose player has already played: the decision is gone, so the
+   row reads as settled rather than as something still to choose. */
+.locked-row { opacity: 0.6; }
+.locked-row td { background: rgba(108, 122, 137, 0.06); }
+
+/* Rooting direction marker: green up for your players, red down for theirs. */
+.root-mark { font-size: 11px; margin-right: 2px; }
+.root-mark.for { color: #58d68d; }
+.root-mark.against { color: #ff6b6b; }
+
+/* Aggregate rooting view */
+.matchup-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.matchup-card {
+  flex: 1 1 180px;
+  background: #1a1a24;
+  border: 1px solid #2e2e42;
+  border-left-width: 3px;
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+.matchup-card.ahead  { border-left-color: #58d68d; }
+.matchup-card.behind { border-left-color: #ff6b6b; }
+.matchup-league { font-size: 11px; color: #6a6a8a; text-transform: uppercase;
+  letter-spacing: 0.6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.matchup-score { font-size: 17px; font-weight: 700; color: #f0f0f8;
+  font-variant-numeric: tabular-nums; margin-top: 3px; }
+.matchup-opp { font-size: 12px; color: #a0a0c0; margin-top: 2px; }
+.league-count { font-size: 11px; font-weight: 700; color: #5b4cf5; }
+.league-names { font-size: 12px; color: #6a6a8a; }
+
+/* Coverage / freshness banner. Books do not post most Sunday player props
+   until Thursday night, so a midweek board is genuinely incomplete rather
+   than projecting zero. Amber while it is still filling in, grey once the
+   slate is close enough to kickoff that a missing line is a real signal. */
+.coverage-note {
+  margin: 0 0 14px;
+  padding: 10px 13px;
+  border-radius: 7px;
+  font-size: 13px;
+  line-height: 1.5;
+  background: #1c1c2b;
+  border: 1px solid #33334d;
+  color: #a8a8c0;
+}
+.coverage-note.early {
+  background: #2a2218;
+  border-color: #6b5326;
+  color: #e0c98a;
+}
+.coverage-note strong { color: #f0f0f5; }
+.coverage-note em { font-style: normal; color: #c9c9dd; }
+
+/* A projected fill: no book posted this market, so the number is a season
+   estimate divided by 17 rather than a price. Deliberately the coolest, least
+   confident colour on the board, and always prefixed with a squiggle. */
+.market-chip.src-proj {
+  background: #23232f;
+  border-color: #3a3a4e;
+  color: #9a9ab0;
+}
+
+.coverage-note .coverage-sub { display: block; margin-top: 6px; opacity: 0.85; }
+
+/* -- Collapsible help ------------------------------------------------------
+   The callouts had grown to 320 words of prose sitting between the reader and
+   the tool. The lead stays visible because it explains what the tab is; the
+   mechanics move in here, where they are one click away when a number looks
+   wrong and invisible the rest of the time. */
+.help {
+  margin: 0 0 16px;
+  border: 1px solid #2a2a40;
+  border-radius: 8px;
+  background: #15151f;
+}
+
+.help > summary {
+  padding: 9px 14px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 550;
+  color: #9a9ab8;
+  list-style: none;
+  user-select: none;
+}
+
+.help > summary::-webkit-details-marker { display: none; }
+
+.help > summary::before {
+  content: "\203A";
+  display: inline-block;
+  margin-right: 8px;
+  color: #5b5b80;
+  transition: transform 0.15s ease;
+}
+
+.help[open] > summary::before { transform: rotate(90deg); }
+.help > summary:hover { color: #d4d4e8; }
+
+.help-body {
+  padding: 2px 16px 14px 30px;
+  font-size: 13px;
+  line-height: 1.62;
+  color: #8a8aa8;
+  border-top: 1px solid #22223a;
+  margin-top: 2px;
+  padding-top: 12px;
+}
+
+.help-body p { margin: 0 0 11px; }
+.help-body p:last-child { margin-bottom: 0; }
+.help-body strong { color: #b4b4d0; }
+.help-body em { color: #a0a0bc; font-style: italic; }
+
+/* Inline copies of the row markers, so the help text shows the same thing the
+   table does rather than describing it. */
+.tag-swap { color: #58d68d; font-weight: 700; }
+.tag-sit { color: #e8a0a0; font-weight: 700; }
+
+/* League chips carry their own swap count, so "which team needs attention"
+   is answerable without clicking through every league in turn. */
+.chip-count {
+  display: inline-block;
+  margin-left: 6px;
+  min-width: 17px;
+  padding: 0 5px;
+  border-radius: 9px;
+  background: #2e7d4f;
+  color: #eafff2;
+  font-size: 11px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.chip.active .chip-count { background: #3fa96a; }
+
+.chip-ok {
+  margin-left: 6px;
+  color: #4a8a63;
+  font-weight: 700;
+}
+
+.chip.active .chip-ok { color: #7fd6a0; }
+
+/* -- Rooting: two lists, side by side ---------------------------------------
+   Root FOR and Root AGAINST are read against each other -- the question is
+   whether your side or theirs has more left to come -- so stacking them put a
+   scroll between the two halves of one comparison. */
+.root-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  align-items: start;
+}
+
+.root-col { min-width: 0; }
+
+@media (max-width: 860px) {
+  .root-columns { grid-template-columns: 1fr; gap: 4px; }
+}
+
+/* The Game column only ever holds a six-character matchup code, but the
+   DraftKings feed writes "CAR Panthers @ CLE Browns" and was forcing the
+   column four times wider than it needs. shortMatchup normalises the text;
+   this stops the column claiming space it no longer uses. */
+.root-table .col-game {
+  width: 1%;
+  white-space: nowrap;
+  font-size: 11px;
+  letter-spacing: 0.2px;
+}
+
+.root-table td,
+.root-table th { padding-left: 7px; padding-right: 7px; }
+.root-table .player-name { white-space: normal; }
+
+/* Kicker and defense chips. Same shape as the market chips, but a distinct
+   border so it reads at a glance that these come from the game line rather
+   than from a book quoting that player. */
+.market-chip.src-gameline {
+  border-color: rgba(143, 168, 200, 0.45);
+  color: #cdd8e6;
+}
+
+/* The Slot column holds a short badge and nothing else. Without this it sized
+   itself to the widest label, which Sleeper spells "SUPER_FLEX". */
+.slot-table th:first-child,
+.slot-table td:first-child { width: 1%; white-space: nowrap; }
+
+/* Marks a row whose usage is a season projection rather than a market price.
+   The stat chips already carry an approx sign, but a row total looks the same
+   either way -- Justin Jefferson's 14.4 was entirely estimated yardage with
+   only his touchdown priced, and nothing on the row said so. Amber because it
+   is a caveat, not an error. */
+.proj-tag {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 1px 5px;
+  border-radius: 3px;
+  border: 1px dashed rgba(120, 170, 255, 0.5);
+  background: rgba(120, 170, 255, 0.08);
+  color: #9cc0f0;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  vertical-align: middle;
+  cursor: help;
+}

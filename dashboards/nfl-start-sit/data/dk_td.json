@@ -1,0 +1,3466 @@
+{
+  "lastUpdated": "2026-10-01T14:29:15+00:00",
+  "season": "2026",
+  "source": "DraftKings (Anytime TD Scorer)",
+  "note": "Anytime touchdown prices converted to an implied probability and haircut for vig. This is P(scores 1+), which slightly understates expected TDs for goal-line backs who can score twice -- Kalshi's multi-rung ladder models that better, so prefer Kalshi where it exists and use this to fill the gaps.",
+  "eventCount": 16,
+  "playerCount": 432,
+  "players": [
+    {
+      "name": "Jahmyr Gibbs",
+      "matchup": "DET Lions @ CAR Panthers",
+      "kickoff": "2026-10-05",
+      "americanOdds": "\u2212350",
+      "impliedProb": 0.7778,
+      "xTD": 1.1407
+    },
+    {
+      "name": "Jonathan Taylor",
+      "matchup": "IND Colts @ WAS Commanders",
+      "kickoff": "2026-10-04",
+      "americanOdds": "\u2212310",
+      "impliedProb": 0.7561,
+      "xTD": 1.0801
+    },
+    {
+      "name": "Bijan Robinson",
+      "matchup": "ATL Falcons @ NO Saints",
+      "kickoff": "2026-10-06",
+      "americanOdds": "\u2212225",
+      "impliedProb": 0.6923,
+      "xTD": 0.9251
+    },
+    {
+      "name": "Derrick Henry",
+      "matchup": "TEN Titans @ BAL Ravens",
+      "kickoff": "2026-10-04",
+      "americanOdds": "\u2212210",
+      "impliedProb": 0.6774,
+      "xTD": 0.8928
+    },
+    {
+      "name": "Christian McCaffrey",
+      "matchup": "DEN Broncos @ SF 49ers",
+      "kickoff": "2026-10-04",
+      "americanOdds": "\u2212190",
+      "impliedProb": 0.6552,
+      "xTD": 0.8468
+    },
+    {
+      "name": "Chase Brown",
+      "matchup": "JAX Jaguars @ CIN Bengals",
+      "kickoff": "2026-10-04",
+      "americanOdds": "\u2212180",
+      "impliedProb": 0.6429,
+      "xTD": 0.8224
+    },
+    {
+      "name": "Kenneth Walker III",
+      "matchup": "KC Chiefs @ LV Raiders",
+      "kickoff": "2026-10-04",
+      "americanOdds": "\u2212165",
+      "impliedProb": 0.6226,
+      "xTD": 0.7838
+    },
+    {
+      "name": "Aaron Jones",
+      "matchup": "MIA Dolphins @ MIN Vikings",
+      "kickoff": "2026-10-04",
+      "americanOdds": "\u2212160",
+      "impliedProb": 0.6154,
+      "xTD": 0.7703
+    },
+    {
+      "name": "David Montgomery",
+      "matchup": "DAL Cowboys @ HOU Texans",
+      "kickoff": "2026-10-04",
+      "americanOdds": "\u2212150",
+      "impliedProb": 0.6,
+      "xTD": 0.7424
+    },
+    {
+      "name": "Ashton Jeanty",
+      "matchup": "KC Chiefs @ LV Raiders",
+      "kickoff": "2026-10-04",
+      "americanOdds": "\u2212140",
+      "impliedProb": 0.5833,
+      "xTD": 0.7131
+    },
+    {
+      "name": "Cameron Skattebo",
+      "matchup": "ARI Cardinals @ NY Giants",
+      "kickoff": "2026-10-04",
+      "americanOdds": "\u2212135",
+      "impliedProb": 0.5745,
+      "xTD": 0.6979
+    },
+    {
+      "name": "Jeremiyah Love",
+      "matchup": "ARI Cardinals @ NY Giants",
+      "kickoff": "2026-10-04",
+      "americanOdds": "\u2212130",
+      "impliedProb": 0.5652,
+      "xTD": 0.6823
+    },
+    {
+      "name": "James Cook",
+      "matchup": "NE Patriots @ BUF Bills",
+      "kickoff": "2026-10-04",
+      "americanOdds": "\u2212130",
+      "impliedProb": 0.5652,
+      "xTD": 0.6823
+    },
+    {
+      "name": "Javonte Williams",
+      "matchup": "DAL Cowboys @ HOU Texans",
+      "kickoff": "2026-10-04",
+      "americanOdds": "\u2212130",
+      "impliedProb": 0.5652,
+      "xTD": 0.6823
+    },
+    {
+      "name": "D'Andre Swift",
+      "matchup": "NY Jets @ CHI Bears",
+      "kickoff": "2026-10-04",
+      "americanOdds": "\u2212130",
+      "impliedProb": 0.5652,
+      "xTD": 0.6823
+    },
+    {
+      "name": "Chuba Hubbard",
+      "matchup": "DET Lions @ CAR Panthers",
+      "kickoff": "2026-10-05",
+      "americanOdds": "\u2212130",
+      "impliedProb": 0.5652,
+      "xTD": 0.6823
+    },
+    {
+      "name": "Amon-Ra St. Brown",
+      "matchup": "DET Lions @ CAR Panthers",
+      "kickoff": "2026-10-05",
+      "americanOdds": "\u2212125",
+      "impliedProb": 0.5556,
+      "xTD": 0.6663
+    },
+    {
+      "name": "Josh Allen",
+      "matchup": "NE Patriots @ BUF Bills",
+      "kickoff": "2026-10-04",
+      "americanOdds": "\u2212120",
+      "impliedProb": 0.5455,
+      "xTD": 0.6498
+    },
+    {
+      "name": "Kyren Williams",
+      "matchup": "LA Rams @ PHI Eagles",
+      "kickoff": "2026-10-04",
+      "americanOdds": "\u2212120",
+      "impliedProb": 0.5455,
+      "xTD": 0.6498
+    },
+    {
+      "name": "Jaylen Warren",
+      "matchup": "PIT Steelers @ CLE Browns",
+      "kickoff": "2026-10-02",
+      "americanOdds": "\u2212110",
+      "impliedProb": 0.5238,
+      "xTD": 0.6154
+    },
+    {
+      "name": "Ja'Marr Chase",
+      "matchup": "JAX Jaguars @ CIN Bengals",
+      "kickoff": "2026-10-04",
+      "americanOdds": "\u2212110",
+      "impliedProb": 0.5238,
+      "xTD": 0.6154
+    },
+    {
+      "name": "Bhayshul Tuten",
+      "matchup": "JAX Jaguars @ CIN Bengals",
+      "kickoff": "2026-10-04",
+      "americanOdds": "\u2212105",
+      "impliedProb": 0.5122,
+      "xTD": 0.5974
+    },
+    {
+      "name": "Jaxon Smith-Njigba",
+      "matchup": "LA Chargers @ SEA Seahawks",
+      "kickoff": "2026-10-04",
+      "americanOdds": "\u2212105",
+      "impliedProb": 0.5122,
+      "xTD": 0.5974
+    },
+    {
+      "name": "Davante Adams",
+      "matchup": "LA Rams @ PHI Eagles",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+105",
+      "impliedProb": 0.4878,
+      "xTD": 0.5608
+    },
+    {
+      "name": "Jacory Croskey-Merritt",
+      "matchup": "IND Colts @ WAS Commanders",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+110",
+      "impliedProb": 0.4762,
+      "xTD": 0.5437
+    },
+    {
+      "name": "Saquon Barkley",
+      "matchup": "LA Rams @ PHI Eagles",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+110",
+      "impliedProb": 0.4762,
+      "xTD": 0.5437
+    },
+    {
+      "name": "Omarion Hampton",
+      "matchup": "LA Chargers @ SEA Seahawks",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+115",
+      "impliedProb": 0.4651,
+      "xTD": 0.5278
+    },
+    {
+      "name": "J.K. Dobbins",
+      "matchup": "DEN Broncos @ SF 49ers",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+115",
+      "impliedProb": 0.4651,
+      "xTD": 0.5278
+    },
+    {
+      "name": "Chris Olave",
+      "matchup": "ATL Falcons @ NO Saints",
+      "kickoff": "2026-10-06",
+      "americanOdds": "+115",
+      "impliedProb": 0.4651,
+      "xTD": 0.5278
+    },
+    {
+      "name": "Alvin Kamara",
+      "matchup": "ATL Falcons @ NO Saints",
+      "kickoff": "2026-10-06",
+      "americanOdds": "+115",
+      "impliedProb": 0.4651,
+      "xTD": 0.5278
+    },
+    {
+      "name": "Quinshon Judkins",
+      "matchup": "PIT Steelers @ CLE Browns",
+      "kickoff": "2026-10-02",
+      "americanOdds": "+125",
+      "impliedProb": 0.4444,
+      "xTD": 0.4986
+    },
+    {
+      "name": "Braelon Allen",
+      "matchup": "NY Jets @ CHI Bears",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+125",
+      "impliedProb": 0.4444,
+      "xTD": 0.4986
+    },
+    {
+      "name": "Justin Jefferson",
+      "matchup": "MIA Dolphins @ MIN Vikings",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+125",
+      "impliedProb": 0.4444,
+      "xTD": 0.4986
+    },
+    {
+      "name": "Jadarian Price",
+      "matchup": "LA Chargers @ SEA Seahawks",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+130",
+      "impliedProb": 0.4348,
+      "xTD": 0.4853
+    },
+    {
+      "name": "Drake London",
+      "matchup": "ATL Falcons @ NO Saints",
+      "kickoff": "2026-10-06",
+      "americanOdds": "+130",
+      "impliedProb": 0.4348,
+      "xTD": 0.4853
+    },
+    {
+      "name": "CeeDee Lamb",
+      "matchup": "DAL Cowboys @ HOU Texans",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+135",
+      "impliedProb": 0.4255,
+      "xTD": 0.4726
+    },
+    {
+      "name": "Zay Flowers",
+      "matchup": "TEN Titans @ BAL Ravens",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+135",
+      "impliedProb": 0.4255,
+      "xTD": 0.4726
+    },
+    {
+      "name": "Puka Nacua",
+      "matchup": "LA Rams @ PHI Eagles",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+135",
+      "impliedProb": 0.4255,
+      "xTD": 0.4726
+    },
+    {
+      "name": "Rhamondre Stevenson",
+      "matchup": "NE Patriots @ BUF Bills",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+140",
+      "impliedProb": 0.4167,
+      "xTD": 0.4607
+    },
+    {
+      "name": "Jordan Addison",
+      "matchup": "MIA Dolphins @ MIN Vikings",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+140",
+      "impliedProb": 0.4167,
+      "xTD": 0.4607
+    },
+    {
+      "name": "Parker Washington",
+      "matchup": "JAX Jaguars @ CIN Bengals",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+145",
+      "impliedProb": 0.4082,
+      "xTD": 0.4493
+    },
+    {
+      "name": "Mark Andrews",
+      "matchup": "TEN Titans @ BAL Ravens",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+145",
+      "impliedProb": 0.4082,
+      "xTD": 0.4493
+    },
+    {
+      "name": "Trey McBride",
+      "matchup": "ARI Cardinals @ NY Giants",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+150",
+      "impliedProb": 0.4,
+      "xTD": 0.4385
+    },
+    {
+      "name": "Tee Higgins",
+      "matchup": "JAX Jaguars @ CIN Bengals",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+150",
+      "impliedProb": 0.4,
+      "xTD": 0.4385
+    },
+    {
+      "name": "Rashee Rice",
+      "matchup": "KC Chiefs @ LV Raiders",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+150",
+      "impliedProb": 0.4,
+      "xTD": 0.4385
+    },
+    {
+      "name": "Garrett Wilson",
+      "matchup": "NY Jets @ CHI Bears",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+155",
+      "impliedProb": 0.3922,
+      "xTD": 0.4282
+    },
+    {
+      "name": "George Kittle",
+      "matchup": "DEN Broncos @ SF 49ers",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+155",
+      "impliedProb": 0.3922,
+      "xTD": 0.4282
+    },
+    {
+      "name": "Tetairoa McMillan",
+      "matchup": "DET Lions @ CAR Panthers",
+      "kickoff": "2026-10-05",
+      "americanOdds": "+155",
+      "impliedProb": 0.3922,
+      "xTD": 0.4282
+    },
+    {
+      "name": "D.J. Moore",
+      "matchup": "NE Patriots @ BUF Bills",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+160",
+      "impliedProb": 0.3846,
+      "xTD": 0.4184
+    },
+    {
+      "name": "Travis Kelce",
+      "matchup": "KC Chiefs @ LV Raiders",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+160",
+      "impliedProb": 0.3846,
+      "xTD": 0.4184
+    },
+    {
+      "name": "Deebo Samuel",
+      "matchup": "DEN Broncos @ SF 49ers",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+160",
+      "impliedProb": 0.3846,
+      "xTD": 0.4184
+    },
+    {
+      "name": "Mike Evans",
+      "matchup": "DEN Broncos @ SF 49ers",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+160",
+      "impliedProb": 0.3846,
+      "xTD": 0.4184
+    },
+    {
+      "name": "Nico Collins",
+      "matchup": "DAL Cowboys @ HOU Texans",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+165",
+      "impliedProb": 0.3774,
+      "xTD": 0.4091
+    },
+    {
+      "name": "Jalen Hurts",
+      "matchup": "LA Rams @ PHI Eagles",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+165",
+      "impliedProb": 0.3774,
+      "xTD": 0.4091
+    },
+    {
+      "name": "Tyler Warren",
+      "matchup": "IND Colts @ WAS Commanders",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+170",
+      "impliedProb": 0.3704,
+      "xTD": 0.4002
+    },
+    {
+      "name": "George Pickens",
+      "matchup": "DAL Cowboys @ HOU Texans",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+170",
+      "impliedProb": 0.3704,
+      "xTD": 0.4002
+    },
+    {
+      "name": "T.J. Hockenson",
+      "matchup": "MIA Dolphins @ MIN Vikings",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+170",
+      "impliedProb": 0.3704,
+      "xTD": 0.4002
+    },
+    {
+      "name": "Dalton Kincaid",
+      "matchup": "NE Patriots @ BUF Bills",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+175",
+      "impliedProb": 0.3636,
+      "xTD": 0.3916
+    },
+    {
+      "name": "Bucky Irving",
+      "matchup": "GB Packers @ TB Buccaneers",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+175",
+      "impliedProb": 0.3636,
+      "xTD": 0.3916
+    },
+    {
+      "name": "Josh Downs",
+      "matchup": "IND Colts @ WAS Commanders",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+180",
+      "impliedProb": 0.3571,
+      "xTD": 0.3835
+    },
+    {
+      "name": "Sam LaPorta",
+      "matchup": "DET Lions @ CAR Panthers",
+      "kickoff": "2026-10-05",
+      "americanOdds": "+180",
+      "impliedProb": 0.3571,
+      "xTD": 0.3835
+    },
+    {
+      "name": "TreVeyon Henderson",
+      "matchup": "NE Patriots @ BUF Bills",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+195",
+      "impliedProb": 0.339,
+      "xTD": 0.3609
+    },
+    {
+      "name": "Kyle Monangai",
+      "matchup": "NY Jets @ CHI Bears",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+195",
+      "impliedProb": 0.339,
+      "xTD": 0.3609
+    },
+    {
+      "name": "Christian Watson",
+      "matchup": "GB Packers @ TB Buccaneers",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+195",
+      "impliedProb": 0.339,
+      "xTD": 0.3609
+    },
+    {
+      "name": "Kaleb Johnson",
+      "matchup": "GB Packers @ TB Buccaneers",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+200",
+      "impliedProb": 0.3333,
+      "xTD": 0.354
+    },
+    {
+      "name": "DeVonta Smith",
+      "matchup": "LA Rams @ PHI Eagles",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+200",
+      "impliedProb": 0.3333,
+      "xTD": 0.354
+    },
+    {
+      "name": "Brock Bowers",
+      "matchup": "KC Chiefs @ LV Raiders",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+200",
+      "impliedProb": 0.3333,
+      "xTD": 0.354
+    },
+    {
+      "name": "Jalen Coker",
+      "matchup": "DET Lions @ CAR Panthers",
+      "kickoff": "2026-10-05",
+      "americanOdds": "+200",
+      "impliedProb": 0.3333,
+      "xTD": 0.354
+    },
+    {
+      "name": "Jameson Williams",
+      "matchup": "DET Lions @ CAR Panthers",
+      "kickoff": "2026-10-05",
+      "americanOdds": "+200",
+      "impliedProb": 0.3333,
+      "xTD": 0.354
+    },
+    {
+      "name": "DK Metcalf",
+      "matchup": "PIT Steelers @ CLE Browns",
+      "kickoff": "2026-10-02",
+      "americanOdds": "+205",
+      "impliedProb": 0.3279,
+      "xTD": 0.3474
+    },
+    {
+      "name": "Malik Nabers",
+      "matchup": "ARI Cardinals @ NY Giants",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+205",
+      "impliedProb": 0.3279,
+      "xTD": 0.3474
+    },
+    {
+      "name": "Michael Wilson",
+      "matchup": "ARI Cardinals @ NY Giants",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+205",
+      "impliedProb": 0.3279,
+      "xTD": 0.3474
+    },
+    {
+      "name": "Woody Marks",
+      "matchup": "DAL Cowboys @ HOU Texans",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+205",
+      "impliedProb": 0.3279,
+      "xTD": 0.3474
+    },
+    {
+      "name": "Luther Burden III",
+      "matchup": "NY Jets @ CHI Bears",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+205",
+      "impliedProb": 0.3279,
+      "xTD": 0.3474
+    },
+    {
+      "name": "Tony Pollard",
+      "matchup": "TEN Titans @ BAL Ravens",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+205",
+      "impliedProb": 0.3279,
+      "xTD": 0.3474
+    },
+    {
+      "name": "RJ Harvey",
+      "matchup": "DEN Broncos @ SF 49ers",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+215",
+      "impliedProb": 0.3175,
+      "xTD": 0.3348
+    },
+    {
+      "name": "Jaylen Waddle",
+      "matchup": "DEN Broncos @ SF 49ers",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+215",
+      "impliedProb": 0.3175,
+      "xTD": 0.3348
+    },
+    {
+      "name": "Dalton Schultz",
+      "matchup": "DAL Cowboys @ HOU Texans",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+220",
+      "impliedProb": 0.3125,
+      "xTD": 0.3288
+    },
+    {
+      "name": "Emanuel Wilson",
+      "matchup": "LA Chargers @ SEA Seahawks",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+225",
+      "impliedProb": 0.3077,
+      "xTD": 0.3231
+    },
+    {
+      "name": "Courtland Sutton",
+      "matchup": "DEN Broncos @ SF 49ers",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+225",
+      "impliedProb": 0.3077,
+      "xTD": 0.3231
+    },
+    {
+      "name": "Juwan Johnson",
+      "matchup": "ATL Falcons @ NO Saints",
+      "kickoff": "2026-10-06",
+      "americanOdds": "+225",
+      "impliedProb": 0.3077,
+      "xTD": 0.3231
+    },
+    {
+      "name": "Devaughn Vele",
+      "matchup": "ATL Falcons @ NO Saints",
+      "kickoff": "2026-10-06",
+      "americanOdds": "+225",
+      "impliedProb": 0.3077,
+      "xTD": 0.3231
+    },
+    {
+      "name": "Lamar Jackson",
+      "matchup": "TEN Titans @ BAL Ravens",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+230",
+      "impliedProb": 0.303,
+      "xTD": 0.3176
+    },
+    {
+      "name": "Xavier Worthy",
+      "matchup": "KC Chiefs @ LV Raiders",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+230",
+      "impliedProb": 0.303,
+      "xTD": 0.3176
+    },
+    {
+      "name": "Tucker Kraft",
+      "matchup": "GB Packers @ TB Buccaneers",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+235",
+      "impliedProb": 0.2985,
+      "xTD": 0.3122
+    },
+    {
+      "name": "Darren Waller",
+      "matchup": "DET Lions @ CAR Panthers",
+      "kickoff": "2026-10-05",
+      "americanOdds": "+235",
+      "impliedProb": 0.2985,
+      "xTD": 0.3122
+    },
+    {
+      "name": "Stefon Diggs",
+      "matchup": "IND Colts @ WAS Commanders",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+240",
+      "impliedProb": 0.2941,
+      "xTD": 0.307
+    },
+    {
+      "name": "Khalil Shakir",
+      "matchup": "NE Patriots @ BUF Bills",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+240",
+      "impliedProb": 0.2941,
+      "xTD": 0.307
+    },
+    {
+      "name": "Kenyon Sadiq",
+      "matchup": "NY Jets @ CHI Bears",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+240",
+      "impliedProb": 0.2941,
+      "xTD": 0.307
+    },
+    {
+      "name": "Terry McLaurin",
+      "matchup": "IND Colts @ WAS Commanders",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+245",
+      "impliedProb": 0.2899,
+      "xTD": 0.302
+    },
+    {
+      "name": "Hunter Henry",
+      "matchup": "NE Patriots @ BUF Bills",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+255",
+      "impliedProb": 0.2817,
+      "xTD": 0.2925
+    },
+    {
+      "name": "Jakobi Meyers",
+      "matchup": "JAX Jaguars @ CIN Bengals",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+255",
+      "impliedProb": 0.2817,
+      "xTD": 0.2925
+    },
+    {
+      "name": "Brenton Strange",
+      "matchup": "JAX Jaguars @ CIN Bengals",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+255",
+      "impliedProb": 0.2817,
+      "xTD": 0.2925
+    },
+    {
+      "name": "MarShawn Lloyd",
+      "matchup": "GB Packers @ TB Buccaneers",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+255",
+      "impliedProb": 0.2817,
+      "xTD": 0.2925
+    },
+    {
+      "name": "Matthew Golden",
+      "matchup": "GB Packers @ TB Buccaneers",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+260",
+      "impliedProb": 0.2778,
+      "xTD": 0.288
+    },
+    {
+      "name": "Rashod Bateman",
+      "matchup": "TEN Titans @ BAL Ravens",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+260",
+      "impliedProb": 0.2778,
+      "xTD": 0.288
+    },
+    {
+      "name": "Harold Fannin Jr.",
+      "matchup": "PIT Steelers @ CLE Browns",
+      "kickoff": "2026-10-02",
+      "americanOdds": "+265",
+      "impliedProb": 0.274,
+      "xTD": 0.2836
+    },
+    {
+      "name": "Colston Loveland",
+      "matchup": "NY Jets @ CHI Bears",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+265",
+      "impliedProb": 0.274,
+      "xTD": 0.2836
+    },
+    {
+      "name": "A.J. Barner",
+      "matchup": "LA Chargers @ SEA Seahawks",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+265",
+      "impliedProb": 0.274,
+      "xTD": 0.2836
+    },
+    {
+      "name": "Romeo Doubs",
+      "matchup": "NE Patriots @ BUF Bills",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+270",
+      "impliedProb": 0.2703,
+      "xTD": 0.2793
+    },
+    {
+      "name": "Mack Hollins",
+      "matchup": "NE Patriots @ BUF Bills",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+270",
+      "impliedProb": 0.2703,
+      "xTD": 0.2793
+    },
+    {
+      "name": "Chris Rodriguez Jr.",
+      "matchup": "JAX Jaguars @ CIN Bengals",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+270",
+      "impliedProb": 0.2703,
+      "xTD": 0.2793
+    },
+    {
+      "name": "Keenan Allen",
+      "matchup": "IND Colts @ WAS Commanders",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+275",
+      "impliedProb": 0.2667,
+      "xTD": 0.2752
+    },
+    {
+      "name": "Isaiah Likely",
+      "matchup": "ARI Cardinals @ NY Giants",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+280",
+      "impliedProb": 0.2632,
+      "xTD": 0.2712
+    },
+    {
+      "name": "Tyler Allgeier",
+      "matchup": "ARI Cardinals @ NY Giants",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+280",
+      "impliedProb": 0.2632,
+      "xTD": 0.2712
+    },
+    {
+      "name": "Blake Corum",
+      "matchup": "LA Rams @ PHI Eagles",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+280",
+      "impliedProb": 0.2632,
+      "xTD": 0.2712
+    },
+    {
+      "name": "Tyler Shough",
+      "matchup": "ATL Falcons @ NO Saints",
+      "kickoff": "2026-10-06",
+      "americanOdds": "+285",
+      "impliedProb": 0.2597,
+      "xTD": 0.2673
+    },
+    {
+      "name": "Kaytron Allen",
+      "matchup": "IND Colts @ WAS Commanders",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+295",
+      "impliedProb": 0.2532,
+      "xTD": 0.2598
+    },
+    {
+      "name": "Mike Gesicki",
+      "matchup": "JAX Jaguars @ CIN Bengals",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+295",
+      "impliedProb": 0.2532,
+      "xTD": 0.2598
+    },
+    {
+      "name": "Trevor Lawrence",
+      "matchup": "JAX Jaguars @ CIN Bengals",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+295",
+      "impliedProb": 0.2532,
+      "xTD": 0.2598
+    },
+    {
+      "name": "Isaiah Davis",
+      "matchup": "NY Jets @ CHI Bears",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+295",
+      "impliedProb": 0.2532,
+      "xTD": 0.2598
+    },
+    {
+      "name": "Denzel Boston",
+      "matchup": "PIT Steelers @ CLE Browns",
+      "kickoff": "2026-10-02",
+      "americanOdds": "+310",
+      "impliedProb": 0.2439,
+      "xTD": 0.2494
+    },
+    {
+      "name": "Rachaad White",
+      "matchup": "IND Colts @ WAS Commanders",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+310",
+      "impliedProb": 0.2439,
+      "xTD": 0.2494
+    },
+    {
+      "name": "Brian Thomas Jr.",
+      "matchup": "JAX Jaguars @ CIN Bengals",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+310",
+      "impliedProb": 0.2439,
+      "xTD": 0.2494
+    },
+    {
+      "name": "Jake Ferguson",
+      "matchup": "DAL Cowboys @ HOU Texans",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+310",
+      "impliedProb": 0.2439,
+      "xTD": 0.2494
+    },
+    {
+      "name": "Rashid Shaheed",
+      "matchup": "LA Chargers @ SEA Seahawks",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+310",
+      "impliedProb": 0.2439,
+      "xTD": 0.2494
+    },
+    {
+      "name": "KC Concepcion",
+      "matchup": "PIT Steelers @ CLE Browns",
+      "kickoff": "2026-10-02",
+      "americanOdds": "+320",
+      "impliedProb": 0.2381,
+      "xTD": 0.2429
+    },
+    {
+      "name": "Ollie Gordon II",
+      "matchup": "MIA Dolphins @ MIN Vikings",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+320",
+      "impliedProb": 0.2381,
+      "xTD": 0.2429
+    },
+    {
+      "name": "Tre Tucker",
+      "matchup": "KC Chiefs @ LV Raiders",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+320",
+      "impliedProb": 0.2381,
+      "xTD": 0.2429
+    },
+    {
+      "name": "Cooper Kupp",
+      "matchup": "LA Chargers @ SEA Seahawks",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+320",
+      "impliedProb": 0.2381,
+      "xTD": 0.2429
+    },
+    {
+      "name": "Ladd McConkey",
+      "matchup": "LA Chargers @ SEA Seahawks",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+320",
+      "impliedProb": 0.2381,
+      "xTD": 0.2429
+    },
+    {
+      "name": "Kaelon Black",
+      "matchup": "DEN Broncos @ SF 49ers",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+320",
+      "impliedProb": 0.2381,
+      "xTD": 0.2429
+    },
+    {
+      "name": "Brock Purdy",
+      "matchup": "DEN Broncos @ SF 49ers",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+320",
+      "impliedProb": 0.2381,
+      "xTD": 0.2429
+    },
+    {
+      "name": "Ryan Flournoy",
+      "matchup": "DAL Cowboys @ HOU Texans",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+330",
+      "impliedProb": 0.2326,
+      "xTD": 0.2367
+    },
+    {
+      "name": "Rome Odunze",
+      "matchup": "NY Jets @ CHI Bears",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+330",
+      "impliedProb": 0.2326,
+      "xTD": 0.2367
+    },
+    {
+      "name": "Emeka Egbuka",
+      "matchup": "GB Packers @ TB Buccaneers",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+330",
+      "impliedProb": 0.2326,
+      "xTD": 0.2367
+    },
+    {
+      "name": "George Holani",
+      "matchup": "LA Chargers @ SEA Seahawks",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+330",
+      "impliedProb": 0.2326,
+      "xTD": 0.2367
+    },
+    {
+      "name": "Najee Harris",
+      "matchup": "ARI Cardinals @ NY Giants",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+340",
+      "impliedProb": 0.2273,
+      "xTD": 0.2309
+    },
+    {
+      "name": "Carnell Tate",
+      "matchup": "TEN Titans @ BAL Ravens",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+340",
+      "impliedProb": 0.2273,
+      "xTD": 0.2309
+    },
+    {
+      "name": "Kyler Murray",
+      "matchup": "MIA Dolphins @ MIN Vikings",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+340",
+      "impliedProb": 0.2273,
+      "xTD": 0.2309
+    },
+    {
+      "name": "Malik Washington",
+      "matchup": "MIA Dolphins @ MIN Vikings",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+340",
+      "impliedProb": 0.2273,
+      "xTD": 0.2309
+    },
+    {
+      "name": "Michael Pittman Jr.",
+      "matchup": "PIT Steelers @ CLE Browns",
+      "kickoff": "2026-10-02",
+      "americanOdds": "+350",
+      "impliedProb": 0.2222,
+      "xTD": 0.2253
+    },
+    {
+      "name": "Kayshon Boutte",
+      "matchup": "DAL Cowboys @ HOU Texans",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+350",
+      "impliedProb": 0.2222,
+      "xTD": 0.2253
+    },
+    {
+      "name": "Tyler Higbee",
+      "matchup": "LA Rams @ PHI Eagles",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+350",
+      "impliedProb": 0.2222,
+      "xTD": 0.2253
+    },
+    {
+      "name": "Bo Nix",
+      "matchup": "DEN Broncos @ SF 49ers",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+350",
+      "impliedProb": 0.2222,
+      "xTD": 0.2253
+    },
+    {
+      "name": "Brian Robinson Jr.",
+      "matchup": "ATL Falcons @ NO Saints",
+      "kickoff": "2026-10-06",
+      "americanOdds": "+350",
+      "impliedProb": 0.2222,
+      "xTD": 0.2253
+    },
+    {
+      "name": "Marvin Harrison Jr.",
+      "matchup": "ARI Cardinals @ NY Giants",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+360",
+      "impliedProb": 0.2174,
+      "xTD": 0.22
+    },
+    {
+      "name": "Kalif Raymond",
+      "matchup": "NY Jets @ CHI Bears",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+360",
+      "impliedProb": 0.2174,
+      "xTD": 0.22
+    },
+    {
+      "name": "Jalon Daniels",
+      "matchup": "GB Packers @ TB Buccaneers",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+360",
+      "impliedProb": 0.2174,
+      "xTD": 0.22
+    },
+    {
+      "name": "Dontayvion Wicks",
+      "matchup": "LA Rams @ PHI Eagles",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+360",
+      "impliedProb": 0.2174,
+      "xTD": 0.22
+    },
+    {
+      "name": "Jaylen Wright",
+      "matchup": "MIA Dolphins @ MIN Vikings",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+360",
+      "impliedProb": 0.2174,
+      "xTD": 0.22
+    },
+    {
+      "name": "Oronde Gadsden II",
+      "matchup": "LA Chargers @ SEA Seahawks",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+360",
+      "impliedProb": 0.2174,
+      "xTD": 0.22
+    },
+    {
+      "name": "Pat Bryant",
+      "matchup": "DEN Broncos @ SF 49ers",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+360",
+      "impliedProb": 0.2174,
+      "xTD": 0.22
+    },
+    {
+      "name": "Marcus Mariota",
+      "matchup": "IND Colts @ WAS Commanders",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+370",
+      "impliedProb": 0.2128,
+      "xTD": 0.2149
+    },
+    {
+      "name": "Daniel Jones",
+      "matchup": "IND Colts @ WAS Commanders",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+370",
+      "impliedProb": 0.2128,
+      "xTD": 0.2149
+    },
+    {
+      "name": "Kendre Miller",
+      "matchup": "ATL Falcons @ NO Saints",
+      "kickoff": "2026-10-06",
+      "americanOdds": "+370",
+      "impliedProb": 0.2128,
+      "xTD": 0.2149
+    },
+    {
+      "name": "Xavier Hutchinson",
+      "matchup": "DAL Cowboys @ HOU Texans",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+380",
+      "impliedProb": 0.2083,
+      "xTD": 0.2101
+    },
+    {
+      "name": "Patrick Mahomes",
+      "matchup": "KC Chiefs @ LV Raiders",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+380",
+      "impliedProb": 0.2083,
+      "xTD": 0.2101
+    },
+    {
+      "name": "Deshaun Watson",
+      "matchup": "PIT Steelers @ CLE Browns",
+      "kickoff": "2026-10-02",
+      "americanOdds": "+390",
+      "impliedProb": 0.2041,
+      "xTD": 0.2055
+    },
+    {
+      "name": "Keon Coleman",
+      "matchup": "NE Patriots @ BUF Bills",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+390",
+      "impliedProb": 0.2041,
+      "xTD": 0.2055
+    },
+    {
+      "name": "Demario Douglas",
+      "matchup": "NE Patriots @ BUF Bills",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+390",
+      "impliedProb": 0.2041,
+      "xTD": 0.2055
+    },
+    {
+      "name": "Colby Parkinson",
+      "matchup": "LA Rams @ PHI Eagles",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+390",
+      "impliedProb": 0.2041,
+      "xTD": 0.2055
+    },
+    {
+      "name": "Pat Freiermuth",
+      "matchup": "PIT Steelers @ CLE Browns",
+      "kickoff": "2026-10-02",
+      "americanOdds": "+400",
+      "impliedProb": 0.2,
+      "xTD": 0.2011
+    },
+    {
+      "name": "Chigoziem Okonkwo",
+      "matchup": "IND Colts @ WAS Commanders",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+400",
+      "impliedProb": 0.2,
+      "xTD": 0.2011
+    },
+    {
+      "name": "Jauan Jennings",
+      "matchup": "MIA Dolphins @ MIN Vikings",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+400",
+      "impliedProb": 0.2,
+      "xTD": 0.2011
+    },
+    {
+      "name": "Samaje Perine",
+      "matchup": "JAX Jaguars @ CIN Bengals",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+425",
+      "impliedProb": 0.1905,
+      "xTD": 0.1908
+    },
+    {
+      "name": "Isaiah Williams",
+      "matchup": "NY Jets @ CHI Bears",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+425",
+      "impliedProb": 0.1905,
+      "xTD": 0.1908
+    },
+    {
+      "name": "Kenneth Gainwell",
+      "matchup": "GB Packers @ TB Buccaneers",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+425",
+      "impliedProb": 0.1905,
+      "xTD": 0.1908
+    },
+    {
+      "name": "Malik Willis",
+      "matchup": "MIA Dolphins @ MIN Vikings",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+425",
+      "impliedProb": 0.1905,
+      "xTD": 0.1908
+    },
+    {
+      "name": "Michael Mayer",
+      "matchup": "KC Chiefs @ LV Raiders",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+425",
+      "impliedProb": 0.1905,
+      "xTD": 0.1908
+    },
+    {
+      "name": "Emmett Johnson",
+      "matchup": "KC Chiefs @ LV Raiders",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+425",
+      "impliedProb": 0.1905,
+      "xTD": 0.1908
+    },
+    {
+      "name": "Quentin Johnston",
+      "matchup": "LA Chargers @ SEA Seahawks",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+425",
+      "impliedProb": 0.1905,
+      "xTD": 0.1908
+    },
+    {
+      "name": "Malachi Fields",
+      "matchup": "ARI Cardinals @ NY Giants",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+450",
+      "impliedProb": 0.1818,
+      "xTD": 0.1815
+    },
+    {
+      "name": "Ty Johnson",
+      "matchup": "NE Patriots @ BUF Bills",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+450",
+      "impliedProb": 0.1818,
+      "xTD": 0.1815
+    },
+    {
+      "name": "Dohnte Meyers",
+      "matchup": "JAX Jaguars @ CIN Bengals",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+450",
+      "impliedProb": 0.1818,
+      "xTD": 0.1815
+    },
+    {
+      "name": "Skyy Moore",
+      "matchup": "GB Packers @ TB Buccaneers",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+450",
+      "impliedProb": 0.1818,
+      "xTD": 0.1815
+    },
+    {
+      "name": "Mike Washington Jr.",
+      "matchup": "KC Chiefs @ LV Raiders",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+450",
+      "impliedProb": 0.1818,
+      "xTD": 0.1815
+    },
+    {
+      "name": "Tre Harris",
+      "matchup": "LA Chargers @ SEA Seahawks",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+450",
+      "impliedProb": 0.1818,
+      "xTD": 0.1815
+    },
+    {
+      "name": "Kyle Pitts Sr.",
+      "matchup": "ATL Falcons @ NO Saints",
+      "kickoff": "2026-10-06",
+      "americanOdds": "+450",
+      "impliedProb": 0.1818,
+      "xTD": 0.1815
+    },
+    {
+      "name": "Roman Wilson",
+      "matchup": "PIT Steelers @ CLE Browns",
+      "kickoff": "2026-10-02",
+      "americanOdds": "+475",
+      "impliedProb": 0.1739,
+      "xTD": 0.1731
+    },
+    {
+      "name": "Tyson Bagent",
+      "matchup": "NY Jets @ CHI Bears",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+475",
+      "impliedProb": 0.1739,
+      "xTD": 0.1731
+    },
+    {
+      "name": "Jalen Nailor",
+      "matchup": "KC Chiefs @ LV Raiders",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+475",
+      "impliedProb": 0.1739,
+      "xTD": 0.1731
+    },
+    {
+      "name": "Bryce Young",
+      "matchup": "DET Lions @ CAR Panthers",
+      "kickoff": "2026-10-05",
+      "americanOdds": "+475",
+      "impliedProb": 0.1739,
+      "xTD": 0.1731
+    },
+    {
+      "name": "Isaac TeSlaa",
+      "matchup": "DET Lions @ CAR Panthers",
+      "kickoff": "2026-10-05",
+      "americanOdds": "+475",
+      "impliedProb": 0.1739,
+      "xTD": 0.1731
+    },
+    {
+      "name": "Noah Fant",
+      "matchup": "ATL Falcons @ NO Saints",
+      "kickoff": "2026-10-06",
+      "americanOdds": "+475",
+      "impliedProb": 0.1739,
+      "xTD": 0.1731
+    },
+    {
+      "name": "Jahan Dotson",
+      "matchup": "ATL Falcons @ NO Saints",
+      "kickoff": "2026-10-06",
+      "americanOdds": "+475",
+      "impliedProb": 0.1739,
+      "xTD": 0.1731
+    },
+    {
+      "name": "Laquon Treadwell",
+      "matchup": "IND Colts @ WAS Commanders",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+500",
+      "impliedProb": 0.1667,
+      "xTD": 0.1655
+    },
+    {
+      "name": "Darius Slayton",
+      "matchup": "IND Colts @ WAS Commanders",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+500",
+      "impliedProb": 0.1667,
+      "xTD": 0.1655
+    },
+    {
+      "name": "Kendrick Bourne",
+      "matchup": "ARI Cardinals @ NY Giants",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+500",
+      "impliedProb": 0.1667,
+      "xTD": 0.1655
+    },
+    {
+      "name": "Drake Maye",
+      "matchup": "NE Patriots @ BUF Bills",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+500",
+      "impliedProb": 0.1667,
+      "xTD": 0.1655
+    },
+    {
+      "name": "Chris Godwin",
+      "matchup": "GB Packers @ TB Buccaneers",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+500",
+      "impliedProb": 0.1667,
+      "xTD": 0.1655
+    },
+    {
+      "name": "Cade Otton",
+      "matchup": "GB Packers @ TB Buccaneers",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+500",
+      "impliedProb": 0.1667,
+      "xTD": 0.1655
+    },
+    {
+      "name": "Ted Hurst",
+      "matchup": "GB Packers @ TB Buccaneers",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+500",
+      "impliedProb": 0.1667,
+      "xTD": 0.1655
+    },
+    {
+      "name": "Wan'Dale Robinson",
+      "matchup": "TEN Titans @ BAL Ravens",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+500",
+      "impliedProb": 0.1667,
+      "xTD": 0.1655
+    },
+    {
+      "name": "Tyquan Thornton",
+      "matchup": "KC Chiefs @ LV Raiders",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+500",
+      "impliedProb": 0.1667,
+      "xTD": 0.1655
+    },
+    {
+      "name": "Keaton Mitchell",
+      "matchup": "LA Chargers @ SEA Seahawks",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+500",
+      "impliedProb": 0.1667,
+      "xTD": 0.1655
+    },
+    {
+      "name": "Evan Engram",
+      "matchup": "DEN Broncos @ SF 49ers",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+500",
+      "impliedProb": 0.1667,
+      "xTD": 0.1655
+    },
+    {
+      "name": "Tommy Tremble",
+      "matchup": "DET Lions @ CAR Panthers",
+      "kickoff": "2026-10-05",
+      "americanOdds": "+500",
+      "impliedProb": 0.1667,
+      "xTD": 0.1655
+    },
+    {
+      "name": "Bryce Lance",
+      "matchup": "ATL Falcons @ NO Saints",
+      "kickoff": "2026-10-06",
+      "americanOdds": "+500",
+      "impliedProb": 0.1667,
+      "xTD": 0.1655
+    },
+    {
+      "name": "Darnell Washington",
+      "matchup": "PIT Steelers @ CLE Browns",
+      "kickoff": "2026-10-02",
+      "americanOdds": "+550",
+      "impliedProb": 0.1538,
+      "xTD": 0.1521
+    },
+    {
+      "name": "Dawson Knox",
+      "matchup": "NE Patriots @ BUF Bills",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+550",
+      "impliedProb": 0.1538,
+      "xTD": 0.1521
+    },
+    {
+      "name": "C.J. Stroud",
+      "matchup": "DAL Cowboys @ HOU Texans",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+550",
+      "impliedProb": 0.1538,
+      "xTD": 0.1521
+    },
+    {
+      "name": "Cole Kmet",
+      "matchup": "NY Jets @ CHI Bears",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+550",
+      "impliedProb": 0.1538,
+      "xTD": 0.1521
+    },
+    {
+      "name": "Justice Hill",
+      "matchup": "TEN Titans @ BAL Ravens",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+550",
+      "impliedProb": 0.1538,
+      "xTD": 0.1521
+    },
+    {
+      "name": "Tyjae Spears",
+      "matchup": "TEN Titans @ BAL Ravens",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+550",
+      "impliedProb": 0.1538,
+      "xTD": 0.1521
+    },
+    {
+      "name": "Gunnar Helm",
+      "matchup": "TEN Titans @ BAL Ravens",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+550",
+      "impliedProb": 0.1538,
+      "xTD": 0.1521
+    },
+    {
+      "name": "Makai Lemon",
+      "matchup": "LA Rams @ PHI Eagles",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+550",
+      "impliedProb": 0.1538,
+      "xTD": 0.1521
+    },
+    {
+      "name": "Antonio Williams",
+      "matchup": "IND Colts @ WAS Commanders",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+600",
+      "impliedProb": 0.1429,
+      "xTD": 0.1407
+    },
+    {
+      "name": "Jacoby Brissett",
+      "matchup": "ARI Cardinals @ NY Giants",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+600",
+      "impliedProb": 0.1429,
+      "xTD": 0.1407
+    },
+    {
+      "name": "Joshua Palmer",
+      "matchup": "NE Patriots @ BUF Bills",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+600",
+      "impliedProb": 0.1429,
+      "xTD": 0.1407
+    },
+    {
+      "name": "Chris Brooks",
+      "matchup": "GB Packers @ TB Buccaneers",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+600",
+      "impliedProb": 0.1429,
+      "xTD": 0.1407
+    },
+    {
+      "name": "Cameron Ward",
+      "matchup": "TEN Titans @ BAL Ravens",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+600",
+      "impliedProb": 0.1429,
+      "xTD": 0.1407
+    },
+    {
+      "name": "Konata Mumpfield",
+      "matchup": "LA Rams @ PHI Eagles",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+600",
+      "impliedProb": 0.1429,
+      "xTD": 0.1407
+    },
+    {
+      "name": "Cody White",
+      "matchup": "KC Chiefs @ LV Raiders",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+600",
+      "impliedProb": 0.1429,
+      "xTD": 0.1407
+    },
+    {
+      "name": "Justin Herbert",
+      "matchup": "LA Chargers @ SEA Seahawks",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+600",
+      "impliedProb": 0.1429,
+      "xTD": 0.1407
+    },
+    {
+      "name": "Raheim Sanders",
+      "matchup": "PIT Steelers @ CLE Browns",
+      "kickoff": "2026-10-02",
+      "americanOdds": "+650",
+      "impliedProb": 0.1333,
+      "xTD": 0.1308
+    },
+    {
+      "name": "Theo Johnson",
+      "matchup": "ARI Cardinals @ NY Giants",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+650",
+      "impliedProb": 0.1333,
+      "xTD": 0.1308
+    },
+    {
+      "name": "Drew Sample",
+      "matchup": "JAX Jaguars @ CIN Bengals",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+650",
+      "impliedProb": 0.1333,
+      "xTD": 0.1308
+    },
+    {
+      "name": "Josh Cameron",
+      "matchup": "JAX Jaguars @ CIN Bengals",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+650",
+      "impliedProb": 0.1333,
+      "xTD": 0.1308
+    },
+    {
+      "name": "Jaylin Noel",
+      "matchup": "DAL Cowboys @ HOU Texans",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+650",
+      "impliedProb": 0.1333,
+      "xTD": 0.1308
+    },
+    {
+      "name": "Dak Prescott",
+      "matchup": "DAL Cowboys @ HOU Texans",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+650",
+      "impliedProb": 0.1333,
+      "xTD": 0.1308
+    },
+    {
+      "name": "Jonnu Smith",
+      "matchup": "GB Packers @ TB Buccaneers",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+650",
+      "impliedProb": 0.1333,
+      "xTD": 0.1308
+    },
+    {
+      "name": "Jordan Love",
+      "matchup": "GB Packers @ TB Buccaneers",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+650",
+      "impliedProb": 0.1333,
+      "xTD": 0.1308
+    },
+    {
+      "name": "Elic Ayomanor",
+      "matchup": "TEN Titans @ BAL Ravens",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+650",
+      "impliedProb": 0.1333,
+      "xTD": 0.1308
+    },
+    {
+      "name": "Zach Ertz",
+      "matchup": "LA Rams @ PHI Eagles",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+650",
+      "impliedProb": 0.1333,
+      "xTD": 0.1308
+    },
+    {
+      "name": "Chris Bell",
+      "matchup": "MIA Dolphins @ MIN Vikings",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+650",
+      "impliedProb": 0.1333,
+      "xTD": 0.1308
+    },
+    {
+      "name": "Greg Dulcich",
+      "matchup": "MIA Dolphins @ MIN Vikings",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+650",
+      "impliedProb": 0.1333,
+      "xTD": 0.1308
+    },
+    {
+      "name": "Kyle Juszczyk",
+      "matchup": "DEN Broncos @ SF 49ers",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+650",
+      "impliedProb": 0.1333,
+      "xTD": 0.1308
+    },
+    {
+      "name": "John Metchie III",
+      "matchup": "DET Lions @ CAR Panthers",
+      "kickoff": "2026-10-05",
+      "americanOdds": "+650",
+      "impliedProb": 0.1333,
+      "xTD": 0.1308
+    },
+    {
+      "name": "Brycen Tremayne",
+      "matchup": "DET Lions @ CAR Panthers",
+      "kickoff": "2026-10-05",
+      "americanOdds": "+650",
+      "impliedProb": 0.1333,
+      "xTD": 0.1308
+    },
+    {
+      "name": "Sione Vaki",
+      "matchup": "DET Lions @ CAR Panthers",
+      "kickoff": "2026-10-05",
+      "americanOdds": "+650",
+      "impliedProb": 0.1333,
+      "xTD": 0.1308
+    },
+    {
+      "name": "Seth McGowan",
+      "matchup": "IND Colts @ WAS Commanders",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+700",
+      "impliedProb": 0.125,
+      "xTD": 0.1223
+    },
+    {
+      "name": "Kyle Williams",
+      "matchup": "NE Patriots @ BUF Bills",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+700",
+      "impliedProb": 0.125,
+      "xTD": 0.1223
+    },
+    {
+      "name": "Brashard Smith",
+      "matchup": "KC Chiefs @ LV Raiders",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+700",
+      "impliedProb": 0.125,
+      "xTD": 0.1223
+    },
+    {
+      "name": "Mitchell Evans",
+      "matchup": "DET Lions @ CAR Panthers",
+      "kickoff": "2026-10-05",
+      "americanOdds": "+700",
+      "impliedProb": 0.125,
+      "xTD": 0.1223
+    },
+    {
+      "name": "AJ Dillon",
+      "matchup": "DET Lions @ CAR Panthers",
+      "kickoff": "2026-10-05",
+      "americanOdds": "+700",
+      "impliedProb": 0.125,
+      "xTD": 0.1223
+    },
+    {
+      "name": "Brock Wright",
+      "matchup": "DET Lions @ CAR Panthers",
+      "kickoff": "2026-10-05",
+      "americanOdds": "+700",
+      "impliedProb": 0.125,
+      "xTD": 0.1223
+    },
+    {
+      "name": "Olamide Zaccheaus",
+      "matchup": "ATL Falcons @ NO Saints",
+      "kickoff": "2026-10-06",
+      "americanOdds": "+700",
+      "impliedProb": 0.125,
+      "xTD": 0.1223
+    },
+    {
+      "name": "Darnell Mooney",
+      "matchup": "ARI Cardinals @ NY Giants",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+750",
+      "impliedProb": 0.1176,
+      "xTD": 0.1148
+    },
+    {
+      "name": "Jared Wayne",
+      "matchup": "DAL Cowboys @ HOU Texans",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+750",
+      "impliedProb": 0.1176,
+      "xTD": 0.1148
+    },
+    {
+      "name": "Jeremy Ruckert",
+      "matchup": "NY Jets @ CHI Bears",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+750",
+      "impliedProb": 0.1176,
+      "xTD": 0.1148
+    },
+    {
+      "name": "Tez Johnson",
+      "matchup": "GB Packers @ TB Buccaneers",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+750",
+      "impliedProb": 0.1176,
+      "xTD": 0.1148
+    },
+    {
+      "name": "Johnny Mundt",
+      "matchup": "LA Rams @ PHI Eagles",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+750",
+      "impliedProb": 0.1176,
+      "xTD": 0.1148
+    },
+    {
+      "name": "DeeJay Dallas",
+      "matchup": "MIA Dolphins @ MIN Vikings",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+750",
+      "impliedProb": 0.1176,
+      "xTD": 0.1148
+    },
+    {
+      "name": "Tai Felton",
+      "matchup": "MIA Dolphins @ MIN Vikings",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+750",
+      "impliedProb": 0.1176,
+      "xTD": 0.1148
+    },
+    {
+      "name": "Noah Gray",
+      "matchup": "KC Chiefs @ LV Raiders",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+750",
+      "impliedProb": 0.1176,
+      "xTD": 0.1148
+    },
+    {
+      "name": "Michael Penix Jr.",
+      "matchup": "ATL Falcons @ NO Saints",
+      "kickoff": "2026-10-06",
+      "americanOdds": "+750",
+      "impliedProb": 0.1176,
+      "xTD": 0.1148
+    },
+    {
+      "name": "Dyami Brown",
+      "matchup": "IND Colts @ WAS Commanders",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+800",
+      "impliedProb": 0.1111,
+      "xTD": 0.1082
+    },
+    {
+      "name": "Chris Moore",
+      "matchup": "TEN Titans @ BAL Ravens",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+800",
+      "impliedProb": 0.1111,
+      "xTD": 0.1082
+    },
+    {
+      "name": "Tory Horton",
+      "matchup": "LA Chargers @ SEA Seahawks",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+800",
+      "impliedProb": 0.1111,
+      "xTD": 0.1082
+    },
+    {
+      "name": "KhaDarel Hodge",
+      "matchup": "DEN Broncos @ SF 49ers",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+800",
+      "impliedProb": 0.1111,
+      "xTD": 0.1082
+    },
+    {
+      "name": "Austin Hooper",
+      "matchup": "ATL Falcons @ NO Saints",
+      "kickoff": "2026-10-06",
+      "americanOdds": "+800",
+      "impliedProb": 0.1111,
+      "xTD": 0.1082
+    },
+    {
+      "name": "Germie Bernard",
+      "matchup": "PIT Steelers @ CLE Browns",
+      "kickoff": "2026-10-02",
+      "americanOdds": "+850",
+      "impliedProb": 0.1053,
+      "xTD": 0.1023
+    },
+    {
+      "name": "John Bates",
+      "matchup": "IND Colts @ WAS Commanders",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+850",
+      "impliedProb": 0.1053,
+      "xTD": 0.1023
+    },
+    {
+      "name": "Jameis Winston",
+      "matchup": "ARI Cardinals @ NY Giants",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+850",
+      "impliedProb": 0.1053,
+      "xTD": 0.1023
+    },
+    {
+      "name": "Foster Moreau",
+      "matchup": "DAL Cowboys @ HOU Texans",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+850",
+      "impliedProb": 0.1053,
+      "xTD": 0.1023
+    },
+    {
+      "name": "Devontez Walker",
+      "matchup": "TEN Titans @ BAL Ravens",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+850",
+      "impliedProb": 0.1053,
+      "xTD": 0.1023
+    },
+    {
+      "name": "Tank Bigsby",
+      "matchup": "LA Rams @ PHI Eagles",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+850",
+      "impliedProb": 0.1053,
+      "xTD": 0.1023
+    },
+    {
+      "name": "Jacob Cowing",
+      "matchup": "DEN Broncos @ SF 49ers",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+850",
+      "impliedProb": 0.1053,
+      "xTD": 0.1023
+    },
+    {
+      "name": "Tyler Goodson",
+      "matchup": "DAL Cowboys @ HOU Texans",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+900",
+      "impliedProb": 0.1,
+      "xTD": 0.097
+    },
+    {
+      "name": "Geno Smith",
+      "matchup": "NY Jets @ CHI Bears",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+900",
+      "impliedProb": 0.1,
+      "xTD": 0.097
+    },
+    {
+      "name": "Kevin Coleman Jr.",
+      "matchup": "MIA Dolphins @ MIN Vikings",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+900",
+      "impliedProb": 0.1,
+      "xTD": 0.097
+    },
+    {
+      "name": "Sam Darnold",
+      "matchup": "LA Chargers @ SEA Seahawks",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+900",
+      "impliedProb": 0.1,
+      "xTD": 0.097
+    },
+    {
+      "name": "CJ Donaldson",
+      "matchup": "ATL Falcons @ NO Saints",
+      "kickoff": "2026-10-06",
+      "americanOdds": "+900",
+      "impliedProb": 0.1,
+      "xTD": 0.097
+    },
+    {
+      "name": "Ben Sinnott",
+      "matchup": "IND Colts @ WAS Commanders",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+950",
+      "impliedProb": 0.0952,
+      "xTD": 0.0923
+    },
+    {
+      "name": "Joe Burrow",
+      "matchup": "JAX Jaguars @ CIN Bengals",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+950",
+      "impliedProb": 0.0952,
+      "xTD": 0.0923
+    },
+    {
+      "name": "Ameer Abdullah",
+      "matchup": "JAX Jaguars @ CIN Bengals",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+950",
+      "impliedProb": 0.0952,
+      "xTD": 0.0923
+    },
+    {
+      "name": "Nicholas Singleton",
+      "matchup": "TEN Titans @ BAL Ravens",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+950",
+      "impliedProb": 0.0952,
+      "xTD": 0.0923
+    },
+    {
+      "name": "Marquise Brown",
+      "matchup": "LA Rams @ PHI Eagles",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+950",
+      "impliedProb": 0.0952,
+      "xTD": 0.0923
+    },
+    {
+      "name": "Marvin Mims",
+      "matchup": "DEN Broncos @ SF 49ers",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+950",
+      "impliedProb": 0.0952,
+      "xTD": 0.0923
+    },
+    {
+      "name": "Jerry Jeudy",
+      "matchup": "PIT Steelers @ CLE Browns",
+      "kickoff": "2026-10-02",
+      "americanOdds": "+1000",
+      "impliedProb": 0.0909,
+      "xTD": 0.0879
+    },
+    {
+      "name": "Mo Alie-Cox",
+      "matchup": "IND Colts @ WAS Commanders",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1000",
+      "impliedProb": 0.0909,
+      "xTD": 0.0879
+    },
+    {
+      "name": "Erick All",
+      "matchup": "JAX Jaguars @ CIN Bengals",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1000",
+      "impliedProb": 0.0909,
+      "xTD": 0.0879
+    },
+    {
+      "name": "LeQuint Allen",
+      "matchup": "JAX Jaguars @ CIN Bengals",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1000",
+      "impliedProb": 0.0909,
+      "xTD": 0.0879
+    },
+    {
+      "name": "Mitchell Tinsley",
+      "matchup": "JAX Jaguars @ CIN Bengals",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1000",
+      "impliedProb": 0.0909,
+      "xTD": 0.0879
+    },
+    {
+      "name": "KaVontae Turpin",
+      "matchup": "DAL Cowboys @ HOU Texans",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1000",
+      "impliedProb": 0.0909,
+      "xTD": 0.0879
+    },
+    {
+      "name": "Durham Smythe",
+      "matchup": "TEN Titans @ BAL Ravens",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1000",
+      "impliedProb": 0.0909,
+      "xTD": 0.0879
+    },
+    {
+      "name": "Darius Cooper",
+      "matchup": "LA Rams @ PHI Eagles",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1000",
+      "impliedProb": 0.0909,
+      "xTD": 0.0879
+    },
+    {
+      "name": "Davis Allen",
+      "matchup": "LA Rams @ PHI Eagles",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1000",
+      "impliedProb": 0.0909,
+      "xTD": 0.0879
+    },
+    {
+      "name": "Myles Price",
+      "matchup": "MIA Dolphins @ MIN Vikings",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1000",
+      "impliedProb": 0.0909,
+      "xTD": 0.0879
+    },
+    {
+      "name": "Jalen Royals",
+      "matchup": "KC Chiefs @ LV Raiders",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1000",
+      "impliedProb": 0.0909,
+      "xTD": 0.0879
+    },
+    {
+      "name": "Troy Franklin",
+      "matchup": "DEN Broncos @ SF 49ers",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1000",
+      "impliedProb": 0.0909,
+      "xTD": 0.0879
+    },
+    {
+      "name": "Adam Trautman",
+      "matchup": "DEN Broncos @ SF 49ers",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1000",
+      "impliedProb": 0.0909,
+      "xTD": 0.0879
+    },
+    {
+      "name": "Blake Whiteheart",
+      "matchup": "PIT Steelers @ CLE Browns",
+      "kickoff": "2026-10-02",
+      "americanOdds": "+1100",
+      "impliedProb": 0.0833,
+      "xTD": 0.0804
+    },
+    {
+      "name": "Devin Singletary",
+      "matchup": "ARI Cardinals @ NY Giants",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1100",
+      "impliedProb": 0.0833,
+      "xTD": 0.0804
+    },
+    {
+      "name": "Elijah Higgins",
+      "matchup": "ARI Cardinals @ NY Giants",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1100",
+      "impliedProb": 0.0833,
+      "xTD": 0.0804
+    },
+    {
+      "name": "Jackson Hawes",
+      "matchup": "NE Patriots @ BUF Bills",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1100",
+      "impliedProb": 0.0833,
+      "xTD": 0.0804
+    },
+    {
+      "name": "Skyler Bell",
+      "matchup": "NE Patriots @ BUF Bills",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1100",
+      "impliedProb": 0.0833,
+      "xTD": 0.0804
+    },
+    {
+      "name": "Brevyn Spann-Ford",
+      "matchup": "DAL Cowboys @ HOU Texans",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1100",
+      "impliedProb": 0.0833,
+      "xTD": 0.0804
+    },
+    {
+      "name": "Xavier Smith",
+      "matchup": "LA Rams @ PHI Eagles",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1100",
+      "impliedProb": 0.0833,
+      "xTD": 0.0804
+    },
+    {
+      "name": "Malik Benson",
+      "matchup": "KC Chiefs @ LV Raiders",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1100",
+      "impliedProb": 0.0833,
+      "xTD": 0.0804
+    },
+    {
+      "name": "Elijah Arroyo",
+      "matchup": "LA Chargers @ SEA Seahawks",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1100",
+      "impliedProb": 0.0833,
+      "xTD": 0.0804
+    },
+    {
+      "name": "Luke Farrell",
+      "matchup": "DEN Broncos @ SF 49ers",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1100",
+      "impliedProb": 0.0833,
+      "xTD": 0.0804
+    },
+    {
+      "name": "Tyler Badie",
+      "matchup": "DEN Broncos @ SF 49ers",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1100",
+      "impliedProb": 0.0833,
+      "xTD": 0.0804
+    },
+    {
+      "name": "Zachariah Branch",
+      "matchup": "ATL Falcons @ NO Saints",
+      "kickoff": "2026-10-06",
+      "americanOdds": "+1100",
+      "impliedProb": 0.0833,
+      "xTD": 0.0804
+    },
+    {
+      "name": "Treylon Burks",
+      "matchup": "IND Colts @ WAS Commanders",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1200",
+      "impliedProb": 0.0769,
+      "xTD": 0.0741
+    },
+    {
+      "name": "Nate Boerkircher",
+      "matchup": "JAX Jaguars @ CIN Bengals",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1200",
+      "impliedProb": 0.0769,
+      "xTD": 0.0741
+    },
+    {
+      "name": "Emari Demercado",
+      "matchup": "DAL Cowboys @ HOU Texans",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1200",
+      "impliedProb": 0.0769,
+      "xTD": 0.0741
+    },
+    {
+      "name": "Malik McClain",
+      "matchup": "NY Jets @ CHI Bears",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1200",
+      "impliedProb": 0.0769,
+      "xTD": 0.0741
+    },
+    {
+      "name": "Bo Melton",
+      "matchup": "GB Packers @ TB Buccaneers",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1200",
+      "impliedProb": 0.0769,
+      "xTD": 0.0741
+    },
+    {
+      "name": "Matthew Hibner",
+      "matchup": "TEN Titans @ BAL Ravens",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1200",
+      "impliedProb": 0.0769,
+      "xTD": 0.0741
+    },
+    {
+      "name": "Gavin Bartholomew",
+      "matchup": "MIA Dolphins @ MIN Vikings",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1200",
+      "impliedProb": 0.0769,
+      "xTD": 0.0741
+    },
+    {
+      "name": "Eric Saubert",
+      "matchup": "LA Chargers @ SEA Seahawks",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1200",
+      "impliedProb": 0.0769,
+      "xTD": 0.0741
+    },
+    {
+      "name": "Nate Adkins",
+      "matchup": "DEN Broncos @ SF 49ers",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1200",
+      "impliedProb": 0.0769,
+      "xTD": 0.0741
+    },
+    {
+      "name": "Jordan Watkins",
+      "matchup": "DEN Broncos @ SF 49ers",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1200",
+      "impliedProb": 0.0769,
+      "xTD": 0.0741
+    },
+    {
+      "name": "Dallen Bentley",
+      "matchup": "DEN Broncos @ SF 49ers",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1200",
+      "impliedProb": 0.0769,
+      "xTD": 0.0741
+    },
+    {
+      "name": "Jared Goff",
+      "matchup": "DET Lions @ CAR Panthers",
+      "kickoff": "2026-10-05",
+      "americanOdds": "+1200",
+      "impliedProb": 0.0769,
+      "xTD": 0.0741
+    },
+    {
+      "name": "Travis Homer",
+      "matchup": "PIT Steelers @ CLE Browns",
+      "kickoff": "2026-10-02",
+      "americanOdds": "+1300",
+      "impliedProb": 0.0714,
+      "xTD": 0.0687
+    },
+    {
+      "name": "Braxton Berrios",
+      "matchup": "ARI Cardinals @ NY Giants",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1300",
+      "impliedProb": 0.0714,
+      "xTD": 0.0687
+    },
+    {
+      "name": "Hunter Luepke",
+      "matchup": "DAL Cowboys @ HOU Texans",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1300",
+      "impliedProb": 0.0714,
+      "xTD": 0.0687
+    },
+    {
+      "name": "Luke Schoonmaker",
+      "matchup": "DAL Cowboys @ HOU Texans",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1300",
+      "impliedProb": 0.0714,
+      "xTD": 0.0687
+    },
+    {
+      "name": "Jamaal Pritchett",
+      "matchup": "NY Jets @ CHI Bears",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1300",
+      "impliedProb": 0.0714,
+      "xTD": 0.0687
+    },
+    {
+      "name": "Will Shipley",
+      "matchup": "LA Rams @ PHI Eagles",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1300",
+      "impliedProb": 0.0714,
+      "xTD": 0.0687
+    },
+    {
+      "name": "Demond Claiborne",
+      "matchup": "MIA Dolphins @ MIN Vikings",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1300",
+      "impliedProb": 0.0714,
+      "xTD": 0.0687
+    },
+    {
+      "name": "Lil'Jordan Humphrey",
+      "matchup": "DEN Broncos @ SF 49ers",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1300",
+      "impliedProb": 0.0714,
+      "xTD": 0.0687
+    },
+    {
+      "name": "Aaron Rodgers",
+      "matchup": "PIT Steelers @ CLE Browns",
+      "kickoff": "2026-10-02",
+      "americanOdds": "+1400",
+      "impliedProb": 0.0667,
+      "xTD": 0.064
+    },
+    {
+      "name": "Ben Skowronek",
+      "matchup": "PIT Steelers @ CLE Browns",
+      "kickoff": "2026-10-02",
+      "americanOdds": "+1400",
+      "impliedProb": 0.0667,
+      "xTD": 0.064
+    },
+    {
+      "name": "Deion Burks",
+      "matchup": "IND Colts @ WAS Commanders",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1400",
+      "impliedProb": 0.0667,
+      "xTD": 0.064
+    },
+    {
+      "name": "Tyrone Tracy Jr.",
+      "matchup": "ARI Cardinals @ NY Giants",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1400",
+      "impliedProb": 0.0667,
+      "xTD": 0.064
+    },
+    {
+      "name": "Efton Chism III",
+      "matchup": "NE Patriots @ BUF Bills",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1400",
+      "impliedProb": 0.0667,
+      "xTD": 0.064
+    },
+    {
+      "name": "Tanner Hudson",
+      "matchup": "JAX Jaguars @ CIN Bengals",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1400",
+      "impliedProb": 0.0667,
+      "xTD": 0.064
+    },
+    {
+      "name": "Travis Hunter",
+      "matchup": "JAX Jaguars @ CIN Bengals",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1400",
+      "impliedProb": 0.0667,
+      "xTD": 0.064
+    },
+    {
+      "name": "Cade Stover",
+      "matchup": "DAL Cowboys @ HOU Texans",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1400",
+      "impliedProb": 0.0667,
+      "xTD": 0.064
+    },
+    {
+      "name": "Calvin Ridley",
+      "matchup": "TEN Titans @ BAL Ravens",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1400",
+      "impliedProb": 0.0667,
+      "xTD": 0.064
+    },
+    {
+      "name": "Chimere Dike",
+      "matchup": "TEN Titans @ BAL Ravens",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1400",
+      "impliedProb": 0.0667,
+      "xTD": 0.064
+    },
+    {
+      "name": "Elijah Sarratt",
+      "matchup": "TEN Titans @ BAL Ravens",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1400",
+      "impliedProb": 0.0667,
+      "xTD": 0.064
+    },
+    {
+      "name": "Kirk Cousins",
+      "matchup": "KC Chiefs @ LV Raiders",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1400",
+      "impliedProb": 0.0667,
+      "xTD": 0.064
+    },
+    {
+      "name": "Dareke Young",
+      "matchup": "KC Chiefs @ LV Raiders",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1400",
+      "impliedProb": 0.0667,
+      "xTD": 0.064
+    },
+    {
+      "name": "Kimani Vidal",
+      "matchup": "LA Chargers @ SEA Seahawks",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1400",
+      "impliedProb": 0.0667,
+      "xTD": 0.064
+    },
+    {
+      "name": "Hayden Rucci",
+      "matchup": "LA Chargers @ SEA Seahawks",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1400",
+      "impliedProb": 0.0667,
+      "xTD": 0.064
+    },
+    {
+      "name": "Andrew Ogletree",
+      "matchup": "IND Colts @ WAS Commanders",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1500",
+      "impliedProb": 0.0625,
+      "xTD": 0.0599
+    },
+    {
+      "name": "Quintin Morris",
+      "matchup": "JAX Jaguars @ CIN Bengals",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1500",
+      "impliedProb": 0.0625,
+      "xTD": 0.0599
+    },
+    {
+      "name": "J. Michael Sturdivant",
+      "matchup": "GB Packers @ TB Buccaneers",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1500",
+      "impliedProb": 0.0625,
+      "xTD": 0.0599
+    },
+    {
+      "name": "Tutu Atwell",
+      "matchup": "LA Rams @ PHI Eagles",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1500",
+      "impliedProb": 0.0625,
+      "xTD": 0.0599
+    },
+    {
+      "name": "Connor Heyward",
+      "matchup": "KC Chiefs @ LV Raiders",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1500",
+      "impliedProb": 0.0625,
+      "xTD": 0.0599
+    },
+    {
+      "name": "Dylan Laube",
+      "matchup": "KC Chiefs @ LV Raiders",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1500",
+      "impliedProb": 0.0625,
+      "xTD": 0.0599
+    },
+    {
+      "name": "Ian Thomas",
+      "matchup": "KC Chiefs @ LV Raiders",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1500",
+      "impliedProb": 0.0625,
+      "xTD": 0.0599
+    },
+    {
+      "name": "Nick Kallerup",
+      "matchup": "LA Chargers @ SEA Seahawks",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1500",
+      "impliedProb": 0.0625,
+      "xTD": 0.0599
+    },
+    {
+      "name": "Jaylin Lane",
+      "matchup": "IND Colts @ WAS Commanders",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1600",
+      "impliedProb": 0.0588,
+      "xTD": 0.0563
+    },
+    {
+      "name": "Ray Davis",
+      "matchup": "NE Patriots @ BUF Bills",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1600",
+      "impliedProb": 0.0588,
+      "xTD": 0.0563
+    },
+    {
+      "name": "Eli Raridon",
+      "matchup": "NE Patriots @ BUF Bills",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1600",
+      "impliedProb": 0.0588,
+      "xTD": 0.0563
+    },
+    {
+      "name": "Jack Endries",
+      "matchup": "JAX Jaguars @ CIN Bengals",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1600",
+      "impliedProb": 0.0588,
+      "xTD": 0.0563
+    },
+    {
+      "name": "Jahdae Walker",
+      "matchup": "NY Jets @ CHI Bears",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1600",
+      "impliedProb": 0.0588,
+      "xTD": 0.0563
+    },
+    {
+      "name": "Sean Tucker",
+      "matchup": "GB Packers @ TB Buccaneers",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1600",
+      "impliedProb": 0.0588,
+      "xTD": 0.0563
+    },
+    {
+      "name": "Anthony Gould",
+      "matchup": "IND Colts @ WAS Commanders",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1700",
+      "impliedProb": 0.0556,
+      "xTD": 0.0531
+    },
+    {
+      "name": "CJ Williams",
+      "matchup": "JAX Jaguars @ CIN Bengals",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1700",
+      "impliedProb": 0.0556,
+      "xTD": 0.0531
+    },
+    {
+      "name": "Sam Roush",
+      "matchup": "NY Jets @ CHI Bears",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1700",
+      "impliedProb": 0.0556,
+      "xTD": 0.0531
+    },
+    {
+      "name": "Will Kacmarek",
+      "matchup": "MIA Dolphins @ MIN Vikings",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1700",
+      "impliedProb": 0.0556,
+      "xTD": 0.0531
+    },
+    {
+      "name": "Brenen Thompson",
+      "matchup": "LA Chargers @ SEA Seahawks",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1700",
+      "impliedProb": 0.0556,
+      "xTD": 0.0531
+    },
+    {
+      "name": "Tanner Arkin",
+      "matchup": "NE Patriots @ BUF Bills",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1800",
+      "impliedProb": 0.0526,
+      "xTD": 0.0503
+    },
+    {
+      "name": "Marlin Klein",
+      "matchup": "DAL Cowboys @ HOU Texans",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1800",
+      "impliedProb": 0.0526,
+      "xTD": 0.0503
+    },
+    {
+      "name": "Max Bredeson",
+      "matchup": "MIA Dolphins @ MIN Vikings",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1800",
+      "impliedProb": 0.0526,
+      "xTD": 0.0503
+    },
+    {
+      "name": "Cyrus Allen",
+      "matchup": "KC Chiefs @ LV Raiders",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1800",
+      "impliedProb": 0.0526,
+      "xTD": 0.0503
+    },
+    {
+      "name": "Jackson Meeks",
+      "matchup": "DET Lions @ CAR Panthers",
+      "kickoff": "2026-10-05",
+      "americanOdds": "+1800",
+      "impliedProb": 0.0526,
+      "xTD": 0.0503
+    },
+    {
+      "name": "Jaleel McLaughlin",
+      "matchup": "PIT Steelers @ CLE Browns",
+      "kickoff": "2026-10-02",
+      "americanOdds": "+1900",
+      "impliedProb": 0.05,
+      "xTD": 0.0477
+    },
+    {
+      "name": "Zavion Thomas",
+      "matchup": "NY Jets @ CHI Bears",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1900",
+      "impliedProb": 0.05,
+      "xTD": 0.0477
+    },
+    {
+      "name": "Jelani Woods",
+      "matchup": "NY Jets @ CHI Bears",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1900",
+      "impliedProb": 0.05,
+      "xTD": 0.0477
+    },
+    {
+      "name": "Josh Cuevas",
+      "matchup": "TEN Titans @ BAL Ravens",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1900",
+      "impliedProb": 0.05,
+      "xTD": 0.0477
+    },
+    {
+      "name": "DJ Herman",
+      "matchup": "MIA Dolphins @ MIN Vikings",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+1900",
+      "impliedProb": 0.05,
+      "xTD": 0.0477
+    },
+    {
+      "name": "Kaden Wetjen",
+      "matchup": "PIT Steelers @ CLE Browns",
+      "kickoff": "2026-10-02",
+      "americanOdds": "+2000",
+      "impliedProb": 0.0476,
+      "xTD": 0.0454
+    },
+    {
+      "name": "Luke McCaffrey",
+      "matchup": "IND Colts @ WAS Commanders",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+2000",
+      "impliedProb": 0.0476,
+      "xTD": 0.0454
+    },
+    {
+      "name": "Devin Duvernay",
+      "matchup": "ARI Cardinals @ NY Giants",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+2000",
+      "impliedProb": 0.0476,
+      "xTD": 0.0454
+    },
+    {
+      "name": "Simi Fehoko",
+      "matchup": "ARI Cardinals @ NY Giants",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+2000",
+      "impliedProb": 0.0476,
+      "xTD": 0.0454
+    },
+    {
+      "name": "Charlie Jones",
+      "matchup": "ARI Cardinals @ NY Giants",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+2000",
+      "impliedProb": 0.0476,
+      "xTD": 0.0454
+    },
+    {
+      "name": "Greg Dortch",
+      "matchup": "NE Patriots @ BUF Bills",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+2000",
+      "impliedProb": 0.0476,
+      "xTD": 0.0454
+    },
+    {
+      "name": "Corey Kiner",
+      "matchup": "NE Patriots @ BUF Bills",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+2000",
+      "impliedProb": 0.0476,
+      "xTD": 0.0454
+    },
+    {
+      "name": "Tahj Brooks",
+      "matchup": "JAX Jaguars @ CIN Bengals",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+2000",
+      "impliedProb": 0.0476,
+      "xTD": 0.0454
+    },
+    {
+      "name": "Kameron Johnson",
+      "matchup": "GB Packers @ TB Buccaneers",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+2000",
+      "impliedProb": 0.0476,
+      "xTD": 0.0454
+    },
+    {
+      "name": "Mark Redman",
+      "matchup": "GB Packers @ TB Buccaneers",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+2000",
+      "impliedProb": 0.0476,
+      "xTD": 0.0454
+    },
+    {
+      "name": "Julius Chestnut",
+      "matchup": "TEN Titans @ BAL Ravens",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+2000",
+      "impliedProb": 0.0476,
+      "xTD": 0.0454
+    },
+    {
+      "name": "Matthew Stafford",
+      "matchup": "LA Rams @ PHI Eagles",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+2000",
+      "impliedProb": 0.0476,
+      "xTD": 0.0454
+    },
+    {
+      "name": "Jake Briningstool",
+      "matchup": "KC Chiefs @ LV Raiders",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+2000",
+      "impliedProb": 0.0476,
+      "xTD": 0.0454
+    },
+    {
+      "name": "Nikko Remigio",
+      "matchup": "KC Chiefs @ LV Raiders",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+2000",
+      "impliedProb": 0.0476,
+      "xTD": 0.0454
+    },
+    {
+      "name": "Derius Davis",
+      "matchup": "LA Chargers @ SEA Seahawks",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+2000",
+      "impliedProb": 0.0476,
+      "xTD": 0.0454
+    },
+    {
+      "name": "Tom Kennedy",
+      "matchup": "DET Lions @ CAR Panthers",
+      "kickoff": "2026-10-05",
+      "americanOdds": "+2000",
+      "impliedProb": 0.0476,
+      "xTD": 0.0454
+    },
+    {
+      "name": "Isaiah Bond",
+      "matchup": "PIT Steelers @ CLE Browns",
+      "kickoff": "2026-10-02",
+      "americanOdds": "+2200",
+      "impliedProb": 0.0435,
+      "xTD": 0.0414
+    },
+    {
+      "name": "Riley Nowakowski",
+      "matchup": "PIT Steelers @ CLE Browns",
+      "kickoff": "2026-10-02",
+      "americanOdds": "+2200",
+      "impliedProb": 0.0435,
+      "xTD": 0.0414
+    },
+    {
+      "name": "Colson Yankoff",
+      "matchup": "IND Colts @ WAS Commanders",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+2200",
+      "impliedProb": 0.0435,
+      "xTD": 0.0414
+    },
+    {
+      "name": "Ashton Dulin",
+      "matchup": "IND Colts @ WAS Commanders",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+2200",
+      "impliedProb": 0.0435,
+      "xTD": 0.0414
+    },
+    {
+      "name": "Chris Manhertz",
+      "matchup": "ARI Cardinals @ NY Giants",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+2200",
+      "impliedProb": 0.0435,
+      "xTD": 0.0414
+    },
+    {
+      "name": "Jalen Brooks",
+      "matchup": "ARI Cardinals @ NY Giants",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+2200",
+      "impliedProb": 0.0435,
+      "xTD": 0.0414
+    },
+    {
+      "name": "Reggie Gilliam",
+      "matchup": "NE Patriots @ BUF Bills",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+2200",
+      "impliedProb": 0.0435,
+      "xTD": 0.0414
+    },
+    {
+      "name": "British Brooks",
+      "matchup": "DAL Cowboys @ HOU Texans",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+2200",
+      "impliedProb": 0.0435,
+      "xTD": 0.0414
+    },
+    {
+      "name": "Camden Brown",
+      "matchup": "DAL Cowboys @ HOU Texans",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+2200",
+      "impliedProb": 0.0435,
+      "xTD": 0.0414
+    },
+    {
+      "name": "Roschon Johnson",
+      "matchup": "NY Jets @ CHI Bears",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+2200",
+      "impliedProb": 0.0435,
+      "xTD": 0.0414
+    },
+    {
+      "name": "Kene Nwangwu",
+      "matchup": "NY Jets @ CHI Bears",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+2200",
+      "impliedProb": 0.0435,
+      "xTD": 0.0414
+    },
+    {
+      "name": "Daniel Bellinger",
+      "matchup": "TEN Titans @ BAL Ravens",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+2200",
+      "impliedProb": 0.0435,
+      "xTD": 0.0414
+    },
+    {
+      "name": "Jared Wiley",
+      "matchup": "KC Chiefs @ LV Raiders",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+2200",
+      "impliedProb": 0.0435,
+      "xTD": 0.0414
+    },
+    {
+      "name": "Marquez Valdes-Scantling",
+      "matchup": "LA Chargers @ SEA Seahawks",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+2200",
+      "impliedProb": 0.0435,
+      "xTD": 0.0414
+    },
+    {
+      "name": "Jacob Saylors",
+      "matchup": "DET Lions @ CAR Panthers",
+      "kickoff": "2026-10-05",
+      "americanOdds": "+2200",
+      "impliedProb": 0.0435,
+      "xTD": 0.0414
+    },
+    {
+      "name": "Tyler Conklin",
+      "matchup": "DET Lions @ CAR Panthers",
+      "kickoff": "2026-10-05",
+      "americanOdds": "+2200",
+      "impliedProb": 0.0435,
+      "xTD": 0.0414
+    },
+    {
+      "name": "David Moore",
+      "matchup": "DET Lions @ CAR Panthers",
+      "kickoff": "2026-10-05",
+      "americanOdds": "+2200",
+      "impliedProb": 0.0435,
+      "xTD": 0.0414
+    },
+    {
+      "name": "Oscar Delp",
+      "matchup": "ATL Falcons @ NO Saints",
+      "kickoff": "2026-10-06",
+      "americanOdds": "+2200",
+      "impliedProb": 0.0435,
+      "xTD": 0.0414
+    },
+    {
+      "name": "Eli Heidenreich",
+      "matchup": "PIT Steelers @ CLE Browns",
+      "kickoff": "2026-10-02",
+      "americanOdds": "+2500",
+      "impliedProb": 0.0385,
+      "xTD": 0.0366
+    },
+    {
+      "name": "DJ Giddens",
+      "matchup": "IND Colts @ WAS Commanders",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+2500",
+      "impliedProb": 0.0385,
+      "xTD": 0.0366
+    },
+    {
+      "name": "Thomas Fidone II",
+      "matchup": "ARI Cardinals @ NY Giants",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+2500",
+      "impliedProb": 0.0385,
+      "xTD": 0.0366
+    },
+    {
+      "name": "Zonovan Knight",
+      "matchup": "ARI Cardinals @ NY Giants",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+2500",
+      "impliedProb": 0.0385,
+      "xTD": 0.0366
+    },
+    {
+      "name": "Reggie Virgil",
+      "matchup": "ARI Cardinals @ NY Giants",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+2500",
+      "impliedProb": 0.0385,
+      "xTD": 0.0366
+    },
+    {
+      "name": "Andrew Beck",
+      "matchup": "NY Jets @ CHI Bears",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+2500",
+      "impliedProb": 0.0385,
+      "xTD": 0.0366
+    },
+    {
+      "name": "Jalen Tolbert",
+      "matchup": "MIA Dolphins @ MIN Vikings",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+2500",
+      "impliedProb": 0.0385,
+      "xTD": 0.0366
+    },
+    {
+      "name": "Ryan Miller",
+      "matchup": "MIA Dolphins @ MIN Vikings",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+2500",
+      "impliedProb": 0.0385,
+      "xTD": 0.0366
+    },
+    {
+      "name": "Alec Ingold",
+      "matchup": "LA Chargers @ SEA Seahawks",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+2500",
+      "impliedProb": 0.0385,
+      "xTD": 0.0366
+    },
+    {
+      "name": "Montorie Foster Jr.",
+      "matchup": "LA Chargers @ SEA Seahawks",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+2500",
+      "impliedProb": 0.0385,
+      "xTD": 0.0366
+    },
+    {
+      "name": "Jordan James",
+      "matchup": "DEN Broncos @ SF 49ers",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+2500",
+      "impliedProb": 0.0385,
+      "xTD": 0.0366
+    },
+    {
+      "name": "Anthony Tyus III",
+      "matchup": "DET Lions @ CAR Panthers",
+      "kickoff": "2026-10-05",
+      "americanOdds": "+2500",
+      "impliedProb": 0.0385,
+      "xTD": 0.0366
+    },
+    {
+      "name": "Charlie Woerner",
+      "matchup": "ATL Falcons @ NO Saints",
+      "kickoff": "2026-10-06",
+      "americanOdds": "+2500",
+      "impliedProb": 0.0385,
+      "xTD": 0.0366
+    },
+    {
+      "name": "Treyton Welch",
+      "matchup": "ATL Falcons @ NO Saints",
+      "kickoff": "2026-10-06",
+      "americanOdds": "+2500",
+      "impliedProb": 0.0385,
+      "xTD": 0.0366
+    },
+    {
+      "name": "Malachi Corley",
+      "matchup": "PIT Steelers @ CLE Browns",
+      "kickoff": "2026-10-02",
+      "americanOdds": "+2800",
+      "impliedProb": 0.0345,
+      "xTD": 0.0328
+    },
+    {
+      "name": "Patrick Ricard",
+      "matchup": "ARI Cardinals @ NY Giants",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+2800",
+      "impliedProb": 0.0345,
+      "xTD": 0.0328
+    },
+    {
+      "name": "Hunter Long",
+      "matchup": "ARI Cardinals @ NY Giants",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+2800",
+      "impliedProb": 0.0345,
+      "xTD": 0.0328
+    },
+    {
+      "name": "Cameron Latu",
+      "matchup": "NE Patriots @ BUF Bills",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+2800",
+      "impliedProb": 0.0345,
+      "xTD": 0.0328
+    },
+    {
+      "name": "Tanner Koziol",
+      "matchup": "JAX Jaguars @ CIN Bengals",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+2800",
+      "impliedProb": 0.0345,
+      "xTD": 0.0328
+    },
+    {
+      "name": "Jonathan Mingo",
+      "matchup": "DAL Cowboys @ HOU Texans",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+2800",
+      "impliedProb": 0.0345,
+      "xTD": 0.0328
+    },
+    {
+      "name": "Josh Whyle",
+      "matchup": "GB Packers @ TB Buccaneers",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+2800",
+      "impliedProb": 0.0345,
+      "xTD": 0.0328
+    },
+    {
+      "name": "Rasheen Ali",
+      "matchup": "TEN Titans @ BAL Ravens",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+2800",
+      "impliedProb": 0.0345,
+      "xTD": 0.0328
+    },
+    {
+      "name": "E.J. Jenkins",
+      "matchup": "LA Rams @ PHI Eagles",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+2800",
+      "impliedProb": 0.0345,
+      "xTD": 0.0328
+    },
+    {
+      "name": "Elijah Moore",
+      "matchup": "LA Rams @ PHI Eagles",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+2800",
+      "impliedProb": 0.0345,
+      "xTD": 0.0328
+    },
+    {
+      "name": "Robert Tonyan",
+      "matchup": "PIT Steelers @ CLE Browns",
+      "kickoff": "2026-10-02",
+      "americanOdds": "+3000",
+      "impliedProb": 0.0323,
+      "xTD": 0.0306
+    },
+    {
+      "name": "Keleki Latu",
+      "matchup": "NE Patriots @ BUF Bills",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+3000",
+      "impliedProb": 0.0323,
+      "xTD": 0.0306
+    },
+    {
+      "name": "Brevin Jordan",
+      "matchup": "DAL Cowboys @ HOU Texans",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+3000",
+      "impliedProb": 0.0323,
+      "xTD": 0.0306
+    },
+    {
+      "name": "Jeshaun Jones",
+      "matchup": "MIA Dolphins @ MIN Vikings",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+3000",
+      "impliedProb": 0.0323,
+      "xTD": 0.0306
+    },
+    {
+      "name": "Brady Russell",
+      "matchup": "LA Chargers @ SEA Seahawks",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+3000",
+      "impliedProb": 0.0323,
+      "xTD": 0.0306
+    },
+    {
+      "name": "Brayden Willis",
+      "matchup": "DEN Broncos @ SF 49ers",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+3000",
+      "impliedProb": 0.0323,
+      "xTD": 0.0306
+    },
+    {
+      "name": "Adam Prentice",
+      "matchup": "DEN Broncos @ SF 49ers",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+3000",
+      "impliedProb": 0.0323,
+      "xTD": 0.0306
+    },
+    {
+      "name": "Chris Blair",
+      "matchup": "ATL Falcons @ NO Saints",
+      "kickoff": "2026-10-06",
+      "americanOdds": "+3000",
+      "impliedProb": 0.0323,
+      "xTD": 0.0306
+    },
+    {
+      "name": "David Martin-Robinson",
+      "matchup": "TEN Titans @ BAL Ravens",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+3500",
+      "impliedProb": 0.0278,
+      "xTD": 0.0263
+    },
+    {
+      "name": "Dean Connors",
+      "matchup": "LA Rams @ PHI Eagles",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+3500",
+      "impliedProb": 0.0278,
+      "xTD": 0.0263
+    },
+    {
+      "name": "Max Klare",
+      "matchup": "LA Rams @ PHI Eagles",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+3500",
+      "impliedProb": 0.0278,
+      "xTD": 0.0263
+    },
+    {
+      "name": "Seydou Traore",
+      "matchup": "MIA Dolphins @ MIN Vikings",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+3500",
+      "impliedProb": 0.0278,
+      "xTD": 0.0263
+    },
+    {
+      "name": "Tay Martin",
+      "matchup": "DET Lions @ CAR Panthers",
+      "kickoff": "2026-10-05",
+      "americanOdds": "+3500",
+      "impliedProb": 0.0278,
+      "xTD": 0.0263
+    },
+    {
+      "name": "Ja'Tavion Sanders",
+      "matchup": "DET Lions @ CAR Panthers",
+      "kickoff": "2026-10-05",
+      "americanOdds": "+3500",
+      "impliedProb": 0.0278,
+      "xTD": 0.0263
+    },
+    {
+      "name": "Nick Muse",
+      "matchup": "ATL Falcons @ NO Saints",
+      "kickoff": "2026-10-06",
+      "americanOdds": "+3500",
+      "impliedProb": 0.0278,
+      "xTD": 0.0263
+    },
+    {
+      "name": "Payne Durham",
+      "matchup": "GB Packers @ TB Buccaneers",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+4000",
+      "impliedProb": 0.0244,
+      "xTD": 0.0231
+    },
+    {
+      "name": "Kylen Granson",
+      "matchup": "TEN Titans @ BAL Ravens",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+4000",
+      "impliedProb": 0.0244,
+      "xTD": 0.0231
+    },
+    {
+      "name": "CJ Daniels",
+      "matchup": "LA Rams @ PHI Eagles",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+4000",
+      "impliedProb": 0.0244,
+      "xTD": 0.0231
+    },
+    {
+      "name": "Justin Joly",
+      "matchup": "MIA Dolphins @ MIN Vikings",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+4000",
+      "impliedProb": 0.0244,
+      "xTD": 0.0231
+    },
+    {
+      "name": "Feleipe Franks",
+      "matchup": "DET Lions @ CAR Panthers",
+      "kickoff": "2026-10-05",
+      "americanOdds": "+4000",
+      "impliedProb": 0.0244,
+      "xTD": 0.0231
+    },
+    {
+      "name": "Michael Burton",
+      "matchup": "PIT Steelers @ CLE Browns",
+      "kickoff": "2026-10-02",
+      "americanOdds": "+4500",
+      "impliedProb": 0.0217,
+      "xTD": 0.0206
+    },
+    {
+      "name": "Bauer Sharp",
+      "matchup": "GB Packers @ TB Buccaneers",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+4500",
+      "impliedProb": 0.0217,
+      "xTD": 0.0206
+    },
+    {
+      "name": "Britain Covey",
+      "matchup": "LA Rams @ PHI Eagles",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+4500",
+      "impliedProb": 0.0217,
+      "xTD": 0.0206
+    },
+    {
+      "name": "Carsen Ryan",
+      "matchup": "PIT Steelers @ CLE Browns",
+      "kickoff": "2026-10-02",
+      "americanOdds": "+5500",
+      "impliedProb": 0.0179,
+      "xTD": 0.0169
+    },
+    {
+      "name": "Ko Kieft",
+      "matchup": "GB Packers @ TB Buccaneers",
+      "kickoff": "2026-10-04",
+      "americanOdds": "+5500",
+      "impliedProb": 0.0179,
+      "xTD": 0.0169
+    }
+  ]
+}
