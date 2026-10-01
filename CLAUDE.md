@@ -29,9 +29,12 @@ Two things that look like mistakes and are not:
 - **Only `nfl-start-sit/` has a `data/` directory.** `nfl-rooting` points at it, so
   the ~950 KB of JSON is stored once.
 
-The data is a **static snapshot** as shipped; nothing refreshes it. For a live
-page, add a workflow modelled on `scripts/pull_pred_arbs.py` pointed at
-`https://pjmerica.github.io/AI_Agent_work/nfl-props/*.json`.
+The data **auto-refreshes** via `.github/workflows/nfl-data-pull.yml`, which
+mirrors the upstream JSON (once daily Mon-Wed, twice Thu-Sun). It mirrors rather
+than scraping again on purpose: the Odds API bills per event per market, so a
+second pipeline would double the credit burn for identical numbers, and no
+`ODDS_API_KEY` needs to exist in this repo. Do not edit the files in
+`nfl-start-sit/data/` by hand -- the next run overwrites them.
 
 The nav gained a second level for this (`NFL > Best Ball / Redraft/In-Season`).
 Since the nav is copy-pasted per page here, that markup and its `.nav-dd-sub` CSS

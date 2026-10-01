@@ -50,30 +50,53 @@ the two people actually want.
 `nfl-rooting` points at this same directory, so the payload is stored and fetched
 once.
 
-## Keeping the data fresh — THE ONE ONGOING COST
+## Keeping the data fresh
 
-**As shipped these are a static snapshot.** The files above are whatever the
-source repo had when the port ran. Nothing updates them.
+**Automated.** `.github/workflows/nfl-data-pull.yml` mirrors the seven files from
+the upstream Pages site on a cron, via `scripts/pull_nfl_data.py`.
 
-For a live page, add a workflow modelled on this repo's existing
-`scripts/pull_pred_arbs.py`, which already pulls JSON off another GitHub Pages
-site on a cron. Same shape, pointed at:
+It **mirrors rather than scrapes again**, deliberately:
 
-```
-https://pjmerica.github.io/AI_Agent_work/nfl-props/<file>.json
-```
+- The Odds API bills per event per market. A second pipeline would double the
+  credit burn for identical numbers.
+- No `ODDS_API_KEY` has to exist in this repo at all.
+- Both sites then show the same projections. Two independent pipelines drift
+  apart within a week and there is no way to tell which is right.
 
-Cadence that matches the upstream: the source repo refreshes on a schedule plus
-manual runs, and coverage changes a lot through the week — sportsbooks do not
-post most Sunday props until Thursday night, so a Wednesday snapshot legitimately
-has a third of the slate unpriced. Twice a day Thursday through Sunday is enough.
+### Cadence
 
-One upstream caveat worth knowing: `dk_td.json` only refreshes from a **local**
-run, because DraftKings blocks GitHub Actions runners (403). It can therefore be
-staler than its siblings. The page handles this — it drops touchdown entries
-whose game is not on the current board, and the coverage banner says when the
-whole file has aged out — but a pull workflow will inherit whatever the source
-repo last committed.
+Upstream coverage moves unevenly through the week, so the schedule follows it:
+
+| When | Why |
+|---|---|
+| Mon–Wed, once at 13:00 UTC | the slate rolls over, but books have posted almost nothing for Sunday — a Wednesday pull of week 3 had 10 of 16 games |
+| Thu–Sun, 13:00 and 23:00 UTC | books open the Sunday props Thursday overnight, the biggest jump of the week (99 → 183 player-games in week 3), then lines move through Sunday |
+
+13:00 UTC is 9am ET, well before any 1pm kickoff.
+
+### What it will and will not do
+
+- Writes a file only when its content changed, so a no-op run commits nothing.
+- Rejects a bad payload rather than overwriting good data — HTTP errors, bodies
+  under 200 bytes, anything that is not a JSON object. Pages can serve a styled
+  404 with status 200, which would otherwise land on top of a good file.
+- Goes red if `weekly.json`, `oddsapi.json` or `sleeper_players.json` fails,
+  while leaving the existing files untouched. The pages keep working on the
+  previous numbers and say so.
+- Retries the push with a rebase, since this races the ADP and pred-arbs
+  workflows (different files, same branch).
+
+Run it by hand any time: Actions → **NFL Data Pull** → Run workflow, or
+`python scripts/pull_nfl_data.py` locally (`--dry-run` to look first).
+
+### One upstream caveat
+
+`dk_td.json` only refreshes from a **local** run in the upstream repo, because
+DraftKings blocks GitHub Actions runners with a 403. It can therefore be staler
+than its siblings, and this mirror inherits whatever was last committed there.
+The pages handle it — touchdown entries whose game is not on the current board
+are dropped, and the coverage banner says when the whole file has aged out — but
+anytime-TD prices may lag by a day or two.
 
 ## What the port changed in this repo
 

@@ -1,0 +1,65 @@
+name: NFL Data Pull
+
+on:
+  schedule:
+    # The NFL pages mirror JSON built in pjmerica/AI_Agent_work. Cadence follows
+    # how the upstream data actually moves, which is uneven across the week:
+    #
+    #   Tue/Wed  the slate rolls over; books have posted almost nothing for
+    #            Sunday yet (a Wednesday pull of week 3 had 10 of 16 games)
+    #   Thu      sportsbooks open the Sunday props overnight -- the single
+    #            biggest jump of the week (99 -> 183 player-games in week 3)
+    #   Fri/Sat  coverage fills in and lines move
+    #   Sun      closing lines, which are the ones that matter
+    #
+    # So: twice daily Thursday through Sunday, once a day Monday to Wednesday.
+    # Times are UTC; 13:00 UTC is 9am ET, well before any 1pm ET kickoff.
+    - cron: '0 13 * * 1,2,3'
+    - cron: '0 13,23 * * 4,5,6,0'
+  workflow_dispatch:
+
+jobs:
+  pull:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install deps
+        run: pip install requests
+
+      # Mirrors the already-built JSON rather than running the scrapers again.
+      # The Odds API bills per event per market, so a second pipeline would
+      # double the credit burn for identical numbers -- and no ODDS_API_KEY has
+      # to exist in this repo at all. See scripts/pull_nfl_data.py.
+      - name: Pull NFL market data
+        run: python scripts/pull_nfl_data.py
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name  "ezdubs-bot"
+          git config user.email "ezdubs-bot@users.noreply.github.com"
+          git add dashboards/nfl-start-sit/data/
+          if git diff --cached --quiet; then
+            echo "No new data to commit."
+            exit 0
+          fi
+          WEEK=$(python -c "import json;print(json.load(open('dashboards/nfl-start-sit/data/weekly.json')).get('week','?'))")
+          git commit -m "Auto: NFL week $WEEK data $(date -u +%Y-%m-%d)"
+          # Retry with rebase: this races the ADP and pred-arbs workflows, which
+          # touch different files but push to the same branch.
+          for i in 1 2 3 4 5; do
+            if git push; then
+              echo "Pushed on attempt $i."
+              exit 0
+            fi
+            echo "Push attempt $i failed; rebasing on remote."
+            git pull --rebase --autostash origin main
+          done
+          echo "Push failed after 5 attempts." >&2
+          exit 1
