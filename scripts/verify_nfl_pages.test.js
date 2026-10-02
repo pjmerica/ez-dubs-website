@@ -4,18 +4,20 @@
  *     npm install --no-save jsdom
  *     node scripts/verify_nfl_pages.test.js
  *
- * It checks three things that are easy to break by hand:
+ * Checks, in order:
  *
- *   1. Every HTML page carries the same two-level NFL nav AND the .nav-dd-sub
- *      CSS it needs. The nav is copy-pasted per page in this repo, so editing
- *      one page is how the eight drift apart.
- *   2. There is exactly ONE app.js, in dashboards/nfl-shared/. Both NFL pages
+ *   1. Every HTML page carries the same two-level NFL nav, the .nav-dd-sub CSS
+ *      it needs, and balanced <div>s. The nav is copy-pasted per page here, so
+ *      editing one page by hand is how the eight drift apart -- and an orphaned
+ *      </div> is exactly how the first version of the nav rewrite broke.
+ *   2. Each NFL page shows ONE view and has no tab strip. The nav switches
+ *      between them; a strip beside it would be a second control for one job.
+ *   3. There is exactly ONE app.js, in dashboards/nfl-shared/. Both NFL pages
  *      load it; giving each its own copy is the mistake this guards against.
- *   3. Both pages actually run -- they open on the right tab, fetch their data
- *      with no 404s, and sign in to Sleeper for real.
+ *   4. Both pages run -- right tab, data fetched with no 404s, Sleeper sign-in
+ *      against the live API.
  *
- * Hits the live Sleeper API, so it needs a network connection and takes ~30s.
- * See dashboards/NFL_REDRAFT.md for what these pages are.
+ * Needs a network connection and takes about 30s. See dashboards/NFL_REDRAFT.md.
  */
 const fs = require("fs");
 const path = require("path");
@@ -43,7 +45,8 @@ const htmlPages = [
 for (const rel of htmlPages) {
   const f = path.join(REPO, rel);
   if (!fs.existsSync(f)) { check(rel + " exists", false); continue; }
-  const dom = new JSDOM(fs.readFileSync(f, "utf8"));
+  const raw = fs.readFileSync(f, "utf8");
+  const dom = new JSDOM(raw);
   const d = dom.window.document;
   const nav = d.querySelector("nav.site-nav");
   if (!nav) { check(rel + " has a nav", false); continue; }
@@ -61,7 +64,26 @@ for (const rel of htmlPages) {
   check(rel, ok, "top: " + btns.join("/") + "  sub: " + subs.join("/"));
   // The submenu needs its CSS on the page, since CSS is inlined per page here.
   check("  " + rel + " carries the submenu CSS",
-    fs.readFileSync(f, "utf8").includes(".nav-dd-sub-menu"));
+    raw.includes(".nav-dd-sub-menu"));
+  // An orphaned </div> is how the first nav rewrite broke: its regex ended in a
+  // fixed number of closers and the nested markup has one more.
+  const opens = (raw.match(/<div[ >]/g) || []).length;
+  const closes = (raw.match(/<\/div>/g) || []).length;
+  check("  " + rel + " divs balance", opens === closes,
+    opens + " open / " + closes + " close");
+}
+
+// Each NFL page shows ONE view and has no tab strip -- the nav switches them.
+console.log("");
+console.log("=== one view per page, no tab strip ===");
+for (const [slug, view] of [["nfl-start-sit", "sleeper"], ["nfl-rooting", "rooting"]]) {
+  const raw = fs.readFileSync(
+    path.join(REPO, "dashboards", slug, "index.html"), "utf8");
+  check(slug + " has no tab strip", !raw.includes('id="view-tabs"'));
+  const views = [...raw.matchAll(/id="(sitstart|sleeper|rooting)-view"/g)]
+    .map((m) => m[1]);
+  check(slug + " carries only the " + view + " view",
+    views.length === 1 && views[0] === view, views.join(", ") || "(none)");
 }
 
 // A page must mark itself current, and only itself.
