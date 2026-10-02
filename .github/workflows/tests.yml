@@ -32,3 +32,18 @@ jobs:
       - run: npm install --no-audit --no-fund
       - name: Verify the NFL dashboards
         run: node scripts/verify_nfl_pages.test.js
+
+      # jsdom does not enforce CSP, so the suite above cannot tell whether the
+      # policy breaks the pages. This loads them in real Chrome and fails on any
+      # violation.
+      #
+      # Chrome is installed explicitly rather than assumed at a path: the test
+      # SKIPS when the binary is missing, so a wrong guess would quietly verify
+      # nothing and still report success.
+      - uses: browser-actions/setup-chrome@v1
+        id: chrome
+
+      - name: Verify the Content-Security-Policy
+        run: node scripts/verify_csp.test.js
+        env:
+          CHROME_BIN: ${{ steps.chrome.outputs.chrome-path }}
