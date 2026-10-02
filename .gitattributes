@@ -1,0 +1,20 @@
+# Keep machine-written data files byte-stable across platforms.
+#
+# core.autocrlf=true on a Windows checkout rewrites committed LF files to CRLF on
+# disk. For data that a script compares byte-for-byte before deciding whether to
+# write, that is not cosmetic: scripts/pull_nfl_data.py skips a file whose content
+# matches, and CRLF conversion made every file look changed on every local run, so
+# the skip never fired.
+#
+# -text means "store and check out exactly these bytes".
+*.json -text
+*.csv -text
+
+# The pages and scripts are fine either way, but pinning them keeps diffs clean
+# when the repo is edited from both Windows and a CI runner.
+*.html text eol=lf
+*.css  text eol=lf
+*.js   text eol=lf
+*.py   text eol=lf
+*.yml  text eol=lf
+*.md   text eol=lf

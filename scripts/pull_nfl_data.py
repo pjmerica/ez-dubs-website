@@ -28,7 +28,6 @@ from __future__ import annotations
 import argparse
 import json
 import sys
-from datetime import datetime, timezone
 from pathlib import Path
 
 import requests
@@ -142,15 +141,36 @@ def main() -> None:
         sys.exit(1)
 
     if changed and not args.dry_run:
+        # Record the SOURCE files' own timestamps, not the time of this run.
+        #
+        # An earlier version wrote datetime.now() here, which meant this file
+        # differed on every run even when no data had moved -- so the workflow's
+        # "commit only if changed" check could never fire and it would have
+        # committed forever. Upstream stamps only change when the data does.
+        stamps = {}
+        for name, _ in FILES:
+            f = OUT_DIR / name
+            if not f.exists():
+                continue
+            try:
+                d = json.loads(f.read_text(encoding="utf-8"))
+            except Exception:  # noqa: BLE001
+                continue
+            if isinstance(d, dict) and d.get("lastUpdated"):
+                stamps[name] = d["lastUpdated"]
         stamp = OUT_DIR / "mirrored_at.json"
-        stamp.write_text(json.dumps({
-            "mirrored_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        payload = json.dumps({
             "source": BASE,
+            "upstream_lastUpdated": stamps,
             "note": ("Written by scripts/pull_nfl_data.py. The files beside this "
                      "one are mirrored from AI_Agent_work, which runs the "
                      "scrapers. Do not edit them here -- the next run overwrites "
-                     "them."),
-        }, indent=1), encoding="utf-8")
+                     "them. These are the UPSTREAM timestamps, not the time of "
+                     "the mirror run: a run that changes nothing must leave this "
+                     "file byte-identical, or the workflow commits on every run."),
+        }, indent=1)
+        if not stamp.exists() or stamp.read_text(encoding="utf-8") != payload:
+            stamp.write_text(payload, encoding="utf-8")
 
 
 if __name__ == "__main__":

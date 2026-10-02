@@ -59,6 +59,38 @@ The site used to track four sources (DK, UD, FFPC, Drafters). FFPC and Drafters 
 
 If you're bringing them back: (1) restore `ffpc_adp_history.csv` and `drafters_adp_history.csv` from `_local/archive/`, (2) add their entries back to `SOURCES` / `SOURCE_COLORS` / `ADP_FLOORS` / `source_cols` / `_REQUIRED_COLS` across the touched files, (3) restore the source-picker UI on both dashboards from git history (~pre commit `bfc73fb`), (4) restore the "All 4 markets" tab from git history.
 
+## Do not blind-pop the stash (noted 2026-10-02)
+
+`git stash list` here shows one entry from 2026-06-27:
+
+```
+stash@{0}: WIP on main: Audit pass: fix stale copy after 4-source expansion
+```
+
+It holds ~960 lines of Best Ball ADP rows, including
+`drafters_adp_history.csv` -- a source that was **archived on 2026-07-31** and
+whose CSVs were deliberately moved to `_local/archive/`. The Best Ball CSVs were
+also **trimmed and frozen at 2026-09-04**.
+
+So popping it would resurrect an archived source and un-trim frozen history, both
+of which were deliberate, user-approved decisions. Leave it alone unless the user
+specifically asks, and read "Best Ball is frozen" and "FFPC and Drafters were
+archived" above first.
+
+## Line endings (.gitattributes, 2026-10-02)
+
+`*.json` and `*.csv` are marked `-text`, so git stores and checks them out
+byte-for-byte.
+
+This is not cosmetic. `core.autocrlf=true` on a Windows checkout rewrote
+committed LF data files to CRLF on disk, and `scripts/pull_nfl_data.py` decides
+whether to write a file by comparing bytes -- so every file looked changed on
+every local run and the skip never fired. The NFL workflow would have committed
+on every single run.
+
+Do not remove those rules without re-checking that a no-op `pull_nfl_data.py` run
+leaves `git status` clean.
+
 ## Storage model
 
 Two long-format CSVs (one per market) hold all per-day ADPs:

@@ -13,9 +13,12 @@ on:
     #   Sun      closing lines, which are the ones that matter
     #
     # So: twice daily Thursday through Sunday, once a day Monday to Wednesday.
-    # Times are UTC; 13:00 UTC is 9am ET, well before any 1pm ET kickoff.
-    - cron: '0 13 * * 1,2,3'
-    - cron: '0 13,23 * * 4,5,6,0'
+    # Times are UTC; 13:20 UTC is 9:20am ET, well before any 1pm ET kickoff.
+    # Not on the hour: GitHub's scheduler is congested at :00 and queues runs
+    # for minutes. The repo's other workflows use :30 and :45 for the same
+    # reason, and the three are staggered so they do not race each other.
+    - cron: '20 13 * * 1,2,3'
+    - cron: '20 13,23 * * 4,5,6,0'
   workflow_dispatch:
 
 jobs:
@@ -49,7 +52,17 @@ jobs:
             echo "No new data to commit."
             exit 0
           fi
-          WEEK=$(python -c "import json;print(json.load(open('dashboards/nfl-start-sit/data/weekly.json')).get('week','?'))")
+          # Pull the week out with grep rather than an interpreter. This runs
+          # AFTER git add, so anything that can throw here would abort the step
+          # with changes staged and nothing committed -- and an earlier attempt
+          # at this with an inline `python -c` was itself broken: a multi-line
+          # script indented inside a YAML block scalar is an IndentationError, so
+          # the label would always have been "?". grep cannot fail that way; a
+          # missing or malformed file yields no match and the default applies.
+          WEEK=$(grep -o '"week"[[:space:]]*:[[:space:]]*[0-9]*' \
+                   dashboards/nfl-start-sit/data/weekly.json 2>/dev/null \
+                 | head -1 | grep -o '[0-9]*$')
+          WEEK=${WEEK:-?}
           git commit -m "Auto: NFL week $WEEK data $(date -u +%Y-%m-%d)"
           # Retry with rebase: this races the ADP and pred-arbs workflows, which
           # touch different files but push to the same branch.
