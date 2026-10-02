@@ -1,0 +1,12 @@
+{
+  "name": "ez-dubs-website",
+  "private": true,
+  "description": "Static dashboards served from this repo's GitHub Pages site (ezdubsanalytics.com). The package.json exists for the test suite's dependencies only -- the pages themselves load no bundler and no npm packages.",
+  "scripts": {
+    "test": "node scripts/verify_nfl_pages.test.js",
+    "test:offline": "EZ_OFFLINE=1 node scripts/verify_nfl_pages.test.js"
+  },
+  "devDependencies": {
+    "jsdom": "^30.1.1"
+  }
+}

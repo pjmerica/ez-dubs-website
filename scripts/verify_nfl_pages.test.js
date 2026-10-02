@@ -25,7 +25,7 @@ const zlib = require("zlib");
 const { JSDOM } = require("jsdom");
 
 const REPO = process.env.EZ_REPO || process.cwd();
-let pass = 0, fail = 0;
+let pass = 0, fail = 0, skipped = 0;
 const check = (l, c, d) => {
   if (c) { pass++; console.log("  ok    " + l); }
   else { fail++; console.log("  FAIL  " + l + (d ? "   -> " + d : "")); }
@@ -143,6 +143,10 @@ async function runPage(slug, expectView) {
     .match(/window\.LINEUP_DEFAULT_VIEW = "(\w+)".*?window\.LINEUP_DATA_DIR = "([^"]+)"/);
   if (cfg) { window.LINEUP_DEFAULT_VIEW = cfg[1]; window.LINEUP_DATA_DIR = cfg[2]; }
   const missing = [];
+  // Sleeper is a live third-party API. If it is down, slow or rate-limiting the
+  // runner, that is not a bug in this page -- so record the reachability and let
+  // the render assertion downgrade itself to a skip rather than going red.
+  let sleeperOk = false, sleeperErr = "";
   window.fetch = async (u) => {
     const str = String(u);
     if (str.includes("sleeper.app")) {
@@ -151,9 +155,15 @@ async function runPage(slug, expectView) {
         let b = Buffer.from(await r.arrayBuffer());
         if (b.length > 2 && b[0] === 0x1f && b[1] === 0x8b) b = zlib.gunzipSync(b);
         const t = b.toString("utf8");
+        // Sleeper answers 200 with a literal "null" body for a user that does
+        // not exist, so r.ok on its own is not evidence the call worked.
+        if (!r.ok) sleeperErr = "HTTP " + r.status;
+        else if (t.trim() === "null") sleeperErr = "200 but null body for " + str;
+        else sleeperOk = true;
         return { ok: r.ok, status: r.status,
                  json: async () => { try { return JSON.parse(t); } catch (e) { return null; } } };
-      } catch (e) { return { ok: false, status: 0, json: async () => null }; }
+      } catch (e) { sleeperErr = String(e && e.message || e);
+                     return { ok: false, status: 0, json: async () => null }; }
     }
     // Resolve relative to this page, as a browser would. The app requests a
     // RELATIVE path ("data/x.json" or "../nfl-start-sit/data/x.json"), so
@@ -189,13 +199,24 @@ async function runPage(slug, expectView) {
   // Sign in and confirm the real thing renders.
   const uid = expectView === "rooting" ? "rooting-user" : "sleeper-user";
   const go = expectView === "rooting" ? "rooting-go" : "sleeper-go";
-  $(uid).value = "pjmerica";
+  // A public account that actually has current-season NFL leagues, which the
+  // render assertion needs -- "Gamer1776" is the UI's placeholder and is not a
+  // real account (Sleeper answers 200/null for it), so it would make this check
+  // skip forever and verify nothing. Deliberately not the owner's own handle.
+  // Override with SLEEPER_TEST_USER if this account ever goes private.
+  $(uid).value = process.env.SLEEPER_TEST_USER || "commissioner";
   $(go).click();
   await new Promise((r) => setTimeout(r, 14000));
   const out = expectView === "rooting" ? $("rooting-output") : $("sleeper-output");
   const txt = out.textContent.replace(/\s+/g, " ").trim();
-  check("signed in and rendered", txt.length > 120 && !/Enter a Sleeper/.test(txt),
-    txt.slice(0, 70));
+  if (!sleeperOk) {
+    console.log("  SKIP  signed in and rendered (sleeper.app unreachable: " +
+                (sleeperErr || "no successful response") + ")");
+    skipped++;
+  } else {
+    check("signed in and rendered", txt.length > 120 && !/Enter a Sleeper/.test(txt),
+      txt.slice(0, 70));
+  }
   check("no console errors", errors.length === 0, errors.slice(0, 2).join(" | "));
   return errors.length + missing.length;
 }
@@ -204,6 +225,11 @@ async function runPage(slug, expectView) {
   await runPage("nfl-start-sit", "sleeper");
   await runPage("nfl-rooting", "rooting");
   console.log("");
-  console.log(pass + " passed, " + fail + " failed");
+  console.log(pass + " passed, " + fail + " failed" +
+              (skipped ? ", " + skipped + " skipped" : ""));
+  if (skipped && !fail) {
+    console.log("NOTE: a skip means sleeper.app could not be reached, so the " +
+                "end-to-end render was never verified. Re-run when it is up.");
+  }
   process.exit(fail ? 1 : 0);
 })();

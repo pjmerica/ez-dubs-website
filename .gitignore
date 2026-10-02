@@ -4,3 +4,7 @@ _local/
 # Python bytecode
 __pycache__/
 *.pyc
+
+# npm's install tree. Only the test suite needs packages (jsdom); the dashboards
+# themselves load nothing from npm. package-lock.json IS committed.
+node_modules/

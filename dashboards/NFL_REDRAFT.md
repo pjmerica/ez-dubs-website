@@ -50,30 +50,52 @@ the two people actually want.
 `nfl-rooting` points at this same directory, so the payload is stored and fetched
 once.
 
-## Keeping the data fresh — THE ONE ONGOING COST
+## Keeping the data fresh
 
-**As shipped these are a static snapshot.** The files above are whatever the
-source repo had when the port ran. Nothing updates them.
+**This is wired up and automatic.** `.github/workflows/nfl-data-pull.yml` runs
+`scripts/pull_nfl_data.py`, which mirrors the seven JSON files from the source
+repo's Pages site and commits them only when something actually changed.
 
-For a live page, add a workflow modelled on this repo's existing
-`scripts/pull_pred_arbs.py`, which already pulls JSON off another GitHub Pages
-site on a cron. Same shape, pointed at:
+It mirrors rather than re-running the scrapers, deliberately: The Odds API bills
+per event per market, so a second pipeline would double the credit burn for
+identical numbers, no `ODDS_API_KEY` has to exist in this repo at all, and both
+sites cannot drift apart.
 
-```
-https://pjmerica.github.io/AI_Agent_work/nfl-props/<file>.json
-```
+Cadence follows how the upstream data moves, which is uneven: sportsbooks do not
+post most Sunday props until Thursday night, so a Wednesday pull legitimately has
+a third of the slate unpriced. Once a day Monday through Wednesday, twice daily
+Thursday through Sunday.
 
-Cadence that matches the upstream: the source repo refreshes on a schedule plus
-manual runs, and coverage changes a lot through the week — sportsbooks do not
-post most Sunday props until Thursday night, so a Wednesday snapshot legitimately
-has a third of the slate unpriced. Twice a day Thursday through Sunday is enough.
+### Two traps that were fixed here, do not reintroduce them
 
-One upstream caveat worth knowing: `dk_td.json` only refreshes from a **local**
-run, because DraftKings blocks GitHub Actions runners (403). It can therefore be
-staler than its siblings. The page handles this — it drops touchdown entries
-whose game is not on the current board, and the coverage banner says when the
-whole file has aged out — but a pull workflow will inherit whatever the source
-repo last committed.
+Both had the same symptom: an endless stream of empty auto-commits.
+
+**The stamp file must not carry the run time.** `mirrored_at.json` records the
+*upstream* `lastUpdated` values, not `datetime.now()`. An earlier version wrote
+the run time, so the file differed on every run even when no data had moved, and
+the workflow's "commit only if changed" check could never fire.
+
+**`*.json` is `-text` in `.gitattributes`.** The puller decides whether to write a
+file by comparing bytes. With `core.autocrlf=true` on a Windows checkout, every
+committed LF file became CRLF on disk and so looked changed on every run, with the
+same result.
+
+If you touch either, re-check that a second `python scripts/pull_nfl_data.py`
+reports `0 changed` and leaves `git status` clean.
+
+Also: the commit-message week lookup is grep, not an interpreter, on purpose. It
+runs *after* `git add`, so anything that can throw there would abort the step with
+changes staged and nothing committed. (An inline multi-line `python -c` indented
+inside a YAML block scalar is an `IndentationError` -- that version would have
+labelled every commit `?`.)
+
+### One upstream caveat
+
+`dk_td.json` only refreshes from a **local** run, because DraftKings blocks
+GitHub Actions runners (403). It can therefore be staler than its siblings. The
+page handles this -- it drops touchdown entries whose game is not on the current
+board, and the coverage banner says when the whole file has aged out -- but the
+mirror inherits whatever the source repo last committed.
 
 ## What the port changed in this repo
 

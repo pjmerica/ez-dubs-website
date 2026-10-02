@@ -1,0 +1,34 @@
+name: Tests
+
+# The NFL dashboards are plain static files with no build step, so nothing else
+# would catch a broken page until someone loaded it. These tests parse the real
+# markup with jsdom and click the real buttons.
+#
+# They also exist because the suite was unrunnable for a while without anyone
+# noticing: jsdom was never declared as a dependency, so `require("jsdom")` only
+# resolved by accident from a parent directory. Running it in CI, from a clean
+# checkout, is what keeps that honest.
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'dashboards/**'
+      - 'scripts/verify_nfl_pages.test.js'
+      - 'scripts/pull_nfl_data.py'
+      - 'package.json'
+      - '.github/workflows/tests.yml'
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  nfl-pages:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --no-audit --no-fund
+      - name: Verify the NFL dashboards
+        run: node scripts/verify_nfl_pages.test.js
