@@ -20,7 +20,11 @@ const CHROME = process.env.CHROME_BIN ||
   (process.platform === "win32"
     ? "C:/Program Files/Google/Chrome/Application/chrome.exe"
     : "/usr/bin/google-chrome");
-const PORT = 8733;
+// Port 0 lets the OS assign a free one. A hardcoded port made this report
+// "rendered: NO" on pages that render correctly: after repeated runs listen()
+// still resolved while requests went unserved, so the page never loaded and it
+// read as a CSP failure. Same trap as tests/mobile_layout.test.js upstream.
+let PORT = Number(process.env.CSP_PORT || 0);
 const TYPES = { ".html": "text/html", ".js": "text/javascript", ".css": "text/css",
                 ".json": "application/json", ".svg": "image/svg+xml" };
 
@@ -42,10 +46,15 @@ function run(url) {
       "--enable-logging=stderr", "--v=1",
       "--dump-dom", url,
     ]);
+    // Kept SEPARATE deliberately. These were concatenated, and --v=1 logging is
+    // voluminous enough to bury the DOM that --dump-dom writes to stdout, so the
+    // render check was reading log lines and twice reported "rendered: NO" for
+    // pages that render perfectly in the same browser.
+    let log = "";
     p.stdout.on("data", (d) => (out += d));
-    p.stderr.on("data", (d) => (out += d));
+    p.stderr.on("data", (d) => (log += d));
     const t = setTimeout(() => { try { p.kill(); } catch {} }, 70000);
-    p.on("close", () => { clearTimeout(t); resolve(out); });
+    p.on("close", () => { clearTimeout(t); resolve({ dom: out, log }); });
   });
 }
 
@@ -64,6 +73,26 @@ function run(url) {
     process.exit(0);
   }
   await new Promise((r) => server.listen(PORT, "127.0.0.1", r));
+  PORT = server.address().port;
+
+  // Prove the harness works before it is allowed to blame the pages. This script
+  // has twice reported "rendered: NO" for pages that render fine, both times
+  // because of how it captured Chrome's output rather than anything on the page.
+  // A trivial sentinel page rules that out.
+  const sentinelRel = "__csp_sentinel.html";
+  const sentinelAbs = path.join(REPO, sentinelRel);
+  fs.writeFileSync(sentinelAbs,
+    '<!doctype html><meta charset="utf-8"><body><div id="csp-sentinel-ok">x</div>');
+  const probe = await run(`http://127.0.0.1:${PORT}/${sentinelRel}`);
+  try { fs.unlinkSync(sentinelAbs); } catch {}
+  if (!probe.dom.includes("csp-sentinel-ok")) {
+    console.error("HARNESS BROKEN: Chrome returned no usable DOM for a trivial " +
+                  "page, so this run tells us nothing about the real pages.");
+    console.error("  dom bytes: " + probe.dom.length +
+                  ", log bytes: " + probe.log.length);
+    server.close();
+    process.exit(1);
+  }
   let bad = 0;
 
   for (const [slug, viewId] of [["nfl-start-sit", "sleeper-view"],
@@ -73,19 +102,24 @@ function run(url) {
     // giving an empty capture. That is a harness artefact, not a broken page, so
     // retry instead of reporting a false failure -- a flaky security check is
     // worse than none, because people learn to ignore it.
-    let out = "";
+    let dom = "", log = "";
     for (let attempt = 1; attempt <= 3; attempt++) {
-      out = await run(url);
-      if (out.includes(viewId)) break;
+      const r = await run(url);
+      dom = r.dom; log = r.log;
+      if (dom.includes(viewId)) break;
       if (attempt < 3) console.log(`  (empty dump for ${slug}, retry ${attempt})`);
     }
-    const viol = [...new Set(out.split("\n").filter((l) =>
+    // Violations are logged to stderr; the markup arrives on stdout. These used to
+    // be concatenated, and --v=1 logging is voluminous enough to bury the DOM, so
+    // the render check was reading log lines and reported "rendered: NO" for pages
+    // that render perfectly in the same browser.
+    const viol = [...new Set(log.split("\n").filter((l) =>
       /Content Security Policy|Refused to (load|execute|apply|connect)/i.test(l)))];
-    const rendered = out.includes(viewId);
+    const rendered = dom.includes(viewId);
     // The inline config script must have run: it sets LINEUP_DATA_DIR, and the
     // app only fetches data if it did. If CSP blocked inline script, the app
     // never initialises and no data-dir-driven markup appears.
-    const scriptRan = /class="[^"]*\bhidden\b/.test(out) || out.includes("data-book");
+    const scriptRan = /class="[^"]*\bhidden\b/.test(dom) || dom.includes("data-book");
 
     console.log(`\n=== ${slug} ===`);
     console.log("  rendered (" + viewId + " present): " + (rendered ? "yes" : "NO"));

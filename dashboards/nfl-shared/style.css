@@ -18,15 +18,18 @@ body {
 
 a.back {
   font-size: 13px;
-  color: #6a6a8a;
+  color: #a0a0c0;
   text-decoration: none;
   margin-bottom: 16px;
   display: inline-block;
+  /* WCAG 2.2 (2.5.8) asks for a 24x24px minimum target; this link measured 17px
+     tall. The padding is absorbed by the margin below, so nothing moves. */
+  padding: 4px 2px;
 }
 a.back:hover { color: #5b4cf5; }
 
 header h1 { font-size: 28px; font-weight: 700; color: #fff; }
-.subtitle { font-size: 14px; color: #6a6a8a; margin-top: 6px; }
+.subtitle { font-size: 14px; color: #a0a0c0; margin-top: 6px; }
 
 .view-tabs {
   display: flex;
@@ -167,7 +170,12 @@ header h1 { font-size: 28px; font-weight: 700; color: #fff; }
   background: #1a1a24;
   border: 1px solid #2e2e42;
   border-radius: 12px;
-  overflow: hidden;
+  /* overflow-x must scroll, not hide. At a 320px viewport the table is 358px
+     wide, and `overflow: hidden` made the rightmost columns permanently
+     unreachable -- no scrollbar and no swipe. overflow-y stays hidden so the
+     table's square corners are still clipped by the 12px radius. */
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 
 .rankings {
@@ -177,10 +185,12 @@ header h1 { font-size: 28px; font-weight: 700; color: #fff; }
 
 .rankings thead th {
   text-align: left;
-  font-size: 11px;
+  /* Was 11px/#a0a0c0, which measured 3.32:1 against the card background -- under
+     the 4.5:1 WCAG AA floor. These name the columns, so they need to be read. */
+  font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 1px;
-  color: #6a6a8a;
+  color: #a0a0c0;
   background: #14141c;
   padding: 12px 14px;
   border-bottom: 1px solid #2e2e42;
@@ -207,7 +217,7 @@ header h1 { font-size: 28px; font-weight: 700; color: #fff; }
 }
 
 .rank-num {
-  color: #6a6a8a;
+  color: #a0a0c0;
   font-variant-numeric: tabular-nums;
   font-weight: 600;
 }
@@ -254,13 +264,13 @@ header h1 { font-size: 28px; font-weight: 700; color: #fff; }
   font-variant-numeric: tabular-nums;
 }
 
-.market-tag .mk-label { color: #6a6a8a; margin-right: 4px; }
+.market-tag .mk-label { color: #a0a0c0; margin-right: 4px; }
 .market-tag .mk-val { color: #e2e2f0; font-weight: 600; }
 
 .empty {
   text-align: center;
   padding: 40px;
-  color: #6a6a8a;
+  color: #a0a0c0;
   font-size: 14px;
 }
 
@@ -297,7 +307,7 @@ header h1 { font-size: 28px; font-weight: 700; color: #fff; }
 }
 .viz-desc {
   font-size: 13px;
-  color: #6a6a8a;
+  color: #a0a0c0;
   line-height: 1.45;
   margin-bottom: 14px;
 }
@@ -316,14 +326,14 @@ header h1 { font-size: 28px; font-weight: 700; color: #fff; }
 footer {
   text-align: center;
   font-size: 12px;
-  color: #6a6a8a;
+  color: #a0a0c0;
   padding-top: 16px;
 }
 
 @media (max-width: 700px) {
   body { padding: 20px 12px; }
   header h1 { font-size: 22px; }
-  .rankings thead th { padding: 8px; font-size: 10px; }
+  .rankings thead th { padding: 8px; font-size: 11px; }
   .rankings td { padding: 8px; font-size: 13px; }
   .matchup { font-size: 11px; }
 }
@@ -381,7 +391,7 @@ footer {
 
 .odds {
   font-size: 12px;
-  color: #6a6a8a;
+  color: #a0a0c0;
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }
@@ -391,15 +401,15 @@ footer {
 /* Delta vs FantasyPros: green = projections higher than Vegas, red = lower */
 .delta-up   { color: #58d68d; font-weight: 600; }
 .delta-down { color: #ff6b6b; font-weight: 600; }
-.delta-flat { color: #6a6a8a; }
+.delta-flat { color: #a0a0c0; }
 
 .kalshi-line {
   font-weight: 600;
   color: #c9c4ff;
   font-variant-numeric: tabular-nums;
 }
-.kalshi-line.thin { color: #7a7595; font-weight: 500; }
-.thin-key { color: #7a7595; font-weight: 700; }
+.kalshi-line.thin { color: #9ca0bd; font-weight: 500; }
+.thin-key { color: #9ca0bd; font-weight: 700; }
 
 /* ── Market Points view ───────────────────────────────────────────────────── */
 
@@ -413,7 +423,7 @@ footer {
 .proj-mark { color: #78aaff; margin-left: 2px; font-weight: 700; font-size: 11px; }
 
 .market-nan {
-  color: #6a6a8a;
+  color: #a0a0c0;
   font-weight: 600;
   font-variant-numeric: tabular-nums;
   cursor: help;
@@ -423,7 +433,7 @@ tr.row-nan:hover { opacity: 0.85; }
 
 .market-chip {
   display: inline-block;
-  font-size: 11px;
+  font-size: 12px;
   padding: 3px 7px;
   margin: 2px 4px 2px 0;
   border-radius: 4px;
@@ -433,7 +443,7 @@ tr.row-nan:hover { opacity: 0.85; }
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }
-.market-chip .mk-label { color: #7a7a95; margin-right: 2px; }
+.market-chip .mk-label { color: #9ca0bd; margin-right: 2px; }
 .market-chip.src-fanduel { border-color: rgba(91, 76, 245, 0.4); }
 .market-chip.src-bovada  { border-color: rgba(232, 106, 92, 0.4); }
 /* Projection-filled: dashed, because it is not a market number at all. */
@@ -451,7 +461,7 @@ tr.row-nan:hover { opacity: 0.85; }
   color: #ff9b9b;
 }
 
-.nan-key { color: #6a6a8a; font-weight: 700; }
+.nan-key { color: #a0a0c0; font-weight: 700; }
 .fit-key { color: #f5b041; font-weight: 700; }
 .proj-key { color: #78aaff; font-weight: 700; }
 
@@ -500,10 +510,10 @@ tr.row-nan:hover { opacity: 0.85; }
 
 .sitstart-label {
   display: block;
-  font-size: 11px;
+  font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 1px;
-  color: #6a6a8a;
+  color: #a0a0c0;
   margin-bottom: 6px;
   font-weight: 600;
 }
@@ -545,7 +555,7 @@ tr.row-nan:hover { opacity: 0.85; }
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 1px;
-  color: #6a6a8a;
+  color: #a0a0c0;
   background: #14141c;
   padding: 10px 12px;
   border-bottom: 1px solid #2e2e42;
@@ -568,7 +578,7 @@ tr.row-nan:hover { opacity: 0.85; }
   color: #9b8cff;
 }
 .slot-badge.flex { background: rgba(46, 204, 113, 0.16); color: #58d68d; }
-.bench-row td { color: #6a6a8a; }
+.bench-row td { color: #a0a0c0; }
 .sitstart-total {
   padding: 12px;
   font-size: 14px;
@@ -582,7 +592,7 @@ tr.row-nan:hover { opacity: 0.85; }
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 1px;
-  color: #6a6a8a;
+  color: #a0a0c0;
   background: #14141c;
   font-weight: 600;
 }
@@ -623,7 +633,7 @@ tr.row-nan:hover { opacity: 0.85; }
 .h2h-vs {
   font-size: 12px;
   font-weight: 700;
-  color: #6a6a8a;
+  color: #a0a0c0;
   text-transform: uppercase;
   letter-spacing: 1px;
   padding-bottom: 11px;
@@ -644,7 +654,7 @@ tr.row-nan:hover { opacity: 0.85; }
 }
 .h2h-card.winner { border-color: rgba(88, 214, 141, 0.55); }
 .h2h-card-name { font-size: 16px; font-weight: 700; color: #f0f0f8; }
-.h2h-card-meta { font-size: 12px; color: #6a6a8a; margin-top: 4px; }
+.h2h-card-meta { font-size: 12px; color: #a0a0c0; margin-top: 4px; }
 .h2h-card-pts {
   font-size: 30px;
   font-weight: 700;
@@ -653,7 +663,7 @@ tr.row-nan:hover { opacity: 0.85; }
   margin-top: 10px;
 }
 .h2h-card.winner .h2h-card-pts { color: #58d68d; }
-.h2h-card-sub { font-size: 11px; color: #6a6a8a; text-transform: uppercase; letter-spacing: 1px; }
+.h2h-card-sub { font-size: 11px; color: #a0a0c0; text-transform: uppercase; letter-spacing: 1px; }
 
 .h2h-bar-row { margin-top: 10px; }
 .h2h-bar-label {
@@ -673,7 +683,7 @@ tr.row-nan:hover { opacity: 0.85; }
 }
 .h2h-bar-a { background: #5b4cf5; }
 .h2h-bar-b { background: #58d68d; }
-.h2h-stat-name { color: #6a6a8a; }
+.h2h-stat-name { color: #a0a0c0; }
 
 
 /* ── Roster picker (type-to-add chips) ────────────────────────────────────── */
@@ -717,7 +727,7 @@ tr.row-nan:hover { opacity: 0.85; }
 .suggestions-list div.active { background: #1e1e2e; color: #fff; }
 .suggestions-list .sugg-pts {
   margin-left: auto;
-  color: #6a6a8a;
+  color: #a0a0c0;
   font-variant-numeric: tabular-nums;
 }
 
@@ -753,7 +763,7 @@ tr.row-nan:hover { opacity: 0.85; }
 .roster-paste { margin-top: 12px; }
 .roster-paste summary {
   font-size: 12px;
-  color: #6a6a8a;
+  color: #a0a0c0;
   cursor: pointer;
   user-select: none;
 }
@@ -781,7 +791,7 @@ tr.row-nan:hover { opacity: 0.85; }
 #sleeper-league-chips .chip { max-width: 260px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .league-scoring {
   font-size: 12px;
-  color: #6a6a8a;
+  color: #a0a0c0;
   margin-bottom: 10px;
 }
 .slot-badge.k-def { background: rgba(108, 122, 137, 0.2); color: #95a5a6; }
@@ -832,7 +842,8 @@ tr.row-nan:hover { opacity: 0.85; }
 .market-toggles input { accent-color: #5b4cf5; cursor: pointer; }
 .market-toggle-link {
   font-size: 11px;
-  color: #5b4cf5;
+    /* Lighter tint of the brand purple: #5b4cf5 was 3.12:1, under AA at this size. */
+  color: #8f84ff;
   text-decoration: none;
   margin-left: 8px;
   text-transform: none;
@@ -851,7 +862,7 @@ tr.row-nan:hover { opacity: 0.85; }
   font-size: 12px; color: #a0a0c0; cursor: pointer; user-select: none; }
 .book-toggle-list label:hover { color: #e2e2f0; }
 .book-toggle-list input { accent-color: #5b4cf5; cursor: pointer; }
-.book-count { color: #6a6a8a; font-size: 11px; }
+.book-count { color: #a0a0c0; font-size: 12px; }
 
 /* A lineup slot whose player has already played: the decision is gone, so the
    row reads as settled rather than as something still to choose. */
@@ -880,13 +891,13 @@ tr.row-nan:hover { opacity: 0.85; }
 }
 .matchup-card.ahead  { border-left-color: #58d68d; }
 .matchup-card.behind { border-left-color: #ff6b6b; }
-.matchup-league { font-size: 11px; color: #6a6a8a; text-transform: uppercase;
+.matchup-league { font-size: 12px; color: #a0a0c0; text-transform: uppercase;
   letter-spacing: 0.6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .matchup-score { font-size: 17px; font-weight: 700; color: #f0f0f8;
   font-variant-numeric: tabular-nums; margin-top: 3px; }
 .matchup-opp { font-size: 12px; color: #a0a0c0; margin-top: 2px; }
-.league-count { font-size: 11px; font-weight: 700; color: #5b4cf5; }
-.league-names { font-size: 12px; color: #6a6a8a; }
+.league-count { font-size: 11px; font-weight: 700; color: #8f84ff; }
+.league-names { font-size: 12px; color: #a0a0c0; }
 
 /* Coverage / freshness banner. Books do not post most Sunday player props
    until Thursday night, so a midweek board is genuinely incomplete rather
@@ -949,7 +960,7 @@ tr.row-nan:hover { opacity: 0.85; }
   content: "\203A";
   display: inline-block;
   margin-right: 8px;
-  color: #5b5b80;
+  color: #8a8aa8;
   transition: transform 0.15s ease;
 }
 
@@ -995,7 +1006,7 @@ tr.row-nan:hover { opacity: 0.85; }
 
 .chip-ok {
   margin-left: 6px;
-  color: #4a8a63;
+  color: #5fae7d;
   font-weight: 700;
 }
 
@@ -1059,7 +1070,9 @@ tr.row-nan:hover { opacity: 0.85; }
   border: 1px dashed rgba(120, 170, 255, 0.5);
   background: rgba(120, 170, 255, 0.08);
   color: #9cc0f0;
-  font-size: 9px;
+  /* Was 9px. This tag warns that a projection is NOT from Vegas books,
+     so it should not be the least readable thing on the page. */
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.6px;
   vertical-align: middle;
