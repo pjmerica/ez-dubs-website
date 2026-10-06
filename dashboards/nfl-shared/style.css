@@ -1078,3 +1078,13 @@ tr.row-nan:hover { opacity: 0.85; }
   vertical-align: middle;
   cursor: help;
 }
+
+/* The prop data describes a week that has already been played. This is louder
+   than the ordinary coverage note because the numbers are not merely incomplete,
+   they are unusable -- and they otherwise look exactly like live ones. */
+.coverage-note.stale-week {
+  border-color: rgba(255, 107, 107, 0.55);
+  background: rgba(255, 107, 107, 0.09);
+  color: #ffc9c9;
+}
+.coverage-note.stale-week strong { color: #ff8f8f; }
