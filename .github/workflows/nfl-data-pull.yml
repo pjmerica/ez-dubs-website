@@ -17,8 +17,22 @@ on:
     # Not on the hour: GitHub's scheduler is congested at :00 and queues runs
     # for minutes. The repo's other workflows use :30 and :45 for the same
     # reason, and the three are staggered so they do not race each other.
-    - cron: '20 13 * * 1,2,3'
-    - cron: '20 13,23 * * 4,5,6,0'
+    # Timed to follow the UPSTREAM refresh, which is the whole point of a mirror.
+    # Upstream (pjmerica/AI_Agent_work, nfl-props.yml) refreshes at 02:00, 14:00,
+    # 19:00 and 23:00 UTC. This used to run at 13:20 -- forty minutes BEFORE the
+    # 14:00 upstream slot -- so it always pulled the previous cycle and the site
+    # sat a cycle behind: 100 player-games here against 302 upstream, with both
+    # workflows green.
+    #
+    # Exact offsets cannot be relied on: GitHub queues free-tier cron heavily
+    # (measured on this account, a median of ~4.5 hours late and worst overnight),
+    # so each slot is just placed comfortably after its upstream counterpart. The
+    # puller is idempotent and commits only when bytes actually change, so a run
+    # that lands early is a no-op rather than a problem.
+    - cron: '0 4 * * *'        # after upstream's 02:00 (Wed-night props opening)
+    - cron: '0 16 * * *'       # after upstream's 14:00
+    - cron: '0 21 * * 4,5,6,0' # after upstream's 19:00, Thu-Sun only
+    - cron: '0 1 * * 5,6,0,1'  # after upstream's 23:00, next day UTC
   workflow_dispatch:
 
 jobs:

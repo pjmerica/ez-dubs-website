@@ -87,7 +87,12 @@ function run(url) {
       // profile fail in confusing, silent ways.
       "--user-data-dir=" + profileDir,
       "--virtual-time-budget=10000",
-      "--enable-logging=stderr", "--v=1",
+      // --enable-logging=stderr reports console messages, which is where CSP
+      // violations appear. NOT --v=1: that adds Chrome's full internal trace,
+      // measured at 663 KB for a single trivial page, and the flood can fill
+      // Node's stderr buffer and stall the process so stdout never completes.
+      // That is the real cause of the intermittent "dom bytes: 0" failures.
+      "--enable-logging=stderr",
       "--dump-dom", url,
     ]);
     // Kept SEPARATE deliberately. These were concatenated, and --v=1 logging is

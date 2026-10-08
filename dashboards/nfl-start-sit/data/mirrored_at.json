@@ -1,5 +1,13 @@
 {
- "mirrored_at": "2026-10-01T23:25:00+00:00",
  "source": "https://pjmerica.github.io/AI_Agent_work/nfl-props/",
- "note": "Written by scripts/pull_nfl_data.py. The files beside this one are mirrored from AI_Agent_work, which runs the scrapers. Do not edit them here -- the next run overwrites them."
+ "upstream_lastUpdated": {
+  "weekly.json": "2026-10-08T08:41:33+00:00",
+  "oddsapi.json": "2026-10-08T08:41:37+00:00",
+  "dk_td.json": "2026-10-01T14:29:15+00:00",
+  "gamelines.json": "2026-10-08T08:41:37+00:00",
+  "sleeper_players.json": "2026-10-08T08:41:37+00:00",
+  "clay.json": "2026-10-08T08:41:28+00:00",
+  "data.json": "2026-10-08T08:41:17+00:00"
+ },
+ "note": "Written by scripts/pull_nfl_data.py. The files beside this one are mirrored from AI_Agent_work, which runs the scrapers. Do not edit them here -- the next run overwrites them. These are the UPSTREAM timestamps, not the time of the mirror run: a run that changes nothing must leave this file byte-identical, or the workflow commits on every run."
 }
