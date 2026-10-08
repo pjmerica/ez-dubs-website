@@ -13,6 +13,9 @@ on:
     branches: [main]
     paths:
       - 'dashboards/**'
+      - 'index.html'
+      - 'contact.html'
+      - 'scripts/verify_cdn_integrity.test.js'
       - 'scripts/verify_nfl_pages.test.js'
       - 'scripts/pull_nfl_data.py'
       - 'package.json'
@@ -30,6 +33,10 @@ jobs:
         with:
           node-version: '22'
       - run: npm install --no-audit --no-fund
+      # No browser needed: it reads the markup. Cheap, so it runs first.
+      - name: Verify CDN script integrity
+        run: node scripts/verify_cdn_integrity.test.js
+
       - name: Verify the NFL dashboards
         run: node scripts/verify_nfl_pages.test.js
 
