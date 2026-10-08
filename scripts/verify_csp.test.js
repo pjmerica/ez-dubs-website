@@ -41,6 +41,27 @@ const server = http.createServer((req, res) => {
 // only the process we spawned orphans them: after a dozen runs there were 13 live
 // chrome.exe processes and new instances started returning nothing at all, which
 // looked like a flaky test rather than a leak.
+// Remove a throwaway profile directory once Chrome is done with it. Without this
+// they accumulate -- 270 of them was enough to stop Chrome starting at all, with
+// no output on stdout or stderr, which looks exactly like a broken page.
+function rmProfile(dir) {
+  if (!dir) return;
+  try { fs.rmSync(dir, { recursive: true, force: true, maxRetries: 3 }); }
+  catch { /* Chrome may still hold a handle; the startup sweep will get it */ }
+}
+
+// Clear profiles orphaned by an earlier run that was interrupted.
+function sweepOldProfiles() {
+  try {
+    const tmp = require("os").tmpdir();
+    for (const name of fs.readdirSync(tmp)) {
+      if (name.startsWith("chrome-test-")) {
+        rmProfile(require("path").join(tmp, name));
+      }
+    }
+  } catch { /* best effort */ }
+}
+
 function killTree(p) {
   if (!p || p.killed) return;
   try {
@@ -58,12 +79,13 @@ function killTree(p) {
 function run(url) {
   return new Promise((resolve) => {
     let out = "";
+    const profileDir = fs.mkdtempSync(
+      require("path").join(require("os").tmpdir(), "chrome-test-"));
     const p = spawn(CHROME, [
       "--headless=new", "--disable-gpu", "--no-sandbox",
       // A throwaway profile per run. Two headless instances sharing the default
       // profile fail in confusing, silent ways.
-      "--user-data-dir=" + fs.mkdtempSync(
-        require("path").join(require("os").tmpdir(), "chrome-test-")),
+      "--user-data-dir=" + profileDir,
       "--virtual-time-budget=10000",
       "--enable-logging=stderr", "--v=1",
       "--dump-dom", url,
@@ -76,7 +98,13 @@ function run(url) {
     p.stdout.on("data", (d) => (out += d));
     p.stderr.on("data", (d) => (log += d));
     const t = setTimeout(() => { killTree(p); }, 70000);
-    p.on("close", () => { clearTimeout(t); killTree(p); resolve({ dom: out, log }); });
+    p.on("close", () => {
+      clearTimeout(t);
+      // Resolve BEFORE sweeping the tree; killing on close can reap the pipe
+      // before Node has drained it, which empties the captured DOM.
+      resolve({ dom: out, log });
+      setImmediate(() => { killTree(p); rmProfile(profileDir); });
+    });
   });
 }
 
@@ -94,6 +122,7 @@ function run(url) {
     console.log("SKIP: " + msg + ". CSP was NOT verified.");
     process.exit(0);
   }
+  sweepOldProfiles();
   await new Promise((r) => server.listen(PORT, "127.0.0.1", r));
   PORT = server.address().port;
 
