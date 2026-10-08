@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="description" content="Which players to root for and against across all your Sleeper leagues, in one list." />
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://api.sleeper.app; font-src 'self'; base-uri 'self'; form-action 'none'">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Root For / Against · EZ Dubs Analytics</title>
@@ -138,7 +139,7 @@
         .field label {
             color: #99aabb; font-size: 0.82rem; font-weight: 600;
         }
-        .field label .hint { color: #6f7e8d; font-weight: 400; }
+        .field label .hint { color: #7f8c99; font-weight: 400; }
         .field input {
             padding: 10px 14px; border-radius: 8px; border: 1px solid #2a3a4a;
             background: #0f1923; color: #fff; font-size: 0.95rem;
@@ -158,7 +159,7 @@
 
         .calc-btn {
             padding: 12px 20px; border-radius: 8px; border: 0;
-            background: #4a9eff; color: #fff; font-weight: 700;
+            background: #4a9eff; color: #0f1923; font-weight: 700;
             font-size: 0.95rem; cursor: pointer; font-family: inherit;
             transition: opacity 0.15s;
             width: 100%;
@@ -225,7 +226,7 @@
             margin-bottom: 6px;
         }
         .leg-out .side.no { color: #f7b500; }
-        .leg-out .meta { color: #6f7e8d; font-size: 0.78rem; margin-top: 6px; }
+        .leg-out .meta { color: #7f8c99; font-size: 0.78rem; margin-top: 6px; }
         .leg-out .meta strong { color: #99aabb; font-weight: 700; }
 
         .summary-grid {
@@ -241,14 +242,14 @@
             font-variant-numeric: tabular-nums;
         }
         .summary-cell .l {
-            color: #6f7e8d; font-size: 0.72rem; font-weight: 700;
+            color: #7f8c99; font-size: 0.72rem; font-weight: 700;
             letter-spacing: 0.08em; text-transform: uppercase;
             margin-top: 2px;
         }
         .summary-cell.good .v { color: #00c46a; }
 
         .notes {
-            color: #6f7e8d; font-size: 0.78rem; line-height: 1.55;
+            color: #7f8c99; font-size: 0.78rem; line-height: 1.55;
             margin-top: 16px;
         }
         .notes strong { color: #99aabb; }
@@ -271,10 +272,10 @@
         }
         .site-footer {
             border-top: 1px solid #1e2d3d; padding: 28px 32px;
-            color: #556877; font-size: 0.82rem; margin-top: 48px;
+            color: #7f8c99; font-size: 0.82rem; margin-top: 48px;
         }
         .site-footer .disclaimer-line {
-            text-align: center; color: #6f7e8d; font-size: 0.78rem;
+            text-align: center; color: #7f8c99; font-size: 0.78rem;
             max-width: 720px; margin: 0 auto 14px; line-height: 1.5;
         }
         .site-footer .footer-row {
@@ -321,6 +322,17 @@
             }
             .site-nav .nav-dd-sub > .nav-dd-sub-btn { cursor: default; }
         }
+
+/* WCAG 2.2 (2.5.8) asks for a 24x24px minimum target. Measured in Chrome, these
+   footer and header links were 17-22px tall. Padding enlarges the hit area
+   without moving anything, because the line-height already leaves the room. */
+.site-footer a,
+footer a,
+.nav-right a,
+a.brand {
+  padding: 4px 2px;
+  display: inline-block;
+}
 </style>
 </head>
 <body>
@@ -333,17 +345,17 @@
         <div class="nav-tabs">
             <a href="../../">Home</a>
             <div class="nav-dd">
-                <button type="button" class="nav-dd-btn has-active">NFL <span class="caret">▾</span></button>
+                <button type="button" class="nav-dd-btn has-active">NFL <span class="caret" aria-hidden="true">▾</span></button>
                 <div class="nav-dd-menu">
                     <div class="nav-dd-sub">
-                        <button type="button" class="nav-dd-sub-btn">Best Ball <span class="caret">▸</span></button>
+                        <button type="button" class="nav-dd-sub-btn">Best Ball <span class="caret" aria-hidden="true">▸</span></button>
                         <div class="nav-dd-sub-menu">
                             <a href="../best-ball-prices/">Price Differences</a>
                             <a href="../best-ball-history/">History Risers/Fallers</a>
                         </div>
                     </div>
                     <div class="nav-dd-sub">
-                        <button type="button" class="nav-dd-sub-btn has-active">Redraft/In-Season <span class="caret">▸</span></button>
+                        <button type="button" class="nav-dd-sub-btn has-active">Redraft/In-Season <span class="caret" aria-hidden="true">▸</span></button>
                         <div class="nav-dd-sub-menu">
                             <a href="../nfl-start-sit/">Start/Sit</a>
                             <a href="../nfl-rooting/" class="active">Root For/Against</a>
@@ -352,7 +364,7 @@
                 </div>
             </div>
             <div class="nav-dd">
-                <button type="button" class="nav-dd-btn">Prediction Markets <span class="caret">▾</span></button>
+                <button type="button" class="nav-dd-btn">Prediction Markets <span class="caret" aria-hidden="true">▾</span></button>
                 <div class="nav-dd-menu">
                     <a href="../prediction-arbitrage/">Today's Arbitrage Picks</a>
                     <a href="./">Arb Calculator</a>
@@ -422,7 +434,7 @@
     <footer>
       Lines from DraftKings, FanDuel, BetMGM, Bovada, BetRivers, BetOnline,
       Fanatics and Kalshi &middot; data shared with the
-      <a href="../../" style="color:#6a6a8a">EZ Dubs Analytics</a>
+      <a href="../../" style="color: #7f8c99">EZ Dubs Analytics</a>
     </footer>
   </div>
 

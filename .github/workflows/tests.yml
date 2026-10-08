@@ -54,3 +54,11 @@ jobs:
         run: node scripts/verify_csp.test.js
         env:
           CHROME_BIN: ${{ steps.chrome.outputs.chrome-path }}
+
+      # Measures every page at 390, 360 and 320px inside an iframe, because
+      # headless Chrome clamps --window-size to a 500px minimum viewport and both
+      # layout bugs found here were invisible at 500px.
+      - name: Check mobile layout at phone widths
+        run: node scripts/verify_mobile_layout.test.js
+        env:
+          CHROME_BIN: ${{ steps.chrome.outputs.chrome-path }}

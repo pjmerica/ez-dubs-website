@@ -147,7 +147,7 @@
         .field label {
             color: #99aabb; font-size: 0.82rem; font-weight: 600;
         }
-        .field label .hint { color: #6f7e8d; font-weight: 400; }
+        .field label .hint { color: #7f8c99; font-weight: 400; }
         .field input {
             padding: 10px 14px; border-radius: 8px; border: 1px solid #2a3a4a;
             background: #0f1923; color: #fff; font-size: 0.95rem;
@@ -167,7 +167,7 @@
 
         .calc-btn {
             padding: 12px 20px; border-radius: 8px; border: 0;
-            background: #4a9eff; color: #fff; font-weight: 700;
+            background: #4a9eff; color: #0f1923; font-weight: 700;
             font-size: 0.95rem; cursor: pointer; font-family: inherit;
             transition: opacity 0.15s;
             width: 100%;
@@ -234,7 +234,7 @@
             margin-bottom: 6px;
         }
         .leg-out .side.no { color: #f7b500; }
-        .leg-out .meta { color: #6f7e8d; font-size: 0.78rem; margin-top: 6px; }
+        .leg-out .meta { color: #7f8c99; font-size: 0.78rem; margin-top: 6px; }
         .leg-out .meta strong { color: #99aabb; font-weight: 700; }
 
         .summary-grid {
@@ -250,14 +250,14 @@
             font-variant-numeric: tabular-nums;
         }
         .summary-cell .l {
-            color: #6f7e8d; font-size: 0.72rem; font-weight: 700;
+            color: #7f8c99; font-size: 0.72rem; font-weight: 700;
             letter-spacing: 0.08em; text-transform: uppercase;
             margin-top: 2px;
         }
         .summary-cell.good .v { color: #00c46a; }
 
         .notes {
-            color: #6f7e8d; font-size: 0.78rem; line-height: 1.55;
+            color: #7f8c99; font-size: 0.78rem; line-height: 1.55;
             margin-top: 16px;
         }
         .notes strong { color: #99aabb; }
@@ -280,10 +280,10 @@
         }
         .site-footer {
             border-top: 1px solid #1e2d3d; padding: 28px 32px;
-            color: #556877; font-size: 0.82rem; margin-top: 48px;
+            color: #7f8c99; font-size: 0.82rem; margin-top: 48px;
         }
         .site-footer .disclaimer-line {
-            text-align: center; color: #6f7e8d; font-size: 0.78rem;
+            text-align: center; color: #7f8c99; font-size: 0.78rem;
             max-width: 720px; margin: 0 auto 14px; line-height: 1.5;
         }
         .site-footer .footer-row {
@@ -330,6 +330,17 @@
             }
             .site-nav .nav-dd-sub > .nav-dd-sub-btn { cursor: default; }
         }
+
+/* WCAG 2.2 (2.5.8) asks for a 24x24px minimum target. Measured in Chrome, these
+   footer and header links were 17-22px tall. Padding enlarges the hit area
+   without moving anything, because the line-height already leaves the room. */
+.site-footer a,
+footer a,
+.nav-right a,
+a.brand {
+  padding: 4px 2px;
+  display: inline-block;
+}
 </style>
 </head>
 <body>
@@ -342,17 +353,17 @@
         <div class="nav-tabs">
             <a href="../../">Home</a>
             <div class="nav-dd">
-                <button type="button" class="nav-dd-btn">NFL <span class="caret">▾</span></button>
+                <button type="button" class="nav-dd-btn">NFL <span class="caret" aria-hidden="true">▾</span></button>
                 <div class="nav-dd-menu">
                     <div class="nav-dd-sub">
-                        <button type="button" class="nav-dd-sub-btn">Best Ball <span class="caret">▸</span></button>
+                        <button type="button" class="nav-dd-sub-btn">Best Ball <span class="caret" aria-hidden="true">▸</span></button>
                         <div class="nav-dd-sub-menu">
                             <a href="../best-ball-prices/">Price Differences</a>
                             <a href="../best-ball-history/">History Risers/Fallers</a>
                         </div>
                     </div>
                     <div class="nav-dd-sub">
-                        <button type="button" class="nav-dd-sub-btn">Redraft/In-Season <span class="caret">▸</span></button>
+                        <button type="button" class="nav-dd-sub-btn">Redraft/In-Season <span class="caret" aria-hidden="true">▸</span></button>
                         <div class="nav-dd-sub-menu">
                             <a href="../nfl-start-sit/">Start/Sit</a>
                             <a href="../nfl-rooting/">Root For/Against</a>
@@ -361,7 +372,7 @@
                 </div>
             </div>
             <div class="nav-dd">
-                <button type="button" class="nav-dd-btn has-active">Prediction Markets <span class="caret">▾</span></button>
+                <button type="button" class="nav-dd-btn has-active">Prediction Markets <span class="caret" aria-hidden="true">▾</span></button>
                 <div class="nav-dd-menu">
                     <a href="../prediction-arbitrage/">Today's Arbitrage Picks</a>
                     <a href="./" class="active">Arb Calculator</a>
@@ -387,41 +398,41 @@
             </p>
             <div class="row">
                 <div class="field">
-                    <label>Side A label <span class="hint">(optional)</span></label>
+                    <label for="labelA">Side A label <span class="hint">(optional)</span></label>
                     <input type="text" class="text" id="labelA" placeholder="e.g. Kalshi">
                 </div>
                 <div class="field">
-                    <label>Side B label <span class="hint">(optional)</span></label>
+                    <label for="labelB">Side B label <span class="hint">(optional)</span></label>
                     <input type="text" class="text" id="labelB" placeholder="e.g. Polymarket">
                 </div>
             </div>
             <div class="row">
                 <div class="field">
-                    <label>Side A YES price <span class="hint">(0–1)</span></label>
+                    <label for="ayes">Side A YES price <span class="hint">(0–1)</span></label>
                     <input type="number" id="ayes" min="0" max="1" step="0.01" placeholder="0.42" value="0.42">
                     <span class="field-err" id="err-ayes"></span>
                 </div>
                 <div class="field">
-                    <label>Side B YES price <span class="hint">(0–1)</span></label>
+                    <label for="byes">Side B YES price <span class="hint">(0–1)</span></label>
                     <input type="number" id="byes" min="0" max="1" step="0.01" placeholder="0.55">
                     <span class="field-err" id="err-byes"></span>
                 </div>
             </div>
             <div class="row">
                 <div class="field">
-                    <label>Side A NO price <span class="hint">(0–1)</span></label>
+                    <label for="ano">Side A NO price <span class="hint">(0–1)</span></label>
                     <input type="number" id="ano"  min="0" max="1" step="0.01" placeholder="0.58">
                     <span class="field-err" id="err-ano"></span>
                 </div>
                 <div class="field">
-                    <label>Side B NO price <span class="hint">(0–1)</span></label>
+                    <label for="bno">Side B NO price <span class="hint">(0–1)</span></label>
                     <input type="number" id="bno"  min="0" max="1" step="0.01" placeholder="0.45" value="0.45">
                     <span class="field-err" id="err-bno"></span>
                 </div>
             </div>
             <div class="row">
                 <div class="field">
-                    <label>Total bankroll <span class="hint">($)</span></label>
+                    <label for="bankroll">Total bankroll <span class="hint">($)</span></label>
                     <input type="number" id="bankroll" min="0" step="1" value="100">
                     <span class="field-err" id="err-bankroll"></span>
                 </div>

@@ -150,7 +150,7 @@
 
         .section-label {
             display: flex; align-items: center; gap: 12px;
-            color: #6f7e8d; font-size: 0.78rem; font-weight: 700;
+            color: #7f8c99; font-size: 0.78rem; font-weight: 700;
             letter-spacing: 0.16em; text-transform: uppercase;
             margin-bottom: 18px;
         }
@@ -206,10 +206,10 @@
         /* Footer */
         footer {
             border-top: 1px solid #1e2d3d; padding: 28px 32px;
-            color: #556877; font-size: 0.82rem;
+            color: #7f8c99; font-size: 0.82rem;
         }
         footer .disclaimer-line {
-            text-align: center; color: #6f7e8d; font-size: 0.78rem;
+            text-align: center; color: #7f8c99; font-size: 0.78rem;
             max-width: 720px; margin: 0 auto 14px; line-height: 1.5;
         }
         footer .footer-row {
@@ -229,9 +229,9 @@
             font-size: 1.5rem; font-weight: 800; color: #fff;
             letter-spacing: -0.01em;
         }
-        .reviews-header .tm { color: #6f7e8d; font-size: 0.95rem; font-weight: 600; }
+        .reviews-header .tm { color: #7f8c99; font-size: 0.95rem; font-weight: 600; }
         .reviews-sub {
-            color: #6f7e8d; font-size: 0.85rem; margin-bottom: 24px;
+            color: #7f8c99; font-size: 0.85rem; margin-bottom: 24px;
         }
         .review-grid {
             display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -298,6 +298,17 @@
             }
             .site-nav .nav-dd-sub > .nav-dd-sub-btn { cursor: default; }
         }
+
+/* WCAG 2.2 (2.5.8) asks for a 24x24px minimum target. Measured in Chrome, these
+   footer and header links were 17-22px tall. Padding enlarges the hit area
+   without moving anything, because the line-height already leaves the room. */
+.site-footer a,
+footer a,
+.nav-right a,
+a.brand {
+  padding: 4px 2px;
+  display: inline-block;
+}
 </style>
 </head>
 <body>
@@ -310,17 +321,17 @@
         <div class="nav-tabs">
             <a href="./" class="active">Home</a>
             <div class="nav-dd">
-                <button type="button" class="nav-dd-btn">NFL <span class="caret">▾</span></button>
+                <button type="button" class="nav-dd-btn">NFL <span class="caret" aria-hidden="true">▾</span></button>
                 <div class="nav-dd-menu">
                     <div class="nav-dd-sub">
-                        <button type="button" class="nav-dd-sub-btn">Best Ball <span class="caret">▸</span></button>
+                        <button type="button" class="nav-dd-sub-btn">Best Ball <span class="caret" aria-hidden="true">▸</span></button>
                         <div class="nav-dd-sub-menu">
                             <a href="dashboards/best-ball-prices/">Price Differences</a>
                             <a href="dashboards/best-ball-history/">History Risers/Fallers</a>
                         </div>
                     </div>
                     <div class="nav-dd-sub">
-                        <button type="button" class="nav-dd-sub-btn">Redraft/In-Season <span class="caret">▸</span></button>
+                        <button type="button" class="nav-dd-sub-btn">Redraft/In-Season <span class="caret" aria-hidden="true">▸</span></button>
                         <div class="nav-dd-sub-menu">
                             <a href="dashboards/nfl-start-sit/">Start/Sit</a>
                             <a href="dashboards/nfl-rooting/">Root For/Against</a>
@@ -329,7 +340,7 @@
                 </div>
             </div>
             <div class="nav-dd">
-                <button type="button" class="nav-dd-btn">Prediction Markets <span class="caret">▾</span></button>
+                <button type="button" class="nav-dd-btn">Prediction Markets <span class="caret" aria-hidden="true">▾</span></button>
                 <div class="nav-dd-menu">
                     <a href="dashboards/prediction-arbitrage/">Today's Arbitrage Picks</a>
                     <a href="dashboards/arb-calculator/">Arb Calculator</a>

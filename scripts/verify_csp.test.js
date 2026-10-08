@@ -59,14 +59,26 @@ function rmProfile(dir) {
 // browser dozens of times per run poisons its own environment, so it has to
 // clean up after the browser too. Deleting them fixes the failure immediately.
 function sweepOldProfiles() {
+  // Only remove what is genuinely stale. An earlier version deleted every
+  // matching directory, including ones a Chrome process was using right then --
+  // which produced exactly the "no output at all" failure the sweep exists to
+  // prevent, and made it look intermittent because whichever harness ran second
+  // would delete the other's working directory.
+  //
+  // Ten minutes is far longer than any launch here takes, so anything older
+  // cannot belong to a live browser. Newer directories are left for a later run,
+  // which still stops the unbounded growth that reached 270.
+  const STALE_MS = 10 * 60 * 1000;
   try {
     const tmp = require("os").tmpdir();
     const path2 = require("path");
+    const now = Date.now();
     for (const name of fs.readdirSync(tmp)) {
-      if (name.startsWith("chrome-test-") || name.startsWith("scoped_dir")) {
-        // rmSync with force ignores a directory still locked by a live browser.
-        rmProfile(path2.join(tmp, name));
-      }
+      if (!name.startsWith("chrome-test-") && !name.startsWith("scoped_dir")) continue;
+      const full = path2.join(tmp, name);
+      try {
+        if (now - fs.statSync(full).mtimeMs > STALE_MS) rmProfile(full);
+      } catch { /* vanished or inaccessible; nothing to do */ }
     }
   } catch { /* best effort */ }
 }
