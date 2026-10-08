@@ -37,6 +37,11 @@ jobs:
       - name: Verify CDN script integrity
         run: node scripts/verify_cdn_integrity.test.js
 
+      # The nav and footer are copy-pasted into all 8 pages, so a link can rot on
+      # one while the rest stay fine. No browser needed to check that.
+      - name: Verify the nav
+        run: node scripts/verify_nav.test.js
+
       - name: Verify the NFL dashboards
         run: node scripts/verify_nfl_pages.test.js
 
