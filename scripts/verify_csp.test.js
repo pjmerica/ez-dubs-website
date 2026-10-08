@@ -50,13 +50,22 @@ function rmProfile(dir) {
   catch { /* Chrome may still hold a handle; the startup sweep will get it */ }
 }
 
-// Clear profiles orphaned by an earlier run that was interrupted.
+// Clear temp directories left behind by earlier runs -- ours AND Chrome's own.
+//
+// `scoped_dir*` is Chrome's, not ours: it creates them per launch and does not
+// reliably remove them when run headless in quick succession. Once about 150
+// accumulate, headless Chrome exits 0 and writes NOTHING to stdout or stderr,
+// which is indistinguishable from a broken page. A harness that launches a
+// browser dozens of times per run poisons its own environment, so it has to
+// clean up after the browser too. Deleting them fixes the failure immediately.
 function sweepOldProfiles() {
   try {
     const tmp = require("os").tmpdir();
+    const path2 = require("path");
     for (const name of fs.readdirSync(tmp)) {
-      if (name.startsWith("chrome-test-")) {
-        rmProfile(require("path").join(tmp, name));
+      if (name.startsWith("chrome-test-") || name.startsWith("scoped_dir")) {
+        // rmSync with force ignores a directory still locked by a live browser.
+        rmProfile(path2.join(tmp, name));
       }
     }
   } catch { /* best effort */ }
