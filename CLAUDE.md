@@ -91,6 +91,23 @@ on every single run.
 Do not remove those rules without re-checking that a no-op `pull_nfl_data.py` run
 leaves `git status` clean.
 
+## UI and accessibility (audited 2026-10-08)
+
+See `dashboards/UI_AUDIT.md` for the full run. The short version:
+
+- 77 text colours were below the WCAG AA contrast floor and are fixed. The muted
+  greys are now **#7f8c99** (on the page background) and **#8a97a5** (on the
+  lighter card). Do not reintroduce #555, #666, #6f7e8d or #6a6a8a for text.
+- Primary buttons use **dark text (#0f1923) on the brand accent #4a9eff**, not
+  white. White on that accent is 2.75:1 and fails.
+- The nav, the footer and their styles are **eight independent copies** -- about
+  39 KB of duplicated CSS -- because there is no template or build step. A nav
+  change means eight edits. `scripts/verify_nav.test.js` asserts they stay in
+  sync; extracting them into one stylesheet is a known, unstarted refactor.
+- `frame-ancestors` in a `<meta>` tag does nothing. Chrome ignores it there, and
+  GitHub Pages cannot set response headers.
+
+
 ## Storage model
 
 Two long-format CSVs (one per market) hold all per-day ADPs:
