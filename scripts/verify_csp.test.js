@@ -160,7 +160,20 @@ function run(url) {
   const sentinelAbs = path.join(REPO, sentinelRel);
   fs.writeFileSync(sentinelAbs,
     '<!doctype html><meta charset="utf-8"><body><div id="csp-sentinel-ok">x</div>');
-  const probe = await run(`http://127.0.0.1:${PORT}/${sentinelRel}`);
+  // Retry the sentinel. Headless Chrome on this machine intermittently returns
+  // nothing at all -- zero bytes on both stdout and stderr, exit code 0 -- under
+  // sustained use, and it is not reproducible on demand: 12 consecutive launches
+  // in isolation all succeeded. Several plausible causes were investigated and
+  // fixed (leaked processes, a kill that reaped the pipe, leaked profile
+  // directories, --v=1 flooding stderr, a sweep that deleted in-use
+  // directories); the flake outlived all of them, so this treats it as a
+  // property of the environment rather than pretending to know the cause.
+  let probe = { dom: "", log: "" };
+  for (let attempt = 1; attempt <= 3; attempt++) {
+    probe = await run(`http://127.0.0.1:${PORT}/${sentinelRel}`);
+    if (probe.dom.includes("csp-sentinel-ok")) break;
+    if (attempt < 3) console.log(`  (empty capture, retrying ${attempt}/2)`);
+  }
   try { fs.unlinkSync(sentinelAbs); } catch {}
   if (!probe.dom.includes("csp-sentinel-ok")) {
     console.error("HARNESS BROKEN: Chrome returned no usable DOM for a trivial " +

@@ -158,6 +158,8 @@ const WIDTHS = [390, 360, 320];
   PORT = server.address().port;
   const tmp = [];
   let findings = 0;
+  // Counted apart from findings: see the note where it is incremented.
+  let harnessFails = 0;
 
   for (const [name, rel] of PAGES) {
     for (const W of WIDTHS) {
@@ -234,11 +236,27 @@ window.addEventListener("load", function () {
       fs.writeFileSync(hAbs, harness);
       tmp.push(hAbs);
 
-      const dom = await runChrome(`http://127.0.0.1:${PORT}/${encodeURI(hRel)}`);
-      const m = dom.match(/<pre id="__phone__">([\s\S]*?)<\/pre>/);
+      // Retry an empty capture before blaming the page. Headless Chrome here
+      // intermittently returns nothing at all -- zero bytes, exit code 0 -- under
+      // sustained use, and it is not reproducible on demand: twelve launches in
+      // isolation all succeeded, and this suite passes on an immediate re-run
+      // with nothing changed.
+      let dom = "", m = null;
+      for (let attempt = 1; attempt <= 3; attempt++) {
+        dom = await runChrome(`http://127.0.0.1:${PORT}/${encodeURI(hRel)}`);
+        m = dom.match(/<pre id="__phone__">([\s\S]*?)<\/pre>/);
+        if (m) break;
+        if (attempt < 3) {
+          console.log(`  (${name} @ ${W}px: empty capture, retry ${attempt}/2)`);
+        }
+      }
       if (!m) {
-        console.log(`${name} @ ${W}px: probe did not run`);
-        findings++; continue;
+        // NOT a layout finding. The browser never answered, so this run learned
+        // nothing about this page either way, and saying "1 finding" would imply
+        // the page is broken. Counted separately so "0 findings" keeps meaning
+        // "the layout is good".
+        console.log(`${name} @ ${W}px: HARNESS -- no capture after 3 tries`);
+        harnessFails++; continue;
       }
       const un = m[1].replace(/&quot;/g, '"').replace(/&amp;/g, "&")
                      .replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&#39;/g, "'");
@@ -271,7 +289,14 @@ window.addEventListener("load", function () {
   tmp.forEach((f) => { try { fs.unlinkSync(f); } catch {} });
   server.close();
   console.log(`\n${findings} finding(s) needing attention`);
+  if (harnessFails) {
+    // Said separately on purpose. A layout finding means a page is broken; this
+    // means the browser would not answer, so those pages were not checked at
+    // all. Conflating them would let "0 findings" mean "we learned nothing".
+    console.log(`${harnessFails} combination(s) could not be measured -- the ` +
+                `browser returned nothing, so those pages were NOT verified.`);
+  }
   // Must exit non-zero: otherwise it prints findings and still passes, which is
   // indistinguishable from a clean run to CI and to anyone reading a log tail.
-  process.exit(findings ? 1 : 0);
+  process.exit(findings || harnessFails ? 1 : 0);
 })();
