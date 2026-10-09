@@ -1,35 +1,12 @@
 {
  "source": "The Odds API",
  "region": "us",
- "lastUpdated": "2026-10-09T02:40:20+00:00",
- "gameCount": 27,
- "quotaUsed": "500",
- "quotaRemaining": "19500",
+ "lastUpdated": "2026-10-09T19:11:10+00:00",
+ "gameCount": 26,
+ "quotaUsed": "572",
+ "quotaRemaining": "19428",
  "note": "Median spread and total across books. Implied team total = total/2 - spread/2. Used to score D/ST and K, which have no prop market.",
  "games": [
-  {
-   "matchup": "TBDAL",
-   "home": "DAL",
-   "away": "TB",
-   "homeName": "Dallas Cowboys",
-   "awayName": "Tampa Bay Buccaneers",
-   "kickoff": "2026-10-09T00:15:55Z",
-   "total": 48.5,
-   "homeSpread": 9.5,
-   "teams": {
-    "DAL": {
-     "implied": 19.5,
-     "spread": 9.5,
-     "oppImplied": 29.0
-    },
-    "TB": {
-     "implied": 29.0,
-     "spread": -9.5,
-     "oppImplied": 19.5
-    }
-   },
-   "bookCount": 8
-  },
   {
    "matchup": "PHIJAC",
    "home": "JAC",
@@ -83,18 +60,18 @@
    "homeName": "Miami Dolphins",
    "awayName": "Cincinnati Bengals",
    "kickoff": "2026-10-11T17:00:00Z",
-   "total": 42.5,
+   "total": 43.5,
    "homeSpread": 6.5,
    "teams": {
     "MIA": {
-     "implied": 18.0,
+     "implied": 18.5,
      "spread": 6.5,
-     "oppImplied": 24.5
+     "oppImplied": 25.0
     },
     "CIN": {
-     "implied": 24.5,
+     "implied": 25.0,
      "spread": -6.5,
-     "oppImplied": 18.0
+     "oppImplied": 18.5
     }
    },
    "bookCount": 11
@@ -107,17 +84,17 @@
    "awayName": "Cleveland Browns",
    "kickoff": "2026-10-11T17:00:00Z",
    "total": 39.5,
-   "homeSpread": -2.0,
+   "homeSpread": -2.5,
    "teams": {
     "NYJ": {
-     "implied": 20.75,
-     "spread": -2.0,
-     "oppImplied": 18.75
+     "implied": 21.0,
+     "spread": -2.5,
+     "oppImplied": 18.5
     },
     "CLE": {
-     "implied": 18.75,
-     "spread": 2.0,
-     "oppImplied": 20.75
+     "implied": 18.5,
+     "spread": 2.5,
+     "oppImplied": 21.0
     }
    },
    "bookCount": 11
@@ -221,18 +198,18 @@
    "homeName": "Washington Commanders",
    "awayName": "New York Giants",
    "kickoff": "2026-10-11T17:00:00Z",
-   "total": 42.0,
+   "total": 41.5,
    "homeSpread": -4.0,
    "teams": {
     "WAS": {
-     "implied": 23.0,
+     "implied": 22.75,
      "spread": -4.0,
-     "oppImplied": 19.0
+     "oppImplied": 18.75
     },
     "NYG": {
-     "implied": 19.0,
+     "implied": 18.75,
      "spread": 4.0,
-     "oppImplied": 23.0
+     "oppImplied": 22.75
     }
    },
    "bookCount": 11
@@ -360,17 +337,17 @@
    "awayName": "Seattle Seahawks",
    "kickoff": "2026-10-16T00:15:00Z",
    "total": 42.25,
-   "homeSpread": 1.5,
+   "homeSpread": 2.0,
    "teams": {
     "DEN": {
-     "implied": 20.38,
-     "spread": 1.5,
-     "oppImplied": 21.88
+     "implied": 20.12,
+     "spread": 2.0,
+     "oppImplied": 22.12
     },
     "SEA": {
-     "implied": 21.88,
-     "spread": -1.5,
-     "oppImplied": 20.38
+     "implied": 22.12,
+     "spread": -2.0,
+     "oppImplied": 20.12
     }
    },
    "bookCount": 8
@@ -405,18 +382,18 @@
    "homeName": "Atlanta Falcons",
    "awayName": "Chicago Bears",
    "kickoff": "2026-10-18T17:00:00Z",
-   "total": 48.5,
+   "total": 48.25,
    "homeSpread": 1.5,
    "teams": {
     "ATL": {
-     "implied": 23.5,
+     "implied": 23.38,
      "spread": 1.5,
-     "oppImplied": 25.0
+     "oppImplied": 24.88
     },
     "CHI": {
-     "implied": 25.0,
+     "implied": 24.88,
      "spread": -1.5,
-     "oppImplied": 23.5
+     "oppImplied": 23.38
     }
    },
    "bookCount": 8
