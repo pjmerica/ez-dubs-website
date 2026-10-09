@@ -347,6 +347,26 @@ a.brand {
   padding: 4px 2px;
   display: inline-block;
 }
+
+        /* The 2026 Best Ball season closed on Sept 4 and these pages are a
+           snapshot of Sept 19. The date alone does not tell a visitor whether
+           the season ended or the pipeline broke, so say which. Styled as
+           information, not an error: these are the final numbers, not stale
+           ones. */
+        .season-closed {
+          max-width: 960px;
+          margin: 0 auto 16px;
+          padding: 10px 14px;
+          border: 1px solid #2c3a4a;
+          border-left: 3px solid #4a9eff;
+          border-radius: 8px;
+          background: #131f2c;
+          color: #c8d4e0;
+          font-size: 0.88rem;
+          line-height: 1.55;
+        }
+        .season-closed strong { color: #fff; }
+        .season-closed a { color: #4a9eff; }
 </style>
 </head>
 <body>
@@ -392,6 +412,13 @@ a.brand {
     </nav>
     <div class="page">
     <h1>Best Ball History Risers/Fallers</h1>
+    <p class="season-closed">
+      <strong>The 2026 Best Ball season is over.</strong> Drafts closed on
+      September&nbsp;4, so these are the final ADPs rather than a live feed &mdash;
+      the daily pull is switched off until next season. For in-season tools, see
+      <a href="../nfl-start-sit/">Start/Sit</a> or
+      <a href="../nfl-rooting/">Root For/Against</a>.
+    </p>
     <p class="subtitle">Biggest ADP movers on DraftKings and Underdog over a chosen lookback window | 2026 Best Ball Season</p>
 
     <div style="display:flex;justify-content:center;margin-bottom:20px;">

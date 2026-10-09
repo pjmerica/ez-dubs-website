@@ -640,6 +640,26 @@ a.brand {
           }
           .rec-val { min-width: 0; }
         }
+
+        /* The 2026 Best Ball season closed on Sept 4 and these pages are a
+           snapshot of Sept 19. The date alone does not tell a visitor whether
+           the season ended or the pipeline broke, so say which. Styled as
+           information, not an error: these are the final numbers, not stale
+           ones. */
+        .season-closed {
+          max-width: 960px;
+          margin: 0 auto 16px;
+          padding: 10px 14px;
+          border: 1px solid #2c3a4a;
+          border-left: 3px solid #4a9eff;
+          border-radius: 8px;
+          background: #131f2c;
+          color: #c8d4e0;
+          font-size: 0.88rem;
+          line-height: 1.55;
+        }
+        .season-closed strong { color: #fff; }
+        .season-closed a { color: #4a9eff; }
 </style>
 </head>
 <body>
@@ -688,6 +708,13 @@ a.brand {
     <p class="subtitle">DraftKings · Underdog | 2026 Best Ball Season</p>
     <p class="updated">Last updated: <span id="last-updated">loading<span class="inline-spinner"></span></span></p>
     <p class="stale-note" id="stale-note" style="display:none;"></p>
+    <p class="season-closed">
+      <strong>The 2026 Best Ball season is over.</strong> Drafts closed on
+      September&nbsp;4, so these are the final ADPs rather than a live feed &mdash;
+      the daily pull is switched off until next season. For in-season tools, see
+      <a href="../nfl-start-sit/">Start/Sit</a> or
+      <a href="../nfl-rooting/">Root For/Against</a>.
+    </p>
 
     <div class="tabs">
         <button class="tab-btn active" data-tab="arbitrage">Table view</button>
