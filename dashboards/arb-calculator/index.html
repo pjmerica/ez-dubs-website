@@ -341,6 +341,22 @@ a.brand {
   padding: 4px 2px;
   display: inline-block;
 }
+
+        /* Shown when the computed return is implausibly large. Deliberately not
+           styled like an error -- the arithmetic is right -- but it must not read
+           like part of the good news either, because the cells above it say
+           "Guaranteed profit" and a 3000% arb does not exist on a real book. */
+        .implausible-note {
+          margin: 14px 0 0;
+          padding: 10px 12px;
+          border: 1px dashed rgba(255, 107, 107, 0.55);
+          border-radius: 8px;
+          background: rgba(255, 107, 107, 0.07);
+          color: #ffc9c9;
+          font-size: 0.84rem;
+          line-height: 1.55;
+        }
+        .implausible-note strong { color: #ff8f8f; }
 </style>
 </head>
 <body>
@@ -567,8 +583,13 @@ a.brand {
             let anyRangeBad = false;
             priceFields.forEach(([id, v]) => {
                 if (v === null) return;
-                if (!isFinite(v) || v < 0 || v > 1) {
-                    setFieldError(id, 'Must be between 0 and 1.');
+                // Zero is not a price. A contract quoted at 0 means the book is
+                // empty on that side (or it is a typo), and the trade cannot be
+                // filled at that number -- but the arb maths happily turns it
+                // into "100% return", which reads as found money. 1.0 is
+                // likewise excluded: a certainty has no counterparty.
+                if (!isFinite(v) || v <= 0 || v >= 1) {
+                    setFieldError(id, 'Must be between 0 and 1, exclusive. A price of 0 or 1 means there is no market on that side.');
                     anyRangeBad = true;
                 }
             });
@@ -697,6 +718,16 @@ a.brand {
                         <div class="summary-cell good"><div class="v">${fmtMoney(best.profit)}</div><div class="l">Guaranteed profit</div></div>
                         <div class="summary-cell good"><div class="v">${fmtPct(best.returnPct)}</div><div class="l">Return on bankroll</div></div>
                     </div>
+                    ${best.returnPct > 0.25 ? `
+                    <p class="implausible-note">
+                        <strong>A ${fmtPct(best.returnPct)} return is almost certainly not real.</strong>
+                        Two-leg arbs on liquid markets pay a few percent. A number this
+                        large usually means the two legs are not opposite outcomes of the
+                        same question, or one side has no depth at the price shown. Check
+                        both rules texts and the order book before staking anything &mdash;
+                        &ldquo;guaranteed&rdquo; above assumes the prices are real and
+                        fillable.
+                    </p>` : ''}
                 </div>`;
         }
 
