@@ -18,7 +18,7 @@ What to do when the daily auto-pull breaks and the user provides hand-pulled CSV
 
 This is the **canonical procedure** — when the user says some variant of "the pull failed, here are the manual CSVs," Claude MUST follow this file rather than improvising. Future Claude sessions: read this end-to-end before touching any data.
 
-**Note (2026-07-31):** FFPC and Drafters were archived. The site now only tracks DK and UD. The old ffpc_adp_history.csv + drafters_adp_history.csv are in `_local/archive/` if we ever bring those sources back. Any references below to FFPC or Drafters in the CSV / dashboard / puller code have been removed. If a manual upload day ever includes an FFPC or Drafters file, flag it and ask the user whether they want to bring those sources back into the site before proceeding.
+**Note (2026-07-31):** FFPC and Drafters were archived. The site now only tracks DK and UD. The old ffpc_adp_history.csv + drafters_adp_history.csv are in `dashboards/best-ball-prices/archive/` if we ever bring those sources back. Any references below to FFPC or Drafters in the CSV / dashboard / puller code have been removed. If a manual upload day ever includes an FFPC or Drafters file, flag it and ask the user whether they want to bring those sources back into the site before proceeding.
 
 ---
 

@@ -39,7 +39,9 @@ LATEST_SNAPSHOT   = DASHBOARD_DIR / "latest.json"
 # FFPC and Drafters were dropped from the site on 2026-07-31 -- their columns
 # in the upstream sheet had been byte-for-byte frozen for 3+ months. The old
 # ffpc_adp_history.csv + drafters_adp_history.csv are archived in
-# _local/archive/ and can be restored if we ever bring those sources back.
+# dashboards/best-ball-prices/archive/ (committed, with a README noting that
+# FFPC last moved 2026-07-07 and Drafters 2026-07-28) and can be restored if we
+# ever bring those sources back.
 
 # Sentinel floor values for "undrafted" rows. Anything at or above the floor
 # is treated as no real ADP. Matches the constants in the dashboard JS.

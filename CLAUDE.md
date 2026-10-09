@@ -55,9 +55,9 @@ If a future session sees this file and doesn't understand why `pull_adp.py` look
 
 ## FFPC and Drafters were archived (2026-07-31)
 
-The site used to track four sources (DK, UD, FFPC, Drafters). FFPC and Drafters were archived on 2026-07-31 — both had been byte-for-byte frozen upstream for 3+ months. The archived CSVs live in `_local/archive/`. Everything else (puller, dashboards, workflow YAML, docs, notebook) was cleaned up to only handle DK + UD.
+The site used to track four sources (DK, UD, FFPC, Drafters). FFPC and Drafters were archived on 2026-07-31, but their numbers had already stopped moving before that: **FFPC last changed 2026-07-07** and **Drafters 2026-07-28**, so the final weeks in each file are carried-forward duplicates rather than market data. FFPC and Drafters were archived on 2026-07-31 — both had been byte-for-byte frozen upstream for 3+ months. The archived CSVs live in `dashboards/best-ball-prices/archive/`. Everything else (puller, dashboards, workflow YAML, docs, notebook) was cleaned up to only handle DK + UD.
 
-If you're bringing them back: (1) restore `ffpc_adp_history.csv` and `drafters_adp_history.csv` from `_local/archive/`, (2) add their entries back to `SOURCES` / `SOURCE_COLORS` / `ADP_FLOORS` / `source_cols` / `_REQUIRED_COLS` across the touched files, (3) restore the source-picker UI on both dashboards from git history (~pre commit `bfc73fb`), (4) restore the "All 4 markets" tab from git history.
+If you're bringing them back: (1) restore `ffpc_adp_history.csv` and `drafters_adp_history.csv` from `dashboards/best-ball-prices/archive/`, (2) add their entries back to `SOURCES` / `SOURCE_COLORS` / `ADP_FLOORS` / `source_cols` / `_REQUIRED_COLS` across the touched files, (3) restore the source-picker UI on both dashboards from git history (~pre commit `bfc73fb`), (4) restore the "All 4 markets" tab from git history.
 
 ## Do not blind-pop the stash (noted 2026-10-02)
 
@@ -69,7 +69,7 @@ stash@{0}: WIP on main: Audit pass: fix stale copy after 4-source expansion
 
 It holds ~960 lines of Best Ball ADP rows, including
 `drafters_adp_history.csv` -- a source that was **archived on 2026-07-31** and
-whose CSVs were deliberately moved to `_local/archive/`. The Best Ball CSVs were
+whose CSVs were deliberately moved to `dashboards/best-ball-prices/archive/`. The Best Ball CSVs were
 also **trimmed and frozen at 2026-09-04**.
 
 So popping it would resurrect an archived source and un-trim frozen history, both
@@ -207,7 +207,7 @@ Each manual day historically gets its own dated `scripts/one_off_manual_snapshot
 `_local/` is gitignored and exists for QC and archives. Do not commit anything under it. Do not "clean up" real state into `_local/`.
 
 - `_local/adp-daily/` — raw sheet QC dumps written by the puller.
-- `_local/archive/` — `ffpc_adp_history.csv` + `drafters_adp_history.csv` from before the 2026-07-31 archive cleanup.
+- `dashboards/best-ball-prices/archive/` — `ffpc_adp_history.csv` + `drafters_adp_history.csv` from before the 2026-07-31 archive cleanup.
 - `_local/manual-snapshots/` — the raw drop CSVs from every manual upload day, prefixed by MMDD.
 
 ## Repo facts

@@ -26,8 +26,10 @@ dashboards/best-ball-prices/ud_adp_history.csv
 ```
 
 FFPC and Drafters were dropped on 2026-07-31 — their columns in the upstream
-sheet had been byte-for-byte frozen for three months. Their CSVs are archived in
-`_local/archive/` (gitignored) and `scripts/pull_adp.py` still knows how to write
+sheet had been byte-for-byte frozen for three months. Their CSVs are committed in
+`dashboards/best-ball-prices/archive/`, with a README recording that FFPC's
+numbers actually stopped moving on 2026-07-07 and Drafters' on 2026-07-28 even
+though both files run to 07-31. `scripts/pull_adp.py` still knows how to write
 them if those sources ever come back.
 
 ## Redraft / In-Season (NFL)
