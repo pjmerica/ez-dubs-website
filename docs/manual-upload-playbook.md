@@ -2,6 +2,20 @@
 
 What to do when the daily auto-pull breaks and the user provides hand-pulled CSVs from DK / UD.
 
+> ## Status: DORMANT (noted 2026-10-08)
+>
+> **This procedure is not currently in use.** The 2026 Best Ball season closed on
+> 2026-09-04, the Best Ball dashboards are frozen at that snapshot, and the daily
+> cron in `.github/workflows/daily-adp-pull.yml` is commented out -- so there is no
+> pull to fail and no failure email to receive. The three workflow failures visible
+> in the Actions history are the last runs before the cron was disabled, not a live
+> problem.
+>
+> Everything below remains correct for the pipeline it describes and should be
+> followed as written **if** the schedule is reactivated for 2027. Until then, a
+> request to process manual CSVs is unexpected: confirm with the user what they
+> actually want before appending rows to a frozen history.
+
 This is the **canonical procedure** — when the user says some variant of "the pull failed, here are the manual CSVs," Claude MUST follow this file rather than improvising. Future Claude sessions: read this end-to-end before touching any data.
 
 **Note (2026-07-31):** FFPC and Drafters were archived. The site now only tracks DK and UD. The old ffpc_adp_history.csv + drafters_adp_history.csv are in `_local/archive/` if we ever bring those sources back. Any references below to FFPC or Drafters in the CSV / dashboard / puller code have been removed. If a manual upload day ever includes an FFPC or Drafters file, flag it and ask the user whether they want to bring those sources back into the site before proceeding.
