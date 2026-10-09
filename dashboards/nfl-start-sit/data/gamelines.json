@@ -1,10 +1,10 @@
 {
  "source": "The Odds API",
  "region": "us",
- "lastUpdated": "2026-10-08T23:41:52+00:00",
- "gameCount": 29,
- "quotaUsed": "423",
- "quotaRemaining": "19577",
+ "lastUpdated": "2026-10-09T02:40:20+00:00",
+ "gameCount": 27,
+ "quotaUsed": "500",
+ "quotaRemaining": "19500",
  "note": "Median spread and total across books. Implied team total = total/2 - spread/2. Used to score D/ST and K, which have no prop market.",
  "games": [
   {
@@ -13,22 +13,22 @@
    "away": "TB",
    "homeName": "Dallas Cowboys",
    "awayName": "Tampa Bay Buccaneers",
-   "kickoff": "2026-10-09T00:15:00Z",
-   "total": 49.0,
-   "homeSpread": -9.5,
+   "kickoff": "2026-10-09T00:15:55Z",
+   "total": 48.5,
+   "homeSpread": 9.5,
    "teams": {
     "DAL": {
-     "implied": 29.25,
-     "spread": -9.5,
-     "oppImplied": 19.75
+     "implied": 19.5,
+     "spread": 9.5,
+     "oppImplied": 29.0
     },
     "TB": {
-     "implied": 19.75,
-     "spread": 9.5,
-     "oppImplied": 29.25
+     "implied": 29.0,
+     "spread": -9.5,
+     "oppImplied": 19.5
     }
    },
-   "bookCount": 11
+   "bookCount": 8
   },
   {
    "matchup": "PHIJAC",
@@ -537,29 +537,6 @@
    "bookCount": 8
   },
   {
-   "matchup": "PITTB",
-   "home": "TB",
-   "away": "PIT",
-   "homeName": "Tampa Bay Buccaneers",
-   "awayName": "Pittsburgh Steelers",
-   "kickoff": "2026-10-18T17:00:00Z",
-   "total": 39.0,
-   "homeSpread": 2.5,
-   "teams": {
-    "TB": {
-     "implied": 18.25,
-     "spread": 2.5,
-     "oppImplied": 20.75
-    },
-    "PIT": {
-     "implied": 20.75,
-     "spread": -2.5,
-     "oppImplied": 18.25
-    }
-   },
-   "bookCount": 8
-  },
-  {
    "matchup": "ARILAR",
    "home": "LAR",
    "away": "ARI",
@@ -624,29 +601,6 @@
      "implied": 19.0,
      "spread": 7.5,
      "oppImplied": 26.5
-    }
-   },
-   "bookCount": 8
-  },
-  {
-   "matchup": "DALGB",
-   "home": "GB",
-   "away": "DAL",
-   "homeName": "Green Bay Packers",
-   "awayName": "Dallas Cowboys",
-   "kickoff": "2026-10-19T00:20:00Z",
-   "total": 50.25,
-   "homeSpread": 2.0,
-   "teams": {
-    "GB": {
-     "implied": 24.12,
-     "spread": 2.0,
-     "oppImplied": 26.12
-    },
-    "DAL": {
-     "implied": 26.12,
-     "spread": -2.0,
-     "oppImplied": 24.12
     }
    },
    "bookCount": 8
