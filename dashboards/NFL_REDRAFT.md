@@ -97,6 +97,12 @@ page handles this -- it drops touchdown entries whose game is not on the current
 board, and the coverage banner says when the whole file has aged out -- but the
 mirror inherits whatever the source repo last committed.
 
+**Updated 2026-10-10:** this no longer costs the board the stat. The Odds
+API also carries `player_anytime_td` and runs fine on CI, so touchdown prices
+now refresh unattended and DraftKings is preferred only when it has been run
+locally. Both sources arrive as an expected touchdown count, not P(scores at
+least one), through the same conversion.
+
 ## What the port changed in this repo
 
 ### The nav gained a second level
