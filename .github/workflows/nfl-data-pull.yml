@@ -78,15 +78,44 @@ jobs:
                  | head -1 | grep -o '[0-9]*$')
           WEEK=${WEEK:-?}
           git commit -m "Auto: NFL week $WEEK data $(date -u +%Y-%m-%d)"
-          # Retry with rebase: this races the ADP and pred-arbs workflows, which
-          # touch different files but push to the same branch.
+          # Retry with rebase: this races the ADP and pred-arbs workflows, and a
+          # human pushing by hand. They touch different files but share a branch.
+          #
+          # The rebase can stop on a conflict in data/mirrored_at.json, which is
+          # what killed the 2026-10-10 06:45 run: `git pull --rebase` leaves the
+          # repo mid-rebase, so every later `git push` in this loop fails for a
+          # new reason and all five attempts burn with no chance of succeeding.
+          #
+          # That file is a generated stamp recording the upstream lastUpdated
+          # values; nothing reads it but this workflow, so a conflict in it holds
+          # no information. Resolve it in favour of this run and carry on. Any
+          # other conflicting path is deliberately left to fail, because that
+          # would mean two runs disagreeing about real data.
           for i in 1 2 3 4 5; do
             if git push; then
               echo "Pushed on attempt $i."
               exit 0
             fi
             echo "Push attempt $i failed; rebasing on remote."
-            git pull --rebase --autostash origin main
+
+            # Never start an attempt from a half-finished rebase.
+            git rebase --abort 2>/dev/null || true
+
+            if ! git pull --rebase --autostash origin main; then
+              # Still mid-rebase: see whether the only casualty is the stamp.
+              CONFLICTS=$(git diff --name-only --diff-filter=U)
+              echo "conflicted paths: ${CONFLICTS:-<none>}"
+              if [ "$CONFLICTS" = "dashboards/nfl-start-sit/data/mirrored_at.json" ]; then
+                echo "Stamp-file conflict only; taking this run's version."
+                git checkout --ours dashboards/nfl-start-sit/data/mirrored_at.json 2>/dev/null \
+                  || git checkout --theirs dashboards/nfl-start-sit/data/mirrored_at.json
+                git add dashboards/nfl-start-sit/data/mirrored_at.json
+                GIT_EDITOR=true git rebase --continue || git rebase --abort || true
+              else
+                echo "Conflict outside the stamp file; not resolving automatically." >&2
+                git rebase --abort 2>/dev/null || true
+              fi
+            fi
           done
           echo "Push failed after 5 attempts." >&2
           exit 1
