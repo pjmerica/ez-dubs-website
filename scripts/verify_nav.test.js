@@ -87,6 +87,18 @@ for (const [name, rel] of PAGES) {
           `${l.href} -> ${path.relative(ROOT, cand).replace(/\\/g, "/")} (missing)`);
   }
 
+  // Every decorative caret must be hidden from assistive tech. These were
+  // marked on 2026-10-10 and silently stripped the next day by the port script,
+  // which rewrites the donor page before lifting the nav from it -- 24 carets
+  // across 8 pages went from marked to bare, and nothing caught it. The caret
+  // sits beside a text label that is itself the control, so an unmarked one makes
+  // a screen reader announce a meaningless glyph.
+  const carets = [...nav.matchAll(/<span class="caret"[^>]*>/g)].map((m) => m[0]);
+  const bare = carets.filter((t) => !/aria-hidden/.test(t));
+  check(`${name}: all ${carets.length} nav caret(s) are aria-hidden`,
+        carets.length > 0 && bare.length === 0,
+        bare.length ? `${bare.length} unmarked: ${bare.slice(0, 2).join(" ")}` : "no carets found");
+
   // External links in the nav should not leak the referrer or opener.
   for (const m of nav.matchAll(/<a\b[^>]*target="_blank"[^>]*>/gi)) {
     const tag = m[0];

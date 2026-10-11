@@ -483,6 +483,14 @@
   // a team scoring T points gets there via ~T/9.3 touchdowns and ~T/10.5 field
   // goals; the residual after TDs and FGs is two-point and defensive scoring,
   // which the kicker does not touch.
+  // Share of field-goal attempts that are converted. Measured over 128
+  // team-games of the 2026 season: 1.95 attempts and 1.69 makes per team-game.
+  // This matters because `fgs` below is an ATTEMPT count -- the miss term needs
+  // it to be -- while every scoring term pays a per-MAKE rate. Without this
+  // factor each attempt was scored as though it converted, overstating kickers
+  // by about 1.4 points a week and 1.9 in a high-total game.
+  const FG_MAKE_RATE = 0.867;
+
   function kickerPoints(team, scoring) {
     const line = gameLineFor(team);
     if (!line) return null;
@@ -491,7 +499,9 @@
     const T = line.implied;
 
     const tds = Math.max(0, T / 9.3);
-    const fgs = Math.max(0, T / 10.5);
+    // 11.6 from the 2026 season: 22.72 mean points scored / 1.95 attempts
+    // per team-game. Was 10.5, which predicted 2.16 attempts against 1.95.
+    const fgs = Math.max(0, T / 11.6);
     const xps = tds * 0.94;                  // conversion rate, net of 2-pt tries
 
     // FG distance mix, league-average: most attempts are 30-49 yards. Leagues
@@ -509,15 +519,20 @@
           rate = (a || 0) * 0.85 + (b || 0) * 0.15;
         }
       }
-      if (rate) { pts += fgs * mix[k] * rate; bucketed = true; }
+      if (rate) { pts += fgs * FG_MAKE_RATE * mix[k] * rate; bucketed = true; }
     }
     // Flat per-make and per-yard scoring, for leagues that use them instead.
-    pts += fgs * n("fgm", 0);
-    pts += fgs * 38 * n("fgm_yds", 0);
-    if (!bucketed && !n("fgm", 0) && !n("fgm_yds", 0)) pts += fgs * 3;
+    pts += fgs * FG_MAKE_RATE * n("fgm", 0);
+    pts += fgs * FG_MAKE_RATE * 38 * n("fgm_yds", 0);
+    if (!bucketed && !n("fgm", 0) && !n("fgm_yds", 0)) {
+      pts += fgs * FG_MAKE_RATE * 3;
+    }
 
     pts += xps * n("xpm", 1);
-    pts += fgs * 0.16 * n("fgmiss", 0);      // ~16% of attempts miss
+    // Deliberately NOT multiplied by FG_MAKE_RATE: this term is about the
+    // attempts that do NOT convert, so it needs the raw attempt count.
+    // 1 - 0.867 = 0.133, close to the 0.16 already here; left as measured.
+    pts += fgs * 0.133 * n("fgmiss", 0);
 
     return {
       points: Math.round(pts * 100) / 100,
@@ -932,8 +947,16 @@
         const k = normPlayerName(p.name);
         let rec = merged.get(k);
         if (!rec) { rec = { name: p.name, matchup: p.matchup, stats: {} }; merged.set(k, rec); }
+        // DraftKings wins over the Odds API fallback. The merge order is
+        // weekly -> oddsapi -> dk, and oddsapi now also carries anytime_td (added
+        // because DraftKings 403s GitHub runners, so it cannot refresh
+        // unattended). A plain "only if empty" guard would therefore let the
+        // fallback beat the real book price purely because it is merged first.
+        // DK's number is a book quote for exactly this market, so it overrides --
+        // but only when it is for a game on the current slate, which the caller
+        // has already filtered.
         const cur = rec.stats.any_tds;
-        if (!cur || cur.line == null) {
+        if (!cur || cur.line == null || cur.lineSource !== "dk-td") {
           rec.stats.any_tds = { line: p.xTD, lineSource: "dk-td", odds: p.americanOdds };
         }
       }

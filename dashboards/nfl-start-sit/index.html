@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="description" content="Who to start this week, priced off the betting markets rather than projections. Reads your Sleeper leagues." />
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://api.sleeper.app; font-src 'self'; base-uri 'self'; form-action 'none'">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NFL Start/Sit · EZ Dubs Analytics</title>
@@ -333,6 +332,22 @@ a.brand {
   padding: 4px 2px;
   display: inline-block;
 }
+
+        /* Shown when the computed return is implausibly large. Deliberately not
+           styled like an error -- the arithmetic is right -- but it must not read
+           like part of the good news either, because the cells above it say
+           "Guaranteed profit" and a 3000% arb does not exist on a real book. */
+        .implausible-note {
+          margin: 14px 0 0;
+          padding: 10px 12px;
+          border: 1px dashed rgba(255, 107, 107, 0.55);
+          border-radius: 8px;
+          background: rgba(255, 107, 107, 0.07);
+          color: #ffc9c9;
+          font-size: 0.84rem;
+          line-height: 1.55;
+        }
+        .implausible-note strong { color: #ff8f8f; }
 </style>
 </head>
 <body>
@@ -465,7 +480,7 @@ a.brand {
     <footer>
       Lines from DraftKings, FanDuel, BetMGM, Bovada, BetRivers, BetOnline,
       Fanatics and Kalshi &middot; data shared with the
-      <a href="../../" style="color: #7f8c99">EZ Dubs Analytics</a>
+      <a href="../../" style="color:#6a6a8a">EZ Dubs Analytics</a>
     </footer>
   </div>
 
