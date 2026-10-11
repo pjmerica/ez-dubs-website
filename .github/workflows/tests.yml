@@ -16,6 +16,7 @@ on:
       - 'index.html'
       - 'contact.html'
       - 'scripts/verify_cdn_integrity.test.js'
+      - 'scripts/verify_shared_app.test.js'
       - 'scripts/verify_nfl_pages.test.js'
       - 'scripts/pull_nfl_data.py'
       - 'package.json'
@@ -41,6 +42,11 @@ jobs:
       # one while the rest stay fine. No browser needed to check that.
       - name: Verify the nav
         run: node scripts/verify_nav.test.js
+
+      # The shared NFL app is a verbatim copy from AI_Agent_work. This fails if
+      # it has drifted -- a half-finished port, or an upstream fix never ported.
+      - name: Verify the shared NFL app is not stale
+        run: node scripts/verify_shared_app.test.js
 
       - name: Verify the NFL dashboards
         run: node scripts/verify_nfl_pages.test.js
