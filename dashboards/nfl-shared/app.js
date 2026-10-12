@@ -1120,7 +1120,7 @@
     return best || { total: 0, picks: current.slice() };
   }
 
-  function slotTable(rows, total, unpriced, unmatched, bench) {
+  function slotTable(rows, total, unpriced, unmatched, bench, started) {
     let html = "";
     if (rows.length) {
       html += '<table class="slot-table"><thead><tr>' +
@@ -1173,6 +1173,22 @@
         '<br /><span style="color:#6a6a8a">A book pricing a touchdown but no ' +
         "yardage usually means an unsettled role. Treat as start-at-your-own-risk, " +
         "not as a zero.</span></div>";
+    }
+    if (started && started.length) {
+      // Their game is in progress or finished, so the lineup lock has passed and
+      // ranking them as a start is advice nobody can act on. The projection is
+      // still shown: it is what the market had before kickoff, which is useful
+      // for reading the result, it is just not a decision any more.
+      html += '<div class="sitstart-section">Game already under way</div>' +
+        '<div class="verdict" style="font-size:13px">' +
+        started.map((p) => escapeHtml(p.name) +
+          '<span style="color:#7f8c99"> (' +
+          escapeHtml(shortMatchup(p.matchup) || "-") +
+          (p.points ? ", " + p.points.toFixed(1) + " proj" : "") +
+          ")</span>").join(", ") +
+        '<br /><span style="color:#7f8c99">Kickoff has passed, so these are no ' +
+        "longer start/sit decisions. The projection is what the market had " +
+        "before the game began.</span></div>";
     }
     if (unmatched && unmatched.length) {
       html += '<div class="sitstart-section">Not recognised</div>' +
@@ -1342,6 +1358,43 @@
       "<strong>all</strong> to go back to the full consensus.</div>";
   }
 
+
+  /* Has this player's game already started?
+   *
+   * renderSleeper has its own teamIsLive() closure and renderSitStart had no
+   * kickoff awareness at all, which meant the paste-a-roster tab would recommend
+   * a player mid-game. Found on Sunday 2026-10-11 with the 1pm ET games two and
+   * a half hours in: Rome Odunze came back as a recommended start.
+   *
+   * Returns false when the kickoff is unknown -- better to show a player than to
+   * hide him on missing data.
+   */
+  function playerHasKickedOff(p) {
+    if (!p) return false;
+    // weekly.json carries a kickoff per player, which is the direct answer.
+    // An earlier version of this took a team and called gameLineFor(), but pool
+    // entries have no `team` field -- they carry name, game, kickoff, matchup
+    // and stats -- so it received undefined and always said no.
+    // Only trust `kickoff` when it is an ISO timestamp. weekly.json stores a DAY
+    // CODE there -- "26OCT11" -- and Date.parse does NOT reject that: it returns
+    // a date in 2011. Parsing it would mark every player as kicked off fifteen
+    // years ago and sweep the whole board into "already under way".
+    let t = NaN;
+    if (typeof p.kickoff === "string" && /^\d{4}-\d{2}-\d{2}T/.test(p.kickoff)) {
+      t = Date.parse(p.kickoff);
+    }
+    if (!isFinite(t) && p.matchup) {
+      // gamelines carries the real kickoff time; a day code could not tell a 1pm
+      // game from an 8pm one even if it were decoded.
+      const gl = cache["gamelines"];
+      const g = gl && Array.isArray(gl.games)
+        ? gl.games.find((x) => x.matchup === p.matchup)
+        : null;
+      if (g && g.kickoff) t = Date.parse(g.kickoff);
+    }
+    return isFinite(t) && t <= Date.now();
+  }
+
   function renderSitStart() {
     const $out = document.getElementById("sitstart-output");
     if (!$out) return;
@@ -1357,10 +1410,14 @@
       return;
     }
 
-    const matched = [], unmatched = [], unpriced = [];
+    const matched = [], unmatched = [], unpriced = [], started = [];
     for (const key of rosterSelected) {
       const p = pool.get(key);
       if (!p) { unmatched.push(key); continue; }
+      // Game already under way: the lineup lock has passed, so ranking him as a
+      // start is advice nobody can act on. Checked BEFORE the pricing tests,
+      // because "his game started" is the more useful thing to be told.
+      if (playerHasKickedOff(p)) { started.push(p); continue; }
       // A player whose only market is a touchdown price has no usage priced,
       // so ranking him against a fully-priced player would mislead.
       if (p.tdOnly || p.points <= 0 || !p.position) unpriced.push(p);
@@ -1371,7 +1428,7 @@
       $out.innerHTML = staleWeekBanner() + coverageBanner() +
         '<div class="verdict">No pasted player has a priced projection yet.' +
         (unmatched.length ? " Unrecognised: " + escapeHtml(unmatched.join(", ")) + "." : "") +
-        "</div>" + slotTable([], null, unpriced, unmatched);
+        "</div>" + slotTable([], null, unpriced, unmatched, null, started);
       return;
     }
 
@@ -1389,7 +1446,7 @@
           b.points.toFixed(1) + " &mdash; a " + gap.toFixed(1) + "-point edge.";
       $out.innerHTML = staleWeekBanner() + coverageBanner() +
         '<div class="verdict">' + verdict + "</div>" +
-        slotTable([{ slot: "START", p: a }, { slot: "SIT", p: b }], null, unpriced, unmatched);
+        slotTable([{ slot: "START", p: a }, { slot: "SIT", p: b }], null, unpriced, unmatched, null, started);
       return;
     }
 
@@ -1399,7 +1456,7 @@
       .sort((a, b) => b.points - a.points);
     const rows = best.picks.map((p, i) => ({ slot: LINEUP_SLOTS[i].label, p }));
     $out.innerHTML = staleWeekBanner() + coverageBanner() +
-      slotTable(rows, best.total, unpriced, unmatched, bench);
+      slotTable(rows, best.total, unpriced, unmatched, bench, started);
   }
 
   function renderSleeper() {
