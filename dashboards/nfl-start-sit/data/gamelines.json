@@ -1,10 +1,10 @@
 {
  "source": "The Odds API",
  "region": "us",
- "lastUpdated": "2026-10-15T17:58:22+00:00",
+ "lastUpdated": "2026-10-15T22:00:53+00:00",
  "gameCount": 27,
- "quotaUsed": "1349",
- "quotaRemaining": "18651",
+ "quotaUsed": "1435",
+ "quotaRemaining": "18565",
  "note": "Median spread and total across books. Implied team total = total/2 - spread/2. Used to score D/ST and K, which have no prop market.",
  "games": [
   {
@@ -60,18 +60,18 @@
    "homeName": "Atlanta Falcons",
    "awayName": "Chicago Bears",
    "kickoff": "2026-10-18T17:00:00Z",
-   "total": 51.0,
+   "total": 51.5,
    "homeSpread": 1.0,
    "teams": {
     "ATL": {
-     "implied": 25.0,
+     "implied": 25.25,
      "spread": 1.0,
-     "oppImplied": 26.0
+     "oppImplied": 26.25
     },
     "CHI": {
-     "implied": 26.0,
+     "implied": 26.25,
      "spread": -1.0,
-     "oppImplied": 25.0
+     "oppImplied": 25.25
     }
    },
    "bookCount": 11
@@ -83,18 +83,18 @@
    "homeName": "Cleveland Browns",
    "awayName": "Baltimore Ravens",
    "kickoff": "2026-10-18T17:00:00Z",
-   "total": 41.5,
+   "total": 41.0,
    "homeSpread": 4.0,
    "teams": {
     "CLE": {
-     "implied": 18.75,
+     "implied": 18.5,
      "spread": 4.0,
-     "oppImplied": 22.75
+     "oppImplied": 22.5
     },
     "BAL": {
-     "implied": 22.75,
+     "implied": 22.5,
      "spread": -4.0,
-     "oppImplied": 18.75
+     "oppImplied": 18.5
     }
    },
    "bookCount": 11
@@ -120,7 +120,7 @@
      "oppImplied": 17.75
     }
    },
-   "bookCount": 10
+   "bookCount": 11
   },
   {
    "matchup": "TENIND",
@@ -221,18 +221,18 @@
    "homeName": "Los Angeles Rams",
    "awayName": "Arizona Cardinals",
    "kickoff": "2026-10-18T20:05:00Z",
-   "total": 51.5,
+   "total": 52.0,
    "homeSpread": -12.5,
    "teams": {
     "LAR": {
-     "implied": 32.0,
+     "implied": 32.25,
      "spread": -12.5,
-     "oppImplied": 19.5
+     "oppImplied": 19.75
     },
     "ARI": {
-     "implied": 19.5,
+     "implied": 19.75,
      "spread": 12.5,
-     "oppImplied": 32.0
+     "oppImplied": 32.25
     }
    },
    "bookCount": 11
@@ -267,18 +267,18 @@
    "homeName": "Kansas City Chiefs",
    "awayName": "Los Angeles Chargers",
    "kickoff": "2026-10-18T20:25:00Z",
-   "total": 42.0,
+   "total": 41.5,
    "homeSpread": -8.0,
    "teams": {
     "KC": {
-     "implied": 25.0,
+     "implied": 24.75,
      "spread": -8.0,
-     "oppImplied": 17.0
+     "oppImplied": 16.75
     },
     "LAC": {
-     "implied": 17.0,
+     "implied": 16.75,
      "spread": 8.0,
-     "oppImplied": 25.0
+     "oppImplied": 24.75
     }
    },
    "bookCount": 11
@@ -291,17 +291,17 @@
    "awayName": "Dallas Cowboys",
    "kickoff": "2026-10-19T00:20:00Z",
    "total": 53.0,
-   "homeSpread": -1.5,
+   "homeSpread": -1.0,
    "teams": {
     "GB": {
-     "implied": 27.25,
-     "spread": -1.5,
-     "oppImplied": 25.75
+     "implied": 27.0,
+     "spread": -1.0,
+     "oppImplied": 26.0
     },
     "DAL": {
-     "implied": 25.75,
-     "spread": 1.5,
-     "oppImplied": 27.25
+     "implied": 26.0,
+     "spread": 1.0,
+     "oppImplied": 27.0
     }
    },
    "bookCount": 11
@@ -313,18 +313,18 @@
    "homeName": "San Francisco 49ers",
    "awayName": "Washington Commanders",
    "kickoff": "2026-10-20T00:15:00Z",
-   "total": 51.0,
+   "total": 51.5,
    "homeSpread": -7.5,
    "teams": {
     "SF": {
-     "implied": 29.25,
+     "implied": 29.5,
      "spread": -7.5,
-     "oppImplied": 21.75
+     "oppImplied": 22.0
     },
     "WAS": {
-     "implied": 21.75,
+     "implied": 22.0,
      "spread": 7.5,
-     "oppImplied": 29.25
+     "oppImplied": 29.5
     }
    },
    "bookCount": 11
@@ -350,7 +350,7 @@
      "oppImplied": 26.0
     }
    },
-   "bookCount": 7
+   "bookCount": 8
   },
   {
    "matchup": "PITNO",
@@ -373,7 +373,7 @@
      "oppImplied": 21.5
     }
    },
-   "bookCount": 7
+   "bookCount": 8
   },
   {
    "matchup": "SFATL",
@@ -557,7 +557,7 @@
      "oppImplied": 20.25
     }
    },
-   "bookCount": 7
+   "bookCount": 6
   },
   {
    "matchup": "GBDET",
@@ -626,7 +626,7 @@
      "oppImplied": 23.5
     }
    },
-   "bookCount": 7
+   "bookCount": 6
   }
  ]
 }
