@@ -7,7 +7,7 @@ Context for future Claude sessions in this repo. Read `README.md` first for the 
 `ez-dubs-website` — personal site (brand: **EZ Dubs Analytics**) published via GitHub Pages at https://pjmerica.github.io/ez-dubs-website/ and the custom domain https://ezdubsanalytics.com/. Pages under the shared top nav:
 
 - **Best Ball Price Differences** at `dashboards/best-ball-prices/`. Compares DK vs UD ADP. Frozen at 2026-09-04 as of that season's close (see "Best Ball is frozen" below). Two tabs: Table view and Chart view. Source picker was removed when only DK+UD remained — DK is always the left column, UD the right.
-- **Best Ball History Risers/Fallers** at `dashboards/best-ball-history/`. Movers over a chosen lookback window on the same DK+UD history CSVs. Also frozen at 2026-09-04.
+- **Best Ball History Risers/Fallers** at `dashboards/best-ball-history/`. Movers over a chosen lookback window, from `history.json` (a one-time build of the DK+UD history CSVs). Also frozen at 2026-09-04.
 - **Today's Arbitrage Picks** at `dashboards/prediction-arbitrage/`. Password-gated. Shows a small free preview card above the gate for locked visitors.
 - **Arb Calculator** at `dashboards/arb-calculator/`. Free tool. Accepts URL params (`?labelA=Kalshi&labelB=Polymarket&ayes=0.42&bno=0.55&...`) so the pred-mkt cards can hand off a prefilled setup.
 - **Contact** at `/contact.html`. Formspree form.
@@ -190,7 +190,7 @@ Three implementations of this must stay in sync:
 
 ## The prediction-market arb pipeline
 
-`.github/workflows/daily-pred-arbs-pull.yml` runs at 14:00 UTC daily and on `workflow_dispatch` (still active):
+`.github/workflows/daily-pred-arbs-pull.yml` runs every 2 hours at :45 on odd UTC hours (since 2026-07-05; it was daily at 14:00) and on `workflow_dispatch`:
 
 1. `python scripts/pull_pred_arbs.py`:
    - Fetches `https://pjmerica.github.io/pred-arbitrage/arb_data.js` and `https://pjmerica.github.io/polling-agg-2026/arb_data.js` (both are JS files of the form `const ARB = {...};`).
