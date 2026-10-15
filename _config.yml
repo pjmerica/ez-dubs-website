@@ -1,0 +1,28 @@
+# GitHub Pages builds this repo with Jekyll (build_type "legacy"), and by
+# default it publishes EVERY file in the repo, including internal docs and
+# scripts. Those name the GitHub account and the owner's email, which breaks the
+# site's pseudonymous brand, so they are kept off the published site here.
+# They stay in the repo; only the website stops serving them. (2026-10-14)
+#
+# Jekyll 3 (what Pages runs) REPLACES its default exclude list when this key is
+# set, so the defaults that matter are repeated at the bottom.
+#
+# Adding a new internal file (a .md doc, a script)? Add it here, then check the
+# live URL returns 404 after the deploy.
+exclude:
+  # Docs for whoever maintains the repo, not for visitors.
+  - CLAUDE.md
+  - README.md
+  - docs/
+  - dashboards/NFL_REDRAFT.md
+  - dashboards/UI_AUDIT.md
+  - dashboards/best-ball-prices/archive/README.md
+  # Pipeline code, tests and the test suite's npm manifest.
+  - scripts/
+  - package.json
+  - package-lock.json
+  # Jekyll's own defaults, restated because setting exclude drops them.
+  - node_modules/
+  - vendor/
+  - Gemfile
+  - Gemfile.lock

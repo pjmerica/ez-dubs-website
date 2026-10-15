@@ -28,6 +28,14 @@ Two things that look like mistakes and are not:
   the source repo got two silent drift bugs.
 - **Only `nfl-start-sit/` has a `data/` directory.** `nfl-rooting` points at it, so
   the ~950 KB of JSON is stored once.
+- **Do not hand-edit the two NFL `index.html` files for copy or `<head>` tags.**
+  `port_lineup_to_ezdubs.py` (in AI_Agent_work) regenerates them on every port and
+  only carries `<meta http-equiv>` tags across, so anything else is silently
+  reverted. Per-page heading, subtitle and description live in the `PAGES` dict
+  in that script, the shared head tags in its `HEAD_TMPL`; edit them there and
+  re-run the port. The `?v=` cache-bust tag is a content hash the port computes.
+  The port also rewrites the nav on all eight pages, so check `git status` after
+  running it (it should touch only the two NFL `index.html` files).
 
 The data **auto-refreshes** via `.github/workflows/nfl-data-pull.yml`, which
 mirrors the upstream JSON (once daily Mon-Wed, twice Thu-Sun). It mirrors rather
@@ -186,13 +194,18 @@ Three implementations of this must stay in sync:
    - Filters to `arb_type == "guaranteed"` with `guaranteed_return_pct` in 1–25% (not display-gap — upstream returns are computed from real fillable asks since 2026-07-03/04, and display-gap filtering excluded book-driven arbs where the last trade is stale).
    - Both sources contribute (polling-agg was silently contributing zero until 2026-07-04: the puller required `implied_prob_a/b` fields polling-agg's schema never had — `_display_probs()` in `pull_pred_arbs.py` now handles both schemas).
    - Normalizes to `dashboards/prediction-arbitrage/arbs.json` containing `{generated_at, sources[], arbs[]}`. Sorted: non-suspicious first, then by `return_pct` desc.
+   - `return_pct` is upstream's **after-fee** return on the real ask prices. Each row also carries those asks and the direction (2026-10-14): `yes_leg` (`"a"` = buy YES on A + NO on B), `ask_yes_a/ask_no_a/ask_yes_b/ask_no_b`. `prob_a/prob_b` are only display prices (last trade or mid). **Never build a trade, a return or a calculator handoff from `prob_*`**: that overstated every arb, e.g. 1.11% shown as 14.29%.
+   - `days_to_settle` / `annualized_return_pct` are derived from `settle_date` when upstream omits them (pred-arbitrage always does). Annualized is blank under 7 days out.
+   - **If every source fails it exits 1 and writes nothing**, so the last good file stays live and the job fails before committing. Covered by `scripts/test_pull_pred_arbs.py`, which CI runs.
 2. Commits and pushes if changed.
 
 Dashboard behavior:
 - Fetches `arbs.json` client-side.
+- "Prices as of" is the oldest `updated_at` among sources that contributed arbs, **not** `generated_at` (that's just when our puller ran). A yellow note shows when those prices are over 12h old or a source has `ok: false`. Polling Agg runs hours behind but usually contributes zero arbs, which is why only contributing sources count.
+- Cards lead with "X% after fees" and "Buy YES/NO @ ask" per leg. Copy says "after fees", never "guaranteed" (the 2026-06-23 copy decision). Rows without `yes_leg` (an old `arbs.json`) fall back to the old display-price card.
 - Password-gated (`obsession`, SHA-256 hash in source). Unlock stored in sessionStorage. Velvet-rope only — `arbs.json` is publicly fetchable.
 - Above the gate, a **free daily preview** picks one non-suspicious arb (deterministic per-UTC-day, from the middle 60% of the non-suspicious list) so locked visitors see something real.
-- Each arb card has a "Size this in the Calculator →" button that hands off to the Arb Calculator with all four prices (A YES, A NO, B YES, B NO) prefilled via URL params.
+- Each arb card has a "Size this in the Calculator →" button that hands off to the Arb Calculator with all four **asks** (A YES, A NO, B YES, B NO) plus `net` (the after-fee return) prefilled via URL params. The calculator has no fee model, so it shows a note quoting `net` and explaining its own number is before fees.
 
 **About the `suspicious` flag:** rows the upstream scanner thinks may be a data error (wide spread, thin depth, one-sided book, inferred price). Shown by default with human-labeled reasons on the pill; a "Suspicious: Hide / Include" chip toggle filters them.
 
@@ -228,6 +241,7 @@ Each manual day historically gets its own dated `scripts/one_off_manual_snapshot
 - **GH Actions push needs `permissions: contents: write`** on the workflow. Don't strip it during cleanup.
 - **Formspree endpoint is `mojzokrg`.** The user has decided to stay on the free tier and not set an allowed-domain restriction (documented decision — don't keep flagging it as a follow-up).
 - **No em-dashes in user-visible prose.** Standing style rule from the user. Code comments can keep them.
+- **Internal files are kept off the live site by `_config.yml`.** Pages publishes every file Jekyll isn't told to exclude. Until 2026-10-14 `/CLAUDE.md`, `/README.md` and `/scripts/*` were all live. A new internal doc or script must be added to its `exclude:` list; `scripts/verify_no_identity.test.js` (in CI) fails if anything published names the GitHub account or the email. Don't put the account's URLs in served data files either (`mirrored_at.json` used to).
 - **Pseudonymous brand.** The site never shows the user's real name. Cron commits use `ezdubs-bot`; hand commits from `pjmerica@umich.edu` are fine.
 
 ## Common tasks
