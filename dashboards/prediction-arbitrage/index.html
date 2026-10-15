@@ -6,10 +6,10 @@
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://formspree.io; font-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://formspree.io">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <title>Today's Arbitrage Picks | EZ Dubs Analytics</title>
-    <meta name="description" content="Daily snapshot of where Kalshi, Polymarket, and PredictIt disagree on the same outcomes.">
+    <meta name="description" content="Where Kalshi and Polymarket disagree on the same outcomes, refreshed every few hours.">
     <link rel="icon" href="/EDA.png" type="image/png">
     <meta property="og:title" content="Today's Arbitrage Picks | EZ Dubs Analytics">
-    <meta property="og:description" content="Daily snapshot of where Kalshi, Polymarket, and PredictIt disagree on the same outcomes.">
+    <meta property="og:description" content="Where Kalshi and Polymarket disagree on the same outcomes, refreshed every few hours.">
     <meta property="og:url" content="https://ezdubsanalytics.com/dashboards/prediction-arbitrage/">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://ezdubsanalytics.com/EDA.png">
@@ -126,6 +126,7 @@
         .subtitle { color: #99aabb; font-size: 0.92rem; margin-bottom: 14px; }
         .updated { color: #7f8c99; font-size: 0.82rem; margin-bottom: 10px; }
         .updated span { color: #4a9eff; }
+        .freshness-warn { color: #f7b500; font-size: 0.82rem; margin: -4px 0 10px; }
         .inline-spinner {
             display: inline-block; width: 11px; height: 11px;
             border: 2px solid currentColor; border-top-color: transparent;
@@ -208,6 +209,8 @@
             color: #fff; font-weight: 700; font-size: 0.98rem;
             font-variant-numeric: tabular-nums; min-width: 56px;
         }
+        .leg .price .side-yes { color: #00c46a; }
+        .leg .price .side-no  { color: #ff6b75; }
         .leg .stake {
             color: #99aabb; font-size: 0.78rem; flex: 1;
             font-variant-numeric: tabular-nums;
@@ -472,10 +475,11 @@ a.brand {
     <main>
         <h1>Today's Arbitrage Picks</h1>
         <p class="subtitle">Arbitrage between major prediction markets.</p>
-        <p class="updated">Snapshot taken: <span id="generated-at">loading<span class="inline-spinner"></span></span></p>
+        <p class="updated">Prices as of: <span id="generated-at">loading<span class="inline-spinner"></span></span></p>
+        <p class="freshness-warn" id="freshness-warn" hidden></p>
 
         <div class="disclaimer">
-            <strong>Heads up:</strong> this page refreshes once or twice daily, so prices on the live
+            <strong>Heads up:</strong> this page refreshes every few hours, so prices on the live
             markets may have moved since the snapshot. Verify both legs before sizing any bets. Always
             run the current order-book prices through the
             <a href="../arb-calculator/" style="color:#f7b500;font-weight:700;text-decoration:underline;">Arb Calculator</a>
@@ -527,7 +531,8 @@ a.brand {
         <div id="gated" style="display:none;">
             <div class="filter-row">
                 <span class="label">Sort</span>
-                <button class="chip sort-chip active" data-sort="return">Biggest price gap</button>
+                <button class="chip sort-chip active" data-sort="return">Best return</button>
+                <button class="chip sort-chip" data-sort="annual">Best per year</button>
                 <button class="chip sort-chip" data-sort="volume">Highest volume</button>
                 <span class="label" style="margin-left:8px;">Suspicious</span>
                 <button class="chip susp-chip" data-susp="hide">Hide</button>
@@ -599,20 +604,43 @@ a.brand {
             })[c]);
         }
 
+        // The basket the return was computed from: which side to buy on each
+        // market, at the ask. Null for rows from before 2026-10-14, which only
+        // carried display prices (last trade or mid).
+        function basket(a) {
+            if (a.yes_leg !== 'a' && a.yes_leg !== 'b') return null;
+            const legA = a.yes_leg === 'a' ? ['YES', a.ask_yes_a] : ['NO', a.ask_no_a];
+            const legB = a.yes_leg === 'a' ? ['NO', a.ask_no_b] : ['YES', a.ask_yes_b];
+            if (legA[1] == null || legB[1] == null) return null;
+            return { a: legA, b: legB };
+        }
+        function fmtCents(p) {
+            return `${+(p * 100).toFixed(1)}¢`;
+        }
+
         // Build a calculator URL prefilled with all four prices (both YES and
         // both NO) so the calculator can compare both orientations and pick
         // whichever is cheaper. Bankroll defaults to 100 on the calc side.
+        //
+        // These are the ASKS, i.e. what a buyer actually pays. Until 2026-10-14
+        // this sent prob and 1 - prob, which are display prices, and the
+        // calculator showed every arb several times too good (a 1.11% basket
+        // came up as 14.29%). Old rows without asks keep the old behaviour.
         function calcHandoffUrl(a) {
-            const clip = v => Math.max(0, Math.min(1, v)).toFixed(3);
-            const params = new URLSearchParams({
+            const clip = v => String(+Math.max(0, Math.min(1, v)).toFixed(4));
+            const q = {
                 labelA: PLATFORM_LABELS[a.platform_a] || a.platform_a,
                 labelB: PLATFORM_LABELS[a.platform_b] || a.platform_b,
-                ayes:   clip(a.prob_a),
-                ano:    clip(1 - a.prob_a),
-                byes:   clip(a.prob_b),
-                bno:    clip(1 - a.prob_b),
-            });
-            return `../arb-calculator/?${params.toString()}`;
+            };
+            if (basket(a)) {
+                const asks = { ayes: a.ask_yes_a, ano: a.ask_no_a, byes: a.ask_yes_b, bno: a.ask_no_b };
+                for (const [k, v] of Object.entries(asks)) if (v != null) q[k] = clip(v);
+                if (a.return_pct != null) q.net = String(a.return_pct);
+            } else {
+                Object.assign(q, { ayes: clip(a.prob_a), ano: clip(1 - a.prob_a),
+                                   byes: clip(a.prob_b), bno: clip(1 - a.prob_b) });
+            }
+            return `../arb-calculator/?${new URLSearchParams(q).toString()}`;
         }
 
         // Deterministic per-day RNG so the free preview pick stays stable within
@@ -641,13 +669,42 @@ a.brand {
             wrap.style.display = 'block';
         }
 
+        // generated_at is when our puller ran, not when the prices were scanned.
+        // Date the page by the oldest upstream scan that actually contributed
+        // arbs (a feed with zero kept arbs puts no prices on the page), and
+        // say so when that scan is old or a feed failed outright.
+        const STALE_HOURS = 12;
+        function showFreshness(data) {
+            const sources = data.sources || [];
+            // Trim fractional seconds: Safari rejects more than 3 digits.
+            const ts = s => Date.parse(String(s.updated_at || '').replace(/\.\d+/, ''));
+            const contributing = sources.filter(s => s.ok && s.guaranteed_kept > 0 && isFinite(ts(s)));
+            let asOf = data.generated_at;
+            const notes = [];
+            if (contributing.length) {
+                const oldest = contributing.reduce((a, b) => ts(a) <= ts(b) ? a : b);
+                asOf = new Date(ts(oldest)).toISOString();
+                const hours = (Date.now() - ts(oldest)) / 36e5;
+                if (hours > STALE_HOURS) {
+                    notes.push(`The ${oldest.name} last scanned ${Math.floor(hours)} hours ago, so these prices are likely out of date.`);
+                }
+            }
+            sources.filter(s => !s.ok).forEach(s => {
+                notes.push(`The ${s.name} failed on the last pull, so its arbs are missing.`);
+            });
+            document.getElementById('generated-at').textContent = fmtDate(asOf);
+            const warn = document.getElementById('freshness-warn');
+            warn.textContent = notes.join(' ');
+            warn.hidden = notes.length === 0;
+        }
+
         async function load() {
             try {
                 const resp = await fetch('arbs.json', { cache: 'no-store' });
                 if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
                 const data = await resp.json();
                 arbs = data.arbs || [];
-                document.getElementById('generated-at').textContent = fmtDate(data.generated_at);
+                showFreshness(data);
             } catch (e) {
                 document.getElementById('generated-at').textContent = 'unavailable';
                 document.getElementById('empty').textContent = `Could not load arbs.json (${e.message}).`;
@@ -665,8 +722,13 @@ a.brand {
             let list = arbs.slice();
             if (suspMode === 'hide') list = list.filter(a => !a.suspicious);
             if (sortBy === 'return') {
-                // Sort by absolute price gap (cents), biggest first.
-                list.sort((a, b) => Math.abs(b.prob_a - b.prob_b) - Math.abs(a.prob_a - a.prob_b));
+                // After-fee return, the number the puller filters on. This used
+                // to sort by display-price gap, which is not the trade.
+                list.sort((a, b) => (b.return_pct || 0) - (a.return_pct || 0));
+            } else if (sortBy === 'annual') {
+                // Unknown (no settle date, or under a week out) sorts last.
+                const ann = a => a.annualized_return_pct == null ? -Infinity : a.annualized_return_pct;
+                list.sort((a, b) => ann(b) - ann(a));
             } else if (sortBy === 'volume') {
                 const vol = a => (a.volume_a || 0) + (a.volume_b || 0);
                 list.sort((a, b) => vol(b) - vol(a));
@@ -702,23 +764,33 @@ a.brand {
             const gapPct = (Math.round(gapRaw * 10) / 10).toFixed(1);
             const returnClass = gapRaw >= 5 ? '' : 'small';
             const title = a.question_a || a.label || '(unnamed)';
+            const b = basket(a);
+            const headTag = b
+                ? `<span class="arb-return" title="Return on the total stake if both legs fill at these asks, after Kalshi and Polymarket fees. Prices move, so check both books first.">${a.return_pct.toFixed(2)}% after fees</span>`
+                : `<span class="arb-return ${returnClass}" title="Price gap in percentage points between the two markets, before fees. Not return on bankroll.">${gapPct}pp gap</span>`;
+            const legPrice = (leg, prob) => leg
+                ? `<span class="price"><span class="side-${leg[0].toLowerCase()}">Buy ${leg[0]}</span> @ ${fmtCents(leg[1])}</span>`
+                : `<span class="price">${fmtPrice(prob)}</span>`;
+            const perYear = a.annualized_return_pct != null
+                ? ` <span title="The after-fee return compounded over a year, given the settle date. Compares arbs that tie money up for different lengths of time.">(${a.annualized_return_pct.toFixed(1)}%/yr)</span>`
+                : '';
 
             return `
                 <div class="arb-card${a.suspicious ? ' suspicious' : ''}">
                     <div class="arb-head">
                         <span class="arb-category">${escapeHtml(a.category || 'Arb')}</span>
-                        <span class="arb-return ${returnClass}" title="Price gap in percentage points between the two markets, before fees. Not return on bankroll.">${gapPct}pp gap</span>
+                        ${headTag}
                     </div>
                     <div class="arb-question">${escapeHtml(title)}</div>
 
                     <div class="leg">
                         <span class="platform ${escapeHtml(a.platform_a)}">${pa}</span>
-                        <span class="price">${fmtPrice(a.prob_a)}</span>
+                        ${legPrice(b && b.a, a.prob_a)}
                         <a class="btn" href="${escapeHtml(a.url_a)}" target="_blank" rel="noopener">Open ↗</a>
                     </div>
                     <div class="leg">
                         <span class="platform ${escapeHtml(a.platform_b)}">${pb}</span>
-                        <span class="price">${fmtPrice(a.prob_b)}</span>
+                        ${legPrice(b && b.b, a.prob_b)}
                         <a class="btn" href="${escapeHtml(a.url_b)}" target="_blank" rel="noopener">Open ↗</a>
                     </div>
                     ${a.question_a && a.question_b && a.question_a !== a.question_b ? `
@@ -728,7 +800,7 @@ a.brand {
                         </div>` : ''}
                     <a class="calc-handoff-btn" href="${escapeHtml(calcHandoffUrl(a))}">Size this in the Calculator →</a>
                     <div class="arb-foot">
-                        <span>${a.settle_date ? `Settles ${a.settle_date}` : ''}</span>
+                        <span>${a.settle_date ? `Settles ${escapeHtml(a.settle_date)}${perYear}` : ''}</span>
                         ${a.suspicious ? `<span class="susp" title="${escapeHtml((a.suspicion_reasons || []).join(', '))}">⚠ ${escapeHtml(humanSuspicionReasons(a.suspicion_reasons).join(', '))}</span>` : ''}
                     </div>
                 </div>`;

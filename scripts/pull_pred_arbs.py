@@ -18,7 +18,7 @@ from __future__ import annotations
 
 import json
 import sys
-from datetime import datetime, timezone
+from datetime import date, datetime, timezone
 from pathlib import Path
 
 import requests
@@ -147,6 +147,26 @@ def _normalize_race(r: dict, source_id: str) -> dict | None:
     known = [t for t in (trade_a, trade_b) if t is not None]
     if known and min(known) < MIN_TRADEABLE:
         return None
+    # The prices the return was actually computed from (2026-10-14). prob_a/b
+    # are display prices (last trade or mid) and can sit 10+ points away from
+    # the asks, so a card or calculator built from them overstated the arb:
+    # a 1.11% basket handed off to the calculator as 14.29%. The fillable_*
+    # asks are depth-adjusted; the plain asks are the fallback. Both upstream
+    # schemas carry them.
+    def _ask(*keys):
+        for k in keys:
+            v = _to_float(r.get(k))
+            if v is not None and 0 < v < 1:
+                return v
+        return None
+    yes_leg = r.get("yes_leg") if r.get("yes_leg") in ("a", "b") else None
+    settle_date = r.get("settle_date", "")
+    days = _to_float(r.get("days_to_settle"))
+    if days is None:
+        days = _days_until(settle_date)
+    annual = _to_float(r.get("annualized_return_pct"))
+    if annual is None and days is not None:
+        annual = _annualize(ret, days)
     return {
         "source":   source_id,
         "category": r.get("category") or r.get("office") or "",
@@ -165,11 +185,18 @@ def _normalize_race(r: dict, source_id: str) -> dict | None:
         "stake_b":    _to_float(r.get("stake_b_dollars")),
         "return_pct": ret,
         "gap_pp":     gap_pp,
-        "settle_date": r.get("settle_date", ""),
-        # Present on polling-agg rows (2026-07-03+); None elsewhere. The
-        # annualized number is the "sooner they cash" ranking metric.
-        "days_to_settle": _to_float(r.get("days_to_settle")),
-        "annualized_return_pct": _to_float(r.get("annualized_return_pct")),
+        # yes_leg "a" = buy YES on A and NO on B; "b" = the reverse.
+        "yes_leg":   yes_leg,
+        "ask_yes_a": _ask("fillable_ask_a", "ask_a"),
+        "ask_no_a":  _ask("fillable_no_ask_a", "no_ask_a"),
+        "ask_yes_b": _ask("fillable_ask_b", "ask_b"),
+        "ask_no_b":  _ask("fillable_no_ask_b", "no_ask_b"),
+        "settle_date": settle_date,
+        # polling-agg sends both of these; pred-arbitrage sends neither, so
+        # they are derived from settle_date. Annualized is the "sooner they
+        # cash" ranking metric: 3% over two weeks beats 7% over six months.
+        "days_to_settle": days,
+        "annualized_return_pct": annual,
         # Max contracts fillable within 3pp of best ask, per leg (None =
         # unknown, e.g. PredictIt). The smaller side caps the trade.
         "tradeable_a": trade_a,
@@ -179,6 +206,27 @@ def _normalize_race(r: dict, source_id: str) -> dict | None:
         "suspicious": bool(r.get("suspicious")),
         "suspicion_reasons": r.get("suspicion_reasons") or [],
     }
+
+
+def _days_until(settle_date, today=None) -> float | None:
+    """Whole days from today (UTC) to an ISO settle date; None if unparseable."""
+    try:
+        d = date.fromisoformat(str(settle_date)[:10])
+    except ValueError:
+        return None
+    today = today or datetime.now(timezone.utc).date()
+    return float((d - today).days)
+
+
+def _annualize(ret_pct, days) -> float | None:
+    """Compound a per-trade return over a year. None when it would mislead.
+
+    Under a week out, annualizing turns a 1% basket into a four-digit number
+    that says nothing useful, so those are left blank and sort last.
+    """
+    if ret_pct is None or days is None or days < 7:
+        return None
+    return round(((1 + ret_pct / 100.0) ** (365.0 / days) - 1) * 100.0, 2)
 
 
 def _to_float(v):
@@ -215,6 +263,15 @@ def main() -> int:
             "guaranteed_kept": len(kept),
         })
         print(f"{src['id']}: kept {len(kept)} guaranteed arbs of {len(races)} races")
+
+    # Every source failed: keep the last good arbs.json rather than overwrite it
+    # with an empty list, which the dashboard would show as "no arbs today" and
+    # the workflow would happily commit. Non-zero exit fails the job before the
+    # commit step, so GitHub emails the failure.
+    if not any(s["ok"] for s in source_meta):
+        print("ERROR: every source failed; leaving arbs.json untouched.",
+              file=sys.stderr)
+        return 1
 
     # Sort: non-suspicious first, then by locked return % desc (matches
     # the upstream dashboards' ranking since 2026-07-04).

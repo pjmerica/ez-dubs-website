@@ -190,6 +190,11 @@
             margin-bottom: 18px;
         }
         .caveat-card strong { color: #f7b500; }
+        .handoff-note {
+            color: #99aabb; font-size: 0.88rem; line-height: 1.45;
+            margin: 0 0 14px; padding: 10px 14px;
+            border-left: 3px solid #4a9eff; background: #131f2c; border-radius: 6px;
+        }
         .form-error {
             background: rgba(255, 66, 77, 0.1);
             border: 1px solid rgba(255, 66, 77, 0.5);
@@ -464,13 +469,15 @@ a.brand {
             </div>
         </div>
 
-        <div id="form-error" class="form-error" style="display:none;"></div>
+        <div id="form-error" class="form-error" style="display:none;" role="alert"></div>
 
         <div class="caveat-card">
             <strong>Read before betting.</strong> The math here ignores trading fees (Kalshi and Polymarket are ~3% per fill) and order-book depth. The displayed price may not be the full size you can fill, and a tight arb on paper may not survive once fees are taken out.
         </div>
 
-        <div id="output"></div>
+        <p class="handoff-note" id="handoff-note" hidden></p>
+
+        <div id="output" aria-live="polite"></div>
 
         <p class="notes">
             <strong>How it works.</strong> An arb means buying one outcome on market A and the opposite outcome
@@ -685,8 +692,10 @@ a.brand {
                 return;
             }
 
-            const priceAStr = priceA.toFixed(2);
-            const priceBStr = priceB.toFixed(2);
+            // Up to 4 decimals, trailing zeros dropped: a 0.0065 ask printed as
+            // "0.01" at a fixed 2, which is not the price the stakes assume.
+            const priceAStr = String(+priceA.toFixed(4));
+            const priceBStr = String(+priceB.toFixed(4));
 
             out.innerHTML = `
                 <div class="calc-card">
@@ -766,6 +775,16 @@ a.brand {
             for (const [key, id] of Object.entries(map)) {
                 const v = p.get(key);
                 if (v !== null && v !== '') { el(id).value = v; touched = true; }
+            }
+            // The arbs page sends its after-fee return as `net`. This page has
+            // no fee model, so without the note its (larger) number looks like
+            // a contradiction of the card the visitor just clicked from.
+            const net = parseFloat(p.get('net'));
+            if (touched && isFinite(net)) {
+                const note = el('handoff-note');
+                note.textContent = `Prefilled from Today's Arbitrage Picks, which puts this basket at ` +
+                    `${net.toFixed(2)}% after fees. The result below is before fees, so it will read higher.`;
+                note.hidden = false;
             }
             if (touched) compute();
         })();
