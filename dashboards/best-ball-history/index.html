@@ -566,6 +566,10 @@ a.brand {
 
             // CSVs live in the best-ball-prices folder. Fetch all 4 sources in parallel.
             const resps = await Promise.all(ALL_SOURCES.map(src => fetch(SOURCE_CSV[src])));
+            // A 404 would otherwise be parsed as CSV and render an empty page.
+            resps.forEach((r, i) => {
+                if (!r.ok) throw new Error(`${ALL_SOURCES[i]} history returned HTTP ${r.status}`);
+            });
             const texts = await Promise.all(resps.map(r => r.text()));
             const byDateBySource = {};
             ALL_SOURCES.forEach((src, i) => {
@@ -827,7 +831,11 @@ a.brand {
             });
         });
 
-        loadHistoryData();
+        loadHistoryData().catch(e => {
+            console.error(e);
+            document.getElementById('movers-subtitle').textContent =
+                `Could not load the ADP history (${e.message}). Refresh to try again.`;
+        });
     </script>
     </div>
     <footer class="site-footer">

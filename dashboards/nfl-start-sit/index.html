@@ -5,7 +5,15 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://api.sleeper.app; font-src 'self'; base-uri 'self'; form-action 'none'">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NFL Start/Sit · EZ Dubs Analytics</title>
-  <link rel="stylesheet" href="../nfl-shared/style.css?v=2026-10-01-tdonly" />
+  <meta name="description" content="Who to start this week, priced off betting markets instead of projections. Reads your Sleeper leagues." />
+  <link rel="icon" href="/EDA.png" type="image/png" />
+  <meta property="og:title" content="NFL Start/Sit | EZ Dubs Analytics" />
+  <meta property="og:description" content="Who to start this week, priced off betting markets instead of projections. Reads your Sleeper leagues." />
+  <meta property="og:url" content="https://ezdubsanalytics.com/dashboards/nfl-start-sit/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://ezdubsanalytics.com/EDA.png" />
+  <meta name="twitter:card" content="summary" />
+  <link rel="stylesheet" href="../nfl-shared/style.css?v=2f55033109" />
 <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -181,6 +189,11 @@
             margin-bottom: 18px;
         }
         .caveat-card strong { color: #f7b500; }
+        .handoff-note {
+            color: #99aabb; font-size: 0.88rem; line-height: 1.45;
+            margin: 0 0 14px; padding: 10px 14px;
+            border-left: 3px solid #4a9eff; background: #131f2c; border-radius: 6px;
+        }
         .form-error {
             background: rgba(255, 66, 77, 0.1);
             border: 1px solid rgba(255, 66, 77, 0.5);
@@ -396,10 +409,9 @@ a.brand {
   <div class="container">
     <header>
       
-      <h1>Lineup</h1>
+      <h1>NFL Start/Sit</h1>
       <p class="subtitle">
-        Start/sit and waiver calls priced off the betting markets, for
-        <span id="week-label">this week</span>. Priced off the betting markets.
+        Start/sit and waiver calls for <span id="week-label">this week</span>, priced off the betting markets instead of projections.
       </p>
     </header>
 
@@ -484,6 +496,6 @@ a.brand {
     </footer>
   </div>
 
-  <script src="../nfl-shared/app.js?v=2026-10-01-tdonly"></script>
+  <script src="../nfl-shared/app.js?v=2f55033109"></script>
 </body>
 </html>

@@ -51,17 +51,21 @@ scraping again.
 
 | page | what it does |
 |---|---|
-| `dashboards/prediction-arbitrage/` | daily snapshot of where Kalshi, Polymarket and PredictIt disagree |
+| `dashboards/prediction-arbitrage/` | where Kalshi and Polymarket disagree, refreshed every 2 hours, priced at the asks after fees |
 | `dashboards/arb-calculator/` | work out equal-payoff stakes across two markets |
 
 `arbs.json` is pulled by `scripts/pull_pred_arbs.py` from the `pred-arbitrage`
-scanner's Pages site.
+and `polling-agg-2026` scanners' Pages sites. If both are down it keeps the last
+good file rather than publishing an empty one.
 
 ## Layout
 
 ```
 index.html                     home
 contact.html
+404.html                       not-found page; root-relative links only
+robots.txt, sitemap.xml        hand-maintained; add a URL when a page joins the nav
+_config.yml                    keeps internal docs and scripts off the live site
 dashboards/
   <six dashboards>/index.html
   nfl-shared/                  app.js + style.css, shared by the two NFL pages
@@ -72,9 +76,11 @@ scripts/
   pull_nfl_data.py             mirrors NFL market data from AI_Agent_work
   pull_pred_arbs.py            mirrors prediction-market arbs
   verify_*.test.js             the checks CI runs; see below
+  test_pull_pred_arbs.py       offline tests for the arbs puller (CI runs it)
   one_off_manual_snapshot_*.py 33 dated scripts, Jun-Aug 2026
   backfill_history.py          one-shot migration, already run
 docs/manual-upload-playbook.md the manual ADP process, from before the puller
+docs/site-audit-2026-10-14.md  site audit: what was fixed, what is still open
 _local/                        gitignored: QC dumps and archived CSVs
 ```
 

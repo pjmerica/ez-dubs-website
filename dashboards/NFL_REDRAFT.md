@@ -141,6 +141,19 @@ dashboards/nfl-rooting/index.html
 
 `nfl-shared/` holds no page of its own; it exists so the two pages cannot drift.
 
+### Each page's head, heading and subtitle come from the port script
+
+The port rebuilds both pages from `lineup/index.html` every run, so the
+per-page text lives in the `PAGES` dict in `port_lineup_to_ezdubs.py`: the
+`<h1>`, the subtitle, and the description used for the `<meta name="description">`
+and link-preview (`og:`) tags. The favicon and preview image come from
+`HEAD_TMPL` in the same file. **Edit them there, not in the destination
+`index.html`** -- only `<meta http-equiv>` tags (the CSP) survive a re-port.
+
+The `?v=` on `app.js` and `style.css` is a hash of those two files, computed
+by the port, so it changes exactly when they do. (Until 2026-10-14 it was a
+hand-set date that stayed at `2026-10-01-tdonly` through four changes.)
+
 ## How to re-port after an upstream change
 
 From the source repo:
