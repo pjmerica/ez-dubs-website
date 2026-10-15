@@ -231,7 +231,8 @@ item 12 stay.
   and this needs a new build step. Worth doing before 2027 reopens the cron.
 - **Repo history is 126 MB, about 120 MB of it old Best Ball CSV versions.** Each
   daily append stored a new 7 MB copy. It stopped growing when the cron was
-  disabled. For 2027, starting new per-season files would avoid repeating it.
+  disabled. **Decided 2026-10-14:** 2027 will use fresh per-season files and the
+  2026 files are permanent, so this never repeats (recorded in CLAUDE.md).
   Rewriting history to reclaim the space isn't worth the disruption.
 - **Nav and footer still copied into 8 pages** (known, see `UI_AUDIT.md`).
 - **The Chrome-based tests (`verify_csp`, `verify_mobile_layout`) don't run on

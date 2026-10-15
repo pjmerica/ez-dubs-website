@@ -61,6 +61,8 @@ The 2026 Best Ball drafting season closed on Sept 4. The two Best Ball dashboard
 
 If a future session sees this file and doesn't understand why `pull_adp.py` looks partially dead, this is why. Don't reactivate the cron unless the user asks. Don't touch the frozen CSVs unless they specifically want to change the snapshot date or replace 09-04's rows.
 
+**2027 gets fresh files; the 2026 ones are permanent (user decision, 2026-10-14).** The 2026 CSVs and `latest.json` are a closed record and will never change. When the season reopens, do not append 2027 rows to `dk_adp_history.csv` / `ud_adp_history.csv`: start new per-season files and point `pull_adp.py`, the workflow's `git add` paths and both Best Ball dashboards at them. Two reasons: the 2026 record stays intact, and the single growing CSV is what put about 120 MB into git history (each daily append stored a new 7 MB version). Per-season files are not the per-day files the "Storage model" section rules out.
+
 ## FFPC and Drafters were archived (2026-07-31)
 
 The site used to track four sources (DK, UD, FFPC, Drafters). FFPC and Drafters were archived on 2026-07-31, but their numbers had already stopped moving before that: **FFPC last changed 2026-07-07** and **Drafters 2026-07-28**, so the final weeks in each file are carried-forward duplicates rather than market data. FFPC and Drafters were archived on 2026-07-31 — both had been byte-for-byte frozen upstream for 3+ months. The archived CSVs live in `dashboards/best-ball-prices/archive/`. Everything else (puller, dashboards, workflow YAML, docs, notebook) was cleaned up to only handle DK + UD.
