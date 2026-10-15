@@ -26,6 +26,7 @@ on:
       - 'scripts/pull_nfl_data.py'
       - 'scripts/pull_pred_arbs.py'
       - 'scripts/test_pull_pred_arbs.py'
+      - 'scripts/build_history_summary.js'
       - 'package.json'
       - '.github/workflows/tests.yml'
   pull_request:
@@ -73,6 +74,11 @@ jobs:
 
       - name: Verify the NFL dashboards
         run: node scripts/verify_nfl_pages.test.js
+
+      # Risers/Fallers reads a one-time build of the frozen CSVs; this fails if
+      # the two ever disagree, or if the page stops rendering from it.
+      - name: Verify the Best Ball history summary
+        run: node scripts/verify_history_summary.test.js
 
       # jsdom does not enforce CSP, so the suite above cannot tell whether the
       # policy breaks the pages. This loads them in real Chrome and fails on any

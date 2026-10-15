@@ -206,6 +206,23 @@ files. Jekyll can't run on this machine, so the excludes can only be confirmed
 after deploying: `/CLAUDE.md`, `/CLAUDE`, `/README.md` and `/scripts/pull_adp.py`
 should 404, and every dashboard should still load.
 
+### 13. Risers/Fallers downloaded 3.1 MB on every visit (fixed 2026-10-15)
+
+The page fetched both history CSVs (13.8 MB raw, 320K rows) and parsed them in
+the browser on every visit, for data that will never change. Now
+`scripts/build_history_summary.js` builds `history.json` once, using the
+page's own parsing code verbatim, and the page reads that: 860 KB raw, 139 KB
+gzipped. The now-unused CSV helpers came out of the page.
+
+**Checked.** The old page (from git) and the new one were loaded side by side
+in jsdom. The built data was identical, apart from key order inside each day's
+lookup table, which nothing iterates. The movers list was identical in all 105
+era x position x lookback combinations, and the chart series matched. The page
+builds its data in under a second instead of about 3.5. New
+`verify_history_summary.test.js`, in CI, checks `history.json` still matches
+the CSVs and that the page renders from it with no errors and without fetching
+a CSV.
+
 ## Found but not fixed here
 
 ### Privacy: what still links the site to the GitHub account
@@ -225,10 +242,6 @@ item 12 stay.
 
 ### Left for later
 
-- **Risers/Fallers downloads 3.1 MB (13.8 MB raw, 320K rows)** and parses it in
-  the browser on every visit, for frozen data. A one-time pre-aggregated JSON
-  would probably be under 300 KB. Not done because the CSVs are the frozen record
-  and this needs a new build step. Worth doing before 2027 reopens the cron.
 - **Repo history is 126 MB, about 120 MB of it old Best Ball CSV versions.** Each
   daily append stored a new 7 MB copy. It stopped growing when the cron was
   disabled. **Decided 2026-10-14:** 2027 will use fresh per-season files and the

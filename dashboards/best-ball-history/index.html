@@ -467,45 +467,14 @@ a.brand {
 
     <script>
         // Shared helpers
-        function parseCSV(text) {
-            const rows = [];
-            const lines = text.trim().split('\n');
-            for (const line of lines) {
-                const row = [];
-                let inQuote = false, field = '';
-                for (let i = 0; i < line.length; i++) {
-                    const ch = line[i];
-                    if (ch === '"') { inQuote = !inQuote; }
-                    else if (ch === ',' && !inQuote) { row.push(field.trim()); field = ''; }
-                    else { field += ch; }
-                }
-                row.push(field.trim());
-                rows.push(row);
-            }
-            return rows;
-        }
-
         function escapeHtml(s) {
             return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({
                 '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;',
             })[c]);
         }
 
-        function normalizeName(name) {
-            return name.toLowerCase()
-                .replace(/[.']/g, '')
-                .replace(/\s+(jr|sr|i{1,3}|iv|v|1st|2nd|3rd|4th|5th)\.?$/i, '')
-                .replace(/\s+(jr|sr|i{1,3}|iv|v)\.?$/i, '')
-                .replace(/\s+/g, ' ').trim();
-        }
-
-        const ADP_FLOORS = { DK: 240, UD: 216 };
         const ALL_SOURCES = ['DK','UD'];
         const SOURCE_LABEL = { DK: 'DraftKings', UD: 'Underdog' };
-        const SOURCE_CSV = {
-            DK: '../best-ball-prices/dk_adp_history.csv',
-            UD: '../best-ball-prices/ud_adp_history.csv',
-        };
         // Colors match the Best Ball Price Differences page for consistency
         // (DK green, UD yellow). When multiple players are on the chart, we
         // distinguish them with the dash pattern instead of the color --
@@ -518,9 +487,6 @@ a.brand {
         // with the same source color are still distinguishable.
         const PLAYER_DASH = [[], [6, 4], [2, 3], [8, 3, 2, 3], [10, 5, 2, 5], [4, 2, 2, 2]];
         let activeSources = ['DK','UD'];
-        function isRealAdp(adp, floor) {
-            return !isNaN(adp) && adp < floor;
-        }
 
         const DRAFT_CUTOVER = '2026-04-24';
         const COLORS = ['#4a9eff','#e74c3c','#2ecc71','#f39c12','#9b59b6','#1abc9c','#e67e22','#e91e63','#00bcd4','#8bc34a'];
@@ -548,60 +514,34 @@ a.brand {
         }
 
         async function loadHistoryData() {
-            function buildSnapshotMaps(rows, floor) {
-                const byDate = new Map();
-                for (let i = 1; i < rows.length; i++) {
-                    const r = rows[i];
-                    if (r.length < 5 || !r[0] || !r[1]) continue;
-                    const date = r[0], name = r[1], pos = r[2] || '', source = r[5] || '';
-                    const adp = parseFloat(r[4]);
-                    if (!isRealAdp(adp, floor)) continue;
-                    let bucket = byDate.get(date);
-                    if (!bucket) { bucket = { manual: {}, auto: {} }; byDate.set(date, bucket); }
-                    const target = source === 'manual' ? bucket.manual : bucket.auto;
-                    target[normalizeName(name)] = { name, pos, adp };
-                }
-                return byDate;
-            }
+            // history.json is the CSVs pre-built into exactly the structure this
+            // page used to assemble on every visit (scripts/build_history_summary.js,
+            // run once 2026-10-15; the 2026 data is permanent). That was 3.1 MB
+            // of CSV and 320K rows parsed in the browser; this is ~140 KB.
+            // verify_history_summary.test.js checks both paths give identical data.
+            const resp = await fetch('history.json');
+            // A 404 would otherwise surface as a JSON parse error.
+            if (!resp.ok) throw new Error(`history.json returned HTTP ${resp.status}`);
+            const h = await resp.json();
 
-            // CSVs live in the best-ball-prices folder. Fetch all 4 sources in parallel.
-            const resps = await Promise.all(ALL_SOURCES.map(src => fetch(SOURCE_CSV[src])));
-            // A 404 would otherwise be parsed as CSV and render an empty page.
-            resps.forEach((r, i) => {
-                if (!r.ok) throw new Error(`${ALL_SOURCES[i]} history returned HTTP ${r.status}`);
-            });
-            const texts = await Promise.all(resps.map(r => r.text()));
-            const byDateBySource = {};
-            ALL_SOURCES.forEach((src, i) => {
-                byDateBySource[src] = buildSnapshotMaps(parseCSV(texts[i]), ADP_FLOORS[src]);
-            });
-
-            const allDates = new Set();
-            ALL_SOURCES.forEach(src => byDateBySource[src].forEach((_, d) => allDates.add(d)));
-            const snapshots = [...allDates].sort().map(date => {
+            const snapshots = h.dates.map((date, d) => {
                 const maps = {};
                 for (const src of ALL_SOURCES) {
-                    const b = byDateBySource[src].get(date) || { manual: {}, auto: {} };
-                    maps[src] = Object.keys(b.manual).length ? b.manual : b.auto;
+                    const m = {};
+                    h.players.forEach(([key], p) => {
+                        const adp = h.adp[src][p][d];
+                        if (adp !== null) m[key] = { adp };
+                    });
+                    maps[src] = m;
                 }
                 return { label: _labelFor(date), date,
                          era: date >= DRAFT_CUTOVER ? 'post' : 'pre',
                          maps };
             });
-
-            const allKeys = new Set();
-            snapshots.forEach(s => ALL_SOURCES.forEach(src => Object.keys(s.maps[src]).forEach(k => allKeys.add(k))));
+            // Built in the file's order, which is the order the CSV loader
+            // produced: ties in the movers list and search results depend on it.
             const playerIndex = {};
-            for (const key of allKeys) {
-                let name = null, pos = null;
-                outer:
-                for (const s of snapshots) {
-                    for (const src of ALL_SOURCES) {
-                        if (s.maps[src][key]) { name = s.maps[src][key].name; pos = s.maps[src][key].pos; break outer; }
-                    }
-                }
-                if (name) playerIndex[key] = { name, pos, key };
-            }
+            for (const [key, name, pos] of h.players) playerIndex[key] = { name, pos, key };
             historyData = { snapshots, playerIndex };
             initLookbackSlider();
             renderMovers();
