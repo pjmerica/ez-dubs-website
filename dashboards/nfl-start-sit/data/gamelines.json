@@ -1,10 +1,10 @@
 {
  "source": "The Odds API",
  "region": "us",
- "lastUpdated": "2026-10-16T17:46:49+00:00",
+ "lastUpdated": "2026-10-17T16:55:44+00:00",
  "gameCount": 24,
- "quotaUsed": "1601",
- "quotaRemaining": "18399",
+ "quotaUsed": "1681",
+ "quotaRemaining": "18319",
  "note": "Median spread and total across books. Implied team total = total/2 - spread/2. Used to score D/ST and K, which have no prop market.",
  "games": [
   {
@@ -51,7 +51,7 @@
      "oppImplied": 25.5
     }
    },
-   "bookCount": 11
+   "bookCount": 10
   },
   {
    "matchup": "BALCLE",
@@ -60,21 +60,21 @@
    "homeName": "Cleveland Browns",
    "awayName": "Baltimore Ravens",
    "kickoff": "2026-10-18T17:00:00Z",
-   "total": 40.0,
+   "total": 39.5,
    "homeSpread": 3.0,
    "teams": {
     "CLE": {
-     "implied": 18.5,
+     "implied": 18.25,
      "spread": 3.0,
-     "oppImplied": 21.5
+     "oppImplied": 21.25
     },
     "BAL": {
-     "implied": 21.5,
+     "implied": 21.25,
      "spread": -3.0,
-     "oppImplied": 18.5
+     "oppImplied": 18.25
     }
    },
-   "bookCount": 10
+   "bookCount": 11
   },
   {
    "matchup": "CARPHI",
@@ -84,17 +84,17 @@
    "awayName": "Carolina Panthers",
    "kickoff": "2026-10-18T17:00:00Z",
    "total": 39.0,
-   "homeSpread": 3.5,
+   "homeSpread": 3.0,
    "teams": {
     "PHI": {
-     "implied": 17.75,
-     "spread": 3.5,
-     "oppImplied": 21.25
+     "implied": 18.0,
+     "spread": 3.0,
+     "oppImplied": 21.0
     },
     "CAR": {
-     "implied": 21.25,
-     "spread": -3.5,
-     "oppImplied": 17.75
+     "implied": 21.0,
+     "spread": -3.0,
+     "oppImplied": 18.0
     }
    },
    "bookCount": 11
@@ -175,18 +175,18 @@
    "homeName": "Tampa Bay Buccaneers",
    "awayName": "Pittsburgh Steelers",
    "kickoff": "2026-10-18T17:00:00Z",
-   "total": 39.5,
+   "total": 39.0,
    "homeSpread": 2.5,
    "teams": {
     "TB": {
-     "implied": 18.5,
+     "implied": 18.25,
      "spread": 2.5,
-     "oppImplied": 21.0
+     "oppImplied": 20.75
     },
     "PIT": {
-     "implied": 21.0,
+     "implied": 20.75,
      "spread": -2.5,
-     "oppImplied": 18.5
+     "oppImplied": 18.25
     }
    },
    "bookCount": 11
@@ -245,17 +245,17 @@
    "awayName": "Los Angeles Chargers",
    "kickoff": "2026-10-18T20:25:00Z",
    "total": 41.5,
-   "homeSpread": -8.0,
+   "homeSpread": -7.5,
    "teams": {
     "KC": {
-     "implied": 24.75,
-     "spread": -8.0,
-     "oppImplied": 16.75
+     "implied": 24.5,
+     "spread": -7.5,
+     "oppImplied": 17.0
     },
     "LAC": {
-     "implied": 16.75,
-     "spread": 8.0,
-     "oppImplied": 24.75
+     "implied": 17.0,
+     "spread": 7.5,
+     "oppImplied": 24.5
     }
    },
    "bookCount": 11
@@ -290,18 +290,18 @@
    "homeName": "San Francisco 49ers",
    "awayName": "Washington Commanders",
    "kickoff": "2026-10-20T00:15:00Z",
-   "total": 51.5,
+   "total": 52.0,
    "homeSpread": -7.5,
    "teams": {
     "SF": {
-     "implied": 29.5,
+     "implied": 29.75,
      "spread": -7.5,
-     "oppImplied": 22.0
+     "oppImplied": 22.25
     },
     "WAS": {
-     "implied": 22.0,
+     "implied": 22.25,
      "spread": 7.5,
-     "oppImplied": 29.5
+     "oppImplied": 29.75
     }
    },
    "bookCount": 11
@@ -314,17 +314,17 @@
    "awayName": "New England Patriots",
    "kickoff": "2026-10-23T00:15:00Z",
    "total": 49.75,
-   "homeSpread": -2.5,
+   "homeSpread": -2.25,
    "teams": {
     "CHI": {
-     "implied": 26.12,
-     "spread": -2.5,
-     "oppImplied": 23.62
+     "implied": 26.0,
+     "spread": -2.25,
+     "oppImplied": 23.75
     },
     "NE": {
-     "implied": 23.62,
-     "spread": 2.5,
-     "oppImplied": 26.12
+     "implied": 23.75,
+     "spread": 2.25,
+     "oppImplied": 26.0
     }
    },
    "bookCount": 8
@@ -382,18 +382,18 @@
    "homeName": "Baltimore Ravens",
    "awayName": "Cincinnati Bengals",
    "kickoff": "2026-10-25T17:00:00Z",
-   "total": 51.0,
+   "total": 50.5,
    "homeSpread": -3.5,
    "teams": {
     "BAL": {
-     "implied": 27.25,
+     "implied": 27.0,
      "spread": -3.5,
-     "oppImplied": 23.75
+     "oppImplied": 23.5
     },
     "CIN": {
-     "implied": 23.75,
+     "implied": 23.5,
      "spread": 3.5,
-     "oppImplied": 27.25
+     "oppImplied": 27.0
     }
    },
    "bookCount": 7
