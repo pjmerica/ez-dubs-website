@@ -706,7 +706,7 @@ a.brand {
     <div class="page">
     <h1>Best Ball Price Differences</h1>
     <p class="subtitle">DraftKings · Underdog | 2026 Best Ball Season</p>
-    <p class="updated">Last updated: <span id="last-updated">loading<span class="inline-spinner"></span></span></p>
+    <p class="updated">ADPs as of: <span id="last-updated">loading<span class="inline-spinner"></span></span></p>
     <p class="stale-note" id="stale-note" style="display:none;"></p>
     <p class="season-closed">
       <strong>The 2026 Best Ball season is over.</strong> Drafts closed on
@@ -990,18 +990,27 @@ a.brand {
                         adps,
                     };
                 }
-                // Render "Last updated" from latest.json's pulled_at when present.
-                const stamp = snapshot.pulled_at || null;
-                if (stamp) {
-                    const dt = new Date(stamp);
-                    const monthsShort = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-                    const hh = String(dt.getHours()).padStart(2, '0');
-                    const mm = String(dt.getMinutes()).padStart(2, '0');
-                    const tz = dt.toLocaleTimeString(undefined, { timeZoneName: 'short' }).split(' ').pop();
-                    document.getElementById('last-updated').textContent =
-                        `${monthsShort[dt.getMonth()]} ${dt.getDate()}, ${dt.getFullYear()} at ${hh}:${mm} ${tz}`;
-                } else if (snapshot.date) {
-                    document.getElementById('last-updated').textContent = snapshot.date;
+                // Label with the date the ADPs describe (snapshot.date), not
+                // pulled_at. Those differ when latest.json is rebuilt later: the
+                // 2026 freeze rebuilt it on Sep 19 from Sep 4's rows, and the page
+                // said "Last updated Sep 19" for numbers from the season's close.
+                // The pull time is added only when the pull happened that same
+                // day, which is every live daily run.
+                const monthsShort = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+                const label = document.getElementById('last-updated');
+                const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(snapshot.date || '');
+                if (m) {
+                    let text = `${monthsShort[+m[2] - 1]} ${+m[3]}, ${m[1]}`;
+                    const dt = snapshot.pulled_at ? new Date(snapshot.pulled_at) : null;
+                    if (dt && !isNaN(dt) && dt.toISOString().slice(0, 10) === snapshot.date) {
+                        const hh = String(dt.getHours()).padStart(2, '0');
+                        const mm = String(dt.getMinutes()).padStart(2, '0');
+                        const tz = dt.toLocaleTimeString(undefined, { timeZoneName: 'short' }).split(' ').pop();
+                        text += ` at ${hh}:${mm} ${tz}`;
+                    }
+                    label.textContent = text;
+                } else {
+                    label.textContent = snapshot.date || 'unknown';
                 }
             } else {
                 // Fallback: latest.json missing or malformed. Surface a clear error.

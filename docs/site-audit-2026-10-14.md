@@ -223,6 +223,23 @@ builds its data in under a second instead of about 3.5. New
 the CSVs and that the page renders from it with no errors and without fetching
 a CSV.
 
+### 14. Best Ball Prices said "Last updated Sep 19" for Sep 4 numbers (fixed 2026-10-19)
+
+The label came from `latest.json`'s `pulled_at`, which is when the file was
+built. The freeze rebuilt it on Sep 19 from Sep 4's rows, so the page dated the
+season-close ADPs two weeks late. It now reads "ADPs as of: Sep 4, 2026", taken
+from `date`. The time is appended only when the pull happened that same day,
+which is true of every live daily run, so 2027 still shows the pull time.
+`latest.json` is untouched. Checked in jsdom with the real file, a same-day live
+pull, and a file with no `pulled_at`.
+
+**Also reviewed on 2026-10-19, no change needed.** The rest of this page's logic
+is correct: the "cheaper on" direction, sorting with missing ADPs, the
+visualizer, and no player-name collisions in the 429 rows. In the NFL app,
+every storage access is wrapped, both fetch wrappers check the status, and data
+is escaped where it reaches the page. External links, the Sleeper API,
+Formspree and the Chart.js CDN all respond.
+
 ## Found but not fixed here
 
 ### Privacy: what still links the site to the GitHub account
