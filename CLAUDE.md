@@ -38,7 +38,9 @@ Two things that look like mistakes and are not:
   running it (it should touch only the two NFL `index.html` files).
 
 The data **auto-refreshes** via `.github/workflows/nfl-data-pull.yml`, which
-mirrors the upstream JSON (once daily Mon-Wed, twice Thu-Sun). It mirrors rather
+mirrors the upstream JSON (twice daily, more Thu-Sun, and hourly on Sunday
+mornings 09:17-15:17 UTC so the pre-kickoff refresh lands before the 1pm ET
+games: on 2026-10-18 the site showed Saturday's numbers at kickoff without them). It mirrors rather
 than scraping again on purpose: the Odds API bills per event per market, so a
 second pipeline would double the credit burn for identical numbers, and no
 `ODDS_API_KEY` needs to exist in this repo. Do not edit the files in

@@ -18,8 +18,8 @@ on:
     # for minutes. The repo's other workflows use :30 and :45 for the same
     # reason, and the three are staggered so they do not race each other.
     # Timed to follow the UPSTREAM refresh, which is the whole point of a mirror.
-    # Upstream (pjmerica/AI_Agent_work, nfl-props.yml) refreshes at 02:00, 14:00,
-    # 19:00 and 23:00 UTC. This used to run at 13:20 -- forty minutes BEFORE the
+    # Upstream (AI_Agent_work, nfl-props.yml) refreshes Thu 02:00, 14:00, 19:00
+    # and 23:00 UTC, Fri and Sat 14:00, and Sun 06:00 and 10:00. This used to run at 13:20 -- forty minutes BEFORE the
     # 14:00 upstream slot -- so it always pulled the previous cycle and the site
     # sat a cycle behind: 100 player-games here against 302 upstream, with both
     # workflows green.
@@ -33,11 +33,22 @@ on:
     - cron: '0 16 * * *'       # after upstream's 14:00
     - cron: '0 21 * * 4,5,6,0' # after upstream's 19:00, Thu-Sun only
     - cron: '0 1 * * 5,6,0,1'  # after upstream's 23:00, next day UTC
+    # Sunday morning, hourly (2026-10-19). Upstream's Sunday pulls land around
+    # 10:00-14:00 UTC after GitHub's own queueing, and the 1pm ET games kick off
+    # at 17:00 UTC. The slots above left nothing in that window: on 2026-10-18
+    # the site ran at 08:27 (before upstream refreshed) and next at 18:26, so
+    # Start/Sit showed SATURDAY's numbers at kickoff while two fresher upstream
+    # pulls (10:05, 13:43) sat unmirrored. With this account's 1.5-4.5 h cron
+    # lag no single slot is reliable, so several are placed and whichever lands
+    # in the window does the work. Each run is free: no Odds API credits, and
+    # a run that finds nothing new commits nothing.
+    - cron: '17 9-15 * * 0'
   workflow_dispatch:
 
 # One run at a time per workflow. A manual dispatch landing on top of a
 # scheduled run would otherwise have two jobs commit the same file, and the
-# second one's rebase conflicts. Queued, not cancelled, so no pull is lost.
+# second one's rebase conflicts. GitHub keeps at most one run waiting and a
+# newer one replaces it; that loses nothing, since every run pulls the latest.
 # (2026-10-19)
 concurrency:
   group: nfl-data-pull

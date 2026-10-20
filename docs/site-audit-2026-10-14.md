@@ -355,6 +355,44 @@ correctly found Davis Allen, a Rams TE. The page was right; the test now
 searches the full name. AI_Agent_work's Tests workflow had failed on it; the
 offline suite and CI now pass 19 of 19.
 
+### 22. Start/Sit showed Saturday's odds at Sunday kickoff (fixed 2026-10-19)
+
+Checked the Odds API refresh from start to finish. The scraper works as intended:
+- Upstream ran all 8 scheduled pulls for week 6, and each wrote 411-448
+  player-games across 13-14 games from 7-8 books.
+- Credits are fine: 78-84 a run (6 markets x the events that have props;
+  events with none, like next week's games, cost nothing), with 18,161 of the
+  account's 20,000 a month left on 10-18.
+- Thursday's refreshes reached the site within about 90 minutes, before
+  Thursday night's kickoff.
+
+**The gap was Sunday.** Upstream's two Sunday pulls landed at 10:05 and 13:43
+UTC, ahead of the 1pm ET (17:00 UTC) kickoffs. The site's mirror ran at 08:27,
+before either, and not again until 18:26. So at kickoff Start/Sit showed
+Saturday's 16:55 numbers, and the morning pulls arrived about 90 minutes into
+the games. The mirror now also runs hourly on Sunday mornings (09:17-15:17
+UTC). Each run is free and commits only when something changed, and with the
+account's 1.5-4.5 hour cron lag several slots are needed for one to land in
+the window reliably.
+
+The only fully reliable fix is for upstream to trigger the mirror as soon as
+it publishes. That needs a fine-grained access token with Actions access to
+this repo, saved as a secret in AI_Agent_work, and only the owner can create
+one. Not done; the hourly slots are the no-secrets version.
+
+**Also fixed upstream:**
+- The Kalshi "player in two matchups" warning fired on every week-6 run for
+  CHI and NE D/ST, only because next week's Thursday game was already listed.
+  It now flags two games in the same NFL week only, with
+  `tests/matchup_conflicts.test.py`. Start/Sit itself was never affected: it
+  drops games not on the current board.
+- The workflow's cost notes (36 credits, a 500/month tier) and the script's
+  "~120 credits" estimate now match what runs actually spend.
+
+The concurrency comments in all three site workflows were also corrected:
+GitHub keeps one run waiting and a newer one replaces it, rather than
+queueing all of them. For these pulls that loses nothing.
+
 ## Found but not fixed here
 
 ### Privacy: what still links the site to the GitHub account
