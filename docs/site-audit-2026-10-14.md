@@ -398,6 +398,30 @@ The concurrency comments in all three site workflows were also corrected:
 GitHub keeps one run waiting and a newer one replaces it, rather than
 queueing all of them. For these pulls that loses nothing.
 
+### 23. Mid-game runs put live in-game lines on the board (fixed 2026-10-20)
+
+Found while adding Sunday refreshes. Both prop feeds and the game-lines feed
+keep quoting a game after it starts, and those quotes are the live market. Week
+5's 19:43 UTC run, with the 1pm games under way, moved those games' Odds API
+lines a median 40% (Alvin Kamara receiving yards 13.5 to -5.5, Brock Bowers
+74.5 to 129.5) and Kalshi's 61% (Aaron Jones anytime TD 0.645 to 0.03). Games
+not yet started moved 0% and 2%. Any Sunday run that GitHub's cron lag pushed
+past 1pm ET had been doing this.
+
+Fixed upstream with `scripts/kickoff_lock.py`, used by all three scrapers. A
+started game's rows never come from the current run: the previous file's
+pregame rows carry forward, marked `lockedAtKickoff`, for 12 hours. The Odds
+API scraper also stops paying credits to fetch games in progress. Replaying
+week 5's Saturday and Sunday files through it, all 247 Odds API and 178 Kalshi
+started-game rows came back equal to Saturday's pregame lines, and every
+unstarted row equalled the new run. New `tests/kickoff_lock.test.py`; the
+upstream offline suite passes 21 of 21.
+
+With that in place, Sunday refreshes went from 2 to 5 upstream (13:00, 16:00
+and 19:00 UTC added, about 1,000 credits a month more, roughly 3,800 of
+20,000), and the site's hourly Sunday mirror now runs through 00:17 UTC Monday
+so the 4pm and night games get Sunday's lines.
+
 ## Found but not fixed here
 
 ### Privacy: what still links the site to the GitHub account

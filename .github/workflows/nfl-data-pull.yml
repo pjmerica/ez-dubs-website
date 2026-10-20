@@ -19,7 +19,8 @@ on:
     # reason, and the three are staggered so they do not race each other.
     # Timed to follow the UPSTREAM refresh, which is the whole point of a mirror.
     # Upstream (AI_Agent_work, nfl-props.yml) refreshes Thu 02:00, 14:00, 19:00
-    # and 23:00 UTC, Fri and Sat 14:00, and Sun 06:00 and 10:00. This used to run at 13:20 -- forty minutes BEFORE the
+    # and 23:00 UTC, Fri and Sat 14:00, and Sun 06:00, 10:00, 13:00, 16:00 and
+    # 19:00 (the last three added 2026-10-20 for the 4pm and night games). This used to run at 13:20 -- forty minutes BEFORE the
     # 14:00 upstream slot -- so it always pulled the previous cycle and the site
     # sat a cycle behind: 100 player-games here against 302 upstream, with both
     # workflows green.
@@ -42,7 +43,13 @@ on:
     # lag no single slot is reliable, so several are placed and whichever lands
     # in the window does the work. Each run is free: no Odds API credits, and
     # a run that finds nothing new commits nothing.
-    - cron: '17 9-15 * * 0'
+    #
+    # Extended to the evening on 2026-10-20, when upstream added Sunday passes
+    # for the 4:05/4:25pm (20:05 UTC) and night (00:20 UTC Monday) games, so
+    # those reach Start/Sit too. The last slot is 20:17 ET on Sunday, i.e.
+    # 00:17 UTC Monday.
+    - cron: '17 9-23 * * 0'
+    - cron: '17 0 * * 1'
   workflow_dispatch:
 
 # One run at a time per workflow. A manual dispatch landing on top of a
