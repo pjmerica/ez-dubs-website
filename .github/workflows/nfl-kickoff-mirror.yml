@@ -1,0 +1,80 @@
+name: NFL Kickoff Mirror
+
+# Puts AI_Agent_work's pre-kickoff refresh on Start/Sit about 12-15 minutes
+# before each Sunday kickoff window (1pm, 4:05/4:25, Sunday night, plus London
+# games). Added 2026-10-20.
+#
+# Upstream (AI_Agent_work nfl-kickoff-refresh.yml) refreshes 20 minutes before
+# each kickoff. This chain wakes at kickoff minus 17, waits until that refresh
+# is live on upstream's Pages, then starts nfl-data-pull.yml, which does the
+# copy and the commit (so the commit logic lives in one place). The site is
+# then live ~2 minutes later.
+#
+# Same mechanism as upstream: cron (1.5-4.5 h late on this account) only
+# starts the chain early on Sunday; scripts/kickoff_wait.py sleeps until each
+# target, and the job dispatches itself for the next. A workflow_dispatch from
+# the built-in token starts in seconds, within this repo. Kickoff times come
+# from the mirrored gamelines.json, so the clock change needs no edits.
+#
+# scripts/kickoff_wait.py is kept identical to AI_Agent_work's copy.
+
+on:
+  schedule:
+    - cron: '37 7 * * 0'    # starts the Sunday chain (lands ~9-12 UTC)
+    - cron: '37 12 * * 0'   # backup start; a duplicate finds the work done
+  workflow_dispatch:
+    inputs:
+      hop:
+        description: "Chain hop (set by the workflow itself; leave at 0)"
+        default: "0"
+      test_kickoffs:
+        description: "Testing only: comma-separated ISO kickoff times to add to the slate"
+        default: ""
+
+permissions:
+  contents: read
+  actions: write            # to start nfl-data-pull.yml and the next hop
+
+# One chain at a time; GitHub keeps one waiting run and a newer one replaces it.
+concurrency:
+  group: nfl-kickoff-mirror
+  cancel-in-progress: false
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    timeout-minutes: 355
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Wait for the next kickoff and upstream's refresh
+        id: wait
+        run: >
+          python scripts/kickoff_wait.py
+          --gamelines dashboards/nfl-start-sit/data/gamelines.json
+          --fresh-file dashboards/nfl-start-sit/data/weekly.json
+          --lead 17 --served-after 25
+          --wait-upstream https://pjmerica.github.io/AI_Agent_work/nfl-props/weekly.json
+          --extra-kickoffs "${{ inputs.test_kickoffs }}"
+
+      - name: Mirror now
+        if: steps.wait.outputs.run == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh workflow run nfl-data-pull.yml -R "${{ github.repository }}"
+          echo "Started nfl-data-pull for the ${{ steps.wait.outputs.kickoff }} kickoff."
+
+      - name: Hand on to the next kickoff
+        if: always() && steps.wait.outputs.more == 'true' && fromJSON(inputs.hop || '0') < 12
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh workflow run nfl-kickoff-mirror.yml -R "${{ github.repository }}" \
+            -f hop=$(( ${{ inputs.hop || '0' }} + 1 )) \
+            -f test_kickoffs="${{ inputs.test_kickoffs }}"
+          echo "Dispatched hop $(( ${{ inputs.hop || '0' }} + 1 ))."
