@@ -1,30 +1,31 @@
 {
-  "lastUpdated": "2026-10-20T14:05:01+00:00",
+  "lastUpdated": "2026-10-20T14:45:02+00:00",
   "season": "2026",
   "source": "Kalshi (per-game)",
   "note": "Per-game player props for the upcoming slate. Kalshi purges settled markets, so whatever is open is the next set of games -- there is no way to fetch a week that has already been played.",
   "week": 7,
   "kickoffs": [
-    "26OCT22"
+    "26OCT22",
+    "26OCT25"
   ],
-  "gameCount": 1,
-  "playerGameCount": 22,
+  "gameCount": 2,
+  "playerGameCount": 41,
   "matchupConflicts": [],
   "statCounts": {
-    "rec_yds": 13,
-    "any_tds": 22,
-    "rush_yds": 6,
-    "pass_yds": 2,
-    "pass_tds": 2,
+    "rec_yds": 21,
+    "any_tds": 41,
+    "rush_yds": 11,
+    "pass_yds": 4,
+    "pass_tds": 4,
     "receptions": 12
   },
   "seriesMarketCounts": {
     "KXNFLREC": 76,
-    "KXNFLRECYDS": 103,
-    "KXNFLRSHYDS": 59,
-    "KXNFLPASSYDS": 18,
-    "KXNFLPASSTDS": 9,
-    "KXNFLTD": 49
+    "KXNFLRECYDS": 171,
+    "KXNFLRSHYDS": 102,
+    "KXNFLPASSYDS": 36,
+    "KXNFLPASSTDS": 17,
+    "KXNFLTD": 82
   },
   "players": [
     {
@@ -71,14 +72,14 @@
       "matchup": "NECHI",
       "stats": {
         "rush_yds": {
-          "line": 19.5,
+          "line": 19.7,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 8,
           "confidentRungs": 8
         },
         "pass_yds": {
-          "line": 247.8,
+          "line": 247.9,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 9,
@@ -143,7 +144,7 @@
           "confidentRungs": 9
         },
         "rec_yds": {
-          "line": 44.1,
+          "line": 43.3,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 10,
@@ -187,7 +188,7 @@
           "confidentRungs": 7
         },
         "rec_yds": {
-          "line": 18.6,
+          "line": 19.7,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 6,
@@ -245,7 +246,7 @@
       "matchup": "NECHI",
       "stats": {
         "rush_yds": {
-          "line": 28.5,
+          "line": 28.7,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 10,
@@ -281,7 +282,7 @@
       "matchup": "NECHI",
       "stats": {
         "receptions": {
-          "line": 1.7,
+          "line": 1.8,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 5,
@@ -426,7 +427,7 @@
       "matchup": "NECHI",
       "stats": {
         "receptions": {
-          "line": 4.6,
+          "line": 4.7,
           "lineSource": "interpolated",
           "expected": 4.7,
           "rungs": 10,
@@ -520,7 +521,7 @@
           "confidentRungs": 11
         },
         "any_tds": {
-          "line": 0.385,
+          "line": 0.38,
           "lineSource": "expected",
           "expected": null,
           "rungs": 3,
@@ -542,7 +543,7 @@
           "confidentRungs": 1
         },
         "any_tds": {
-          "line": 0.325,
+          "line": 0.335,
           "lineSource": "expected",
           "expected": null,
           "rungs": 3,
@@ -599,6 +600,410 @@
           "expected": null,
           "rungs": 1,
           "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Aaron Rodgers",
+      "game": "26OCT25:PITNO",
+      "kickoff": "26OCT25",
+      "matchup": "PITNO",
+      "stats": {
+        "rush_yds": {
+          "line": 0.7,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 5,
+          "confidentRungs": 5
+        },
+        "pass_yds": {
+          "line": 231.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "pass_tds": {
+          "line": 1.4,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 4
+        },
+        "any_tds": {
+          "line": 0.055,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Bryce Lance",
+      "game": "26OCT25:PITNO",
+      "kickoff": "26OCT25",
+      "matchup": "PITNO",
+      "stats": {
+        "any_tds": {
+          "line": 0.095,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "CJ Donaldson",
+      "game": "26OCT25:PITNO",
+      "kickoff": "26OCT25",
+      "matchup": "PITNO",
+      "stats": {
+        "any_tds": {
+          "line": 0.095,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Chris Olave",
+      "game": "26OCT25:PITNO",
+      "kickoff": "26OCT25",
+      "matchup": "PITNO",
+      "stats": {
+        "rec_yds": {
+          "line": 73.4,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 13,
+          "confidentRungs": 13
+        },
+        "any_tds": {
+          "line": 0.265,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "DK Metcalf",
+      "game": "26OCT25:PITNO",
+      "kickoff": "26OCT25",
+      "matchup": "PITNO",
+      "stats": {
+        "rec_yds": {
+          "line": 46.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 11,
+          "confidentRungs": 11
+        },
+        "any_tds": {
+          "line": 0.285,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Darnell Washington",
+      "game": "26OCT25:PITNO",
+      "kickoff": "26OCT25",
+      "matchup": "PITNO",
+      "stats": {
+        "any_tds": {
+          "line": 0.165,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Devaughn Vele",
+      "game": "26OCT25:PITNO",
+      "kickoff": "26OCT25",
+      "matchup": "PITNO",
+      "stats": {
+        "rec_yds": {
+          "line": 35.6,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "any_tds": {
+          "line": 0.17,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Germie Bernard",
+      "game": "26OCT25:PITNO",
+      "kickoff": "26OCT25",
+      "matchup": "PITNO",
+      "stats": {
+        "rec_yds": {
+          "line": 48.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 12,
+          "confidentRungs": 12
+        },
+        "any_tds": {
+          "line": 0.21,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Jaylen Warren",
+      "game": "26OCT25:PITNO",
+      "kickoff": "26OCT25",
+      "matchup": "PITNO",
+      "stats": {
+        "rec_yds": {
+          "line": 21.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 7,
+          "confidentRungs": 7
+        },
+        "rush_yds": {
+          "line": 59.1,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 11,
+          "confidentRungs": 11
+        },
+        "any_tds": {
+          "line": 0.57,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Juwan Johnson",
+      "game": "26OCT25:PITNO",
+      "kickoff": "26OCT25",
+      "matchup": "PITNO",
+      "stats": {
+        "rec_yds": {
+          "line": 28.4,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 8,
+          "confidentRungs": 8
+        },
+        "any_tds": {
+          "line": 0.175,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Kaden Wetjen",
+      "game": "26OCT25:PITNO",
+      "kickoff": "26OCT25",
+      "matchup": "PITNO",
+      "stats": {
+        "any_tds": {
+          "line": 0.055,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Kendre Miller",
+      "game": "26OCT25:PITNO",
+      "kickoff": "26OCT25",
+      "matchup": "PITNO",
+      "stats": {
+        "rush_yds": {
+          "line": 39.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "any_tds": {
+          "line": 0.315,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "NO Saints D/ST",
+      "game": "26OCT25:PITNO",
+      "kickoff": "26OCT25",
+      "matchup": "PITNO",
+      "stats": {
+        "any_tds": {
+          "line": 0.085,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Noah Fant",
+      "game": "26OCT25:PITNO",
+      "kickoff": "26OCT25",
+      "matchup": "PITNO",
+      "stats": {
+        "rec_yds": {
+          "line": 8.8,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 4
+        },
+        "any_tds": {
+          "line": 0.08,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "PIT Steelers D/ST",
+      "game": "26OCT25:PITNO",
+      "kickoff": "26OCT25",
+      "matchup": "PITNO",
+      "stats": {
+        "any_tds": {
+          "line": 0.12,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Pat Freiermuth",
+      "game": "26OCT25:PITNO",
+      "kickoff": "26OCT25",
+      "matchup": "PITNO",
+      "stats": {
+        "any_tds": {
+          "line": 0.17,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Rico Dowdle",
+      "game": "26OCT25:PITNO",
+      "kickoff": "26OCT25",
+      "matchup": "PITNO",
+      "stats": {
+        "rec_yds": {
+          "line": 7.2,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 4
+        },
+        "rush_yds": {
+          "line": 29.0,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "any_tds": {
+          "line": 0.21,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Robert Tonyan",
+      "game": "26OCT25:PITNO",
+      "kickoff": "26OCT25",
+      "matchup": "PITNO",
+      "stats": {
+        "any_tds": {
+          "line": 0.05,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Tyler Shough",
+      "game": "26OCT25:PITNO",
+      "kickoff": "26OCT25",
+      "matchup": "PITNO",
+      "stats": {
+        "rush_yds": {
+          "line": 10.6,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 7,
+          "confidentRungs": 7
+        },
+        "pass_yds": {
+          "line": 225.7,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "pass_tds": {
+          "line": 1.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 4
+        },
+        "any_tds": {
+          "line": 0.12,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
         }
       }
     }

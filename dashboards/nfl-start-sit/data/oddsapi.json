@@ -1,13 +1,13 @@
 {
-  "lastUpdated": "2026-10-20T14:05:03+00:00",
+  "lastUpdated": "2026-10-20T14:45:05+00:00",
   "season": "2026",
   "source": "The Odds API (per-game, multi-book)",
   "note": "Per-game player props aggregated across US sportsbooks. `line` is the median across books; min/max show the spread and `quotes` keeps each book's own number.",
   "region": "us",
   "eventCount": 14,
-  "playerGameCount": 416,
+  "playerGameCount": 419,
   "statCounts": {
-    "any_tds": 416,
+    "any_tds": 419,
     "rec_yds": 37,
     "receptions": 37,
     "pass_tds": 8,
@@ -16,16 +16,16 @@
   },
   "bookCounts": {
     "draftkings": 240,
-    "williamhill_us": 163,
+    "williamhill_us": 173,
     "fanduel": 203,
     "betonlineag": 435,
     "betrivers": 49,
-    "betmgm": 169,
+    "betmgm": 212,
     "fanatics": 378,
     "bovada": 174
   },
-  "quotaRemaining": "18125",
-  "quotaUsed": "1875",
+  "quotaRemaining": "18089",
+  "quotaUsed": "1911",
   "players": [
     {
       "name": "A.J. Brown",
@@ -72,8 +72,8 @@
             },
             {
               "book": "fanatics",
-              "line": 0.4853,
-              "odds": 130
+              "line": 0.4986,
+              "odds": 125
             }
           ]
         },
@@ -144,7 +144,7 @@
             {
               "book": "fanatics",
               "line": 4.5,
-              "odds": -150
+              "odds": -155
             }
           ]
         }
@@ -160,7 +160,7 @@
         "any_tds": {
           "line": 0.2309,
           "books": 7,
-          "min": 0.2055,
+          "min": 0.2011,
           "max": 0.2563,
           "quotes": [
             {
@@ -195,8 +195,8 @@
             },
             {
               "book": "fanatics",
-              "line": 0.2149,
-              "odds": 370
+              "line": 0.2011,
+              "odds": 400
             }
           ]
         },
@@ -236,7 +236,7 @@
         "pass_yds": {
           "line": 246.0,
           "books": 6,
-          "min": 245.5,
+          "min": 240.5,
           "max": 248.5,
           "quotes": [
             {
@@ -266,8 +266,8 @@
             },
             {
               "book": "fanatics",
-              "line": 245.5,
-              "odds": -110
+              "line": 240.5,
+              "odds": -120
             }
           ]
         },
@@ -351,8 +351,8 @@
             },
             {
               "book": "fanatics",
-              "line": 0.0366,
-              "odds": 2500
+              "line": 0.0328,
+              "odds": 2800
             }
           ]
         }
@@ -423,7 +423,7 @@
           "line": 0.1655,
           "books": 7,
           "min": 0.1356,
-          "max": 0.1815,
+          "max": 0.1928,
           "quotes": [
             {
               "book": "draftkings",
@@ -457,8 +457,8 @@
             },
             {
               "book": "fanatics",
-              "line": 0.1815,
-              "odds": 450
+              "line": 0.1928,
+              "odds": 420
             }
           ]
         },
@@ -565,8 +565,8 @@
             },
             {
               "book": "fanatics",
-              "line": 0.3916,
-              "odds": 175
+              "line": 0.3681,
+              "odds": 190
             }
           ]
         },
@@ -741,8 +741,8 @@
           ]
         },
         "rec_yds": {
-          "line": 20.0,
-          "books": 6,
+          "line": 19.5,
+          "books": 5,
           "min": 19.5,
           "max": 20.5,
           "quotes": [
@@ -770,11 +770,6 @@
               "book": "betmgm",
               "line": 20.5,
               "odds": -111
-            },
-            {
-              "book": "fanatics",
-              "line": 20.5,
-              "odds": -105
             }
           ]
         },
@@ -891,15 +886,15 @@
             },
             {
               "book": "fanatics",
-              "line": 0.2309,
-              "odds": 340
+              "line": 0.2367,
+              "odds": 330
             }
           ]
         },
         "rec_yds": {
           "line": 34.5,
-          "books": 4,
-          "min": 33.5,
+          "books": 5,
+          "min": 30.5,
           "max": 35.5,
           "quotes": [
             {
@@ -921,6 +916,11 @@
               "book": "betmgm",
               "line": 35.5,
               "odds": -115
+            },
+            {
+              "book": "fanatics",
+              "line": 30.5,
+              "odds": -140
             }
           ]
         },
@@ -964,7 +964,7 @@
         "any_tds": {
           "line": 0.2528,
           "books": 7,
-          "min": 0.2309,
+          "min": 0.2367,
           "max": 0.2793,
           "quotes": [
             {
@@ -999,8 +999,8 @@
             },
             {
               "book": "fanatics",
-              "line": 0.2309,
-              "odds": 340
+              "line": 0.2367,
+              "odds": 330
             }
           ]
         },
@@ -1541,8 +1541,8 @@
             },
             {
               "book": "fanatics",
-              "line": 0.2101,
-              "odds": 380
+              "line": 0.2011,
+              "odds": 400
             }
           ]
         },
@@ -1681,8 +1681,8 @@
             },
             {
               "book": "fanatics",
-              "line": 0.1308,
-              "odds": 650
+              "line": 0.1223,
+              "odds": 700
             }
           ]
         },
@@ -1789,8 +1789,8 @@
             },
             {
               "book": "fanatics",
-              "line": 0.3835,
-              "odds": 180
+              "line": 0.3916,
+              "odds": 175
             }
           ]
         },
@@ -1961,8 +1961,8 @@
             },
             {
               "book": "fanatics",
-              "line": 0.5974,
-              "odds": -105
+              "line": 0.6154,
+              "odds": -110
             }
           ]
         },
@@ -2195,7 +2195,7 @@
         "any_tds": {
           "line": 0.3409,
           "books": 7,
-          "min": 0.3122,
+          "min": 0.3176,
           "max": 0.3681,
           "quotes": [
             {
@@ -2230,8 +2230,8 @@
             },
             {
               "book": "fanatics",
-              "line": 0.3122,
-              "odds": 235
+              "line": 0.3176,
+              "odds": 230
             }
           ]
         }
@@ -2300,7 +2300,7 @@
           "line": 0.0524,
           "books": 6,
           "min": 0.0477,
-          "max": 0.0599,
+          "max": 0.0687,
           "quotes": [
             {
               "book": "draftkings",
@@ -2329,8 +2329,8 @@
             },
             {
               "book": "fanatics",
-              "line": 0.0599,
-              "odds": 1500
+              "line": 0.0687,
+              "odds": 1300
             }
           ]
         }
@@ -2346,7 +2346,7 @@
         "any_tds": {
           "line": 0.288,
           "books": 7,
-          "min": 0.2635,
+          "min": 0.2563,
           "max": 0.3176,
           "quotes": [
             {
@@ -2381,8 +2381,8 @@
             },
             {
               "book": "fanatics",
-              "line": 0.2673,
-              "odds": 285
+              "line": 0.2563,
+              "odds": 300
             }
           ]
         },
@@ -2860,7 +2860,7 @@
           "line": 0.2598,
           "books": 7,
           "min": 0.2429,
-          "max": 0.2635,
+          "max": 0.288,
           "quotes": [
             {
               "book": "draftkings",
@@ -2879,8 +2879,8 @@
             },
             {
               "book": "betmgm",
-              "line": 0.2635,
-              "odds": 290
+              "line": 0.288,
+              "odds": 260
             },
             {
               "book": "betonlineag",
@@ -2993,10 +2993,10 @@
       "matchupLong": "Green Bay Packers @ Detroit Lions",
       "stats": {
         "any_tds": {
-          "line": 0.6979,
+          "line": 0.701,
           "books": 7,
           "min": 0.6154,
-          "max": 0.722,
+          "max": 0.7424,
           "quotes": [
             {
               "book": "draftkings",
@@ -3025,8 +3025,8 @@
             },
             {
               "book": "fanatics",
-              "line": 0.6979,
-              "odds": -135
+              "line": 0.7424,
+              "odds": -150
             },
             {
               "book": "bovada",
@@ -3246,15 +3246,15 @@
       "matchupLong": "San Francisco 49ers @ Atlanta Falcons",
       "stats": {
         "any_tds": {
-          "line": 0.1407,
+          "line": 0.1461,
           "books": 1,
-          "min": 0.1407,
-          "max": 0.1407,
+          "min": 0.1461,
+          "max": 0.1461,
           "quotes": [
             {
               "book": "fanatics",
-              "line": 0.1407,
-              "odds": 600
+              "line": 0.1461,
+              "odds": 575
             }
           ]
         }
@@ -3386,7 +3386,7 @@
           "line": 0.0503,
           "books": 7,
           "min": 0.0414,
-          "max": 0.0771,
+          "max": 0.0741,
           "quotes": [
             {
               "book": "draftkings",
@@ -3405,8 +3405,8 @@
             },
             {
               "book": "betmgm",
-              "line": 0.0771,
-              "odds": 1150
+              "line": 0.0741,
+              "odds": 1200
             },
             {
               "book": "betonlineag",
@@ -3526,15 +3526,15 @@
       "matchupLong": "San Francisco 49ers @ Atlanta Falcons",
       "stats": {
         "any_tds": {
-          "line": 0.9556,
+          "line": 0.9251,
           "books": 1,
-          "min": 0.9556,
-          "max": 0.9556,
+          "min": 0.9251,
+          "max": 0.9251,
           "quotes": [
             {
               "book": "fanatics",
-              "line": 0.9556,
-              "odds": -240
+              "line": 0.9251,
+              "odds": -225
             }
           ]
         }
@@ -3612,7 +3612,7 @@
       "matchupLong": "Green Bay Packers @ Detroit Lions",
       "stats": {
         "any_tds": {
-          "line": 0.1223,
+          "line": 0.1308,
           "books": 7,
           "min": 0.1223,
           "max": 0.1521,
@@ -3624,8 +3624,8 @@
             },
             {
               "book": "williamhill_us",
-              "line": 0.1308,
-              "odds": 650
+              "line": 0.1356,
+              "odds": 625
             },
             {
               "book": "fanduel",
@@ -3644,8 +3644,8 @@
             },
             {
               "book": "fanatics",
-              "line": 0.1223,
-              "odds": 700
+              "line": 0.1308,
+              "odds": 650
             },
             {
               "book": "bovada",
@@ -3838,15 +3838,15 @@
       "matchupLong": "San Francisco 49ers @ Atlanta Falcons",
       "stats": {
         "any_tds": {
-          "line": 0.4091,
+          "line": 0.3757,
           "books": 1,
-          "min": 0.4091,
-          "max": 0.4091,
+          "min": 0.3757,
+          "max": 0.3757,
           "quotes": [
             {
               "book": "fanatics",
-              "line": 0.4091,
-              "odds": 165
+              "line": 0.3757,
+              "odds": 185
             }
           ]
         }
@@ -3907,15 +3907,15 @@
       "matchupLong": "San Francisco 49ers @ Atlanta Falcons",
       "stats": {
         "any_tds": {
-          "line": 0.1815,
+          "line": 0.1731,
           "books": 1,
-          "min": 0.1815,
-          "max": 0.1815,
+          "min": 0.1731,
+          "max": 0.1731,
           "quotes": [
             {
               "book": "fanatics",
-              "line": 0.1815,
-              "odds": 450
+              "line": 0.1731,
+              "odds": 475
             }
           ]
         }
@@ -3961,8 +3961,8 @@
             },
             {
               "book": "fanatics",
-              "line": 0.1223,
-              "odds": 700
+              "line": 0.1308,
+              "odds": 650
             },
             {
               "book": "bovada",
@@ -4356,15 +4356,25 @@
       "matchupLong": "Cleveland Browns @ Tennessee Titans",
       "stats": {
         "any_tds": {
-          "line": 0.08845,
-          "books": 2,
+          "line": 0.10525000000000001,
+          "books": 4,
           "min": 0.0687,
-          "max": 0.1082,
+          "max": 0.1223,
           "quotes": [
+            {
+              "book": "williamhill_us",
+              "line": 0.1023,
+              "odds": 850
+            },
             {
               "book": "betonlineag",
               "line": 0.1082,
               "odds": 800
+            },
+            {
+              "book": "betmgm",
+              "line": 0.1223,
+              "odds": 700
             },
             {
               "book": "fanatics",
@@ -4410,15 +4420,25 @@
       "matchupLong": "Cleveland Browns @ Tennessee Titans",
       "stats": {
         "any_tds": {
-          "line": 0.2225,
-          "books": 2,
-          "min": 0.1815,
+          "line": 0.2034,
+          "books": 4,
+          "min": 0.1585,
           "max": 0.2635,
           "quotes": [
+            {
+              "book": "williamhill_us",
+              "line": 0.2253,
+              "odds": 350
+            },
             {
               "book": "betonlineag",
               "line": 0.2635,
               "odds": 290
+            },
+            {
+              "book": "betmgm",
+              "line": 0.1585,
+              "odds": 525
             },
             {
               "book": "fanatics",
@@ -4438,8 +4458,8 @@
       "stats": {
         "any_tds": {
           "line": 0.3176,
-          "books": 5,
-          "min": 0.3176,
+          "books": 6,
+          "min": 0.2972,
           "max": 0.3288,
           "quotes": [
             {
@@ -4456,6 +4476,11 @@
               "book": "betonlineag",
               "line": 0.3288,
               "odds": 220
+            },
+            {
+              "book": "betmgm",
+              "line": 0.2972,
+              "odds": 250
             },
             {
               "book": "bovada",
@@ -4808,8 +4833,8 @@
         "any_tds": {
           "line": 0.3757,
           "books": 7,
-          "min": 0.3757,
-          "max": 0.4184,
+          "min": 0.3681,
+          "max": 0.4385,
           "quotes": [
             {
               "book": "draftkings",
@@ -4828,8 +4853,8 @@
             },
             {
               "book": "betmgm",
-              "line": 0.4184,
-              "odds": 160
+              "line": 0.4385,
+              "odds": 150
             },
             {
               "book": "betonlineag",
@@ -4843,36 +4868,36 @@
             },
             {
               "book": "fanatics",
-              "line": 0.3757,
-              "odds": 185
+              "line": 0.3681,
+              "odds": 190
             }
           ]
         },
         "rec_yds": {
-          "line": 74.0,
+          "line": 75.5,
           "books": 4,
-          "min": 73.5,
-          "max": 78.5,
+          "min": 75.5,
+          "max": 77.5,
           "quotes": [
             {
               "book": "draftkings",
-              "line": 73.5,
-              "odds": -111
+              "line": 75.5,
+              "odds": -112
             },
             {
               "book": "fanduel",
-              "line": 74.5,
+              "line": 75.5,
               "odds": -114
             },
             {
               "book": "betonlineag",
-              "line": 73.5,
-              "odds": -114
+              "line": 77.5,
+              "odds": -115
             },
             {
               "book": "bovada",
-              "line": 78.5,
-              "odds": 105
+              "line": 75.5,
+              "odds": -115
             }
           ]
         },
@@ -4914,15 +4939,15 @@
       "matchupLong": "San Francisco 49ers @ Atlanta Falcons",
       "stats": {
         "any_tds": {
-          "line": 0.2494,
+          "line": 0.2367,
           "books": 1,
-          "min": 0.2494,
-          "max": 0.2494,
+          "min": 0.2367,
+          "max": 0.2367,
           "quotes": [
             {
               "book": "fanatics",
-              "line": 0.2494,
-              "odds": 310
+              "line": 0.2367,
+              "odds": 330
             }
           ]
         }
@@ -4936,15 +4961,15 @@
       "matchupLong": "San Francisco 49ers @ Atlanta Falcons",
       "stats": {
         "any_tds": {
-          "line": 0.8928,
+          "line": 0.9038,
           "books": 1,
-          "min": 0.8928,
-          "max": 0.8928,
+          "min": 0.9038,
+          "max": 0.9038,
           "quotes": [
             {
               "book": "fanatics",
-              "line": 0.8928,
-              "odds": -210
+              "line": 0.9038,
+              "odds": -215
             }
           ]
         }
@@ -4960,7 +4985,7 @@
         "any_tds": {
           "line": 0.5128,
           "books": 7,
-          "min": 0.4726,
+          "min": 0.4853,
           "max": 0.5437,
           "quotes": [
             {
@@ -4985,13 +5010,13 @@
             },
             {
               "book": "betmgm",
-              "line": 0.4726,
-              "odds": 135
+              "line": 0.4853,
+              "odds": 130
             },
             {
               "book": "fanatics",
-              "line": 0.5128,
-              "odds": 120
+              "line": 0.5278,
+              "odds": 115
             },
             {
               "book": "bovada",
@@ -5135,11 +5160,16 @@
       "matchupLong": "Cleveland Browns @ Tennessee Titans",
       "stats": {
         "any_tds": {
-          "line": 0.1731,
-          "books": 1,
-          "min": 0.1731,
+          "line": 0.1693,
+          "books": 2,
+          "min": 0.1655,
           "max": 0.1731,
           "quotes": [
+            {
+              "book": "betmgm",
+              "line": 0.1655,
+              "odds": 500
+            },
             {
               "book": "fanatics",
               "line": 0.1731,
@@ -5363,7 +5393,7 @@
         "any_tds": {
           "line": 0.3916,
           "books": 7,
-          "min": 0.3681,
+          "min": 0.3757,
           "max": 0.4184,
           "quotes": [
             {
@@ -5383,8 +5413,8 @@
             },
             {
               "book": "betmgm",
-              "line": 0.3916,
-              "odds": 175
+              "line": 0.3835,
+              "odds": 180
             },
             {
               "book": "betonlineag",
@@ -5398,16 +5428,16 @@
             },
             {
               "book": "fanatics",
-              "line": 0.3681,
-              "odds": 190
+              "line": 0.3916,
+              "odds": 175
             }
           ]
         },
         "rec_yds": {
-          "line": 54.5,
+          "line": 53.5,
           "books": 4,
           "min": 52.5,
-          "max": 57.5,
+          "max": 54.5,
           "quotes": [
             {
               "book": "draftkings",
@@ -5426,8 +5456,8 @@
             },
             {
               "book": "bovada",
-              "line": 57.5,
-              "odds": 110
+              "line": 52.5,
+              "odds": -115
             }
           ]
         },
@@ -5533,15 +5563,25 @@
       "matchupLong": "Cleveland Browns @ Tennessee Titans",
       "stats": {
         "any_tds": {
-          "line": 0.1026,
-          "books": 2,
-          "min": 0.097,
+          "line": 0.09965,
+          "books": 4,
+          "min": 0.084,
           "max": 0.1082,
           "quotes": [
+            {
+              "book": "williamhill_us",
+              "line": 0.1023,
+              "odds": 850
+            },
             {
               "book": "betonlineag",
               "line": 0.1082,
               "odds": 800
+            },
+            {
+              "book": "betmgm",
+              "line": 0.084,
+              "odds": 1050
             },
             {
               "book": "fanatics",
@@ -5668,7 +5708,7 @@
       "matchupLong": "Pittsburgh Steelers @ New Orleans Saints",
       "stats": {
         "any_tds": {
-          "line": 0.2712,
+          "line": 0.2673,
           "books": 7,
           "min": 0.2563,
           "max": 0.2793,
@@ -5690,8 +5730,8 @@
             },
             {
               "book": "betmgm",
-              "line": 0.2793,
-              "odds": 270
+              "line": 0.2635,
+              "odds": 290
             },
             {
               "book": "betonlineag",
@@ -5705,8 +5745,8 @@
             },
             {
               "book": "fanatics",
-              "line": 0.2793,
-              "odds": 270
+              "line": 0.2673,
+              "odds": 285
             }
           ]
         }
@@ -6028,8 +6068,8 @@
       "stats": {
         "any_tds": {
           "line": 0.3757,
-          "books": 5,
-          "min": 0.3757,
+          "books": 6,
+          "min": 0.354,
           "max": 0.4002,
           "quotes": [
             {
@@ -6046,6 +6086,11 @@
               "book": "betonlineag",
               "line": 0.4002,
               "odds": 170
+            },
+            {
+              "book": "betmgm",
+              "line": 0.354,
+              "odds": 200
             },
             {
               "book": "bovada",
@@ -6111,15 +6156,25 @@
       "matchupLong": "Cleveland Browns @ Tennessee Titans",
       "stats": {
         "any_tds": {
-          "line": 0.2299,
-          "books": 2,
+          "line": 0.23099999999999998,
+          "books": 4,
           "min": 0.22,
           "max": 0.2398,
           "quotes": [
             {
+              "book": "williamhill_us",
+              "line": 0.2367,
+              "odds": 330
+            },
+            {
               "book": "betonlineag",
               "line": 0.2398,
               "odds": 325
+            },
+            {
+              "book": "betmgm",
+              "line": 0.2253,
+              "odds": 350
             },
             {
               "book": "fanatics",
@@ -6408,15 +6463,15 @@
       "matchupLong": "San Francisco 49ers @ Atlanta Falcons",
       "stats": {
         "any_tds": {
-          "line": 0.3288,
+          "line": 0.3409,
           "books": 1,
-          "min": 0.3288,
-          "max": 0.3288,
+          "min": 0.3409,
+          "max": 0.3409,
           "quotes": [
             {
               "book": "fanatics",
-              "line": 0.3288,
-              "odds": 220
+              "line": 0.3409,
+              "odds": 210
             }
           ]
         }
@@ -6568,15 +6623,25 @@
       "matchupLong": "Cleveland Browns @ Tennessee Titans",
       "stats": {
         "any_tds": {
-          "line": 0.13574999999999998,
-          "books": 2,
-          "min": 0.1308,
+          "line": 0.13319999999999999,
+          "books": 4,
+          "min": 0.1223,
           "max": 0.1407,
           "quotes": [
+            {
+              "book": "williamhill_us",
+              "line": 0.1356,
+              "odds": 625
+            },
             {
               "book": "betonlineag",
               "line": 0.1407,
               "odds": 600
+            },
+            {
+              "book": "betmgm",
+              "line": 0.1223,
+              "odds": 700
             },
             {
               "book": "fanatics",
@@ -6885,15 +6950,15 @@
       "matchupLong": "San Francisco 49ers @ Atlanta Falcons",
       "stats": {
         "any_tds": {
-          "line": 0.7424,
+          "line": 0.7969,
           "books": 1,
-          "min": 0.7424,
-          "max": 0.7424,
+          "min": 0.7969,
+          "max": 0.7969,
           "quotes": [
             {
               "book": "fanatics",
-              "line": 0.7424,
-              "odds": -150
+              "line": 0.7969,
+              "odds": -170
             }
           ]
         }
@@ -6953,7 +7018,7 @@
           "line": 54.5,
           "books": 4,
           "min": 53.5,
-          "max": 59.5,
+          "max": 54.5,
           "quotes": [
             {
               "book": "draftkings",
@@ -6972,8 +7037,8 @@
             },
             {
               "book": "bovada",
-              "line": 59.5,
-              "odds": 110
+              "line": 54.5,
+              "odds": -115
             }
           ]
         },
@@ -7015,7 +7080,7 @@
       "matchupLong": "Green Bay Packers @ Detroit Lions",
       "stats": {
         "any_tds": {
-          "line": 0.1296,
+          "line": 0.1323,
           "books": 4,
           "min": 0.1148,
           "max": 0.1585,
@@ -7032,8 +7097,8 @@
             },
             {
               "book": "fanatics",
-              "line": 0.1407,
-              "odds": 600
+              "line": 0.1461,
+              "odds": 575
             },
             {
               "book": "bovada",
@@ -7101,15 +7166,25 @@
       "matchupLong": "Cleveland Browns @ Tennessee Titans",
       "stats": {
         "any_tds": {
-          "line": 0.1913,
-          "books": 2,
-          "min": 0.1815,
+          "line": 0.1815,
+          "books": 4,
+          "min": 0.1461,
           "max": 0.2011,
           "quotes": [
+            {
+              "book": "williamhill_us",
+              "line": 0.1815,
+              "odds": 450
+            },
             {
               "book": "betonlineag",
               "line": 0.1815,
               "odds": 450
+            },
+            {
+              "book": "betmgm",
+              "line": 0.1461,
+              "odds": 575
             },
             {
               "book": "fanatics",
@@ -7129,7 +7204,7 @@
       "stats": {
         "any_tds": {
           "line": 0.354,
-          "books": 5,
+          "books": 6,
           "min": 0.3409,
           "max": 0.3835,
           "quotes": [
@@ -7147,6 +7222,11 @@
               "book": "betonlineag",
               "line": 0.3835,
               "odds": 180
+            },
+            {
+              "book": "betmgm",
+              "line": 0.354,
+              "odds": 200
             },
             {
               "book": "bovada",
@@ -7254,7 +7334,7 @@
           "line": 0.22,
           "books": 7,
           "min": 0.2149,
-          "max": 0.2309,
+          "max": 0.2253,
           "quotes": [
             {
               "book": "draftkings",
@@ -7283,8 +7363,8 @@
             },
             {
               "book": "fanatics",
-              "line": 0.2309,
-              "odds": 340
+              "line": 0.22,
+              "odds": 360
             },
             {
               "book": "bovada",
@@ -7708,8 +7788,8 @@
             },
             {
               "book": "betonlineag",
-              "line": 0.0531,
-              "odds": 1700
+              "line": 0.0477,
+              "odds": 1900
             },
             {
               "book": "betmgm",
@@ -7738,15 +7818,15 @@
       "matchupLong": "San Francisco 49ers @ Atlanta Falcons",
       "stats": {
         "any_tds": {
-          "line": 0.1148,
+          "line": 0.1223,
           "books": 1,
-          "min": 0.1148,
-          "max": 0.1148,
+          "min": 0.1223,
+          "max": 0.1223,
           "quotes": [
             {
               "book": "fanatics",
-              "line": 0.1148,
-              "odds": 750
+              "line": 0.1223,
+              "odds": 700
             }
           ]
         }
@@ -7763,7 +7843,7 @@
           "line": 0.0328,
           "books": 7,
           "min": 0.0231,
-          "max": 0.0531,
+          "max": 0.0477,
           "quotes": [
             {
               "book": "draftkings",
@@ -7782,13 +7862,13 @@
             },
             {
               "book": "betonlineag",
-              "line": 0.0531,
-              "odds": 1700
+              "line": 0.0477,
+              "odds": 1900
             },
             {
               "book": "betmgm",
-              "line": 0.049,
-              "odds": 1850
+              "line": 0.0477,
+              "odds": 1900
             },
             {
               "book": "fanatics",
@@ -7839,15 +7919,15 @@
       "matchupLong": "San Francisco 49ers @ Atlanta Falcons",
       "stats": {
         "any_tds": {
-          "line": 0.1461,
+          "line": 0.1521,
           "books": 1,
-          "min": 0.1461,
-          "max": 0.1461,
+          "min": 0.1521,
+          "max": 0.1521,
           "quotes": [
             {
               "book": "fanatics",
-              "line": 0.1461,
-              "odds": 575
+              "line": 0.1521,
+              "odds": 550
             }
           ]
         }
@@ -7863,7 +7943,7 @@
         "any_tds": {
           "line": 1.1112,
           "books": 7,
-          "min": 1.0639,
+          "min": 1.0959,
           "max": 1.3239,
           "quotes": [
             {
@@ -7893,8 +7973,8 @@
             },
             {
               "book": "fanatics",
-              "line": 1.0639,
-              "odds": -300
+              "line": 1.0959,
+              "odds": -320
             },
             {
               "book": "bovada",
@@ -8179,15 +8259,15 @@
       "matchupLong": "San Francisco 49ers @ Atlanta Falcons",
       "stats": {
         "any_tds": {
-          "line": 0.0599,
+          "line": 0.0687,
           "books": 1,
-          "min": 0.0599,
-          "max": 0.0599,
+          "min": 0.0687,
+          "max": 0.0687,
           "quotes": [
             {
               "book": "fanatics",
-              "line": 0.0599,
-              "odds": 1500
+              "line": 0.0687,
+              "odds": 1300
             }
           ]
         }
@@ -8201,7 +8281,7 @@
       "matchupLong": "Green Bay Packers @ Detroit Lions",
       "stats": {
         "any_tds": {
-          "line": 0.3681,
+          "line": 0.3741,
           "books": 7,
           "min": 0.3409,
           "max": 0.4002,
@@ -8233,8 +8313,8 @@
             },
             {
               "book": "fanatics",
-              "line": 0.3681,
-              "odds": 190
+              "line": 0.3916,
+              "odds": 175
             },
             {
               "book": "bovada",
@@ -8312,7 +8392,7 @@
           "line": 0.1023,
           "books": 7,
           "min": 0.0619,
-          "max": 0.1148,
+          "max": 0.1082,
           "quotes": [
             {
               "book": "draftkings",
@@ -8341,8 +8421,8 @@
             },
             {
               "book": "fanatics",
-              "line": 0.1148,
-              "odds": 750
+              "line": 0.1082,
+              "odds": 800
             },
             {
               "book": "bovada",
@@ -8486,9 +8566,9 @@
       "matchupLong": "Pittsburgh Steelers @ New Orleans Saints",
       "stats": {
         "any_tds": {
-          "line": 0.7565,
+          "line": 0.7481,
           "books": 7,
-          "min": 0.6823,
+          "min": 0.7279,
           "max": 0.7891,
           "quotes": [
             {
@@ -8498,8 +8578,8 @@
             },
             {
               "book": "williamhill_us",
-              "line": 0.7279,
-              "odds": -145
+              "line": 0.7481,
+              "odds": -152
             },
             {
               "book": "fanduel",
@@ -8508,8 +8588,8 @@
             },
             {
               "book": "betmgm",
-              "line": 0.6823,
-              "odds": -130
+              "line": 0.7279,
+              "odds": -145
             },
             {
               "book": "betonlineag",
@@ -8523,8 +8603,8 @@
             },
             {
               "book": "fanatics",
-              "line": 0.7565,
-              "odds": -155
+              "line": 0.7424,
+              "odds": -150
             }
           ]
         },
@@ -8585,10 +8665,10 @@
           ]
         },
         "rush_yds": {
-          "line": 66.0,
+          "line": 65.5,
           "books": 4,
           "min": 65.5,
-          "max": 70.5,
+          "max": 66.5,
           "quotes": [
             {
               "book": "draftkings",
@@ -8607,8 +8687,8 @@
             },
             {
               "book": "bovada",
-              "line": 70.5,
-              "odds": 110
+              "line": 65.5,
+              "odds": -115
             }
           ]
         }
@@ -8757,15 +8837,25 @@
       "matchupLong": "Cleveland Browns @ Tennessee Titans",
       "stats": {
         "any_tds": {
-          "line": 0.1521,
-          "books": 2,
+          "line": 0.1588,
+          "books": 4,
           "min": 0.1521,
-          "max": 0.1521,
+          "max": 0.1908,
           "quotes": [
+            {
+              "book": "williamhill_us",
+              "line": 0.1655,
+              "odds": 500
+            },
             {
               "book": "betonlineag",
               "line": 0.1521,
               "odds": 550
+            },
+            {
+              "book": "betmgm",
+              "line": 0.1908,
+              "odds": 425
             },
             {
               "book": "fanatics",
@@ -8996,8 +9086,8 @@
             },
             {
               "book": "fanatics",
-              "line": 0.1148,
-              "odds": 750
+              "line": 0.1308,
+              "odds": 650
             },
             {
               "book": "bovada",
@@ -9085,15 +9175,15 @@
       "matchupLong": "San Francisco 49ers @ Atlanta Falcons",
       "stats": {
         "any_tds": {
-          "line": 0.1082,
+          "line": 0.097,
           "books": 1,
-          "min": 0.1082,
-          "max": 0.1082,
+          "min": 0.097,
+          "max": 0.097,
           "quotes": [
             {
               "book": "fanatics",
-              "line": 0.1082,
-              "odds": 800
+              "line": 0.097,
+              "odds": 900
             }
           ]
         }
@@ -9277,8 +9367,8 @@
             },
             {
               "book": "fanatics",
-              "line": 0.0741,
-              "odds": 1200
+              "line": 0.0804,
+              "odds": 1100
             },
             {
               "book": "bovada",
@@ -9417,7 +9507,7 @@
         "any_tds": {
           "line": 0.2712,
           "books": 7,
-          "min": 0.2253,
+          "min": 0.2563,
           "max": 0.2793,
           "quotes": [
             {
@@ -9437,8 +9527,8 @@
             },
             {
               "book": "betmgm",
-              "line": 0.2253,
-              "odds": 350
+              "line": 0.2563,
+              "odds": 300
             },
             {
               "book": "betonlineag",
@@ -9523,15 +9613,25 @@
       "matchupLong": "Cleveland Browns @ Tennessee Titans",
       "stats": {
         "any_tds": {
-          "line": 0.29259999999999997,
-          "books": 2,
-          "min": 0.288,
+          "line": 0.288,
+          "books": 4,
+          "min": 0.2712,
           "max": 0.2972,
           "quotes": [
+            {
+              "book": "williamhill_us",
+              "line": 0.288,
+              "odds": 260
+            },
             {
               "book": "betonlineag",
               "line": 0.288,
               "odds": 260
+            },
+            {
+              "book": "betmgm",
+              "line": 0.2712,
+              "odds": 280
             },
             {
               "book": "fanatics",
@@ -9553,7 +9653,7 @@
           "line": 0.0741,
           "books": 7,
           "min": 0.064,
-          "max": 0.0923,
+          "max": 0.0804,
           "quotes": [
             {
               "book": "draftkings",
@@ -9572,8 +9672,8 @@
             },
             {
               "book": "betmgm",
-              "line": 0.0923,
-              "odds": 950
+              "line": 0.0771,
+              "odds": 1150
             },
             {
               "book": "betonlineag",
@@ -9602,15 +9702,15 @@
       "matchupLong": "San Francisco 49ers @ Atlanta Falcons",
       "stats": {
         "any_tds": {
-          "line": 0.22,
+          "line": 0.2309,
           "books": 1,
-          "min": 0.22,
-          "max": 0.22,
+          "min": 0.2309,
+          "max": 0.2309,
           "quotes": [
             {
               "book": "fanatics",
-              "line": 0.22,
-              "odds": 360
+              "line": 0.2309,
+              "odds": 340
             }
           ]
         }
@@ -9775,9 +9875,9 @@
           ]
         },
         "rush_yds": {
-          "line": 45.5,
+          "line": 44.5,
           "books": 4,
-          "min": 45.5,
+          "min": 40.5,
           "max": 45.5,
           "quotes": [
             {
@@ -9787,13 +9887,13 @@
             },
             {
               "book": "fanduel",
-              "line": 45.5,
+              "line": 43.5,
               "odds": -114
             },
             {
               "book": "betonlineag",
-              "line": 45.5,
-              "odds": -114
+              "line": 40.5,
+              "odds": -149
             },
             {
               "book": "bovada",
@@ -10079,15 +10179,15 @@
       "matchupLong": "San Francisco 49ers @ Atlanta Falcons",
       "stats": {
         "any_tds": {
-          "line": 0.1082,
+          "line": 0.097,
           "books": 1,
-          "min": 0.1082,
-          "max": 0.1082,
+          "min": 0.097,
+          "max": 0.097,
           "quotes": [
             {
               "book": "fanatics",
-              "line": 0.1082,
-              "odds": 800
+              "line": 0.097,
+              "odds": 900
             }
           ]
         }
@@ -10101,15 +10201,15 @@
       "matchupLong": "San Francisco 49ers @ Atlanta Falcons",
       "stats": {
         "any_tds": {
-          "line": 0.3409,
+          "line": 0.3288,
           "books": 1,
-          "min": 0.3409,
-          "max": 0.3409,
+          "min": 0.3288,
+          "max": 0.3288,
           "quotes": [
             {
               "book": "fanatics",
-              "line": 0.3409,
-              "odds": 210
+              "line": 0.3288,
+              "odds": 220
             }
           ]
         }
@@ -10327,15 +10427,15 @@
       "matchupLong": "Pittsburgh Steelers @ New Orleans Saints",
       "stats": {
         "any_tds": {
-          "line": 0.0366,
+          "line": 0.0414,
           "books": 1,
-          "min": 0.0366,
-          "max": 0.0366,
+          "min": 0.0414,
+          "max": 0.0414,
           "quotes": [
             {
               "book": "fanatics",
-              "line": 0.0366,
-              "odds": 2500
+              "line": 0.0414,
+              "odds": 2200
             }
           ]
         }
@@ -10535,7 +10635,7 @@
         "any_tds": {
           "line": 0.4091,
           "books": 5,
-          "min": 0.3916,
+          "min": 0.3835,
           "max": 0.4184,
           "quotes": [
             {
@@ -10560,8 +10660,8 @@
             },
             {
               "book": "fanatics",
-              "line": 0.3916,
-              "odds": 175
+              "line": 0.3835,
+              "odds": 180
             }
           ]
         }
@@ -10629,7 +10729,7 @@
       "matchupLong": "Green Bay Packers @ Detroit Lions",
       "stats": {
         "any_tds": {
-          "line": 0.5247,
+          "line": 0.5504,
           "books": 7,
           "min": 0.4184,
           "max": 0.6663,
@@ -10641,8 +10741,8 @@
             },
             {
               "book": "williamhill_us",
-              "line": 0.5247,
-              "odds": 116
+              "line": 0.5504,
+              "odds": 108
             },
             {
               "book": "fanduel",
@@ -10656,13 +10756,13 @@
             },
             {
               "book": "betmgm",
-              "line": 0.4493,
-              "odds": 145
+              "line": 0.4853,
+              "odds": 130
             },
             {
               "book": "fanatics",
-              "line": 0.5278,
-              "odds": 115
+              "line": 0.5789,
+              "odds": 100
             },
             {
               "book": "bovada",
@@ -10725,7 +10825,7 @@
         "any_tds": {
           "line": 0.1148,
           "books": 7,
-          "min": 0.049,
+          "min": 0.0503,
           "max": 0.1185,
           "quotes": [
             {
@@ -10750,8 +10850,8 @@
             },
             {
               "book": "betmgm",
-              "line": 0.049,
-              "odds": 1850
+              "line": 0.0503,
+              "odds": 1800
             },
             {
               "book": "fanatics",
@@ -10775,15 +10875,15 @@
       "matchupLong": "New York Giants @ Houston Texans",
       "stats": {
         "any_tds": {
-          "line": 0.0477,
+          "line": 0.0531,
           "books": 1,
-          "min": 0.0477,
-          "max": 0.0477,
+          "min": 0.0531,
+          "max": 0.0531,
           "quotes": [
             {
               "book": "fanatics",
-              "line": 0.0477,
-              "odds": 1900
+              "line": 0.0531,
+              "odds": 1700
             }
           ]
         }
@@ -10878,7 +10978,7 @@
       "matchupLong": "Green Bay Packers @ Detroit Lions",
       "stats": {
         "any_tds": {
-          "line": 0.4385,
+          "line": 0.4493,
           "books": 7,
           "min": 0.4385,
           "max": 0.4986,
@@ -10910,8 +11010,8 @@
             },
             {
               "book": "fanatics",
-              "line": 0.4385,
-              "odds": 150
+              "line": 0.4607,
+              "odds": 140
             },
             {
               "book": "bovada",
@@ -11207,15 +11307,15 @@
       "matchupLong": "Denver Broncos @ Arizona Cardinals",
       "stats": {
         "any_tds": {
-          "line": 0.33975,
+          "line": 0.33140000000000003,
           "books": 2,
           "min": 0.2793,
-          "max": 0.4002,
+          "max": 0.3835,
           "quotes": [
             {
               "book": "betonlineag",
-              "line": 0.4002,
-              "odds": 170
+              "line": 0.3835,
+              "odds": 180
             },
             {
               "book": "fanatics",
@@ -11735,8 +11835,8 @@
             },
             {
               "book": "betmgm",
-              "line": 0.1308,
-              "odds": 650
+              "line": 0.1407,
+              "odds": 600
             },
             {
               "book": "betonlineag",
@@ -11821,15 +11921,15 @@
       "matchupLong": "San Francisco 49ers @ Atlanta Falcons",
       "stats": {
         "any_tds": {
-          "line": 0.0923,
+          "line": 0.0879,
           "books": 1,
-          "min": 0.0923,
-          "max": 0.0923,
+          "min": 0.0879,
+          "max": 0.0879,
           "quotes": [
             {
               "book": "fanatics",
-              "line": 0.0923,
-              "odds": 950
+              "line": 0.0879,
+              "odds": 1000
             }
           ]
         }
@@ -11909,7 +12009,7 @@
         "any_tds": {
           "line": 0.0531,
           "books": 7,
-          "min": 0.0477,
+          "min": 0.0503,
           "max": 0.0879,
           "quotes": [
             {
@@ -11929,8 +12029,8 @@
             },
             {
               "book": "betmgm",
-              "line": 0.0477,
-              "odds": 1900
+              "line": 0.0517,
+              "odds": 1750
             },
             {
               "book": "betonlineag",
@@ -11962,7 +12062,7 @@
           "line": 0.2712,
           "books": 7,
           "min": 0.2429,
-          "max": 0.3681,
+          "max": 0.354,
           "quotes": [
             {
               "book": "draftkings",
@@ -11996,8 +12096,8 @@
             },
             {
               "book": "fanatics",
-              "line": 0.3681,
-              "odds": 190
+              "line": 0.354,
+              "odds": 200
             }
           ]
         }
@@ -12124,8 +12224,8 @@
             },
             {
               "book": "fanatics",
-              "line": 0.2673,
-              "odds": 285
+              "line": 0.2793,
+              "odds": 270
             },
             {
               "book": "bovada",
@@ -12147,7 +12247,7 @@
           "line": 0.15565,
           "books": 4,
           "min": 0.1148,
-          "max": 0.2125,
+          "max": 0.2055,
           "quotes": [
             {
               "book": "draftkings",
@@ -12156,8 +12256,8 @@
             },
             {
               "book": "betmgm",
-              "line": 0.2125,
-              "odds": 375
+              "line": 0.2055,
+              "odds": 390
             },
             {
               "book": "bovada",
@@ -12382,8 +12482,8 @@
         "any_tds": {
           "line": 0.3231,
           "books": 7,
-          "min": 0.2972,
-          "max": 0.3409,
+          "min": 0.307,
+          "max": 0.3757,
           "quotes": [
             {
               "book": "draftkings",
@@ -12402,8 +12502,8 @@
             },
             {
               "book": "betmgm",
-              "line": 0.3409,
-              "odds": 210
+              "line": 0.3757,
+              "odds": 185
             },
             {
               "book": "betonlineag",
@@ -12417,8 +12517,8 @@
             },
             {
               "book": "fanatics",
-              "line": 0.2972,
-              "odds": 250
+              "line": 0.3122,
+              "odds": 235
             }
           ]
         },
@@ -12603,7 +12703,7 @@
           "line": 0.4002,
           "books": 7,
           "min": 0.3835,
-          "max": 0.4853,
+          "max": 0.4726,
           "quotes": [
             {
               "book": "draftkings",
@@ -12632,8 +12732,8 @@
             },
             {
               "book": "fanatics",
-              "line": 0.4853,
-              "odds": 130
+              "line": 0.4726,
+              "odds": 135
             },
             {
               "book": "bovada",
@@ -12759,18 +12859,18 @@
         "any_tds": {
           "line": 0.1308,
           "books": 7,
-          "min": 0.1223,
+          "min": 0.1148,
           "max": 0.2125,
           "quotes": [
             {
               "book": "draftkings",
-              "line": 0.1223,
-              "odds": 700
+              "line": 0.1148,
+              "odds": 750
             },
             {
               "book": "williamhill_us",
-              "line": 0.1308,
-              "odds": 650
+              "line": 0.1264,
+              "odds": 675
             },
             {
               "book": "fanduel",
@@ -12794,20 +12894,20 @@
             },
             {
               "book": "bovada",
-              "line": 0.1223,
-              "odds": 700
+              "line": 0.1185,
+              "odds": 725
             }
           ]
         },
         "rec_yds": {
-          "line": 18.5,
+          "line": 17.5,
           "books": 4,
           "min": 17.5,
-          "max": 18.5,
+          "max": 17.5,
           "quotes": [
             {
               "book": "draftkings",
-              "line": 18.5,
+              "line": 17.5,
               "odds": -116
             },
             {
@@ -12817,12 +12917,12 @@
             },
             {
               "book": "betonlineag",
-              "line": 18.5,
-              "odds": -119
+              "line": 17.5,
+              "odds": -118
             },
             {
               "book": "bovada",
-              "line": 18.5,
+              "line": 17.5,
               "odds": -120
             }
           ]
@@ -12836,7 +12936,7 @@
             {
               "book": "draftkings",
               "line": 2.5,
-              "odds": 116
+              "odds": 125
             },
             {
               "book": "fanduel",
@@ -12846,12 +12946,12 @@
             {
               "book": "betonlineag",
               "line": 2.5,
-              "odds": 124
+              "odds": 130
             },
             {
               "book": "bovada",
               "line": 2.5,
-              "odds": 115
+              "odds": 125
             }
           ]
         }
@@ -13032,8 +13132,8 @@
             },
             {
               "book": "fanatics",
-              "line": 0.1223,
-              "odds": 700
+              "line": 0.1082,
+              "odds": 800
             },
             {
               "book": "bovada",
@@ -13192,8 +13292,8 @@
             },
             {
               "book": "fanatics",
-              "line": 0.0328,
-              "odds": 2800
+              "line": 0.0366,
+              "odds": 2500
             },
             {
               "book": "bovada",
@@ -13313,11 +13413,16 @@
       "matchupLong": "Cleveland Browns @ Tennessee Titans",
       "stats": {
         "any_tds": {
-          "line": 0.1928,
-          "books": 1,
-          "min": 0.1928,
+          "line": 0.17915,
+          "books": 2,
+          "min": 0.1655,
           "max": 0.1928,
           "quotes": [
+            {
+              "book": "betmgm",
+              "line": 0.1655,
+              "odds": 500
+            },
             {
               "book": "fanatics",
               "line": 0.1928,
@@ -13543,7 +13648,7 @@
       "stats": {
         "any_tds": {
           "line": 0.5437,
-          "books": 5,
+          "books": 6,
           "min": 0.5437,
           "max": 0.5608,
           "quotes": [
@@ -13559,6 +13664,11 @@
             },
             {
               "book": "betonlineag",
+              "line": 0.5437,
+              "odds": 110
+            },
+            {
+              "book": "betmgm",
               "line": 0.5437,
               "odds": 110
             },
@@ -13584,7 +13694,7 @@
       "matchupLong": "Pittsburgh Steelers @ New Orleans Saints",
       "stats": {
         "any_tds": {
-          "line": 0.041,
+          "line": 0.0434,
           "books": 6,
           "min": 0.0366,
           "max": 0.0477,
@@ -13616,8 +13726,8 @@
             },
             {
               "book": "fanatics",
-              "line": 0.0366,
-              "odds": 2500
+              "line": 0.0414,
+              "odds": 2200
             }
           ]
         }
@@ -13966,15 +14076,25 @@
       "matchupLong": "Cleveland Browns @ Tennessee Titans",
       "stats": {
         "any_tds": {
-          "line": 0.2287,
-          "books": 2,
+          "line": 0.23099999999999998,
+          "books": 4,
           "min": 0.2011,
           "max": 0.2563,
           "quotes": [
             {
+              "book": "williamhill_us",
+              "line": 0.2367,
+              "odds": 330
+            },
+            {
               "book": "betonlineag",
               "line": 0.2563,
               "odds": 300
+            },
+            {
+              "book": "betmgm",
+              "line": 0.2253,
+              "odds": 350
             },
             {
               "book": "fanatics",
@@ -14076,7 +14196,7 @@
         "any_tds": {
           "line": 0.0563,
           "books": 7,
-          "min": 0.0517,
+          "min": 0.049,
           "max": 0.0804,
           "quotes": [
             {
@@ -14101,8 +14221,8 @@
             },
             {
               "book": "betmgm",
-              "line": 0.0517,
-              "odds": 1750
+              "line": 0.049,
+              "odds": 1850
             },
             {
               "book": "fanatics",
@@ -14165,7 +14285,7 @@
         "any_tds": {
           "line": 0.1928,
           "books": 7,
-          "min": 0.1889,
+          "min": 0.1815,
           "max": 0.2253,
           "quotes": [
             {
@@ -14185,8 +14305,8 @@
             },
             {
               "book": "betmgm",
-              "line": 0.2011,
-              "odds": 400
+              "line": 0.2055,
+              "odds": 390
             },
             {
               "book": "betonlineag",
@@ -14200,8 +14320,8 @@
             },
             {
               "book": "fanatics",
-              "line": 0.1928,
-              "odds": 420
+              "line": 0.1815,
+              "odds": 450
             }
           ]
         },
@@ -14353,15 +14473,25 @@
       "matchupLong": "Cleveland Browns @ Tennessee Titans",
       "stats": {
         "any_tds": {
-          "line": 0.23814999999999997,
-          "books": 2,
+          "line": 0.23905,
+          "books": 4,
           "min": 0.22,
           "max": 0.2563,
           "quotes": [
             {
+              "book": "williamhill_us",
+              "line": 0.2528,
+              "odds": 305
+            },
+            {
               "book": "betonlineag",
               "line": 0.2563,
               "odds": 300
+            },
+            {
+              "book": "betmgm",
+              "line": 0.2253,
+              "odds": 350
             },
             {
               "book": "fanatics",
@@ -14503,15 +14633,15 @@
       "matchupLong": "San Francisco 49ers @ Atlanta Falcons",
       "stats": {
         "any_tds": {
-          "line": 0.097,
+          "line": 0.0923,
           "books": 1,
-          "min": 0.097,
-          "max": 0.097,
+          "min": 0.0923,
+          "max": 0.0923,
           "quotes": [
             {
               "book": "fanatics",
-              "line": 0.097,
-              "odds": 900
+              "line": 0.0923,
+              "odds": 950
             }
           ]
         }
@@ -14567,15 +14697,15 @@
       "matchupLong": "Denver Broncos @ Arizona Cardinals",
       "stats": {
         "any_tds": {
-          "line": 0.1407,
+          "line": 0.307,
           "books": 1,
-          "min": 0.1407,
-          "max": 0.1407,
+          "min": 0.307,
+          "max": 0.307,
           "quotes": [
             {
               "book": "betonlineag",
-              "line": 0.1407,
-              "odds": 600
+              "line": 0.307,
+              "odds": 240
             }
           ]
         }
@@ -14592,7 +14722,7 @@
           "line": 0.2563,
           "books": 7,
           "min": 0.2563,
-          "max": 0.3757,
+          "max": 0.3835,
           "quotes": [
             {
               "book": "draftkings",
@@ -14626,8 +14756,8 @@
             },
             {
               "book": "fanatics",
-              "line": 0.3757,
-              "odds": 185
+              "line": 0.3835,
+              "odds": 180
             }
           ]
         },
@@ -15472,15 +15602,15 @@
           ]
         },
         "rush_yds": {
-          "line": 91.5,
+          "line": 90.5,
           "books": 4,
           "min": 90.5,
           "max": 92.5,
           "quotes": [
             {
               "book": "draftkings",
-              "line": 91.5,
-              "odds": -110
+              "line": 90.5,
+              "odds": -114
             },
             {
               "book": "fanduel",
@@ -15490,11 +15620,11 @@
             {
               "book": "betonlineag",
               "line": 90.5,
-              "odds": -112
+              "odds": -115
             },
             {
               "book": "bovada",
-              "line": 91.5,
+              "line": 90.5,
               "odds": -115
             }
           ]
@@ -16076,15 +16206,15 @@
           ]
         },
         "pass_yds": {
-          "line": 225.5,
+          "line": 226.5,
           "books": 4,
           "min": 224.5,
-          "max": 235.5,
+          "max": 236.5,
           "quotes": [
             {
               "book": "draftkings",
-              "line": 225.5,
-              "odds": -113
+              "line": 226.5,
+              "odds": -111
             },
             {
               "book": "fanduel",
@@ -16093,12 +16223,12 @@
             },
             {
               "book": "betonlineag",
-              "line": 225.5,
-              "odds": -116
+              "line": 226.5,
+              "odds": -114
             },
             {
               "book": "bovada",
-              "line": 235.5,
+              "line": 236.5,
               "odds": 110
             }
           ]
@@ -16355,15 +16485,20 @@
       "matchupLong": "Dallas Cowboys @ Philadelphia Eagles",
       "stats": {
         "any_tds": {
-          "line": 0.0879,
-          "books": 1,
+          "line": 0.09655,
+          "books": 2,
           "min": 0.0879,
-          "max": 0.0879,
+          "max": 0.1052,
           "quotes": [
             {
               "book": "betonlineag",
               "line": 0.0879,
               "odds": 1000
+            },
+            {
+              "book": "betmgm",
+              "line": 0.1052,
+              "odds": 825
             }
           ]
         }
@@ -16377,15 +16512,20 @@
       "matchupLong": "Dallas Cowboys @ Philadelphia Eagles",
       "stats": {
         "any_tds": {
-          "line": 0.064,
-          "books": 1,
-          "min": 0.064,
+          "line": 0.0565,
+          "books": 2,
+          "min": 0.049,
           "max": 0.064,
           "quotes": [
             {
               "book": "betonlineag",
               "line": 0.064,
               "odds": 1400
+            },
+            {
+              "book": "betmgm",
+              "line": 0.049,
+              "odds": 1850
             }
           ]
         }
@@ -16421,15 +16561,20 @@
       "matchupLong": "Dallas Cowboys @ Philadelphia Eagles",
       "stats": {
         "any_tds": {
-          "line": 0.097,
-          "books": 1,
+          "line": 0.09965,
+          "books": 2,
           "min": 0.097,
-          "max": 0.097,
+          "max": 0.1023,
           "quotes": [
             {
               "book": "betonlineag",
               "line": 0.097,
               "odds": 900
+            },
+            {
+              "book": "betmgm",
+              "line": 0.1023,
+              "odds": 850
             }
           ]
         }
@@ -16443,9 +16588,9 @@
       "matchupLong": "Dallas Cowboys @ Philadelphia Eagles",
       "stats": {
         "any_tds": {
-          "line": 0.51575,
-          "books": 4,
-          "min": 0.5128,
+          "line": 0.5128,
+          "books": 5,
+          "min": 0.4986,
           "max": 0.5437,
           "quotes": [
             {
@@ -16464,6 +16609,11 @@
               "odds": 110
             },
             {
+              "book": "betmgm",
+              "line": 0.4986,
+              "odds": 125
+            },
+            {
               "book": "bovada",
               "line": 0.5128,
               "odds": 120
@@ -16480,15 +16630,42 @@
       "matchupLong": "Dallas Cowboys @ Philadelphia Eagles",
       "stats": {
         "any_tds": {
-          "line": 0.1521,
-          "books": 1,
-          "min": 0.1521,
+          "line": 0.1464,
+          "books": 2,
+          "min": 0.1407,
           "max": 0.1521,
           "quotes": [
             {
               "book": "betonlineag",
               "line": 0.1521,
               "odds": 550
+            },
+            {
+              "book": "betmgm",
+              "line": 0.1407,
+              "odds": 600
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Dallas Cowboys D/ST",
+      "kickoff": "2026-10-27",
+      "kickoffTime": "2026-10-27T00:15:00Z",
+      "matchup": "DALPHI",
+      "matchupLong": "Dallas Cowboys @ Philadelphia Eagles",
+      "stats": {
+        "any_tds": {
+          "line": 0.1655,
+          "books": 1,
+          "min": 0.1655,
+          "max": 0.1655,
+          "quotes": [
+            {
+              "book": "betmgm",
+              "line": 0.1655,
+              "odds": 500
             }
           ]
         }
@@ -16502,10 +16679,10 @@
       "matchupLong": "Dallas Cowboys @ Philadelphia Eagles",
       "stats": {
         "any_tds": {
-          "line": 0.3045,
-          "books": 4,
+          "line": 0.307,
+          "books": 5,
           "min": 0.302,
-          "max": 0.307,
+          "max": 0.3288,
           "quotes": [
             {
               "book": "draftkings",
@@ -16521,6 +16698,11 @@
               "book": "betonlineag",
               "line": 0.307,
               "odds": 240
+            },
+            {
+              "book": "betmgm",
+              "line": 0.3288,
+              "odds": 220
             },
             {
               "book": "bovada",
@@ -16539,15 +16721,20 @@
       "matchupLong": "Dallas Cowboys @ Philadelphia Eagles",
       "stats": {
         "any_tds": {
-          "line": 0.5128,
-          "books": 1,
-          "min": 0.5128,
+          "line": 0.49905,
+          "books": 2,
+          "min": 0.4853,
           "max": 0.5128,
           "quotes": [
             {
               "book": "betonlineag",
               "line": 0.5128,
               "odds": 120
+            },
+            {
+              "book": "betmgm",
+              "line": 0.4853,
+              "odds": 130
             }
           ]
         }
@@ -16561,15 +16748,20 @@
       "matchupLong": "Dallas Cowboys @ Philadelphia Eagles",
       "stats": {
         "any_tds": {
-          "line": 0.1148,
-          "books": 1,
-          "min": 0.1148,
+          "line": 0.1059,
+          "books": 2,
+          "min": 0.097,
           "max": 0.1148,
           "quotes": [
             {
               "book": "betonlineag",
               "line": 0.1148,
               "odds": 750
+            },
+            {
+              "book": "betmgm",
+              "line": 0.097,
+              "odds": 900
             }
           ]
         }
@@ -16583,15 +16775,20 @@
       "matchupLong": "Dallas Cowboys @ Philadelphia Eagles",
       "stats": {
         "any_tds": {
-          "line": 0.3681,
-          "books": 1,
-          "min": 0.3681,
+          "line": 0.36105,
+          "books": 2,
+          "min": 0.354,
           "max": 0.3681,
           "quotes": [
             {
               "book": "betonlineag",
               "line": 0.3681,
               "odds": 190
+            },
+            {
+              "book": "betmgm",
+              "line": 0.354,
+              "odds": 200
             }
           ]
         }
@@ -16605,15 +16802,20 @@
       "matchupLong": "Dallas Cowboys @ Philadelphia Eagles",
       "stats": {
         "any_tds": {
-          "line": 0.2253,
-          "books": 1,
+          "line": 0.23255,
+          "books": 2,
           "min": 0.2253,
-          "max": 0.2253,
+          "max": 0.2398,
           "quotes": [
             {
               "book": "betonlineag",
               "line": 0.2253,
               "odds": 350
+            },
+            {
+              "book": "betmgm",
+              "line": 0.2398,
+              "odds": 325
             }
           ]
         }
@@ -16627,15 +16829,20 @@
       "matchupLong": "Dallas Cowboys @ Philadelphia Eagles",
       "stats": {
         "any_tds": {
-          "line": 0.0477,
-          "books": 1,
-          "min": 0.0477,
+          "line": 0.04215,
+          "books": 2,
+          "min": 0.0366,
           "max": 0.0477,
           "quotes": [
             {
               "book": "betonlineag",
               "line": 0.0477,
               "odds": 1900
+            },
+            {
+              "book": "betmgm",
+              "line": 0.0366,
+              "odds": 2500
             }
           ]
         }
@@ -16672,8 +16879,8 @@
       "stats": {
         "any_tds": {
           "line": 0.4493,
-          "books": 4,
-          "min": 0.4471,
+          "books": 5,
+          "min": 0.4184,
           "max": 0.4607,
           "quotes": [
             {
@@ -16692,6 +16899,11 @@
               "odds": 140
             },
             {
+              "book": "betmgm",
+              "line": 0.4184,
+              "odds": 160
+            },
+            {
               "book": "bovada",
               "line": 0.4493,
               "odds": 145
@@ -16708,15 +16920,20 @@
       "matchupLong": "Dallas Cowboys @ Philadelphia Eagles",
       "stats": {
         "any_tds": {
-          "line": 0.0879,
-          "books": 1,
-          "min": 0.0879,
+          "line": 0.081,
+          "books": 2,
+          "min": 0.0741,
           "max": 0.0879,
           "quotes": [
             {
               "book": "betonlineag",
               "line": 0.0879,
               "odds": 1000
+            },
+            {
+              "book": "betmgm",
+              "line": 0.0741,
+              "odds": 1200
             }
           ]
         }
@@ -16730,9 +16947,9 @@
       "matchupLong": "Dallas Cowboys @ Philadelphia Eagles",
       "stats": {
         "any_tds": {
-          "line": 0.28364999999999996,
-          "books": 4,
-          "min": 0.2793,
+          "line": 0.2793,
+          "books": 5,
+          "min": 0.2712,
           "max": 0.2925,
           "quotes": [
             {
@@ -16751,6 +16968,11 @@
               "odds": 260
             },
             {
+              "book": "betmgm",
+              "line": 0.2712,
+              "odds": 280
+            },
+            {
               "book": "bovada",
               "line": 0.2793,
               "odds": 270
@@ -16767,9 +16989,9 @@
       "matchupLong": "Dallas Cowboys @ Philadelphia Eagles",
       "stats": {
         "any_tds": {
-          "line": 0.8456,
-          "books": 4,
-          "min": 0.8348,
+          "line": 0.8372,
+          "books": 5,
+          "min": 0.8098,
           "max": 0.8703,
           "quotes": [
             {
@@ -16788,9 +17010,36 @@
               "odds": -200
             },
             {
+              "book": "betmgm",
+              "line": 0.8098,
+              "odds": -175
+            },
+            {
               "book": "bovada",
               "line": 0.8372,
               "odds": -186
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Jaydon Blue",
+      "kickoff": "2026-10-27",
+      "kickoffTime": "2026-10-27T00:15:00Z",
+      "matchup": "DALPHI",
+      "matchupLong": "Dallas Cowboys @ Philadelphia Eagles",
+      "stats": {
+        "any_tds": {
+          "line": 0.1815,
+          "books": 1,
+          "min": 0.1815,
+          "max": 0.1815,
+          "quotes": [
+            {
+              "book": "betmgm",
+              "line": 0.1815,
+              "odds": 450
             }
           ]
         }
@@ -16804,15 +17053,20 @@
       "matchupLong": "Dallas Cowboys @ Philadelphia Eagles",
       "stats": {
         "any_tds": {
-          "line": 0.0687,
-          "books": 1,
-          "min": 0.0687,
+          "line": 0.060899999999999996,
+          "books": 2,
+          "min": 0.0531,
           "max": 0.0687,
           "quotes": [
             {
               "book": "betonlineag",
               "line": 0.0687,
               "odds": 1300
+            },
+            {
+              "book": "betmgm",
+              "line": 0.0531,
+              "odds": 1700
             }
           ]
         }
@@ -16826,15 +17080,20 @@
       "matchupLong": "Dallas Cowboys @ Philadelphia Eagles",
       "stats": {
         "any_tds": {
-          "line": 0.1148,
-          "books": 1,
-          "min": 0.1148,
+          "line": 0.1059,
+          "books": 2,
+          "min": 0.097,
           "max": 0.1148,
           "quotes": [
             {
               "book": "betonlineag",
               "line": 0.1148,
               "odds": 750
+            },
+            {
+              "book": "betmgm",
+              "line": 0.097,
+              "odds": 900
             }
           ]
         }
@@ -16848,15 +17107,20 @@
       "matchupLong": "Dallas Cowboys @ Philadelphia Eagles",
       "stats": {
         "any_tds": {
-          "line": 0.1308,
-          "books": 1,
-          "min": 0.1308,
+          "line": 0.11655,
+          "books": 2,
+          "min": 0.1023,
           "max": 0.1308,
           "quotes": [
             {
               "book": "betonlineag",
               "line": 0.1308,
               "odds": 650
+            },
+            {
+              "book": "betmgm",
+              "line": 0.1023,
+              "odds": 850
             }
           ]
         }
@@ -16870,15 +17134,20 @@
       "matchupLong": "Dallas Cowboys @ Philadelphia Eagles",
       "stats": {
         "any_tds": {
-          "line": 0.0804,
-          "books": 1,
-          "min": 0.0804,
+          "line": 0.0692,
+          "books": 2,
+          "min": 0.058,
           "max": 0.0804,
           "quotes": [
             {
               "book": "betonlineag",
               "line": 0.0804,
               "odds": 1100
+            },
+            {
+              "book": "betmgm",
+              "line": 0.058,
+              "odds": 1550
             }
           ]
         }
@@ -16893,7 +17162,7 @@
       "stats": {
         "any_tds": {
           "line": 0.1655,
-          "books": 1,
+          "books": 2,
           "min": 0.1655,
           "max": 0.1655,
           "quotes": [
@@ -16901,6 +17170,33 @@
               "book": "betonlineag",
               "line": 0.1655,
               "odds": 500
+            },
+            {
+              "book": "betmgm",
+              "line": 0.1655,
+              "odds": 500
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Philadelphia Eagles D/ST",
+      "kickoff": "2026-10-27",
+      "kickoffTime": "2026-10-27T00:15:00Z",
+      "matchup": "DALPHI",
+      "matchupLong": "Dallas Cowboys @ Philadelphia Eagles",
+      "stats": {
+        "any_tds": {
+          "line": 0.1585,
+          "books": 1,
+          "min": 0.1585,
+          "max": 0.1585,
+          "quotes": [
+            {
+              "book": "betmgm",
+              "line": 0.1585,
+              "odds": 525
             }
           ]
         }
@@ -16914,15 +17210,20 @@
       "matchupLong": "Dallas Cowboys @ Philadelphia Eagles",
       "stats": {
         "any_tds": {
-          "line": 0.2563,
-          "books": 1,
-          "min": 0.2563,
+          "line": 0.25285,
+          "books": 2,
+          "min": 0.2494,
           "max": 0.2563,
           "quotes": [
             {
               "book": "betonlineag",
               "line": 0.2563,
               "odds": 300
+            },
+            {
+              "book": "betmgm",
+              "line": 0.2494,
+              "odds": 310
             }
           ]
         }
@@ -16936,15 +17237,20 @@
       "matchupLong": "Dallas Cowboys @ Philadelphia Eagles",
       "stats": {
         "any_tds": {
-          "line": 0.5437,
-          "books": 1,
+          "line": 0.5522499999999999,
+          "books": 2,
           "min": 0.5437,
-          "max": 0.5437,
+          "max": 0.5608,
           "quotes": [
             {
               "book": "betonlineag",
               "line": 0.5437,
               "odds": 110
+            },
+            {
+              "book": "betmgm",
+              "line": 0.5608,
+              "odds": 105
             }
           ]
         }
@@ -16958,15 +17264,20 @@
       "matchupLong": "Dallas Cowboys @ Philadelphia Eagles",
       "stats": {
         "any_tds": {
-          "line": 0.1655,
-          "books": 1,
-          "min": 0.1655,
+          "line": 0.1531,
+          "books": 2,
+          "min": 0.1407,
           "max": 0.1655,
           "quotes": [
             {
               "book": "betonlineag",
               "line": 0.1655,
               "odds": 500
+            },
+            {
+              "book": "betmgm",
+              "line": 0.1407,
+              "odds": 600
             }
           ]
         }
@@ -16980,15 +17291,20 @@
       "matchupLong": "Dallas Cowboys @ Philadelphia Eagles",
       "stats": {
         "any_tds": {
-          "line": 0.0879,
-          "books": 1,
+          "line": 0.09655,
+          "books": 2,
           "min": 0.0879,
-          "max": 0.0879,
+          "max": 0.1052,
           "quotes": [
             {
               "book": "betonlineag",
               "line": 0.0879,
               "odds": 1000
+            },
+            {
+              "book": "betmgm",
+              "line": 0.1052,
+              "odds": 825
             }
           ]
         }

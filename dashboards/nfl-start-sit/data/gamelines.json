@@ -1,10 +1,10 @@
 {
  "source": "The Odds API",
  "region": "us",
- "lastUpdated": "2026-10-20T14:05:03+00:00",
+ "lastUpdated": "2026-10-20T14:45:05+00:00",
  "gameCount": 14,
- "quotaUsed": "1877",
- "quotaRemaining": "18123",
+ "quotaUsed": "1913",
+ "quotaRemaining": "18087",
  "note": "Median spread and total across books. Implied team total = total/2 - spread/2. Used to score D/ST and K, which have no prop market.",
  "games": [
   {
@@ -61,17 +61,17 @@
    "awayName": "San Francisco 49ers",
    "kickoff": "2026-10-25T17:00:00Z",
    "total": 50.5,
-   "homeSpread": 3.5,
+   "homeSpread": 3.25,
    "teams": {
     "ATL": {
-     "implied": 23.5,
-     "spread": 3.5,
-     "oppImplied": 27.0
+     "implied": 23.62,
+     "spread": 3.25,
+     "oppImplied": 26.88
     },
     "SF": {
-     "implied": 27.0,
-     "spread": -3.5,
-     "oppImplied": 23.5
+     "implied": 26.88,
+     "spread": -3.25,
+     "oppImplied": 23.62
     }
    },
    "bookCount": 10
@@ -153,17 +153,17 @@
    "awayName": "New York Giants",
    "kickoff": "2026-10-25T17:00:00Z",
    "total": 43.0,
-   "homeSpread": -9.5,
+   "homeSpread": -10.0,
    "teams": {
     "HOU": {
-     "implied": 26.25,
-     "spread": -9.5,
-     "oppImplied": 16.75
+     "implied": 26.5,
+     "spread": -10.0,
+     "oppImplied": 16.5
     },
     "NYG": {
-     "implied": 16.75,
-     "spread": 9.5,
-     "oppImplied": 26.25
+     "implied": 16.5,
+     "spread": 10.0,
+     "oppImplied": 26.5
     }
    },
    "bookCount": 11
