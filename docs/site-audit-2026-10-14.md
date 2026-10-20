@@ -375,10 +375,15 @@ UTC). Each run is free and commits only when something changed, and with the
 account's 1.5-4.5 hour cron lag several slots are needed for one to land in
 the window reliably.
 
-The only fully reliable fix is for upstream to trigger the mirror as soon as
-it publishes. That needs a fine-grained access token with Actions access to
-this repo, saved as a secret in AI_Agent_work, and only the owner can create
-one. Not done; the hourly slots are the no-secrets version.
+The fully reliable fix is for upstream to trigger the mirror as soon as it
+publishes. That is wired up (AI_Agent_work `214cf42`): after its push,
+`nfl-props.yml` waits until its Pages copy of `weekly.json` carries the new
+stamp, then dispatches `nfl-data-pull.yml` here. It needs an
+`EZDUBS_DISPATCH_TOKEN` secret in AI_Agent_work: a fine-grained token limited
+to `pjmerica/ez-dubs-website` with Actions read/write. No such token existed on
+2026-10-19 (checked the repos' secrets and the local project folders), and only
+the owner can create one. Until it exists the step is a no-op and the hourly
+Sunday slots cover the gap.
 
 **Also fixed upstream:**
 - The Kalshi "player in two matchups" warning fired on every week-6 run for
