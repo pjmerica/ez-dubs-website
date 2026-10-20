@@ -35,6 +35,14 @@ on:
     - cron: '0 1 * * 5,6,0,1'  # after upstream's 23:00, next day UTC
   workflow_dispatch:
 
+# One run at a time per workflow. A manual dispatch landing on top of a
+# scheduled run would otherwise have two jobs commit the same file, and the
+# second one's rebase conflicts. Queued, not cancelled, so no pull is lost.
+# (2026-10-19)
+concurrency:
+  group: nfl-data-pull
+  cancel-in-progress: false
+
 jobs:
   pull:
     runs-on: ubuntu-latest

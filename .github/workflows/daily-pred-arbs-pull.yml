@@ -10,6 +10,14 @@ on:
     - cron: '45 1,3,5,7,9,11,13,15,17,19,21,23 * * *'
   workflow_dispatch:
 
+# One run at a time per workflow. A manual dispatch landing on top of a
+# scheduled run would otherwise have two jobs commit the same file, and the
+# second one's rebase conflicts. Queued, not cancelled, so no pull is lost.
+# (2026-10-19)
+concurrency:
+  group: pred-arbs-pull
+  cancel-in-progress: false
+
 jobs:
   pull:
     runs-on: ubuntu-latest
@@ -45,7 +53,11 @@ jobs:
               exit 0
             fi
             echo "Push attempt $i failed; rebasing on remote."
-            git pull --rebase --autostash origin main
+            # A conflicted pull leaves the checkout mid-rebase, and every later
+            # push in this loop then fails for that reason instead. The NFL
+            # workflow lost a run to exactly this on 2026-10-10. Abort so the
+            # next attempt starts clean.
+            git pull --rebase --autostash origin main || git rebase --abort || true
           done
           echo "Push failed after 5 attempts." >&2
           exit 1

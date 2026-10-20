@@ -240,6 +240,85 @@ every storage access is wrapped, both fetch wrappers check the status, and data
 is escaped where it reaches the page. External links, the Sleeper API,
 Formspree and the Chart.js CDN all respond.
 
+### 15. Five Best Ball players were split across two spellings (fixed 2026-10-19)
+
+The manual-upload days used the DK and UD site exports, which spell some names
+differently from the Google Sheet the puller reads. On Risers/Fallers each of
+these players was two entries that never share a date: Kenneth/Kenny Gainwell,
+Marquise/Hollywood Brown, Cameron/Cam Skattebo, Mitchell/Mitch Tinsley, and
+"J. Michael"/"J.Michael" Sturdivant. Any lookback crossing a switch dropped
+them, and each chart showed only part of the season.
+
+`build_history_summary.js` now merges each pair into the season-close name (the
+one `latest.json` uses), via a `SAME_PLAYER` list; `history.json` was rebuilt.
+Gainwell and Skattebo now have an ADP on all 149 dates on both books, which
+confirms the halves were complementary. No other player's data changed (checked
+key by key). Found by pairing same-surname, same-position entries that are
+almost never priced on the same day; the only other pair it flagged was two
+different players named Smith, each with one day of data.
+
+### 16. NFL league scoring ignored most of each league's settings (fixed 2026-10-19)
+
+`leaguePoints()` used a league's reception, passing-TD and TE-premium settings
+but hard-coded every yardage and rushing/receiving TD rate to Sleeper's
+defaults. A league scoring 1 point per 20 passing yards was projected as if it
+were 1 per 25. It now reads `pass_yd`, `rush_yd`, `rec_yd`, `rush_td` and
+`rec_td` from the league, with the defaults as fallback. The data has one
+combined rushing+receiving TD expectation, so when a league scores the two
+differently, QBs and RBs use the rushing rate and WRs and TEs the receiving
+rate. Interceptions and fumbles are still not scored, because no market in the
+data prices them.
+
+Fixed upstream in `AI_Agent_work/lineup/app.js` and re-ported, which moved the
+cache-bust hash so browsers fetch the new file. New
+`AI_Agent_work/tests/league_scoring.test.js` checks hand-worked scores and fails
+two cases on the old code. The upstream offline suite passes except
+`books_interact.test.js` (AI_Agent_work's own books page, not part of this
+site), which fails identically with and without this change.
+
+### 17. Phone menu unreachable by keyboard and unnamed (fixed 2026-10-19)
+
+On all eight pages the menu checkbox was `display: none`, which also removes it
+from the tab order. At phone widths, where the links are hidden behind it,
+keyboard, switch and screen-reader users could not open the menu. Its "Menu"
+name sat on the `<label>`, where it is invalid and ignored (the W3C validator's
+only error on seven of the pages). Now the checkbox carries the name, and at
+phone widths it is visually hidden but focusable, with a focus ring on the
+hamburger. Desktop is unchanged. `verify_nav.test.js` gained 16 checks, which
+fail on the old pages. The port script copies the nav from the calculator page
+and reproduced the change byte for byte.
+
+Also from the validator: the four "Top 10" titles on Best Ball Prices were
+`h3` directly under the `h1`; they're `h2` now, with identical styling.
+
+### 18. Arb calculator: unreadable input, ask precision, whole contracts (fixed 2026-10-19)
+
+- A number box the browser can't parse ("0,42") reports an empty value, so the
+  calculator said "add a price" for a filled box. It now says "Not a number. Use
+  a decimal point, like 0.42 for 42 cents."
+- The price boxes had `step="0.01"`, which marks real asks like 0.0065 invalid.
+  Now `step="any"`.
+- Results add a whole-contracts line, since Kalshi trades only whole contracts
+  and a hedge needs the same count on both legs. For example, $100 at
+  0.42 + 0.55 buys 103 of each for $99.91 and pays $103. A bankroll under one
+  contract per leg says so.
+- The "Guaranteed" wording was left alone: the 2026-06-23 copy change kept it
+  on this page on purpose.
+
+### 19. Bot workflows could lose a run to an overlapping run (fixed 2026-10-19)
+
+None of the three bot workflows had a `concurrency` guard. A manual dispatch
+landing on a scheduled run has two jobs commit the same file, and the second's
+rebase conflicts. The arbs and ADP workflows also lacked the fix the NFL
+workflow got on 2026-10-10: a conflicted `git pull --rebase` left the checkout
+mid-rebase, so every remaining push attempt failed. All three now queue one run
+at a time, and the two retry loops abort a failed rebase before retrying.
+
+**Also checked on 2026-10-19, no change needed:** all 118 internal links,
+assets and data fetches resolve to published files. The W3C validator found no
+other errors. `pull_adp.py` (for 2027) reads correctly; its only gap is the
+name-spelling issue in item 15, now noted in CLAUDE.md.
+
 ## Found but not fixed here
 
 ### Privacy: what still links the site to the GitHub account
