@@ -34,6 +34,18 @@ const check = (label, cond, detail) => {
           JSON.stringify(onDisk[k]) === JSON.stringify(rebuilt[k]),
           "rebuild: node scripts/build_history_summary.js");
   }
+  // Five players were split across two spellings until 2026-10-19 (see
+  // SAME_PLAYER in the build script). Each must be one entry, and the two that
+  // were cleanly complementary must now span the whole season on both books.
+  const keys = new Set(onDisk.players.map(p => p[0]));
+  for (const v of ["kenny gainwell", "hollywood brown", "cam skattebo", "mitch tinsley", "j michael sturdivant"]) {
+    check(`"${v}" is merged into its season-close name`, !keys.has(v));
+  }
+  for (const k of ["kenneth gainwell", "cameron skattebo"]) {
+    const i = onDisk.players.findIndex(p => p[0] === k);
+    const full = i >= 0 && ALL_SOURCES.every(s => onDisk.adp[s][i].every(x => x !== null));
+    check(`${k} has an ADP on every date on both books`, full);
+  }
   check("covers the whole 2026 season",
         onDisk.dates[0] === "2026-03-17" && onDisk.dates[onDisk.dates.length - 1] === "2026-09-04",
         `${onDisk.dates[0]}..${onDisk.dates[onDisk.dates.length - 1]}`);

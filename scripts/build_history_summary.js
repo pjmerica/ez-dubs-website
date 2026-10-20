@@ -10,10 +10,12 @@
  * per source per player per date.
  *
  * The parsing below is the page's own loader (parseCSV, normalizeName,
- * isRealAdp, the manual-over-auto rule), copied verbatim from
- * dashboards/best-ball-history/index.html before it switched to this file.
- * verify_history_summary.test.js rebuilds from the CSVs and checks the page
- * ends up with byte-identical data either way.
+ * isRealAdp, the manual-over-auto rule), copied from
+ * dashboards/best-ball-history/index.html before it switched to this file and
+ * verified to produce identical data. One deliberate change since (2026-10-19):
+ * SAME_PLAYER merges five players whose names were spelled two ways.
+ * verify_history_summary.test.js checks history.json is still exactly what
+ * this script builds from the CSVs.
  *
  * Usage: node scripts/build_history_summary.js
  */
@@ -56,6 +58,25 @@ function normalizeName(name) {
     .replace(/\s+/g, " ").trim();
 }
 
+// The same player under two spellings (found 2026-10-19). The manual-upload
+// days used the DK and UD site exports, which spell some names differently
+// from the Google Sheet the puller reads, so these players' history was split
+// across two entries that never share a date: any lookback crossing a switch
+// dropped them, and each chart showed only part of the season. Keyed by
+// normalizeName() of the variant; the value is the name the player had at the
+// season close, which is also what latest.json and the Prices page show. The
+// 2026 data is permanent, so this list is complete.
+const SAME_PLAYER = {
+  "kenny gainwell":      "Kenneth Gainwell",
+  "hollywood brown":     "Marquise Brown",
+  "cam skattebo":        "Cameron Skattebo",
+  "mitch tinsley":       "Mitchell Tinsley",
+  "j michael sturdivant": "J.Michael Sturdivant",
+};
+const CANONICAL = new Map(Object.entries(SAME_PLAYER)
+  .map(([variant, name]) => [variant, { key: normalizeName(name), name }]));
+const DISPLAY = new Map([...CANONICAL.values()].map(c => [c.key, c.name]));
+
 function isRealAdp(adp, floor) {
   return !isNaN(adp) && adp < floor;
 }
@@ -71,7 +92,9 @@ function buildSnapshotMaps(rows, floor) {
     let bucket = byDate.get(date);
     if (!bucket) { bucket = { manual: {}, auto: {} }; byDate.set(date, bucket); }
     const target = source === "manual" ? bucket.manual : bucket.auto;
-    target[normalizeName(name)] = { name, pos, adp };
+    const key = normalizeName(name);
+    const canon = CANONICAL.get(key);
+    target[canon ? canon.key : key] = { name: canon ? canon.name : name, pos, adp };
   }
   return byDate;
 }
@@ -104,7 +127,7 @@ function buildFromCsvTexts(texts) {
         if (m[src][key]) { hit = m[src][key]; break outer; }
       }
     }
-    if (hit) players.push([key, hit.name, hit.pos]);
+    if (hit) players.push([key, DISPLAY.get(key) || hit.name, hit.pos]);
   }
   // One row per player per source, aligned to `dates`; null = no ADP that day.
   const adp = {};
