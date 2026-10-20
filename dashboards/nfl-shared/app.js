@@ -319,12 +319,25 @@
       const v = lineUnderFilter(stats[k]);
       return v == null ? 0 : v;
     };
+    // Yardage and TD rates come from the league (2026-10-19). They were
+    // hard-coded to Sleeper's defaults, so a league paying 1 point per 20
+    // passing yards (0.05) or 4 for a receiving TD was projected as if it
+    // were standard. Sleeper sends every rate in scoring_settings; a missing
+    // one falls back to its default.
+    const raw = scoring.raw || {};
+    const rate = (k, dflt) => (typeof raw[k] === "number" ? raw[k] : dflt);
+    // any_tds is one expected count for rushing + receiving, with no split
+    // market to separate them. When a league scores the two differently,
+    // use the rate for the way this position mostly scores.
+    const rushTd = rate("rush_td", 6), recTd = rate("rec_td", 6);
+    const anyTd = rushTd === recTd ? rushTd
+                : (position === "QB" || position === "RB") ? rushTd : recTd;
     let pts = 0;
-    pts += g("pass_yds") * 0.04;
+    pts += g("pass_yds") * rate("pass_yd", 0.04);
     pts += g("pass_tds") * (scoring.passTd != null ? scoring.passTd : 4);
-    pts += g("rush_yds") * 0.1;
-    pts += g("rec_yds") * 0.1;
-    pts += g("any_tds") * 6;
+    pts += g("rush_yds") * rate("rush_yd", 0.1);
+    pts += g("rec_yds") * rate("rec_yd", 0.1);
+    pts += g("any_tds") * anyTd;
     const rec = g("receptions");
     pts += rec * (scoring.rec || 0);
     // A TE premium is per reception on top of the base rate.

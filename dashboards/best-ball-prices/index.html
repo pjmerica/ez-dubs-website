@@ -82,6 +82,18 @@
         .nav-toggle { display: none; }
         .nav-toggle-label { display: none; }
         @media (max-width: 720px) {
+            /* The menu checkbox was display:none, which also removes it from
+               the tab order, so on a phone keyboard and screen-reader users
+               could not open the menu at all. Visually hidden but focusable
+               here; it stays display:none on desktop, where the menu is
+               always open. The ring shows on the hamburger. (2026-10-19) */
+            .site-nav .nav-toggle {
+                display: block; position: absolute; width: 1px; height: 1px;
+                margin: 0; opacity: 0; pointer-events: none;
+            }
+            .site-nav .nav-toggle:focus-visible ~ .nav-toggle-label {
+                outline: 2px solid #4a9eff; outline-offset: 2px; border-radius: 6px;
+            }
             .site-nav { flex-wrap: wrap; gap: 12px; padding: 12px 16px; }
             .site-nav .nav-toggle-label {
                 display: flex; flex-direction: column; gap: 4px;
@@ -139,8 +151,8 @@
         .source-b { color: var(--src-b-color, #f7b500); }
         .header-a { color: var(--src-a-color, #4a9eff) !important; }
         .header-b { color: var(--src-b-color, #f7b500) !important; }
-        .rec-bubble.bubble-a h3 { color: var(--src-a-color, #4a9eff); }
-        .rec-bubble.bubble-b h3 { color: var(--src-b-color, #f7b500); }
+        .rec-bubble.bubble-a h2 { color: var(--src-a-color, #4a9eff); }
+        .rec-bubble.bubble-b h2 { color: var(--src-b-color, #f7b500); }
         .rec-val.rec-val-a { color: var(--src-a-color, #4a9eff); }
         .rec-val.rec-val-b { color: var(--src-b-color, #f7b500); }
 
@@ -280,11 +292,11 @@
             background: #1a2634; border: 1px solid #2a3a4a; border-radius: 14px;
             padding: 16px 20px; flex: 1; min-width: 300px; max-width: 400px;
         }
-        .rec-bubble h3 { font-size: 0.95rem; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid #2a3a4a; }
-        .rec-bubble.dk-bubble h3 { color: #00c46a; }
-        .rec-bubble.ud-bubble h3 { color: #ffd700; }
-        .rec-bubble.rising-bubble h3 { color: #2ecc71; }
-        .rec-bubble.falling-bubble h3 { color: #e74c3c; }
+        .rec-bubble h2 { font-size: 0.95rem; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid #2a3a4a; }
+        .rec-bubble.dk-bubble h2 { color: #00c46a; }
+        .rec-bubble.ud-bubble h2 { color: #ffd700; }
+        .rec-bubble.rising-bubble h2 { color: #2ecc71; }
+        .rec-bubble.falling-bubble h2 { color: #e74c3c; }
         .rec-list { list-style: none; padding: 0; margin: 0; }
         .rec-list li {
             display: flex; justify-content: space-between; align-items: center;
@@ -665,8 +677,8 @@ a.brand {
 <body>
     <nav class="site-nav">
         <a class="brand" href="../../">EZ Dubs <span class="accent">Analytics</span></a>
-        <input type="checkbox" id="nav-toggle" class="nav-toggle">
-        <label for="nav-toggle" class="nav-toggle-label" aria-label="Menu">
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Menu">
+        <label for="nav-toggle" class="nav-toggle-label">
             <span></span><span></span><span></span>
         </label>
         <div class="nav-tabs">
@@ -737,19 +749,19 @@ a.brand {
         </div>
         <div class="recs-container">
             <div class="rec-bubble bubble-b">
-                <h3 id="title-b-pct"></h3>
+                <h2 id="title-b-pct"></h2>
                 <ol class="rec-list" id="rec-b-pct"></ol>
             </div>
             <div class="rec-bubble bubble-a">
-                <h3 id="title-a-pct"></h3>
+                <h2 id="title-a-pct"></h2>
                 <ol class="rec-list" id="rec-a-pct"></ol>
             </div>
             <div class="rec-bubble bubble-b">
-                <h3 id="title-b-raw"></h3>
+                <h2 id="title-b-raw"></h2>
                 <ol class="rec-list" id="rec-b-raw"></ol>
             </div>
             <div class="rec-bubble bubble-a">
-                <h3 id="title-a-raw"></h3>
+                <h2 id="title-a-raw"></h2>
                 <ol class="rec-list" id="rec-a-raw"></ol>
             </div>
         </div>

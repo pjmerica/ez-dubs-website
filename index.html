@@ -88,6 +88,18 @@
         .nav-toggle { display: none; }
         .nav-toggle-label { display: none; }
         @media (max-width: 720px) {
+            /* The menu checkbox was display:none, which also removes it from
+               the tab order, so on a phone keyboard and screen-reader users
+               could not open the menu at all. Visually hidden but focusable
+               here; it stays display:none on desktop, where the menu is
+               always open. The ring shows on the hamburger. (2026-10-19) */
+            .site-nav .nav-toggle {
+                display: block; position: absolute; width: 1px; height: 1px;
+                margin: 0; opacity: 0; pointer-events: none;
+            }
+            .site-nav .nav-toggle:focus-visible ~ .nav-toggle-label {
+                outline: 2px solid #4a9eff; outline-offset: 2px; border-radius: 6px;
+            }
             .site-nav { flex-wrap: wrap; gap: 12px; padding: 12px 16px; }
             .site-nav .nav-toggle-label {
                 display: flex; flex-direction: column; gap: 4px;
@@ -314,8 +326,8 @@ a.brand {
 <body>
     <nav class="site-nav">
         <a class="brand" href="./">EZ Dubs <span class="accent">Analytics</span></a>
-        <input type="checkbox" id="nav-toggle" class="nav-toggle">
-        <label for="nav-toggle" class="nav-toggle-label" aria-label="Menu">
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Menu">
+        <label for="nav-toggle" class="nav-toggle-label">
             <span></span><span></span><span></span>
         </label>
         <div class="nav-tabs">

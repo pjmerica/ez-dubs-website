@@ -99,6 +99,17 @@ for (const [name, rel] of PAGES) {
         carets.length > 0 && bare.length === 0,
         bare.length ? `${bare.length} unmarked: ${bare.slice(0, 2).join(" ")}` : "no carets found");
 
+  // The phone-width menu must be reachable without a pointer. Until 2026-10-19
+  // its checkbox was display:none -- out of the tab order -- and its name sat on
+  // the <label> (invalid there, so ignored), so keyboard and screen-reader users
+  // on a phone had no way to open the menu and no name for it.
+  const toggle = (nav.match(/<input[^>]*id="nav-toggle"[^>]*>/) || [""])[0];
+  check(`${name}: menu toggle is named on the checkbox`,
+        /aria-label="[^"]+"/.test(toggle), toggle || "no #nav-toggle input");
+  check(`${name}: menu toggle is focusable at phone widths`,
+        /@media \(max-width: 720px\) \{[\s\S]*?\.site-nav \.nav-toggle \{[^}]*display: block/.test(html) &&
+        /\.nav-toggle:focus-visible ~ \.nav-toggle-label/.test(html));
+
   // External links in the nav should not leak the referrer or opener.
   for (const m of nav.matchAll(/<a\b[^>]*target="_blank"[^>]*>/gi)) {
     const tag = m[0];

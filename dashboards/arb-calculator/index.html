@@ -79,6 +79,18 @@
         .nav-toggle { display: none; }
         .nav-toggle-label { display: none; }
         @media (max-width: 720px) {
+            /* The menu checkbox was display:none, which also removes it from
+               the tab order, so on a phone keyboard and screen-reader users
+               could not open the menu at all. Visually hidden but focusable
+               here; it stays display:none on desktop, where the menu is
+               always open. The ring shows on the hamburger. (2026-10-19) */
+            .site-nav .nav-toggle {
+                display: block; position: absolute; width: 1px; height: 1px;
+                margin: 0; opacity: 0; pointer-events: none;
+            }
+            .site-nav .nav-toggle:focus-visible ~ .nav-toggle-label {
+                outline: 2px solid #4a9eff; outline-offset: 2px; border-radius: 6px;
+            }
             .site-nav { flex-wrap: wrap; gap: 12px; padding: 12px 16px; }
             .site-nav .nav-toggle-label {
                 display: flex; flex-direction: column; gap: 4px;
@@ -242,6 +254,10 @@
         .leg-out .meta { color: #7f8c99; font-size: 0.78rem; margin-top: 6px; }
         .leg-out .meta strong { color: #99aabb; font-weight: 700; }
 
+        .contracts-note {
+            color: #99aabb; font-size: 0.85rem; line-height: 1.5; margin-top: 12px;
+        }
+        .contracts-note strong { color: #cfe0f0; }
         .summary-grid {
             display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
             margin-top: 14px;
@@ -367,8 +383,8 @@ a.brand {
 <body>
     <nav class="site-nav">
         <a class="brand" href="../../">EZ Dubs <span class="accent">Analytics</span></a>
-        <input type="checkbox" id="nav-toggle" class="nav-toggle">
-        <label for="nav-toggle" class="nav-toggle-label" aria-label="Menu">
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Menu">
+        <label for="nav-toggle" class="nav-toggle-label">
             <span></span><span></span><span></span>
         </label>
         <div class="nav-tabs">
@@ -430,24 +446,24 @@ a.brand {
             <div class="row">
                 <div class="field">
                     <label for="ayes">Side A YES price <span class="hint">(0–1)</span></label>
-                    <input type="number" id="ayes" min="0" max="1" step="0.01" placeholder="0.42" value="0.42">
+                    <input type="number" id="ayes" min="0" max="1" step="any" placeholder="0.42" value="0.42">
                     <span class="field-err" id="err-ayes"></span>
                 </div>
                 <div class="field">
                     <label for="byes">Side B YES price <span class="hint">(0–1)</span></label>
-                    <input type="number" id="byes" min="0" max="1" step="0.01" placeholder="0.55">
+                    <input type="number" id="byes" min="0" max="1" step="any" placeholder="0.55">
                     <span class="field-err" id="err-byes"></span>
                 </div>
             </div>
             <div class="row">
                 <div class="field">
                     <label for="ano">Side A NO price <span class="hint">(0–1)</span></label>
-                    <input type="number" id="ano"  min="0" max="1" step="0.01" placeholder="0.58">
+                    <input type="number" id="ano"  min="0" max="1" step="any" placeholder="0.58">
                     <span class="field-err" id="err-ano"></span>
                 </div>
                 <div class="field">
                     <label for="bno">Side B NO price <span class="hint">(0–1)</span></label>
-                    <input type="number" id="bno"  min="0" max="1" step="0.01" placeholder="0.45" value="0.45">
+                    <input type="number" id="bno"  min="0" max="1" step="any" placeholder="0.45" value="0.45">
                     <span class="field-err" id="err-bno"></span>
                 </div>
             </div>
@@ -543,6 +559,10 @@ a.brand {
         //   NaN    — filled but unparseable
         //   number — parsed value (may still be out of [0,1])
         function readPrice(id) {
+            // A number input the browser cannot parse ("0,42", "42c") reports
+            // value "" -- the same as an empty field -- so the visitor got
+            // "add a price" for a box they had filled. badInput tells them apart.
+            if (el(id).validity && el(id).validity.badInput) return NaN;
             const raw = el(id).value;
             if (raw === '' || raw === null || raw === undefined) return null;
             return parseFloat(raw);
@@ -583,7 +603,8 @@ a.brand {
             const byes = readPrice('byes');
             const bno  = readPrice('bno');
             const Traw = el('bankroll').value;
-            const T    = Traw === '' ? null : parseFloat(Traw);
+            const T    = el('bankroll').validity && el('bankroll').validity.badInput ? NaN
+                       : Traw === '' ? null : parseFloat(Traw);
 
             // Range-check each filled price field. Empties are allowed.
             const priceFields = [['ayes', ayes], ['ano', ano], ['byes', byes], ['bno', bno]];
@@ -595,7 +616,10 @@ a.brand {
                 // filled at that number -- but the arb maths happily turns it
                 // into "100% return", which reads as found money. 1.0 is
                 // likewise excluded: a certainty has no counterparty.
-                if (!isFinite(v) || v <= 0 || v >= 1) {
+                if (!isFinite(v)) {
+                    setFieldError(id, 'Not a number. Use a decimal point, like 0.42 for 42 cents.');
+                    anyRangeBad = true;
+                } else if (v <= 0 || v >= 1) {
                     setFieldError(id, 'Must be between 0 and 1, exclusive. A price of 0 or 1 means there is no market on that side.');
                     anyRangeBad = true;
                 }
@@ -727,6 +751,17 @@ a.brand {
                         <div class="summary-cell good"><div class="v">${fmtMoney(best.profit)}</div><div class="l">Guaranteed profit</div></div>
                         <div class="summary-cell good"><div class="v">${fmtPct(best.returnPct)}</div><div class="l">Return on bankroll</div></div>
                     </div>
+                    ${(() => {
+                        // Each contract pays $1, so an equal-payoff basket is N
+                        // contracts of each leg. Kalshi only trades whole ones, so
+                        // round down and show what that basket actually costs.
+                        const n = Math.floor(best.payoff + 1e-9);
+                        if (n < 1) return `<p class="contracts-note">Your bankroll is less than one contract on each leg (${fmtMoney(best.cost)}), so this can't be placed as whole contracts.</p>`;
+                        const cost = n * best.cost;
+                        return `<p class="contracts-note"><strong>In whole contracts:</strong> buy ${n.toLocaleString('en-US')} of each.
+                            That costs ${fmtMoney(cost)} (${fmtMoney(n * priceA)} + ${fmtMoney(n * priceB)}) and pays
+                            ${fmtMoney(n)} either way, a profit of ${fmtMoney(n - cost)} before fees.</p>`;
+                    })()}
                     ${best.returnPct > 0.25 ? `
                     <p class="implausible-note">
                         <strong>A ${fmtPct(best.returnPct)} return is almost certainly not real.</strong>
