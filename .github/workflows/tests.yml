@@ -16,6 +16,7 @@ on:
       - 'index.html'
       - 'contact.html'
       - '404.html'
+      - 'assets/**'
       - '_config.yml'
       - 'CLAUDE.md'
       - 'README.md'
@@ -64,6 +65,11 @@ jobs:
 
       # Pages publishes every file _config.yml does not exclude, so a new doc or
       # data field can put the GitHub account on the pseudonymous site.
+      # The nav and reset live in assets/site.css; each page must link it right
+      # before its own <style>, and must not grow an inline copy again.
+      - name: Verify the shared stylesheet
+        run: node scripts/verify_shared_css.test.js
+
       - name: Verify nothing published names the account
         run: node scripts/verify_no_identity.test.js
 

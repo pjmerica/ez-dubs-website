@@ -126,6 +126,12 @@ the Prediction Markets dropdown behaves exactly as before.
 On screens under 760px the submenu cannot fly out sideways, so it renders
 indented in place instead.
 
+**Since 2026-10-19 that CSS lives in `assets/site.css`**, not in each page: the
+reset, the nav, the phone menu and the `.nav-dd-sub` submenu rules. Each page
+links it immediately before its own `<style>`. The port copies that link along
+with the donor page's styles, and no longer pastes the submenu CSS into pages
+that link the shared file.
+
 Changing the nav means editing every page. `scripts/` in the source repo has
 `port_lineup_to_ezdubs.py`, which does it idempotently — re-running it refreshes
 the nav on every page rather than duplicating it.

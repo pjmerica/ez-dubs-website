@@ -111,10 +111,14 @@ See `dashboards/UI_AUDIT.md` for the full run. The short version:
   lighter card). Do not reintroduce #555, #666, #6f7e8d or #6a6a8a for text.
 - Primary buttons use **dark text (#0f1923) on the brand accent #4a9eff**, not
   white. White on that accent is 2.75:1 and fails.
-- The nav, the footer and their styles are **eight independent copies** -- about
-  39 KB of duplicated CSS -- because there is no template or build step. A nav
-  change means eight edits. `scripts/verify_nav.test.js` asserts they stay in
-  sync; extracting them into one stylesheet is a known, unstarted refactor.
+- **The nav's CSS lives in one file, `assets/site.css`** (2026-10-19): the reset,
+  the nav, the phone menu and the NFL submenu, which used to be eight identical
+  inline copies (about 39 KB). Each page links it **immediately before its own
+  `<style>`**, which is where those rules sat, so page rules still come after
+  them; don't move the link. A nav *style* change is now one edit.
+  `verify_shared_css.test.js` fails if a page stops linking it or an inline copy
+  creeps back. The nav *markup* and the footer are still per page (the footer
+  styles differ between pages); `verify_nav.test.js` keeps the markup in sync.
 - `frame-ancestors` in a `<meta>` tag does nothing. Chrome ignores it there, and
   GitHub Pages cannot set response headers.
 

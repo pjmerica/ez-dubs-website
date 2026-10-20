@@ -106,9 +106,16 @@ for (const [name, rel] of PAGES) {
   const toggle = (nav.match(/<input[^>]*id="nav-toggle"[^>]*>/) || [""])[0];
   check(`${name}: menu toggle is named on the checkbox`,
         /aria-label="[^"]+"/.test(toggle), toggle || "no #nav-toggle input");
+  // The nav CSS moved to the shared assets/site.css on 2026-10-19, so read the
+  // page's inline styles plus whatever site.css it links.
+  const linked = [...html.matchAll(/<link rel="stylesheet" href="([^"]*assets\/site\.css)[^"]*">/g)]
+    .map((m) => path.join(path.dirname(abs), m[1]))
+    .filter((f) => fs.existsSync(f))
+    .map((f) => fs.readFileSync(f, "utf8")).join("\n");
+  const css = html + "\n" + linked;
   check(`${name}: menu toggle is focusable at phone widths`,
-        /@media \(max-width: 720px\) \{[\s\S]*?\.site-nav \.nav-toggle \{[^}]*display: block/.test(html) &&
-        /\.nav-toggle:focus-visible ~ \.nav-toggle-label/.test(html));
+        /@media \(max-width: 720px\) \{[\s\S]*?\.site-nav \.nav-toggle \{[^}]*display: block/.test(css) &&
+        /\.nav-toggle:focus-visible ~ \.nav-toggle-label/.test(css));
 
   // External links in the nav should not leak the referrer or opener.
   for (const m of nav.matchAll(/<a\b[^>]*target="_blank"[^>]*>/gi)) {

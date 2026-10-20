@@ -66,6 +66,7 @@ contact.html
 404.html                       not-found page; root-relative links only
 robots.txt, sitemap.xml        hand-maintained; add a URL when a page joins the nav
 _config.yml                    keeps internal docs and scripts off the live site
+assets/site.css                the reset + nav styles every page links
 dashboards/
   <six dashboards>/index.html
   nfl-shared/                  app.js + style.css, shared by the two NFL pages

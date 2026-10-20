@@ -62,9 +62,13 @@ for (const rel of htmlPages) {
     ["Price Differences", "History Risers/Fallers", "Start/Sit", "Root For/Against"]
       .every((x) => links.includes(x));
   check(rel, ok, "top: " + btns.join("/") + "  sub: " + subs.join("/"));
-  // The submenu needs its CSS on the page, since CSS is inlined per page here.
+  // The submenu needs its CSS on the page: inline, or since 2026-10-19 from the
+  // shared assets/site.css the page links (verify_shared_css checks the link).
+  const sharedCss = (raw.match(/<link rel="stylesheet" href="([^"]*assets\/site\.css)[^"]*">/) || [])[1];
+  const sharedFile = sharedCss && path.join(path.dirname(f), sharedCss);
+  const css = raw + (sharedFile && fs.existsSync(sharedFile) ? fs.readFileSync(sharedFile, "utf8") : "");
   check("  " + rel + " carries the submenu CSS",
-    raw.includes(".nav-dd-sub-menu"));
+    css.includes(".nav-dd-sub-menu"));
   // An orphaned </div> is how the first nav rewrite broke: its regex ended in a
   // fixed number of closers and the nested markup has one more.
   const opens = (raw.match(/<div[ >]/g) || []).length;

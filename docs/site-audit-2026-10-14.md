@@ -319,6 +319,42 @@ assets and data fetches resolve to published files. The W3C validator found no
 other errors. `pull_adp.py` (for 2027) reads correctly; its only gap is the
 name-spelling issue in item 15, now noted in CLAUDE.md.
 
+### 20. Nav styles were eight inline copies (fixed 2026-10-19)
+
+The reset, the nav, the phone menu and the NFL submenu (54 rules) were
+identical inline copies in all eight pages, about 39 KB, so a nav style change
+was eight edits. They now live in `assets/site.css`. Each page links it
+immediately before its own `<style>`, which is where those rules sat; 1,290
+duplicated lines came out of the pages. The footer styles differ from page to
+page, so they stayed inline.
+
+**Why it can't change how anything looks.**
+- *Rule order:* for every page, the old inline rules are exactly site.css's
+  rules plus the page's remaining rules, each side in its original order.
+- *Cascade:* the only rules that moved earlier relative to page rules are the
+  13 at the end (submenu and footer tap targets). A checker searched every
+  element on every page for a page rule and a moved shared rule that both match
+  it, set the same property and have equal specificity, the only case where
+  order decides. It found none, and found both conflicts I planted to test it.
+- *Rendered:* old and new sites served side by side in jsdom gave identical
+  computed styles: 20,095 properties across all eight pages.
+- CI's real-Chrome phone-layout and CSP checks run on the push.
+
+`port_lineup_to_ezdubs.py` (AI_Agent_work) was updated so the next NFL port
+copies the shared link with the donor's styles, and no longer pastes the
+submenu CSS back into every page. Re-running it against the refactored site
+changes nothing. New `verify_shared_css.test.js`, in CI, fails if a page stops
+linking the file directly before its `<style>`, or if an inline copy of any
+shared rule comes back.
+
+### 21. AI_Agent_work's books test failed at the week 6 rollover (fixed 2026-10-19)
+
+`books_interact.test.js` took a QB's surname off the board and expected no
+match under the TE filter. In week 6 the QB was Josh Allen, and "allen"
+correctly found Davis Allen, a Rams TE. The page was right; the test now
+searches the full name. AI_Agent_work's Tests workflow had failed on it; the
+offline suite and CI now pass 19 of 19.
+
 ## Found but not fixed here
 
 ### Privacy: what still links the site to the GitHub account
@@ -343,7 +379,9 @@ item 12 stay.
   disabled. **Decided 2026-10-14:** 2027 will use fresh per-season files and the
   2026 files are permanent, so this never repeats (recorded in CLAUDE.md).
   Rewriting history to reclaim the space isn't worth the disruption.
-- **Nav and footer still copied into 8 pages** (known, see `UI_AUDIT.md`).
+- **Nav markup and footers are still per page.** The nav's styles are shared
+  now (item 20); its markup is kept in sync by `verify_nav.test.js` and the port
+  script, and the footer styles genuinely differ per page.
 - **The Chrome-based tests (`verify_csp`, `verify_mobile_layout`) don't run on
   the Windows checkout**: headless Chrome returns an empty DOM. They pass in CI.
   The new card leg text ("Buy YES @ 86¢") is wider than before, so watch the
