@@ -56,8 +56,12 @@ const server = http.createServer((req, res) => {
 
 server.listen(0, async () => {
   const base = "http://127.0.0.1:" + server.address().port;
+  // An explicit throwaway profile. Puppeteer's own default profile failed to
+  // launch Chrome 155 on Windows every time (2026-10-21); a directory made here
+  // works on Windows and on the CI runner alike.
+  const profile = fs.mkdtempSync(path.join(require("os").tmpdir(), "ezd-a11y-"));
   const browser = await puppeteer.launch({ executablePath: CHROME, headless: "new",
-    args: ["--no-sandbox", "--disable-gpu"] });
+    userDataDir: profile, args: ["--no-sandbox", "--disable-gpu"] });
   let pass = 0, fail = 0;
   try {
     for (const url of PAGES) for (const vp of VIEWPORTS) {
@@ -89,6 +93,7 @@ server.listen(0, async () => {
   } finally {
     await browser.close();
     server.close();
+    try { fs.rmSync(profile, { recursive: true, force: true }); } catch (e) { /* best effort */ }
   }
   console.log(`\n${pass} passed, ${fail} failed`);
   process.exit(fail ? 1 : 0);
