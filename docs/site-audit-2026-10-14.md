@@ -531,6 +531,15 @@ pages (as "commissioner", the public account the NFL CI test uses).
   player was searched; hidden while empty.
 - **NFL:** the slot summary showed Sleeper's raw "WRRB_FLEX" (now "W/R", as on
   the badges), and 13 more on-screen em-dashes in the app became colons.
+- **Bug: a failed Sleeper lookup left the last account on screen.** Root
+  For/Against kept the previous account's full lists beside "No Sleeper user
+  named ...", and Start/Sit kept its league chips. Both clear now (37 rows to
+  0, 2 chips to 0 in the test).
+- **NFL lineup on phones:** chips in the squeezed market-lines column stacked
+  and made each row ~148px; on the bench the slot-badge rule hit the name cell
+  and pushed position, game and projection off-screen. Rows are now ~50-59px
+  with market lines a swipe away, and the signed-in page went from 3,731px
+  tall to 2,892px.
 - **Checked and fine:** the phone menu opens by keyboard (Tab to the menu
   button, focus ring shows, Space opens it), desktop dropdowns open on focus,
   and the contact page.

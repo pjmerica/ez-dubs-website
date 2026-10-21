@@ -1139,7 +1139,7 @@
       html += '<table class="slot-table"><thead><tr>' +
         '<th>Slot</th><th>Player</th><th>Pos</th><th>Game</th>' +
         '<th style="text-align:right">Proj</th>' +
-        "<th>Market lines</th></tr></thead><tbody>";
+        '<th class="col-markets">Market lines</th></tr></thead><tbody>';
       for (const r of rows) {
         const isFlex = r.slot === "FLEX";
         const badge = '<span class="slot-badge' + (isFlex ? " flex" : "") + '">' +
@@ -1157,7 +1157,7 @@
           '<td class="weekly-game">' + escapeHtml(shortMatchup(r.p.matchup) || "-") + "</td>" +
           '<td style="text-align:right"><span class="market-pts">' +
           r.p.points.toFixed(1) + "</span></td>" +
-          "<td>" + (r.p.stats ? weeklyChips(r.p) : specialChips(r.p)) +
+          '<td class="col-markets">' + (r.p.stats ? weeklyChips(r.p) : specialChips(r.p)) +
           "</td></tr>";
       }
       html += "</tbody></table>";
@@ -1175,7 +1175,7 @@
           escapeHtml(p.position || "?") + "</span></td>" +
           '<td class="weekly-game">' + escapeHtml(shortMatchup(p.matchup) || "-") + "</td>" +
           '<td style="text-align:right">' + p.points.toFixed(1) + "</td>" +
-          "<td>" + (p.stats ? weeklyChips(p) : specialChips(p)) + "</td></tr>";
+          '<td class="col-markets">' + (p.stats ? weeklyChips(p) : specialChips(p)) + "</td></tr>";
       }
       html += "</tbody></table>";
     }
@@ -1628,7 +1628,7 @@
     html += '<div class="table-wrap"><table class="slot-table"><thead><tr>' +
       "<th>Slot</th><th>Player</th><th>Pos</th><th>Game</th>" +
       '<th style="text-align:right">Proj</th>' +
-      "<th>Market lines</th></tr></thead><tbody>";
+      '<th class="col-markets">Market lines</th></tr></thead><tbody>';
     // Re-expand the optimizer's answer back over the full slot list, so locked
     // slots render in place rather than the lineup appearing to shift up.
     const fullPicks = new Array(slots.length).fill(null);
@@ -1678,7 +1678,7 @@
         '<td class="weekly-game">' + escapeHtml(shortMatchup(p.matchup) || "-") + "</td>" +
         '<td style="text-align:right"><span class="market-pts">' +
         p.points.toFixed(1) + "</span></td>" +
-        "<td>" + (p.stats ? weeklyChips(p) : specialChips(p)) + "</td></tr>";
+        '<td class="col-markets">' + (p.stats ? weeklyChips(p) : specialChips(p)) + "</td></tr>";
     });
     html += "</tbody></table></div>";
     // The chip badge is derived from this, not recomputed.
@@ -1708,7 +1708,7 @@
           escapeHtml(p.position || "?") + "</span></td>" +
           '<td class="weekly-game">' + escapeHtml(shortMatchup(p.matchup) || "-") + "</td>" +
           '<td style="text-align:right">' + p.points.toFixed(1) + "</td>" +
-          "<td>" + (p.stats ? weeklyChips(p) : specialChips(p)) + "</td></tr>";
+          '<td class="col-markets">' + (p.stats ? weeklyChips(p) : specialChips(p)) + "</td></tr>";
       }
       html += "</tbody></table></div>";
     }
@@ -2016,13 +2016,27 @@
         user = null;
       }
       if (!user || !user.user_id) {
+        // Drop the previous account's leagues and lists (2026-10-20). Left on
+        // screen under this error, they read as the results for the name just
+        // typed: Root For/Against kept a full list for the last account beside
+        // "No Sleeper user named ...", and Start/Sit kept its league chips. The
+        // typed name and the remembered username are left alone.
+        sleeperLive = null;
+        sleeperPlayed = null;
+        sleeperPlayedKey = null;
+        cache["matchups"] = {};
+        const $chips = document.getElementById("sleeper-league-chips");
+        if ($chips) $chips.innerHTML = "";
+        const $meta = document.getElementById("sleeper-meta");
+        if ($meta) $meta.textContent = "";
+        const verdict = '<div class="verdict">No Sleeper account found for ' +
+          '<span class="unmatched">' + escapeHtml(name) + "</span>. " +
+          "Usernames are case-insensitive but must match exactly otherwise: " +
+          "check it on your Sleeper profile.</div>";
+        if ($out) $out.innerHTML = verdict;
+        const $root = document.getElementById("rooting-output");
+        if ($root) $root.innerHTML = verdict;
         sleeperStatus("No Sleeper user named " + name + ".", true);
-        if ($out) {
-          $out.innerHTML = '<div class="verdict">No Sleeper account found for ' +
-            '<span class="unmatched">' + escapeHtml(name) + "</span>. " +
-            "Usernames are case-insensitive but must match exactly otherwise: " +
-            "check it on your Sleeper profile.</div>";
-        }
         sleeperBusy = false;
         return;
       }
