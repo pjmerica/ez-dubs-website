@@ -62,22 +62,3 @@ jobs:
           done
           echo "Push failed after 5 attempts." >&2
           exit 1
-
-      # Extra pred-arb re-prices (2026-10-20). GitHub's cron fires pred-arb's
-      # hourly re-price only ~4 times a day; this workflow fires at other
-      # times, so it starts one too. Needs the secret PRED_ARB_DISPATCH_TOKEN
-      # (fine-grained token: repo pjmerica/pred-arbitrage only, Actions read
-      # and write); without it this step does nothing. Skipped when pred-arb
-      # started a re-price in the last 40 minutes.
-      - name: Start a pred-arb re-price
-        if: always()
-        continue-on-error: true
-        timeout-minutes: 2
-        env:
-          GH_TOKEN: ${{ secrets.PRED_ARB_DISPATCH_TOKEN }}
-        run: |
-          if [ -z "$GH_TOKEN" ]; then echo "No PRED_ARB_DISPATCH_TOKEN secret; skipping."; exit 0; fi
-          LAST=$(gh run list -R pjmerica/pred-arbitrage --workflow reprice.yml --limit 1 --json createdAt --jq '.[0].createdAt' || true)
-          AGE=$(( $(date -u +%s) - $(date -u -d "${LAST:-1970-01-01T00:00:00Z}" +%s) ))
-          if [ "$AGE" -lt 2400 ]; then echo "pred-arb re-price started $((AGE / 60)) min ago; skipping."; exit 0; fi
-          gh workflow run reprice.yml -R pjmerica/pred-arbitrage --ref master && echo "Started a pred-arb re-price."
