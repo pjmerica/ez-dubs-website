@@ -147,12 +147,12 @@
   };
 
   const WEEKLY_SOURCE_LABEL = {
-    interpolated: "Kalshi ladder — interpolated 50% strike",
-    fitted: "Fitted estimate — ladder never crosses 50%",
-    expected: "Expected count — sum of P(X ≥ k) across the ladder",
-    books: "Sportsbook consensus — median across books",
+    interpolated: "Kalshi ladder: interpolated 50% strike",
+    fitted: "Fitted estimate: ladder never crosses 50%",
+    expected: "Expected count: sum of P(X ≥ k) across the ladder",
+    books: "Sportsbook consensus: median across books",
     "dk-td": "DraftKings anytime-TD price, de-vigged (P of 1+, so slightly low)",
-    projected: "PROJECTION, not a market price — season estimate / 17",
+    projected: "PROJECTION, not a market price: season estimate / 17",
   };
 
   const LINEUP_SLOTS = [
@@ -2011,7 +2011,7 @@
         if ($out) {
           $out.innerHTML = '<div class="verdict">No Sleeper account found for ' +
             '<span class="unmatched">' + escapeHtml(name) + "</span>. " +
-            "Usernames are case-insensitive but must match exactly otherwise — " +
+            "Usernames are case-insensitive but must match exactly otherwise: " +
             "check it on your Sleeper profile.</div>";
         }
         sleeperBusy = false;

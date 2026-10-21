@@ -75,6 +75,13 @@
             transform: translateY(-2px);
         }
         .tool-card:hover::before { opacity: 1; width: 4px; }
+        /* Five cards in a three-column grid left an empty slot after the last
+           one. Where there are at least two columns, the Best Ball card (the
+           archive) takes two, so the last row is always full. One column below
+           ~680px, where spanning would add a phantom second column. */
+        @media (min-width: 680px) {
+            .tool-card.span-2 { grid-column: span 2; }
+        }
         .tool-card.coming-soon { opacity: 0.7; cursor: default; }
         .tool-card.coming-soon:hover { transform: none; }
         .tool-tag {
@@ -118,7 +125,7 @@
         .reviews-wrap { margin-top: 72px; }
         .reviews-header {
             display: flex; align-items: baseline; gap: 12px;
-            margin-bottom: 6px;
+            margin-bottom: 16px;
         }
         .reviews-header h2 {
             font-size: 1.5rem; font-weight: 800; color: #fff;
@@ -230,7 +237,7 @@
                 <p>Lock in equal payoffs across two betting markets. Free, no login.</p>
                 <span class="arrow">Open calculator &rarr;</span>
             </a>
-            <a class="tool-card" href="dashboards/best-ball-prices/" style="--accent:#00c46a;">
+            <a class="tool-card span-2" href="dashboards/best-ball-prices/" style="--accent:#00c46a;">
                 <span class="tool-tag">2026 season</span>
                 <h2>Best Ball Price Differences</h2>
                 <p>Where DraftKings and Underdog ADPs disagreed, frozen at the close of the 2026 draft season.</p>

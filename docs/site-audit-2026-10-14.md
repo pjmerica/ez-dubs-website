@@ -422,6 +422,91 @@ and 19:00 UTC added, about 1,000 credits a month more, roughly 3,800 of
 20,000), and the site's hourly Sunday mirror now runs through 00:17 UTC Monday
 so the 4pm and night games get Sunday's lines.
 
+### 24. Sunday refreshes timed to kickoff, not to cron (2026-10-20)
+
+Asked for refreshes about 15 minutes before the 1pm, 4:15 and 8:20 ET games.
+Cron can't do that here: scheduled runs start 1.5-4.5 hours late. A
+`workflow_dispatch`, though, starts in seconds, and a workflow may dispatch
+itself in its own repo with the built-in token. So each repo got a Sunday
+chain that cron only starts, early:
+
+- **AI_Agent_work `nfl-kickoff-refresh.yml`**: sleeps until kickoff minus 20
+  minutes, refreshes Kalshi, the Odds API, game lines and the Sleeper map
+  (inactives come out 90 minutes before kickoff), pushes, and dispatches
+  itself for the next window.
+- **This repo's `nfl-kickoff-mirror.yml`**: wakes at kickoff minus 17, waits
+  until that refresh is live on upstream's Pages, then starts
+  `nfl-data-pull.yml` to copy and commit it, and hands on to the next window.
+
+`scripts/kickoff_wait.py` (identical in both repos) reads the kickoff times
+from `gamelines.json`, so the November clock change, London games and flexed
+night games need no edits. It merges kickoffs within 30 minutes into one
+refresh (4:05 and 4:25 become one at 3:45), skips a window already served (so
+the backup start and re-runs don't spend credits twice), and caps a single wait
+at 5.5 hours against GitHub's 6-hour job limit. The kickoff lock (item 23)
+means the 4pm and night refreshes only pay for games still to come. The three
+interim Sunday cron slots from earlier the same day were removed.
+
+**Tested live on 2026-10-20** with two injected kickoffs (14:25 and 15:05 UTC):
+upstream refreshed at 14:05:00 and pushed; the site woke at 14:08:00, saw the
+14:05:01 refresh live, mirrored it, and served it from ezdubsanalytics.com at
+14:09:11, 16 minutes before the fake kickoff. Both chains handed on to a second
+hop for the 15:05 kickoff, and both second hops refreshed, mirrored and then
+stopped, since no kickoffs were left. `tests/kickoff_wait.test.py` (AI_Agent_work) pins
+the timing: a real week-6 slate, the clock change, London, served windows, late
+starts.
+
+### 25. Design review from screenshots (2026-10-20)
+
+Every page captured at 1440px and, inside a 390px iframe, at phone width.
+Headless Chrome won't lay out narrower than 500px, so a phone-size window
+screenshot is a cropped 500px layout; the iframe gives the real 390px one.
+Fixed:
+
+- **NFL pages looked like another site.** They're built from AI_Agent_work's
+  lineup template, whose stylesheet carried its own design. Its body padding
+  pushed the site nav 40px in from the top and edges, and the calculator's
+  narrow `main` rule (copied over as the donor style) shrank the content under
+  a wider header and opened a 40px gap. The accent was purple, the panels
+  near-black, the text lavender-grey. There was no site footer, and the
+  template's credits line read "data shared with the EZ Dubs Analytics". The
+  port script now writes a re-themed copy of the stylesheet (`SITE_THEME`:
+  navy panels, site blue, blue-grey text; every text colour re-checked, the
+  weakest 5.14:1), adds a small override block (`NFL_SITE_CSS`) for layout and
+  dark text on blue buttons, keeps the list of books as a plain note, and adds
+  the site footer. Re-running the port changes nothing.
+- **Em-dashes in on-screen text:** the two Best Ball season banners, the
+  calculator's "not real" warning, the NFL pages' copy (the port swaps them for
+  colons), six NFL tooltips and messages (fixed in AI_Agent_work's `app.js`),
+  and the exchanges' market titles on the arbs cards (shown with a colon).
+- **Best Ball Prices:** the four Top 10 lists are two per row (were four across
+  at ~280px, so names and "DraftKings 148.8 / Underdog 174.0" wrapped onto up to
+  three lines), with short coloured "DK"/"UD" labels and aligned position
+  badges. The Diff columns are coloured by which book is cheaper (DK green, UD
+  yellow, as in the lists) rather than good/bad green/red, with header tooltips.
+  The description is plain text (the box looked like a disabled input), and the
+  two identical position-filter rows are labelled "Lists" and "Table".
+- **Risers/Fallers:** same two-per-row lists; movers read "▲ 58.1"/"▼ 47.1"
+  (was "-58.1" under "Rising"); the chart opens on the top riser instead of an
+  empty box; "Pre-draft/Post-draft" is labelled "NFL Draft (Apr 24)"; the
+  legend said "dashed lines = Underdog", but colour marks the book and dash
+  patterns mark extra players. The page order now matches Best Ball Prices.
+- **Arbs cards:** the line repeating the title word for word is gone (only the
+  other market's question shows); the calculator button is quieter, so the
+  trade leads; the heading uses a curly apostrophe. (The gap that still shows
+  in "Today's" on Windows is Segoe UI Black's apostrophe at weight 800.)
+- **Calculator:** the result colours now match the cards that hand off to it
+  (YES green, NO red; were blue/amber). The inputs are grouped by side, so a
+  phone shows A's fields then B's (was A, B, A, B), and the three results fit
+  in one row on a phone.
+- **Home:** the archive card spans two columns so the last row is full (was an
+  empty slot after it), and the reviews heading has room.
+
+Checked: all site tests pass; the AI_Agent_work offline suite passes 22 of 22.
+`lineup_interact.test.js` there had hard-coded "Josh Allen", who wasn't on the
+early week-7 board; it now takes a player from the example roster, like the
+books-test fix in item 21.
+
 ## Found but not fixed here
 
 ### Privacy: what still links the site to the GitHub account

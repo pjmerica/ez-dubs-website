@@ -42,6 +42,7 @@
             display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
             margin-bottom: 12px;
         }
+        .side-col { display: flex; flex-direction: column; gap: 12px; }
         .row:last-child { margin-bottom: 0; }
         .field { display: flex; flex-direction: column; gap: 6px; }
         .field label {
@@ -133,12 +134,14 @@
             font-size: 1.4rem; font-weight: 800; color: #fff;
             font-variant-numeric: tabular-nums; letter-spacing: -0.01em;
         }
+        /* YES green / NO red, as on the Today's Arbitrage Picks cards that hand off
+           here; this was blue/amber, so the same trade changed colour in transit. */
         .leg-out .side {
-            color: #4a9eff; font-weight: 700; font-size: 0.82rem;
+            color: #00c46a; font-weight: 700; font-size: 0.82rem;
             letter-spacing: 0.08em; text-transform: uppercase;
             margin-bottom: 6px;
         }
-        .leg-out .side.no { color: #f7b500; }
+        .leg-out .side.no { color: #ff6b75; }
         .leg-out .meta { color: #7f8c99; font-size: 0.78rem; margin-top: 6px; }
         .leg-out .meta strong { color: #99aabb; font-weight: 700; }
 
@@ -179,7 +182,10 @@
             .calc-card { padding: 16px 14px; }
             .row { grid-template-columns: 1fr; gap: 10px; }
             .legs-out { grid-template-columns: 1fr; gap: 10px; }
-            .summary-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+            /* Three across even on a phone: two columns left the third result
+               (return on bankroll) alone on a row of its own. */
+            .summary-grid { grid-template-columns: 1fr 1fr 1fr; gap: 6px; }
+            .summary-cell { padding-left: 4px; padding-right: 4px; }
             .summary-cell .v { font-size: 1rem; }
             .summary-cell .l { font-size: 0.66rem; }
             .verdict-line { font-size: 0.95rem; }
@@ -273,38 +279,40 @@
             <p class="input-help">
                 Fill any two opposing prices (e.g. Side A YES and Side B NO). The other two are optional, for handling bid/ask spread.
             </p>
+            <!-- Grouped by side (2026-10-20): the old rows paired A YES with B YES,
+                 so on a phone the fields stacked A, B, A, B. Ids are unchanged. -->
             <div class="row">
-                <div class="field">
-                    <label for="labelA">Side A label <span class="hint">(optional)</span></label>
-                    <input type="text" class="text" id="labelA" placeholder="e.g. Kalshi">
+                <div class="side-col">
+                    <div class="field">
+                        <label for="labelA">Side A label <span class="hint">(optional)</span></label>
+                        <input type="text" class="text" id="labelA" placeholder="e.g. Kalshi">
+                    </div>
+                    <div class="field">
+                        <label for="ayes">Side A YES price <span class="hint">(0–1)</span></label>
+                        <input type="number" id="ayes" min="0" max="1" step="any" placeholder="0.42" value="0.42">
+                        <span class="field-err" id="err-ayes"></span>
+                    </div>
+                    <div class="field">
+                        <label for="ano">Side A NO price <span class="hint">(0–1)</span></label>
+                        <input type="number" id="ano"  min="0" max="1" step="any" placeholder="0.58">
+                        <span class="field-err" id="err-ano"></span>
+                    </div>
                 </div>
-                <div class="field">
-                    <label for="labelB">Side B label <span class="hint">(optional)</span></label>
-                    <input type="text" class="text" id="labelB" placeholder="e.g. Polymarket">
-                </div>
-            </div>
-            <div class="row">
-                <div class="field">
-                    <label for="ayes">Side A YES price <span class="hint">(0–1)</span></label>
-                    <input type="number" id="ayes" min="0" max="1" step="any" placeholder="0.42" value="0.42">
-                    <span class="field-err" id="err-ayes"></span>
-                </div>
-                <div class="field">
-                    <label for="byes">Side B YES price <span class="hint">(0–1)</span></label>
-                    <input type="number" id="byes" min="0" max="1" step="any" placeholder="0.55">
-                    <span class="field-err" id="err-byes"></span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="field">
-                    <label for="ano">Side A NO price <span class="hint">(0–1)</span></label>
-                    <input type="number" id="ano"  min="0" max="1" step="any" placeholder="0.58">
-                    <span class="field-err" id="err-ano"></span>
-                </div>
-                <div class="field">
-                    <label for="bno">Side B NO price <span class="hint">(0–1)</span></label>
-                    <input type="number" id="bno"  min="0" max="1" step="any" placeholder="0.45" value="0.45">
-                    <span class="field-err" id="err-bno"></span>
+                <div class="side-col">
+                    <div class="field">
+                        <label for="labelB">Side B label <span class="hint">(optional)</span></label>
+                        <input type="text" class="text" id="labelB" placeholder="e.g. Polymarket">
+                    </div>
+                    <div class="field">
+                        <label for="byes">Side B YES price <span class="hint">(0–1)</span></label>
+                        <input type="number" id="byes" min="0" max="1" step="any" placeholder="0.55">
+                        <span class="field-err" id="err-byes"></span>
+                    </div>
+                    <div class="field">
+                        <label for="bno">Side B NO price <span class="hint">(0–1)</span></label>
+                        <input type="number" id="bno"  min="0" max="1" step="any" placeholder="0.45" value="0.45">
+                        <span class="field-err" id="err-bno"></span>
+                    </div>
                 </div>
             </div>
             <div class="row">
@@ -608,7 +616,7 @@
                         Two-leg arbs on liquid markets pay a few percent. A number this
                         large usually means the two legs are not opposite outcomes of the
                         same question, or one side has no depth at the price shown. Check
-                        both rules texts and the order book before staking anything &mdash;
+                        both rules texts and the order book before staking anything:
                         &ldquo;guaranteed&rdquo; above assumes the prices are real and
                         fillable.
                     </p>` : ''}

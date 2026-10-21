@@ -130,16 +130,17 @@
         .leg-questions div { margin-bottom: 2px; }
         .leg-questions .q-platform { color: #99aabb; font-weight: 700; }
 
+        /* Quiet on purpose: on 46 cards a filled full-width button outweighed the
+           trade itself (the Buy YES/NO legs), which is what the card is for. */
         .calc-handoff-btn {
-            display: block; margin-top: 12px; padding: 8px 14px;
-            background: rgba(74,158,255,0.12);
-            border: 1px solid rgba(74,158,255,0.35);
-            border-radius: 8px; text-align: center;
-            color: #4a9eff; font-weight: 700; font-size: 0.85rem;
+            display: inline-block; margin-top: 10px; padding: 6px 10px;
+            background: transparent; border: 1px solid #2a3a4a;
+            border-radius: 8px;
+            color: #4a9eff; font-weight: 600; font-size: 0.82rem;
             text-decoration: none; transition: background 0.15s, border-color 0.15s;
         }
-        .calc-handoff-btn:hover {
-            background: rgba(74,158,255,0.22);
+        .calc-handoff-btn:hover, .calc-handoff-btn:focus-visible {
+            background: rgba(74,158,255,0.12);
             border-color: #4a9eff;
         }
 
@@ -326,7 +327,7 @@
     </nav>
 
     <main>
-        <h1>Today's Arbitrage Picks</h1>
+        <h1>Today’s Arbitrage Picks</h1>
         <p class="subtitle">Arbitrage between major prediction markets.</p>
         <p class="updated">Prices as of: <span id="generated-at">loading<span class="inline-spinner"></span></span></p>
         <p class="freshness-warn" id="freshness-warn" hidden></p>
@@ -607,6 +608,15 @@
             grid.innerHTML = list.map(a => cardHTML(a)).join('');
         }
 
+        // Market titles arrive from the exchanges with em-dashes ("Finals Winner
+        // — New York Islanders"); the site's copy uses none, and a colon reads
+        // the same. The card title is the first market's own wording, so only
+        // the second market's question is listed under it (it used to repeat
+        // the title word for word).
+        function prose(s) {
+            return String(s || '').replace(/\s+—\s+/g, ': ').replace(/—/g, '-');
+        }
+
         function cardHTML(a) {
             const pa = escapeHtml(PLATFORM_LABELS[a.platform_a] || a.platform_a);
             const pb = escapeHtml(PLATFORM_LABELS[a.platform_b] || a.platform_b);
@@ -616,7 +626,7 @@
             // that look like 7pp because of independent rounding).
             const gapPct = (Math.round(gapRaw * 10) / 10).toFixed(1);
             const returnClass = gapRaw >= 5 ? '' : 'small';
-            const title = a.question_a || a.label || '(unnamed)';
+            const title = prose(a.question_a || a.label || '(unnamed)');
             const b = basket(a);
             const headTag = b
                 ? `<span class="arb-return" title="Return on the total stake if both legs fill at these asks, after Kalshi and Polymarket fees. Prices move, so check both books first.">${a.return_pct.toFixed(2)}% after fees</span>`
@@ -648,8 +658,7 @@
                     </div>
                     ${a.question_a && a.question_b && a.question_a !== a.question_b ? `
                         <div class="leg-questions">
-                            <div><span class="q-platform">${pa}:</span> ${escapeHtml(a.question_a)}</div>
-                            <div><span class="q-platform">${pb}:</span> ${escapeHtml(a.question_b)}</div>
+                            <div><span class="q-platform">${pb} asks:</span> ${escapeHtml(prose(a.question_b))}</div>
                         </div>` : ''}
                     <a class="calc-handoff-btn" href="${escapeHtml(calcHandoffUrl(a))}">Size this in the Calculator →</a>
                     <div class="arb-foot">

@@ -36,15 +36,35 @@ Two things that look like mistakes and are not:
   re-run the port. The `?v=` cache-bust tag is a content hash the port computes.
   The port also rewrites the nav on all eight pages, so check `git status` after
   running it (it should touch only the two NFL `index.html` files).
+- **The NFL pages' look comes from the port, not from hand edits.**
+  `nfl-shared/style.css` is a re-themed copy of the lineup template's
+  stylesheet (`SITE_THEME` in the port maps its purple and near-black palette
+  to the site's blue and navy), and the port adds an override block
+  (`NFL_SITE_CSS`) and the site footer. To change how those pages look, edit
+  the port and re-run it.
 
 The data **auto-refreshes** via `.github/workflows/nfl-data-pull.yml`, which
-mirrors the upstream JSON (twice daily, more Thu-Sun, and hourly on Sundays
-from 09:17 to 00:17 UTC, so each of upstream's five Sunday refreshes lands
-before the 1pm, 4pm and night games: on 2026-10-18 the site showed Saturday's
-numbers at the 1pm kickoff). Upstream freezes a game's lines at kickoff
+mirrors the upstream JSON (twice daily, more Thu-Sun, hourly on Sundays as a
+backstop).
+
+**Sunday pre-kickoff refreshes (2026-10-20).** Upstream refreshes 20 minutes
+before each kickoff window (1pm, 4:05/4:25, Sunday night, any London game) via
+AI_Agent_work's `nfl-kickoff-refresh.yml`, and this repo's
+`nfl-kickoff-mirror.yml` copies it about 17 minutes before, so Start/Sit is
+live with near-closing lines ~15 minutes before kickoff. Cron can't time this
+(runs start 1.5-4.5 h late here), so cron only *starts* each chain early on
+Sunday; `scripts/kickoff_wait.py` sleeps to each target and the workflow
+re-dispatches itself (workflow_dispatch starts in seconds; 6 h job cap, so a
+long wait takes a few hops). Kickoff times come from `gamelines.json`, so the
+November clock change needs no edits. **`scripts/kickoff_wait.py` is a copy of
+AI_Agent_work's; keep the two identical.** To test the chain on a non-game day,
+dispatch either workflow with `test_kickoffs` (comma-separated ISO times).
+
+Upstream freezes a game's lines at kickoff
 (`scripts/kickoff_lock.py` in AI_Agent_work), so a refresh during a game can't
-put live in-game numbers on the board; carried rows are marked `lockedAtKickoff`. It mirrors rather
-than scraping again on purpose: the Odds API bills per event per market, so a
+put live in-game numbers on the board; carried rows are marked `lockedAtKickoff`.
+
+The site mirrors rather than scraping again on purpose: the Odds API bills per event per market, so a
 second pipeline would double the credit burn for identical numbers, and no
 `ODDS_API_KEY` needs to exist in this repo. Do not edit the files in
 `nfl-start-sit/data/` by hand -- the next run overwrites them.

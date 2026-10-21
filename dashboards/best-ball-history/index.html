@@ -64,9 +64,12 @@
         .recs-container {
             display: flex; gap: 20px; margin-bottom: 24px; flex-wrap: wrap; justify-content: center;
         }
+        /* Two per row, as on Best Ball Prices: four across left ~280px each and
+           names wrapped onto two lines. */
+        .recs-container { max-width: 1240px; margin-left: auto; margin-right: auto; }
         .rec-bubble {
             background: #1a2634; border: 1px solid #2a3a4a; border-radius: 14px;
-            padding: 16px 20px; flex: 1; min-width: 300px; max-width: 400px;
+            padding: 16px 20px; flex: 1 1 calc(50% - 10px); min-width: 300px; max-width: 610px;
         }
         .rec-bubble h3 { font-size: 0.95rem; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid #2a3a4a; }
         .rec-bubble.rising-bubble h3 { color: #2ecc71; }
@@ -207,6 +210,11 @@
            the season ended or the pipeline broke, so say which. Styled as
            information, not an error: these are the final numbers, not stale
            ones. */
+        .filter-label {
+            align-self: center; margin-right: 4px;
+            color: #8a97a5; font-size: 0.7rem; font-weight: 700;
+            letter-spacing: 0.08em; text-transform: uppercase;
+        }
         .season-closed {
           max-width: 960px;
           margin: 0 auto 16px;
@@ -266,20 +274,21 @@
     </nav>
     <div class="page">
     <h1>Best Ball History Risers/Fallers</h1>
+    <p class="subtitle">Biggest ADP movers on DraftKings and Underdog over a chosen lookback window | 2026 Best Ball Season</p>
     <p class="season-closed">
       <strong>The 2026 Best Ball season is over.</strong> Drafts closed on
-      September&nbsp;4, so these are the final ADPs rather than a live feed &mdash;
-      the daily pull is switched off until next season. For in-season tools, see
+      September&nbsp;4, so these are the final ADPs rather than a live feed. The
+      daily pull is switched off until next season. For in-season tools, see
       <a href="../nfl-start-sit/">Start/Sit</a> or
       <a href="../nfl-rooting/">Root For/Against</a>.
     </p>
-    <p class="subtitle">Biggest ADP movers on DraftKings and Underdog over a chosen lookback window | 2026 Best Ball Season</p>
 
     <div style="display:flex;justify-content:center;margin-bottom:20px;">
-        <div class="pos-filters">
-            <button class="pos-btn era-btn" data-era="pre">Pre-draft</button>
-            <button class="pos-btn era-btn" data-era="post">Post-draft</button>
-            <button class="pos-btn era-btn active" data-era="all">Combined</button>
+        <div class="pos-filters" role="group" aria-label="Before or after the NFL Draft">
+            <span class="filter-label" aria-hidden="true">NFL Draft (Apr 24)</span>
+            <button class="pos-btn era-btn" data-era="pre" title="Only ADPs from before the NFL Draft on April 24">Pre-draft</button>
+            <button class="pos-btn era-btn" data-era="post" title="Only ADPs from after the NFL Draft on April 24">Post-draft</button>
+            <button class="pos-btn era-btn active" data-era="all" title="The whole season">Combined</button>
         </div>
     </div>
     <h2 class="section-title">Largest ADP Movers</h2>
@@ -317,7 +326,7 @@
         <div class="chart-empty" id="chart-empty">Search for a player above to get started</div>
         <canvas id="adp-chart" style="display:none;"></canvas>
     </div>
-    <p class="legend-note">Solid lines = DraftKings &nbsp;|&nbsp; Dashed lines = Underdog &nbsp;|&nbsp; Lower ADP = earlier draft pick</p>
+    <p class="legend-note">Green = DraftKings &nbsp;|&nbsp; Yellow = Underdog &nbsp;|&nbsp; Each added player gets its own dash pattern &nbsp;|&nbsp; Lower ADP = earlier draft pick</p>
 
     <script>
         // Shared helpers
@@ -400,6 +409,10 @@
             initLookbackSlider();
             renderMovers();
             initSearch();
+            // Start the chart on the first mover listed (the top riser) so the
+            // page opens on a real trend instead of an empty "search a player" box.
+            const firstMover = document.querySelector('#recs-container li[data-key]');
+            if (firstMover && !selectedPlayers.length) addPlayer(firstMover.dataset.key);
         }
 
         // initSourcePicker was removed 2026-07-31 when FFPC and Drafters were
@@ -474,7 +487,7 @@
             document.getElementById('movers-subtitle').textContent = `Comparing ${prev.label} to ${curr.label} (closest available to ${moversLookbackDays} ${dayWord})`;
 
             function moverHTML(list, cls) {
-                return list.map((p, i) => `<li data-key="${escapeHtml(p.key)}"><span class="rec-rank">${i + 1}.</span><span class="rec-name">${escapeHtml(p.name)}</span><span class="rec-pos"><span class="pos-badge pos-${escapeHtml(p.pos)}">${escapeHtml(p.pos)}</span></span><span class="rec-adps">${p.prev.toFixed(1)} → ${p.curr.toFixed(1)}</span><span class="rec-val ${cls}">${p.delta > 0 ? '+' : ''}${p.delta.toFixed(1)}</span></li>`).join('');
+                return list.map((p, i) => `<li data-key="${escapeHtml(p.key)}"><span class="rec-rank">${i + 1}.</span><span class="rec-name">${escapeHtml(p.name)}</span><span class="rec-pos"><span class="pos-badge pos-${escapeHtml(p.pos)}">${escapeHtml(p.pos)}</span></span><span class="rec-adps">${p.prev.toFixed(1)} → ${p.curr.toFixed(1)}</span><span class="rec-val ${cls}" title="${Math.abs(p.delta).toFixed(1)} picks ${p.delta < 0 ? 'earlier' : 'later'}">${p.delta < 0 ? '▲' : p.delta > 0 ? '▼' : ''} ${Math.abs(p.delta).toFixed(1)}</span></li>`).join('');
             }
 
             // Build rising/falling bubbles for each active source.

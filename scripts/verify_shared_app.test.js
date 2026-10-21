@@ -1,8 +1,9 @@
 /**
  * The shared NFL app is a copy. Check it is not a STALE copy.
  *
- * dashboards/nfl-shared/app.js and style.css are copied verbatim from
- * pjmerica/AI_Agent_work by scripts/port_lineup_to_ezdubs.py. Nothing here tests
+ * dashboards/nfl-shared/app.js is copied verbatim from pjmerica/AI_Agent_work
+ * by scripts/port_lineup_to_ezdubs.py (style.css is a re-themed copy; see
+ * SITE_THEME in that script). Nothing here tests
  * the model inside it, so a port that fails halfway, or an upstream fix that was
  * never ported, leaves this site quietly serving different numbers from the
  * source of truth — and the pages look identical either way.

@@ -13,7 +13,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:image" content="https://ezdubsanalytics.com/EDA.png" />
   <meta name="twitter:card" content="summary" />
-  <link rel="stylesheet" href="../nfl-shared/style.css?v=2b280b5608" />
+  <link rel="stylesheet" href="../nfl-shared/style.css?v=9c72a84563" />
 <link rel="stylesheet" href="../../assets/site.css">
 <style>
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -41,6 +41,7 @@
             display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
             margin-bottom: 12px;
         }
+        .side-col { display: flex; flex-direction: column; gap: 12px; }
         .row:last-child { margin-bottom: 0; }
         .field { display: flex; flex-direction: column; gap: 6px; }
         .field label {
@@ -132,12 +133,14 @@
             font-size: 1.4rem; font-weight: 800; color: #fff;
             font-variant-numeric: tabular-nums; letter-spacing: -0.01em;
         }
+        /* YES green / NO red, as on the Today's Arbitrage Picks cards that hand off
+           here; this was blue/amber, so the same trade changed colour in transit. */
         .leg-out .side {
-            color: #4a9eff; font-weight: 700; font-size: 0.82rem;
+            color: #00c46a; font-weight: 700; font-size: 0.82rem;
             letter-spacing: 0.08em; text-transform: uppercase;
             margin-bottom: 6px;
         }
-        .leg-out .side.no { color: #f7b500; }
+        .leg-out .side.no { color: #ff6b75; }
         .leg-out .meta { color: #7f8c99; font-size: 0.78rem; margin-top: 6px; }
         .leg-out .meta strong { color: #99aabb; font-weight: 700; }
 
@@ -178,7 +181,10 @@
             .calc-card { padding: 16px 14px; }
             .row { grid-template-columns: 1fr; gap: 10px; }
             .legs-out { grid-template-columns: 1fr; gap: 10px; }
-            .summary-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+            /* Three across even on a phone: two columns left the third result
+               (return on bankroll) alone on a row of its own. */
+            .summary-grid { grid-template-columns: 1fr 1fr 1fr; gap: 6px; }
+            .summary-cell { padding-left: 4px; padding-right: 4px; }
             .summary-cell .v { font-size: 1rem; }
             .summary-cell .l { font-size: 0.66rem; }
             .verdict-line { font-size: 0.95rem; }
@@ -217,6 +223,30 @@
           line-height: 1.55;
         }
         .implausible-note strong { color: #ff8f8f; }
+</style>
+<style>
+  /* EZ Dubs chrome for the NFL pages; added by port_lineup_to_ezdubs.py. */
+  body { padding: 0; }
+  .container { padding: 28px 20px 0; }
+  /* The donor's <style> brings the calculator's narrow, padded `main`; on these
+     pages it shrank the content under a wider header and opened a 40px gap. */
+  .container > main { max-width: none; margin: 0; padding: 0; }
+  @media (max-width: 720px) {
+    body { padding: 0; }
+    .container { padding: 20px 12px 0; }
+    .container > main { padding: 0; }
+  }
+  .site-nav .caret { color: inherit; }
+  .fmt-btn.active, .chip.active, .view-tab.active, .source-tab.active {
+    background: #4a9eff; border-color: #4a9eff; color: #0f1923;
+  }
+  .chip:hover, .player-tag:hover, #search:focus, #roster-input:focus,
+  #roster-search:focus, .h2h-picker input:focus, .roster-paste textarea:focus {
+    border-color: #4a9eff;
+  }
+  .delta-toggle input, .market-toggles input, .book-toggle-list input { accent-color: #4a9eff; }
+  .callout { border-left-color: #4a9eff; }
+  .sources-note { color: #7f8c99; font-size: 0.78rem; text-align: center; margin: 4px 0 8px; }
 </style>
 </head>
 <body>
@@ -297,13 +327,13 @@
         <details class="help">
           <summary>What is counted</summary>
           <div class="help-body">
-            <p>Only players who can still change a result appear &mdash; a
+            <p>Only players who can still change a result appear: a
             starter whose game has finished is history however he did. The
             <strong>Swings</strong> column counts how many of your matchups he
             moves the same way, which is what puts him at the top.</p>
 
             <p>Signing in here and on <strong>Sleeper Start/Sit</strong> is the
-            same sign-in &mdash; do it on whichever tab you happen to be on and
+            same sign-in: do it on whichever tab you happen to be on and
             the other one is ready too.</p>
           </div>
         </details>
@@ -314,13 +344,20 @@
       </div>
     </main>
 
-    <footer>
-      Lines from DraftKings, FanDuel, BetMGM, Bovada, BetRivers, BetOnline,
-      Fanatics and Kalshi &middot; data shared with the
-      <a href="../../" style="color:#6a6a8a">EZ Dubs Analytics</a>
-    </footer>
+    <p class="sources-note">Lines from DraftKings, FanDuel, BetMGM, Bovada, BetRivers, BetOnline, Fanatics and Kalshi.</p>
   </div>
 
-  <script src="../nfl-shared/app.js?v=2b280b5608"></script>
+    <footer class="site-footer">
+        <p class="disclaimer-line">EZ Dubs Analytics is for entertainment and research only. Prices may be stale. Verify everything before placing bets.</p>
+        <div class="footer-row">
+            <span>&copy; EZ Dubs Analytics</span>
+            <span>
+                <a href="../../contact.html">Contact</a>
+                &nbsp;·&nbsp;
+                <a href="https://substack.com/@ezdubsanalytics" target="_blank" rel="noopener">Blog (Substack)</a>
+            </span>
+        </div>
+    </footer>
+  <script src="../nfl-shared/app.js?v=9c72a84563"></script>
 </body>
 </html>
