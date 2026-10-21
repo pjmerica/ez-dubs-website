@@ -589,6 +589,27 @@ no npm packages.
   refresh (item 24) lands only ~15 minutes before kickoff. Freshness wins over
   74 KB.
 
+### 29. Upstream season scrapers: empty scrapes and timestamp churn (2026-10-21)
+
+In AI_Agent_work (`1257b1c`), the scrapers behind `clay.json` (Mike Clay season
+projections) and `data.json` (FantasyPros consensus), both mirrored here:
+
+- **An empty scrape could blank a file.** Run locally, FantasyPros returned 0
+  players and the scraper overwrote `data.json` with an empty list (CI normally
+  gets ~40). `refuse_collapse()` now keeps the existing file on an empty scrape
+  or one under half its current size, with a warning, and still exits 0 so it
+  can't stop the rest of the refresh.
+- **Timestamp-only rewrites.** Both files were rewritten every run although 7
+  of 7 recent updates changed only `lastUpdated`. `write_json_if_changed()`
+  keeps the file when nothing else differs, so the stamp means "last changed".
+
+Also checked: the season scrapers take ~25 s of each ~2-minute run, so running
+them less often isn't worth the complexity. The live 404 page returns a real
+404 status and renders as designed.
+
+A local Windows note: puppeteer's default profile stopped launching Chrome 155
+here (2026-10-21); `verify_a11y.test.js` now creates its own throwaway profile.
+
 ## Found but not fixed here
 
 ### Privacy: what still links the site to the GitHub account
