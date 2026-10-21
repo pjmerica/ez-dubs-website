@@ -568,6 +568,27 @@ with exactly the issues above, and passes now). `axe-core` and
 `puppeteer-core` are pinned dev dependencies; the pages themselves still load
 no npm packages.
 
+### 28. Click-everything sweep, data sanity, dead CSS (2026-10-21)
+
+- **Every control clicked**, on every page at 1440px and 390px, with the
+  calculator also fed edge inputs (0.5/0.5, 0.0001 asks, empty). No script
+  errors, console errors or failed requests.
+- **Data sanity, live:** arbs have no duplicate market pairs, no settle dates
+  in the past, every ask is between 0 and 1, and no after-fee return exceeds
+  the gross return its asks imply. NFL lines are all in plausible ranges, with
+  no duplicate player-games and nobody in two games.
+- **Dead CSS removed:** 44 rules (~4.4 KB) in three pages styled classes that
+  no markup or script uses: the history tab that moved out of Best Ball Prices,
+  the old four-book source styling, and unused home-page labels. Checked in
+  real Chrome: every computed property of 21,306 elements is identical before
+  and after, at both widths and in Chart view.
+- **Considered and kept: the NFL app's `?t=` cache-buster.** Dropping it in
+  favour of `cache: "no-cache"` would turn repeat visits into 304s (~74 KB
+  saved, checked that GitHub Pages revalidates the gzip ETag). But the unique
+  URL is also what gets past the CDN's 10-minute edge cache, and the pre-kickoff
+  refresh (item 24) lands only ~15 minutes before kickoff. Freshness wins over
+  74 KB.
+
 ## Found but not fixed here
 
 ### Privacy: what still links the site to the GitHub account

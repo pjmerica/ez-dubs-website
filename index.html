@@ -27,11 +27,6 @@
         /* Page */
         main { flex: 1; max-width: 960px; margin: 0 auto; padding: 96px 32px 64px;
                width: 100%; }
-        .eyebrow {
-            color: #4a9eff; font-size: 0.78rem; font-weight: 700;
-            letter-spacing: 0.18em; text-transform: uppercase;
-            margin-bottom: 16px;
-        }
         h1 {
             font-size: clamp(2.4rem, 5vw, 3.8rem);
             font-weight: 800; line-height: 1.05; color: #fff;
@@ -41,16 +36,6 @@
         .lede {
             font-size: 1.1rem; color: #99aabb; line-height: 1.55;
             max-width: 560px; margin: 0 0 48px;
-        }
-
-        .section-label {
-            display: flex; align-items: center; gap: 12px;
-            color: #7f8c99; font-size: 0.78rem; font-weight: 700;
-            letter-spacing: 0.16em; text-transform: uppercase;
-            margin-bottom: 18px;
-        }
-        .section-label::after {
-            content: ''; flex: 1; height: 1px; background: #1e2d3d;
         }
 
         /* Tool grid */
@@ -82,8 +67,6 @@
         @media (min-width: 680px) {
             .tool-card.span-2 { grid-column: span 2; }
         }
-        .tool-card.coming-soon { opacity: 0.7; cursor: default; }
-        .tool-card.coming-soon:hover { transform: none; }
         .tool-tag {
             display: inline-block; font-size: 0.7rem; font-weight: 700;
             letter-spacing: 0.12em; text-transform: uppercase;
@@ -131,10 +114,6 @@
             font-size: 1.5rem; font-weight: 800; color: #fff;
             letter-spacing: -0.01em;
         }
-        .reviews-header .tm { color: #7f8c99; font-size: 0.95rem; font-weight: 600; }
-        .reviews-sub {
-            color: #7f8c99; font-size: 0.85rem; margin-bottom: 24px;
-        }
         .review-grid {
             display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 14px;
@@ -156,11 +135,6 @@
         .review-card cite {
             display: block; color: #8a9aab; font-size: 0.82rem;
             font-style: normal; font-weight: 600;
-        }
-        .review-card cite .verified {
-            display: inline-block; margin-left: 6px;
-            color: #00c46a; font-size: 0.7rem; font-weight: 700;
-            letter-spacing: 0.08em; text-transform: uppercase;
         }
     
 
