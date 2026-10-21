@@ -77,7 +77,7 @@ scripts/
   pull_nfl_data.py             mirrors NFL market data from AI_Agent_work
   pull_pred_arbs.py            mirrors prediction-market arbs
   build_history_summary.js     one-time build of best-ball-history/history.json
-  verify_*.test.js             the checks CI runs; see below
+  verify_*.test.js             the checks CI runs; see below (verify_a11y = axe audit)
   test_pull_pred_arbs.py       offline tests for the arbs puller (CI runs it)
   one_off_manual_snapshot_*.py 33 dated scripts, Jun-Aug 2026
   backfill_history.py          one-shot migration, already run

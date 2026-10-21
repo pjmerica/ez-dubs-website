@@ -108,3 +108,11 @@ jobs:
         run: node scripts/verify_mobile_layout.test.js
         env:
           CHROME_BIN: ${{ steps.chrome.outputs.chrome-path }}
+
+      # axe-core over every page at 1440px and 390px, in the same Chrome. Found
+      # 262 low-contrast badges, missing <main> landmarks and keyboard-unreachable
+      # phone tables on 2026-10-20; this keeps them fixed.
+      - name: Accessibility audit (axe)
+        run: node scripts/verify_a11y.test.js
+        env:
+          CHROME_BIN: ${{ steps.chrome.outputs.chrome-path }}

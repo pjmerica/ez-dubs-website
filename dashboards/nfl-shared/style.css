@@ -168,6 +168,9 @@ header h1 { font-size: 28px; font-weight: 700; color: #fff; }
 .chip:hover { color: #e0e0e0; border-color: #4a9eff; }
 .chip.active { background: #4a9eff; border-color: #4a9eff; color: white; }
 
+/* Tables scroll sideways on small screens, so the wrapper takes keyboard focus
+   (tabindex="0" in app.js) and arrow keys can scroll it; show where focus is. */
+.table-wrap:focus-visible { outline: 2px solid #4a9eff; outline-offset: 2px; }
 .table-wrap {
   background: #1a2634;
   border: 1px solid #2a3a4a;

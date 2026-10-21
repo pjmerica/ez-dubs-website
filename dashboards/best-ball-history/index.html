@@ -47,7 +47,7 @@
         }
         .pos-btn:hover { border-color: #555; color: #fff; }
         .pos-btn.active { border-color: #4a9eff; color: #4a9eff; }
-        .pos-btn.active.qb { border-color: #e74c3c; color: #e74c3c; }
+        .pos-btn.active.qb { border-color: #e74c3c; color: #ff8f84; }
         .pos-btn.active.rb { border-color: #2ecc71; color: #2ecc71; }
         .pos-btn.active.wr { border-color: #3498db; color: #3498db; }
         .pos-btn.active.te { border-color: #f39c12; color: #f39c12; }
@@ -55,10 +55,12 @@
             display: inline-block; padding: 2px 10px; border-radius: 4px;
             font-weight: 700; font-size: 0.8rem;
         }
-        .pos-QB { background: rgba(231,76,60,0.2); color: #e74c3c; }
-        .pos-RB { background: rgba(46,204,113,0.2); color: #2ecc71; }
-        .pos-WR { background: rgba(52,152,219,0.2); color: #3498db; }
-        .pos-TE { background: rgba(243,156,18,0.2); color: #f39c12; }
+        /* Lighter tints (2026-10-20): on their own 20% wash the old colours were
+           3.3:1 (QB) and 3.6:1 (WR), under AA for 9.6pt text; these are 5.6:1+. */
+        .pos-QB { background: rgba(231,76,60,0.2); color: #ff8f84; }
+        .pos-RB { background: rgba(46,204,113,0.2); color: #4fe08a; }
+        .pos-WR { background: rgba(52,152,219,0.2); color: #7cc0f2; }
+        .pos-TE { background: rgba(243,156,18,0.2); color: #f7b955; }
 
         /* Rec bubbles */
         .recs-container {
@@ -73,7 +75,7 @@
         }
         .rec-bubble h3 { font-size: 0.95rem; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid #2a3a4a; }
         .rec-bubble.rising-bubble h3 { color: #2ecc71; }
-        .rec-bubble.falling-bubble h3 { color: #e74c3c; }
+        .rec-bubble.falling-bubble h3 { color: #ff6b75; }  /* #e74c3c was 4.0:1 here */
 
         /* Source picker chips */
         .source-picker { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-bottom: 16px; align-items: center; }
@@ -99,7 +101,7 @@
         .rec-pos { margin-right: 8px; }
         .rec-val { font-weight: 700; font-variant-numeric: tabular-nums; min-width: 55px; text-align: right; }
         .rec-val.rising { color: #2ecc71; }
-        .rec-val.falling { color: #e74c3c; }
+        .rec-val.falling { color: #ff6b75; }
         .rec-adps { color: #8a97a5; font-size: 0.78rem; min-width: 90px; text-align: right; }
 
         /* Lookback slider */
@@ -272,7 +274,7 @@
         <div class="nav-spacer"></div>
         <a class="bmc-btn" href="https://buymeacoffee.com/ezdubsanalytics" target="_blank" rel="noopener">☕ Buy Me a Coffee</a>
     </nav>
-    <div class="page">
+    <main class="page">
     <h1>Best Ball History Risers/Fallers</h1>
     <p class="subtitle">Biggest ADP movers on DraftKings and Underdog over a chosen lookback window | 2026 Best Ball Season</p>
     <p class="season-closed">
@@ -644,7 +646,7 @@
                 `Could not load the ADP history (${e.message}). Refresh to try again.`;
         });
     </script>
-    </div>
+    </main>
     <footer class="site-footer">
         <p class="disclaimer-line">EZ Dubs Analytics is for entertainment and research only. Prices may be stale. Verify everything before placing bets.</p>
         <div class="footer-row">

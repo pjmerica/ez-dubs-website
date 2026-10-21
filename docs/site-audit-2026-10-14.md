@@ -544,6 +544,30 @@ pages (as "commissioner", the public account the NFL CI test uses).
   button, focus ring shows, Space opens it), desktop dropdowns open on focus,
   and the contact page.
 
+### 27. Accessibility audit with axe-core (2026-10-20)
+
+Every page at 1440px and 390px in real Chrome, including the signed-in NFL
+views and the unlocked arbs page. Found and fixed:
+
+- **262 low-contrast position badges** on the Best Ball pages: on their own
+  20% wash, QB red was 3.3:1 and WR blue 3.6:1 (AA needs 4.5 at 9.6pt). New
+  tints are 5.6:1 or better on every card colour. The "Falling" headings and
+  values on Risers/Fallers (#e74c3c, 4.0:1) moved to #ff6b75 (5.6:1).
+- **No `<main>` landmark** on the two Best Ball pages, and the NFL sources
+  note sat outside every landmark. The pages' wrappers are `<main>` now, and the
+  port script puts the note inside `<main>`.
+- **#6a6a8a was back** in 15 places in the NFL app (the grey the 2026-10-08 UI
+  audit retired; 3.2-3.7:1). Now #8a97a5 upstream.
+- **Phone tables were not keyboard-scrollable:** the sideways-scrolling
+  `.table-wrap` couldn't take focus. It takes focus now (`tabindex="0"`), with a
+  visible focus ring.
+
+After the fixes axe reports nothing on any page at either width. New
+`scripts/verify_a11y.test.js` runs it in CI (it fails on the previous commit
+with exactly the issues above, and passes now). `axe-core` and
+`puppeteer-core` are pinned dev dependencies; the pages themselves still load
+no npm packages.
+
 ## Found but not fixed here
 
 ### Privacy: what still links the site to the GitHub account

@@ -111,7 +111,7 @@
         }
         .pos-btn:hover { border-color: #555; color: #fff; }
         .pos-btn.active { border-color: #4a9eff; color: #4a9eff; }
-        .pos-btn.active.qb { border-color: #e74c3c; color: #e74c3c; }
+        .pos-btn.active.qb { border-color: #e74c3c; color: #ff8f84; }
         .pos-btn.active.rb { border-color: #2ecc71; color: #2ecc71; }
         .pos-btn.active.wr { border-color: #3498db; color: #3498db; }
         .pos-btn.active.te { border-color: #f39c12; color: #f39c12; }
@@ -119,10 +119,12 @@
             display: inline-block; padding: 2px 10px; border-radius: 4px;
             font-weight: 700; font-size: 0.8rem;
         }
-        .pos-QB { background: rgba(231,76,60,0.2); color: #e74c3c; }
-        .pos-RB { background: rgba(46,204,113,0.2); color: #2ecc71; }
-        .pos-WR { background: rgba(52,152,219,0.2); color: #3498db; }
-        .pos-TE { background: rgba(243,156,18,0.2); color: #f39c12; }
+        /* Lighter tints (2026-10-20): on their own 20% wash the old colours were
+           3.3:1 (QB) and 3.6:1 (WR), under AA for 9.6pt text; these are 5.6:1+. */
+        .pos-QB { background: rgba(231,76,60,0.2); color: #ff8f84; }
+        .pos-RB { background: rgba(46,204,113,0.2); color: #4fe08a; }
+        .pos-WR { background: rgba(52,152,219,0.2); color: #7cc0f2; }
+        .pos-TE { background: rgba(243,156,18,0.2); color: #f7b955; }
 
         /* Arbitrage tab */
         /* Plain text, not a bordered box: the box read as a disabled input. */
@@ -203,7 +205,7 @@
         .rec-bubble.dk-bubble h2 { color: #00c46a; }
         .rec-bubble.ud-bubble h2 { color: #ffd700; }
         .rec-bubble.rising-bubble h2 { color: #2ecc71; }
-        .rec-bubble.falling-bubble h2 { color: #e74c3c; }
+        .rec-bubble.falling-bubble h2 { color: #ff6b75; }
         .rec-list { list-style: none; padding: 0; margin: 0; }
         .rec-list li {
             display: flex; justify-content: space-between; align-items: center;
@@ -218,7 +220,7 @@
         .rec-val.ud { color: #ffd700; }
         .rec-val.dk { color: #00c46a; }
         .rec-val.rising { color: #2ecc71; }
-        .rec-val.falling { color: #e74c3c; }
+        .rec-val.falling { color: #ff6b75; }
         .rec-adps { color: #8a97a5; font-size: 0.78rem; min-width: 90px; text-align: right; }
 
         /* History tab */
@@ -574,7 +576,7 @@
         <div class="nav-spacer"></div>
         <a class="bmc-btn" href="https://buymeacoffee.com/ezdubsanalytics" target="_blank" rel="noopener">☕ Buy Me a Coffee</a>
     </nav>
-    <div class="page">
+    <main class="page">
     <h1>Best Ball Price Differences</h1>
     <p class="subtitle">DraftKings · Underdog | 2026 Best Ball Season</p>
     <p class="updated">ADPs as of: <span id="last-updated">loading<span class="inline-spinner"></span></span></p>
@@ -1292,7 +1294,7 @@
             if (m2mTop) vizSelected.add(m2mTop.key);
         }
     </script>
-    </div>
+    </main>
     <footer class="site-footer">
         <p class="disclaimer-line">EZ Dubs Analytics is for entertainment and research only. Prices may be stale. Verify everything before placing bets.</p>
         <div class="footer-row">
