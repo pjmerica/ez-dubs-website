@@ -230,6 +230,7 @@ Three implementations of this must stay in sync:
    - `days_to_settle` / `annualized_return_pct` are derived from `settle_date` when upstream omits them (pred-arbitrage always does). Annualized is blank under 7 days out.
    - **If every source fails it exits 1 and writes nothing**, so the last good file stays live and the job fails before committing. Covered by `scripts/test_pull_pred_arbs.py`, which CI runs.
 2. Commits and pushes if changed.
+3. Starts a pred-arbitrage re-price (2026-10-20). GitHub fires pred-arb's hourly re-price only about 4 times a day, and this workflow fires at other times, so each run here starts one there too (`gh workflow run reprice.yml -R pjmerica/pred-arbitrage`). It needs the repo secret `PRED_ARB_DISPATCH_TOKEN` (a fine-grained token for pjmerica/pred-arbitrage only, with Actions read and write); without it the step does nothing. It skips when pred-arb started a re-price in the last 40 minutes, and it can never fail this workflow. polling-agg's market refresh has the same step.
 
 Dashboard behavior:
 - Fetches `arbs.json` client-side.
