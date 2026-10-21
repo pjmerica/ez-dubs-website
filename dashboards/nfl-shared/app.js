@@ -681,7 +681,7 @@
                   : "These prices are for games that ") +
       "finished " + (days <= 1 ? "yesterday" : days + " days ago") +
       ".</strong> Every line below is for a game already played, so none of it " +
-      "can set a lineup. The market data refreshes on a manual run &mdash; " +
+      "can set a lineup. The market data refreshes on a manual run: " +
       "until then this is a record of a past week, not a projection." +
       (s.lastUpdated
         ? ' <span class="coverage-sub">Last refreshed ' +
@@ -705,7 +705,7 @@
         ? "Books do not open most Sunday props until Thursday night, so the " +
           "board fills in over the next day or two. Players in an unpriced " +
           "game are listed under <em>No market projection</em> rather than " +
-          "ranked &mdash; that is a missing line, not a low projection."
+          "ranked: that is a missing line, not a low projection."
         : "Still waiting on: " + names + ". Players in those games are listed " +
           "under <em>No market projection</em> rather than ranked.") +
       (early ? " Waiting on " + names + "." : "") +
@@ -715,7 +715,7 @@
         // can outlive its week without anything saying so.
         if (dkTotal > 0 && dkDropped === dkTotal) {
           return ' <span class="coverage-sub">The DraftKings touchdown file is ' +
-            "from a previous week &mdash; all " + dkTotal + " entries are for " +
+            "from a previous week: all " + dkTotal + " entries are for " +
             "games already played, so it is contributing nothing. Anytime-TD " +
             "prices are missing until it is re-run.</span>";
         }
@@ -727,7 +727,7 @@
         return " <span class=\"coverage-sub\">" + n + " player" +
           (n === 1 ? " is" : "s are") + " ranked on a season projection " +
           "(marked ≈) because the market priced only a touchdown for " +
-          "them &mdash; a baseline, not a price.</span>";
+          "them: a baseline, not a price.</span>";
       })() +
       "</div>";
   }
@@ -1337,7 +1337,7 @@
         (fas.length ? " (" + fas.length + " unrostered players do have lines.)" : "") +
         "</div>";
     }
-    let html = '<div class="sitstart-section">Best available &mdash; ranked by ' +
+    let html = '<div class="sitstart-section">Best available: ranked by ' +
       "how much they would add to your optimal lineup</div>" +
       '<div class="table-wrap"><table class="slot-table"><thead><tr>' +
       "<th>Player</th><th>Pos</th><th>Game</th>" +
@@ -1451,12 +1451,12 @@
       const a = pair[0], b = pair[1];
       const gap = a.points - b.points;
       const verdict = gap < 0.5
-        ? "<strong>" + escapeHtml(a.name) + "</strong> by a hair &mdash; " +
+        ? "<strong>" + escapeHtml(a.name) + "</strong> by a hair: " +
           a.points.toFixed(1) + " to " + b.points.toFixed(1) +
           " in half-PPR. That gap is inside the noise; play the matchup you believe in."
         : "Start <strong>" + escapeHtml(a.name) + "</strong>. The market has him at " +
           a.points.toFixed(1) + " half-PPR against " + escapeHtml(b.name) + " at " +
-          b.points.toFixed(1) + " &mdash; a " + gap.toFixed(1) + "-point edge.";
+          b.points.toFixed(1) + ": a " + gap.toFixed(1) + "-point edge.";
       $out.innerHTML = staleWeekBanner() + coverageBanner() +
         '<div class="verdict">' + verdict + "</div>" +
         slotTable([{ slot: "START", p: a }, { slot: "SIT", p: b }], null, unpriced, unmatched, null, started);
@@ -1508,6 +1508,14 @@
     // to this check exactly like a team whose game had finished, and every
     // player on it was filed as already played. The game lines cover all 32
     // teams, so they answer "has this game kicked off" properly.
+    // Absence from the board only means "already played" once this week's
+    // games have started. Early in the week the board is thin -- lines not yet
+    // posted, teams on bye -- and on Tuesday 2026-10-20 that filed Jayden
+    // Daniels, Parker Washington and Stefon Diggs as "already played this week"
+    // two days before the first kickoff. Sleeper's stats say whether anyone has
+    // taken a snap yet; if none has, nobody has played. (If the stats call
+    // failed this errs toward "no line yet" rather than locking a slot.)
+    const weekStarted = !!(sleeperPlayed && sleeperPlayed.size);
     const teamIsLive = (team) => {
       if (!team) return false;
       const gl = gameLineFor(team);
@@ -1516,7 +1524,7 @@
         return Date.parse(gl.kickoff) > Date.now();
       }
       for (const mu of liveTeams) if (mu.includes(teamKey(team))) return true;
-      return false;
+      return !weekStarted;
     };
 
     const scored = [], unpriced = [], noMarket = [], played = [],
@@ -1614,7 +1622,8 @@
 
     let html = staleWeekBanner() + coverageBanner() +
       '<div class="league-scoring">' +
-      escapeHtml(slots.join(" / ")) + "</div>";
+      // Same labels as the slot badges below; raw, the summary read "WRRB_FLEX".
+      escapeHtml(slots.map(slotLabel).join(" / ")) + "</div>";
 
     html += '<div class="table-wrap"><table class="slot-table"><thead><tr>' +
       "<th>Slot</th><th>Player</th><th>Pos</th><th>Game</th>" +
@@ -1648,7 +1657,7 @@
           '<td class="weekly-game">' + escapeHtml(p.team || "-") + "</td>" +
           '<td style="text-align:right"><span class="market-pts" style="color:#6a6a8a">' +
           (p.actual != null ? p.actual.toFixed(1) : "—") + "</span></td>" +
-          '<td style="color:#6a6a8a;font-size:12px">final &mdash; slot spent</td></tr>';
+          '<td style="color:#6a6a8a;font-size:12px">final: slot spent</td></tr>';
         return;
       }
 
@@ -1709,7 +1718,7 @@
         '<div class="verdict" style="font-size:13px">' +
         escapeHtml(played.map((r) => r.name + " (" + (r.position || "?") + ")").join(", ")) +
         '<br /><span style="color:#6a6a8a">Their games have kicked off, so the ' +
-        "books no longer quote them. Points already banked &mdash; the lineup " +
+        "books no longer quote them. Points already banked: the lineup " +
         "above only covers who is left to play.</span></div>";
     }
     if (unpriced.length) {
@@ -1730,7 +1739,7 @@
         r.name + " (" + (r.position || "?") + (r.team ? ", " + r.team : "") + ")";
 
       if (hurt.length) {
-        html += '<div class="sitstart-section">Injured &mdash; no line because ' +
+        html += '<div class="sitstart-section">Injured: no line because ' +
           "he may not play (" + hurt.length + ")</div>" +
           '<div class="verdict" style="font-size:13px">' +
           hurt.map((r) =>
@@ -1755,7 +1764,7 @@
           '<br /><span style="color:#6a6a8a">No book has priced their usage this ' +
           "week and Sleeper lists no injury, so they cannot be ranked and are " +
           "left out of the lineup above. That is an unpriced role, " +
-          "<strong>not</strong> a projection of zero &mdash; if one of these is " +
+          "<strong>not</strong> a projection of zero: if one of these is " +
           "a player you would normally start, start him. Coverage is thinnest " +
           "early in the week and fills in by Sunday.</span></div>";
       }
@@ -2524,7 +2533,7 @@
       (live.length
         ? live.length + " player" + (live.length === 1 ? "" : "s") +
           " can still move that number."
-        : "Every starter on every side has played &mdash; nothing left to watch.") +
+        : "Every starter on every side has played: nothing left to watch.") +
       "</div>";
 
     // Side by side: the two lists are read against each other, not in
@@ -2541,7 +2550,7 @@
         '<div class="verdict" style="font-size:13px;color:#6a6a8a">' +
         conflicted.map((r) => escapeHtml(r.name) + " (" + r.for.length +
           " for, " + r.against.length + " against)").join("; ") +
-        " &mdash; nets to nothing, so watch without caring.</div>";
+        ": nets to nothing, so watch without caring.</div>";
     }
     $out.innerHTML = html;
   }

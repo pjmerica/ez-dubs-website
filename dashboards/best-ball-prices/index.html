@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://formspree.io; font-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://formspree.io">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://formspree.io; font-src 'self'; base-uri 'self'; form-action 'self' https://formspree.io">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <title>Best Ball Price Differences | EZ Dubs Analytics</title>
     <meta name="description" content="Where DraftKings and Underdog best-ball ADPs disagreed, frozen at the close of the 2026 draft season.">
@@ -130,6 +130,9 @@
             max-width: 700px; margin: 0 auto 16px; text-align: center;
             color: #99aabb; font-size: 0.9rem; line-height: 1.6;
         }
+        /* The searched-players list is a bordered panel; with nothing searched it
+           drew an empty bar across the Chart view. */
+        #viz-search-list:empty { display: none; }
         .filter-label {
             align-self: center; margin-right: 4px;
             color: #8a97a5; font-size: 0.7rem; font-weight: 700;

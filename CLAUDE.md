@@ -144,8 +144,10 @@ See `dashboards/UI_AUDIT.md` for the full run. The short version:
   `verify_shared_css.test.js` fails if a page stops linking it or an inline copy
   creeps back. The nav *markup* and the footer are still per page (the footer
   styles differ between pages); `verify_nav.test.js` keeps the markup in sync.
-- `frame-ancestors` in a `<meta>` tag does nothing. Chrome ignores it there, and
-  GitHub Pages cannot set response headers.
+- `frame-ancestors` in a `<meta>` tag does nothing. Chrome ignores it there (and
+  logged a console error about it on every page load until it was removed from
+  the six pages that had it, 2026-10-20), and GitHub Pages cannot set response
+  headers. Don't add it back.
 
 
 ## Storage model

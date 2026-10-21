@@ -507,6 +507,34 @@ Checked: all site tests pass; the AI_Agent_work offline suite passes 22 of 22.
 early week-7 board; it now takes a player from the example roster, like the
 books-test fix in item 21.
 
+### 26. Interaction states and the signed-in NFL view (2026-10-20)
+
+Driven with puppeteer-core against the local Chrome, to reach what plain
+screenshots can't: open menus, keyboard focus, Chart view, the signed-in NFL
+pages (as "commissioner", the public account the NFL CI test uses).
+
+- **Bug: "Already played this week" before the week started.** On Tuesday,
+  Start/Sit listed Jayden Daniels, Parker Washington and Stefon Diggs as played.
+  A player whose team had no line and no props was assumed finished; early in
+  the week that's just a thin board. Now absence counts as played only once
+  Sleeper's stats show someone has played this week, so those three show under
+  "No market projection" with the app's own explanation. Fixed upstream
+  (AI_Agent_work `lineup/app.js`) and re-ported.
+- **Console error on six pages:** `frame-ancestors` in the CSP `<meta>` is
+  ignored by Chrome, which said so on every load. Removed; all six now load
+  with a clean console.
+- **Nav:** dropdown arrows were 0.7rem at 70% opacity and read as dashes;
+  single-level menu links were grey while nested ones were bright (both now
+  #cfe0f0); on a phone the nested-menu arrows pointed sideways though the
+  submenus open below (rotated). All in `assets/site.css`, one edit.
+- **Chart view:** an empty bordered bar sat under "Search players" until a
+  player was searched; hidden while empty.
+- **NFL:** the slot summary showed Sleeper's raw "WRRB_FLEX" (now "W/R", as on
+  the badges), and 13 more on-screen em-dashes in the app became colons.
+- **Checked and fine:** the phone menu opens by keyboard (Tab to the menu
+  button, focus ring shows, Space opens it), desktop dropdowns open on focus,
+  and the contact page.
+
 ## Found but not fixed here
 
 ### Privacy: what still links the site to the GitHub account

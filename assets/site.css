@@ -34,7 +34,8 @@
 }
 .site-nav .nav-dd-btn:hover { border-color: #4a9eff; color: #fff; }
 .site-nav .nav-dd-btn.has-active { border-color: #4a9eff; color: #4a9eff; }
-.site-nav .nav-dd-btn .caret { font-size: 0.7rem; margin-left: 4px; opacity: 0.7; }
+/* 0.7rem at 70% opacity read as a dash rather than an arrow (2026-10-20). */
+.site-nav .nav-dd-btn .caret { font-size: 0.8rem; margin-left: 4px; opacity: 0.85; }
 .site-nav .nav-dd-menu {
     position: absolute; top: calc(100% + 6px); left: 0; min-width: 280px;
     background: #131f2c; border: 1px solid #2a3a4a; border-radius: 10px;
@@ -52,7 +53,9 @@
 .site-nav .nav-dd:focus-within .nav-dd-menu { display: flex; }
 .site-nav .nav-dd-menu a {
     padding: 8px 12px; border-radius: 6px; border: 0; background: transparent;
-    color: #aaa; text-decoration: none; font-size: 0.88rem; font-weight: 600;
+    /* Same colour as the submenu links: single-level menu items were grey
+       #aaa while nested ones were #cfe0f0, so one menu looked dimmer. */
+    color: #cfe0f0; text-decoration: none; font-size: 0.88rem; font-weight: 600;
 }
 .site-nav .nav-dd-menu a:hover { background: #1e2d3d; color: #fff; }
 .site-nav .nav-dd-menu a.active { color: #4a9eff; background: #1e2d3d; }
@@ -156,6 +159,8 @@
         padding: 0 0 0 14px; min-width: 0;
     }
     .site-nav .nav-dd-sub > .nav-dd-sub-btn { cursor: default; }
+    /* The submenu opens below here, not to the side, so point its arrow down. */
+    .site-nav .nav-dd-sub > .nav-dd-sub-btn .caret { transform: rotate(90deg); }
 }
 /* WCAG 2.2 (2.5.8) asks for a 24x24px minimum target. Measured in Chrome, these
    footer and header links were 17-22px tall. Padding enlarges the hit area
