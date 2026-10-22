@@ -358,6 +358,12 @@ footer {
 }
 .callout strong { color: #f0f2f5; }
 .callout em { color: #d3dbe4; font-style: normal; text-decoration: underline dotted; }
+.callout-error {
+  background: rgba(255, 107, 107, 0.08);
+  border-color: rgba(255, 107, 107, 0.35);
+  border-left-color: #ff6b6b;
+  color: #f0c4c4;
+}
 
 .vegas-controls {
   display: flex;

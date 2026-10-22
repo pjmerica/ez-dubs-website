@@ -2615,6 +2615,24 @@
         catch (e) { cache[key] = null; }
       }
     }
+    // weekly.json and oddsapi.json hold every price the page uses. When both
+    // failed, the page used to look normal until a lookup came back with no
+    // prices at all, and nothing said why (2026-10-21). A later call that
+    // succeeds (loadData runs again per view) takes the notice down.
+    const unpriced = !cache["weekly"] && !cache["oddsapi"];
+    let $err = document.getElementById("data-load-error");
+    if (unpriced && !$err) {
+      $err = document.createElement("p");
+      $err.id = "data-load-error";
+      $err.className = "callout callout-error";
+      $err.setAttribute("role", "alert");
+      $err.textContent = "This week's betting lines could not be loaded, so lineups " +
+        "cannot be priced right now. Refresh to try again.";
+      const $main = document.querySelector("main");
+      if ($main) $main.insertBefore($err, $main.firstChild);
+    } else if (!unpriced && $err) {
+      $err.remove();
+    }
     const wk = cache["weekly"];
     const $wk = document.getElementById("week-label");
     if ($wk && wk) {

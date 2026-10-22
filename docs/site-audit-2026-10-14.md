@@ -635,6 +635,36 @@ in the browser.
 No sideways overflow on any page at 390, 768 or 1024px. All tests pass,
 including the axe audit; the CSP and mobile-layout checks now run locally too.
 
+### 31. Failure and empty states (2026-10-21)
+
+Each page loaded with its data request blocked or failed (puppeteer request
+interception), plus the locked, wrong-password, no-arb and form-sent/form-error
+states.
+
+- **Best Ball Prices failed silently.** With `latest.json` unreachable it drew
+  four empty "Top 0: Biggest % Diff..." cards and a "Showing 0 players" table,
+  with nothing saying why. It now says "Could not load the ADP snapshot
+  (latest.json returned HTTP 503). Refresh to try again." and hides the tabs.
+- **Arb picks hid their own error from locked visitors.** The error went into
+  the grid's empty state, which sits behind the password gate, so a visitor
+  without the password saw a normal page with no free preview. The notice now
+  also shows above the gate, where the freshness warning goes.
+- **"unavailable" was link-blue** on both pages' "as of" line, so it read like
+  a link. It is muted grey now.
+- **NFL pages said nothing when the betting lines failed to load.** The page
+  looked normal until a lookup came back with no prices. If both
+  `weekly.json` and `oddsapi.json` fail, a red callout now says the lineups
+  can't be priced right now (upstream `lineup/app.js` and `style.css`, ported).
+  It comes down by itself if a later load succeeds.
+- **Contact now uses the dashboard heading standard** (1.8rem / 700, 36px
+  below the nav, 1.5rem on a phone). Item 30 left it as a display heading, but
+  it is a form page rather than a landing page, and at weight 800 it rendered
+  in Segoe UI Black, the only page that did.
+
+Fine as they were: Risers/Fallers' load error, the calculator's "No arb at
+these prices" card, the wrong-password message, and the contact form's sent
+and error lines.
+
 ## Found but not fixed here
 
 ### Privacy: what still links the site to the GitHub account

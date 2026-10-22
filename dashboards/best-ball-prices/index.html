@@ -50,6 +50,7 @@
         .subtitle { text-align: center; color: #99aabb; margin-bottom: 12px; font-size: 0.92rem; }
         .updated { text-align: center; color: #8a97a5; font-size: 0.8rem; margin-bottom: 16px; }
         .updated span { color: #4a9eff; }
+        .updated span.na { color: #8a97a5; }
         .stale-note {
             text-align: center; font-size: 0.78rem; color: #b3873f;
             margin: -8px auto 16px; max-width: 640px; line-height: 1.4;
@@ -766,11 +767,12 @@
         async function loadData() {
             // Fast path: a small pre-aggregated snapshot. ~30 KB gzipped vs
             // ~3.4 MB for the four raw CSVs the old path used to fetch.
-            let snapshot = null;
+            let snapshot = null, why = 'did not load';
             try {
                 const resp = await fetch('latest.json', { cache: 'no-cache' });
                 if (resp.ok) snapshot = await resp.json();
-            } catch (e) { /* fall through to CSV path */ }
+                else why = `returned HTTP ${resp.status}`;
+            } catch (e) { why = 'could not be read'; }
 
             const availableSources = new Set();
             if (snapshot && Array.isArray(snapshot.stale_sources)) {
@@ -838,9 +840,17 @@
                     label.textContent = snapshot.date || 'unknown';
                 }
             } else {
-                // Fallback: latest.json missing or malformed. Surface a clear error.
-                document.getElementById('last-updated').textContent = 'unavailable';
-                console.warn('latest.json missing or malformed; dashboard will be empty.');
+                // latest.json missing or malformed. Say so in place of the lists,
+                // which otherwise rendered as four empty "Top 0" cards and a
+                // "Showing 0 players" table with no hint that anything failed.
+                const label = document.getElementById('last-updated');
+                label.textContent = 'unavailable';
+                label.classList.add('na');
+                const note = document.getElementById('stale-note');
+                note.textContent = `Could not load the ADP snapshot (latest.json ${why}). Refresh to try again.`;
+                note.style.display = 'block';
+                document.querySelectorAll('.tabs, .tab-panel').forEach(el => { el.style.display = 'none'; });
+                return;
             }
             players = Object.values(playersByKey);
 

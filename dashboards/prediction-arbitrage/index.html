@@ -28,6 +28,7 @@
         .subtitle { color: #99aabb; font-size: 0.92rem; margin-bottom: 14px; }
         .updated { color: #7f8c99; font-size: 0.82rem; margin-bottom: 10px; }
         .updated span { color: #4a9eff; }
+        .updated span.na { color: #8a97a5; }
         .freshness-warn { color: #f7b500; font-size: 0.82rem; margin: -4px 0 10px; }
         .inline-spinner {
             display: inline-block; width: 11px; height: 11px;
@@ -562,7 +563,14 @@
                 arbs = data.arbs || [];
                 showFreshness(data);
             } catch (e) {
-                document.getElementById('generated-at').textContent = 'unavailable';
+                const label = document.getElementById('generated-at');
+                label.textContent = 'unavailable';
+                label.classList.add('na');
+                // The grid's empty state sits behind the password gate, so locked
+                // visitors saw the gate with no sign the picks had failed to load.
+                const warn = document.getElementById('freshness-warn');
+                warn.textContent = `Today's picks could not be loaded (${e.message}). Refresh to try again.`;
+                warn.hidden = false;
                 document.getElementById('empty').textContent = `Could not load arbs.json (${e.message}).`;
                 document.getElementById('empty').style.display = 'block';
                 return;
