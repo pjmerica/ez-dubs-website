@@ -115,7 +115,9 @@
             letter-spacing: -0.01em;
         }
         .review-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            /* 200px, not 260px: at tablet width 260 fit two, leaving the third
+               review alone on a row. Still one column on a phone. */
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 14px;
         }
         .review-card {

@@ -33,10 +33,11 @@
             background: #0f1923; color: #e0e0e0;
         }
 
-        .page { padding: 20px; }
+        /* Dashboard header standard: see best-ball-prices. */
+        .page { padding: 36px 20px 20px; }
 
         h1 { text-align: center; margin-bottom: 6px; color: #fff; font-size: 1.8rem; }
-        .subtitle { text-align: center; color: #99aabb; margin-bottom: 24px; font-size: 0.9rem; }
+        .subtitle { text-align: center; color: #99aabb; margin-bottom: 24px; font-size: 0.92rem; }
 
         /* Shared */
         .pos-filters { display: flex; gap: 6px; }
@@ -73,6 +74,9 @@
             background: #1a2634; border: 1px solid #2a3a4a; border-radius: 14px;
             padding: 16px 20px; flex: 1 1 calc(50% - 10px); min-width: 300px; max-width: 610px;
         }
+        /* Below 900px two lists side by side are ~350px each and wrap again
+           (seen at 768px); one per row, full width, until there is room. */
+        @media (max-width: 900px) { .rec-bubble { flex-basis: 100%; max-width: none; } }
         .rec-bubble h3 { font-size: 0.95rem; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid #2a3a4a; }
         .rec-bubble.rising-bubble h3 { color: #2ecc71; }
         .rec-bubble.falling-bubble h3 { color: #ff6b75; }  /* #e74c3c was 4.0:1 here */
@@ -162,7 +166,7 @@
         /* Mobile layout — affects nothing on ≥721px. */
         @media (max-width: 720px) {
             .page { padding: 16px 12px; }
-            h1 { font-size: 1.4rem; }
+            h1 { font-size: 1.5rem; }
             .subtitle { font-size: 0.82rem; }
             .section-title { font-size: 1.05rem; }
             .section-sub { font-size: 0.78rem; }

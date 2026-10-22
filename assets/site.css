@@ -70,7 +70,10 @@
 /* ─── Mobile nav (≤720px) ─────────────────────────────── */
 .nav-toggle { display: none; }
 .nav-toggle-label { display: none; }
-@media (max-width: 720px) {
+/* Menu-button layout below 1080px (2026-10-21; was 720px). The full nav --
+   brand, five buttons, Buy Me a Coffee -- needs ~990px in one row, so between
+   720 and ~1060px it wrapped onto two or three rows: every tablet. */
+@media (max-width: 1080px) {
     /* The menu checkbox was display:none, which also removes it from
        the tab order, so on a phone keyboard and screen-reader users
        could not open the menu at all. Visually hidden but focusable
@@ -151,7 +154,7 @@
 }
 .site-nav .nav-dd-sub-menu a:hover { background: #1e2d3d; color: #fff; }
 .site-nav .nav-dd-sub-menu a.active { color: #4a9eff; background: #1e2d3d; }
-@media (max-width: 760px) {
+@media (max-width: 1080px) {
     /* No room to fly out sideways on a phone: indent in place instead. */
     .site-nav .nav-dd-sub-menu {
         display: flex; position: static; left: auto;

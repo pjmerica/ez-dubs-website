@@ -610,6 +610,31 @@ them less often isn't worth the complexity. The live 404 page returns a real
 A local Windows note: puppeteer's default profile stopped launching Chrome 155
 here (2026-10-21); `verify_a11y.test.js` now creates its own throwaway profile.
 
+### 30. Tablet widths and cross-page consistency (2026-10-21)
+
+Every page captured at 768px and 1024px, plus the dashboards' headings measured
+in the browser.
+
+- **The nav wrapped onto two or three rows on every tablet.** The menu button
+  took over only below 720px, but the full nav needs ~990px in one row. The
+  breakpoint is now 1080px (`assets/site.css`, one edit): a 55px bar with the
+  menu button up to 1080px, the full 67px nav above it.
+- **Best Ball lists at 768px** sat two per row at ~350px and wrapped again;
+  one per row below 900px.
+- **Arb titles:** the em-dash-to-colon swap produced "nominee?: James Comer";
+  after ?, !, : or . the dash now becomes a space.
+- **Home reviews** split 2+1 at tablet width; three across now (200px min).
+- **Injury tags** broke mid-tag ("Out" / "(Groin)"); kept whole (upstream).
+- **Dashboard headings were six slightly different designs:** 28px or 28.8px,
+  weight 700 or 800, 87-107px below the top, 14.4px or 14.72px subtitles. Now
+  one standard on all six: 1.8rem / 700, 103px down, 0.92rem subtitle, 1.5rem
+  on a phone. (Home and Contact keep their larger display headings; the Best
+  Ball pages stay centred, as their whole layout is.) Weight 700 also fixes the
+  "Today´s" apostrophe, which was Segoe UI Black's glyph at 800.
+
+No sideways overflow on any page at 390, 768 or 1024px. All tests pass,
+including the axe audit; the CSP and mobile-layout checks now run locally too.
+
 ## Found but not fixed here
 
 ### Privacy: what still links the site to the GitHub account

@@ -114,7 +114,7 @@ for (const [name, rel] of PAGES) {
     .map((f) => fs.readFileSync(f, "utf8")).join("\n");
   const css = html + "\n" + linked;
   check(`${name}: menu toggle is focusable at phone widths`,
-        /@media \(max-width: 720px\) \{[\s\S]*?\.site-nav \.nav-toggle \{[^}]*display: block/.test(css) &&
+        /@media \(max-width: \d+px\) \{[\s\S]*?\.site-nav \.nav-toggle \{[^}]*display: block/.test(css) &&
         /\.nav-toggle:focus-visible ~ \.nav-toggle-label/.test(css));
 
   // External links in the nav should not leak the referrer or opener.

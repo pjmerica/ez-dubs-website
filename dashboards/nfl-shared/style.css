@@ -805,6 +805,8 @@ tr.row-nan:hover { opacity: 0.85; }
   font-weight: 700;
   color: #ff6b6b;
   margin-left: 6px;
+  /* One unit: at tablet width "Out (Groin)" broke into "Out" / "(Groin)". */
+  white-space: nowrap;
   letter-spacing: 0.5px;
 }
 
