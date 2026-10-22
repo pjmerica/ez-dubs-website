@@ -1,9 +1,10 @@
 name: Daily ADP Pull
 
 # Scheduled cron disabled 2026-09-19: the 2026 Best Ball season closed on
-# Sept 4 and the dashboards are frozen at that snapshot. Keep the workflow
-# file (workflow_dispatch stays available) so we can reactivate for 2027 by
-# uncommenting the schedule block.
+# Sept 4 and the dashboards are frozen at that snapshot, permanently
+# (2026-10-21): pull_adp.py refuses to write to the 2026 files, so a manual
+# dispatch fails without changing anything. A 2027 season needs new
+# per-season files and pages first; see "Best Ball is frozen" in CLAUDE.md.
 on:
   # schedule:
   #   # 13:30 UTC = 09:30 EDT / 08:30 EST. Primary daily run.

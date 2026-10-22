@@ -8,10 +8,11 @@ Six dashboards, grouped the way the nav groups them.
 
 ## Best Ball
 
-**Frozen.** The 2026 Best Ball season closed on 2026-09-04 and these two show a
-snapshot of that date. The daily puller's cron is commented out in
-`.github/workflows/daily-adp-pull.yml`; `workflow_dispatch` still works, so it can
-be reactivated for 2027 by uncommenting the schedule.
+**Frozen permanently.** The 2026 Best Ball season closed on 2026-09-04 and these
+two pages are a permanent record of that date; they will not be updated again.
+The daily puller's cron is commented out in `.github/workflows/daily-adp-pull.yml`,
+and `scripts/pull_adp.py` refuses to write to the 2026 files (`FROZEN_2026`), so a
+manual dispatch changes nothing. A 2027 season would get new files and new pages.
 
 | page | what it does |
 |---|---|

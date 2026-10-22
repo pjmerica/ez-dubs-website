@@ -411,7 +411,20 @@ def _check_staleness(sheet_rows: list[list[str]], today: str) -> tuple[list[str]
 
 # ---- Main -----------------------------------------------------------------
 
+# The files above are the 2026 season's, frozen at 2026-09-04 as a permanent
+# record (user decision, 2026-10-21): the 2026 Best Ball pages are never
+# updated again. The workflow can still be dispatched by hand, and a run would
+# append today's rows to them and rebuild latest.json, so main() refuses. A
+# 2027 season gets new per-season files (and new pages); point the paths above
+# at those and remove this guard then.
+FROZEN_2026 = True
+
+
 def main() -> int:
+    if FROZEN_2026:
+        print("The 2026 Best Ball files are frozen permanently; nothing pulled. "
+              "See FROZEN_2026 in scripts/pull_adp.py.", file=sys.stderr)
+        return 1
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
 
     rows = fetch_sheet_rows()

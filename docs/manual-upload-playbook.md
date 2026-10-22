@@ -12,9 +12,9 @@ What to do when the daily auto-pull breaks and the user provides hand-pulled CSV
 > problem.
 >
 > Everything below remains correct for the pipeline it describes and should be
-> followed as written **if** the schedule is reactivated for 2027. Until then, a
-> request to process manual CSVs is unexpected: confirm with the user what they
-> actually want before appending rows to a frozen history.
+> followed for a future season's own files. The 2026 files are frozen
+> permanently (2026-10-21): never append rows to them. A request to process
+> manual CSVs is unexpected: confirm with the user what they actually want.
 
 This is the **canonical procedure** — when the user says some variant of "the pull failed, here are the manual CSVs," Claude MUST follow this file rather than improvising. Future Claude sessions: read this end-to-end before touching any data.
 
