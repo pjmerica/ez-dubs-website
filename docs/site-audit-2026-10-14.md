@@ -698,6 +698,28 @@ unlocked on the arbs page.
 - **Risers/Fallers had no link from the home page.** The Best Ball card is a
   "2026 archive" card that links to both pages.
 
+### 33. Best Ball table length, sticky header, contact links (2026-10-22)
+
+- **The Best Ball Prices table drew all 429 players**, about 19,700px of page.
+  It now shows the first 50 of whatever the sort, position and search give
+  ("Showing 50 of 429 players"), with a "Show all 429 players" button below
+  that toggles back to "Show top 50 only". Collapsing scrolls the button back
+  into view, so a reader at row 400 isn't left at the footer. Page height:
+  3,800px by default. Layout only: the frozen 2026 data is untouched.
+- **Its sticky header never stuck.** `thead th` was `position: sticky`, but
+  the container's `overflow-x: auto` made the container the scroller. From
+  900px, where the table fits (it needs ~815px), the container uses
+  `overflow: clip`, and the header sits just under the nav (67px, or 55px at
+  1080px and below, where the menu button shows). Narrower screens keep the
+  horizontal scroll, and phones the card layout.
+- **Contact's "Substack" and "Buy Me a Coffee" links** were set apart from the
+  surrounding text only by a slightly lighter grey. They are underlined now.
+
+Checked and fine: the Risers/Fallers chart (it draws once Chart.js finishes
+its animation; an early screenshot had caught it blank), and the live arbs
+data, which was scanned within the hour. A "25 hours old" warning seen locally
+came from an out-of-date local copy.
+
 ## Found but not fixed here
 
 ### Privacy: what still links the site to the GitHub account

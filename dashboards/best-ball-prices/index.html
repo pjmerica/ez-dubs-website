@@ -145,6 +145,17 @@
         .no-adp { color: #8a97a5; font-style: italic; }
         .count-bar { display: flex; justify-content: center; gap: 16px; margin-bottom: 16px; font-size: 0.85rem; color: #888; }
         .count-bar span { font-weight: 600; color: #ccc; }
+        /* The table drew all 429 players at once, ~20,000px of page. It shows
+           the first 50 of whatever the sort and filters give, with this to
+           expand (2026-10-22). */
+        .show-all-wrap { text-align: center; margin: 18px 0 4px; }
+        .show-all-btn {
+            padding: 10px 22px; border-radius: 10px; border: 1px solid #2a3a4a;
+            background: #1a2634; color: #cfe0f0; cursor: pointer;
+            font-size: 0.9rem; font-weight: 600; font-family: inherit;
+        }
+        .show-all-btn:hover { border-color: #4a9eff; color: #fff; }
+        .show-all-wrap[hidden] { display: none; }
         /* Coloured by which book is cheaper, as in the lists above: positive means
            a later pick on DraftKings (cheaper there), negative cheaper on
            Underdog. Green/red here used to read as good/bad, which it is not. */
@@ -171,6 +182,17 @@
         @media (max-width: 900px) { .rec-bubble { flex-basis: 100%; max-width: none; } }
         /* Fixed width so the position badges beside it line up down the list. */
         @media (min-width: 900px) { .rec-adps { white-space: nowrap; min-width: 160px; } }
+        /* The header row is position: sticky, but .table-container's
+           overflow-x: auto made the container the sticky scroller, so it never
+           stuck. From 900px the table fits its box (it needs ~815px), so the
+           container can clip instead, which keeps the rounded corners without
+           becoming a scroller. The header then sits under the sticky nav: 67px
+           tall above 1080px, 55px with the menu button (2026-10-22). */
+        @media (min-width: 900px) {
+            .table-container { overflow: clip; }
+            thead th { top: 55px; z-index: 2; }
+        }
+        @media (min-width: 1081px) { thead th { top: 67px; } }
         .rec-bubble h2 { font-size: 0.95rem; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid #2a3a4a; }
         .rec-list { list-style: none; padding: 0; margin: 0; }
         .rec-list li {
@@ -608,6 +630,9 @@
                 <tbody id="tbody"></tbody>
             </table>
         </div>
+        <div class="show-all-wrap" id="show-all-wrap" hidden>
+            <button type="button" class="show-all-btn" id="show-all-btn"></button>
+        </div>
     </div>
 
     <!-- TAB 2: VISUALIZER -->
@@ -747,6 +772,8 @@
         let players = [];
         let sortCol = 'avgAdp', sortAsc = true;
         let posFilter = 'ALL', recPosFilter = 'ALL';
+        const TABLE_LIMIT = 50;
+        let showAllRows = false;
         let srcA = 'DK', srcB = 'UD';
         // Sources whose values in latest.json were carried forward from a prior
         // snapshot because the upstream sheet reported them as unchanged. The
@@ -934,7 +961,15 @@
                 if (typeof va === 'string') { va = va.toLowerCase(); vb = (vb || '').toLowerCase(); }
                 return (va < vb ? -1 : va > vb ? 1 : 0) * (sortAsc ? 1 : -1);
             });
-            document.getElementById('count').textContent = filtered.length;
+            const total = filtered.length;
+            const capped = !showAllRows && total > TABLE_LIMIT;
+            if (capped) filtered = filtered.slice(0, TABLE_LIMIT);
+            document.getElementById('count').textContent =
+                capped ? `${TABLE_LIMIT} of ${total}` : total;
+            const moreWrap = document.getElementById('show-all-wrap');
+            moreWrap.hidden = total <= TABLE_LIMIT;
+            document.getElementById('show-all-btn').textContent = showAllRows
+                ? `Show top ${TABLE_LIMIT} only` : `Show all ${total} players`;
             document.getElementById('tbody').innerHTML = filtered.map((p, i) => {
                 const diffClass = p.diff !== null ? (p.diff > 0 ? 'diff-positive' : p.diff < 0 ? 'diff-negative' : 'diff-neutral') : 'diff-neutral';
                 const diffText = p.diff !== null ? (p.diff > 0 ? '+' : '') + p.diff.toFixed(1) : 'N/A';
@@ -950,6 +985,13 @@
             });
         }
 
+        document.getElementById('show-all-btn').addEventListener('click', () => {
+            showAllRows = !showAllRows;
+            render();
+            // Collapsing from the bottom of 429 rows would leave the reader at
+            // the footer; keep the button where they clicked it.
+            if (!showAllRows) document.getElementById('show-all-btn').scrollIntoView({ block: 'center' });
+        });
         document.querySelectorAll('thead th').forEach(th => {
             th.addEventListener('click', () => {
                 const col = th.dataset.col;

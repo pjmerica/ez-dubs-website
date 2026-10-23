@@ -60,7 +60,10 @@
             border-top: 1px solid #1e2d3d;
             color: #7f8c99; font-size: 0.85rem; line-height: 1.6;
         }
-        .alt a { color: #99aabb; text-decoration: none; }
+        /* #99aabb beside #7f8c99 text was the only cue these were links; an
+           in-sentence link needs more than a slight colour shift (WCAG 1.4.1). */
+        .alt a { color: #cfe0f0; text-decoration: underline;
+                 text-decoration-color: #4a5a6a; text-underline-offset: 3px; }
         .alt a:hover { color: #4a9eff; }
         .site-footer {
             border-top: 1px solid #1e2d3d; padding: 28px 32px;
