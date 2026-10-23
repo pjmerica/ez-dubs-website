@@ -665,6 +665,39 @@ Fine as they were: Risers/Fallers' load error, the calculator's "No arb at
 these prices" card, the wrong-password message, and the contact form's sent
 and error lines.
 
+### 32. Design pass: consistency and copy (2026-10-22)
+
+Every page captured at 1440px and 390px, signed in on the NFL pages and
+unlocked on the arbs page.
+
+- **Position colours disagreed between pages.** The NFL pages had RB blue and
+  WR green; the Best Ball pages, like Sleeper, have RB green and WR blue. The
+  NFL pages now match. K and DEF badges had no style; they are grey now.
+- **Game codes ran together:** "GBDET", "NYGHOU". Shown as "GB@DET" now. The
+  split lands only on two real team codes, because five letters can split
+  either way, and lookups still use the joined code. No spaces, so Root
+  For/Against's two side-by-side tables keep their width.
+- **On a phone, Start/Sit cut off the projection**, the number the page exists
+  for, at the right edge. Below 600px the Game column is hidden and the game
+  shows under the player's name.
+- **Root For/Against coloured every total green,** so "a net of -18.7" read as
+  good news. Only the net is coloured now: green when ahead, red when behind.
+- **The calculator said "Guaranteed $8.70" and "Guaranteed profit"** for
+  numbers before fees, just under a note saying the real return after fees was
+  7.07%. It says "before fees" now, in line with the site's "after fees,
+  never guaranteed" copy rule.
+- **The NFL pages carried the calculator's entire stylesheet** (about 190
+  lines per page). The port lifted the donor page's whole `<style>`, and the
+  calculator's `.verdict` rule was quietly styling lineup's verdict boxes. The
+  port now lifts only the body and footer rules (`chrome_rules`), and the two
+  looks the NFL pages relied on (the boxed verdicts and the header spacing)
+  moved into `NFL_SITE_CSS`. A computed-style comparison of all 524 and 342
+  elements, at 1440px and 390px, found 0 differences.
+- **Unlocked arbs showed the free preview too,** repeating a card that also
+  appears in the full list right below it. It is for locked visitors only now.
+- **Risers/Fallers had no link from the home page.** The Best Ball card is a
+  "2026 archive" card that links to both pages.
+
 ## Found but not fixed here
 
 ### Privacy: what still links the site to the GitHub account

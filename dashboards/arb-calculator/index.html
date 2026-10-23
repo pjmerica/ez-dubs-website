@@ -212,7 +212,9 @@
         /* Shown when the computed return is implausibly large. Deliberately not
            styled like an error -- the arithmetic is right -- but it must not read
            like part of the good news either, because the cells above it say
-           "Guaranteed profit" and a 3000% arb does not exist on a real book. */
+           "Profit before fees" and a 3000% arb does not exist on a real book.
+           (Copy said "Guaranteed" until 2026-10-22; the site says "after fees",
+           never "guaranteed", and these numbers are before fees.) */
         .implausible-note {
           margin: 14px 0 0;
           padding: 10px 12px;
@@ -572,7 +574,7 @@
             out.innerHTML = `
                 <div class="calc-card">
                     <div class="verdict good">
-                        <div class="verdict-line">Arb available. Guaranteed ${fmtMoney(best.profit)} on ${fmtMoney(T)}</div>
+                        <div class="verdict-line">Arb available: ${fmtMoney(best.profit)} on ${fmtMoney(T)} before fees</div>
                         <div class="verdict-sub">
                             Cost per $1 of payoff: ${best.cost.toFixed(4)}.
                             Whichever side resolves, you get back ${fmtMoney(best.payoff)}.
@@ -596,7 +598,7 @@
 
                     <div class="summary-grid">
                         <div class="summary-cell"><div class="v">${fmtMoney(best.stakeA + best.stakeB)}</div><div class="l">Total stake</div></div>
-                        <div class="summary-cell good"><div class="v">${fmtMoney(best.profit)}</div><div class="l">Guaranteed profit</div></div>
+                        <div class="summary-cell good"><div class="v">${fmtMoney(best.profit)}</div><div class="l">Profit before fees</div></div>
                         <div class="summary-cell good"><div class="v">${fmtPct(best.returnPct)}</div><div class="l">Return on bankroll</div></div>
                     </div>
                     ${(() => {
@@ -617,8 +619,7 @@
                         large usually means the two legs are not opposite outcomes of the
                         same question, or one side has no depth at the price shown. Check
                         both rules texts and the order book before staking anything:
-                        &ldquo;guaranteed&rdquo; above assumes the prices are real and
-                        fillable.
+                        the profit above assumes the prices are real and fillable.
                     </p>` : ''}
                 </div>`;
         }

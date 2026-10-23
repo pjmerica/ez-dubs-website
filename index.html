@@ -87,6 +87,12 @@
             display: inline-block; margin-top: 16px; font-size: 0.85rem;
             color: var(--accent, #4a9eff); font-weight: 600;
         }
+        /* The archive card holds two links, so the card itself is not one: no
+           lift on hover, and each link gets its own hover. Risers/Fallers had
+           no way in from the home page before (2026-10-22). */
+        .archive-card:hover { transform: none; background: #131f2c; }
+        .archive-card .arrow { text-decoration: none; margin-right: 22px; }
+        .archive-card .arrow:hover { text-decoration: underline; text-underline-offset: 3px; }
 
         /* Footer */
         footer {
@@ -213,12 +219,13 @@
                 <p>Lock in equal payoffs across two betting markets. Free, no login.</p>
                 <span class="arrow">Open calculator &rarr;</span>
             </a>
-            <a class="tool-card span-2" href="dashboards/best-ball-prices/" style="--accent:#00c46a;">
-                <span class="tool-tag">2026 season</span>
-                <h2>Best Ball Price Differences</h2>
-                <p>Where DraftKings and Underdog ADPs disagreed, frozen at the close of the 2026 draft season.</p>
-                <span class="arrow">Open dashboard &rarr;</span>
-            </a>
+            <div class="tool-card span-2 archive-card" style="--accent:#00c46a;">
+                <span class="tool-tag">2026 archive</span>
+                <h2>2026 Best Ball</h2>
+                <p>Where DraftKings and Underdog ADPs disagreed, and who rose and fell over the draft season. Frozen at its close on September 4.</p>
+                <a class="arrow" href="dashboards/best-ball-prices/">Price differences &rarr;</a>
+                <a class="arrow" href="dashboards/best-ball-history/">Risers and fallers &rarr;</a>
+            </div>
         </div>
 
         <section class="reviews-wrap">

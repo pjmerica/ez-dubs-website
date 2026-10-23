@@ -518,7 +518,9 @@
             const card = document.getElementById('preview-card');
             const nonSusp = arbs.filter(a => !a.suspicious);
             const pick = pickDailyPreview(nonSusp);
-            if (!pick) {
+            // The preview is for locked visitors. Once unlocked it repeated a
+            // card from the full list directly below it (2026-10-22).
+            if (!pick || document.getElementById('gated').style.display !== 'none') {
                 wrap.style.display = 'none';
                 return;
             }
@@ -716,6 +718,7 @@
         function unlock() {
             document.getElementById('gate').style.display = 'none';
             document.getElementById('gated').style.display = 'block';
+            document.getElementById('preview-wrap').style.display = 'none';
             // If arbs are already fetched (from the initial load()), render
             // the full grid now. Otherwise load() will call render() when it
             // finishes since #gated is now visible.

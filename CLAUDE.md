@@ -41,7 +41,10 @@ Two things that look like mistakes and are not:
   stylesheet (`SITE_THEME` in the port maps its purple and near-black palette
   to the site's blue and navy), and the port adds an override block
   (`NFL_SITE_CSS`) and the site footer. To change how those pages look, edit
-  the port and re-run it.
+  the port and re-run it. From the calculator page (the nav/footer donor) it
+  lifts only the `body` and `.site-footer` rules (`chrome_rules`, 2026-10-22);
+  lifting its whole `<style>` once let the calculator's `.verdict` restyle
+  lineup's verdict boxes, so don't widen that filter.
 
 The data **auto-refreshes** via `.github/workflows/nfl-data-pull.yml`, which
 mirrors the upstream JSON (twice daily, more Thu-Sun, hourly on Sundays as a

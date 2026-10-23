@@ -1137,7 +1137,7 @@
     let html = "";
     if (rows.length) {
       html += '<table class="slot-table"><thead><tr>' +
-        '<th>Slot</th><th>Player</th><th>Pos</th><th>Game</th>' +
+        '<th>Slot</th><th>Player</th><th>Pos</th><th class="game-col">Game</th>' +
         '<th style="text-align:right">Proj</th>' +
         '<th class="col-markets">Market lines</th></tr></thead><tbody>';
       for (const r of rows) {
@@ -1151,10 +1151,10 @@
         }
         html += "<tr><td>" + badge + "</td>" +
           '<td class="player-name">' + escapeHtml(r.p.name) +
-          projTag(r.p) + "</td>" +
+          projTag(r.p) + gameSub(gameLabel(r.p.matchup) || "-") + "</td>" +
           '<td><span class="pos-badge pos-' + escapeHtml(r.p.position || "?") + '">' +
           escapeHtml(r.p.position || "?") + "</span></td>" +
-          '<td class="weekly-game">' + escapeHtml(shortMatchup(r.p.matchup) || "-") + "</td>" +
+          '<td class="weekly-game game-col">' + escapeHtml(gameLabel(r.p.matchup) || "-") + "</td>" +
           '<td style="text-align:right"><span class="market-pts">' +
           r.p.points.toFixed(1) + "</span></td>" +
           '<td class="col-markets">' + (r.p.stats ? weeklyChips(r.p) : specialChips(r.p)) +
@@ -1170,10 +1170,10 @@
       html += '<div class="sitstart-section">Bench</div><table class="slot-table"><tbody>';
       for (const p of bench) {
         html += '<tr class="bench-row"><td class="player-name">' +
-          escapeHtml(p.name) + projTag(p) + "</td>" +
+          escapeHtml(p.name) + projTag(p) + gameSub(gameLabel(p.matchup) || "-") + "</td>" +
           '<td><span class="pos-badge pos-' + escapeHtml(p.position || "?") + '">' +
           escapeHtml(p.position || "?") + "</span></td>" +
-          '<td class="weekly-game">' + escapeHtml(shortMatchup(p.matchup) || "-") + "</td>" +
+          '<td class="weekly-game game-col">' + escapeHtml(gameLabel(p.matchup) || "-") + "</td>" +
           '<td style="text-align:right">' + p.points.toFixed(1) + "</td>" +
           '<td class="col-markets">' + (p.stats ? weeklyChips(p) : specialChips(p)) + "</td></tr>";
       }
@@ -1196,7 +1196,7 @@
         '<div class="verdict" style="font-size:13px">' +
         started.map((p) => escapeHtml(p.name) +
           '<span style="color:#7f8c99"> (' +
-          escapeHtml(shortMatchup(p.matchup) || "-") +
+          escapeHtml(gameLabel(p.matchup) || "-") +
           (p.points ? ", " + p.points.toFixed(1) + " proj" : "") +
           ")</span>").join(", ") +
         '<br /><span style="color:#7f8c99">Kickoff has passed, so these are no ' +
@@ -1340,15 +1340,15 @@
     let html = '<div class="sitstart-section">Best available: ranked by ' +
       "how much they would add to your optimal lineup</div>" +
       '<div class="table-wrap" tabindex="0"><table class="slot-table"><thead><tr>' +
-      "<th>Player</th><th>Pos</th><th>Game</th>" +
+      "<th>Player</th><th>Pos</th><th class=\"game-col\">Game</th>" +
       '<th style="text-align:right">Proj</th>' +
       '<th style="text-align:right">Lineup gain</th>' +
       "<th>Would bench</th></tr></thead><tbody>";
     for (const f of gains) {
-      html += '<tr><td class="player-name">' + escapeHtml(f.name) + "</td>" +
+      html += '<tr><td class="player-name">' + escapeHtml(f.name) + gameSub(gameLabel(f.matchup) || "-") + "</td>" +
         '<td><span class="pos-badge pos-' + escapeHtml(f.position) + '">' +
         escapeHtml(f.position) + "</span></td>" +
-        '<td class="weekly-game">' + escapeHtml(shortMatchup(f.matchup) || "-") + "</td>" +
+        '<td class="weekly-game game-col">' + escapeHtml(gameLabel(f.matchup) || "-") + "</td>" +
         '<td style="text-align:right">' + f.points.toFixed(1) + "</td>" +
         '<td style="text-align:right"><span style="color:#58d68d;font-weight:700">+' +
         f.upgrade.toFixed(1) + "</span></td>" +
@@ -1626,7 +1626,7 @@
       escapeHtml(slots.map(slotLabel).join(" / ")) + "</div>";
 
     html += '<div class="table-wrap" tabindex="0"><table class="slot-table"><thead><tr>' +
-      "<th>Slot</th><th>Player</th><th>Pos</th><th>Game</th>" +
+      "<th>Slot</th><th>Player</th><th>Pos</th><th class=\"game-col\">Game</th>" +
       '<th style="text-align:right">Proj</th>' +
       '<th class="col-markets">Market lines</th></tr></thead><tbody>';
     // Re-expand the optimizer's answer back over the full slot list, so locked
@@ -1651,10 +1651,11 @@
       if (p.isLocked) {
         html += '<tr class="locked-row"><td>' + badge + "</td>" +
           '<td class="player-name">' + escapeHtml(p.name) +
-          ' <span class="injury-tag" style="color:#8a97a5">PLAYED</span></td>' +
+          ' <span class="injury-tag" style="color:#8a97a5">PLAYED</span>' +
+          gameSub(p.team || "-") + "</td>" +
           '<td><span class="pos-badge pos-' + escapeHtml(p.position || "?") + '">' +
           escapeHtml(p.position || "?") + "</span></td>" +
-          '<td class="weekly-game">' + escapeHtml(p.team || "-") + "</td>" +
+          '<td class="weekly-game game-col">' + escapeHtml(p.team || "-") + "</td>" +
           '<td style="text-align:right"><span class="market-pts" style="color:#8a97a5">' +
           (p.actual != null ? p.actual.toFixed(1) : "—") + "</span></td>" +
           '<td style="color:#8a97a5;font-size:12px">final: slot spent</td></tr>';
@@ -1672,10 +1673,10 @@
         projTag(p) +
         (p.injury ? ' <span class="injury-tag" title="Sleeper injury status">' +
           escapeHtml(injuryLabel(p.injury)) + "</span>" : "") +
-        swap + "</td>" +
+        swap + gameSub(gameLabel(p.matchup) || "-") + "</td>" +
         '<td><span class="pos-badge pos-' + escapeHtml(p.position || "?") + '">' +
         escapeHtml(p.position || "?") + "</span></td>" +
-        '<td class="weekly-game">' + escapeHtml(shortMatchup(p.matchup) || "-") + "</td>" +
+        '<td class="weekly-game game-col">' + escapeHtml(gameLabel(p.matchup) || "-") + "</td>" +
         '<td style="text-align:right"><span class="market-pts">' +
         p.points.toFixed(1) + "</span></td>" +
         '<td class="col-markets">' + (p.stats ? weeklyChips(p) : specialChips(p)) + "</td></tr>";
@@ -1703,10 +1704,10 @@
           projTag(p) +
         (p.injury ? ' <span class="injury-tag" title="Sleeper injury status">' +
           escapeHtml(injuryLabel(p.injury)) + "</span>" : "") +
-          swap + "</td>" +
+          swap + gameSub(gameLabel(p.matchup) || "-") + "</td>" +
           '<td><span class="pos-badge pos-' + escapeHtml(p.position || "?") + '">' +
           escapeHtml(p.position || "?") + "</span></td>" +
-          '<td class="weekly-game">' + escapeHtml(shortMatchup(p.matchup) || "-") + "</td>" +
+          '<td class="weekly-game game-col">' + escapeHtml(gameLabel(p.matchup) || "-") + "</td>" +
           '<td style="text-align:right">' + p.points.toFixed(1) + "</td>" +
           '<td class="col-markets">' + (p.stats ? weeklyChips(p) : specialChips(p)) + "</td></tr>";
       }
@@ -2451,6 +2452,32 @@
    * column wide enough to squeeze everything else. Normalising on display
    * rather than in the data keeps the name joins untouched.
    */
+  // shortMatchup's codes run the teams together ("GBDET", "NYGHOU"), which is
+  // right for a lookup key but hard to read in a table. gameLabel splits the
+  // code back into "GB@DET" for display only (2026-10-22); keys still use
+  // shortMatchup. Two- and three-letter codes are ambiguous at five letters
+  // (GB+DET or GBD+ET), so the split has to land on two real team codes. No
+  // spaces round the @: Root For/Against fits two tables side by side, and
+  // rooting_login.test.js holds the column to 8 characters.
+  const NFL_CODES = new Set(("ARI ATL BAL BUF CAR CHI CIN CLE DAL DEN DET GB HOU " +
+    "IND JAX JAC KC LV LAC LAR LA MIA MIN NE NO NYG NYJ PHI PIT SF SEA TB TEN WAS WSH")
+    .split(" "));
+  // The game again, under the player's name. Shown only on a phone, where the
+  // Game column is hidden so the projection fits on screen (2026-10-22).
+  function gameSub(text) {
+    return text && text !== "-" ? '<span class="game-sub">' + escapeHtml(text) + "</span>" : "";
+  }
+
+  function gameLabel(m) {
+    const s = shortMatchup(m);
+    if (!/^[A-Z]{4,6}$/.test(s)) return s;
+    for (const i of [2, 3]) {
+      const a = s.slice(0, i), h = s.slice(i);
+      if (NFL_CODES.has(a) && NFL_CODES.has(h)) return a + "@" + h;
+    }
+    return s;
+  }
+
   function shortMatchup(m) {
     const s = String(m || "").trim();
     if (!s) return "";
@@ -2500,7 +2527,7 @@
         '<td><span class="pos-badge pos-' + escapeHtml(r.position || "?") + '">' +
         escapeHtml(r.position || "?") + "</span></td>" +
         '<td class="weekly-game col-game">' +
-        escapeHtml(shortMatchup(r.matchup) || r.team || "-") + "</td>" +
+        escapeHtml(gameLabel(r.matchup) || r.team || "-") + "</td>" +
         '<td style="text-align:right">' +
         (r.proj != null ? r.proj.toFixed(1) : "&mdash;") + "</td>" +
         '<td class="league-names" style="text-align:right">' +
@@ -2540,9 +2567,11 @@
     const myTotal = matchups.reduce((t, m) => t + m.myScore, 0);
     const oppTotal = matchups.reduce((t, m) => t + m.oppScore, 0);
     const net = myTotal - oppTotal;
+    // Only the net is coloured, by its sign. All three were green, so a
+    // deficit read "a net of -18.7" in the colour of good news (2026-10-22).
     html += '<div class="verdict">Across all your matchups you have scored ' +
-      "<strong>" + myTotal.toFixed(1) + "</strong> against <strong>" +
-      oppTotal.toFixed(1) + "</strong>, a net of <strong>" +
+      '<strong class="plain">' + myTotal.toFixed(1) + '</strong> against <strong class="plain">' +
+      oppTotal.toFixed(1) + "</strong>, a net of <strong" + (net < 0 ? ' class="neg"' : "") + ">" +
       (net >= 0 ? "+" : "") + net.toFixed(1) + "</strong>. " +
       (live.length
         ? live.length + " player" + (live.length === 1 ? "" : "s") +
