@@ -1211,9 +1211,14 @@
     return html;
   }
 
-  function freeAgentsFor(lg, rosteredKeys, currentStarters) {
+  function freeAgentsFor(lg, rosteredKeys, currentStarters, openSlots) {
     const pool = buildSitStartPoolFull();
-    const slots = lg.slots || [];
+    // Only the slots still open. A slot whose starter has already played is
+    // spent, and that starter is not in currentStarters (only the unplayed are),
+    // so measuring against every slot made the spent one look EMPTY: with Drake
+    // Maye played on Thursday, every free-agent QB was offered as a gain for a
+    // QB slot that could no longer change (2026-10-24).
+    const slots = openSlots || lg.slots || [];
 
     // The honest question for a pickup is not "does he beat my worst flex
     // player" -- that compares a tight end against a running back and reads as
@@ -1239,6 +1244,8 @@
     for (const [key, p] of pool) {
       if (rosteredKeys.has(key)) continue;
       if (!p.position || p.tdOnly) continue;
+      // Nor can a free agent whose own game has kicked off be added and started.
+      if (playerHasKickedOff(p)) continue;
       const pts = leaguePoints(p.stats, lg.scoring, p.position);
       if (pts <= 0) continue;
       // An unfilled slot means anyone eligible is a gain, so skip the prune.
@@ -1789,7 +1796,7 @@
 
     if (lg.rosteredKeys) {
       html += freeAgentTable(
-        freeAgentsFor(lg, lg.rosteredKeys, scored), lg);
+        freeAgentsFor(lg, lg.rosteredKeys, scored, freeSlots.map((f) => f.slot)), lg);
     }
     $out.innerHTML = html;
     // The chip for this league now has a real count instead of an estimate, so

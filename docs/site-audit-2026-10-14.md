@@ -720,6 +720,31 @@ its animation; an early screenshot had caught it blank), and the live arbs
 data, which was scanned within the hour. A "25 hours old" warning seen locally
 came from an out-of-date local copy.
 
+### 34. Best available offered pickups for slots already spent (2026-10-24)
+
+Reported by the user: with Drake Maye played on Thursday, Start/Sit's "Best
+available" list offered ten free-agent QBs, each marked "fills an open slot".
+A starter who has played can't be swapped out, so that slot is spent.
+
+The lineup itself handled this already: a played starter's slot is taken out
+before the optimizer fills the rest. The free-agent ranking did not. It
+measured each pickup against every slot in the league, while the starters it
+compared with were only the unplayed ones, so every spent slot looked empty
+and anyone eligible for it scored as a gain. Fixed upstream (`freeAgentsFor`
+now takes only the open slots, and skips free agents whose own game has
+kicked off), with `tests/free_agents_played.test.js`, and ported.
+
+Checked against the user's own leagues, live site vs the fix:
+
+- **Michigan Fantasy Football** (Maye played): 10 QBs offered, now none. The
+  K and DEF suggestions, for slots still open, remain.
+- **The d'Nasty League** (two RBs and a WR played): five pickups "benching
+  Seth McGowan (1.8)", who is not in the lineup, now none. Those were filling
+  the two spent RB slots; the weakest live starter is at 6.0 and no free agent
+  beats him.
+- **Pahlmeyer Dynasty** (a TE played): nine down to three real upgrades.
+- **CeeDee Lamb-da Functions** (nobody played yet): unchanged.
+
 ## Found but not fixed here
 
 ### Privacy: what still links the site to the GitHub account
