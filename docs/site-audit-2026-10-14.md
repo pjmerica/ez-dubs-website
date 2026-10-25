@@ -745,6 +745,27 @@ Checked against the user's own leagues, live site vs the fix:
 - **Pahlmeyer Dynasty** (a TE played): nine down to three real upgrades.
 - **CeeDee Lamb-da Functions** (nobody played yet): unchanged.
 
+### 35. Start/Sit started ruled-out players; chip counts drifted (2026-10-24)
+
+- **A player listed Out or IR could be recommended as a start.** The injury
+  status was only a tag on the row; the optimizer scored him like anyone else
+  whenever a line or a TD-only estimate existed. On the live site: "Jeremiyah
+  Love, Out (Ankle), SWAP IN" (test account), and Jordan Mason (IR) starting
+  at FLEX in one of the user's own leagues. Out, IR, PUP, Sus, NA, DNR and COV
+  starters now go to the Injured list (renamed "Injured: left out of the
+  lineup"). Questionable and Doubtful are still ranked, because books price
+  them when they're expected to play.
+- **The league chip's swap count used a different spent-slot rule** from the
+  table it summarises: for n played starters it dropped the last n slots in
+  the list, so a played QB used up the DEF slot. The chip said 3 and the table
+  drew 2 in one league. One helper, `spendSlots`, now serves the lineup, the
+  free-agent list and the chip. A played starter holds the slot Sleeper has him
+  in, with first-fit by position only as a fallback. First-fit alone put a
+  played WR in FLEX into the WR slot, leaving FLEX open to an RB or TE.
+- Covered in upstream `tests/free_agents_played.test.js`. Checked on the
+  user's four leagues and the test account's two, live vs fixed: both
+  ruled-out starters gone, and every chip count now matches its table.
+
 ## Found but not fixed here
 
 ### Privacy: what still links the site to the GitHub account

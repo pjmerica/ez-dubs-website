@@ -1587,6 +1587,16 @@
       // started, about a player we could not even name.
       if (!r.position && !r.team) { unresolved.push(r); continue; }
 
+      // Out, IR, PUP, suspended: not playing, so not a start. These were scored
+      // like anyone else whenever a line or a TD-only estimate existed, and the
+      // optimizer said "David Montgomery, Out (Groin), SWAP IN" (2026-10-24).
+      // They join the injured list, which already explains what the tags mean.
+      if (r.injury && r.injury.sidelined) {
+        if (!teamIsLive(r.team)) played.push({ ...r, actual: null });
+        else unpriced.push(r);
+        continue;
+      }
+
       const p = pool.get(normPlayerName(r.name));
       if (!p || p.tdOnly || p.points <= 0 || !p.position) {
         // No line and no remaining game: treat as done even without stats,
@@ -1611,16 +1621,8 @@
     // Slots held by a player who has already played are spent -- the optimizer
     // fills only what is still changeable, so a locked starter is not counted
     // as an opening.
-    const lockedBySlot = new Map();
-    const lockedStarters = played.filter((r) => r.locked && r.position);
-    const freeSlots = [];
-    const slotUsed = new Array(slots.length).fill(false);
-    for (const r of lockedStarters) {
-      const idx = slots.findIndex((sl, i) =>
-        !slotUsed[i] && (SLOT_ACCEPTS[sl] || []).includes(r.position));
-      if (idx >= 0) { slotUsed[idx] = true; lockedBySlot.set(idx, r); }
-    }
-    slots.forEach((sl, i) => { if (!slotUsed[i]) freeSlots.push({ slot: sl, i }); });
+    const { lockedBySlot, freeSlots } =
+      spendSlots(slots, played.filter((r) => r.locked && r.position));
 
     const best = bestLineupForSlots(scored, freeSlots.map((f) => f.slot));
     const startingNames = new Set(best.picks.filter(Boolean).map((p) => p.name));
@@ -1747,16 +1749,16 @@
         r.name + " (" + (r.position || "?") + (r.team ? ", " + r.team : "") + ")";
 
       if (hurt.length) {
-        html += '<div class="sitstart-section">Injured: no line because ' +
-          "he may not play (" + hurt.length + ")</div>" +
+        html += '<div class="sitstart-section">Injured: left out of the ' +
+          "lineup (" + hurt.length + ")</div>" +
           '<div class="verdict" style="font-size:13px">' +
           hurt.map((r) =>
             escapeHtml(nameOf(r)) +
             ' <span class="injury-tag">' + escapeHtml(injuryLabel(r.injury)) +
             "</span>").join("<br />") +
-          '<br /><span style="color:#8a97a5">The books have not priced these ' +
-          "players because their status is in doubt, which is a reason not to " +
-          "start them rather than a gap in coverage. " +
+          '<br /><span style="color:#8a97a5">These players are ruled out, or ' +
+          "the books are holding their lines because their status is in doubt. " +
+          "Either way it is a reason not to start them, not a gap in coverage. " +
           (hurt.some((r) => r.injury.sidelined)
             ? "Anyone marked IR, PUP, Out or NA is not playing at all."
             : "All of these are game-time decisions, so check again closer to " +
@@ -1833,6 +1835,35 @@
    * league replaces it with the truth. Better than a blank chip, and it is no
    * longer the number the table is checked against.
    */
+  /* Which slots a played starter has spent, and which are still open.
+   *
+   * A starter whose game has kicked off holds his slot: the slot Sleeper has
+   * him in when that is known, otherwise the first one his position fits.
+   * First-fit alone could guess wrong -- a played WR sitting in FLEX took the
+   * WR slot, leaving FLEX "open" to an RB or TE that could not legally fill
+   * the WR slot it really left. Used by the lineup, the free-agent list and the
+   * chip estimate, which had each grown their own version.
+   */
+  function spendSlots(slots, lockedStarters) {
+    const used = new Array(slots.length).fill(false);
+    const lockedBySlot = new Map();
+    const known = (r) => Number.isInteger(r.slotIndex) && r.slotIndex >= 0 &&
+      r.slotIndex < slots.length;
+    const ordered = lockedStarters.filter(known)
+      .concat(lockedStarters.filter((r) => !known(r)));
+    for (const r of ordered) {
+      let idx = known(r) && !used[r.slotIndex] ? r.slotIndex : -1;
+      if (idx < 0) {
+        idx = slots.findIndex((sl, i) =>
+          !used[i] && (SLOT_ACCEPTS[sl] || []).includes(r.position));
+      }
+      if (idx >= 0) { used[idx] = true; lockedBySlot.set(idx, r); }
+    }
+    const freeSlots = [];
+    slots.forEach((sl, i) => { if (!used[i]) freeSlots.push({ slot: sl, i }); });
+    return { lockedBySlot, freeSlots };
+  }
+
   function swapCountFor(lg) {
     if (swapCountCache.has(lg.leagueId)) return swapCountCache.get(lg.leagueId);
     let n = null;
@@ -1852,6 +1883,7 @@
           }
           continue;
         }
+        if (r.injury && r.injury.sidelined) continue;
         const p = pool.get(normPlayerName(r.name));
         if (!p || p.tdOnly || p.points <= 0 || !p.position) continue;
         const pts = leaguePoints(p.stats, lg.scoring, r.position || p.position);
@@ -1860,9 +1892,12 @@
                         points: pts, wasStarter: r.starter });
         }
       }
-      const lockedCount = (lg.roster || []).filter(
-        (r) => r.starter && sleeperPlayed && sleeperPlayed.get(r.playerId)).length;
-      const openSlots = slots.slice(0, Math.max(0, slots.length - lockedCount));
+      // The same spent-slot rule as the render. This used to drop the LAST n
+      // slots for n played starters, so a played QB removed the DEF slot and
+      // left the QB slot open, and the chip's count disagreed with the table.
+      const openSlots = spendSlots(slots, (lg.roster || []).filter(
+        (r) => r.starter && r.position && sleeperPlayed && sleeperPlayed.get(r.playerId)))
+        .freeSlots.map((f) => f.slot);
       const best = bestLineupForSlots(scored, openSlots);
       n = best.picks.filter((x) => x && !x.wasStarter).length;
     } catch (e) {
@@ -2096,6 +2131,9 @@
             position: pos,
             team: e ? e[2] : null,
             starter: starters.has(pid),
+            // Sleeper's starters array is in roster_positions order, so the
+            // index is the slot he actually holds (-1 on the bench).
+            slotIndex: Array.isArray(mine.starters) ? mine.starters.indexOf(pid) : -1,
             // No book prices kickers or defenses as players. They are scored
             // from the game line instead (see specialPoints), so this flag now
             // means "score me off the spread and total", not "unscoreable".
