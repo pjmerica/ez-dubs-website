@@ -1,10 +1,10 @@
 {
  "source": "The Odds API",
  "region": "us",
- "lastUpdated": "2026-10-25T13:10:06+00:00",
- "gameCount": 27,
- "quotaUsed": "2571",
- "quotaRemaining": "17429",
+ "lastUpdated": "2026-10-25T14:03:17+00:00",
+ "gameCount": 26,
+ "quotaUsed": "2645",
+ "quotaRemaining": "17355",
  "note": "Median spread and total across books. Implied team total = total/2 - spread/2. Used to score D/ST and K, which have no prop market.",
  "games": [
   {
@@ -28,7 +28,8 @@
      "oppImplied": 20.25
     }
    },
-   "bookCount": 11
+   "bookCount": 11,
+   "lockedAtKickoff": true
   },
   {
    "matchup": "SFATL",
@@ -420,29 +421,6 @@
     }
    },
    "bookCount": 7
-  },
-  {
-   "matchup": "CLEPIT",
-   "home": "PIT",
-   "away": "CLE",
-   "homeName": "Pittsburgh Steelers",
-   "awayName": "Cleveland Browns",
-   "kickoff": "2026-11-01T18:00:00Z",
-   "total": 38.5,
-   "homeSpread": -4.5,
-   "teams": {
-    "PIT": {
-     "implied": 21.5,
-     "spread": -4.5,
-     "oppImplied": 17.0
-    },
-    "CLE": {
-     "implied": 17.0,
-     "spread": 4.5,
-     "oppImplied": 21.5
-    }
-   },
-   "bookCount": 4
   },
   {
    "matchup": "MINDET",
