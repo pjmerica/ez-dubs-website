@@ -790,6 +790,40 @@ priced). A 0.1-point edge that is mostly estimate is a coin flip, and the page
 now says so. Upstream `tests/estimate_marker.test.js` pins the arithmetic:
 only stats whose line came from a projection count as estimated.
 
+### 37. Sunday check before the 1pm games; Travis Hunter unrecognised (2026-10-25)
+
+Checked at 11:30 ET on Sunday, at the user's request, that the pre-kickoff chain
+would deliver fresh lines for the 1pm games and that the page was right.
+
+- **The chain ran as designed.** Started by cron at 12:42 UTC. It refreshed at
+  13:10 UTC, 20 minutes before the London kickoff (PIT@NO, 13:30), and the
+  site mirrored it at 13:13. The next hops were sleeping to 16:40 UTC
+  (upstream) and 16:43 (mirror) for the 17:00 UTC (1pm ET) games.
+- **The page, signed in to all four of the user's leagues:** no errors.
+  Olave (in the London game) was locked as played with his live points, and
+  the ruled-out list and the ≈ markers were in place. Zay Flowers had real
+  lines by then (63.5 receiving yards, 5.5 receptions), once the Ravens' QB
+  status was settled.
+- **One bug: "Unknown (12530)" on a roster.** That's Travis Hunter. Sleeper
+  gives his `position` as DB and his `fantasy_positions` as DB and WR, and
+  upstream `build_sleeper_playermap.py` filtered on `position` alone, so he
+  was dropped from the trimmed map and could never be ranked. It now falls
+  back to the first fantasy position it keeps. That adds Hunter (WR) and
+  twelve fullbacks (Sleeper "FB", fantasy RB), including Kyle Juszczyk, whom
+  Best Available had been suggesting by name without being able to resolve
+  his roster entry. Nothing removed. Pushed at 15:36 UTC so the 16:40 refresh,
+  which pulls before it builds, would carry it.
+- **A manual refresh at the user's request** (11:40 ET): `nfl-props.yml` by
+  hand (72 Odds API credits, 17,281 left), then `nfl-data-pull.yml`. Not the
+  kickoff workflow, which shares a concurrency group with the run already
+  waiting for 16:40 and would have queued behind it. The first mirror ran
+  before upstream's Pages had redeployed and copied the 14:03 data. The
+  mirror reads the published Pages copy, not the repo, so a hand-run mirror
+  has to wait for upstream's deploy (the kickoff mirror already does, with
+  `--wait-upstream`). Run again after the deploy, it served 15:41 data with
+  Hunter resolved. All 22 Kalshi and 32 sportsbook rows for the London game,
+  in progress by then, carried `lockedAtKickoff` with their pre-kickoff lines.
+
 ## Found but not fixed here
 
 ### Privacy: what still links the site to the GitHub account
