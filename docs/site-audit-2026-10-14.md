@@ -770,6 +770,26 @@ Checked against the user's own leagues, live site vs the fix:
   user's four leagues and the test account's two, live vs fixed: both
   ruled-out starters gone, and every chip count now matches its table.
 
+### 36. Estimated projections are marked (2026-10-25)
+
+A player whose yardage no book has priced (usually only his touchdown is) gets
+his projection filled from a season estimate. The TD ONLY tag by his name said
+so, but the number in the Proj column, the one the optimizer compares, looked
+exactly like a fully priced one. Requested by the user.
+
+- Such a projection now reads **≈14.3** with a dashed underline in the same
+  blue as the TD ONLY tag. Its tooltip gives the split: "12.0 of these 14.3
+  points come from a season projection".
+- The lineup total says how much of it is estimate: "Projected starters: 156.8
+  pts (≈24.6 of it estimated)". Same on the manual Start/Sit view.
+- "How to read the lineup" explains the mark.
+
+Why it matters, from the user's own league that day: the optimizer swapped in
+Zay Flowers (≈14.3, 12.0 of it estimated) over Malik Nabers (14.2, fully
+priced). A 0.1-point edge that is mostly estimate is a coin flip, and the page
+now says so. Upstream `tests/estimate_marker.test.js` pins the arithmetic:
+only stats whose line came from a projection count as estimated.
+
 ## Found but not fixed here
 
 ### Privacy: what still links the site to the GitHub account

@@ -1155,8 +1155,7 @@
           '<td><span class="pos-badge pos-' + escapeHtml(r.p.position || "?") + '">' +
           escapeHtml(r.p.position || "?") + "</span></td>" +
           '<td class="weekly-game game-col">' + escapeHtml(gameLabel(r.p.matchup) || "-") + "</td>" +
-          '<td style="text-align:right"><span class="market-pts">' +
-          r.p.points.toFixed(1) + "</span></td>" +
+          '<td style="text-align:right">' + ptsHtml(r.p, halfPts, true) + "</td>" +
           '<td class="col-markets">' + (r.p.stats ? weeklyChips(r.p) : specialChips(r.p)) +
           "</td></tr>";
       }
@@ -1164,7 +1163,8 @@
     }
     if (total != null) {
       html += '<div class="sitstart-total">Projected lineup total: ' +
-              total.toFixed(1) + " half-PPR</div>";
+              total.toFixed(1) + " half-PPR" +
+              totalEstNote(rows.map((r) => r.p), halfPts) + "</div>";
     }
     if (bench && bench.length) {
       html += '<div class="sitstart-section">Bench</div><table class="slot-table"><tbody>';
@@ -1174,7 +1174,7 @@
           '<td><span class="pos-badge pos-' + escapeHtml(p.position || "?") + '">' +
           escapeHtml(p.position || "?") + "</span></td>" +
           '<td class="weekly-game game-col">' + escapeHtml(gameLabel(p.matchup) || "-") + "</td>" +
-          '<td style="text-align:right">' + p.points.toFixed(1) + "</td>" +
+          '<td style="text-align:right">' + ptsHtml(p, halfPts) + "</td>" +
           '<td class="col-markets">' + (p.stats ? weeklyChips(p) : specialChips(p)) + "</td></tr>";
       }
       html += "</tbody></table>";
@@ -1621,6 +1621,7 @@
     }
 
     const slots = lg.slots || [];
+    const leagueScore = (stats, pos) => leaguePoints(stats, lg.scoring, pos);
     // Slots held by a player who has already played are spent -- the optimizer
     // fills only what is still changeable, so a locked starter is not counted
     // as an opening.
@@ -1689,8 +1690,7 @@
         '<td><span class="pos-badge pos-' + escapeHtml(p.position || "?") + '">' +
         escapeHtml(p.position || "?") + "</span></td>" +
         '<td class="weekly-game game-col">' + escapeHtml(gameLabel(p.matchup) || "-") + "</td>" +
-        '<td style="text-align:right"><span class="market-pts">' +
-        p.points.toFixed(1) + "</span></td>" +
+        '<td style="text-align:right">' + ptsHtml(p, leagueScore, true) + "</td>" +
         '<td class="col-markets">' + (p.stats ? weeklyChips(p) : specialChips(p)) + "</td></tr>";
     });
     html += "</tbody></table></div>";
@@ -1703,7 +1703,7 @@
         ? "Banked " + banked.toFixed(1) + " + projected " + best.total.toFixed(1) +
           " = " + (banked + best.total).toFixed(1)
         : "Projected starters: " + best.total.toFixed(1)) +
-      " pts</div>";
+      " pts" + totalEstNote(best.picks, leagueScore) + "</div>";
 
     if (bench.length) {
       html += '<div class="sitstart-section">Bench</div>' +
@@ -1720,7 +1720,7 @@
           '<td><span class="pos-badge pos-' + escapeHtml(p.position || "?") + '">' +
           escapeHtml(p.position || "?") + "</span></td>" +
           '<td class="weekly-game game-col">' + escapeHtml(gameLabel(p.matchup) || "-") + "</td>" +
-          '<td style="text-align:right">' + p.points.toFixed(1) + "</td>" +
+          '<td style="text-align:right">' + ptsHtml(p, leagueScore) + "</td>" +
           '<td class="col-markets">' + (p.stats ? weeklyChips(p) : specialChips(p)) + "</td></tr>";
       }
       html += "</tbody></table></div>";
@@ -2412,6 +2412,53 @@
         "book has posted this player's yardage or receptions this week.";
     return ' <span class="proj-tag" title="' + escapeHtml(why) + '">' +
       label + "</span>";
+  }
+
+  /* The projection number, marked when part of it is a season estimate.
+   *
+   * The TD ONLY tag sits by the name, but the number in the Proj column looked
+   * the same as a fully priced one, and that number is what the optimizer
+   * compares (2026-10-25). A filled projection now reads "≈14.3" with a dashed
+   * underline, and its tooltip says how much of it no book priced.
+   */
+  // The manual Start/Sit view is fixed at half-PPR.
+  const halfPts = (stats) => weeklyPoints(stats, "half");
+
+  function pricedStats(stats) {
+    const out = {};
+    for (const [k, v] of Object.entries(stats || {})) {
+      if (v && v.line != null && v.lineSource !== "projected") out[k] = v;
+    }
+    return out;
+  }
+  // Points that come from estimated stats. `score` is the caller's own scorer:
+  // league scoring on the Sleeper tab, half-PPR on the manual one.
+  function estimatedPart(p, score) {
+    if (!p || !p.projFilled || !p.stats) return 0;
+    return Math.max(0, p.points - score(pricedStats(p.stats), p.position));
+  }
+  function ptsHtml(p, score, strong) {
+    if (!p.projFilled) {
+      return strong
+        ? '<span class="market-pts">' + p.points.toFixed(1) + "</span>"
+        : p.points.toFixed(1);
+    }
+    const est = estimatedPart(p, score);
+    const title = "Estimated in part: " + est.toFixed(1) + " of these " +
+      p.points.toFixed(1) + " points come from a season projection, because no " +
+      "book has priced his yardage or receptions this week.";
+    return '<span class="' + (strong ? "market-pts " : "") + 'pts-est" title="' +
+      escapeHtml(title) + '">&asymp;' + p.points.toFixed(1) + "</span>";
+  }
+  // " (≈18.2 of it estimated)" after a lineup total, or nothing.
+  function totalEstNote(picks, score) {
+    const est = picks.filter(Boolean)
+      .reduce((t, p) => t + estimatedPart(p, score), 0);
+    return est >= 0.05
+      ? ' <span class="total-est" title="Points in this total that come from a ' +
+        "season projection, for starters whose yardage no book has priced " +
+        'yet.">(&asymp;' + est.toFixed(1) + " of it estimated)</span>"
+      : "";
   }
 
   // One phrase for a row or a list: "IR (Hamstring)" or "Questionable (Thigh)".

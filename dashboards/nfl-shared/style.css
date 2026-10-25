@@ -435,6 +435,14 @@ footer {
 }
 .fit-mark { color: #f5b041; margin-left: 1px; font-weight: 700; }
 .proj-mark { color: #78aaff; margin-left: 2px; font-weight: 700; font-size: 11px; }
+/* A projection that leans on a season estimate (see ptsHtml in app.js): the
+   same dashed blue as the TD ONLY tag, so the two read as one signal. */
+.pts-est {
+  color: #a9c4ee;
+  border-bottom: 1px dashed rgba(120, 170, 255, 0.6);
+  cursor: help;
+}
+.total-est { color: #8a97a5; font-weight: 400; cursor: help; }
 
 .market-nan {
   color: #99aabb;
