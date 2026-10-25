@@ -1241,9 +1241,12 @@
     const emptySlot = baseLineup.picks.some((p) => !p);
 
     const candidates = [];
+    const sidelined = sidelinedNames();
     for (const [key, p] of pool) {
       if (rosteredKeys.has(key)) continue;
       if (!p.position || p.tdOnly) continue;
+      // A ruled-out free agent is no more a start than a ruled-out starter.
+      if (sidelined.has(key + "|" + p.position)) continue;
       // Nor can a free agent whose own game has kicked off be added and started.
       if (playerHasKickedOff(p)) continue;
       const pts = leaguePoints(p.stats, lg.scoring, p.position);
@@ -2341,6 +2344,27 @@
   // because an unrecognised code should be visible, and the only way to keep that
   // assertion meaningful is to account for the benign codes too.
   const INJURY_NONE = new Set(["Active", "", "NULL", "null"]);
+
+  /* Name|position keys of every player Sleeper lists as ruled out.
+   *
+   * The free-agent pool comes from the prop feeds, which carry names but no
+   * Sleeper ids, so a pickup's injury status has to be found by name. The
+   * position is part of the key so a namesake at another position is not
+   * caught. Built once per player map.
+   */
+  let sidelinedCache = { pm: null, set: new Set() };
+  function sidelinedNames() {
+    const pm = (cache["sleeperPlayers"] || {}).players || null;
+    if (sidelinedCache.pm === pm) return sidelinedCache.set;
+    const set = new Set();
+    for (const e of Object.values(pm || {})) {
+      if (e && e.length > 3 && INJURY_SIDELINED.has(e[3])) {
+        set.add(normPlayerName(e[0]) + "|" + (e[1] === "DST" ? "DEF" : e[1]));
+      }
+    }
+    sidelinedCache = { pm, set };
+    return set;
+  }
 
   function injuryFor(pid) {
     const e = pmapEntry(pid);

@@ -762,6 +762,10 @@ Checked against the user's own leagues, live site vs the fix:
   free-agent list and the chip. A played starter holds the slot Sleeper has him
   in, with first-fit by position only as a fallback. First-fit alone put a
   played WR in FLEX into the WR slot, leaving FLEX open to an RB or TE.
+- **Free agents get the same rule**, looked up by name and position in
+  Sleeper's player map (the prop feeds carry no Sleeper ids). None appeared
+  in the checked leagues today, as books usually pull a ruled-out player's
+  lines; this guards the case where one is left up.
 - Covered in upstream `tests/free_agents_played.test.js`. Checked on the
   user's four leagues and the test account's two, live vs fixed: both
   ruled-out starters gone, and every chip count now matches its table.
