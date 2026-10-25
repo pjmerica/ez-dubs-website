@@ -2522,6 +2522,10 @@
           if (sleeperPlayed && sleeperPlayed.get(String(pid))) continue;
           const e = pmapEntry(pid);
           if (!e) continue;
+          // Nor can a starter Sleeper lists as ruled out (IR, Out, ...): he
+          // will not score, so he is nothing to watch, and he was being counted
+          // among the players who "can still move that number" (2026-10-25).
+          if (e.length > 3 && INJURY_SIDELINED.has(e[3])) continue;
           const key = String(pid);
           let rec = tally.get(key);
           if (!rec) {

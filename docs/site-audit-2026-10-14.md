@@ -824,6 +824,25 @@ would deliver fresh lines for the 1pm games and that the page was right.
   Hunter resolved. All 22 Kalshi and 32 sportsbook rows for the London game,
   in progress by then, carried `lockedAtKickoff` with their pre-kickoff lines.
 
+### 38. Sunday sweep; Root For/Against listed ruled-out starters (2026-10-25)
+
+Swept the live site during the 1pm games.
+
+- **All eight pages and the 404,** at 1440px and 390px: no JS errors, no
+  console errors or warnings, no failed requests, no sideways overflow.
+- **Links:** every link on every page resolves. The 97 Kalshi and Polymarket
+  links on the arb cards resolve too. Kalshi answers a scripted check with
+  429 (rate limiting), not a dead link.
+- **Arbs data (55 rows, 13:13 ET):** every row checked. Settle dates are in the
+  future, returns are between 1% and 25%, the two asks cost under $1, and the
+  after-fee return is below the gross. Both scanners report ok.
+- **Root For/Against listed ruled-out starters.** It skipped players who had
+  already played but not those Sleeper lists as Out or IR, who will not score.
+  On the user's account they were six of the "31 players can still move that
+  number": Lamar Jackson, Rashee Rice and Terry McLaurin (Out), Jordyn Tyson,
+  Jaxson Dart and Alec Pierce (IR). Now 25; the totals are unchanged. Fixed
+  upstream and ported.
+
 ## Found but not fixed here
 
 ### Privacy: what still links the site to the GitHub account
