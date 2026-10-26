@@ -843,6 +843,30 @@ Swept the live site during the 1pm games.
   Jaxson Dart and Alec Pierce (IR). Now 25; the totals are unchanged. Fixed
   upstream and ported.
 
+### 39. Best-ball leagues; the coverage banner counted next week (2026-10-25)
+
+- **Start/Sit gave lineup advice for a best-ball league.** In best ball,
+  Sleeper scores each roster from its top performers after the games, so there
+  is no lineup to set. The user's "Pahlmeyer Dynasty Bestball" league still
+  showed 7 swaps and SWAP IN / SITTING tags. The app now reads Sleeper's
+  `settings.best_ball`. In such a league the chip reads "auto", the tags and
+  the count are gone, and a note explains why. The projected lineup and Best
+  Available stay, since pickups still matter.
+- **The coverage banner reported next week's games as missing.** "This week"
+  was the next 16 games on the odds feed, which also carries the following
+  week. On Sunday night the live page said "2 of 16 games have player props
+  posted. Still waiting on: CARGB, ARIDAL, ATLTB, BALBUF, ..." (14 week-8
+  games), while both remaining week-7 games were fully priced. This week now
+  ends at the coming Tuesday, 08:00 UTC, the NFL rollover; weekly.json's own
+  day list already held next Thursday's game, so it couldn't be used. The
+  "N players ranked on a season projection" count is limited to the same
+  games. With the fix the banner correctly doesn't appear at all that night.
+- Tests: upstream `coverage_week.test.js` (new: Sunday night, Monday night,
+  Tuesday rollover). `sleeper_tab` accepts the "auto" chip. `injury_reason`
+  had begun failing because late Sunday every rostered player was fully
+  priced, so no row carried a TD ONLY tag. It now requires a tag only when
+  some row is in fact estimated.
+
 ## Found but not fixed here
 
 ### Privacy: what still links the site to the GitHub account

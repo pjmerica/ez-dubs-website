@@ -578,10 +578,26 @@
     if (!gl || !Array.isArray(gl.games) || !wkd) return null;
 
     const now = Date.now();
-    // This week's games only: everything before the last kickoff still ahead
-    // of us, which excludes the future weeks the odds feed also returns.
+    /* This week's games only: those before the coming Tuesday, 08:00 UTC.
+     *
+     * "The next 16 games on the odds feed" stood in for this week, but the feed
+     * also carries next week. Once most of a slate had kicked off, the 16 were
+     * Sunday and Monday night plus fourteen week-8 games, and the banner said
+     * "2 of 16 games have player props posted. Still waiting on: CARGB, ARIDAL,
+     * ..." about games a week away (Sunday night, 2026-10-25). weekly.json's
+     * day codes do not settle it either: Kalshi had already opened the next
+     * Thursday game, so "26OCT29" was among them. An NFL week rolls over on
+     * Tuesday -- Monday night ends by ~04:00 UTC -- so that is the cut. Before
+     * it, the cut is this Tuesday; from Tuesday morning on, the next one, which
+     * takes in the whole coming week.
+     */
+    const d = new Date(now);
+    let weekEnd = Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate(), 8) +
+      ((2 - d.getUTCDay() + 7) % 7) * 86400000;
+    if (weekEnd <= now) weekEnd += 7 * 86400000;
     const upcoming = gl.games
-      .filter((g) => g.kickoff && Date.parse(g.kickoff) > now - 4 * 3600 * 1000)
+      .filter((g) => g.kickoff && Date.parse(g.kickoff) > now - 4 * 3600 * 1000 &&
+                     Date.parse(g.kickoff) < weekEnd)
       .sort((a, b) => Date.parse(a.kickoff) - Date.parse(b.kickoff))
       .slice(0, 16);
     if (!upcoming.length) return null;
@@ -605,6 +621,7 @@
     const nextKick = Date.parse(upcoming[0].kickoff);
     return {
       total: upcoming.length, priced, thin,
+      games: new Set(upcoming.map((g) => g.matchup)),
       hoursToFirst: (nextKick - now) / 3600000,
     };
   }
@@ -612,11 +629,15 @@
   // How many players in the pool are carrying a projected fill rather than a
   // posted line. Stated alongside the coverage count, since the two together
   // are the honest picture of a midweek board.
-  function projFillCount() {
+  // Counted over this week's games only (`games`, from coverageState): the
+  // pool also holds next week's early ladders, which inflated the number.
+  function projFillCount(games) {
     try {
       const pool = buildSitStartPoolFull();
       let n = 0;
-      pool.forEach((p) => { if (p.projFilled) n++; });
+      pool.forEach((p) => {
+        if (p.projFilled && (!games || games.has(shortMatchup(p.matchup)))) n++;
+      });
       return n;
     } catch (e) {
       return 0;
@@ -722,7 +743,7 @@
         return "";
       })() +
       (function () {
-        const n = projFillCount();
+        const n = projFillCount(c.games);
         if (!n) return "";
         return " <span class=\"coverage-sub\">" + n + " player" +
           (n === 1 ? " is" : "s are") + " ranked on a season projection " +
@@ -1638,6 +1659,21 @@
       // Same labels as the slot badges below; raw, the summary read "WRRB_FLEX".
       escapeHtml(slots.map(slotLabel).join(" / ")) + "</div>";
 
+    /* Best-ball leagues have no lineup to set.
+     *
+     * Sleeper scores each best-ball roster from its top performers once the
+     * week is played, so SWAP IN and SITTING told the user to make moves that
+     * do not exist; one league showed seven (2026-10-25). The projected best
+     * lineup still says who the market likes, and pickups still matter, so
+     * the table and the free agents stay and only the instructions go.
+     */
+    if (lg.bestBall) {
+      html += '<div class="verdict bb-note"><strong>Best ball:</strong> Sleeper ' +
+        "starts your highest scorers automatically once the games are played, " +
+        "so there is no lineup to set here. Below is the market's projected " +
+        "best lineup, and Best available is still worth a look.</div>";
+    }
+
     html += '<div class="table-wrap" tabindex="0"><table class="slot-table"><thead><tr>' +
       "<th>Slot</th><th>Player</th><th>Pos</th><th class=\"game-col\">Game</th>" +
       '<th style="text-align:right">Proj</th>' +
@@ -1678,8 +1714,8 @@
       // Flag a change from what is currently set in Sleeper — that is the
       // actionable part, not the lineup itself. Counted as it is drawn, so the
       // league chip cannot claim a different number.
-      if (!p.wasStarter) drawnSwaps++;
-      const swap = p.wasStarter ? "" :
+      if (!p.wasStarter && !lg.bestBall) drawnSwaps++;
+      const swap = p.wasStarter || lg.bestBall ? "" :
         ' <span class="injury-tag" style="color:#58d68d">SWAP IN</span>';
       html += "<tr><td>" + badge + "</td>" +
         '<td class="player-name">' + escapeHtml(p.name) +
@@ -1709,7 +1745,7 @@
       html += '<div class="sitstart-section">Bench</div>' +
         '<div class="table-wrap" tabindex="0"><table class="slot-table"><tbody>';
       for (const p of bench) {
-        const swap = p.wasStarter
+        const swap = p.wasStarter && !lg.bestBall
           ? ' <span class="injury-tag">SITTING</span>' : "";
         html += '<tr class="bench-row"><td class="player-name">' +
           escapeHtml(p.name) +
@@ -1918,6 +1954,12 @@
       return;
     }
     $chips.innerHTML = sl.leagues.map((lg, i) => {
+      if (lg.bestBall) {
+        return '<button class="chip' + (i === sleeperLeagueIdx ? " active" : "") +
+          '" data-idx="' + i + '" title="Best ball: Sleeper sets this lineup ' +
+          'automatically">' + escapeHtml(lg.name || "League " + (i + 1)) +
+          ' <span class="chip-bb">auto</span></button>';
+      }
       const n = swapCountFor(lg);
       const badge = n
         ? ' <span class="chip-count">' + n + "</span>"
@@ -2153,6 +2195,9 @@
           name: lg.name,
           teams: lg.total_rosters,
           status: lg.status,
+          // Best ball: Sleeper starts the highest scorers itself after the
+          // games, so a start/sit call is advice nobody can act on.
+          bestBall: !!(lg.settings && lg.settings.best_ball),
           slots: (lg.roster_positions || []).filter((s) => s !== "BN"),
           scoring: {
             rec: sc.rec || 0,
