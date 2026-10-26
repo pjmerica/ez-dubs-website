@@ -59,10 +59,6 @@
    * what it looked like. booksAllOff records that the user really did clear
    * the selection.
    */
-  // How much of the DraftKings file the current slate actually uses.
-  let dkDropped = 0;
-  let dkTotal = 0;
-
   const activeBooks = new Set();
   let booksAllOff = false;
 
@@ -80,7 +76,7 @@
     pointsbetus: "PointsBet",
   };
 
-  const NONBOOK_SOURCES = { kalshi: "Kalshi", "dk-td": "DraftKings TD" };
+  const NONBOOK_SOURCES = { kalshi: "Kalshi" };
 
   const KALSHI_METHODS = new Set(
     ["interpolated", "fitted", "assumed-sigma", "expected", "sigma", "fit", "kalshi"]);
@@ -731,18 +727,6 @@
           "under <em>No market projection</em> rather than ranked.") +
       (early ? " Waiting on " + names + "." : "") +
       (function () {
-        // A source whose every entry is off-slate is stale, not empty, and the
-        // difference matters: DraftKings only refreshes on a local run, so it
-        // can outlive its week without anything saying so.
-        if (dkTotal > 0 && dkDropped === dkTotal) {
-          return ' <span class="coverage-sub">The DraftKings touchdown file is ' +
-            "from a previous week: all " + dkTotal + " entries are for " +
-            "games already played, so it is contributing nothing. Anytime-TD " +
-            "prices are missing until it is re-run.</span>";
-        }
-        return "";
-      })() +
-      (function () {
         const n = projFillCount(c.games);
         if (!n) return "";
         return " <span class=\"coverage-sub\">" + n + " player" +
@@ -860,7 +844,6 @@
       }
     }
     if (cache["weekly"]) counts.set("kalshi", (cache["weekly"].players || []).length);
-    if (cache["dktd"]) counts.set("dk-td", (cache["dktd"].players || []).length);
 
     // On a cold open nothing is cached yet, and returning "" left the box
     // blank until something forced a redraw -- which looked like the toggles
@@ -868,7 +851,7 @@
     // so the control is always present; real counts fill in on the redraw.
     if (!counts.size) {
       for (const b of ["fanduel", "draftkings", "bovada", "betonlineag",
-                       "betrivers", "betmgm", "fanatics", "kalshi", "dk-td"]) {
+                       "betrivers", "betmgm", "fanatics", "kalshi"]) {
         counts.set(b, 0);
       }
     }
@@ -930,7 +913,7 @@
   }
 
   function buildSitStartPoolFull() {
-    const wk = cache["weekly"], oa = cache["oddsapi"], dk = cache["dktd"];
+    const wk = cache["weekly"], oa = cache["oddsapi"];
     const merged = new Map();
     if (wk && Array.isArray(wk.players)) {
       for (const p of wk.players) {
@@ -952,53 +935,14 @@
         }
       }
     }
-    if (dk && Array.isArray(dk.players)) {
-      /* Only entries whose game is on the current board.
-       *
-       * The scraper refuses to overwrite a good file with nothing, which stops a
-       * rate-limited run from wiping the data -- but nothing stopped that kept
-       * file being served after its games had played. DraftKings blocks CI
-       * runners, so this file only refreshes on a local run, and it sat two days
-       * stale across the week 3/4 rollover: every entry was a week 3 game while
-       * the rest of the board had moved to week 4. Without this check last
-       * week's touchdown numbers merged straight into this week's lines.
-       */
-      const liveGames = new Set();
-      for (const p of ((wk && wk.players) || [])) {
-        if (p.matchup) liveGames.add(p.matchup);
-      }
-      for (const p of ((oa && oa.players) || [])) {
-        if (p.matchup) liveGames.add(p.matchup);
-      }
-      let dropped = 0;
-      for (const p of dk.players) {
-        // shortMatchup turns "TEN Titans @ NY Giants" into "TENNYG", which is
-        // how the other feeds spell it.
-        if (liveGames.size && !liveGames.has(shortMatchup(p.matchup))) {
-          dropped++;
-          continue;
-        }
-        const k = normPlayerName(p.name);
-        let rec = merged.get(k);
-        if (!rec) { rec = { name: p.name, matchup: p.matchup, stats: {} }; merged.set(k, rec); }
-        // DraftKings wins over the Odds API fallback. The merge order is
-        // weekly -> oddsapi -> dk, and oddsapi now also carries anytime_td (added
-        // because DraftKings 403s GitHub runners, so it cannot refresh
-        // unattended). A plain "only if empty" guard would therefore let the
-        // fallback beat the real book price purely because it is merged first.
-        // DK's number is a book quote for exactly this market, so it overrides --
-        // but only when it is for a game on the current slate, which the caller
-        // has already filtered.
-        const cur = rec.stats.any_tds;
-        if (!cur || cur.line == null || cur.lineSource !== "dk-td") {
-          rec.stats.any_tds = { line: p.xTD, lineSource: "dk-td", odds: p.americanOdds };
-        }
-      }
-      // Read by the coverage banner, so a wholly stale source is stated rather
-      // than silently contributing nothing.
-      dkDropped = dropped;
-      dkTotal = dk.players.length;
-    }
+    /* DraftKings' anytime-TD file (dk_td.json) is no longer merged (2026-10-26).
+     *
+     * DraftKings blocks GitHub's runners, so that scrape only refreshed on a
+     * local run and had sat since 10-01 contributing nothing. The Odds API
+     * pull already carries DraftKings' anytime-TD quote for every game it
+     * covers (364 players on 10-25), converted to expected TDs by the same
+     * expected_tds() the DraftKings scraper used, so nothing is lost.
+     */
 
     const fpLut = buildProjLookup(cache["data"]);
     const clayLut = buildProjLookup(cache["clay"]);
@@ -2800,7 +2744,6 @@
   async function loadData() {
     for (const [key, file] of [["weekly", "weekly.json"],
                                ["oddsapi", "oddsapi.json"],
-                               ["dktd", "dk_td.json"],
                                ["gamelines", "gamelines.json"],
                                ["data", "data.json"],
                                ["clay", "clay.json"]]) {

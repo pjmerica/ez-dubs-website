@@ -41,7 +41,9 @@ OUT_DIR = Path(__file__).resolve().parent.parent / "dashboards" / "nfl-start-sit
 FILES = [
     ("weekly.json", True),            # Kalshi per-game props; carries the week
     ("oddsapi.json", True),           # multi-book props
-    ("dk_td.json", False),            # DraftKings anytime TD
+    # dk_td.json is no longer mirrored (2026-10-26): the pages stopped reading
+    # it, since oddsapi.json carries DraftKings' anytime-TD quote. See
+    # dashboards/NFL_REDRAFT.md, "One upstream caveat".
     ("gamelines.json", False),        # spreads/totals -> kickers and defenses
     ("sleeper_players.json", True),   # player map + injury status
     ("clay.json", False),             # season projections, used as a fallback

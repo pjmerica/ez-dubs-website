@@ -867,6 +867,26 @@ Swept the live site during the 1pm games.
   priced, so no row carried a TD ONLY tag. It now requires a tag only when
   some row is in fact estimated.
 
+### 40. DraftKings TD file retired (2026-10-26)
+
+Asked by the user: can't the DraftKings TD prices come from the Odds API?
+They already did. The Odds API pull includes DraftKings among its eight books:
+on 10-25 it had DraftKings' anytime-TD quote for 364 players across all 13
+remaining games. The upstream Odds API scraper converts it to expected
+touchdowns with the same `expected_tds()` the DraftKings scraper used. So the
+separate `dk_td.json`, unrefreshable on CI (DraftKings 403s GitHub's runners)
+and stale since 10-01, added nothing. It did show a "DraftKings TD 432" book
+toggle on Start/Sit for stale data, and a banner note about the old file.
+
+- Start/Sit and Root For/Against no longer load or merge it; the toggle and
+  the note are gone. DraftKings itself remains a book (815 quotes).
+- The site no longer mirrors it (`scripts/pull_nfl_data.py`), and its copy in
+  `dashboards/nfl-start-sit/data/` is deleted. `dashboards/NFL_REDRAFT.md`
+  updated.
+- Upstream: the CI scrape step is removed and the port no longer copies the
+  file. `fetch_dk_td_scorers.py` stays, because the Odds API scraper imports
+  its conversion, and the preseason draft board can still use a local run.
+
 ## Found but not fixed here
 
 ### Privacy: what still links the site to the GitHub account

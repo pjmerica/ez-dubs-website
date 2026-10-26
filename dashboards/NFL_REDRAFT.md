@@ -42,7 +42,6 @@ the two people actually want.
 |---|---|
 | `weekly.json` | Kalshi per-game player props |
 | `oddsapi.json` | multi-book props (DraftKings, FanDuel, BetMGM, Bovada, …) |
-| `dk_td.json` | DraftKings anytime-touchdown prices |
 | `gamelines.json` | spreads and totals — this is what prices kickers and defenses |
 | `sleeper_players.json` | trimmed Sleeper player map, plus injury status |
 | `clay.json`, `data.json` | season projections, used to fill in unpriced players |
@@ -89,7 +88,13 @@ changes staged and nothing committed. (An inline multi-line `python -c` indented
 inside a YAML block scalar is an `IndentationError` -- that version would have
 labelled every commit `?`.)
 
-### One upstream caveat
+### One upstream caveat (resolved 2026-10-26)
+
+**Resolved:** the pages no longer read `dk_td.json`, the mirror no longer copies
+it, and upstream no longer scrapes it on CI. The Odds API pull carries
+DraftKings' anytime-TD quote for every game it covers (364 players on 10-25),
+through the same expected-TD conversion, so the separate file added nothing but
+a stale "DraftKings TD" book toggle and a banner note. History below.
 
 `dk_td.json` only refreshes from a **local** run, because DraftKings blocks
 GitHub Actions runners (403). It can therefore be staler than its siblings. The
