@@ -887,6 +887,28 @@ toggle on Start/Sit for stale data, and a banner note about the old file.
   file. `fetch_dk_td_scorers.py` stays, because the Odds API scraper imports
   its conversion, and the preseason draft board can still use a local run.
 
+### 41. Kickers and defenses on bye were priced off next week (2026-10-26)
+
+Reported by the user: Best Available offered Tyler Bass as a kicker upgrade
+while the Bills were on bye. Kickers and defenses are priced off their team's
+game line, and the lookup took the team's nearest game with no end date. For
+a team on bye, or one whose game was already over, that was next week's
+game: Bass on BAL@BUF, and Blake Grupe (Saints, played Sunday) on LAC@LAR. A
+starting kicker or defense on bye would have been projected the same way.
+
+The week now ends at the coming Tuesday, 08:00 UTC: one helper,
+`weekEndAfter`, used by the game-line lookup, by the player pool (Kalshi had
+already opened next Thursday's CAR@GB game, so a player whose week was over
+could be ranked on it), and by item 39's coverage banner. Upstream, in the
+lineup and in the draft board alike, so the apps-agree test still holds.
+
+Checked on the user's leagues, live vs the fix: Bass and Grupe gone from
+Michigan Fantasy Football's list, and the starting kicker, Brandon Aubrey
+(Cowboys, Monday night), unaffected. Tests: upstream `coverage_week.test.js`
+covers the bye case. `lineup_page.test.js` faked every kickoff three days
+out, which on a Monday crossed the week cut and emptied its board; it now
+uses ten minutes.
+
 ## Found but not fixed here
 
 ### Privacy: what still links the site to the GitHub account

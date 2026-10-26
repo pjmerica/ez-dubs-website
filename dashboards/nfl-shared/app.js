@@ -375,15 +375,36 @@
   // ahead -- each team appears more than once. Take the team's SOONEST game
   // that has not already kicked off, so a defense is never scored off next
   // week's line.
+  /* When this NFL week ends: the coming Tuesday, 08:00 UTC.
+   *
+   * The week rolls over on Tuesday (Monday night ends by ~04:00 UTC). Before
+   * that cut it is this Tuesday; from Tuesday morning on, the next one, which
+   * takes in the whole coming week. Shared by the coverage banner and the
+   * game-line lookup, which both used to reach into the following week.
+   */
+  function weekEndAfter(now) {
+    const d = new Date(now);
+    let end = Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate(), 8) +
+      ((2 - d.getUTCDay() + 7) % 7) * 86400000;
+    if (end <= now) end += 7 * 86400000;
+    return end;
+  }
+
   function gameLineFor(team) {
     const gl = cache["gamelines"];
     if (!gl || !Array.isArray(gl.games)) return null;
     const t = teamKey(team);
     const now = Date.now();
+    // A team on bye has no game this week. Without this cut its NEXT week's
+    // game was taken instead: on 2026-10-26 Tyler Bass (Bills, bye) was offered
+    // as a kicker pickup priced off BAL@BUF, a week away, and a starting
+    // kicker or defense on bye would have been projected the same way.
+    const weekEnd = weekEndAfter(now);
     let best = null, bestAt = Infinity;
     for (const g of gl.games) {
       if (!g.teams || !g.teams[t]) continue;
       const at = g.kickoff ? Date.parse(g.kickoff) : NaN;
+      if (!isNaN(at) && at >= weekEnd) continue;
       // A game already under way is still this week's game: keep it rather
       // than skipping ahead, and let the played/locked check retire the slot.
       const score = isNaN(at) ? 0 : (at < now ? now - at : at - now);
@@ -587,10 +608,7 @@
      * it, the cut is this Tuesday; from Tuesday morning on, the next one, which
      * takes in the whole coming week.
      */
-    const d = new Date(now);
-    let weekEnd = Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate(), 8) +
-      ((2 - d.getUTCDay() + 7) % 7) * 86400000;
-    if (weekEnd <= now) weekEnd += 7 * 86400000;
+    const weekEnd = weekEndAfter(now);
     const upcoming = gl.games
       .filter((g) => g.kickoff && Date.parse(g.kickoff) > now - 4 * 3600 * 1000 &&
                      Date.parse(g.kickoff) < weekEnd)
@@ -947,7 +965,19 @@
     const fpLut = buildProjLookup(cache["data"]);
     const clayLut = buildProjLookup(cache["clay"]);
     const pool = new Map();
+    // Next week's games are not this week's board. Kalshi opens the following
+    // Thursday game early (CARGB on Sunday night, 2026-10-25), and a player
+    // whose week-7 game was over would otherwise be ranked, and offered as a
+    // pickup, on next week's line. The kickoff comes from gamelines, the one
+    // feed with real times; a game it does not list is kept.
+    const weekEnd = weekEndAfter(Date.now());
+    const kickoffOf = new Map();
+    for (const g of ((cache["gamelines"] || {}).games || [])) {
+      if (g.matchup && g.kickoff) kickoffOf.set(g.matchup, Date.parse(g.kickoff));
+    }
     for (const [key, p] of merged) {
+      const ko = kickoffOf.get((p.matchup || "").trim());
+      if (ko && ko >= weekEnd) continue;
       const fp = lookupProj(fpLut, p.name), clay = lookupProj(clayLut, p.name);
       const priced = Object.values(p.stats).filter((s) => s.line != null);
       const tdOnly = priced.length === 1 && p.stats.any_tds &&
