@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-10-25T19:45:03+00:00",
+  "lastUpdated": "2026-10-26T00:00:02+00:00",
   "season": "2026",
   "source": "Kalshi (per-game)",
   "note": "Per-game player props for the upcoming slate. Kalshi purges settled markets, so whatever is open is the next set of games -- there is no way to fetch a week that has already been played.",
@@ -21,12 +21,12 @@
     "pass_tds": 26
   },
   "seriesMarketCounts": {
-    "KXNFLREC": 908,
-    "KXNFLRECYDS": 1328,
-    "KXNFLRSHYDS": 588,
-    "KXNFLPASSYDS": 224,
-    "KXNFLPASSTDS": 85,
-    "KXNFLTD": 546
+    "KXNFLREC": 156,
+    "KXNFLRECYDS": 230,
+    "KXNFLRSHYDS": 85,
+    "KXNFLPASSYDS": 38,
+    "KXNFLPASSTDS": 17,
+    "KXNFLTD": 98
   },
   "players": [
     {
@@ -36,7 +36,7 @@
       "matchup": "KCSEA",
       "stats": {
         "receptions": {
-          "line": 2.8,
+          "line": 2.9,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 7,
@@ -71,7 +71,8 @@
           "rungs": 1,
           "confidentRungs": 1
         }
-      }
+      },
+      "lockedAtKickoff": true
     },
     {
       "name": "ATL Falcons D/ST",
@@ -190,7 +191,8 @@
           "rungs": 2,
           "confidentRungs": 2
         }
-      }
+      },
+      "lockedAtKickoff": true
     },
     {
       "name": "Adonai Mitchell",
@@ -235,7 +237,8 @@
           "rungs": 1,
           "confidentRungs": 1
         }
-      }
+      },
+      "lockedAtKickoff": true
     },
     {
       "name": "Alvin Kamara",
@@ -301,7 +304,8 @@
           "rungs": 3,
           "confidentRungs": 3
         }
-      }
+      },
+      "lockedAtKickoff": true
     },
     {
       "name": "Andrew Armstrong",
@@ -317,14 +321,14 @@
           "confidentRungs": 3
         },
         "rec_yds": {
-          "line": 10.5,
+          "line": 10.8,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 7,
           "confidentRungs": 7
         },
         "any_tds": {
-          "line": 0.08,
+          "line": 0.085,
           "lineSource": "expected",
           "expected": null,
           "rungs": 1,
@@ -398,7 +402,8 @@
           "rungs": 3,
           "confidentRungs": 3
         }
-      }
+      },
+      "lockedAtKickoff": true
     },
     {
       "name": "Austin Hooper",
@@ -503,7 +508,8 @@
           "rungs": 3,
           "confidentRungs": 3
         }
-      }
+      },
+      "lockedAtKickoff": true
     },
     {
       "name": "Barion Brown",
@@ -608,7 +614,8 @@
           "rungs": 3,
           "confidentRungs": 3
         }
-      }
+      },
+      "lockedAtKickoff": true
     },
     {
       "name": "Blake Whiteheart",
@@ -639,7 +646,8 @@
           "rungs": 2,
           "confidentRungs": 2
         }
-      }
+      },
+      "lockedAtKickoff": true
     },
     {
       "name": "Bo Nix",
@@ -675,7 +683,8 @@
           "rungs": 2,
           "confidentRungs": 2
         }
-      }
+      },
+      "lockedAtKickoff": true
     },
     {
       "name": "Braelon Allen",
@@ -787,7 +796,8 @@
           "rungs": 3,
           "confidentRungs": 3
         }
-      }
+      },
+      "lockedAtKickoff": true
     },
     {
       "name": "Brock Purdy",
@@ -839,7 +849,8 @@
           "rungs": 2,
           "confidentRungs": 2
         }
-      }
+      },
+      "lockedAtKickoff": true
     },
     {
       "name": "Bryce Lance",
@@ -1488,7 +1499,8 @@
           "rungs": 3,
           "confidentRungs": 3
         }
-      }
+      },
+      "lockedAtKickoff": true
     },
     {
       "name": "Chuba Hubbard",
@@ -1540,7 +1552,8 @@
           "rungs": 2,
           "confidentRungs": 2
         }
-      }
+      },
+      "lockedAtKickoff": true
     },
     {
       "name": "Colbie Young",
@@ -1585,7 +1598,8 @@
           "rungs": 3,
           "confidentRungs": 3
         }
-      }
+      },
+      "lockedAtKickoff": true
     },
     {
       "name": "Connor Heyward",
@@ -1600,7 +1614,8 @@
           "rungs": 2,
           "confidentRungs": 2
         }
-      }
+      },
+      "lockedAtKickoff": true
     },
     {
       "name": "Cooper Kupp",
@@ -1616,7 +1631,7 @@
           "confidentRungs": 6
         },
         "rec_yds": {
-          "line": 24.8,
+          "line": 25.5,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 7,
@@ -1658,7 +1673,8 @@
           "rungs": 3,
           "confidentRungs": 3
         }
-      }
+      },
+      "lockedAtKickoff": true
     },
     {
       "name": "Cyrus Allen",
@@ -1674,7 +1690,7 @@
           "confidentRungs": 4
         },
         "rec_yds": {
-          "line": 7.8,
+          "line": 8.0,
           "lineSource": "fitted",
           "expected": null,
           "rungs": 7,
@@ -1702,7 +1718,8 @@
           "rungs": 1,
           "confidentRungs": 1
         }
-      }
+      },
+      "lockedAtKickoff": true
     },
     {
       "name": "DET Lions D/ST",
@@ -1717,7 +1734,8 @@
           "rungs": 1,
           "confidentRungs": 1
         }
-      }
+      },
+      "lockedAtKickoff": true
     },
     {
       "name": "DK Metcalf",
@@ -1981,7 +1999,8 @@
           "rungs": 2,
           "confidentRungs": 2
         }
-      }
+      },
+      "lockedAtKickoff": true
     },
     {
       "name": "DeeJay Dallas",
@@ -2300,7 +2319,8 @@
           "rungs": 2,
           "confidentRungs": 2
         }
-      }
+      },
+      "lockedAtKickoff": true
     },
     {
       "name": "Elic Ayomanor",
@@ -2359,7 +2379,8 @@
           "rungs": 2,
           "confidentRungs": 2
         }
-      }
+      },
+      "lockedAtKickoff": true
     },
     {
       "name": "Emanuel Wilson",
@@ -2375,21 +2396,21 @@
           "confidentRungs": 4
         },
         "rec_yds": {
-          "line": 7.6,
+          "line": 6.9,
           "lineSource": "fitted",
           "expected": null,
           "rungs": 6,
           "confidentRungs": 6
         },
         "rush_yds": {
-          "line": 51.8,
+          "line": 52.4,
           "lineSource": "interpolated",
-          "expected": 49.7,
+          "expected": 50.7,
           "rungs": 10,
           "confidentRungs": 10
         },
         "any_tds": {
-          "line": 0.51,
+          "line": 0.515,
           "lineSource": "expected",
           "expected": null,
           "rungs": 3,
@@ -2404,14 +2425,14 @@
       "matchup": "KCSEA",
       "stats": {
         "rush_yds": {
-          "line": 9.0,
+          "line": 8.8,
           "lineSource": "fitted",
           "expected": null,
           "rungs": 5,
           "confidentRungs": 5
         },
         "any_tds": {
-          "line": 0.09,
+          "line": 0.1,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -2477,7 +2498,8 @@
           "rungs": 2,
           "confidentRungs": 2
         }
-      }
+      },
+      "lockedAtKickoff": true
     },
     {
       "name": "Foster Moreau",
@@ -2522,7 +2544,8 @@
           "rungs": 1,
           "confidentRungs": 1
         }
-      }
+      },
+      "lockedAtKickoff": true
     },
     {
       "name": "Garrett Wilson",
@@ -2621,21 +2644,21 @@
           "confidentRungs": 5
         },
         "rec_yds": {
-          "line": 9.5,
+          "line": 9.7,
           "lineSource": "fitted",
           "expected": null,
           "rungs": 7,
           "confidentRungs": 7
         },
         "rush_yds": {
-          "line": 10.2,
-          "lineSource": "fitted",
+          "line": 9.6,
+          "lineSource": "interpolated",
           "expected": null,
           "rungs": 8,
           "confidentRungs": 8
         },
         "any_tds": {
-          "line": 0.18,
+          "line": 0.19,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -2852,7 +2875,8 @@
           "rungs": 2,
           "confidentRungs": 2
         }
-      }
+      },
+      "lockedAtKickoff": true
     },
     {
       "name": "Isaiah Bond",
@@ -3003,7 +3027,8 @@
           "rungs": 3,
           "confidentRungs": 3
         }
-      }
+      },
+      "lockedAtKickoff": true
     },
     {
       "name": "Ja'Kobi Lane",
@@ -3131,7 +3156,8 @@
           "rungs": 2,
           "confidentRungs": 2
         }
-      }
+      },
+      "lockedAtKickoff": true
     },
     {
       "name": "Jahan Dotson",
@@ -3197,7 +3223,8 @@
           "rungs": 3,
           "confidentRungs": 3
         }
-      }
+      },
+      "lockedAtKickoff": true
     },
     {
       "name": "Jaleel McLaughlin",
@@ -3242,7 +3269,8 @@
           "rungs": 2,
           "confidentRungs": 2
         }
-      }
+      },
+      "lockedAtKickoff": true
     },
     {
       "name": "Jalen Coker",
@@ -3287,7 +3315,8 @@
           "rungs": 2,
           "confidentRungs": 2
         }
-      }
+      },
+      "lockedAtKickoff": true
     },
     {
       "name": "Jalen Royals",
@@ -3296,14 +3325,14 @@
       "matchup": "KCSEA",
       "stats": {
         "receptions": {
-          "line": 2.0,
+          "line": 2.1,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 5,
           "confidentRungs": 5
         },
         "rec_yds": {
-          "line": 21.1,
+          "line": 21.5,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 9,
@@ -3345,7 +3374,8 @@
           "rungs": 3,
           "confidentRungs": 3
         }
-      }
+      },
+      "lockedAtKickoff": true
     },
     {
       "name": "Jared Goff",
@@ -3381,7 +3411,8 @@
           "rungs": 2,
           "confidentRungs": 2
         }
-      }
+      },
+      "lockedAtKickoff": true
     },
     {
       "name": "Jauan Jennings",
@@ -3420,21 +3451,21 @@
       "matchup": "KCSEA",
       "stats": {
         "receptions": {
-          "line": 6.8,
+          "line": 7.1,
           "lineSource": "interpolated",
-          "expected": 6.9,
+          "expected": 7.0,
           "rungs": 11,
           "confidentRungs": 11
         },
         "rec_yds": {
-          "line": 91.2,
+          "line": 92.7,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 14,
           "confidentRungs": 14
         },
         "any_tds": {
-          "line": 0.545,
+          "line": 0.565,
           "lineSource": "expected",
           "expected": null,
           "rungs": 3,
@@ -3469,7 +3500,8 @@
           "rungs": 3,
           "confidentRungs": 3
         }
-      }
+      },
+      "lockedAtKickoff": true
     },
     {
       "name": "Jaylen Warren",
@@ -3694,7 +3726,8 @@
           "rungs": 2,
           "confidentRungs": 2
         }
-      }
+      },
+      "lockedAtKickoff": true
     },
     {
       "name": "Jonathan Taylor",
@@ -3746,7 +3779,8 @@
           "rungs": 2,
           "confidentRungs": 2
         }
-      }
+      },
+      "lockedAtKickoff": true
     },
     {
       "name": "Jordan Addison",
@@ -3812,7 +3846,8 @@
           "rungs": 2,
           "confidentRungs": 2
         }
-      }
+      },
+      "lockedAtKickoff": true
     },
     {
       "name": "Jordan Watkins",
@@ -3871,7 +3906,8 @@
           "rungs": 2,
           "confidentRungs": 2
         }
-      }
+      },
+      "lockedAtKickoff": true
     },
     {
       "name": "Josh Cuevas",
@@ -3967,7 +4003,8 @@
           "rungs": 3,
           "confidentRungs": 3
         }
-      }
+      },
+      "lockedAtKickoff": true
     },
     {
       "name": "Josh Whyle",
@@ -3982,7 +4019,8 @@
           "rungs": 1,
           "confidentRungs": 1
         }
-      }
+      },
+      "lockedAtKickoff": true
     },
     {
       "name": "Justice Hill",
@@ -4081,7 +4119,7 @@
       "matchup": "KCSEA",
       "stats": {
         "any_tds": {
-          "line": 0.135,
+          "line": 0.13,
           "lineSource": "expected",
           "expected": null,
           "rungs": 1,
@@ -4314,7 +4352,8 @@
           "rungs": 2,
           "confidentRungs": 2
         }
-      }
+      },
+      "lockedAtKickoff": true
     },
     {
       "name": "Kenneth Walker III",
@@ -4337,14 +4376,14 @@
           "confidentRungs": 7
         },
         "rush_yds": {
-          "line": 80.0,
+          "line": 80.1,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 12,
           "confidentRungs": 12
         },
         "any_tds": {
-          "line": 0.725,
+          "line": 0.765,
           "lineSource": "expected",
           "expected": null,
           "rungs": 3,
@@ -4469,7 +4508,8 @@
           "rungs": 1,
           "confidentRungs": 1
         }
-      }
+      },
+      "lockedAtKickoff": true
     },
     {
       "name": "Konata Mumpfield",
@@ -4498,7 +4538,8 @@
           "rungs": 3,
           "confidentRungs": 3
         }
-      }
+      },
+      "lockedAtKickoff": true
     },
     {
       "name": "Kyle Juszczyk",
@@ -4631,7 +4672,8 @@
           "rungs": 3,
           "confidentRungs": 3
         }
-      }
+      },
+      "lockedAtKickoff": true
     },
     {
       "name": "LA Rams D/ST",
@@ -4646,7 +4688,8 @@
           "rungs": 1,
           "confidentRungs": 1
         }
-      }
+      },
+      "lockedAtKickoff": true
     },
     {
       "name": "LV Raiders D/ST",
@@ -4661,7 +4704,8 @@
           "rungs": 1,
           "confidentRungs": 1
         }
-      }
+      },
+      "lockedAtKickoff": true
     },
     {
       "name": "LaJohntay Wester",
@@ -4722,7 +4766,8 @@
           "rungs": 1,
           "confidentRungs": 1
         }
-      }
+      },
+      "lockedAtKickoff": true
     },
     {
       "name": "Luke Farrell",
@@ -4831,7 +4876,8 @@
           "rungs": 1,
           "confidentRungs": 1
         }
-      }
+      },
+      "lockedAtKickoff": true
     },
     {
       "name": "Malik McClain",
@@ -4966,7 +5012,8 @@
           "rungs": 2,
           "confidentRungs": 2
         }
-      }
+      },
+      "lockedAtKickoff": true
     },
     {
       "name": "Mark Andrews",
@@ -5011,7 +5058,8 @@
           "rungs": 2,
           "confidentRungs": 2
         }
-      }
+      },
+      "lockedAtKickoff": true
     },
     {
       "name": "Marvin Harrison Jr.",
@@ -5070,7 +5118,8 @@
           "rungs": 2,
           "confidentRungs": 2
         }
-      }
+      },
+      "lockedAtKickoff": true
     },
     {
       "name": "Mason Taylor",
@@ -5145,7 +5194,8 @@
           "rungs": 3,
           "confidentRungs": 3
         }
-      }
+      },
+      "lockedAtKickoff": true
     },
     {
       "name": "Matthew Stafford",
@@ -5181,7 +5231,8 @@
           "rungs": 1,
           "confidentRungs": 1
         }
-      }
+      },
+      "lockedAtKickoff": true
     },
     {
       "name": "Michael Carter",
@@ -5226,7 +5277,8 @@
           "rungs": 2,
           "confidentRungs": 2
         }
-      }
+      },
+      "lockedAtKickoff": true
     },
     {
       "name": "Michael Penix Jr.",
@@ -5292,7 +5344,8 @@
           "rungs": 3,
           "confidentRungs": 3
         }
-      }
+      },
+      "lockedAtKickoff": true
     },
     {
       "name": "Mike Gesicki",
@@ -5344,7 +5397,8 @@
           "rungs": 2,
           "confidentRungs": 2
         }
-      }
+      },
+      "lockedAtKickoff": true
     },
     {
       "name": "Mitchell Evans",
@@ -5471,7 +5525,8 @@
           "rungs": 1,
           "confidentRungs": 1
         }
-      }
+      },
+      "lockedAtKickoff": true
     },
     {
       "name": "Nick Vannett",
@@ -5556,21 +5611,21 @@
       "matchup": "KCSEA",
       "stats": {
         "receptions": {
-          "line": 1.8,
+          "line": 1.9,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 5,
           "confidentRungs": 5
         },
         "rec_yds": {
-          "line": 15.0,
+          "line": 15.6,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 8,
           "confidentRungs": 8
         },
         "any_tds": {
-          "line": 0.105,
+          "line": 0.12,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -5714,14 +5769,14 @@
       "matchup": "KCSEA",
       "stats": {
         "rush_yds": {
-          "line": 16.8,
+          "line": 16.9,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 7,
           "confidentRungs": 7
         },
         "pass_yds": {
-          "line": 218.7,
+          "line": 220.3,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 9,
@@ -5735,7 +5790,7 @@
           "confidentRungs": 4
         },
         "any_tds": {
-          "line": 0.15,
+          "line": 0.16,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -5777,7 +5832,8 @@
           "rungs": 2,
           "confidentRungs": 2
         }
-      }
+      },
+      "lockedAtKickoff": true
     },
     {
       "name": "Puka Nacua",
@@ -5806,7 +5862,8 @@
           "rungs": 3,
           "confidentRungs": 3
         }
-      }
+      },
+      "lockedAtKickoff": true
     },
     {
       "name": "Quinshon Judkins",
@@ -5879,7 +5936,8 @@
           "rungs": 3,
           "confidentRungs": 3
         }
-      }
+      },
+      "lockedAtKickoff": true
     },
     {
       "name": "Rashid Shaheed",
@@ -5895,7 +5953,7 @@
           "confidentRungs": 6
         },
         "rec_yds": {
-          "line": 24.2,
+          "line": 24.9,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 7,
@@ -5993,7 +6051,7 @@
       "matchup": "KCSEA",
       "stats": {
         "any_tds": {
-          "line": 0.155,
+          "line": 0.13,
           "lineSource": "expected",
           "expected": null,
           "rungs": 1,
@@ -6024,7 +6082,7 @@
       "matchup": "KCSEA",
       "stats": {
         "rush_yds": {
-          "line": 6.0,
+          "line": 5.9,
           "lineSource": "fitted",
           "expected": null,
           "rungs": 5,
@@ -6045,7 +6103,7 @@
           "confidentRungs": 4
         },
         "any_tds": {
-          "line": 0.09,
+          "line": 0.1,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -6080,7 +6138,8 @@
           "rungs": 3,
           "confidentRungs": 3
         }
-      }
+      },
+      "lockedAtKickoff": true
     },
     {
       "name": "Samaje Perine",
@@ -6146,7 +6205,8 @@
           "rungs": 2,
           "confidentRungs": 2
         }
-      }
+      },
+      "lockedAtKickoff": true
     },
     {
       "name": "Sean Tucker",
@@ -6214,7 +6274,8 @@
           "rungs": 2,
           "confidentRungs": 2
         }
-      }
+      },
+      "lockedAtKickoff": true
     },
     {
       "name": "T.J. Hockenson",
@@ -6307,7 +6368,8 @@
           "rungs": 1,
           "confidentRungs": 1
         }
-      }
+      },
+      "lockedAtKickoff": true
     },
     {
       "name": "Ted Hurst III",
@@ -6533,7 +6595,7 @@
           "confidentRungs": 4
         },
         "any_tds": {
-          "line": 0.1,
+          "line": 0.11,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -6550,12 +6612,12 @@
         "receptions": {
           "line": 4.2,
           "lineSource": "interpolated",
-          "expected": 4.3,
+          "expected": 4.4,
           "rungs": 9,
           "confidentRungs": 9
         },
         "rec_yds": {
-          "line": 45.8,
+          "line": 46.0,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 10,
@@ -6597,7 +6659,8 @@
           "rungs": 2,
           "confidentRungs": 2
         }
-      }
+      },
+      "lockedAtKickoff": true
     },
     {
       "name": "Trevor Etienne",
@@ -6642,7 +6705,8 @@
           "rungs": 3,
           "confidentRungs": 3
         }
-      }
+      },
+      "lockedAtKickoff": true
     },
     {
       "name": "Troy Franklin",
@@ -6671,7 +6735,8 @@
           "rungs": 2,
           "confidentRungs": 2
         }
-      }
+      },
+      "lockedAtKickoff": true
     },
     {
       "name": "Tucker Kraft",
@@ -6700,7 +6765,8 @@
           "rungs": 3,
           "confidentRungs": 3
         }
-      }
+      },
+      "lockedAtKickoff": true
     },
     {
       "name": "Tutu Atwell",
@@ -6729,7 +6795,8 @@
           "rungs": 2,
           "confidentRungs": 2
         }
-      }
+      },
+      "lockedAtKickoff": true
     },
     {
       "name": "Tyler Allgeier",
@@ -6765,7 +6832,8 @@
           "rungs": 3,
           "confidentRungs": 3
         }
-      }
+      },
+      "lockedAtKickoff": true
     },
     {
       "name": "Tyler Conklin",
@@ -6780,7 +6848,8 @@
           "rungs": 1,
           "confidentRungs": 1
         }
-      }
+      },
+      "lockedAtKickoff": true
     },
     {
       "name": "Tyler Higbee",
@@ -6809,7 +6878,8 @@
           "rungs": 3,
           "confidentRungs": 3
         }
-      }
+      },
+      "lockedAtKickoff": true
     },
     {
       "name": "Tyler Huntley",
@@ -6929,8 +6999,8 @@
       "matchup": "KCSEA",
       "stats": {
         "rush_yds": {
-          "line": 10.5,
-          "lineSource": "fitted",
+          "line": 10.8,
+          "lineSource": "interpolated",
           "expected": null,
           "rungs": 7,
           "confidentRungs": 7
@@ -7096,19 +7166,19 @@
         "receptions": {
           "line": 4.5,
           "lineSource": "interpolated",
-          "expected": 4.6,
+          "expected": 4.7,
           "rungs": 10,
           "confidentRungs": 10
         },
         "rec_yds": {
-          "line": 49.9,
+          "line": 49.5,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 12,
           "confidentRungs": 12
         },
         "any_tds": {
-          "line": 0.315,
+          "line": 0.305,
           "lineSource": "expected",
           "expected": null,
           "rungs": 3,
@@ -7198,7 +7268,7 @@
       "matchup": "DALPHI",
       "stats": {
         "any_tds": {
-          "line": 0.04,
+          "line": 0.035,
           "lineSource": "expected",
           "expected": null,
           "rungs": 1,
@@ -7213,7 +7283,7 @@
       "matchup": "DALPHI",
       "stats": {
         "any_tds": {
-          "line": 0.06,
+          "line": 0.065,
           "lineSource": "expected",
           "expected": null,
           "rungs": 1,
@@ -7228,14 +7298,14 @@
       "matchup": "DALPHI",
       "stats": {
         "receptions": {
-          "line": 6.8,
+          "line": 6.9,
           "lineSource": "interpolated",
-          "expected": 6.8,
+          "expected": 6.9,
           "rungs": 11,
           "confidentRungs": 11
         },
         "rec_yds": {
-          "line": 79.5,
+          "line": 80.5,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 14,
@@ -7257,7 +7327,7 @@
       "matchup": "DALPHI",
       "stats": {
         "any_tds": {
-          "line": 0.135,
+          "line": 0.14,
           "lineSource": "expected",
           "expected": null,
           "rungs": 1,
@@ -7272,16 +7342,16 @@
       "matchup": "DALPHI",
       "stats": {
         "rush_yds": {
-          "line": 9.5,
+          "line": 9.8,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 6,
           "confidentRungs": 6
         },
         "pass_yds": {
-          "line": 267.4,
+          "line": 269.7,
           "lineSource": "interpolated",
-          "expected": 253.1,
+          "expected": 255.0,
           "rungs": 10,
           "confidentRungs": 10
         },
@@ -7308,7 +7378,7 @@
       "matchup": "DALPHI",
       "stats": {
         "receptions": {
-          "line": 5.1,
+          "line": 5.0,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 9,
@@ -7317,12 +7387,12 @@
         "rec_yds": {
           "line": 48.7,
           "lineSource": "interpolated",
-          "expected": 51.2,
+          "expected": 51.1,
           "rungs": 12,
           "confidentRungs": 12
         },
         "any_tds": {
-          "line": 0.375,
+          "line": 0.395,
           "lineSource": "expected",
           "expected": null,
           "rungs": 3,
@@ -7337,7 +7407,7 @@
       "matchup": "DALPHI",
       "stats": {
         "any_tds": {
-          "line": 0.125,
+          "line": 0.135,
           "lineSource": "expected",
           "expected": null,
           "rungs": 3,
@@ -7359,7 +7429,7 @@
           "confidentRungs": 7
         },
         "rec_yds": {
-          "line": 39.5,
+          "line": 39.1,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 12,
@@ -7396,7 +7466,7 @@
       "matchup": "DALPHI",
       "stats": {
         "any_tds": {
-          "line": 0.055,
+          "line": 0.06,
           "lineSource": "expected",
           "expected": null,
           "rungs": 1,
@@ -7425,7 +7495,7 @@
           "confidentRungs": 13
         },
         "any_tds": {
-          "line": 0.43,
+          "line": 0.42,
           "lineSource": "expected",
           "expected": null,
           "rungs": 3,
@@ -7470,21 +7540,21 @@
       "matchup": "DALPHI",
       "stats": {
         "receptions": {
-          "line": 2.4,
+          "line": 2.5,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 6,
           "confidentRungs": 6
         },
         "rec_yds": {
-          "line": 18.5,
+          "line": 18.4,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 9,
           "confidentRungs": 9
         },
         "any_tds": {
-          "line": 0.29,
+          "line": 0.295,
           "lineSource": "expected",
           "expected": null,
           "rungs": 3,
@@ -7506,7 +7576,7 @@
           "confidentRungs": 6
         },
         "rec_yds": {
-          "line": 12.2,
+          "line": 12.0,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 7,
@@ -7520,7 +7590,7 @@
           "confidentRungs": 11
         },
         "any_tds": {
-          "line": 0.845,
+          "line": 0.84,
           "lineSource": "expected",
           "expected": null,
           "rungs": 3,
@@ -7550,7 +7620,7 @@
       "matchup": "DALPHI",
       "stats": {
         "any_tds": {
-          "line": 0.07,
+          "line": 0.065,
           "lineSource": "expected",
           "expected": null,
           "rungs": 1,
@@ -7587,7 +7657,7 @@
           "confidentRungs": 9
         },
         "rec_yds": {
-          "line": 38.0,
+          "line": 38.3,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 11,
@@ -7609,7 +7679,7 @@
       "matchup": "DALPHI",
       "stats": {
         "any_tds": {
-          "line": 0.145,
+          "line": 0.14,
           "lineSource": "expected",
           "expected": null,
           "rungs": 1,
@@ -7653,14 +7723,14 @@
       "matchup": "DALPHI",
       "stats": {
         "rush_yds": {
-          "line": 6.2,
+          "line": 6.4,
           "lineSource": "fitted",
           "expected": null,
           "rungs": 6,
           "confidentRungs": 6
         },
         "pass_yds": {
-          "line": 194.5,
+          "line": 195.0,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 10,
@@ -7704,7 +7774,7 @@
       "matchup": "CARGB",
       "stats": {
         "any_tds": {
-          "line": 0.13,
+          "line": 0.125,
           "lineSource": "expected",
           "expected": null,
           "rungs": 1,
