@@ -17,19 +17,17 @@
     <meta name="twitter:image" content="https://ezdubsanalytics.com/EDA.png">
     <link rel="stylesheet" href="../../assets/site.css">
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-               background: #0f1923; color: #e0e0e0; }
-
-        main { max-width: 1080px; margin: 0 auto; padding: 36px 24px 64px; }
-        /* 700, as on every dashboard: 800 is Segoe UI Black on Windows, whose
-           apostrophe rendered "Today´s". */
-        h1 { color: #fff; font-size: 1.8rem; font-weight: 700; margin: 0 0 6px;
-             letter-spacing: -0.01em; }
-        .subtitle { color: #99aabb; font-size: 0.92rem; margin-bottom: 14px; }
-        .updated { color: #7f8c99; font-size: 0.82rem; margin-bottom: 10px; }
-        .updated span { color: #4a9eff; }
-        .updated span.na { color: #8a97a5; }
-        .freshness-warn { color: #f7b500; font-size: 0.82rem; margin: -4px 0 10px; }
+        main { max-width: 1120px; margin: 0 auto; padding: 36px 24px 24px; }
+        h1 { font-size: clamp(2.4rem, 5vw, 3.4rem); margin: 0 0 10px; }
+        .subtitle { color: var(--ink-2); font-size: 1.1rem; margin-bottom: 16px; }
+        .updated {
+            font-family: var(--mono); font-size: 0.78rem; color: var(--muted);
+            padding: 8px 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+            margin-bottom: 16px;
+        }
+        .updated span { color: var(--ink); font-weight: 700; }
+        .updated span.na { color: var(--muted); font-weight: 400; }
+        .freshness-warn { color: var(--amber); font-weight: 600; font-size: 0.95rem; margin: -6px 0 14px; }
         .inline-spinner {
             display: inline-block; width: 11px; height: 11px;
             border: 2px solid currentColor; border-top-color: transparent;
@@ -38,253 +36,182 @@
         }
         @keyframes inline-spin { to { transform: rotate(360deg); } }
         .disclaimer {
-            background: #1a2634; border: 1px solid #2a3a4a;
-            border-left: 3px solid #f7b500;
-            border-radius: 10px; padding: 12px 16px;
-            color: #99aabb; font-size: 0.85rem; line-height: 1.5;
-            margin-bottom: 24px;
-        }
-        .disclaimer strong { color: #f7b500; }
-
-        .filter-row {
-            display: flex; gap: 10px; flex-wrap: wrap; align-items: center;
+            color: var(--ink-2); font-size: 0.95rem; line-height: 1.55;
             margin-bottom: 18px;
         }
+        .disclaimer strong {
+            font-family: var(--display); font-weight: 700; font-size: 1.05rem;
+            text-transform: uppercase; letter-spacing: 0.03em; color: var(--red);
+        }
+
+        .filter-row {
+            display: flex; gap: 8px; flex-wrap: wrap; align-items: center;
+            margin-bottom: 14px;
+        }
         .filter-row .label {
-            color: #7f8c99; font-size: 0.82rem; font-weight: 600;
-            margin-right: 4px;
+            font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.04em;
+            text-transform: uppercase; color: var(--muted); margin-right: 2px;
         }
         .chip {
-            padding: 6px 14px; border-radius: 999px; border: 1px solid #2a3a4a;
-            background: #1a2634; color: #99aabb; cursor: pointer;
-            font-size: 0.82rem; font-weight: 600; transition: all 0.15s;
+            min-height: 36px; padding: 4px 12px; border: 1px solid var(--rule); border-radius: 0;
+            background: transparent; color: var(--ink); cursor: pointer;
+            font-family: var(--display); font-size: 1.02rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.03em;
         }
-        .chip:hover { border-color: #4a9eff; color: #fff; }
-        .chip.active { border-color: #4a9eff; color: #4a9eff; }
+        .chip:hover { color: var(--red); border-color: var(--red); }
+        .chip.active { background: var(--ink); color: var(--paper); border-color: var(--ink); }
 
-        .count-line { color: #7f8c99; font-size: 0.85rem; margin-bottom: 14px; }
-        .count-line span { color: #fff; font-weight: 700; }
+        .count-line { font-family: var(--mono); color: var(--muted); font-size: 0.78rem; margin-bottom: 14px; }
+        .count-line span { color: var(--ink); font-weight: 700; }
 
-        /* Arb cards */
+        /* Arb cards: boxes on a newspaper page, a heavy rule on top and rows
+           of dotted rules inside. */
         .arb-grid {
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
-            gap: 16px;
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 8px 32px;
         }
-        .arb-card {
-            background: #131f2c; border: 1px solid #1e2d3d; border-radius: 14px;
-            padding: 18px 20px; display: flex; flex-direction: column;
-        }
-        .arb-card.suspicious { border-left: 3px solid #f7b500; }
+        .arb-card { border-top: 3px solid var(--rule); padding: 12px 0 22px; display: flex; flex-direction: column; }
+        .arb-card.suspicious { border-top-color: var(--amber); }
         .arb-head {
-            display: flex; align-items: flex-start; justify-content: space-between;
-            gap: 12px; margin-bottom: 10px;
+            display: flex; align-items: baseline; justify-content: space-between;
+            gap: 12px; margin-bottom: 6px;
         }
         .arb-category {
-            display: inline-block; font-size: 0.68rem; font-weight: 700;
-            letter-spacing: 0.1em; text-transform: uppercase; color: #4a9eff;
-            padding: 3px 9px; border-radius: 999px;
-            border: 1px solid rgba(74,158,255,0.35);
-            background: rgba(74,158,255,0.1);
+            font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.05em;
+            text-transform: uppercase; color: var(--red);
         }
         .arb-return {
-            font-size: 1.05rem; font-weight: 800; color: #00c46a;
-            white-space: nowrap; letter-spacing: -0.01em;
+            font-family: var(--mono); font-size: 1.05rem; font-weight: 700; color: var(--green);
+            white-space: nowrap;
         }
-        .arb-return.small { color: #2ecc71; }
+        .arb-return.small { color: var(--green); }
         .arb-question {
-            color: #fff; font-size: 0.98rem; font-weight: 700;
-            line-height: 1.35; margin-bottom: 14px;
+            font-family: var(--display); font-weight: 800; font-size: 1.45rem;
+            line-height: 1.05; text-transform: uppercase; margin-bottom: 10px;
         }
         .leg {
-            display: flex; align-items: center; gap: 10px;
-            padding: 10px 12px; border-radius: 10px;
-            background: #0f1923; border: 1px solid #1e2d3d;
-            margin-bottom: 8px;
+            display: flex; align-items: baseline; gap: 12px;
+            padding: 8px 0; border-bottom: 1px dotted var(--rule-soft);
         }
+        .leg:first-of-type { border-top: 1px solid var(--rule); }
         .leg .platform {
-            font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em;
-            text-transform: uppercase; min-width: 84px;
+            font-family: var(--display); font-size: 1.05rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.03em; min-width: 96px;
         }
-        .leg .platform.kalshi     { color: #00d1a0; }
-        .leg .platform.polymarket { color: #4a9eff; }
-        .leg .platform.predictit  { color: #ff8a3d; }
         .leg .price {
-            color: #fff; font-weight: 700; font-size: 0.98rem;
-            font-variant-numeric: tabular-nums; min-width: 56px;
+            font-family: var(--mono); font-weight: 500; font-size: 0.95rem;
+            font-variant-numeric: tabular-nums; flex: 1;
         }
-        .leg .price .side-yes { color: #00c46a; }
-        .leg .price .side-no  { color: #ff6b75; }
-        .leg .stake {
-            color: #99aabb; font-size: 0.78rem; flex: 1;
-            font-variant-numeric: tabular-nums;
-        }
-        .leg .stake strong { color: #fff; font-weight: 700; }
+        .leg .price .side-yes { color: var(--green); font-weight: 700; }
+        .leg .price .side-no  { color: var(--red); font-weight: 700; }
+        .leg .stake { color: var(--muted); font-size: 0.85rem; flex: 1; font-variant-numeric: tabular-nums; }
+        .leg .stake strong { color: var(--ink); }
         .leg a.btn {
-            font-size: 0.78rem; font-weight: 700; color: #4a9eff;
-            text-decoration: none; padding: 5px 11px; border-radius: 8px;
-            border: 1px solid rgba(74,158,255,0.3);
-            transition: all 0.15s;
+            font-family: var(--mono); font-size: 0.78rem; color: var(--ink);
+            text-underline-offset: 3px; padding: 4px 0;
         }
-        .leg a.btn:hover { background: rgba(74,158,255,0.12); border-color: #4a9eff; }
-        .leg-questions {
-            color: #7f8c99; font-size: 0.75rem; margin-top: 4px;
-            padding: 0 4px;
-        }
+        .leg a.btn:hover { color: var(--red); }
+        .leg-questions { color: var(--muted); font-size: 0.88rem; margin-top: 8px; line-height: 1.45; }
         .leg-questions div { margin-bottom: 2px; }
-        .leg-questions .q-platform { color: #99aabb; font-weight: 700; }
+        .leg-questions .q-platform { color: var(--ink); font-weight: 600; }
 
         /* Quiet on purpose: on 46 cards a filled full-width button outweighed the
            trade itself (the Buy YES/NO legs), which is what the card is for. */
         .calc-handoff-btn {
-            display: inline-block; margin-top: 10px; padding: 6px 10px;
-            background: transparent; border: 1px solid #2a3a4a;
-            border-radius: 8px;
-            color: #4a9eff; font-weight: 600; font-size: 0.82rem;
-            text-decoration: none; transition: background 0.15s, border-color 0.15s;
+            align-self: flex-start; margin-top: 10px; padding: 4px 0;
+            font-family: var(--display); font-weight: 700; font-size: 1.05rem;
+            text-transform: uppercase; letter-spacing: 0.03em;
+            color: var(--ink); text-underline-offset: 3px;
         }
-        .calc-handoff-btn:hover, .calc-handoff-btn:focus-visible {
-            background: rgba(74,158,255,0.12);
-            border-color: #4a9eff;
-        }
+        .calc-handoff-btn:hover, .calc-handoff-btn:focus-visible { color: var(--red); }
 
         .arb-foot {
-            margin-top: 10px; display: flex; align-items: center;
+            margin-top: 8px; display: flex; align-items: center;
             justify-content: space-between; gap: 12px; flex-wrap: wrap;
-            font-size: 0.75rem; color: #7f8c99;
+            font-family: var(--mono); font-size: 0.75rem; color: var(--muted);
         }
-        .arb-foot .susp {
-            color: #f7b500; font-weight: 700; font-size: 0.72rem;
-            letter-spacing: 0.06em; text-transform: uppercase;
-        }
+        .arb-foot .susp { color: var(--amber); font-weight: 700; text-transform: uppercase; }
 
-        .empty {
-            text-align: center; color: #7f8c99; font-size: 0.95rem;
-            padding: 60px 20px;
-        }
+        .empty { text-align: center; color: var(--muted); font-size: 1rem; padding: 60px 20px; }
 
         /* Password gate */
         .gate {
-            background: #131f2c; border: 1px solid #1e2d3d; border-radius: 14px;
-            padding: 26px 26px 24px; text-align: center;
-            max-width: 480px; margin: 0 auto;
+            border: 2px solid var(--rule); padding: 24px 24px 20px; text-align: center;
+            max-width: 480px; margin: 8px auto 0;
         }
         .gate .gate-title {
-            color: #fff; font-size: 1.1rem; font-weight: 800;
-            margin-bottom: 6px; letter-spacing: -0.01em;
+            font-family: var(--display); font-weight: 800; font-size: 1.6rem;
+            text-transform: uppercase; margin-bottom: 4px;
         }
-        .gate .gate-sub {
-            color: #99aabb; font-size: 0.88rem; line-height: 1.5;
-            margin-bottom: 18px;
-        }
-        .gate-form {
-            display: flex; gap: 8px; justify-content: center;
-        }
+        .gate .gate-sub { color: var(--ink-2); font-size: 0.98rem; line-height: 1.5; margin-bottom: 16px; }
+        .gate-form { display: flex; gap: 8px; justify-content: center; }
         .gate-form input {
-            flex: 1; max-width: 240px;
-            padding: 10px 14px; border-radius: 8px; border: 1px solid #2a3a4a;
-            background: #0f1923; color: #fff; font-size: 0.95rem;
+            flex: 1; max-width: 240px; padding: 10px 12px;
+            border: 1px solid var(--rule); border-radius: 0;
+            background: var(--field); color: var(--ink); font-size: 1rem; font-family: var(--serif);
         }
-        .gate-form input:focus { outline: none; border-color: #4a9eff; }
+        .gate-form input:focus { outline: 2px solid var(--red); outline-offset: 0; }
         .gate-form button {
-            padding: 10px 18px; border-radius: 8px; border: 0;
-            background: #4a9eff; color: #0f1923; font-weight: 700; cursor: pointer;
-            font-size: 0.9rem;
+            padding: 10px 18px; border: 0; border-radius: 0; background: var(--ink); color: var(--paper);
+            font-family: var(--display); font-weight: 700; font-size: 1.1rem;
+            text-transform: uppercase; letter-spacing: 0.04em; cursor: pointer;
         }
-        .gate-form button:hover { opacity: 0.9; }
-        .gate-error {
-            color: #ff424d; font-size: 0.82rem; margin-top: 10px; min-height: 1em;
-        }
-        .gate-prelude { margin-bottom: 18px; }
+        .gate-form button:hover { background: var(--red); }
+        .gate-error { color: var(--red); font-weight: 600; font-size: 0.95rem; margin-top: 10px; min-height: 1em; }
+        .gate-prelude { margin-bottom: 22px; }
         .gate-prelude .prelude-label {
-            color: #7f8c99; font-size: 0.78rem; font-weight: 600;
-            text-align: center; margin-bottom: 8px;
-            letter-spacing: 0.06em; text-transform: uppercase;
+            font-family: var(--display); font-weight: 700; font-size: 1rem;
+            letter-spacing: 0.06em; text-transform: uppercase; color: var(--red);
+            margin-bottom: 6px;
         }
+        #preview-card { max-width: 560px; }
         .calc-cta {
             display: flex; justify-content: space-between; align-items: center;
             gap: 14px; flex-wrap: wrap;
-            background: rgba(74, 158, 255, 0.08);
-            border: 1px solid rgba(74, 158, 255, 0.35);
-            border-left: 3px solid #4a9eff;
-            border-radius: 10px; padding: 12px 16px;
-            color: #99aabb; font-size: 0.88rem; margin-top: 14px;
+            border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+            padding: 12px 0; color: var(--ink-2); font-size: 1rem; margin-top: 14px;
         }
         .calc-cta .cta-btn {
-            background: #4a9eff; color: #0f1923; text-decoration: none;
-            padding: 8px 14px; border-radius: 8px;
-            font-weight: 700; font-size: 0.85rem; white-space: nowrap;
-            transition: opacity 0.15s;
+            background: var(--ink); color: var(--paper); text-decoration: none;
+            padding: 8px 14px; font-family: var(--display); font-weight: 700; font-size: 1.05rem;
+            text-transform: uppercase; letter-spacing: 0.04em; white-space: nowrap;
         }
-        .calc-cta .cta-btn:hover { opacity: 0.85; }
+        .calc-cta .cta-btn:hover { background: var(--red); color: var(--paper); }
 
         /* Flag legend */
-        .flag-legend {
-            background: #131f2c; border: 1px solid #1e2d3d; border-radius: 12px;
-            padding: 8px 16px; margin-bottom: 22px;
-        }
+        .flag-legend { border-bottom: 1px solid var(--rule); margin-bottom: 22px; }
         .flag-legend summary {
-            color: #99aabb; font-size: 0.88rem; font-weight: 600;
+            font-family: var(--display); font-weight: 700; font-size: 1.05rem;
+            text-transform: uppercase; letter-spacing: 0.03em;
             cursor: pointer; padding: 8px 0; user-select: none;
         }
-        .flag-legend summary:hover { color: #fff; }
-        .flag-legend[open] summary { color: #fff; }
+        .flag-legend summary:hover { color: var(--red); }
         .flag-legend dl {
             display: grid; grid-template-columns: max-content 1fr;
-            gap: 8px 16px; padding: 10px 0 14px;
-            font-size: 0.86rem; line-height: 1.5;
+            gap: 8px 16px; padding: 6px 0 12px; font-size: 0.95rem; line-height: 1.5;
         }
         .flag-legend dt {
-            color: #f7b500; font-weight: 700; font-family: ui-monospace, Menlo, Consolas, monospace;
-            font-size: 0.82rem; white-space: nowrap; padding-top: 2px;
+            color: var(--amber); font-weight: 700; font-family: var(--mono);
+            font-size: 0.8rem; white-space: nowrap; padding-top: 2px;
         }
-        .flag-legend dd { color: #99aabb; margin: 0; }
+        .flag-legend dd { color: var(--ink-2); margin: 0; }
         .flag-legend .legend-foot {
-            color: #7f8c99; font-size: 0.78rem; line-height: 1.5;
-            padding-top: 6px; border-top: 1px solid #1e2d3d; margin-top: 6px;
+            color: var(--muted); font-size: 0.88rem; line-height: 1.5;
+            padding: 8px 0 12px; border-top: 1px dotted var(--rule-soft);
         }
 
-        /* Mobile layout — affects nothing on ≥721px. */
+        /* Phone layout; affects nothing at 721px and wider. */
         @media (max-width: 720px) {
-            main { padding: 22px 14px 56px; }
-            h1 { font-size: 1.5rem; }
-            .subtitle { font-size: 0.85rem; }
-            .updated { font-size: 0.78rem; }
-            .disclaimer { font-size: 0.8rem; padding: 10px 14px; }
-            .arb-grid { grid-template-columns: 1fr; gap: 12px; }
-            .arb-card { padding: 14px 14px; }
-            .arb-question { font-size: 0.92rem; }
-            /* Leg: stack platform/price on top, open button on its own row */
-            .leg {
-                flex-wrap: wrap; gap: 6px 12px; padding: 8px 10px;
-            }
-            .leg .platform { min-width: 0; flex: 1 1 auto; }
-            .leg .price { flex: 0 0 auto; }
-            .leg a.btn { flex: 0 0 auto; margin-left: auto; }
-            .leg-questions { font-size: 0.72rem; }
-            .arb-foot { font-size: 0.72rem; }
-            .filter-row { gap: 6px; }
-            .chip { padding: 5px 10px; font-size: 0.78rem; }
-            .gate { padding: 20px 18px; }
-            .gate .gate-title { font-size: 1rem; }
-            .gate .gate-sub { font-size: 0.82rem; }
-            .gate-form input { font-size: 0.9rem; }
+            main { padding: 24px 16px 16px; }
+            .arb-grid { grid-template-columns: 1fr; }
+            .arb-question { font-size: 1.3rem; }
+            .leg { flex-wrap: wrap; gap: 4px 12px; }
+            .leg .platform { min-width: 0; flex: 1 1 100%; }
+            .leg a.btn { margin-left: auto; }
+            .flag-legend dl { grid-template-columns: 1fr; gap: 2px; }
+            .flag-legend dd { margin-bottom: 8px; }
+            .gate { padding: 18px 14px; }
         }
-        .site-footer {
-            border-top: 1px solid #1e2d3d; padding: 28px 32px;
-            color: #7f8c99; font-size: 0.82rem; margin-top: 48px;
-        }
-        .site-footer .disclaimer-line {
-            text-align: center; color: #7f8c99; font-size: 0.78rem;
-            max-width: 720px; margin: 0 auto 14px; line-height: 1.5;
-        }
-        .site-footer .footer-row {
-            display: flex; justify-content: space-between; align-items: center;
-            flex-wrap: wrap; gap: 12px;
-        }
-        .site-footer a { color: #99aabb; text-decoration: none; }
-        .site-footer a:hover { color: #4a9eff; }
-    
-
 </style>
 </head>
 <body>
@@ -326,12 +253,13 @@
             <a href="../../contact.html">Contact</a>
         </div>
         <div class="nav-spacer"></div>
-        <a class="bmc-btn" href="https://buymeacoffee.com/ezdubsanalytics" target="_blank" rel="noopener">☕ Buy Me a Coffee</a>
+        <a class="bmc-btn" href="https://buymeacoffee.com/ezdubsanalytics" target="_blank" rel="noopener">Buy me a coffee</a>
     </nav>
 
     <main>
-        <h1>Today’s Arbitrage Picks</h1>
-        <p class="subtitle">Arbitrage between major prediction markets.</p>
+        <p class="kicker">Prediction markets</p>
+        <h1 class="headline">Today’s Arbitrage Picks</h1>
+        <p class="subtitle">Where Kalshi and Polymarket disagree on the same question, priced at the asks you can actually fill, after fees.</p>
         <p class="updated">Prices as of: <span id="generated-at">loading<span class="inline-spinner"></span></span></p>
         <p class="freshness-warn" id="freshness-warn" hidden></p>
 
@@ -339,12 +267,12 @@
             <strong>Heads up:</strong> this page refreshes every few hours, so prices on the live
             markets may have moved since the snapshot. Verify both legs before sizing any bets. Always
             run the current order-book prices through the
-            <a href="../arb-calculator/" style="color:#f7b500;font-weight:700;text-decoration:underline;">Arb Calculator</a>
+            <a href="../arb-calculator/">Arb Calculator</a>
             first.
         </div>
 
         <details class="flag-legend">
-            <summary>What do the ⚠ Flagged tags mean?</summary>
+            <summary>What do the flags mean?</summary>
             <dl>
                 <dt>wide_spread_a / wide_spread_b</dt>
                 <dd>The bid–ask spread on the flagged side (A or B) is wider than 15 cents. You can't actually buy at the mid-price; you'd be paying closer to the ask, which can eat the whole edge.</dd>
@@ -371,12 +299,12 @@
 
             <div class="calc-cta">
                 <span>Want to size your own bets? Try the free Arb Calculator.</span>
-                <a href="../arb-calculator/" class="cta-btn">Open Calculator →</a>
+                <a href="../arb-calculator/" class="cta-btn">Open the calculator</a>
             </div>
         </div>
 
         <div id="gate" class="gate">
-            <div class="gate-title">🔒 Password required</div>
+            <div class="gate-title">Password required</div>
             <div class="gate-sub">Enter the password to view today's arbitrage picks.</div>
             <form class="gate-form" id="gate-form">
                 <input type="password" id="gate-input" placeholder="Password" autocomplete="off" autofocus aria-label="Password">
@@ -609,7 +537,7 @@
                 // Two different empty states: filter removed everything, or
                 // arbs.json itself was empty for today.
                 if (arbs.length === 0) {
-                    empty.innerHTML = `Oops, either the markets are hyper-efficient today, or I messed up somewhere. Feel free to <a href="../../contact.html" style="color:#4a9eff;font-weight:700;">message me</a>.`;
+                    empty.innerHTML = `Oops, either the markets are hyper-efficient today, or I messed up somewhere. Feel free to <a href="../../contact.html">message me</a>.`;
                 } else {
                     empty.textContent = 'No arbitrage picks match the current filter.';
                 }
@@ -677,10 +605,10 @@
                         <div class="leg-questions">
                             <div><span class="q-platform">${pb} asks:</span> ${escapeHtml(prose(a.question_b))}</div>
                         </div>` : ''}
-                    <a class="calc-handoff-btn" href="${escapeHtml(calcHandoffUrl(a))}">Size this in the Calculator →</a>
+                    <a class="calc-handoff-btn" href="${escapeHtml(calcHandoffUrl(a))}">Size this in the calculator</a>
                     <div class="arb-foot">
                         <span>${a.settle_date ? `Settles ${escapeHtml(a.settle_date)}${perYear}` : ''}</span>
-                        ${a.suspicious ? `<span class="susp" title="${escapeHtml((a.suspicion_reasons || []).join(', '))}">⚠ ${escapeHtml(humanSuspicionReasons(a.suspicion_reasons).join(', '))}</span>` : ''}
+                        ${a.suspicious ? `<span class="susp" title="${escapeHtml((a.suspicion_reasons || []).join(', '))}">Flagged: ${escapeHtml(humanSuspicionReasons(a.suspicion_reasons).join(', '))}</span>` : ''}
                     </div>
                 </div>`;
         }

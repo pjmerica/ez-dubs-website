@@ -1178,7 +1178,7 @@
       html += '<div class="sitstart-section">No usage priced</div>' +
         '<div class="verdict" style="font-size:13px">' +
         escapeHtml(unpriced.map((p) => p.name).join(", ")) +
-        '<br /><span style="color:#8a97a5">A book pricing a touchdown but no ' +
+        '<br /><span class="c-dim">A book pricing a touchdown but no ' +
         "yardage usually means an unsettled role. Treat as start-at-your-own-risk, " +
         "not as a zero.</span></div>";
     }
@@ -1190,11 +1190,11 @@
       html += '<div class="sitstart-section">Game already under way</div>' +
         '<div class="verdict" style="font-size:13px">' +
         started.map((p) => escapeHtml(p.name) +
-          '<span style="color:#7f8c99"> (' +
+          '<span class="c-dim"> (' +
           escapeHtml(gameLabel(p.matchup) || "-") +
           (p.points ? ", " + p.points.toFixed(1) + " proj" : "") +
           ")</span>").join(", ") +
-        '<br /><span style="color:#7f8c99">Kickoff has passed, so these are no ' +
+        '<br /><span class="c-dim">Kickoff has passed, so these are no ' +
         "longer start/sit decisions. The projection is what the market had " +
         "before the game began.</span></div>";
     }
@@ -1337,7 +1337,7 @@
     const gains = fas.slice(0, 12);
     if (!gains.length) {
       return '<div class="sitstart-section">Free agents</div>' +
-        '<div class="verdict" style="font-size:13px;color:#8a97a5">' +
+        '<div class="verdict c-dim" style="font-size:13px">' +
         "Nothing on the wire projects above your current starters this week." +
         (fas.length ? " (" + fas.length + " unrostered players do have lines.)" : "") +
         "</div>";
@@ -1355,12 +1355,12 @@
         escapeHtml(f.position) + "</span></td>" +
         '<td class="weekly-game game-col">' + escapeHtml(gameLabel(f.matchup) || "-") + "</td>" +
         '<td style="text-align:right">' + f.points.toFixed(1) + "</td>" +
-        '<td style="text-align:right"><span style="color:#58d68d;font-weight:700">+' +
+        '<td style="text-align:right"><span class="c-good" style="font-weight:700">+' +
         f.upgrade.toFixed(1) + "</span></td>" +
         '<td class="weekly-game">' +
         (f.replaces ? escapeHtml(f.replaces.name) + " (" +
           f.replaces.points.toFixed(1) + ")"
-          : '<span style="color:#8a97a5">fills an open slot</span>') +
+          : '<span class="c-dim">fills an open slot</span>') +
         "</td></tr>";
     }
     html += "</tbody></table></div>";
@@ -1674,14 +1674,14 @@
       if (p.isLocked) {
         html += '<tr class="locked-row"><td>' + badge + "</td>" +
           '<td class="player-name">' + escapeHtml(p.name) +
-          ' <span class="injury-tag" style="color:#8a97a5">PLAYED</span>' +
+          ' <span class="injury-tag c-dim">PLAYED</span>' +
           gameSub(p.team || "-") + "</td>" +
           '<td><span class="pos-badge pos-' + escapeHtml(p.position || "?") + '">' +
           escapeHtml(p.position || "?") + "</span></td>" +
           '<td class="weekly-game game-col">' + escapeHtml(p.team || "-") + "</td>" +
-          '<td style="text-align:right"><span class="market-pts" style="color:#8a97a5">' +
+          '<td style="text-align:right"><span class="market-pts c-dim">' +
           (p.actual != null ? p.actual.toFixed(1) : "—") + "</span></td>" +
-          '<td style="color:#8a97a5;font-size:12px">final: slot spent</td></tr>';
+          '<td class="c-dim" style="font-size:12px">final: slot spent</td></tr>';
         return;
       }
 
@@ -1690,7 +1690,7 @@
       // league chip cannot claim a different number.
       if (!p.wasStarter && !lg.bestBall) drawnSwaps++;
       const swap = p.wasStarter || lg.bestBall ? "" :
-        ' <span class="injury-tag" style="color:#58d68d">SWAP IN</span>';
+        ' <span class="injury-tag c-good">SWAP IN</span>';
       html += "<tr><td>" + badge + "</td>" +
         '<td class="player-name">' + escapeHtml(p.name) +
         projTag(p) +
@@ -1740,7 +1740,7 @@
       html += '<div class="sitstart-section">Already played this week</div>' +
         '<div class="verdict" style="font-size:13px">' +
         escapeHtml(played.map((r) => r.name + " (" + (r.position || "?") + ")").join(", ")) +
-        '<br /><span style="color:#8a97a5">Their games have kicked off, so the ' +
+        '<br /><span class="c-dim">Their games have kicked off, so the ' +
         "books no longer quote them. Points already banked: the lineup " +
         "above only covers who is left to play.</span></div>";
     }
@@ -1769,7 +1769,7 @@
             escapeHtml(nameOf(r)) +
             ' <span class="injury-tag">' + escapeHtml(injuryLabel(r.injury)) +
             "</span>").join("<br />") +
-          '<br /><span style="color:#8a97a5">These players are ruled out, or ' +
+          '<br /><span class="c-dim">These players are ruled out, or ' +
           "the books are holding their lines because their status is in doubt. " +
           "Either way it is a reason not to start them, not a gap in coverage. " +
           (hurt.some((r) => r.injury.sidelined)
@@ -1784,7 +1784,7 @@
           quiet.length + ")</div>" +
           '<div class="verdict" style="font-size:13px">' +
           escapeHtml(quiet.map(nameOf).join(", ")) +
-          '<br /><span style="color:#8a97a5">No book has priced their usage this ' +
+          '<br /><span class="c-dim">No book has priced their usage this ' +
           "week and Sleeper lists no injury, so they cannot be ranked and are " +
           "left out of the lineup above. That is an unpriced role, " +
           "<strong>not</strong> a projection of zero: if one of these is " +
@@ -1795,7 +1795,7 @@
     if (unresolved.length) {
       html += '<div class="sitstart-section">Not recognised (' +
         unresolved.length + ")</div>" +
-        '<div class="verdict" style="font-size:13px;color:#8a97a5">' +
+        '<div class="verdict c-dim" style="font-size:13px">' +
         escapeHtml(unresolved.map((r) => r.name).join(", ")) +
         "<br />These roster spots did not match a player in Sleeper's own " +
         "player list, so nothing can be said about them. Usually a very " +
@@ -1803,7 +1803,7 @@
     }
     if (noMarket.length) {
       html += '<div class="sitstart-section">No game line</div>' +
-        '<div class="verdict" style="font-size:13px;color:#8a97a5">' +
+        '<div class="verdict c-dim" style="font-size:13px">' +
         escapeHtml(noMarket.map((r) => r.name + " (" + (r.position || "?") + ")").join(", ")) +
         "<br />Kickers and defenses are scored from the spread and total; " +
         "no line is posted for their game yet.</div>";
@@ -2233,7 +2233,7 @@
     if (!$tags) return;
     const pool = rosterPool();
     if (!rosterSelected.size) {
-      $tags.innerHTML = '<span style="font-size:12px;color:#8a97a5">No players added yet.</span>';
+      $tags.innerHTML = '<span class="c-dim" style="font-size:12px">No players added yet.</span>';
       return;
     }
     const parts = [];
@@ -2278,7 +2278,7 @@
       .slice(0, 10);
 
     if (!matches.length) {
-      $sugg.innerHTML = '<div style="color:#8a97a5;cursor:default">No match on this week’s board</div>';
+      $sugg.innerHTML = '<div class="c-dim" style="cursor:default">No match on this week’s board</div>';
       $sugg.style.display = "block";
       suggIndex = -1;
       return;
@@ -2647,7 +2647,7 @@
   function rootingList(title, rows, forMe) {
     if (!rows.length) {
       return '<div class="sitstart-section">' + escapeHtml(title) + "</div>" +
-        '<div class="verdict" style="font-size:13px;color:#8a97a5">Nobody.</div>';
+        '<div class="verdict c-dim" style="font-size:13px">Nobody.</div>';
     }
     let html = '<div class="sitstart-section">' + escapeHtml(title) + "</div>" +
       '<div class="table-wrap" tabindex="0"><table class="slot-table root-table"><thead><tr>' +
@@ -2670,7 +2670,7 @@
         '<td style="text-align:right">' +
         (r.proj != null ? r.proj.toFixed(1) : "&mdash;") + "</td>" +
         '<td class="league-names" style="text-align:right">' +
-        n + (other.length ? ' <span style="color:#f5b041">net</span>' : "") +
+        n + (other.length ? ' <span class="c-warn">net</span>' : "") +
         "</td></tr>";
     }
     return html + "</tbody></table></div>";
@@ -2729,7 +2729,7 @@
 
     if (conflicted.length) {
       html += '<div class="sitstart-section">Cancels out</div>' +
-        '<div class="verdict" style="font-size:13px;color:#8a97a5">' +
+        '<div class="verdict c-dim" style="font-size:13px">' +
         conflicted.map((r) => escapeHtml(r.name) + " (" + r.for.length +
           " for, " + r.against.length + " against)").join("; ") +
         ": nets to nothing, so watch without caring.</div>";

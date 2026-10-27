@@ -17,136 +17,95 @@
     <meta name="twitter:image" content="https://ezdubsanalytics.com/EDA.png">
     <link rel="stylesheet" href="assets/site.css">
     <style>
-        html, body { height: 100%; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #0f1923; color: #e0e0e0;
-            display: flex; flex-direction: column;
+        /* The home page is a front page: a dateline, a lead story with a table
+           on the left, two shorter stories stacked on the right, and a row of
+           smaller items under a double rule. The tables and numbers are read
+           from the same JSON the dashboards use, so they are never stale. */
+        main { max-width: 1200px; margin: 0 auto; padding: 0 28px; }
+
+        .dateline {
+            display: flex; justify-content: space-between; flex-wrap: wrap; gap: 4px 20px;
+            padding: 9px 0; border-bottom: 1px solid var(--rule);
+            font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.04em;
+            text-transform: uppercase;
         }
 
-        /* Page */
-        main { flex: 1; max-width: 960px; margin: 0 auto; padding: 96px 32px 64px;
-               width: 100%; }
-        h1 {
-            font-size: clamp(2.4rem, 5vw, 3.8rem);
-            font-weight: 800; line-height: 1.05; color: #fff;
-            letter-spacing: -0.02em; margin: 0 0 18px;
+        .front { display: flex; flex-wrap: wrap; padding-top: 28px; }
+        .lead { flex: 2 1 540px; min-width: 0; padding: 0 28px 28px 0; border-right: 1px solid var(--rule); }
+        .side { flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; }
+        .side article { padding: 0 0 24px 28px; }
+        .side article + article { padding-top: 24px; border-top: 1px solid var(--rule); }
+
+        .lead h1 { font-size: clamp(2.4rem, 5vw, 3.6rem); margin: 0 0 14px; }
+        .side h2 { font-size: 2.1rem; margin: 0 0 10px; }
+        .side h2.small { font-size: 1.9rem; }
+        .dek { font-size: 1.125rem; line-height: 1.55; color: var(--ink-2); margin: 0 0 22px; }
+        .side .dek { font-size: 1rem; margin-bottom: 14px; }
+        .kicker.quiet { color: var(--muted); }
+
+        .table-title {
+            font-family: var(--display); font-weight: 700; font-size: 1.06rem;
+            text-transform: uppercase; letter-spacing: 0.03em; margin: 0 0 6px;
         }
-        h1 .accent { color: #4a9eff; }
-        .lede {
-            font-size: 1.1rem; color: #99aabb; line-height: 1.55;
-            max-width: 560px; margin: 0 0 48px;
+        .table-wrap { overflow-x: auto; }
+        table.agate {
+            width: 100%; min-width: 440px; border-collapse: collapse;
+            font-family: var(--mono); font-size: 0.82rem;
+        }
+        .agate thead tr { border-top: 2px solid var(--rule); border-bottom: 1px solid var(--rule); }
+        .agate th { padding: 6px 8px; font-weight: 700; text-align: right; }
+        .agate td { padding: 7px 8px; text-align: right; border-bottom: 1px dotted var(--rule-soft); }
+        .agate th:first-child, .agate td:first-child { padding-left: 0; text-align: left; }
+        .agate th:last-child, .agate td:last-child { padding-right: 0; }
+        .agate .l { text-align: left; }
+        .agate td.name { font-weight: 700; }
+        .agate td.dim { color: var(--muted); }
+        .agate td.big { font-weight: 700; }
+        .table-note { margin: 8px 0 18px; font-family: var(--mono); font-size: 0.7rem; color: var(--muted); }
+        .table-empty { padding: 14px 0; color: var(--muted); font-size: 0.95rem; }
+
+        .more {
+            display: inline-block; font-family: var(--display); font-weight: 700;
+            font-size: 1.15rem; text-transform: uppercase; letter-spacing: 0.03em;
+            text-underline-offset: 3px; margin-right: 18px;
         }
 
-        /* Tool grid */
-        .tool-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 16px;
+        .stat-list { margin: 0 0 14px; }
+        .stat-list div {
+            display: flex; justify-content: space-between; gap: 12px;
+            padding: 6px 0; border-bottom: 1px dotted var(--rule-soft); font-size: 0.95rem;
         }
-        .tool-card {
-            display: block; text-decoration: none; color: inherit;
-            background: #131f2c; border: 1px solid #1e2d3d; border-radius: 14px;
-            padding: 28px 26px; position: relative; overflow: hidden;
-            transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
-        }
-        .tool-card::before {
-            content: ''; position: absolute; left: 0; top: 0; bottom: 0;
-            width: 3px; background: var(--accent, #4a9eff);
-            opacity: 0.65; transition: opacity 0.18s ease, width 0.18s ease;
-        }
-        .tool-card:hover {
-            border-color: var(--accent, #4a9eff);
-            background: #16243380;
-            transform: translateY(-2px);
-        }
-        .tool-card:hover::before { opacity: 1; width: 4px; }
-        /* Five cards in a three-column grid left an empty slot after the last
-           one. Where there are at least two columns, the Best Ball card (the
-           archive) takes two, so the last row is always full. One column below
-           ~680px, where spanning would add a phantom second column. */
-        @media (min-width: 680px) {
-            .tool-card.span-2 { grid-column: span 2; }
-        }
-        .tool-tag {
-            display: inline-block; font-size: 0.7rem; font-weight: 700;
-            letter-spacing: 0.12em; text-transform: uppercase;
-            color: var(--accent, #4a9eff);
-            padding: 3px 9px; border-radius: 999px;
-            border: 1px solid color-mix(in srgb, var(--accent, #4a9eff) 40%, transparent);
-            background: color-mix(in srgb, var(--accent, #4a9eff) 10%, transparent);
-            margin-bottom: 14px;
-        }
-        .tool-card h2 {
-            font-size: 1.3rem; font-weight: 700; color: #fff;
-            margin: 0 0 8px; letter-spacing: -0.01em;
-        }
-        .tool-card p {
-            font-size: 0.92rem; color: #8a9aab; line-height: 1.55; margin: 0;
-        }
-        .tool-card .arrow {
-            display: inline-block; margin-top: 16px; font-size: 0.85rem;
-            color: var(--accent, #4a9eff); font-weight: 600;
-        }
-        /* The archive card holds two links, so the card itself is not one: no
-           lift on hover, and each link gets its own hover. Risers/Fallers had
-           no way in from the home page before (2026-10-22). */
-        .archive-card:hover { transform: none; background: #131f2c; }
-        .archive-card .arrow { text-decoration: none; margin-right: 22px; }
-        .archive-card .arrow:hover { text-decoration: underline; text-underline-offset: 3px; }
+        .stat-list div:first-child { border-top: 1px dotted var(--rule-soft); }
+        .stat-list dd { font-family: var(--mono); font-weight: 700; }
 
-        /* Footer */
-        footer {
-            border-top: 1px solid #1e2d3d; padding: 28px 32px;
-            color: #7f8c99; font-size: 0.82rem;
+        .lower {
+            display: flex; flex-wrap: wrap; gap: 28px; margin-top: 8px;
+            padding: 22px 0 0; border-top: 3px double var(--rule);
         }
-        footer .disclaimer-line {
-            text-align: center; color: #7f8c99; font-size: 0.78rem;
-            max-width: 720px; margin: 0 auto 14px; line-height: 1.5;
+        .lower h2 { font-size: 1.4rem; margin: 0 0 10px; letter-spacing: 0.03em; }
+        .also { flex: 1 1 260px; min-width: 0; }
+        .also p { margin: 0 0 8px; font-size: 0.95rem; line-height: 1.5; }
+        .also a { font-weight: 600; }
+        .letters { flex: 2 1 520px; min-width: 0; }
+        .letters ul { list-style: none; display: flex; flex-wrap: wrap; gap: 14px 28px; }
+        .letters li { flex: 1 1 180px; font-size: 1rem; line-height: 1.45; }
+        .letters q { font-style: italic; }
+        .letters cite {
+            display: block; margin-top: 2px; font-style: normal;
+            font-family: var(--mono); font-size: 0.75rem; color: var(--muted);
         }
-        footer .footer-row {
-            display: flex; justify-content: space-between; align-items: center;
-            flex-wrap: wrap; gap: 12px;
-        }
-        footer a { color: #99aabb; text-decoration: none; }
-        footer a:hover { color: #4a9eff; }
 
-        /* Reviews section */
-        .reviews-wrap { margin-top: 72px; }
-        .reviews-header {
-            display: flex; align-items: baseline; gap: 12px;
-            margin-bottom: 16px;
+        @media (max-width: 900px) {
+            /* Stacked: the right column's rule and padding turn into a top rule. */
+            .lead { padding-right: 0; border-right: 0; }
+            .side { border-top: 1px solid var(--rule); padding-top: 24px; }
+            .side article { padding-left: 0; }
         }
-        .reviews-header h2 {
-            font-size: 1.5rem; font-weight: 800; color: #fff;
-            letter-spacing: -0.01em;
+        @media (max-width: 640px) {
+            main { padding: 0 16px; }
+            .dateline span:nth-child(2) { display: none; }
         }
-        .review-grid {
-            /* 200px, not 260px: at tablet width 260 fit two, leaving the third
-               review alone on a row. Still one column on a phone. */
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 14px;
-        }
-        .review-card {
-            background: #131f2c; border: 1px solid #1e2d3d; border-radius: 12px;
-            padding: 20px 22px;
-        }
-        .review-card .stars {
-            color: #f7b500; font-size: 0.95rem; letter-spacing: 2px;
-            margin-bottom: 8px;
-        }
-        .review-card blockquote {
-            color: #d4dde6; font-size: 0.95rem; line-height: 1.5;
-            margin: 0 0 12px; font-style: italic;
-        }
-        .review-card blockquote::before { content: '“'; }
-        .review-card blockquote::after  { content: '”'; }
-        .review-card cite {
-            display: block; color: #8a9aab; font-size: 0.82rem;
-            font-style: normal; font-weight: 600;
-        }
-    
-
-</style>
+    </style>
 </head>
 <body>
     <nav class="site-nav">
@@ -187,72 +146,80 @@
             <a href="contact.html">Contact</a>
         </div>
         <div class="nav-spacer"></div>
-        <a class="bmc-btn" href="https://buymeacoffee.com/ezdubsanalytics" target="_blank" rel="noopener">☕ Buy Me a Coffee</a>
+        <a class="bmc-btn" href="https://buymeacoffee.com/ezdubsanalytics" target="_blank" rel="noopener">Buy me a coffee</a>
     </nav>
 
     <main>
-        <h1>Data tools for sports, prediction markets, and more.</h1>
-        <p class="lede">Daily dashboards that surface where the books disagree. Companion to the blog.</p>
+        <div class="dateline">
+            <span id="today">Data tools for sports and prediction markets</span>
+            <span>NFL <span id="week-dateline">in season</span> &#183; Prediction markets &#183; Best Ball archive</span>
+            <span>Arbitrage picks refresh every 2 hours</span>
+        </div>
 
-        <div class="tool-grid">
-            <a class="tool-card" href="dashboards/nfl-start-sit/" style="--accent:#9b8cff;">
-                <span class="tool-tag">In season</span>
-                <h2>NFL Start/Sit</h2>
-                <p>Who to start this week, priced off betting markets instead of projections. Reads your Sleeper leagues.</p>
-                <span class="arrow">Open dashboard &rarr;</span>
-            </a>
-            <a class="tool-card" href="dashboards/nfl-rooting/" style="--accent:#9b8cff;">
-                <span class="tool-tag">In season</span>
-                <h2>Root For/Against</h2>
-                <p>Which players to cheer for and against across every one of your Sleeper leagues.</p>
-                <span class="arrow">Open dashboard &rarr;</span>
-            </a>
-            <a class="tool-card" href="dashboards/prediction-arbitrage/" style="--accent:#4a9eff;">
-                <span class="tool-tag">Live</span>
-                <h2>Today's Arbitrage Picks</h2>
-                <p>Where prediction markets disagree, refreshed every few hours.</p>
-                <span class="arrow">Open dashboard &rarr;</span>
-            </a>
-            <a class="tool-card" href="dashboards/arb-calculator/" style="--accent:#4a9eff;">
-                <span class="tool-tag">Tool</span>
-                <h2>Arb Calculator</h2>
-                <p>Lock in equal payoffs across two betting markets. Free, no login.</p>
-                <span class="arrow">Open calculator &rarr;</span>
-            </a>
-            <div class="tool-card span-2 archive-card" style="--accent:#00c46a;">
-                <span class="tool-tag">2026 archive</span>
-                <h2>2026 Best Ball</h2>
-                <p>Where DraftKings and Underdog ADPs disagreed, and who rose and fell over the draft season. Frozen at its close on September 4.</p>
-                <a class="arrow" href="dashboards/best-ball-prices/">Price differences &rarr;</a>
-                <a class="arrow" href="dashboards/best-ball-history/">Risers and fallers &rarr;</a>
+        <div class="front">
+            <article class="lead">
+                <p class="kicker">Start/Sit<span id="week-kicker"></span></p>
+                <h1 class="headline">Who to start, priced by the people betting on it</h1>
+                <p class="dek">Projections are one analyst's opinion. A prop line is what the market will take real money on. Start/Sit reads your Sleeper leagues and ranks your lineup off those lines.</p>
+
+                <p class="table-title" id="rb-title">Running backs, by rushing yards line</p>
+                <div class="table-wrap" tabindex="0" role="region" aria-labelledby="rb-title">
+                    <table class="agate">
+                        <thead>
+                            <tr><th scope="col">Player</th><th scope="col" class="l">Game</th><th scope="col">Rush yds</th><th scope="col">Rec</th><th scope="col">Rec yds</th></tr>
+                        </thead>
+                        <tbody id="rb-body"></tbody>
+                    </table>
+                </div>
+                <p class="table-empty" id="rb-empty" hidden>This week's lines are not posted yet.</p>
+                <p class="table-note" id="rb-note">Lines from the betting markets. A game's lines lock at kickoff.</p>
+                <a class="more" href="dashboards/nfl-start-sit/">Load your leagues</a>
+                <a class="more" href="dashboards/nfl-rooting/">Who to root for</a>
+            </article>
+
+            <div class="side">
+                <article>
+                    <p class="kicker">Prediction markets</p>
+                    <h2 class="headline" id="arb-head">Where Kalshi and Polymarket disagree</h2>
+                    <p class="dek">Buy one side on each exchange and you collect the same amount whichever way it settles. Today's board, after fees:</p>
+                    <dl class="stat-list" id="arb-stats" hidden>
+                        <div><dt>Widest gap</dt><dd id="arb-best"></dd></div>
+                        <div><dt>Median gap</dt><dd id="arb-median"></dd></div>
+                        <div><dt>Prices as of</dt><dd id="arb-asof"></dd></div>
+                    </dl>
+                    <a class="more" href="dashboards/prediction-arbitrage/">Today's picks</a>
+                    <a class="more" href="dashboards/arb-calculator/">Calculator</a>
+                </article>
+
+                <article>
+                    <p class="kicker quiet">2026 Best Ball &#183; Final</p>
+                    <h2 class="headline small">Josh Jacobs went 28 picks earlier on Underdog</h2>
+                    <p class="dek">His closing ADP was 65.7 on Underdog and 93.8 on DraftKings, the widest gap at any running back when drafts closed on Sept. 4.</p>
+                    <a class="more" href="dashboards/best-ball-prices/">Every gap</a>
+                    <a class="more" href="dashboards/best-ball-history/">Risers and fallers</a>
+                </article>
             </div>
         </div>
 
-        <section class="reviews-wrap">
-            <div class="reviews-header">
-                <h2>What People Are Saying</h2>
-            </div>
-            <div class="review-grid">
-                <div class="review-card">
-                    <div class="stars">★★★★★</div>
-                    <blockquote>Wow this guy knows ball.</blockquote>
-                    <cite>Last place, 12-team PPR</cite>
-                </div>
-                <div class="review-card">
-                    <div class="stars">★★★★★</div>
-                    <blockquote>Wow this truly gave me easy W's, thank you!</blockquote>
-                    <cite>Guy who still drafts kickers in round 9</cite>
-                </div>
-                <div class="review-card">
-                    <div class="stars">★★★★★</div>
-                    <blockquote>Now this is a guy who gets it.</blockquote>
-                    <cite>My league commissioner, begrudgingly</cite>
-                </div>
-            </div>
-        </section>
+        <div class="lower">
+            <section class="also">
+                <h2 class="headline">Also on the site</h2>
+                <p><a href="dashboards/nfl-rooting/">Root For/Against.</a> Who to cheer for and against across every one of your Sleeper leagues.</p>
+                <p><a href="dashboards/arb-calculator/">Arb Calculator.</a> Equal-payoff stakes across two markets. Free, no login.</p>
+                <p><a href="https://substack.com/@ezdubsanalytics" target="_blank" rel="noopener">The blog.</a> Longer write-ups, on Substack.</p>
+            </section>
+            <section class="letters">
+                <h2 class="headline">Letters</h2>
+                <ul>
+                    <li><q>Wow this guy knows ball.</q><cite>Last place, 12-team PPR</cite></li>
+                    <li><q>Wow this truly gave me easy W's, thank you!</q><cite>Guy who still drafts kickers in round 9</cite></li>
+                    <li><q>Now this is a guy who gets it.</q><cite>My league commissioner, begrudgingly</cite></li>
+                </ul>
+            </section>
+        </div>
     </main>
 
-    <footer>
+    <footer class="site-footer">
         <p class="disclaimer-line">EZ Dubs Analytics is for entertainment and research only. Prices may be stale. Verify everything before placing bets.</p>
         <div class="footer-row">
             <span>&copy; EZ Dubs Analytics</span>
@@ -263,5 +230,87 @@
             </span>
         </div>
     </footer>
+
+    <script>
+        // Everything below fills in numbers from the dashboards' own data files.
+        // Each part fails on its own: if a file does not load, that block keeps
+        // its static copy and the rest of the page is unaffected.
+        const $ = (id) => document.getElementById(id);
+
+        $('today').textContent = new Date().toLocaleDateString('en-US',
+            { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+
+        const MONTHS = ['Jan.', 'Feb.', 'March', 'April', 'May', 'June', 'July', 'Aug.', 'Sept.', 'Oct.', 'Nov.', 'Dec.'];
+        const shortDate = (d) => `${MONTHS[d.getMonth()]} ${d.getDate()}`;
+        const fmtLine = (s) => (s && s.line != null ? s.line.toFixed(1) : '–');
+
+        async function getJSON(url) {
+            const r = await fetch(url, { cache: 'no-store' });
+            if (!r.ok) throw new Error(r.status);
+            return r.json();
+        }
+
+        // Top running backs by rushing yards line. weekly.json has no positions;
+        // sleeper_players.json maps a name to [name, pos, team].
+        async function loadRunningBacks() {
+            const DATA = 'dashboards/nfl-start-sit/data/';
+            try {
+                const [weekly, sleeper] = await Promise.all([getJSON(DATA + 'weekly.json'), getJSON(DATA + 'sleeper_players.json')]);
+                const who = new Map(Object.values(sleeper.players || {}).map((p) => [p[0], p]));
+                if (weekly.week) {
+                    $('week-kicker').textContent = ` · Week ${weekly.week}`;
+                    $('week-dateline').textContent = `Week ${weekly.week}`;
+                }
+                const rows = (weekly.players || [])
+                    .filter((p) => (who.get(p.name) || [])[1] === 'RB' && p.stats && p.stats.rush_yds && p.stats.rush_yds.line != null)
+                    .sort((a, b) => b.stats.rush_yds.line - a.stats.rush_yds.line)
+                    .slice(0, 8);
+                if (!rows.length) throw new Error('no lines');
+                $('rb-body').innerHTML = rows.map((p) => {
+                    const team = who.get(p.name)[2] || '';
+                    const m = p.matchup || '';
+                    // matchup is away + home, e.g. "GBDET".
+                    const game = m.endsWith(team) ? 'vs ' + m.slice(0, -team.length)
+                               : m.startsWith(team) ? 'at ' + m.slice(team.length) : '';
+                    return `<tr><td class="name">${esc(p.name)}</td><td class="l dim">${esc(team)} ${esc(game)}</td>` +
+                           `<td class="big">${fmtLine(p.stats.rush_yds)}</td><td>${fmtLine(p.stats.receptions)}</td><td>${fmtLine(p.stats.rec_yds)}</td></tr>`;
+                }).join('');
+                const upd = new Date(weekly.lastUpdated);
+                if (!isNaN(upd)) $('rb-note').textContent = `Lines as of ${shortDate(upd)}. A game's lines lock at kickoff.`;
+            } catch (e) {
+                document.querySelector('.lead .table-wrap').hidden = true;
+                $('rb-empty').hidden = false;
+            }
+        }
+
+        async function loadArbs() {
+            try {
+                const data = await getJSON('dashboards/prediction-arbitrage/arbs.json');
+                const arbs = data.arbs || [];
+                if (!arbs.length) return;
+                const rets = arbs.map((a) => a.return_pct).filter((r) => r != null).sort((a, b) => a - b);
+                const mid = rets.length % 2 ? rets[(rets.length - 1) / 2] : (rets[rets.length / 2 - 1] + rets[rets.length / 2]) / 2;
+                const plats = new Set(arbs.flatMap((a) => [a.platform_a, a.platform_b]));
+                const pair = [...plats].every((p) => p === 'kalshi' || p === 'polymarket') ? 'Kalshi and Polymarket' : 'the prediction markets';
+                $('arb-head').textContent = `${arbs.length} gaps between ${pair}`;
+                $('arb-best').textContent = rets[rets.length - 1].toFixed(2) + '%';
+                $('arb-median').textContent = mid.toFixed(2) + '%';
+                // Same rule as the picks page: the oldest scan that contributed arbs.
+                const ts = (s) => Date.parse(String(s.updated_at || '').replace(/\.\d+/, ''));
+                const scans = (data.sources || []).filter((s) => s.ok && s.guaranteed_kept > 0 && isFinite(ts(s))).map(ts);
+                const asOf = new Date(scans.length ? Math.min(...scans) : Date.parse(data.generated_at));
+                $('arb-asof').textContent = isNaN(asOf) ? '–'
+                    : `${shortDate(asOf)}, ${asOf.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })}`;
+                $('arb-stats').hidden = false;
+            } catch (e) { /* keep the static headline */ }
+        }
+
+        function esc(s) {
+            return String(s || '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+        }
+
+        loadRunningBacks();
+        loadArbs();
+    </script>
 </body>
 </html>

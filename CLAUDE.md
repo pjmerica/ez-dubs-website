@@ -38,13 +38,20 @@ Two things that look like mistakes and are not:
   running it (it should touch only the two NFL `index.html` files).
 - **The NFL pages' look comes from the port, not from hand edits.**
   `nfl-shared/style.css` is a re-themed copy of the lineup template's
-  stylesheet (`SITE_THEME` in the port maps its purple and near-black palette
-  to the site's blue and navy), and the port adds an override block
-  (`NFL_SITE_CSS`) and the site footer. To change how those pages look, edit
-  the port and re-run it. From the calculator page (the nav/footer donor) it
-  lifts only the `body` and `.site-footer` rules (`chrome_rules`, 2026-10-22);
-  lifting its whole `<style>` once let the calculator's `.verdict` restyle
-  lineup's verdict boxes, so don't widen that filter.
+  stylesheet (`SITE_THEME` and `RGBA_THEME` in the port invert its purple
+  and near-black palette into the site's newsprint one, and it squares off
+  every corner), and the port adds an override block (`NFL_SITE_CSS`) and the
+  site footer. To change how those pages look, edit the port and re-run it.
+  From the calculator page (the nav/footer donor) it lifts only the `body` and
+  `.site-footer` rules (`chrome_rules`, 2026-10-22); lifting its whole
+  `<style>` once let the calculator's `.verdict` restyle lineup's verdict
+  boxes, so don't widen that filter. (Since the redesign the calculator has
+  neither rule; both live in `assets/site.css`, so nothing is lifted.)
+- **`app.js` sets no colours inline** (2026-10-26). Its muted, good and warning
+  text use the classes `c-dim`, `c-good` and `c-warn`, defined in the lineup
+  stylesheet, so the port's re-theme reaches them. An inline `style="color:..."`
+  in a future upstream change would show the old dark-theme colour here (and
+  fail contrast on paper).
 
 The data **auto-refreshes** via `.github/workflows/nfl-data-pull.yml`, which
 mirrors the upstream JSON (twice daily, more Thu-Sun, hourly on Sundays as a
@@ -130,23 +137,46 @@ on every single run.
 Do not remove those rules without re-checking that a no-op `pull_nfl_data.py` run
 leaves `git status` clean.
 
+## The look: "Box Score" (redesign, 2026-10-26)
+
+The site was a dark navy dashboard with a bright blue accent, pill buttons and
+rounded cards, which read as AI-generated. The user picked a newsprint sports
+page from three mockups: paper ground, ink text, one red accent, square
+corners, rules and dotted row lines instead of boxes, no emoji in the UI.
+
+- **Colours are tokens in `assets/site.css`** (`--paper`, `--ink`, `--ink-2`,
+  `--muted`, `--red`, `--green`, `--amber`, the rules). Pages use `var(--...)`,
+  never a hex. Every text token passes AA on `--paper` and on `--paper-2`;
+  `--rule-soft` (#8a8478, 3.3:1) is for lines only, never text. YES is green and
+  NO is red everywhere, including the calculator the picks page hands off to.
+- **Type:** Barlow Condensed (headlines, nav, buttons, in capitals), Source
+  Serif 4 (body), Roboto Mono (numbers, tables, labels). **Self-hosted** in
+  `assets/fonts/`, because every page's CSP has `font-src 'self'`; don't
+  switch to Google Fonts without changing the CSP on every page. 404.html can't
+  link site.css (its CSP allows inline styles only), so it carries its own
+  `@font-face` copies by absolute path.
+- **Shared page pieces** in site.css: `.kicker` (red label over a headline)
+  and `.headline` (condensed capitals). Not `.num`: the NFL app has its own.
+- The home page fills its tables from `nfl-start-sit/data/weekly.json`,
+  `sleeper_players.json` and `prediction-arbitrage/arbs.json` in the browser,
+  so it never goes stale; each block keeps static copy if its file fails.
+- **The 2026 Best Ball pages kept their old dark styles** (frozen). They link
+  site.css, so they got the new nav over the old page.
+
 ## UI and accessibility (audited 2026-10-08)
 
-See `dashboards/UI_AUDIT.md` for the full run. The short version:
+See `dashboards/UI_AUDIT.md` for the full run, which predates the redesign (its
+colour values are the old theme's). What still holds:
 
-- 77 text colours were below the WCAG AA contrast floor and are fixed. The muted
-  greys are now **#7f8c99** (on the page background) and **#8a97a5** (on the
-  lighter card). Do not reintroduce #555, #666, #6f7e8d or #6a6a8a for text.
-- Primary buttons use **dark text (#0f1923) on the brand accent #4a9eff**, not
-  white. White on that accent is 2.75:1 and fails.
-- **The nav's CSS lives in one file, `assets/site.css`** (2026-10-19): the reset,
-  the nav, the phone menu and the NFL submenu, which used to be eight identical
-  inline copies (about 39 KB). Each page links it **immediately before its own
-  `<style>`**, which is where those rules sat, so page rules still come after
-  them; don't move the link. A nav *style* change is now one edit.
+- **Contrast is checked in CI** by `verify_a11y.test.js` (axe, real Chrome, every
+  page at desktop and phone width), so a token that fails AA fails the build.
+- **Shared CSS lives in one file, `assets/site.css`** (2026-10-19, widened
+  2026-10-26): fonts, tokens, reset, base type, the nav, the phone menu, the
+  NFL submenu and the footer. Each page links it **immediately before its own
+  `<style>`**, so page rules still come after it; don't move the link.
   `verify_shared_css.test.js` fails if a page stops linking it or an inline copy
-  creeps back. The nav *markup* and the footer are still per page (the footer
-  styles differ between pages); `verify_nav.test.js` keeps the markup in sync.
+  creeps back. The nav and footer *markup* are still per page;
+  `verify_nav.test.js` keeps the nav in sync.
 - `frame-ancestors` in a `<meta>` tag does nothing. Chrome ignores it there (and
   logged a console error about it on every page load until it was removed from
   the six pages that had it, 2026-10-20), and GitHub Pages cannot set response

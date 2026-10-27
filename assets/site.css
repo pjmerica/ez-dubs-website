@@ -1,100 +1,142 @@
-/* Styles shared by every page with the site nav: the reset, the nav, its
-   phone layout and the NFL submenu. Moved here 2026-10-19 from eight
-   identical inline copies; each page links this just before its own <style>,
-   which is where these rules sat, so page rules still come after them.
-   scripts/verify_shared_css.test.js keeps the pages and this file in step.
-   GitHub Pages caches it for 10 minutes. */
+/* Styles shared by every page with the site nav: the fonts, the colour
+   tokens, the reset, base type, the nav, its phone layout, the NFL submenu and
+   the footer. Each page links this just before its own <style>, so page rules
+   still come after these. scripts/verify_shared_css.test.js keeps the pages
+   and this file in step. GitHub Pages caches it for 10 minutes.
+
+   The look ("Box Score", 2026-10-26): a newsprint sports page. Paper ground,
+   ink text, one red accent, square corners, rules instead of boxes. Headlines
+   and nav in Barlow Condensed, body in Source Serif 4, numbers in Roboto Mono.
+   The fonts are served from assets/fonts/ because every page's CSP has
+   font-src 'self', which blocks Google Fonts. */
+
+@font-face { font-family: 'Barlow Condensed'; font-style: normal; font-weight: 700; font-display: swap;
+    src: url('fonts/barlow-condensed-700.woff2') format('woff2'); }
+@font-face { font-family: 'Barlow Condensed'; font-style: normal; font-weight: 800; font-display: swap;
+    src: url('fonts/barlow-condensed-800.woff2') format('woff2'); }
+/* Source Serif 4 and Roboto Mono are variable fonts: one file, every weight. */
+@font-face { font-family: 'Source Serif 4'; font-style: normal; font-weight: 200 900; font-display: swap;
+    src: url('fonts/source-serif-4.woff2') format('woff2'); }
+@font-face { font-family: 'Source Serif 4'; font-style: italic; font-weight: 200 900; font-display: swap;
+    src: url('fonts/source-serif-4-italic.woff2') format('woff2'); }
+@font-face { font-family: 'Roboto Mono'; font-style: normal; font-weight: 100 700; font-display: swap;
+    src: url('fonts/roboto-mono.woff2') format('woff2'); }
+
+/* Colour tokens. Every text colour here passes WCAG AA (4.5:1) on --paper:
+   --ink 15.3, --ink-2 10.3, --muted 8.1, --red 5.7, --green 5.7, --amber 5.6,
+   and all of them still pass on --paper-2 (the weakest, --amber, is 5.0).
+   --rule-soft is 3.3:1 and is for rules and dots only, never text. */
+:root {
+    --paper: #f3f0e8;
+    --paper-2: #e9e4d8;      /* sunk panels, hover rows */
+    --field: #fbfaf6;        /* inputs */
+    --ink: #1a1a1a;
+    --ink-2: #3a3833;        /* body copy under a headline */
+    --muted: #4a4740;        /* labels, captions, footnotes */
+    --rule: #1a1a1a;
+    --rule-soft: #8a8478;    /* dotted row rules */
+    --rule-faint: #cfc8b8;   /* hairlines between blocks */
+    --red: #b3261e;          /* the accent; also NO and errors */
+    --green: #1d6b3a;        /* YES, returns, success */
+    --amber: #865400;        /* warnings, flags */
+    --display: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+    --serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+    --mono: 'Roboto Mono', ui-monospace, Menlo, Consolas, monospace;
+}
+
 * { margin: 0; padding: 0; box-sizing: border-box; }
-/* Site nav (matches dashboard) */
+body {
+    font-family: var(--serif); background: var(--paper); color: var(--ink);
+    line-height: 1.5; -webkit-font-smoothing: antialiased;
+}
+a { color: var(--ink); }
+a:hover { color: var(--red); }
+:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
+
+/* Site nav: the masthead. Text links in condensed capitals over a double rule;
+   the active page is red. */
 .site-nav {
     position: sticky; top: 0; z-index: 50;
-    display: flex; align-items: center; gap: 28px;
-    padding: 14px 28px;
-    background: #0f1923; border-bottom: 1px solid #1e2d3d;
+    display: flex; align-items: center; gap: 24px;
+    padding: 12px 28px;
+    background: var(--paper); border-bottom: 3px double var(--rule);
 }
 .site-nav .brand {
-    font-weight: 700; font-size: 1.05rem; color: #fff;
-    text-decoration: none; white-space: nowrap;
+    font-family: var(--display); font-weight: 800; font-size: 1.75rem;
+    line-height: 1; text-transform: uppercase; letter-spacing: 0.01em;
+    color: var(--ink); text-decoration: none; white-space: nowrap;
 }
-.site-nav .brand .accent { color: #4a9eff; }
-.site-nav .nav-tabs { display: flex; gap: 6px; flex-wrap: wrap; }
+.site-nav .brand .accent { color: var(--ink); }
+.site-nav .nav-tabs { display: flex; gap: 2px 20px; flex-wrap: wrap; align-items: center; }
 .site-nav .nav-tabs a {
-    padding: 8px 16px; border-radius: 8px; border: 1px solid #2a3a4a;
-    background: #1a2634; color: #aaa; text-decoration: none;
-    font-size: 0.9rem; font-weight: 600; transition: all 0.15s;
+    padding: 6px 0; border: 0; background: none; color: var(--ink);
+    text-decoration: none; font-family: var(--display); font-size: 1.1rem;
+    font-weight: 700; text-transform: uppercase; letter-spacing: 0.03em;
 }
-.site-nav .nav-tabs a:hover { border-color: #4a9eff; color: #fff; }
-.site-nav .nav-tabs a.active { border-color: #4a9eff; color: #4a9eff; }
+.site-nav .nav-tabs a:hover { color: var(--red); }
+.site-nav .nav-tabs a.active { color: var(--red); }
 .site-nav .nav-dd { position: relative; }
 .site-nav .nav-dd-btn {
-    padding: 8px 16px; border-radius: 8px; border: 1px solid #2a3a4a;
-    background: #1a2634; color: #aaa; cursor: pointer;
-    font-size: 0.9rem; font-weight: 600; transition: all 0.15s;
-    font-family: inherit;
+    padding: 6px 0; border: 0; background: none; color: var(--ink); cursor: pointer;
+    font-family: var(--display); font-size: 1.1rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.03em;
 }
-.site-nav .nav-dd-btn:hover { border-color: #4a9eff; color: #fff; }
-.site-nav .nav-dd-btn.has-active { border-color: #4a9eff; color: #4a9eff; }
-/* 0.7rem at 70% opacity read as a dash rather than an arrow (2026-10-20). */
-.site-nav .nav-dd-btn .caret { font-size: 0.8rem; margin-left: 4px; opacity: 0.85; }
+.site-nav .nav-dd-btn:hover { color: var(--red); }
+.site-nav .nav-dd-btn.has-active { color: var(--red); }
+.site-nav .nav-dd-btn .caret { font-size: 0.8rem; margin-left: 3px; }
 .site-nav .nav-dd-menu {
-    position: absolute; top: calc(100% + 6px); left: 0; min-width: 280px;
-    background: #131f2c; border: 1px solid #2a3a4a; border-radius: 10px;
-    padding: 6px; z-index: 100;
-    display: none; flex-direction: column; gap: 2px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+    position: absolute; top: calc(100% + 6px); left: -12px; min-width: 260px;
+    background: var(--paper); border: 1px solid var(--rule); border-top: 3px solid var(--rule);
+    padding: 6px 0; z-index: 100;
+    display: none; flex-direction: column;
 }
 /* Invisible bridge so the cursor can travel from button to menu
    without crossing a non-hover dead zone. */
 .site-nav .nav-dd-menu::before {
     content: ''; position: absolute; left: 0; right: 0;
-    top: -8px; height: 8px;
+    top: -10px; height: 10px;
 }
 .site-nav .nav-dd:hover .nav-dd-menu,
 .site-nav .nav-dd:focus-within .nav-dd-menu { display: flex; }
 .site-nav .nav-dd-menu a {
-    padding: 8px 12px; border-radius: 6px; border: 0; background: transparent;
-    /* Same colour as the submenu links: single-level menu items were grey
-       #aaa while nested ones were #cfe0f0, so one menu looked dimmer. */
-    color: #cfe0f0; text-decoration: none; font-size: 0.88rem; font-weight: 600;
+    padding: 8px 14px; font-size: 1.05rem; color: var(--ink);
 }
-.site-nav .nav-dd-menu a:hover { background: #1e2d3d; color: #fff; }
-.site-nav .nav-dd-menu a.active { color: #4a9eff; background: #1e2d3d; }
+.site-nav .nav-dd-menu a:hover { background: var(--paper-2); color: var(--red); }
+.site-nav .nav-dd-menu a.active { color: var(--red); }
 .site-nav .nav-spacer { flex: 1; }
 .site-nav .bmc-btn {
-    padding: 8px 16px; border-radius: 8px;
-    background: #FFDD00; color: #1a1a1a; text-decoration: none;
-    font-size: 0.9rem; font-weight: 700; transition: opacity 0.15s;
-    white-space: nowrap; margin-left: 8px;
+    padding: 6px 12px; border: 2px solid var(--red); color: var(--red);
+    font-family: var(--display); font-size: 1rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.03em;
+    text-decoration: none; white-space: nowrap; margin-left: 8px;
 }
-.site-nav .bmc-btn:hover { opacity: 0.85; }
-/* ─── Mobile nav (≤720px) ─────────────────────────────── */
+.site-nav .bmc-btn:hover { background: var(--red); color: var(--paper); }
+/* ─── Phone and tablet nav ────────────────────────────── */
 .nav-toggle { display: none; }
 .nav-toggle-label { display: none; }
-/* Menu-button layout below 1080px (2026-10-21; was 720px). The full nav --
-   brand, five buttons, Buy Me a Coffee -- needs ~990px in one row, so between
-   720 and ~1060px it wrapped onto two or three rows: every tablet. */
+/* Menu-button layout below 1080px: the full nav needs about that much width
+   in one row, so between 720 and ~1060px it wrapped onto two rows. */
 @media (max-width: 1080px) {
-    /* The menu checkbox was display:none, which also removes it from
-       the tab order, so on a phone keyboard and screen-reader users
-       could not open the menu at all. Visually hidden but focusable
-       here; it stays display:none on desktop, where the menu is
-       always open. The ring shows on the hamburger. (2026-10-19) */
+    /* Visually hidden but focusable, so keyboard and screen-reader users can
+       open the menu; display:none would take it out of the tab order. It
+       stays display:none on desktop, where the menu is always open. The ring
+       shows on the hamburger. */
     .site-nav .nav-toggle {
         display: block; position: absolute; width: 1px; height: 1px;
         margin: 0; opacity: 0; pointer-events: none;
     }
     .site-nav .nav-toggle:focus-visible ~ .nav-toggle-label {
-        outline: 2px solid #4a9eff; outline-offset: 2px; border-radius: 6px;
+        outline: 2px solid var(--red); outline-offset: 2px;
     }
-    .site-nav { flex-wrap: wrap; gap: 12px; padding: 12px 16px; }
+    .site-nav { flex-wrap: wrap; gap: 10px; padding: 10px 16px; }
+    .site-nav .brand { font-size: 1.5rem; }
     .site-nav .nav-toggle-label {
         display: flex; flex-direction: column; gap: 4px;
-        cursor: pointer; padding: 8px; margin-left: auto;
+        cursor: pointer; padding: 10px 8px; margin-left: auto;
         background: transparent; border: 0;
     }
     .site-nav .nav-toggle-label span {
-        display: block; width: 22px; height: 2px;
-        background: #aaa; border-radius: 1px;
+        display: block; width: 22px; height: 2px; background: var(--ink);
         transition: transform 0.2s, opacity 0.2s;
     }
     .nav-toggle:checked ~ .nav-toggle-label span:nth-child(1) {
@@ -107,17 +149,17 @@
     .site-nav .nav-spacer { display: none; }
     .site-nav .nav-tabs {
         order: 99; flex-basis: 100%;
-        flex-direction: column; gap: 6px;
-        display: none;
+        flex-direction: column; align-items: stretch; gap: 0;
+        display: none; border-top: 1px solid var(--rule); padding-top: 4px;
     }
     .nav-toggle:checked ~ .nav-tabs { display: flex; }
     .site-nav .nav-tabs a,
-    .site-nav .nav-dd-btn { width: 100%; text-align: left; }
+    .site-nav .nav-dd-btn { width: 100%; text-align: left; padding: 10px 0; }
     .site-nav .nav-dd { width: 100%; }
     .site-nav .nav-dd-menu {
         position: static; display: flex !important;
-        min-width: 0; width: 100%; margin-top: 4px;
-        box-shadow: none; background: #0f1923;
+        min-width: 0; width: 100%; margin: 0 0 6px;
+        border: 0; padding: 0 0 0 14px;
     }
     .site-nav .nav-dd-menu::before { display: none; }
     .site-nav .bmc-btn {
@@ -126,52 +168,77 @@
     }
     .nav-toggle:checked ~ .bmc-btn { display: block; }
 }
-/* Second-level nav submenu (added for the NFL > Best Ball / Redraft
-   split). The first level is unchanged; these rules only apply inside a
-   .nav-dd-sub, so existing single-level dropdowns are unaffected. */
+/* Second-level nav submenu (NFL > Best Ball / Redraft). These rules only
+   apply inside a .nav-dd-sub, so single-level dropdowns are unaffected. */
 .site-nav .nav-dd-sub { position: relative; }
 .site-nav .nav-dd-sub > .nav-dd-sub-btn {
     display: flex; align-items: center; justify-content: space-between;
     width: 100%; gap: 8px;
     background: none; border: 0; cursor: default;
-    padding: 7px 14px; font: inherit; font-size: 0.9rem;
-    color: #cfe0f0; text-align: left;
+    padding: 8px 14px; font-family: var(--display); font-size: 1.05rem;
+    font-weight: 700; text-transform: uppercase; letter-spacing: 0.03em;
+    color: var(--ink); text-align: left;
 }
-.site-nav .nav-dd-sub > .nav-dd-sub-btn:hover { background: #1e2d3d; color: #fff; }
-.site-nav .nav-dd-sub > .nav-dd-sub-btn.has-active { color: #4a9eff; }
-.site-nav .nav-dd-sub > .nav-dd-sub-btn .caret { font-size: 0.65rem; opacity: 0.7; }
+.site-nav .nav-dd-sub > .nav-dd-sub-btn:hover { background: var(--paper-2); }
+.site-nav .nav-dd-sub > .nav-dd-sub-btn.has-active { color: var(--red); }
+.site-nav .nav-dd-sub > .nav-dd-sub-btn .caret { font-size: 0.7rem; }
 .site-nav .nav-dd-sub-menu {
-    display: none; position: absolute; top: 0; left: 100%;
-    min-width: 210px; flex-direction: column;
-    background: #15202b; border: 1px solid #2b3f55; border-radius: 8px;
+    display: none; position: absolute; top: -9px; left: 100%;
+    min-width: 230px; flex-direction: column;
+    background: var(--paper); border: 1px solid var(--rule); border-top: 3px solid var(--rule);
     padding: 6px 0; z-index: 60;
-    box-shadow: 0 10px 24px rgba(0,0,0,0.45);
 }
 .site-nav .nav-dd-sub:hover > .nav-dd-sub-menu,
 .site-nav .nav-dd-sub:focus-within > .nav-dd-sub-menu { display: flex; }
-.site-nav .nav-dd-sub-menu a {
-    padding: 7px 14px; font-size: 0.9rem; color: #cfe0f0; text-decoration: none;
-}
-.site-nav .nav-dd-sub-menu a:hover { background: #1e2d3d; color: #fff; }
-.site-nav .nav-dd-sub-menu a.active { color: #4a9eff; background: #1e2d3d; }
+.site-nav .nav-dd-sub-menu a { padding: 8px 14px; }
+.site-nav .nav-dd-sub-menu a:hover { background: var(--paper-2); color: var(--red); }
+.site-nav .nav-dd-sub-menu a.active { color: var(--red); }
 @media (max-width: 1080px) {
     /* No room to fly out sideways on a phone: indent in place instead. */
     .site-nav .nav-dd-sub-menu {
         display: flex; position: static; left: auto;
-        border: 0; box-shadow: none; background: transparent;
+        border: 0; background: transparent;
         padding: 0 0 0 14px; min-width: 0;
     }
-    .site-nav .nav-dd-sub > .nav-dd-sub-btn { cursor: default; }
+    .site-nav .nav-dd-sub > .nav-dd-sub-btn { padding: 8px 0; }
     /* The submenu opens below here, not to the side, so point its arrow down. */
     .site-nav .nav-dd-sub > .nav-dd-sub-btn .caret { transform: rotate(90deg); }
 }
-/* WCAG 2.2 (2.5.8) asks for a 24x24px minimum target. Measured in Chrome, these
-   footer and header links were 17-22px tall. Padding enlarges the hit area
-   without moving anything, because the line-height already leaves the room. */
+
+/* Footer, the same on every page: a double rule, the disclaimer, two links. */
+.site-footer {
+    margin-top: 56px; padding: 14px 28px 32px; border-top: 3px double var(--rule);
+    font-family: var(--mono); font-size: 0.75rem; color: var(--muted);
+}
+.site-footer .disclaimer-line { max-width: 760px; margin: 0 0 10px; line-height: 1.6; }
+.site-footer .footer-row {
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 8px 16px;
+}
+.site-footer a { color: var(--ink); }
+.site-footer a:hover { color: var(--red); }
+@media (max-width: 640px) { .site-footer { padding: 14px 16px 28px; } }
+
+/* WCAG 2.2 (2.5.8) asks for a 24x24px minimum target. Padding enlarges the
+   hit area of these short links without moving anything. */
 .site-footer a,
 footer a,
 .nav-right a,
 a.brand {
   padding: 4px 2px;
   display: inline-block;
+}
+
+/* Shared page pieces. A page header is a red kicker, a condensed capital
+   headline and a serif dek. */
+.kicker {
+    font-family: var(--display); font-weight: 700; font-size: 1rem;
+    letter-spacing: 0.06em; text-transform: uppercase; color: var(--red);
+    margin: 0 0 8px;
+}
+/* Not .num: the NFL app (nfl-shared/style.css) already has a .num class, and
+   this file loads after it there. */
+.headline {
+    font-family: var(--display); font-weight: 800; text-transform: uppercase;
+    line-height: 0.98; letter-spacing: 0;
 }

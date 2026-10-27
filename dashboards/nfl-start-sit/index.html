@@ -13,57 +13,51 @@
   <meta property="og:type" content="website" />
   <meta property="og:image" content="https://ezdubsanalytics.com/EDA.png" />
   <meta name="twitter:card" content="summary" />
-  <link rel="stylesheet" href="../nfl-shared/style.css?v=fe656dbbeb" />
+  <link rel="stylesheet" href="../nfl-shared/style.css?v=3e8948fc99" />
 <link rel="stylesheet" href="../../assets/site.css">
 <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-               background: #0f1923; color: #e0e0e0; }
-        .site-footer {
-            border-top: 1px solid #1e2d3d; padding: 28px 32px;
-            color: #7f8c99; font-size: 0.82rem; margin-top: 48px;
-        }
-        .site-footer .disclaimer-line {
-            text-align: center; color: #7f8c99; font-size: 0.78rem;
-            max-width: 720px; margin: 0 auto 14px; line-height: 1.5;
-        }
-        .site-footer .footer-row {
-            display: flex; justify-content: space-between; align-items: center;
-            flex-wrap: wrap; gap: 12px;
-        }
-        .site-footer a { color: #99aabb; text-decoration: none; }
-        .site-footer a:hover { color: #4a9eff; }
+
     </style>
 <style>
   /* EZ Dubs chrome for the NFL pages; added by port_lineup_to_ezdubs.py. */
-  body { padding: 0; }
-  /* The site's dashboard header standard (2026-10-21): 36px above the h1,
-     1.8rem/700, 1.5rem on a phone. The template's was 28px/22px. */
-  .container { padding: 36px 20px 0; }
-  header h1 { font-size: 1.8rem; margin: 0 0 6px; letter-spacing: -0.01em; }
-  header .subtitle { color: #99aabb; font-size: 0.92rem; line-height: 1.5;
-                     margin-bottom: 22px; }
-  /* The boxed verdict panels. These used to arrive by accident with the
-     calculator's whole <style>; only its body and footer rules are lifted now
-     (chrome_rules, 2026-10-22), so the look is kept here on purpose. */
-  .verdict { background: #0f1923; border: 1px solid #1e2d3d; border-radius: 12px;
-             padding: 18px 22px; margin-bottom: 14px; }
+  body { padding: 0; font-family: var(--serif); background: var(--paper); color: var(--ink); }
+  .container { padding: 36px 24px 0; }
+  header h1 {
+    font-family: var(--display); font-weight: 800; text-transform: uppercase;
+    font-size: clamp(2.4rem, 5vw, 3.4rem); line-height: 0.98; margin: 0 0 10px; color: var(--ink);
+  }
+  header .subtitle { color: var(--ink-2); font-size: 1.1rem; line-height: 1.55; margin-bottom: 22px; }
+  /* The verdict panels: a rule above, no box. Kept here on purpose since only
+     the calculator's body and footer rules are lifted (chrome_rules). */
+  .verdict { background: transparent; border: 0; border-top: 2px solid var(--rule);
+             border-radius: 0; padding: 14px 0; margin-bottom: 14px; }
+  /* Callouts lose the left-border box: rules above and below instead. */
+  .callout { background: transparent; border: 0; border-top: 1px solid var(--rule);
+             border-bottom: 1px solid var(--rule); border-radius: 0; padding: 12px 0;
+             color: var(--ink-2); font-size: 0.95rem; }
+  .callout strong { color: var(--ink); }
+  .callout-error { border-color: var(--red); color: var(--red); }
   @media (max-width: 720px) {
     body { padding: 0; }
-    .container { padding: 22px 12px 0; }
-    header h1 { font-size: 1.5rem; }
-    header .subtitle { font-size: 0.85rem; }
+    .container { padding: 24px 16px 0; }
   }
   .site-nav .caret { color: inherit; }
+  .fmt-btn, .chip, .view-tab, .source-tab {
+    font-family: var(--display); font-weight: 700; font-size: 1rem;
+    text-transform: uppercase; letter-spacing: 0.03em;
+  }
   .fmt-btn.active, .chip.active, .view-tab.active, .source-tab.active {
-    background: #4a9eff; border-color: #4a9eff; color: #0f1923;
+    background: var(--ink); border-color: var(--ink); color: var(--paper);
   }
   .chip:hover, .player-tag:hover, #search:focus, #roster-input:focus,
   #roster-search:focus, .h2h-picker input:focus, .roster-paste textarea:focus {
-    border-color: #4a9eff;
+    border-color: var(--red);
   }
-  .delta-toggle input, .market-toggles input, .book-toggle-list input { accent-color: #4a9eff; }
-  .callout { border-left-color: #4a9eff; }
-  .sources-note { color: #7f8c99; font-size: 0.78rem; text-align: center; margin: 4px 0 8px; }
+  .delta-toggle input, .market-toggles input, .book-toggle-list input { accent-color: var(--ink); }
+  table { font-variant-numeric: tabular-nums; }
+  .sources-note { font-family: var(--mono); color: var(--muted); font-size: 0.72rem; text-align: center; margin: 4px 0 8px; }
+  /* The template's bare footer rule centres its text; the site footer is left-aligned. */
+  .site-footer { text-align: left; font-size: 0.75rem; }
 </style>
 </head>
 <body>
@@ -105,7 +99,7 @@
             <a href="../../contact.html">Contact</a>
         </div>
         <div class="nav-spacer"></div>
-        <a class="bmc-btn" href="https://buymeacoffee.com/ezdubsanalytics" target="_blank" rel="noopener">☕ Buy Me a Coffee</a>
+        <a class="bmc-btn" href="https://buymeacoffee.com/ezdubsanalytics" target="_blank" rel="noopener">Buy me a coffee</a>
     </nav>
   <script>window.LINEUP_DEFAULT_VIEW = "sleeper"; window.LINEUP_DATA_DIR = "data/";</script>
 
@@ -213,6 +207,6 @@
             </span>
         </div>
     </footer>
-  <script src="../nfl-shared/app.js?v=fe656dbbeb"></script>
+  <script src="../nfl-shared/app.js?v=3e8948fc99"></script>
 </body>
 </html>

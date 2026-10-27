@@ -18,3 +18,6 @@
 *.py   text eol=lf
 *.yml  text eol=lf
 *.md   text eol=lf
+
+# Self-hosted fonts are binary; never let autocrlf touch them.
+*.woff2 binary

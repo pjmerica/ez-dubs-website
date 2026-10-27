@@ -67,7 +67,8 @@ contact.html
 404.html                       not-found page; root-relative links only
 robots.txt, sitemap.xml        hand-maintained; add a URL when a page joins the nav
 _config.yml                    keeps internal docs and scripts off the live site
-assets/site.css                the reset + nav styles every page links
+assets/site.css                fonts, colour tokens, nav and footer; every page links it
+assets/fonts/                  the three self-hosted typefaces (CSP blocks Google Fonts)
 dashboards/
   <six dashboards>/index.html
   nfl-shared/                  app.js + style.css, shared by the two NFL pages
@@ -111,13 +112,14 @@ invisible at 500px.
 
 ## Things worth knowing before editing
 
-- **The nav and footer are eight independent copies.** There is no template, so a
-  nav change means eight edits. `verify_nav.test.js` asserts they stay in sync.
-  About 39 KB of CSS is duplicated for the same reason; extracting it is a known,
-  unstarted refactor. See `dashboards/UI_AUDIT.md`.
-- **Colour rules.** Muted text is `#7f8c99` on the page background and `#8a97a5`
-  on the lighter card. Primary buttons use dark text (`#0f1923`) on the brand
-  accent `#4a9eff` — white on that accent is 2.75:1 and fails contrast.
+- **The nav and footer markup are eight independent copies.** There is no
+  template, so a nav change means eight edits (the NFL port rewrites them all).
+  `verify_nav.test.js` asserts they stay in sync. Their *styles* are shared, in
+  `assets/site.css`.
+- **Colour rules.** Use the tokens in `assets/site.css` (`var(--ink)`,
+  `var(--muted)`, `var(--red)` and so on), never a hex. Every text token passes
+  AA on the paper background; `--rule-soft` is for lines only. The 2026 Best
+  Ball pages are frozen and keep their old dark styles.
 - **`frame-ancestors` in a `<meta>` tag does nothing.** Chrome ignores it there
   and GitHub Pages cannot set response headers, so it is inert on this host.
 - `CLAUDE.md` carries the fuller working notes, including which data is frozen

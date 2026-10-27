@@ -3,8 +3,8 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  background: #0f1923;
-  color: #e0e0e0;
+  background: #f3f0e8;
+  color: #1a1a1a;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   min-height: 100vh;
   padding: 40px 20px;
@@ -20,7 +20,7 @@ body {
 
 a.back {
   font-size: 13px;
-  color: #99aabb;
+  color: #4a4740;
   text-decoration: none;
   margin-bottom: 16px;
   display: inline-block;
@@ -28,17 +28,17 @@ a.back {
      tall. The padding is absorbed by the margin below, so nothing moves. */
   padding: 4px 2px;
 }
-a.back:hover { color: #4a9eff; }
+a.back:hover { color: #1a1a1a; }
 
-header h1 { font-size: 28px; font-weight: 700; color: #fff; }
-.subtitle { font-size: 14px; color: #99aabb; margin-top: 6px; }
+header h1 { font-size: 28px; font-weight: 700; color: #1a1a1a; }
+.subtitle { font-size: 14px; color: #4a4740; margin-top: 6px; }
 
 .view-tabs {
   display: flex;
   gap: 4px;
-  background: #131f2c;
-  border: 1px solid #2a3a4a;
-  border-radius: 12px;
+  background: #efebe1;
+  border: 1px solid #8a8478;
+  border-radius: 0;
   padding: 5px;
   align-self: flex-start;
 }
@@ -48,28 +48,28 @@ header h1 { font-size: 28px; font-weight: 700; color: #fff; }
   padding: 10px 18px;
   border: none;
   background: transparent;
-  color: #99aabb;
+  color: #4a4740;
   cursor: pointer;
-  border-radius: 8px;
+  border-radius: 0;
   font-weight: 700;
   letter-spacing: 0.3px;
   transition: all 0.15s;
 }
 .view-tab.active {
-  background: #4a9eff;
+  background: #1a1a1a;
   color: white;
 }
 .view-tab:hover:not(.active) {
-  color: #e0e0e0;
-  background: #1e2d3d;
+  color: #1a1a1a;
+  background: #e9e4d8;
 }
 
 .source-tabs {
   display: flex;
   gap: 4px;
-  background: #1a2634;
-  border: 1px solid #2a3a4a;
-  border-radius: 10px;
+  background: #e9e4d8;
+  border: 1px solid #8a8478;
+  border-radius: 0;
   padding: 4px;
   align-self: flex-start;
 }
@@ -79,18 +79,18 @@ header h1 { font-size: 28px; font-weight: 700; color: #fff; }
   padding: 8px 14px;
   border: none;
   background: transparent;
-  color: #99aabb;
+  color: #4a4740;
   cursor: pointer;
-  border-radius: 6px;
+  border-radius: 0;
   font-weight: 600;
   transition: all 0.15s;
 }
 .source-tab.active {
-  background: #4a9eff;
+  background: #1a1a1a;
   color: white;
 }
 .source-tab:hover:not(.active) {
-  color: #e0e0e0;
+  color: #1a1a1a;
 }
 .source-tab[data-source="clay"][data-disabled="true"] {
   opacity: 0.4;
@@ -102,18 +102,18 @@ header h1 { font-size: 28px; font-weight: 700; color: #fff; }
   flex-wrap: wrap;
   gap: 12px;
   align-items: center;
-  background: #1a2634;
-  border: 1px solid #2a3a4a;
-  border-radius: 12px;
+  background: #e9e4d8;
+  border: 1px solid #8a8478;
+  border-radius: 0;
   padding: 14px 16px;
 }
 
 .format-group {
   display: flex;
   gap: 4px;
-  background: #0f1923;
-  border: 1px solid #2a3a4a;
-  border-radius: 8px;
+  background: #f3f0e8;
+  border: 1px solid #8a8478;
+  border-radius: 0;
   padding: 3px;
 }
 .fmt-btn {
@@ -122,17 +122,17 @@ header h1 { font-size: 28px; font-weight: 700; color: #fff; }
   padding: 6px 12px;
   border: none;
   background: transparent;
-  color: #99aabb;
+  color: #4a4740;
   cursor: pointer;
-  border-radius: 6px;
+  border-radius: 0;
   font-weight: 600;
   transition: all 0.15s;
 }
 .fmt-btn.active {
-  background: #4a9eff;
+  background: #1a1a1a;
   color: white;
 }
-.fmt-btn:hover:not(.active) { color: #e0e0e0; }
+.fmt-btn:hover:not(.active) { color: #1a1a1a; }
 
 #search {
   flex: 1;
@@ -140,13 +140,13 @@ header h1 { font-size: 28px; font-weight: 700; color: #fff; }
   padding: 8px 12px;
   font-size: 14px;
   font-family: inherit;
-  background: #0f1923;
-  border: 1px solid #2a3a4a;
-  border-radius: 8px;
-  color: #e0e0e0;
+  background: #f3f0e8;
+  border: 1px solid #8a8478;
+  border-radius: 0;
+  color: #1a1a1a;
   outline: none;
 }
-#search:focus { border-color: #4a9eff; }
+#search:focus { border-color: #1a1a1a; }
 
 .chip-group {
   display: flex;
@@ -157,24 +157,24 @@ header h1 { font-size: 28px; font-weight: 700; color: #fff; }
   font-family: inherit;
   font-size: 12px;
   padding: 6px 12px;
-  border-radius: 999px;
-  border: 1px solid #2a3a4a;
-  background: #0f1923;
-  color: #99aabb;
+  border-radius: 0;
+  border: 1px solid #8a8478;
+  background: #f3f0e8;
+  color: #4a4740;
   cursor: pointer;
   transition: all 0.15s;
   font-weight: 600;
 }
-.chip:hover { color: #e0e0e0; border-color: #4a9eff; }
-.chip.active { background: #4a9eff; border-color: #4a9eff; color: white; }
+.chip:hover { color: #1a1a1a; border-color: #1a1a1a; }
+.chip.active { background: #1a1a1a; border-color: #1a1a1a; color: white; }
 
 /* Tables scroll sideways on small screens, so the wrapper takes keyboard focus
    (tabindex="0" in app.js) and arrow keys can scroll it; show where focus is. */
-.table-wrap:focus-visible { outline: 2px solid #4a9eff; outline-offset: 2px; }
+.table-wrap:focus-visible { outline: 2px solid #1a1a1a; outline-offset: 2px; }
 .table-wrap {
-  background: #1a2634;
-  border: 1px solid #2a3a4a;
-  border-radius: 12px;
+  background: #e9e4d8;
+  border: 1px solid #8a8478;
+  border-radius: 0;
   /* overflow-x must scroll, not hide. At a 320px viewport the table is 358px
      wide, and `overflow: hidden` made the rightmost columns permanently
      unreachable -- no scrollbar and no swipe. overflow-y stays hidden so the
@@ -190,29 +190,29 @@ header h1 { font-size: 28px; font-weight: 700; color: #fff; }
 
 .rankings thead th {
   text-align: left;
-  /* Was 11px/#99aabb, which measured 3.32:1 against the card background -- under
+  /* Was 11px/#4a4740, which measured 3.32:1 against the card background -- under
      the 4.5:1 WCAG AA floor. These name the columns, so they need to be read. */
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 1px;
-  color: #99aabb;
-  background: #131f2c;
+  color: #4a4740;
+  background: #efebe1;
   padding: 12px 14px;
-  border-bottom: 1px solid #2a3a4a;
+  border-bottom: 1px solid #8a8478;
   font-weight: 600;
 }
 
 .rankings th.num { text-align: right; }
 .rankings th.rank { width: 50px; }
 .rankings th.sortable { cursor: pointer; user-select: none; }
-.rankings th.sortable:hover { color: #e0e0e0; }
-.caret { color: #4a9eff; }
+.rankings th.sortable:hover { color: #1a1a1a; }
+.caret { color: #1a1a1a; }
 
 .rankings tbody tr {
-  border-bottom: 1px solid #1e2b39;
+  border-bottom: 1px solid #cfc8b8;
   transition: background 0.1s;
 }
-.rankings tbody tr:hover { background: #1e2d3d; }
+.rankings tbody tr:hover { background: #e9e4d8; }
 .rankings tbody tr:last-child { border-bottom: none; }
 
 .rankings td {
@@ -222,36 +222,36 @@ header h1 { font-size: 28px; font-weight: 700; color: #fff; }
 }
 
 .rank-num {
-  color: #99aabb;
+  color: #4a4740;
   font-variant-numeric: tabular-nums;
   font-weight: 600;
 }
 
-.player-name { font-weight: 600; color: #f0f2f5; }
+.player-name { font-weight: 600; color: #1a1a1a; }
 
 .pos-badge {
   display: inline-block;
   font-size: 10px;
   font-weight: 700;
   padding: 2px 7px;
-  border-radius: 4px;
+  border-radius: 0;
   letter-spacing: 0.5px;
 }
-.pos-QB    { background: rgba(231, 76, 60, 0.18); color: #ff6b6b; }
+.pos-QB    { background: rgba(179, 38, 30, 0.18); color: #b3261e; }
 /* RB green, WR blue: the Sleeper convention, and what the EZ Dubs Best Ball
    pages use. These two were swapped (2026-10-22). K and DEF had no badge. */
-.pos-RB    { background: rgba(46, 204, 113, 0.18); color: #58d68d; }
-.pos-WR    { background: rgba(52, 152, 219, 0.18); color: #5dade2; }
-.pos-K, .pos-DEF { background: rgba(108, 122, 137, 0.18); color: #aab4bf; }
-.pos-TE    { background: rgba(243, 156, 18, 0.18); color: #f5b041; }
-.pos-Q     { background: rgba(108, 122, 137, 0.18); color: #95a5a6; }
+.pos-RB    { background: rgba(29, 107, 58, 0.18); color: #1d6b3a; }
+.pos-WR    { background: rgba(31, 78, 140, 0.18); color: #1f4e8c; }
+.pos-K, .pos-DEF { background: rgba(74, 71, 64, 0.18); color: #3a3833; }
+.pos-TE    { background: rgba(134, 84, 0, 0.18); color: #865400; }
+.pos-Q     { background: rgba(74, 71, 64, 0.18); color: #4a4740; }
 
-.matchup { color: #99aabb; font-size: 13px; }
+.matchup { color: #4a4740; font-size: 13px; }
 
 .proj {
   font-variant-numeric: tabular-nums;
   font-weight: 700;
-  color: #4a9eff;
+  color: #1a1a1a;
   text-align: right;
   font-size: 16px;
 }
@@ -265,20 +265,20 @@ header h1 { font-size: 28px; font-weight: 700; color: #fff; }
 .market-tag {
   font-size: 11px;
   padding: 3px 7px;
-  border-radius: 4px;
-  background: #0f1923;
-  border: 1px solid #2a3a4a;
-  color: #99aabb;
+  border-radius: 0;
+  background: #f3f0e8;
+  border: 1px solid #8a8478;
+  color: #4a4740;
   font-variant-numeric: tabular-nums;
 }
 
-.market-tag .mk-label { color: #99aabb; margin-right: 4px; }
-.market-tag .mk-val { color: #e0e0e0; font-weight: 600; }
+.market-tag .mk-label { color: #4a4740; margin-right: 4px; }
+.market-tag .mk-val { color: #1a1a1a; font-weight: 600; }
 
 .empty {
   text-align: center;
   padding: 40px;
-  color: #99aabb;
+  color: #4a4740;
   font-size: 14px;
 }
 
@@ -302,20 +302,20 @@ header h1 { font-size: 28px; font-weight: 700; color: #fff; }
   gap: 24px;
 }
 .viz-section {
-  background: #1a2634;
-  border: 1px solid #2a3a4a;
-  border-radius: 12px;
+  background: #e9e4d8;
+  border: 1px solid #8a8478;
+  border-radius: 0;
   padding: 20px;
 }
 .viz-title {
   font-size: 16px;
   font-weight: 700;
-  color: #f0f2f5;
+  color: #1a1a1a;
   margin-bottom: 6px;
 }
 .viz-desc {
   font-size: 13px;
-  color: #99aabb;
+  color: #4a4740;
   line-height: 1.45;
   margin-bottom: 14px;
 }
@@ -334,7 +334,7 @@ header h1 { font-size: 28px; font-weight: 700; color: #fff; }
 footer {
   text-align: center;
   font-size: 12px;
-  color: #99aabb;
+  color: #4a4740;
   padding-top: 16px;
 }
 
@@ -349,30 +349,30 @@ footer {
 /* ── Vegas Lines view ─────────────────────────────────────────────────────── */
 
 .callout {
-  background: rgba(74, 158, 255, 0.08);
-  border: 1px solid rgba(74, 158, 255, 0.35);
-  border-left: 3px solid #4a9eff;
-  border-radius: 6px;
+  background: rgba(26, 26, 26, 0.08);
+  border: 1px solid rgba(26, 26, 26, 0.35);
+  border-left: 3px solid #1a1a1a;
+  border-radius: 0;
   padding: 12px 16px;
   margin-bottom: 18px;
   font-size: 13px;
   line-height: 1.6;
-  color: #b5c0cc;
+  color: #3a3833;
 }
-.callout strong { color: #f0f2f5; }
-.callout em { color: #d3dbe4; font-style: normal; text-decoration: underline dotted; }
+.callout strong { color: #1a1a1a; }
+.callout em { color: #3a3833; font-style: normal; text-decoration: underline dotted; }
 /* Best-ball league chip: no swap count, because there is nothing to set. */
 .chip-bb {
   font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
-  padding: 1px 5px; border-radius: 4px; margin-left: 4px;
-  background: rgba(160, 170, 190, 0.16); color: #b8c2cf;
+  padding: 1px 5px; border-radius: 0; margin-left: 4px;
+  background: rgba(74, 71, 64, 0.16); color: #3a3833;
 }
 .bb-note { font-size: 13px; }
 .callout-error {
-  background: rgba(255, 107, 107, 0.08);
-  border-color: rgba(255, 107, 107, 0.35);
-  border-left-color: #ff6b6b;
-  color: #f0c4c4;
+  background: rgba(179, 38, 30, 0.08);
+  border-color: rgba(179, 38, 30, 0.35);
+  border-left-color: #b3261e;
+  color: #b3261e;
 }
 
 .vegas-controls {
@@ -388,31 +388,31 @@ footer {
   align-items: center;
   gap: 7px;
   font-size: 13px;
-  color: #94a3b3;
+  color: #4a4740;
   cursor: pointer;
   user-select: none;
 }
-.delta-toggle:hover { color: #e0e0e0; }
-.delta-toggle input { accent-color: #4a9eff; cursor: pointer; }
+.delta-toggle:hover { color: #1a1a1a; }
+.delta-toggle input { accent-color: #1a1a1a; cursor: pointer; }
 
 .vegas-table th.sortable { cursor: pointer; user-select: none; }
-.vegas-table th.sortable:hover { color: #e0e0e0; }
+.vegas-table th.sortable:hover { color: #1a1a1a; }
 
 .stat-label {
   font-size: 12px;
-  color: #94a3b3;
+  color: #4a4740;
   white-space: nowrap;
 }
 
 .vegas-line {
   font-weight: 700;
-  color: #f0f2f5;
+  color: #1a1a1a;
   font-variant-numeric: tabular-nums;
 }
 
 .odds {
   font-size: 12px;
-  color: #99aabb;
+  color: #4a4740;
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }
@@ -420,39 +420,39 @@ footer {
 .vegas-table td.num { font-variant-numeric: tabular-nums; }
 
 /* Delta vs FantasyPros: green = projections higher than Vegas, red = lower */
-.delta-up   { color: #58d68d; font-weight: 600; }
-.delta-down { color: #ff6b6b; font-weight: 600; }
-.delta-flat { color: #99aabb; }
+.delta-up   { color: #1d6b3a; font-weight: 600; }
+.delta-down { color: #b3261e; font-weight: 600; }
+.delta-flat { color: #4a4740; }
 
 .kalshi-line {
   font-weight: 600;
-  color: #c4dcff;
+  color: #b3261e;
   font-variant-numeric: tabular-nums;
 }
-.kalshi-line.thin { color: #97a7b8; font-weight: 500; }
-.thin-key { color: #97a7b8; font-weight: 700; }
+.kalshi-line.thin { color: #4a4740; font-weight: 500; }
+.thin-key { color: #4a4740; font-weight: 700; }
 
 /* ── Market Points view ───────────────────────────────────────────────────── */
 
 .market-pts {
   font-weight: 700;
-  color: #f0f2f5;
+  color: #1a1a1a;
   font-variant-numeric: tabular-nums;
   font-size: 15px;
 }
-.fit-mark { color: #f5b041; margin-left: 1px; font-weight: 700; }
-.proj-mark { color: #78aaff; margin-left: 2px; font-weight: 700; font-size: 11px; }
+.fit-mark { color: #865400; margin-left: 1px; font-weight: 700; }
+.proj-mark { color: #1f4e8c; margin-left: 2px; font-weight: 700; font-size: 11px; }
 /* A projection that leans on a season estimate (see ptsHtml in app.js): the
    same dashed blue as the TD ONLY tag, so the two read as one signal. */
 .pts-est {
-  color: #a9c4ee;
-  border-bottom: 1px dashed rgba(120, 170, 255, 0.6);
+  color: #1f4e8c;
+  border-bottom: 1px dashed rgba(31, 78, 140, 0.6);
   cursor: help;
 }
-.total-est { color: #8a97a5; font-weight: 400; cursor: help; }
+.total-est { color: #4a4740; font-weight: 400; cursor: help; }
 
 .market-nan {
-  color: #99aabb;
+  color: #4a4740;
   font-weight: 600;
   font-variant-numeric: tabular-nums;
   cursor: help;
@@ -465,55 +465,55 @@ tr.row-nan:hover { opacity: 0.85; }
   font-size: 12px;
   padding: 3px 7px;
   margin: 2px 4px 2px 0;
-  border-radius: 4px;
-  background: #202d3b;
-  border: 1px solid #2a3a4a;
-  color: #c3cdd8;
+  border-radius: 0;
+  background: #e9e4d8;
+  border: 1px solid #8a8478;
+  color: #3a3833;
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }
-.market-chip .mk-label { color: #97a7b8; margin-right: 2px; }
-.market-chip.src-fanduel { border-color: rgba(74, 158, 255, 0.4); }
-.market-chip.src-bovada  { border-color: rgba(232, 106, 92, 0.4); }
+.market-chip .mk-label { color: #4a4740; margin-right: 2px; }
+.market-chip.src-fanduel { border-color: rgba(26, 26, 26, 0.4); }
+.market-chip.src-bovada  { border-color: rgba(179, 38, 30, 0.4); }
 /* Projection-filled: dashed, because it is not a market number at all. */
 .market-chip.src-proj {
   border-style: dashed;
-  border-color: rgba(120, 170, 255, 0.45);
-  color: #bcd3f5;
+  border-color: rgba(31, 78, 140, 0.45);
+  color: #1f4e8c;
 }
-.market-chip.src-kalshi  { border-color: rgba(88, 214, 141, 0.35); }
-.market-chip.src-fit     { border-color: rgba(245, 176, 65, 0.4); color: #e8d5b0; }
-.market-chip.src-sigma   { border-color: rgba(245, 176, 65, 0.28); color: #ddd0bb; }
+.market-chip.src-kalshi  { border-color: rgba(29, 107, 58, 0.35); }
+.market-chip.src-fit     { border-color: rgba(134, 84, 0, 0.4); color: #865400; }
+.market-chip.src-sigma   { border-color: rgba(134, 84, 0, 0.28); color: #865400; }
 .market-chip.missing {
-  background: rgba(255, 107, 107, 0.08);
-  border-color: rgba(255, 107, 107, 0.3);
-  color: #ff9b9b;
+  background: rgba(179, 38, 30, 0.08);
+  border-color: rgba(179, 38, 30, 0.3);
+  color: #b3261e;
 }
 
-.nan-key { color: #99aabb; font-weight: 700; }
-.fit-key { color: #f5b041; font-weight: 700; }
-.proj-key { color: #78aaff; font-weight: 700; }
+.nan-key { color: #4a4740; font-weight: 700; }
+.fit-key { color: #865400; font-weight: 700; }
+.proj-key { color: #1f4e8c; font-weight: 700; }
 
 .market-table th.sortable { cursor: pointer; user-select: none; }
-.market-table th.sortable:hover { color: #e0e0e0; }
+.market-table th.sortable:hover { color: #1a1a1a; }
 /* Only the column actually driving the sort is highlighted. */
-.market-table th.sort-active { color: #e0e0e0; }
+.market-table th.sort-active { color: #1a1a1a; }
 
 /* This Week view */
 .weekly-game {
   font-size: 12px;
-  color: #94a3b3;
+  color: #4a4740;
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }
 .weekly-meta {
   font-size: 12px;
-  color: #94a3b3;
+  color: #4a4740;
   margin-left: auto;
   align-self: center;
 }
 .td-only-mark {
-  color: #78aaff;
+  color: #1f4e8c;
   margin-left: 3px;
   font-size: 9px;
   font-weight: 700;
@@ -542,7 +542,7 @@ tr.row-nan:hover { opacity: 0.85; }
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 1px;
-  color: #99aabb;
+  color: #4a4740;
   margin-bottom: 6px;
   font-weight: 600;
 }
@@ -552,14 +552,14 @@ tr.row-nan:hover { opacity: 0.85; }
   font-size: 13px;
   font-family: inherit;
   line-height: 1.6;
-  background: #0f1923;
-  border: 1px solid #2a3a4a;
-  border-radius: 8px;
-  color: #e0e0e0;
+  background: #f3f0e8;
+  border: 1px solid #8a8478;
+  border-radius: 0;
+  color: #1a1a1a;
   outline: none;
   resize: vertical;
 }
-#roster-input:focus { border-color: #4a9eff; }
+#roster-input:focus { border-color: #1a1a1a; }
 .sitstart-actions {
   display: flex;
   gap: 8px;
@@ -568,13 +568,13 @@ tr.row-nan:hover { opacity: 0.85; }
   flex-wrap: wrap;
 }
 .sitstart-actions .fmt-btn {
-  border: 1px solid #2a3a4a;
+  border: 1px solid #8a8478;
   padding: 8px 14px;
 }
 .sitstart-output {
-  background: #1a2634;
-  border: 1px solid #2a3a4a;
-  border-radius: 12px;
+  background: #e9e4d8;
+  border: 1px solid #8a8478;
+  border-radius: 0;
   overflow: hidden;
   min-height: 120px;
 }
@@ -584,16 +584,16 @@ tr.row-nan:hover { opacity: 0.85; }
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 1px;
-  color: #99aabb;
-  background: #131f2c;
+  color: #4a4740;
+  background: #efebe1;
   padding: 10px 12px;
-  border-bottom: 1px solid #2a3a4a;
+  border-bottom: 1px solid #8a8478;
   font-weight: 600;
 }
 .slot-table td {
   padding: 10px 12px;
   font-size: 14px;
-  border-bottom: 1px solid #1e2b39;
+  border-bottom: 1px solid #cfc8b8;
 }
 .slot-table tr:last-child td { border-bottom: none; }
 .slot-badge {
@@ -601,40 +601,40 @@ tr.row-nan:hover { opacity: 0.85; }
   font-size: 10px;
   font-weight: 700;
   padding: 2px 8px;
-  border-radius: 4px;
+  border-radius: 0;
   letter-spacing: 0.5px;
-  background: rgba(74, 158, 255, 0.18);
-  color: #8cc0ff;
+  background: rgba(26, 26, 26, 0.18);
+  color: #b3261e;
 }
-.slot-badge.flex { background: rgba(46, 204, 113, 0.16); color: #58d68d; }
-.bench-row td { color: #99aabb; }
+.slot-badge.flex { background: rgba(29, 107, 58, 0.16); color: #1d6b3a; }
+.bench-row td { color: #4a4740; }
 .sitstart-total {
   padding: 12px;
   font-size: 14px;
   font-weight: 700;
-  color: #f0f2f5;
-  background: #131f2c;
-  border-top: 1px solid #2a3a4a;
+  color: #1a1a1a;
+  background: #efebe1;
+  border-top: 1px solid #8a8478;
 }
 .sitstart-section {
   padding: 10px 12px;
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 1px;
-  color: #99aabb;
-  background: #131f2c;
+  color: #4a4740;
+  background: #efebe1;
   font-weight: 600;
 }
 .verdict {
   padding: 16px;
   font-size: 15px;
   line-height: 1.6;
-  color: #e0e0e0;
+  color: #1a1a1a;
 }
-.verdict strong { color: #58d68d; }
-.verdict strong.plain { color: #f0f2f5; }
-.verdict strong.neg { color: #ff6b6b; }
-.unmatched { color: #f5b041; }
+.verdict strong { color: #1d6b3a; }
+.verdict strong.plain { color: #1a1a1a; }
+.verdict strong.neg { color: #b3261e; }
+.unmatched { color: #865400; }
 
 
 /* ── Head-to-head view ────────────────────────────────────────────────────── */
@@ -654,17 +654,17 @@ tr.row-nan:hover { opacity: 0.85; }
   padding: 10px 12px;
   font-size: 14px;
   font-family: inherit;
-  background: #0f1923;
-  border: 1px solid #2a3a4a;
-  border-radius: 8px;
-  color: #e0e0e0;
+  background: #f3f0e8;
+  border: 1px solid #8a8478;
+  border-radius: 0;
+  color: #1a1a1a;
   outline: none;
 }
-.h2h-picker input:focus { border-color: #4a9eff; }
+.h2h-picker input:focus { border-color: #1a1a1a; }
 .h2h-vs {
   font-size: 12px;
   font-weight: 700;
-  color: #99aabb;
+  color: #4a4740;
   text-transform: uppercase;
   letter-spacing: 1px;
   padding-bottom: 11px;
@@ -678,43 +678,43 @@ tr.row-nan:hover { opacity: 0.85; }
 }
 @media (max-width: 620px) { .h2h-cards { grid-template-columns: 1fr; } }
 .h2h-card {
-  background: #1a2634;
-  border: 1px solid #2a3a4a;
-  border-radius: 12px;
+  background: #e9e4d8;
+  border: 1px solid #8a8478;
+  border-radius: 0;
   padding: 16px;
 }
-.h2h-card.winner { border-color: rgba(88, 214, 141, 0.55); }
-.h2h-card-name { font-size: 16px; font-weight: 700; color: #f0f2f5; }
-.h2h-card-meta { font-size: 12px; color: #99aabb; margin-top: 4px; }
+.h2h-card.winner { border-color: rgba(29, 107, 58, 0.55); }
+.h2h-card-name { font-size: 16px; font-weight: 700; color: #1a1a1a; }
+.h2h-card-meta { font-size: 12px; color: #4a4740; margin-top: 4px; }
 .h2h-card-pts {
   font-size: 30px;
   font-weight: 700;
-  color: #4a9eff;
+  color: #1a1a1a;
   font-variant-numeric: tabular-nums;
   margin-top: 10px;
 }
-.h2h-card.winner .h2h-card-pts { color: #58d68d; }
-.h2h-card-sub { font-size: 11px; color: #99aabb; text-transform: uppercase; letter-spacing: 1px; }
+.h2h-card.winner .h2h-card-pts { color: #1d6b3a; }
+.h2h-card-sub { font-size: 11px; color: #4a4740; text-transform: uppercase; letter-spacing: 1px; }
 
 .h2h-bar-row { margin-top: 10px; }
 .h2h-bar-label {
   display: flex;
   justify-content: space-between;
   font-size: 12px;
-  color: #99aabb;
+  color: #4a4740;
   margin-bottom: 4px;
   font-variant-numeric: tabular-nums;
 }
 .h2h-bar {
   display: flex;
   height: 8px;
-  border-radius: 4px;
+  border-radius: 0;
   overflow: hidden;
-  background: #0f1923;
+  background: #f3f0e8;
 }
-.h2h-bar-a { background: #4a9eff; }
-.h2h-bar-b { background: #58d68d; }
-.h2h-stat-name { color: #99aabb; }
+.h2h-bar-a { background: #1a1a1a; }
+.h2h-bar-b { background: #1d6b3a; }
+.h2h-stat-name { color: #4a4740; }
 
 
 /* ── Roster picker (type-to-add chips) ────────────────────────────────────── */
@@ -724,19 +724,19 @@ tr.row-nan:hover { opacity: 0.85; }
   padding: 10px 12px;
   font-size: 14px;
   font-family: inherit;
-  background: #0f1923;
-  border: 1px solid #2a3a4a;
-  border-radius: 8px;
-  color: #e0e0e0;
+  background: #f3f0e8;
+  border: 1px solid #8a8478;
+  border-radius: 0;
+  color: #1a1a1a;
   outline: none;
 }
-#roster-search:focus { border-color: #4a9eff; }
+#roster-search:focus { border-color: #1a1a1a; }
 .suggestions-list {
   position: absolute;
   top: 100%; left: 0; right: 0;
-  background: #131f2c;
-  border: 1px solid #2a3a4a;
-  border-radius: 8px;
+  background: #efebe1;
+  border: 1px solid #8a8478;
+  border-radius: 0;
   z-index: 100;
   max-height: 260px;
   overflow-y: auto;
@@ -747,18 +747,18 @@ tr.row-nan:hover { opacity: 0.85; }
   padding: 8px 12px;
   cursor: pointer;
   font-size: 13px;
-  color: #c3cdd8;
-  border-bottom: 1px solid #1e2b39;
+  color: #3a3833;
+  border-bottom: 1px solid #cfc8b8;
   display: flex;
   align-items: center;
   gap: 8px;
 }
 .suggestions-list div:last-child { border-bottom: none; }
 .suggestions-list div:hover,
-.suggestions-list div.active { background: #1e2d3d; color: #fff; }
+.suggestions-list div.active { background: #e9e4d8; color: #1a1a1a; }
 .suggestions-list .sugg-pts {
   margin-left: auto;
-  color: #99aabb;
+  color: #4a4740;
   font-variant-numeric: tabular-nums;
 }
 
@@ -774,31 +774,31 @@ tr.row-nan:hover { opacity: 0.85; }
   align-items: center;
   gap: 6px;
   padding: 4px 10px;
-  border-radius: 999px;
+  border-radius: 0;
   font-size: 12px;
   font-weight: 600;
   cursor: pointer;
-  border: 1px solid rgba(74, 158, 255, 0.5);
-  background: rgba(74, 158, 255, 0.14);
-  color: #a8d0ff;
+  border: 1px solid rgba(26, 26, 26, 0.5);
+  background: rgba(26, 26, 26, 0.14);
+  color: #b3261e;
 }
-.player-tag:hover { border-color: #4a9eff; color: #fff; }
+.player-tag:hover { border-color: #1a1a1a; color: #1a1a1a; }
 .player-tag .remove { opacity: 0.65; font-size: 13px; }
 .player-tag:hover .remove { opacity: 1; }
 .player-tag.unpriced {
-  border-color: rgba(245, 176, 65, 0.5);
-  background: rgba(245, 176, 65, 0.12);
-  color: #e8d5b0;
+  border-color: rgba(134, 84, 0, 0.5);
+  background: rgba(134, 84, 0, 0.12);
+  color: #865400;
 }
 
 .roster-paste { margin-top: 12px; }
 .roster-paste summary {
   font-size: 12px;
-  color: #99aabb;
+  color: #4a4740;
   cursor: pointer;
   user-select: none;
 }
-.roster-paste summary:hover { color: #99aabb; }
+.roster-paste summary:hover { color: #4a4740; }
 .roster-paste textarea {
   width: 100%;
   margin-top: 8px;
@@ -806,15 +806,15 @@ tr.row-nan:hover { opacity: 0.85; }
   font-size: 13px;
   font-family: inherit;
   line-height: 1.6;
-  background: #0f1923;
-  border: 1px solid #2a3a4a;
-  border-radius: 8px;
-  color: #e0e0e0;
+  background: #f3f0e8;
+  border: 1px solid #8a8478;
+  border-radius: 0;
+  color: #1a1a1a;
   outline: none;
   resize: vertical;
 }
-.roster-paste textarea:focus { border-color: #4a9eff; }
-.roster-paste .fmt-btn { margin-top: 8px; border: 1px solid #2a3a4a; }
+.roster-paste textarea:focus { border-color: #1a1a1a; }
+.roster-paste .fmt-btn { margin-top: 8px; border: 1px solid #8a8478; }
 
 
 /* ── Sleeper leagues view ─────────────────────────────────────────────────── */
@@ -822,14 +822,14 @@ tr.row-nan:hover { opacity: 0.85; }
 #sleeper-league-chips .chip { max-width: 260px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .league-scoring {
   font-size: 12px;
-  color: #99aabb;
+  color: #4a4740;
   margin-bottom: 10px;
 }
-.slot-badge.k-def { background: rgba(108, 122, 137, 0.2); color: #95a5a6; }
+.slot-badge.k-def { background: rgba(74, 71, 64, 0.2); color: #4a4740; }
 .injury-tag {
   font-size: 10px;
   font-weight: 700;
-  color: #ff6b6b;
+  color: #b3261e;
   margin-left: 6px;
   /* One unit: at tablet width "Out (Groin)" broke into "Out" / "(Groin)". */
   white-space: nowrap;
@@ -845,18 +845,18 @@ tr.row-nan:hover { opacity: 0.85; }
   flex-wrap: wrap;
   margin-bottom: 14px;
 }
-.sleeper-login .fmt-btn { border: 1px solid #2a3a4a; padding: 9px 16px; }
+.sleeper-login .fmt-btn { border: 1px solid #8a8478; padding: 9px 16px; }
 .sleeper-login .weekly-meta { align-self: center; }
-.sleeper-error { color: #ff6b6b; }
+.sleeper-error { color: #b3261e; }
 
 
 /* ── Per-market toggles (Start/Sit) ───────────────────────────────────────── */
 .market-toggles {
   margin-top: 14px;
   padding: 12px;
-  background: #131f2c;
-  border: 1px solid #2a3a4a;
-  border-radius: 8px;
+  background: #efebe1;
+  border: 1px solid #8a8478;
+  border-radius: 0;
   display: flex;
   flex-wrap: wrap;
   gap: 4px 14px;
@@ -867,16 +867,16 @@ tr.row-nan:hover { opacity: 0.85; }
   align-items: center;
   gap: 5px;
   font-size: 12px;
-  color: #99aabb;
+  color: #4a4740;
   cursor: pointer;
   user-select: none;
 }
-.market-toggles label:hover { color: #e0e0e0; }
-.market-toggles input { accent-color: #4a9eff; cursor: pointer; }
+.market-toggles label:hover { color: #1a1a1a; }
+.market-toggles input { accent-color: #1a1a1a; cursor: pointer; }
 .market-toggle-link {
   font-size: 11px;
-    /* Lighter tint of the brand purple: #4a9eff was 3.12:1, under AA at this size. */
-  color: #7fb8ff;
+    /* Lighter tint of the brand purple: #1a1a1a was 3.12:1, under AA at this size. */
+  color: #b3261e;
   text-decoration: none;
   margin-left: 8px;
   text-transform: none;
@@ -892,20 +892,20 @@ tr.row-nan:hover { opacity: 0.85; }
   width: 100%;
 }
 .book-toggle-list label { display: inline-flex; align-items: center; gap: 5px;
-  font-size: 12px; color: #99aabb; cursor: pointer; user-select: none; }
-.book-toggle-list label:hover { color: #e0e0e0; }
-.book-toggle-list input { accent-color: #4a9eff; cursor: pointer; }
-.book-count { color: #99aabb; font-size: 12px; }
+  font-size: 12px; color: #4a4740; cursor: pointer; user-select: none; }
+.book-toggle-list label:hover { color: #1a1a1a; }
+.book-toggle-list input { accent-color: #1a1a1a; cursor: pointer; }
+.book-count { color: #4a4740; font-size: 12px; }
 
 /* A lineup slot whose player has already played: the decision is gone, so the
    row reads as settled rather than as something still to choose. */
 .locked-row { opacity: 0.6; }
-.locked-row td { background: rgba(108, 122, 137, 0.06); }
+.locked-row td { background: rgba(74, 71, 64, 0.06); }
 
 /* Rooting direction marker: green up for your players, red down for theirs. */
 .root-mark { font-size: 11px; margin-right: 2px; }
-.root-mark.for { color: #58d68d; }
-.root-mark.against { color: #ff6b6b; }
+.root-mark.for { color: #1d6b3a; }
+.root-mark.against { color: #b3261e; }
 
 /* Aggregate rooting view */
 .matchup-strip {
@@ -916,21 +916,21 @@ tr.row-nan:hover { opacity: 0.85; }
 }
 .matchup-card {
   flex: 1 1 180px;
-  background: #1a2634;
-  border: 1px solid #2a3a4a;
+  background: #e9e4d8;
+  border: 1px solid #8a8478;
   border-left-width: 3px;
-  border-radius: 8px;
+  border-radius: 0;
   padding: 10px 12px;
 }
-.matchup-card.ahead  { border-left-color: #58d68d; }
-.matchup-card.behind { border-left-color: #ff6b6b; }
-.matchup-league { font-size: 12px; color: #99aabb; text-transform: uppercase;
+.matchup-card.ahead  { border-left-color: #1d6b3a; }
+.matchup-card.behind { border-left-color: #b3261e; }
+.matchup-league { font-size: 12px; color: #4a4740; text-transform: uppercase;
   letter-spacing: 0.6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.matchup-score { font-size: 17px; font-weight: 700; color: #f0f2f5;
+.matchup-score { font-size: 17px; font-weight: 700; color: #1a1a1a;
   font-variant-numeric: tabular-nums; margin-top: 3px; }
-.matchup-opp { font-size: 12px; color: #99aabb; margin-top: 2px; }
-.league-count { font-size: 11px; font-weight: 700; color: #7fb8ff; }
-.league-names { font-size: 12px; color: #99aabb; }
+.matchup-opp { font-size: 12px; color: #4a4740; margin-top: 2px; }
+.league-count { font-size: 11px; font-weight: 700; color: #b3261e; }
+.league-names { font-size: 12px; color: #4a4740; }
 
 /* Coverage / freshness banner. Books do not post most Sunday player props
    until Thursday night, so a midweek board is genuinely incomplete rather
@@ -939,28 +939,28 @@ tr.row-nan:hover { opacity: 0.85; }
 .coverage-note {
   margin: 0 0 14px;
   padding: 10px 13px;
-  border-radius: 7px;
+  border-radius: 0;
   font-size: 13px;
   line-height: 1.5;
-  background: #1b2836;
-  border: 1px solid #2f4258;
-  color: #a3b0bf;
+  background: #e9e4d8;
+  border: 1px solid #8a8478;
+  color: #4a4740;
 }
 .coverage-note.early {
-  background: #2a2218;
-  border-color: #6b5326;
-  color: #e0c98a;
+  background: #efe4c8;
+  border-color: #865400;
+  color: #865400;
 }
-.coverage-note strong { color: #f0f2f5; }
-.coverage-note em { font-style: normal; color: #c4ced9; }
+.coverage-note strong { color: #1a1a1a; }
+.coverage-note em { font-style: normal; color: #3a3833; }
 
 /* A projected fill: no book posted this market, so the number is a season
    estimate divided by 17 rather than a price. Deliberately the coolest, least
    confident colour on the board, and always prefixed with a squiggle. */
 .market-chip.src-proj {
-  background: #22303e;
-  border-color: #34465a;
-  color: #94a3b3;
+  background: #e9e4d8;
+  border-color: #8a8478;
+  color: #4a4740;
 }
 
 .coverage-note .coverage-sub { display: block; margin-top: 6px; opacity: 0.85; }
@@ -972,9 +972,9 @@ tr.row-nan:hover { opacity: 0.85; }
    wrong and invisible the rest of the time. */
 .help {
   margin: 0 0 16px;
-  border: 1px solid #26364a;
-  border-radius: 8px;
-  background: #14202d;
+  border: 1px solid #8a8478;
+  border-radius: 0;
+  background: #efebe1;
 }
 
 .help > summary {
@@ -982,7 +982,7 @@ tr.row-nan:hover { opacity: 0.85; }
   cursor: pointer;
   font-size: 13px;
   font-weight: 550;
-  color: #97a6b7;
+  color: #4a4740;
   list-style: none;
   user-select: none;
 }
@@ -993,32 +993,32 @@ tr.row-nan:hover { opacity: 0.85; }
   content: "\203A";
   display: inline-block;
   margin-right: 8px;
-  color: #8a97a5;
+  color: #4a4740;
   transition: transform 0.15s ease;
 }
 
 .help[open] > summary::before { transform: rotate(90deg); }
-.help > summary:hover { color: #cfd8e2; }
+.help > summary:hover { color: #3a3833; }
 
 .help-body {
   padding: 2px 16px 14px 30px;
   font-size: 13px;
   line-height: 1.62;
-  color: #8a97a5;
-  border-top: 1px solid #1c2a3d;
+  color: #4a4740;
+  border-top: 1px solid #cfc8b8;
   margin-top: 2px;
   padding-top: 12px;
 }
 
 .help-body p { margin: 0 0 11px; }
 .help-body p:last-child { margin-bottom: 0; }
-.help-body strong { color: #b0bccb; }
-.help-body em { color: #9dabbb; font-style: italic; }
+.help-body strong { color: #3a3833; }
+.help-body em { color: #4a4740; font-style: italic; }
 
 /* Inline copies of the row markers, so the help text shows the same thing the
    table does rather than describing it. */
-.tag-swap { color: #58d68d; font-weight: 700; }
-.tag-sit { color: #e8a0a0; font-weight: 700; }
+.tag-swap { color: #1d6b3a; font-weight: 700; }
+.tag-sit { color: #b3261e; font-weight: 700; }
 
 /* League chips carry their own swap count, so "which team needs attention"
    is answerable without clicking through every league in turn. */
@@ -1027,23 +1027,23 @@ tr.row-nan:hover { opacity: 0.85; }
   margin-left: 6px;
   min-width: 17px;
   padding: 0 5px;
-  border-radius: 9px;
-  background: #2e7d4f;
-  color: #eafff2;
+  border-radius: 0;
+  background: #1d6b3a;
+  color: #f3f0e8;
   font-size: 11px;
   font-weight: 700;
   font-variant-numeric: tabular-nums;
 }
 
-.chip.active .chip-count { background: #3fa96a; }
+.chip.active .chip-count { background: #1d6b3a; }
 
 .chip-ok {
   margin-left: 6px;
-  color: #5fae7d;
+  color: #1d6b3a;
   font-weight: 700;
 }
 
-.chip.active .chip-ok { color: #7fd6a0; }
+.chip.active .chip-ok { color: #1d6b3a; }
 
 /* -- Rooting: two lists, side by side ---------------------------------------
    Root FOR and Root AGAINST are read against each other -- the question is
@@ -1081,8 +1081,8 @@ tr.row-nan:hover { opacity: 0.85; }
    border so it reads at a glance that these come from the game line rather
    than from a book quoting that player. */
 .market-chip.src-gameline {
-  border-color: rgba(143, 168, 200, 0.45);
-  color: #cdd8e6;
+  border-color: rgba(74, 71, 64, 0.45);
+  color: #3a3833;
 }
 
 /* The Slot column holds a short badge and nothing else. Without this it sized
@@ -1110,7 +1110,7 @@ tr.row-nan:hover { opacity: 0.85; }
   .slot-table .game-col { display: none; }
   .slot-table .game-sub { display: block; }
 }
-.game-sub { display: none; font-size: 11px; font-weight: 400; color: #8a97a5; margin-top: 2px; }
+.game-sub { display: none; font-size: 11px; font-weight: 400; color: #4a4740; margin-top: 2px; }
 
 /* Marks a row whose usage is a season projection rather than a market price.
    The stat chips already carry an approx sign, but a row total looks the same
@@ -1121,10 +1121,10 @@ tr.row-nan:hover { opacity: 0.85; }
   display: inline-block;
   margin-left: 6px;
   padding: 1px 5px;
-  border-radius: 3px;
-  border: 1px dashed rgba(120, 170, 255, 0.5);
-  background: rgba(120, 170, 255, 0.08);
-  color: #9cc0f0;
+  border-radius: 0;
+  border: 1px dashed rgba(31, 78, 140, 0.5);
+  background: rgba(31, 78, 140, 0.08);
+  color: #1f4e8c;
   /* Was 9px. This tag warns that a projection is NOT from Vegas books,
      so it should not be the least readable thing on the page. */
   font-size: 11px;
@@ -1138,8 +1138,15 @@ tr.row-nan:hover { opacity: 0.85; }
    than the ordinary coverage note because the numbers are not merely incomplete,
    they are unusable -- and they otherwise look exactly like live ones. */
 .coverage-note.stale-week {
-  border-color: rgba(255, 107, 107, 0.55);
-  background: rgba(255, 107, 107, 0.09);
-  color: #ffc9c9;
+  border-color: rgba(179, 38, 30, 0.55);
+  background: rgba(179, 38, 30, 0.09);
+  color: #b3261e;
 }
-.coverage-note.stale-week strong { color: #ff8f8f; }
+.coverage-note.stale-week strong { color: #b3261e; }
+
+/* Text colours app.js used to set inline (style="color:..."). As classes, a
+   stylesheet can restyle them: the EZ Dubs port re-themes these hexes for its
+   light page. Last in the file so they win over a parent rule like .verdict. */
+.c-dim { color: #4a4740; }
+.c-good { color: #1d6b3a; }
+.c-warn { color: #865400; }
