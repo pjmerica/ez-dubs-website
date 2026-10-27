@@ -15,7 +15,7 @@
     <meta property="og:image" content="https://ezdubsanalytics.com/EDA.png">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:image" content="https://ezdubsanalytics.com/EDA.png">
-    <link rel="stylesheet" href="../../assets/site.css?v=box-score-1">
+    <link rel="stylesheet" href="../../assets/site.css?v=box-score-2">
     <style>
         /* The 2026 Best Ball archive in the site's "Box Score" look (restyled
            2026-10-26; the data is frozen, only the styling changed). DraftKings is
@@ -242,6 +242,10 @@
         }
         .viz-track .dot.a { background: var(--src-a-color, var(--ink)); color: var(--paper); z-index: 2; }
         .viz-track .dot.b { background: var(--paper); color: var(--src-b-color, var(--red)); border: 2px solid var(--src-b-color, var(--red)); z-index: 2; }
+        /* Set by separateCloseDots(): a pair too close to read side by side. */
+        .viz-row .viz-track.close { height: 66px; }
+        .viz-track.close .dot.a { transform: translate(-50%, calc(-50% - 16px)); }
+        .viz-track.close .dot.b { transform: translate(-50%, calc(-50% + 16px)); }
         .viz-callout { display: flex; flex-direction: column; align-items: flex-end; line-height: 1.1; }
         .viz-callout .gap { font-family: var(--mono); font-size: 1.35rem; font-weight: 700; }
         .viz-callout .label {
@@ -307,12 +311,15 @@
            .rec-adps cannot compress past its min-width. Below 380px the two
            numeric columns release their minimums and the ADP detail wraps to its
            own line under the name, which is the right reading order anyway --
-           the name is what you scan, the numbers are what you read second. */
-        @media (max-width: 380px) {
+           the name is what you scan, the numbers are what you read second.
+           Raised to 600px in the redesign: the wider serif and mono split names
+           like "De'Zhaun / Stribling" over two lines on a 390px phone. The ADPs
+           move under the name (order: 5) so the change stays on the name's line. */
+        @media (max-width: 600px) {
           .rec-list li { flex-wrap: wrap; row-gap: 2px; }
           .rec-name { margin: 0 6px; min-width: 0; }
-          .rec-adps { min-width: 0; flex-basis: 100%; text-align: left; padding-left: 28px; }
-          .rec-val { min-width: 0; }
+          .rec-adps { order: 5; min-width: 0; flex-basis: 100%; text-align: left; padding-left: 28px; }
+          .rec-val { min-width: 0; margin-left: 10px; }
         }
 
         /* The 2026 Best Ball season closed on Sept 4. The date alone does not
@@ -512,6 +519,7 @@
                 document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
                 btn.classList.add('active');
                 document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+                if (btn.dataset.tab === 'visualizer') separateCloseDots();
             });
         });
 
@@ -935,7 +943,8 @@
                 const left  = Math.min(aPct, bPct);
                 const right = Math.max(aPct, bPct);
                 const cheaperLabel = p.gap > 0 ? srcLabel(srcB) : srcLabel(srcA);
-                const cheaperCls   = p.gap > 0 ? 'cheaper-b' : 'cheaper-a';
+                // A gap that rounds to 0 picks is no disagreement: neither side is pricier.
+                const cheaperCls   = Math.abs(p.gap) < 0.5 ? '' : p.gap > 0 ? 'cheaper-b' : 'cheaper-a';
                 const k = normalizeName(p.name);
                 const aRank = aRanks[`${p.pos}|${k}`];
                 const bRank = bRanks[`${p.pos}|${k}`];
@@ -956,10 +965,11 @@
                     </div>
                     <div class="viz-callout ${cheaperCls}">
                         <span class="gap">${Math.abs(p.gap).toFixed(0)}</span>
-                        <span class="label">picks pricier on ${cheaperLabel}</span>
+                        <span class="label">${Math.abs(p.gap) < 0.5 ? 'same on both' : `picks pricier on ${cheaperLabel}`}</span>
                     </div>
                 </div>`;
             }).join('');
+            separateCloseDots(listEl);
         }
 
         document.querySelectorAll('.viz-pos-btn').forEach(btn => {
@@ -1033,7 +1043,8 @@
                 const aPct = pct(p.aAdp), bPct = pct(p.bAdp);
                 const left = Math.min(aPct, bPct), right = Math.max(aPct, bPct);
                 const cheaperLabel = p.gap > 0 ? srcLabel(srcB) : srcLabel(srcA);
-                const cheaperCls   = p.gap > 0 ? 'cheaper-b' : 'cheaper-a';
+                // A gap that rounds to 0 picks is no disagreement: neither side is pricier.
+                const cheaperCls   = Math.abs(p.gap) < 0.5 ? '' : p.gap > 0 ? 'cheaper-b' : 'cheaper-a';
                 return `<div class="viz-row">
                     <span class="pos-badge pos-${escapeHtml(p.pos)}">${escapeHtml(p.pos)}</span>
                     <div class="viz-name"><span class="player">${escapeHtml(p.name)}</span></div>
@@ -1045,11 +1056,34 @@
                     </div>
                     <div class="viz-callout ${cheaperCls}">
                         <span class="gap">${Math.abs(p.gap).toFixed(0)}</span>
-                        <span class="label">picks pricier on ${cheaperLabel}</span>
+                        <span class="label">${Math.abs(p.gap) < 0.5 ? 'same on both' : `picks pricier on ${cheaperLabel}`}</span>
                     </div>
                 </div>`;
             }).join('');
+            separateCloseDots(listEl);
         }
+
+        // When a player's two ADPs are close, the 30px dots overlap and the ring
+        // hides the dot (or the reverse). Positions are percentages, so whether
+        // they collide depends on the track's width on screen: measure, and stack
+        // a close pair vertically, first source above the axis, second below.
+        // Rerun on resize and when the chart tab is shown (hidden tabs measure 0).
+        function separateCloseDots(root) {
+            (root || document).querySelectorAll('.viz-track').forEach(t => {
+                const a = t.querySelector('.dot.a'), b = t.querySelector('.dot.b');
+                if (!a || !b) return;
+                t.classList.remove('close');
+                const ra = a.getBoundingClientRect(), rb = b.getBoundingClientRect();
+                if (!ra.width) return;
+                const apart = Math.abs((ra.left + ra.right) / 2 - (rb.left + rb.right) / 2);
+                if (apart < ra.width + 4) t.classList.add('close');
+            });
+        }
+        let separateTimer = null;
+        window.addEventListener('resize', () => {
+            clearTimeout(separateTimer);
+            separateTimer = setTimeout(() => separateCloseDots(), 150);
+        });
 
         // Suggestion-list-driven autocomplete: typing shows up to 12 matches,
         // clicking adds to the selected set.

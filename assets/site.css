@@ -212,7 +212,10 @@ a:hover { color: var(--red); }
 
 /* Footer, the same on every page: a double rule, the disclaimer, two links. */
 .site-footer {
-    margin-top: 56px; padding: 14px 28px 32px; border-top: 3px double var(--rule);
+    /* The double rule runs edge to edge like the nav's; the text sits in the
+       same 1200px column as the home page (1144px of content plus 28px gutters). */
+    margin-top: 56px; padding: 14px max(28px, calc((100% - 1144px) / 2)) 32px;
+    border-top: 3px double var(--rule);
     font-family: var(--mono); font-size: 0.75rem; color: var(--muted);
 }
 .site-footer .disclaimer-line { max-width: 760px; margin: 0 0 10px; line-height: 1.6; }

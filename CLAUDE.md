@@ -51,7 +51,9 @@ Two things that look like mistakes and are not:
   text use the classes `c-dim`, `c-good` and `c-warn`, defined in the lineup
   stylesheet, so the port's re-theme reaches them. An inline `style="color:..."`
   in a future upstream change would show the old dark-theme colour here (and
-  fail contrast on paper).
+  fail contrast on paper). Lineup player names are wrapped in `span.pname`
+  (2026-10-27) so the port's phone CSS can put the name on line one and its
+  tags and team on line two.
 
 The data **auto-refreshes** via `.github/workflows/nfl-data-pull.yml`, which
 mirrors the upstream JSON (twice daily, more Thu-Sun, hourly on Sundays as a
@@ -155,9 +157,9 @@ corners, rules and dotted row lines instead of boxes, no emoji in the UI.
   switch to Google Fonts without changing the CSP on every page. 404.html can't
   link site.css (its CSP allows inline styles only), so it carries its own
   `@font-face` copies by absolute path.
-- **site.css is linked as `site.css?v=box-score-1`** so a deploy does not pair
+- **site.css is linked as `site.css?v=box-score-2`** so a deploy does not pair
   new HTML with the 10-minute-cached old stylesheet. Bump the tag on the six
-  hand-made pages after a large style change and re-run the NFL port (it copies
+  hand-made pages after any site.css change and re-run the NFL port (it copies
   the link from the calculator).
 - **Shared page pieces** in site.css: `.kicker` (red label over a headline)
   and `.headline` (condensed capitals). Not `.num`: the NFL app has its own.

@@ -1145,7 +1145,7 @@
           continue;
         }
         html += "<tr><td>" + badge + "</td>" +
-          '<td class="player-name">' + escapeHtml(r.p.name) +
+          '<td class="player-name">' + '<span class="pname">' + escapeHtml(r.p.name) + '</span>' +
           projTag(r.p) + gameSub(gameLabel(r.p.matchup) || "-") + "</td>" +
           '<td><span class="pos-badge pos-' + escapeHtml(r.p.position || "?") + '">' +
           escapeHtml(r.p.position || "?") + "</span></td>" +
@@ -1165,7 +1165,7 @@
       html += '<div class="sitstart-section">Bench</div><table class="slot-table"><tbody>';
       for (const p of bench) {
         html += '<tr class="bench-row"><td class="player-name">' +
-          escapeHtml(p.name) + projTag(p) + gameSub(gameLabel(p.matchup) || "-") + "</td>" +
+          '<span class="pname">' + escapeHtml(p.name) + '</span>' + projTag(p) + gameSub(gameLabel(p.matchup) || "-") + "</td>" +
           '<td><span class="pos-badge pos-' + escapeHtml(p.position || "?") + '">' +
           escapeHtml(p.position || "?") + "</span></td>" +
           '<td class="weekly-game game-col">' + escapeHtml(gameLabel(p.matchup) || "-") + "</td>" +
@@ -1350,7 +1350,7 @@
       '<th style="text-align:right">Lineup gain</th>' +
       "<th>Would bench</th></tr></thead><tbody>";
     for (const f of gains) {
-      html += '<tr><td class="player-name">' + escapeHtml(f.name) + gameSub(gameLabel(f.matchup) || "-") + "</td>" +
+      html += '<tr><td class="player-name">' + '<span class="pname">' + escapeHtml(f.name) + '</span>' + gameSub(gameLabel(f.matchup) || "-") + "</td>" +
         '<td><span class="pos-badge pos-' + escapeHtml(f.position) + '">' +
         escapeHtml(f.position) + "</span></td>" +
         '<td class="weekly-game game-col">' + escapeHtml(gameLabel(f.matchup) || "-") + "</td>" +
@@ -1673,7 +1673,7 @@
       }
       if (p.isLocked) {
         html += '<tr class="locked-row"><td>' + badge + "</td>" +
-          '<td class="player-name">' + escapeHtml(p.name) +
+          '<td class="player-name">' + '<span class="pname">' + escapeHtml(p.name) + '</span>' +
           ' <span class="injury-tag c-dim">PLAYED</span>' +
           gameSub(p.team || "-") + "</td>" +
           '<td><span class="pos-badge pos-' + escapeHtml(p.position || "?") + '">' +
@@ -1692,7 +1692,7 @@
       const swap = p.wasStarter || lg.bestBall ? "" :
         ' <span class="injury-tag c-good">SWAP IN</span>';
       html += "<tr><td>" + badge + "</td>" +
-        '<td class="player-name">' + escapeHtml(p.name) +
+        '<td class="player-name">' + '<span class="pname">' + escapeHtml(p.name) + '</span>' +
         projTag(p) +
         (p.injury ? ' <span class="injury-tag" title="Sleeper injury status">' +
           escapeHtml(injuryLabel(p.injury)) + "</span>" : "") +
@@ -1722,7 +1722,7 @@
         const swap = p.wasStarter && !lg.bestBall
           ? ' <span class="injury-tag">SITTING</span>' : "";
         html += '<tr class="bench-row"><td class="player-name">' +
-          escapeHtml(p.name) +
+          '<span class="pname">' + escapeHtml(p.name) + '</span>' +
           projTag(p) +
         (p.injury ? ' <span class="injury-tag" title="Sleeper injury status">' +
           escapeHtml(injuryLabel(p.injury)) + "</span>" : "") +
