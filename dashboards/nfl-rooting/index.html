@@ -14,7 +14,7 @@
   <meta property="og:image" content="https://ezdubsanalytics.com/EDA.png" />
   <meta name="twitter:card" content="summary" />
   <link rel="stylesheet" href="../nfl-shared/style.css?v=3e8948fc99" />
-<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/site.css?v=box-score-1">
 <style>
 
     </style>
@@ -58,6 +58,18 @@
   .sources-note { font-family: var(--mono); color: var(--muted); font-size: 0.72rem; text-align: center; margin: 4px 0 8px; }
   /* The template's bare footer rule centres its text; the site footer is left-aligned. */
   .site-footer { text-align: left; font-size: 0.75rem; }
+  /* The template fades settled rows and dropped stats with opacity, which takes
+     every colour in them below AA: axe found 68 failures on a signed-in lineup
+     (2026-10-27; the old navy theme had 58 of the same). Muted ink at full
+     opacity reads as settled and still passes. */
+  .locked-row, tr.row-nan, .stat-off { opacity: 1; }
+  .locked-row td, .locked-row .player-name, tr.row-nan td, .stat-off { color: var(--muted); }
+  .locked-row .slot-badge, .locked-row .pos-badge { background: transparent; border: 1px solid currentColor; }
+  /* Source Serif sets wider than the old system font, so at 390px a settled
+     lineup ran 25px past its scroll box (383 in 358). Tighter cells win it back. */
+  @media (max-width: 600px) {
+    .slot-table th, .slot-table td { padding-left: 8px; padding-right: 8px; }
+  }
 </style>
 </head>
 <body>

@@ -2,7 +2,10 @@
    tokens, the reset, base type, the nav, its phone layout, the NFL submenu and
    the footer. Each page links this just before its own <style>, so page rules
    still come after these. scripts/verify_shared_css.test.js keeps the pages
-   and this file in step. GitHub Pages caches it for 10 minutes.
+   and this file in step. GitHub Pages caches it for 10 minutes, so every page
+   links it as site.css?v=<tag>; after a change big enough that new pages would
+   look broken with the old file, bump the tag on all six hand-made pages and
+   re-run the NFL port, which copies it from the calculator.
 
    The look ("Box Score", 2026-10-26): a newsprint sports page. Paper ground,
    ink text, one red accent, square corners, rules instead of boxes. Headlines
@@ -201,7 +204,8 @@ a:hover { color: var(--red); }
         border: 0; background: transparent;
         padding: 0 0 0 14px; min-width: 0;
     }
-    .site-nav .nav-dd-sub > .nav-dd-sub-btn { padding: 8px 0; }
+    /* Caret beside the label, as on the top-level buttons, not at the far edge. */
+    .site-nav .nav-dd-sub > .nav-dd-sub-btn { padding: 8px 0; justify-content: flex-start; }
     /* The submenu opens below here, not to the side, so point its arrow down. */
     .site-nav .nav-dd-sub > .nav-dd-sub-btn .caret { transform: rotate(90deg); }
 }

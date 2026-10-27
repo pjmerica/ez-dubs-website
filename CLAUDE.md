@@ -155,6 +155,10 @@ corners, rules and dotted row lines instead of boxes, no emoji in the UI.
   switch to Google Fonts without changing the CSP on every page. 404.html can't
   link site.css (its CSP allows inline styles only), so it carries its own
   `@font-face` copies by absolute path.
+- **site.css is linked as `site.css?v=box-score-1`** so a deploy does not pair
+  new HTML with the 10-minute-cached old stylesheet. Bump the tag on the six
+  hand-made pages after a large style change and re-run the NFL port (it copies
+  the link from the calculator).
 - **Shared page pieces** in site.css: `.kicker` (red label over a headline)
   and `.headline` (condensed capitals). Not `.num`: the NFL app has its own.
 - The home page fills its tables from `nfl-start-sit/data/weekly.json`,
