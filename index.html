@@ -153,14 +153,14 @@
         <div class="dateline">
             <span id="today">Data tools for sports and prediction markets</span>
             <span>NFL <span id="week-dateline">in season</span> &#183; Prediction markets &#183; Best Ball archive</span>
-            <span>Arbitrage picks refresh every 2 hours</span>
+            <span>Arbitrage picks refresh every few hours</span>
         </div>
 
         <div class="front">
             <article class="lead">
                 <p class="kicker">Start/Sit<span id="week-kicker"></span></p>
                 <h1 class="headline">Who to start, priced by the people betting on it</h1>
-                <p class="dek">Projections are one analyst's opinion. A prop line is what the market will take real money on. Start/Sit reads your Sleeper leagues and ranks your lineup off those lines.</p>
+                <p class="dek">Start/Sit reads your Sleeper leagues and scores each lineup from prop and game lines, under that league's own scoring. Players with no line fall back to a season projection.</p>
 
                 <p class="table-title" id="rb-title">Running backs, by rushing yards line</p>
                 <div class="table-wrap" tabindex="0" role="region" aria-labelledby="rb-title">
@@ -172,7 +172,7 @@
                     </table>
                 </div>
                 <p class="table-empty" id="rb-empty" hidden>This week's lines are not posted yet.</p>
-                <p class="table-note" id="rb-note">Lines from the betting markets. A game's lines lock at kickoff.</p>
+                <p class="table-note" id="rb-note">Kalshi player props. A game's lines lock at kickoff.</p>
                 <a class="more" href="dashboards/nfl-start-sit/">Load your leagues</a>
                 <a class="more" href="dashboards/nfl-rooting/">Who to root for</a>
             </article>
@@ -180,11 +180,11 @@
             <div class="side">
                 <article>
                     <p class="kicker">Prediction markets</p>
-                    <h2 class="headline" id="arb-head">Where Kalshi and Polymarket disagree</h2>
+                    <h2 class="headline" id="arb-head">Where the prediction markets disagree</h2>
                     <p class="dek">Buy one side on each exchange and you collect the same amount whichever way it settles. Today's board, after fees:</p>
                     <dl class="stat-list" id="arb-stats" hidden>
-                        <div><dt>Widest gap</dt><dd id="arb-best"></dd></div>
-                        <div><dt>Median gap</dt><dd id="arb-median"></dd></div>
+                        <div><dt>Best return</dt><dd id="arb-best"></dd></div>
+                        <div><dt>Median return</dt><dd id="arb-median"></dd></div>
                         <div><dt>Prices as of</dt><dd id="arb-asof"></dd></div>
                     </dl>
                     <a class="more" href="dashboards/prediction-arbitrage/">Today's picks</a>
@@ -276,7 +276,7 @@
                            `<td class="big">${fmtLine(p.stats.rush_yds)}</td><td>${fmtLine(p.stats.receptions)}</td><td>${fmtLine(p.stats.rec_yds)}</td></tr>`;
                 }).join('');
                 const upd = new Date(weekly.lastUpdated);
-                if (!isNaN(upd)) $('rb-note').textContent = `Lines as of ${shortDate(upd)}. A game's lines lock at kickoff.`;
+                if (!isNaN(upd)) $('rb-note').textContent = `Kalshi player props as of ${shortDate(upd)}. A game's lines lock at kickoff.`;
             } catch (e) {
                 document.querySelector('.lead .table-wrap').hidden = true;
                 $('rb-empty').hidden = false;
@@ -288,7 +288,10 @@
                 const data = await getJSON('dashboards/prediction-arbitrage/arbs.json');
                 const arbs = data.arbs || [];
                 if (!arbs.length) return;
-                const rets = arbs.map((a) => a.return_pct).filter((r) => r != null).sort((a, b) => a - b);
+                // Returns leave out rows the scanner flags as a possible data error,
+                // unless every row is flagged.
+                const clean = arbs.filter((a) => !a.suspicious);
+                const rets = (clean.length ? clean : arbs).map((a) => a.return_pct).filter((r) => r != null).sort((a, b) => a - b);
                 const mid = rets.length % 2 ? rets[(rets.length - 1) / 2] : (rets[rets.length / 2 - 1] + rets[rets.length / 2]) / 2;
                 const plats = new Set(arbs.flatMap((a) => [a.platform_a, a.platform_b]));
                 const pair = [...plats].every((p) => p === 'kalshi' || p === 'polymarket') ? 'Kalshi and Polymarket' : 'the prediction markets';
