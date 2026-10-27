@@ -118,8 +118,8 @@ invisible at 500px.
   `assets/site.css`.
 - **Colour rules.** Use the tokens in `assets/site.css` (`var(--ink)`,
   `var(--muted)`, `var(--red)` and so on), never a hex. Every text token passes
-  AA on the paper background; `--rule-soft` is for lines only. The 2026 Best
-  Ball pages are frozen and keep their old dark styles.
+  AA on the paper background; `--rule-soft` is for lines only. The pre-redesign
+  dark theme is archived as the git tag `pre-box-score-2026-10-26`.
 - **`frame-ancestors` in a `<meta>` tag does nothing.** Chrome ignores it there
   and GitHub Pages cannot set response headers, so it is inert on this host.
 - `CLAUDE.md` carries the fuller working notes, including which data is frozen

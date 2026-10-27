@@ -97,7 +97,7 @@ The 2026 Best Ball drafting season closed on Sept 4. The two Best Ball dashboard
 
 If a future session sees this file and doesn't understand why `pull_adp.py` looks partially dead, this is why. Don't reactivate the cron unless the user asks. Don't touch the frozen CSVs unless they specifically want to change the snapshot date or replace 09-04's rows.
 
-**The 2026 Best Ball pages are frozen permanently (user decisions, 2026-10-14 and 2026-10-21).** The 2026 CSVs, `latest.json`, `history.json` *and both 2026 dashboards* are a closed record and will never change; the pages are not repointed at a later season. If a 2027 season is ever tracked, it gets new per-season files and its own pages (new URLs), with `pull_adp.py` and the workflow's `git add` paths pointed at the new files and `FROZEN_2026` removed only then. Never append 2027 rows to `dk_adp_history.csv` / `ud_adp_history.csv`. Two reasons: the 2026 record stays intact, and the single growing CSV is what put about 120 MB into git history (each daily append stored a new 7 MB version). Per-season files are not the per-day files the "Storage model" section rules out.
+**The 2026 Best Ball pages are frozen permanently (user decisions, 2026-10-14 and 2026-10-21).** The 2026 CSVs, `latest.json`, `history.json` *and both 2026 dashboards* are a closed record and will never change; the pages are not repointed at a later season. (Their *styling* is not frozen: the user had both restyled with the rest of the site in the 2026-10-26 redesign. What is frozen is the data and what the pages say.) If a 2027 season is ever tracked, it gets new per-season files and its own pages (new URLs), with `pull_adp.py` and the workflow's `git add` paths pointed at the new files and `FROZEN_2026` removed only then. Never append 2027 rows to `dk_adp_history.csv` / `ud_adp_history.csv`. Two reasons: the 2026 record stays intact, and the single growing CSV is what put about 120 MB into git history (each daily append stored a new 7 MB version). Per-season files are not the per-day files the "Storage model" section rules out.
 
 ## FFPC and Drafters were archived (2026-07-31)
 
@@ -160,8 +160,15 @@ corners, rules and dotted row lines instead of boxes, no emoji in the UI.
 - The home page fills its tables from `nfl-start-sit/data/weekly.json`,
   `sleeper_players.json` and `prediction-arbitrage/arbs.json` in the browser,
   so it never goes stale; each block keeps static copy if its file fails.
-- **The 2026 Best Ball pages kept their old dark styles** (frozen). They link
-  site.css, so they got the new nav over the old page.
+- **Every page has the new look, the 2026 Best Ball pages included** (the user
+  asked for that, 2026-10-26; only their styling changed, not a single data row
+  or number). On those two pages DraftKings is ink and Underdog is red
+  (`SOURCE_COLORS` in each script), position badges are outlined text, and the
+  Chart.js axes use the muted ink and the faint rule colour.
+- **The old design is archived as the git tag `pre-box-score-2026-10-26`**
+  (commit `63afeee`, the last commit before the redesign). `git checkout
+  pre-box-score-2026-10-26` shows the whole old site; it is not published
+  anywhere.
 
 ## UI and accessibility (audited 2026-10-08)
 
