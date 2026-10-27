@@ -106,6 +106,14 @@
             main { padding: 0 16px; }
             .dateline span:nth-child(2) { display: none; }
         }
+        @media (max-width: 520px) {
+            /* A phone can't fit all five columns, and a cut-off table gives no
+               hint that it scrolls. The rushing line is the story; the two
+               receiving columns go. */
+            table.agate { min-width: 0; }
+            .agate th:nth-child(n+4), .agate td:nth-child(n+4) { display: none; }
+            .agate th:nth-child(3), .agate td:nth-child(3) { padding-right: 0; }
+        }
     </style>
 </head>
 <body>

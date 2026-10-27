@@ -45,9 +45,11 @@
         }
 
         .filter-row {
-            display: flex; gap: 8px; flex-wrap: wrap; align-items: center;
+            display: flex; gap: 8px 24px; flex-wrap: wrap; align-items: center;
             margin-bottom: 14px;
         }
+        /* Each label stays with its own buttons when the row wraps. */
+        .chip-group { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
         .filter-row .label {
             font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.04em;
             text-transform: uppercase; color: var(--muted); margin-right: 2px;
@@ -315,13 +317,17 @@
 
         <div id="gated" style="display:none;">
             <div class="filter-row">
-                <span class="label">Sort</span>
-                <button class="chip sort-chip active" data-sort="return">Best return</button>
-                <button class="chip sort-chip" data-sort="annual">Best per year</button>
-                <button class="chip sort-chip" data-sort="volume">Highest volume</button>
-                <span class="label" style="margin-left:8px;">Suspicious</span>
-                <button class="chip susp-chip" data-susp="hide">Hide</button>
-                <button class="chip susp-chip active" data-susp="all">Include</button>
+                <div class="chip-group">
+                    <span class="label">Sort</span>
+                    <button class="chip sort-chip active" data-sort="return">Best return</button>
+                    <button class="chip sort-chip" data-sort="annual">Best per year</button>
+                    <button class="chip sort-chip" data-sort="volume">Highest volume</button>
+                </div>
+                <div class="chip-group">
+                    <span class="label">Suspicious</span>
+                    <button class="chip susp-chip" data-susp="hide">Hide</button>
+                    <button class="chip susp-chip active" data-susp="all">Include</button>
+                </div>
             </div>
 
             <p class="count-line">Showing <span id="count">0</span> arbitrage picks</p>

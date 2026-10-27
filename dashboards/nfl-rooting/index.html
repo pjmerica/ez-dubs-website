@@ -54,8 +54,14 @@
     border-color: var(--red);
   }
   .delta-toggle input, .market-toggles input, .book-toggle-list input { accent-color: var(--ink); }
+  /* The template's 13px checkboxes are a small target on a phone. */
+  .market-toggles input[type="checkbox"], .book-toggle-list input[type="checkbox"] { width: 18px; height: 18px; }
   table { font-variant-numeric: tabular-nums; }
   .sources-note { font-family: var(--mono); color: var(--muted); font-size: 0.72rem; text-align: center; margin: 4px 0 8px; }
+  /* Small uppercase labels are mono on every other page; the template sets
+     them in the body face, which here is the serif. */
+  .rankings thead th, .sitstart-label, .slot-table th, .sitstart-section,
+  .h2h-card-sub, .matchup-league { font-family: var(--mono); letter-spacing: 0.04em; }
   /* The template's bare footer rule centres its text; the site footer is left-aligned. */
   .site-footer { text-align: left; font-size: 0.75rem; }
   /* The template fades settled rows and dropped stats with opacity, which takes
