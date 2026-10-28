@@ -15,7 +15,7 @@
     <meta property="og:image" content="https://ezdubsanalytics.com/EDA.png">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:image" content="https://ezdubsanalytics.com/EDA.png">
-    <link rel="stylesheet" href="../../assets/site.css?v=box-score-3">
+    <link rel="stylesheet" href="../../assets/site.css?v=box-score-4">
     <style>
         main { max-width: 1120px; margin: 0 auto; padding: 36px 24px 24px; }
         h1 { font-size: clamp(2.4rem, 5vw, 3.4rem); margin: 0 0 10px; }
@@ -350,6 +350,24 @@
     </footer>
 
     <script>
+        // A failed load gets one notice, styled by .load-error in site.css.
+        function showLoadError(el, lead, why) {
+            el.className = 'load-error';
+            el.setAttribute('role', 'alert');
+            el.replaceChildren();
+            const s = document.createElement('strong');
+            s.textContent = lead;
+            el.append(s, 'Refresh the page to try again. ');
+            if (why) {
+                const w = document.createElement('span');
+                w.className = 'why';
+                w.textContent = `(${why})`;
+                el.append(w);
+            }
+            el.hidden = false;
+            el.style.display = '';
+        }
+
         const PLATFORM_LABELS = {
             kalshi: 'Kalshi', polymarket: 'Polymarket', predictit: 'PredictIt',
         };
@@ -504,11 +522,10 @@
                 label.classList.add('na');
                 // The grid's empty state sits behind the password gate, so locked
                 // visitors saw the gate with no sign the picks had failed to load.
-                const warn = document.getElementById('freshness-warn');
-                warn.textContent = `Today's picks could not be loaded (${e.message}). Refresh to try again.`;
-                warn.hidden = false;
-                document.getElementById('empty').textContent = `Could not load arbs.json (${e.message}).`;
-                document.getElementById('empty').style.display = 'block';
+                // One notice, above the gate, and no sort or count for a list that
+                // is not there.
+                showLoadError(document.getElementById('freshness-warn'), "Today's picks could not be loaded.", e.message);
+                document.querySelectorAll('.filter-row, .count-line').forEach(el => { el.style.display = 'none'; });
                 return;
             }
             renderPreview();

@@ -26,7 +26,7 @@
     <script defer src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"
             integrity="sha384-FcQlsUOd0TJjROrBxhJdUhXTUgNJQxTMcxZe6nHbaEfFL1zjQ+bq/uRoBQxb0KMo"
             crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="../../assets/site.css?v=box-score-3">
+    <link rel="stylesheet" href="../../assets/site.css?v=box-score-4">
     <style>
         /* The 2026 Best Ball archive in the site's "Box Score" look (restyled
            2026-10-26; the data is frozen, only the styling changed). As on Best
@@ -272,6 +272,24 @@
     <p class="legend-note">Black = DraftKings &nbsp;|&nbsp; Red = Underdog &nbsp;|&nbsp; Each added player gets its own dash pattern &nbsp;|&nbsp; Lower ADP = earlier draft pick</p>
 
     <script>
+        // A failed load gets one notice, styled by .load-error in site.css.
+        function showLoadError(el, lead, why) {
+            el.className = 'load-error';
+            el.setAttribute('role', 'alert');
+            el.replaceChildren();
+            const s = document.createElement('strong');
+            s.textContent = lead;
+            el.append(s, 'Refresh the page to try again. ');
+            if (why) {
+                const w = document.createElement('span');
+                w.className = 'why';
+                w.textContent = `(${why})`;
+                el.append(w);
+            }
+            el.hidden = false;
+            el.style.display = '';
+        }
+
         // Shared helpers
         function escapeHtml(s) {
             return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({
@@ -592,8 +610,12 @@
 
         loadHistoryData().catch(e => {
             console.error(e);
-            document.getElementById('movers-subtitle').textContent =
-                `Could not load the ADP history (${e.message}). Refresh to try again.`;
+            // Everything below the season notice needs the history, so the notice
+            // takes its place.
+            const err = document.createElement('div');
+            document.querySelector('.season-closed').after(err);
+            for (let el = err.nextElementSibling; el && el.tagName !== 'SCRIPT'; el = el.nextElementSibling) el.style.display = 'none';
+            showLoadError(err, 'The ADP history could not be loaded.', e.message);
         });
     </script>
     </main>

@@ -15,7 +15,7 @@
     <meta property="og:image" content="https://ezdubsanalytics.com/EDA.png">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:image" content="https://ezdubsanalytics.com/EDA.png">
-    <link rel="stylesheet" href="../../assets/site.css?v=box-score-3">
+    <link rel="stylesheet" href="../../assets/site.css?v=box-score-4">
     <style>
         /* The 2026 Best Ball archive in the site's "Box Score" look (restyled
            2026-10-26; the data is frozen, only the styling changed). DraftKings is
@@ -512,6 +512,24 @@
 
 
     <script>
+        // A failed load gets one notice, styled by .load-error in site.css.
+        function showLoadError(el, lead, why) {
+            el.className = 'load-error';
+            el.setAttribute('role', 'alert');
+            el.replaceChildren();
+            const s = document.createElement('strong');
+            s.textContent = lead;
+            el.append(s, 'Refresh the page to try again. ');
+            if (why) {
+                const w = document.createElement('span');
+                w.className = 'why';
+                w.textContent = `(${why})`;
+                el.append(w);
+            }
+            el.hidden = false;
+            el.style.display = '';
+        }
+
         // Tab switching
         document.querySelectorAll('.tab-btn').forEach(btn => {
             btn.addEventListener('click', () => {
@@ -704,9 +722,7 @@
                 const label = document.getElementById('last-updated');
                 label.textContent = 'unavailable';
                 label.classList.add('na');
-                const note = document.getElementById('stale-note');
-                note.textContent = `Could not load the ADP snapshot (latest.json ${why}). Refresh to try again.`;
-                note.style.display = 'block';
+                showLoadError(document.getElementById('stale-note'), 'The ADP snapshot could not be loaded.', `latest.json ${why}`);
                 document.querySelectorAll('.tabs, .tab-panel').forEach(el => { el.style.display = 'none'; });
                 return;
             }

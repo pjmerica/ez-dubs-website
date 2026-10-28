@@ -251,3 +251,17 @@ a.brand {
     line-height: 0.98; letter-spacing: 0;
     text-wrap: balance;
 }
+/* A data file that failed to load. One notice per page, shown where the
+   missing content would have gone, with the page's controls for that content
+   hidden. Built by each page's script: <strong> lead, a sentence, .why. */
+.load-error {
+    margin: 20px 0; padding: 14px 0 16px;
+    border-top: 3px solid var(--red); border-bottom: 1px solid var(--rule);
+    font-family: var(--serif); font-size: 1rem; line-height: 1.45; color: var(--ink);
+}
+.load-error strong {
+    display: block; margin-bottom: 4px;
+    font-family: var(--display); font-weight: 800; font-size: 1.4rem;
+    line-height: 1.1; text-transform: uppercase; color: var(--red);
+}
+.load-error .why { font-family: var(--mono); font-size: 0.8rem; color: var(--muted); }

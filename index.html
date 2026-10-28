@@ -15,7 +15,7 @@
     <meta property="og:image" content="https://ezdubsanalytics.com/EDA.png">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:image" content="https://ezdubsanalytics.com/EDA.png">
-    <link rel="stylesheet" href="assets/site.css?v=box-score-3">
+    <link rel="stylesheet" href="assets/site.css?v=box-score-4">
     <style>
         /* The home page is a front page: a dateline, a lead story with a table
            on the left, two shorter stories stacked on the right, and a row of
@@ -253,6 +253,24 @@
         const shortDate = (d) => `${MONTHS[d.getMonth()]} ${d.getDate()}`;
         const fmtLine = (s) => (s && s.line != null ? s.line.toFixed(1) : '–');
 
+        // A failed load gets one notice, styled by .load-error in site.css.
+        function showLoadError(el, lead, why) {
+            el.className = 'load-error';
+            el.setAttribute('role', 'alert');
+            el.replaceChildren();
+            const s = document.createElement('strong');
+            s.textContent = lead;
+            el.append(s, 'Refresh the page to try again. ');
+            if (why) {
+                const w = document.createElement('span');
+                w.className = 'why';
+                w.textContent = `(${why})`;
+                el.append(w);
+            }
+            el.hidden = false;
+            el.style.display = '';
+        }
+
         async function getJSON(url) {
             const r = await fetch(url, { cache: 'no-store' });
             if (!r.ok) throw new Error(r.status);
@@ -297,8 +315,11 @@
                 else if (!isNaN(upd)) $('rb-note').textContent = `Kalshi player props as of ${shortDate(upd)}. A game's lines lock at kickoff.`;
             } catch (e) {
                 document.querySelector('.lead .table-wrap').hidden = true;
-                if (e.message !== 'no lines') $('rb-empty').textContent = "This week's lines could not be loaded. Refresh to try again.";
-                $('rb-empty').hidden = false;
+                if (e.message === 'no lines') $('rb-empty').hidden = false;
+                else {
+                    $('rb-title').hidden = $('rb-note').hidden = true;
+                    showLoadError($('rb-empty'), "This week's lines could not be loaded.", e.message);
+                }
             }
         }
 
