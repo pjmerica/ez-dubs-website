@@ -15,7 +15,7 @@
     <meta property="og:image" content="https://ezdubsanalytics.com/EDA.png">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:image" content="https://ezdubsanalytics.com/EDA.png">
-    <link rel="stylesheet" href="assets/site.css?v=box-score-2">
+    <link rel="stylesheet" href="assets/site.css?v=box-score-3">
     <style>
         /* The home page is a front page: a dateline, a lead story with a table
            on the left, two shorter stories stacked on the right, and a row of
@@ -190,7 +190,7 @@
                 <article>
                     <p class="kicker">Prediction markets</p>
                     <h2 class="headline" id="arb-head">Where the prediction markets disagree</h2>
-                    <p class="dek">Buy one side on each exchange and you collect the same amount whichever way it settles. Today's board, after fees:</p>
+                    <p class="dek">Buy one side on each exchange and you collect the same amount whichever way it settles.<span id="arb-lead" hidden> Today's board, after fees:</span></p>
                     <dl class="stat-list" id="arb-stats" hidden>
                         <div><dt>Best return</dt><dd id="arb-best"></dd></div>
                         <div><dt>Median return</dt><dd id="arb-median"></dd></div>
@@ -264,17 +264,25 @@
         async function loadRunningBacks() {
             const DATA = 'dashboards/nfl-start-sit/data/';
             try {
-                const [weekly, sleeper] = await Promise.all([getJSON(DATA + 'weekly.json'), getJSON(DATA + 'sleeper_players.json')]);
+                const [weekly, sleeper, lines] = await Promise.all([getJSON(DATA + 'weekly.json'), getJSON(DATA + 'sleeper_players.json'),
+                    getJSON(DATA + 'gamelines.json').catch(() => ({}))]);
                 const who = new Map(Object.values(sleeper.players || {}).map((p) => [p[0], p]));
                 if (weekly.week) {
                     $('week-kicker').textContent = ` · Week ${weekly.week}`;
                     $('week-dateline').textContent = `Week ${weekly.week}`;
                 }
-                const rows = (weekly.players || [])
+                const backs = (weekly.players || [])
                     .filter((p) => (who.get(p.name) || [])[1] === 'RB' && p.stats && p.stats.rush_yds && p.stats.rush_yds.line != null)
-                    .sort((a, b) => b.stats.rush_yds.line - a.stats.rush_yds.line)
-                    .slice(0, 8);
-                if (!rows.length) throw new Error('no lines');
+                    .sort((a, b) => b.stats.rush_yds.line - a.stats.rush_yds.line);
+                if (!backs.length) throw new Error('no lines');
+                // weekly.json keeps a finished week until the next one is scraped, so
+                // list only games still to kick off. If every game has been played,
+                // show them anyway, labelled as the closing lines they are.
+                const kick = new Map((lines.games || []).map((g) => [g.matchup, Date.parse(g.kickoff)]));
+                const ahead = backs.filter((p) => !(kick.get(p.matchup) <= Date.now()));
+                const played = !ahead.length;
+                const rows = (played ? backs : ahead).slice(0, 8);
+                if (played) $('rb-title').textContent = weekly.week ? `Week ${weekly.week} closing lines: running backs` : 'Closing lines: running backs';
                 $('rb-body').innerHTML = rows.map((p) => {
                     const team = who.get(p.name)[2] || '';
                     const m = p.matchup || '';
@@ -285,9 +293,11 @@
                            `<td class="big">${fmtLine(p.stats.rush_yds)}</td><td>${fmtLine(p.stats.receptions)}</td><td>${fmtLine(p.stats.rec_yds)}</td></tr>`;
                 }).join('');
                 const upd = new Date(weekly.lastUpdated);
-                if (!isNaN(upd)) $('rb-note').textContent = `Kalshi player props as of ${shortDate(upd)}. A game's lines lock at kickoff.`;
+                if (played) $('rb-note').textContent = `These games have been played; these were Kalshi's last lines before kickoff.`;
+                else if (!isNaN(upd)) $('rb-note').textContent = `Kalshi player props as of ${shortDate(upd)}. A game's lines lock at kickoff.`;
             } catch (e) {
                 document.querySelector('.lead .table-wrap').hidden = true;
+                if (e.message !== 'no lines') $('rb-empty').textContent = "This week's lines could not be loaded. Refresh to try again.";
                 $('rb-empty').hidden = false;
             }
         }
@@ -314,6 +324,7 @@
                 $('arb-asof').textContent = isNaN(asOf) ? '–'
                     : `${shortDate(asOf)}, ${asOf.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })}`;
                 $('arb-stats').hidden = false;
+                $('arb-lead').hidden = false;
             } catch (e) { /* keep the static headline */ }
         }
 

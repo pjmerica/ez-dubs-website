@@ -249,4 +249,5 @@ a.brand {
 .headline {
     font-family: var(--display); font-weight: 800; text-transform: uppercase;
     line-height: 0.98; letter-spacing: 0;
+    text-wrap: balance;
 }

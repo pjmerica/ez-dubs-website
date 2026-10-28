@@ -157,7 +157,7 @@ corners, rules and dotted row lines instead of boxes, no emoji in the UI.
   switch to Google Fonts without changing the CSP on every page. 404.html can't
   link site.css (its CSP allows inline styles only), so it carries its own
   `@font-face` copies by absolute path.
-- **site.css is linked as `site.css?v=box-score-2`** so a deploy does not pair
+- **site.css is linked as `site.css?v=box-score-3`** so a deploy does not pair
   new HTML with the 10-minute-cached old stylesheet. Bump the tag on the six
   hand-made pages after any site.css change and re-run the NFL port (it copies
   the link from the calculator).
