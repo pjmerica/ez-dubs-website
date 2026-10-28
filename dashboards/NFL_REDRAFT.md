@@ -65,6 +65,14 @@ post most Sunday props until Thursday night, so a Wednesday pull legitimately ha
 a third of the slate unpriced. Once a day Monday through Wednesday, twice daily
 Thursday through Sunday.
 
+Upstream added a Tuesday 10:00 UTC props run on 2026-10-27 (AI_Agent_work
+`7313c40`). Before it, nothing ran between Sunday night and Wednesday night, so
+Start/Sit showed the finished week's lines for two days; the 16:00 mirror picks
+the Tuesday run up. Upstream's "tell the site to mirror now" step does nothing
+until its `EZDUBS_DISPATCH_TOKEN` secret exists (a fine-grained token for this
+repo with Actions read/write), so until then the mirror's own schedule is the
+only path.
+
 ### Two traps that were fixed here, do not reintroduce them
 
 Both had the same symptom: an endless stream of empty auto-commits.

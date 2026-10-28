@@ -76,6 +76,16 @@ Upstream freezes a game's lines at kickoff
 (`scripts/kickoff_lock.py` in AI_Agent_work), so a refresh during a game can't
 put live in-game numbers on the board; carried rows are marked `lockedAtKickoff`.
 
+**Tuesday refresh (2026-10-27).** Upstream's props job used to skip Monday
+and Tuesday, so the finished week's lines stayed up until Wednesday night.
+It now also runs Tuesday at 10:00 UTC and the 16:00 mirror picks it up. If a
+finished week lingers anyway, dispatch `nfl-props.yml` in AI_Agent_work, then
+`nfl-data-pull.yml` here once upstream's Pages has redeployed (the mirror
+reads Pages, not git). Upstream's automatic "mirror now" step needs an
+`EZDUBS_DISPATCH_TOKEN` secret that has not been created yet. The homepage
+running-back table hides games that have kicked off and, once all have, is
+titled as that week's closing lines.
+
 The site mirrors rather than scraping again on purpose: the Odds API bills per event per market, so a
 second pipeline would double the credit burn for identical numbers, and no
 `ODDS_API_KEY` needs to exist in this repo. Do not edit the files in

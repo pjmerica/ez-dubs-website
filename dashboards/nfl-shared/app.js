@@ -661,7 +661,7 @@
 
   /* Is the prop data describing a slate that has already been played?
    *
-   * These come apart because the props workflow is manual-dispatch only (the
+   * These come apart between Monday night's game and the next props run (the
    * Odds API bills per request), so between runs weekly.json keeps describing a
    * finished week. On 2026-10-06 the board read "Week 4" while week 5 was being
    * played, with all 349 props for completed games and nothing saying so.
@@ -754,8 +754,8 @@
           "so none of it can set a lineup. "
         : "Every line below is for a game already played, so none of it " +
           "can set a lineup. ") +
-      "The market data refreshes on a manual run: " +
-      "until then this is a record of a past week, not a projection." +
+      "The next scheduled refresh replaces these lines with the coming week's. " +
+      "Until then this is a record of a past week, not a projection." +
       (s.lastUpdated
         ? ' <span class="coverage-sub">Last refreshed ' +
           escapeHtml(String(s.lastUpdated).slice(0, 16).replace("T", " ")) +
