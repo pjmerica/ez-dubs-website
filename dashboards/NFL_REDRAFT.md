@@ -201,9 +201,13 @@ Worth knowing to answer questions about them:
 - **Kickers and defenses have no prop market anywhere**, so they are priced off
   the game line: a team's implied total is `total/2 − spread/2`, which drives the
   points-allowed buckets. Backtested against three weeks of real results.
-- **A `TD ONLY` tag** means a book priced that player's touchdown and nothing
-  else, so his yardage is a season estimate rather than a market price. 136 of 465
-  players were in that state in week 4, so the tag is common by design.
+- **An "Only TD priced · rest projected" tag** means a book priced that
+  player's touchdown and nothing else, so his yardage is a season estimate rather
+  than a market price. 136 of 465 players were in that state in week 4, so the
+  tag is common by design. It read just `TD ONLY` until 2026-10-28; that needed
+  the hover tooltip to decode, and phones have no hover. A player with no line
+  at all is not projected: he is left out of the lineup and listed under "No
+  market projection".
 - **An injury tag** next to a player is Sleeper's own status. When a player has no
   line at all, the page says whether an injury explains it — "IR (Hamstring)" is a
   different instruction from "no book has priced him yet".

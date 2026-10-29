@@ -54,6 +54,11 @@ Two things that look like mistakes and are not:
   fail contrast on paper). Lineup player names are wrapped in `span.pname`
   (2026-10-27) so the port's phone CSS can put the name on line one and its
   tags and team on line two.
+- **The projection tag reads "Only TD priced · rest projected"** (2026-10-28,
+  AI_Agent_work `0505d27`; it was "TD ONLY"). Only players whose touchdown
+  alone is priced get a season-projection fill; a player with no line at all
+  is left out of the lineup and listed under "No market projection". The
+  homepage dek says exactly that, so keep the two in step.
 
 The data **auto-refreshes** via `.github/workflows/nfl-data-pull.yml`, which
 mirrors the upstream JSON (twice daily, more Thu-Sun, hourly on Sundays as a

@@ -2445,9 +2445,11 @@
    * yardage and receptions behind it came from a season estimate divided by 17.
    * The only thing a book priced was his touchdown.
    *
-   * The label says WHAT was priced rather than just "estimated", because that is
-   * the actionable part -- "TD only" tells you the market has an opinion on
-   * whether he scores and none on how much he does. Checked against the board:
+   * The label says WHAT was priced and where the rest came from, because that
+   * is the actionable part: the market has an opinion on whether he scores and
+   * none on how much he does. It used to read just "TD ONLY", which a reader
+   * could not decode without hovering for the tooltip, and a phone has no
+   * hover (2026-10-28). Checked against the board:
    * all 136 filled players have exactly one market stat and it is always the
    * touchdown, so the label is literally true rather than a generalisation. The
    * fallback covers a future case where that stops holding.
@@ -2459,7 +2461,8 @@
       return st && st.line != null && st.lineSource !== "projected";
     });
     const tdOnlyPriced = priced.length === 1 && priced[0] === "any_tds";
-    const label = tdOnlyPriced ? "TD ONLY" : "EST";
+    const label = tdOnlyPriced ? "Only TD priced · rest projected"
+                               : "Partly projected";
     const why = tdOnlyPriced
       ? "A book priced his touchdown and nothing else. The yardage and " +
         "receptions here are a season projection divided by 17, not a market " +

@@ -1100,7 +1100,8 @@ tr.row-nan:hover { opacity: 0.85; }
   .slot-table .col-markets .markets { flex-wrap: nowrap; }
   /* A width, not just a minimum: once the table is wider than the screen the
      browser sizes each column to its full content, and the bench name cell
-     took ~380px for "Ollie Gordon TD ONLY Questionable (Undisclosed) SITTING".
+     took ~380px for "Ollie Gordon TD ONLY Questionable (Undisclosed) SITTING"
+     (that tag now reads "Only TD priced · rest projected" and may wrap).
      td.player-name, not .player-name: on the bench the name is the FIRST cell,
      so ".slot-table td:first-child" (meant for the slot badge, nowrap) won. */
   .slot-table td.player-name { white-space: normal; min-width: 120px; width: 140px; }
