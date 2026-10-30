@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-10-29T19:24:01+00:00",
+  "lastUpdated": "2026-10-29T23:08:49+00:00",
   "season": "2026",
   "source": "Kalshi (per-game)",
   "note": "Per-game player props for the upcoming slate. Kalshi purges settled markets, so whatever is open is the next set of games -- there is no way to fetch a week that has already been played.",
@@ -10,23 +10,23 @@
     "26OCT29"
   ],
   "gameCount": 14,
-  "playerGameCount": 288,
+  "playerGameCount": 293,
   "matchupConflicts": [],
   "statCounts": {
-    "rec_yds": 119,
-    "any_tds": 288,
+    "rec_yds": 127,
+    "any_tds": 293,
+    "rush_yds": 65,
     "pass_yds": 27,
     "pass_tds": 27,
-    "receptions": 76,
-    "rush_yds": 60
+    "receptions": 105
   },
   "seriesMarketCounts": {
-    "KXNFLREC": 509,
-    "KXNFLRECYDS": 1207,
-    "KXNFLRSHYDS": 532,
+    "KXNFLREC": 701,
+    "KXNFLRECYDS": 1286,
+    "KXNFLRSHYDS": 559,
     "KXNFLPASSYDS": 241,
     "KXNFLPASSTDS": 114,
-    "KXNFLTD": 553
+    "KXNFLTD": 578
   },
   "players": [
     {
@@ -36,14 +36,14 @@
       "matchup": "NEMIA",
       "stats": {
         "rec_yds": {
-          "line": 51.8,
+          "line": 50.3,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 13,
           "confidentRungs": 13
         },
         "any_tds": {
-          "line": 0.475,
+          "line": 0.46,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -87,6 +87,13 @@
       "kickoff": "26NOV01",
       "matchup": "CLEPIT",
       "stats": {
+        "rush_yds": {
+          "line": 1.4,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        },
         "pass_yds": {
           "line": 218.0,
           "lineSource": "interpolated",
@@ -102,7 +109,7 @@
           "confidentRungs": 4
         },
         "any_tds": {
-          "line": 0.06,
+          "line": 0.055,
           "lineSource": "expected",
           "expected": null,
           "rungs": 1,
@@ -117,7 +124,7 @@
       "matchup": "KCDEN",
       "stats": {
         "any_tds": {
-          "line": 0.055,
+          "line": 0.06,
           "lineSource": "expected",
           "expected": null,
           "rungs": 1,
@@ -146,11 +153,40 @@
           "confidentRungs": 10
         },
         "any_tds": {
-          "line": 0.195,
+          "line": 0.19,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
           "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Amon-Ra St. Brown",
+      "game": "26NOV01:MINDET",
+      "kickoff": "26NOV01",
+      "matchup": "MINDET",
+      "stats": {
+        "receptions": {
+          "line": 6.9,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 11,
+          "confidentRungs": 11
+        },
+        "rec_yds": {
+          "line": 76.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 13,
+          "confidentRungs": 13
+        },
+        "any_tds": {
+          "line": 0.43,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
         }
       }
     },
@@ -176,7 +212,7 @@
       "matchup": "PHIWAS",
       "stats": {
         "rec_yds": {
-          "line": 31.9,
+          "line": 33.7,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 11,
@@ -220,21 +256,21 @@
           "confidentRungs": 8
         },
         "rec_yds": {
-          "line": 27.5,
+          "line": 27.8,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 10,
           "confidentRungs": 10
         },
         "rush_yds": {
-          "line": 48.1,
+          "line": 49.5,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 10,
           "confidentRungs": 10
         },
         "any_tds": {
-          "line": 0.605,
+          "line": 0.6,
           "lineSource": "expected",
           "expected": null,
           "rungs": 3,
@@ -249,7 +285,7 @@
       "matchup": "PHIWAS",
       "stats": {
         "any_tds": {
-          "line": 0.12,
+          "line": 0.125,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -264,7 +300,7 @@
       "matchup": "ATLTB",
       "stats": {
         "any_tds": {
-          "line": 0.075,
+          "line": 0.07,
           "lineSource": "expected",
           "expected": null,
           "rungs": 1,
@@ -294,7 +330,7 @@
       "matchup": "BALBUF",
       "stats": {
         "any_tds": {
-          "line": 0.105,
+          "line": 0.115,
           "lineSource": "expected",
           "expected": null,
           "rungs": 1,
@@ -309,11 +345,11 @@
       "matchup": "ATLTB",
       "stats": {
         "pass_yds": {
-          "line": 170.9,
-          "lineSource": "fitted",
+          "line": 216.2,
+          "lineSource": "interpolated",
           "expected": null,
           "rungs": 10,
-          "confidentRungs": 9
+          "confidentRungs": 10
         },
         "pass_tds": {
           "line": 1.3,
@@ -360,7 +396,7 @@
           "confidentRungs": 6
         },
         "rec_yds": {
-          "line": 13.9,
+          "line": 14.0,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 9,
@@ -396,21 +432,21 @@
           "confidentRungs": 9
         },
         "rec_yds": {
-          "line": 27.4,
+          "line": 27.1,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 11,
           "confidentRungs": 11
         },
         "rush_yds": {
-          "line": 80.1,
+          "line": 79.5,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 13,
           "confidentRungs": 13
         },
         "any_tds": {
-          "line": 0.89,
+          "line": 0.9,
           "lineSource": "expected",
           "expected": null,
           "rungs": 3,
@@ -424,15 +460,22 @@
       "kickoff": "26NOV01",
       "matchup": "LACLAR",
       "stats": {
+        "receptions": {
+          "line": 1.2,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        },
         "rec_yds": {
-          "line": 5.8,
+          "line": 5.7,
           "lineSource": "fitted",
           "expected": null,
           "rungs": 7,
           "confidentRungs": 7
         },
         "rush_yds": {
-          "line": 43.6,
+          "line": 44.0,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 10,
@@ -461,7 +504,7 @@
           "confidentRungs": 8
         },
         "pass_yds": {
-          "line": 203.7,
+          "line": 204.5,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 8,
@@ -475,11 +518,26 @@
           "confidentRungs": 4
         },
         "any_tds": {
-          "line": 0.165,
+          "line": 0.17,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
           "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Braelon Allen",
+      "game": "26NOV01:LVNYJ",
+      "kickoff": "26NOV01",
+      "matchup": "LVNYJ",
+      "stats": {
+        "any_tds": {
+          "line": 0.585,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
         }
       }
     },
@@ -490,21 +548,21 @@
       "matchup": "INDJAC",
       "stats": {
         "receptions": {
-          "line": 3.8,
+          "line": 3.7,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 8,
           "confidentRungs": 8
         },
         "rec_yds": {
-          "line": 36.6,
+          "line": 36.4,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 11,
           "confidentRungs": 11
         },
         "any_tds": {
-          "line": 0.39,
+          "line": 0.37,
           "lineSource": "expected",
           "expected": null,
           "rungs": 3,
@@ -519,21 +577,21 @@
       "matchup": "ARIDAL",
       "stats": {
         "receptions": {
-          "line": 1.7,
+          "line": 1.8,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 5,
           "confidentRungs": 5
         },
         "rec_yds": {
-          "line": 12.6,
+          "line": 12.7,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 8,
           "confidentRungs": 8
         },
         "any_tds": {
-          "line": 0.19,
+          "line": 0.18,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -562,12 +620,26 @@
       "kickoff": "26NOV01",
       "matchup": "LVNYJ",
       "stats": {
+        "receptions": {
+          "line": 5.9,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 11,
+          "confidentRungs": 11
+        },
+        "rec_yds": {
+          "line": 70.1,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 12,
+          "confidentRungs": 12
+        },
         "any_tds": {
-          "line": 0.435,
+          "line": 0.535,
           "lineSource": "expected",
           "expected": null,
-          "rungs": 1,
-          "confidentRungs": 1
+          "rungs": 3,
+          "confidentRungs": 3
         }
       }
     },
@@ -578,11 +650,11 @@
       "matchup": "MINDET",
       "stats": {
         "any_tds": {
-          "line": 0.07,
+          "line": 0.09,
           "lineSource": "expected",
           "expected": null,
-          "rungs": 1,
-          "confidentRungs": 1
+          "rungs": 2,
+          "confidentRungs": 2
         }
       }
     },
@@ -593,14 +665,14 @@
       "matchup": "ATLTB",
       "stats": {
         "receptions": {
-          "line": 2.4,
+          "line": 2.5,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 7,
           "confidentRungs": 7
         },
         "rec_yds": {
-          "line": 14.5,
+          "line": 14.7,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 8,
@@ -614,7 +686,7 @@
           "confidentRungs": 12
         },
         "any_tds": {
-          "line": 0.685,
+          "line": 0.675,
           "lineSource": "expected",
           "expected": null,
           "rungs": 3,
@@ -644,7 +716,7 @@
       "matchup": "CLEPIT",
       "stats": {
         "any_tds": {
-          "line": 0.13,
+          "line": 0.125,
           "lineSource": "expected",
           "expected": null,
           "rungs": 1,
@@ -659,7 +731,7 @@
       "matchup": "ATLTB",
       "stats": {
         "any_tds": {
-          "line": 0.24,
+          "line": 0.235,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -673,8 +745,15 @@
       "kickoff": "26NOV01",
       "matchup": "NEMIA",
       "stats": {
+        "receptions": {
+          "line": 2.9,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 7,
+          "confidentRungs": 7
+        },
         "rec_yds": {
-          "line": 37.3,
+          "line": 37.1,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 13,
@@ -696,7 +775,7 @@
       "matchup": "TENCIN",
       "stats": {
         "any_tds": {
-          "line": 0.095,
+          "line": 0.085,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -711,14 +790,14 @@
       "matchup": "TENCIN",
       "stats": {
         "rush_yds": {
-          "line": 8.5,
+          "line": 8.6,
           "lineSource": "fitted",
           "expected": null,
           "rungs": 5,
           "confidentRungs": 5
         },
         "pass_yds": {
-          "line": 197.1,
+          "line": 197.0,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 9,
@@ -754,7 +833,7 @@
           "confidentRungs": 14
         },
         "any_tds": {
-          "line": 0.22,
+          "line": 0.215,
           "lineSource": "expected",
           "expected": null,
           "rungs": 1,
@@ -776,7 +855,7 @@
           "confidentRungs": 10
         },
         "rec_yds": {
-          "line": 79.7,
+          "line": 80.1,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 14,
@@ -797,6 +876,13 @@
       "kickoff": "26NOV01",
       "matchup": "LACLAR",
       "stats": {
+        "receptions": {
+          "line": 2.3,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 6,
+          "confidentRungs": 6
+        },
         "rec_yds": {
           "line": 19.5,
           "lineSource": "interpolated",
@@ -805,7 +891,7 @@
           "confidentRungs": 9
         },
         "any_tds": {
-          "line": 0.185,
+          "line": 0.18,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -827,14 +913,14 @@
           "confidentRungs": 8
         },
         "rec_yds": {
-          "line": 19.3,
+          "line": 19.9,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 9,
           "confidentRungs": 9
         },
         "rush_yds": {
-          "line": 54.9,
+          "line": 55.9,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 11,
@@ -856,7 +942,7 @@
       "matchup": "PHIWAS",
       "stats": {
         "rec_yds": {
-          "line": 28.5,
+          "line": 31.4,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 11,
@@ -878,7 +964,7 @@
       "matchup": "TENCIN",
       "stats": {
         "any_tds": {
-          "line": 0.075,
+          "line": 0.08,
           "lineSource": "expected",
           "expected": null,
           "rungs": 1,
@@ -892,6 +978,13 @@
       "kickoff": "26NOV01",
       "matchup": "NEMIA",
       "stats": {
+        "receptions": {
+          "line": 1.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 5,
+          "confidentRungs": 5
+        },
         "rec_yds": {
           "line": 17.3,
           "lineSource": "interpolated",
@@ -915,21 +1008,21 @@
       "matchup": "ATLTB",
       "stats": {
         "receptions": {
-          "line": 3.7,
+          "line": 3.6,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 8,
           "confidentRungs": 8
         },
         "rec_yds": {
-          "line": 29.8,
+          "line": 29.5,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 12,
           "confidentRungs": 12
         },
         "any_tds": {
-          "line": 0.28,
+          "line": 0.285,
           "lineSource": "expected",
           "expected": null,
           "rungs": 3,
@@ -944,14 +1037,14 @@
       "matchup": "INDJAC",
       "stats": {
         "rush_yds": {
-          "line": 27.0,
+          "line": 30.4,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 9,
           "confidentRungs": 9
         },
         "any_tds": {
-          "line": 0.24,
+          "line": 0.235,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -966,7 +1059,7 @@
       "matchup": "LVNYJ",
       "stats": {
         "any_tds": {
-          "line": 0.12,
+          "line": 0.105,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -981,7 +1074,7 @@
       "matchup": "TENCIN",
       "stats": {
         "any_tds": {
-          "line": 0.055,
+          "line": 0.05,
           "lineSource": "expected",
           "expected": null,
           "rungs": 1,
@@ -996,7 +1089,7 @@
       "matchup": "LACLAR",
       "stats": {
         "any_tds": {
-          "line": 0.27,
+          "line": 0.265,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -1041,7 +1134,7 @@
       "matchup": "KCDEN",
       "stats": {
         "any_tds": {
-          "line": 0.315,
+          "line": 0.31,
           "lineSource": "expected",
           "expected": null,
           "rungs": 3,
@@ -1071,7 +1164,7 @@
       "matchup": "ARIDAL",
       "stats": {
         "any_tds": {
-          "line": 0.125,
+          "line": 0.13,
           "lineSource": "expected",
           "expected": null,
           "rungs": 1,
@@ -1101,7 +1194,7 @@
       "matchup": "MINDET",
       "stats": {
         "any_tds": {
-          "line": 0.13,
+          "line": 0.12,
           "lineSource": "expected",
           "expected": null,
           "rungs": 1,
@@ -1116,7 +1209,7 @@
       "matchup": "CLEPIT",
       "stats": {
         "receptions": {
-          "line": 4.3,
+          "line": 4.2,
           "lineSource": "interpolated",
           "expected": 4.4,
           "rungs": 9,
@@ -1130,7 +1223,7 @@
           "confidentRungs": 14
         },
         "any_tds": {
-          "line": 0.345,
+          "line": 0.34,
           "lineSource": "expected",
           "expected": null,
           "rungs": 3,
@@ -1145,14 +1238,14 @@
       "matchup": "ARIDAL",
       "stats": {
         "rush_yds": {
-          "line": 9.4,
+          "line": 9.5,
           "lineSource": "fitted",
           "expected": null,
           "rungs": 6,
           "confidentRungs": 6
         },
         "pass_yds": {
-          "line": 276.4,
+          "line": 277.2,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 9,
@@ -1166,7 +1259,7 @@
           "confidentRungs": 6
         },
         "any_tds": {
-          "line": 0.17,
+          "line": 0.165,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -1181,7 +1274,7 @@
       "matchup": "PHIWAS",
       "stats": {
         "any_tds": {
-          "line": 0.335,
+          "line": 0.33,
           "lineSource": "expected",
           "expected": null,
           "rungs": 3,
@@ -1211,14 +1304,14 @@
       "matchup": "BALBUF",
       "stats": {
         "rec_yds": {
-          "line": 45.8,
+          "line": 44.3,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 12,
           "confidentRungs": 12
         },
         "any_tds": {
-          "line": 0.335,
+          "line": 0.32,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -1247,7 +1340,7 @@
           "confidentRungs": 7
         },
         "any_tds": {
-          "line": 0.06,
+          "line": 0.065,
           "lineSource": "expected",
           "expected": null,
           "rungs": 1,
@@ -1262,14 +1355,14 @@
       "matchup": "INDJAC",
       "stats": {
         "rush_yds": {
-          "line": 9.4,
+          "line": 8.9,
           "lineSource": "fitted",
           "expected": null,
           "rungs": 6,
           "confidentRungs": 6
         },
         "pass_yds": {
-          "line": 190.6,
+          "line": 189.3,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 10,
@@ -1320,14 +1413,14 @@
           "confidentRungs": 6
         },
         "rec_yds": {
-          "line": 20.3,
+          "line": 20.1,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 9,
           "confidentRungs": 9
         },
         "any_tds": {
-          "line": 0.245,
+          "line": 0.24,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -1342,7 +1435,7 @@
       "matchup": "ATLTB",
       "stats": {
         "any_tds": {
-          "line": 0.05,
+          "line": 0.04,
           "lineSource": "expected",
           "expected": null,
           "rungs": 1,
@@ -1357,7 +1450,7 @@
       "matchup": "LACLAR",
       "stats": {
         "any_tds": {
-          "line": 0.215,
+          "line": 0.22,
           "lineSource": "expected",
           "expected": null,
           "rungs": 3,
@@ -1379,7 +1472,7 @@
           "confidentRungs": 4
         },
         "rec_yds": {
-          "line": 6.9,
+          "line": 7.0,
           "lineSource": "fitted",
           "expected": null,
           "rungs": 7,
@@ -1400,15 +1493,22 @@
       "kickoff": "26NOV01",
       "matchup": "NEMIA",
       "stats": {
+        "receptions": {
+          "line": 3.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 8,
+          "confidentRungs": 8
+        },
         "rec_yds": {
-          "line": 33.7,
+          "line": 34.1,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 11,
           "confidentRungs": 11
         },
         "any_tds": {
-          "line": 0.3,
+          "line": 0.29,
           "lineSource": "expected",
           "expected": null,
           "rungs": 3,
@@ -1423,7 +1523,22 @@
       "matchup": "INDJAC",
       "stats": {
         "any_tds": {
-          "line": 0.08,
+          "line": 0.07,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Demond Claiborne",
+      "game": "26NOV01:MINDET",
+      "kickoff": "26NOV01",
+      "matchup": "MINDET",
+      "stats": {
+        "any_tds": {
+          "line": 0.07,
           "lineSource": "expected",
           "expected": null,
           "rungs": 1,
@@ -1445,14 +1560,14 @@
           "confidentRungs": 8
         },
         "rec_yds": {
-          "line": 49.1,
+          "line": 49.0,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 11,
           "confidentRungs": 11
         },
         "any_tds": {
-          "line": 0.26,
+          "line": 0.25,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -1474,14 +1589,14 @@
           "confidentRungs": 4
         },
         "rec_yds": {
-          "line": 7.5,
+          "line": 7.1,
           "lineSource": "fitted",
           "expected": null,
           "rungs": 6,
           "confidentRungs": 6
         },
         "rush_yds": {
-          "line": 76.8,
+          "line": 75.6,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 12,
@@ -1503,18 +1618,18 @@
       "matchup": "CLEPIT",
       "stats": {
         "rush_yds": {
-          "line": 22.8,
+          "line": 23.0,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 9,
           "confidentRungs": 9
         },
         "pass_yds": {
-          "line": 205.5,
+          "line": 209.2,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 9,
-          "confidentRungs": 8
+          "confidentRungs": 9
         },
         "pass_tds": {
           "line": 0.9,
@@ -1546,7 +1661,7 @@
           "confidentRungs": 3
         },
         "rec_yds": {
-          "line": 6.6,
+          "line": 4.5,
           "lineSource": "fitted",
           "expected": null,
           "rungs": 9,
@@ -1575,14 +1690,14 @@
           "confidentRungs": 5
         },
         "rec_yds": {
-          "line": 14.5,
+          "line": 14.3,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 9,
           "confidentRungs": 9
         },
         "any_tds": {
-          "line": 0.175,
+          "line": 0.17,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -1597,7 +1712,7 @@
       "matchup": "LVNYJ",
       "stats": {
         "any_tds": {
-          "line": 0.11,
+          "line": 0.105,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -1626,7 +1741,7 @@
           "confidentRungs": 14
         },
         "any_tds": {
-          "line": 0.45,
+          "line": 0.445,
           "lineSource": "expected",
           "expected": null,
           "rungs": 3,
@@ -1641,7 +1756,7 @@
       "matchup": "NEMIA",
       "stats": {
         "rush_yds": {
-          "line": 23.5,
+          "line": 22.8,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 9,
@@ -1655,14 +1770,14 @@
           "confidentRungs": 9
         },
         "pass_tds": {
-          "line": 1.7,
+          "line": 1.6,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 5,
           "confidentRungs": 5
         },
         "any_tds": {
-          "line": 0.245,
+          "line": 0.24,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -1684,14 +1799,14 @@
           "confidentRungs": 4
         },
         "rec_yds": {
-          "line": 7.3,
+          "line": 7.4,
           "lineSource": "fitted",
           "expected": null,
           "rungs": 7,
           "confidentRungs": 7
         },
         "any_tds": {
-          "line": 0.14,
+          "line": 0.13,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -1706,7 +1821,7 @@
       "matchup": "PHIWAS",
       "stats": {
         "rec_yds": {
-          "line": 12.8,
+          "line": 13.0,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 8,
@@ -1728,11 +1843,47 @@
       "matchup": "LVNYJ",
       "stats": {
         "any_tds": {
-          "line": 0.06,
+          "line": 0.05,
           "lineSource": "expected",
           "expected": null,
           "rungs": 1,
           "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Dylan Sampson",
+      "game": "26NOV01:CLEPIT",
+      "kickoff": "26NOV01",
+      "matchup": "CLEPIT",
+      "stats": {
+        "receptions": {
+          "line": 2.3,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 6,
+          "confidentRungs": 6
+        },
+        "rec_yds": {
+          "line": 14.7,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 8,
+          "confidentRungs": 8
+        },
+        "rush_yds": {
+          "line": 10.4,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 6,
+          "confidentRungs": 6
+        },
+        "any_tds": {
+          "line": 0.135,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
         }
       }
     },
@@ -1742,15 +1893,22 @@
       "kickoff": "26NOV01",
       "matchup": "NEMIA",
       "stats": {
+        "receptions": {
+          "line": 1.6,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 5,
+          "confidentRungs": 5
+        },
         "rec_yds": {
-          "line": 14.5,
+          "line": 16.2,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 8,
           "confidentRungs": 8
         },
         "any_tds": {
-          "line": 0.19,
+          "line": 0.185,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -1764,8 +1922,15 @@
       "kickoff": "26NOV01",
       "matchup": "NEMIA",
       "stats": {
+        "receptions": {
+          "line": 1.7,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 5,
+          "confidentRungs": 5
+        },
         "rec_yds": {
-          "line": 18.0,
+          "line": 19.5,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 9,
@@ -1787,14 +1952,14 @@
       "matchup": "TENCIN",
       "stats": {
         "rec_yds": {
-          "line": 19.5,
-          "lineSource": "interpolated",
+          "line": 12.7,
+          "lineSource": "fitted",
           "expected": null,
           "rungs": 10,
-          "confidentRungs": 10
+          "confidentRungs": 9
         },
         "any_tds": {
-          "line": 0.12,
+          "line": 0.125,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -1809,7 +1974,7 @@
       "matchup": "ARIDAL",
       "stats": {
         "any_tds": {
-          "line": 0.155,
+          "line": 0.15,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -1839,7 +2004,7 @@
       "matchup": "KCDEN",
       "stats": {
         "any_tds": {
-          "line": 0.145,
+          "line": 0.15,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -1854,14 +2019,14 @@
       "matchup": "LVNYJ",
       "stats": {
         "receptions": {
-          "line": 4.9,
+          "line": 5.4,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 9,
           "confidentRungs": 9
         },
         "rec_yds": {
-          "line": 57.7,
+          "line": 64.5,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 13,
@@ -1898,14 +2063,14 @@
       "matchup": "LVNYJ",
       "stats": {
         "rush_yds": {
-          "line": 8.0,
+          "line": 8.1,
           "lineSource": "fitted",
           "expected": null,
           "rungs": 6,
           "confidentRungs": 6
         },
         "pass_yds": {
-          "line": 220.3,
+          "line": 219.2,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 9,
@@ -1963,14 +2128,14 @@
           "confidentRungs": 9
         },
         "rec_yds": {
-          "line": 45.6,
+          "line": 44.9,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 12,
           "confidentRungs": 12
         },
         "any_tds": {
-          "line": 0.275,
+          "line": 0.27,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -1985,7 +2150,7 @@
       "matchup": "NEMIA",
       "stats": {
         "rec_yds": {
-          "line": 26.6,
+          "line": 26.4,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 11,
@@ -2014,11 +2179,11 @@
           "confidentRungs": 6
         },
         "rec_yds": {
-          "line": 16.3,
+          "line": 15.7,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 9,
-          "confidentRungs": 8
+          "confidentRungs": 9
         },
         "any_tds": {
           "line": 0.145,
@@ -2050,7 +2215,7 @@
           "confidentRungs": 11
         },
         "any_tds": {
-          "line": 0.23,
+          "line": 0.225,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -2079,15 +2244,22 @@
       "kickoff": "26NOV01",
       "matchup": "NEMIA",
       "stats": {
+        "receptions": {
+          "line": 3.6,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 8,
+          "confidentRungs": 8
+        },
         "rec_yds": {
-          "line": 38.1,
+          "line": 36.9,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 12,
           "confidentRungs": 12
         },
         "any_tds": {
-          "line": 0.38,
+          "line": 0.385,
           "lineSource": "expected",
           "expected": null,
           "rungs": 3,
@@ -2116,6 +2288,20 @@
       "kickoff": "26NOV01",
       "matchup": "MINDET",
       "stats": {
+        "receptions": {
+          "line": 1.5,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 4
+        },
+        "rec_yds": {
+          "line": 17.0,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 8
+        },
         "any_tds": {
           "line": 0.19,
           "lineSource": "expected",
@@ -2132,14 +2318,14 @@
       "matchup": "KCDEN",
       "stats": {
         "rush_yds": {
-          "line": 22.9,
+          "line": 22.8,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 9,
           "confidentRungs": 9
         },
         "any_tds": {
-          "line": 0.32,
+          "line": 0.325,
           "lineSource": "expected",
           "expected": null,
           "rungs": 3,
@@ -2176,7 +2362,7 @@
           "confidentRungs": 6
         },
         "rec_yds": {
-          "line": 30.2,
+          "line": 33.5,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 11,
@@ -2197,6 +2383,13 @@
       "kickoff": "26NOV01",
       "matchup": "TENCIN",
       "stats": {
+        "receptions": {
+          "line": 6.7,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 11,
+          "confidentRungs": 11
+        },
         "rec_yds": {
           "line": 80.0,
           "lineSource": "interpolated",
@@ -2205,11 +2398,11 @@
           "confidentRungs": 13
         },
         "any_tds": {
-          "line": 0.625,
+          "line": 0.64,
           "lineSource": "expected",
           "expected": null,
-          "rungs": 2,
-          "confidentRungs": 2
+          "rungs": 3,
+          "confidentRungs": 3
         }
       }
     },
@@ -2220,7 +2413,7 @@
       "matchup": "TENCIN",
       "stats": {
         "any_tds": {
-          "line": 0.065,
+          "line": 0.06,
           "lineSource": "expected",
           "expected": null,
           "rungs": 1,
@@ -2244,20 +2437,35 @@
       }
     },
     {
+      "name": "Jacob Saylors",
+      "game": "26NOV01:MINDET",
+      "kickoff": "26NOV01",
+      "matchup": "MINDET",
+      "stats": {
+        "any_tds": {
+          "line": 0.05,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
       "name": "Jacoby Brissett",
       "game": "26NOV01:ARIDAL",
       "kickoff": "26NOV01",
       "matchup": "ARIDAL",
       "stats": {
         "rush_yds": {
-          "line": 9.4,
+          "line": 9.1,
           "lineSource": "fitted",
           "expected": null,
           "rungs": 6,
           "confidentRungs": 6
         },
         "pass_yds": {
-          "line": 259.7,
+          "line": 259.1,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 10,
@@ -2293,14 +2501,14 @@
           "confidentRungs": 5
         },
         "rec_yds": {
-          "line": 23.3,
+          "line": 22.5,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 10,
           "confidentRungs": 10
         },
         "any_tds": {
-          "line": 0.2,
+          "line": 0.195,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -2314,26 +2522,33 @@
       "kickoff": "26NOV01",
       "matchup": "MINDET",
       "stats": {
+        "receptions": {
+          "line": 4.3,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
         "rec_yds": {
-          "line": 30.4,
+          "line": 33.6,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 11,
           "confidentRungs": 11
         },
         "rush_yds": {
-          "line": 85.6,
+          "line": 85.8,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 13,
           "confidentRungs": 13
         },
         "any_tds": {
-          "line": 1.02,
+          "line": 1.095,
           "lineSource": "expected",
           "expected": null,
-          "rungs": 2,
-          "confidentRungs": 2
+          "rungs": 3,
+          "confidentRungs": 3
         }
       }
     },
@@ -2351,7 +2566,7 @@
           "confidentRungs": 5
         },
         "rec_yds": {
-          "line": 14.3,
+          "line": 14.5,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 9,
@@ -2373,7 +2588,7 @@
       "matchup": "INDJAC",
       "stats": {
         "rec_yds": {
-          "line": 35.4,
+          "line": 33.8,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 12,
@@ -2394,8 +2609,22 @@
       "kickoff": "26NOV01",
       "matchup": "LVNYJ",
       "stats": {
+        "receptions": {
+          "line": 1.7,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 5,
+          "confidentRungs": 5
+        },
+        "rec_yds": {
+          "line": 14.8,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
         "any_tds": {
-          "line": 0.16,
+          "line": 0.155,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -2432,21 +2661,21 @@
           "confidentRungs": 4
         },
         "rec_yds": {
-          "line": 9.9,
+          "line": 9.8,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 7,
           "confidentRungs": 7
         },
         "rush_yds": {
-          "line": 86.2,
+          "line": 82.1,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 14,
           "confidentRungs": 14
         },
         "any_tds": {
-          "line": 0.81,
+          "line": 0.805,
           "lineSource": "expected",
           "expected": null,
           "rungs": 3,
@@ -2461,21 +2690,21 @@
       "matchup": "MINDET",
       "stats": {
         "receptions": {
-          "line": 3.2,
+          "line": 3.3,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 7,
           "confidentRungs": 7
         },
         "rec_yds": {
-          "line": 49.9,
+          "line": 51.0,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 13,
           "confidentRungs": 13
         },
         "any_tds": {
-          "line": 0.355,
+          "line": 0.345,
           "lineSource": "expected",
           "expected": null,
           "rungs": 3,
@@ -2489,8 +2718,15 @@
       "kickoff": "26NOV01",
       "matchup": "MINDET",
       "stats": {
+        "rush_yds": {
+          "line": 2.2,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        },
         "pass_yds": {
-          "line": 251.7,
+          "line": 252.6,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 10,
@@ -2518,6 +2754,20 @@
       "kickoff": "26NOV01",
       "matchup": "MINDET",
       "stats": {
+        "receptions": {
+          "line": 1.4,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 4
+        },
+        "rec_yds": {
+          "line": 11.3,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 8,
+          "confidentRungs": 8
+        },
         "any_tds": {
           "line": 0.125,
           "lineSource": "expected",
@@ -2541,7 +2791,7 @@
           "confidentRungs": 5
         },
         "rec_yds": {
-          "line": 9.8,
+          "line": 9.9,
           "lineSource": "fitted",
           "expected": null,
           "rungs": 7,
@@ -2555,7 +2805,7 @@
           "confidentRungs": 12
         },
         "any_tds": {
-          "line": 0.975,
+          "line": 0.98,
           "lineSource": "expected",
           "expected": null,
           "rungs": 3,
@@ -2570,14 +2820,14 @@
       "matchup": "PHIWAS",
       "stats": {
         "rush_yds": {
-          "line": 36.1,
+          "line": 36.2,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 10,
           "confidentRungs": 10
         },
         "pass_yds": {
-          "line": 199.5,
+          "line": 201.0,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 8,
@@ -2594,8 +2844,8 @@
           "line": 0.33,
           "lineSource": "expected",
           "expected": null,
-          "rungs": 2,
-          "confidentRungs": 2
+          "rungs": 3,
+          "confidentRungs": 3
         }
       }
     },
@@ -2613,21 +2863,21 @@
           "confidentRungs": 7
         },
         "rec_yds": {
-          "line": 24.0,
+          "line": 24.2,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 9,
           "confidentRungs": 9
         },
         "rush_yds": {
-          "line": 64.7,
+          "line": 64.5,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 11,
           "confidentRungs": 11
         },
         "any_tds": {
-          "line": 0.65,
+          "line": 0.635,
           "lineSource": "expected",
           "expected": null,
           "rungs": 3,
@@ -2642,14 +2892,14 @@
       "matchup": "NEMIA",
       "stats": {
         "rush_yds": {
-          "line": 15.2,
+          "line": 15.1,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 8,
           "confidentRungs": 8
         },
         "any_tds": {
-          "line": 0.16,
+          "line": 0.165,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -2664,14 +2914,14 @@
       "matchup": "PHIWAS",
       "stats": {
         "rush_yds": {
-          "line": 22.9,
+          "line": 25.2,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 10,
           "confidentRungs": 10
         },
         "any_tds": {
-          "line": 0.23,
+          "line": 0.225,
           "lineSource": "expected",
           "expected": null,
           "rungs": 3,
@@ -2700,7 +2950,7 @@
           "confidentRungs": 9
         },
         "any_tds": {
-          "line": 0.13,
+          "line": 0.12,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -2715,7 +2965,7 @@
       "matchup": "TENCIN",
       "stats": {
         "rush_yds": {
-          "line": 6.9,
+          "line": 7.1,
           "lineSource": "fitted",
           "expected": null,
           "rungs": 5,
@@ -2724,9 +2974,9 @@
         "pass_yds": {
           "line": 274.5,
           "lineSource": "interpolated",
-          "expected": 257.2,
+          "expected": 259.0,
           "rungs": 10,
-          "confidentRungs": 9
+          "confidentRungs": 10
         },
         "pass_tds": {
           "line": 2.2,
@@ -2736,7 +2986,7 @@
           "confidentRungs": 5
         },
         "any_tds": {
-          "line": 0.15,
+          "line": 0.16,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -2750,8 +3000,15 @@
       "kickoff": "26NOV01",
       "matchup": "KCDEN",
       "stats": {
+        "receptions": {
+          "line": 1.6,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 6,
+          "confidentRungs": 6
+        },
         "rec_yds": {
-          "line": 10.3,
+          "line": 10.4,
           "lineSource": "fitted",
           "expected": null,
           "rungs": 7,
@@ -2765,7 +3022,7 @@
           "confidentRungs": 11
         },
         "any_tds": {
-          "line": 0.365,
+          "line": 0.355,
           "lineSource": "expected",
           "expected": null,
           "rungs": 3,
@@ -2802,21 +3059,21 @@
           "confidentRungs": 6
         },
         "rec_yds": {
-          "line": 14.7,
+          "line": 15.5,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 8,
           "confidentRungs": 8
         },
         "rush_yds": {
-          "line": 60.5,
+          "line": 58.2,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 11,
           "confidentRungs": 11
         },
         "any_tds": {
-          "line": 0.715,
+          "line": 0.685,
           "lineSource": "expected",
           "expected": null,
           "rungs": 3,
@@ -2845,7 +3102,7 @@
           "confidentRungs": 12
         },
         "any_tds": {
-          "line": 0.245,
+          "line": 0.24,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -2890,7 +3147,7 @@
       "matchup": "BALBUF",
       "stats": {
         "rush_yds": {
-          "line": 36.0,
+          "line": 35.0,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 11,
@@ -2911,7 +3168,7 @@
           "confidentRungs": 5
         },
         "any_tds": {
-          "line": 0.83,
+          "line": 0.825,
           "lineSource": "expected",
           "expected": null,
           "rungs": 3,
@@ -2948,7 +3205,7 @@
           "confidentRungs": 4
         },
         "rec_yds": {
-          "line": 10.5,
+          "line": 9.9,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 7,
@@ -2977,14 +3234,14 @@
           "confidentRungs": 4
         },
         "rec_yds": {
-          "line": 10.3,
-          "lineSource": "interpolated",
+          "line": 9.9,
+          "lineSource": "fitted",
           "expected": null,
           "rungs": 9,
           "confidentRungs": 9
         },
         "any_tds": {
-          "line": 0.11,
+          "line": 0.115,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -3006,7 +3263,7 @@
           "confidentRungs": 5
         },
         "rec_yds": {
-          "line": 10.2,
+          "line": 9.5,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 7,
@@ -3056,7 +3313,7 @@
           "confidentRungs": 4
         },
         "any_tds": {
-          "line": 0.165,
+          "line": 0.155,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -3078,14 +3335,14 @@
           "confidentRungs": 10
         },
         "rec_yds": {
-          "line": 76.3,
+          "line": 77.2,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 14,
           "confidentRungs": 14
         },
         "any_tds": {
-          "line": 0.435,
+          "line": 0.415,
           "lineSource": "expected",
           "expected": null,
           "rungs": 3,
@@ -3122,14 +3379,14 @@
           "confidentRungs": 10
         },
         "rec_yds": {
-          "line": 45.5,
+          "line": 45.3,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 12,
           "confidentRungs": 12
         },
         "any_tds": {
-          "line": 0.25,
+          "line": 0.245,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -3159,7 +3416,7 @@
       "matchup": "LACLAR",
       "stats": {
         "any_tds": {
-          "line": 0.165,
+          "line": 0.145,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -3174,7 +3431,7 @@
       "matchup": "INDJAC",
       "stats": {
         "any_tds": {
-          "line": 0.215,
+          "line": 0.195,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -3211,7 +3468,7 @@
           "confidentRungs": 8
         },
         "rec_yds": {
-          "line": 30.8,
+          "line": 30.4,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 11,
@@ -3232,8 +3489,15 @@
       "kickoff": "26NOV01",
       "matchup": "KCDEN",
       "stats": {
+        "receptions": {
+          "line": 2.8,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 7,
+          "confidentRungs": 7
+        },
         "rec_yds": {
-          "line": 16.9,
+          "line": 17.8,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 9,
@@ -3247,7 +3511,7 @@
           "confidentRungs": 13
         },
         "any_tds": {
-          "line": 0.75,
+          "line": 0.74,
           "lineSource": "expected",
           "expected": null,
           "rungs": 3,
@@ -3262,14 +3526,14 @@
       "matchup": "ATLTB",
       "stats": {
         "rec_yds": {
-          "line": 10.8,
+          "line": 10.7,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 8,
           "confidentRungs": 8
         },
         "any_tds": {
-          "line": 0.215,
+          "line": 0.225,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -3291,7 +3555,7 @@
           "confidentRungs": 5
         },
         "rec_yds": {
-          "line": 17.0,
+          "line": 16.8,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 9,
@@ -3313,7 +3577,7 @@
       "matchup": "BALBUF",
       "stats": {
         "receptions": {
-          "line": 2.1,
+          "line": 2.2,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 6,
@@ -3357,7 +3621,7 @@
       "matchup": "BALBUF",
       "stats": {
         "receptions": {
-          "line": 3.8,
+          "line": 3.7,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 8,
@@ -3385,15 +3649,22 @@
       "kickoff": "26NOV01",
       "matchup": "LACLAR",
       "stats": {
+        "receptions": {
+          "line": 1.5,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 4
+        },
         "rec_yds": {
-          "line": 7.0,
+          "line": 7.3,
           "lineSource": "fitted",
           "expected": null,
           "rungs": 6,
           "confidentRungs": 6
         },
         "rush_yds": {
-          "line": 21.5,
+          "line": 20.2,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 9,
@@ -3415,9 +3686,9 @@
       "matchup": "LVNYJ",
       "stats": {
         "pass_yds": {
-          "line": 236.2,
+          "line": 237.7,
           "lineSource": "interpolated",
-          "expected": null,
+          "expected": 228.7,
           "rungs": 10,
           "confidentRungs": 10
         },
@@ -3473,7 +3744,7 @@
           "confidentRungs": 11
         },
         "any_tds": {
-          "line": 0.255,
+          "line": 0.24,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -3487,8 +3758,15 @@
       "kickoff": "26NOV01",
       "matchup": "NEMIA",
       "stats": {
+        "receptions": {
+          "line": 1.2,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 4
+        },
         "rec_yds": {
-          "line": 18.4,
+          "line": 17.7,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 9,
@@ -3509,6 +3787,13 @@
       "kickoff": "26NOV01",
       "matchup": "MINDET",
       "stats": {
+        "rush_yds": {
+          "line": 19.8,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 8
+        },
         "pass_yds": {
           "line": 223.7,
           "lineSource": "interpolated",
@@ -3538,22 +3823,29 @@
       "kickoff": "26NOV01",
       "matchup": "LACLAR",
       "stats": {
+        "receptions": {
+          "line": 3.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 7,
+          "confidentRungs": 7
+        },
         "rec_yds": {
-          "line": 20.8,
+          "line": 20.6,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 10,
           "confidentRungs": 10
         },
         "rush_yds": {
-          "line": 59.9,
+          "line": 59.5,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 10,
           "confidentRungs": 10
         },
         "any_tds": {
-          "line": 0.74,
+          "line": 0.745,
           "lineSource": "expected",
           "expected": null,
           "rungs": 3,
@@ -3583,7 +3875,7 @@
       "matchup": "LACLAR",
       "stats": {
         "any_tds": {
-          "line": 0.13,
+          "line": 0.135,
           "lineSource": "expected",
           "expected": null,
           "rungs": 1,
@@ -3703,7 +3995,7 @@
       "matchup": "PHIWAS",
       "stats": {
         "any_tds": {
-          "line": 0.225,
+          "line": 0.23,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -3718,7 +4010,7 @@
       "matchup": "LVNYJ",
       "stats": {
         "any_tds": {
-          "line": 0.055,
+          "line": 0.05,
           "lineSource": "expected",
           "expected": null,
           "rungs": 1,
@@ -3733,7 +4025,7 @@
       "matchup": "NEMIA",
       "stats": {
         "rec_yds": {
-          "line": 38.0,
+          "line": 38.6,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 11,
@@ -3755,7 +4047,7 @@
       "matchup": "NEMIA",
       "stats": {
         "rush_yds": {
-          "line": 34.5,
+          "line": 33.9,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 9,
@@ -3798,14 +4090,14 @@
           "confidentRungs": 8
         },
         "rec_yds": {
-          "line": 31.1,
+          "line": 30.2,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 11,
           "confidentRungs": 11
         },
         "any_tds": {
-          "line": 0.34,
+          "line": 0.335,
           "lineSource": "expected",
           "expected": null,
           "rungs": 3,
@@ -3820,11 +4112,11 @@
       "matchup": "KCDEN",
       "stats": {
         "any_tds": {
-          "line": 0.14,
+          "line": 0.16,
           "lineSource": "expected",
           "expected": null,
-          "rungs": 1,
-          "confidentRungs": 1
+          "rungs": 2,
+          "confidentRungs": 2
         }
       }
     },
@@ -3835,21 +4127,21 @@
       "matchup": "LVNYJ",
       "stats": {
         "receptions": {
-          "line": 2.6,
+          "line": 2.7,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 7,
           "confidentRungs": 7
         },
         "rec_yds": {
-          "line": 22.1,
+          "line": 22.0,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 9,
           "confidentRungs": 9
         },
         "any_tds": {
-          "line": 0.2,
+          "line": 0.195,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -3879,7 +4171,7 @@
       "matchup": "LACLAR",
       "stats": {
         "rush_yds": {
-          "line": 1.0,
+          "line": 1.3,
           "lineSource": "fitted",
           "expected": null,
           "rungs": 2,
@@ -3930,21 +4222,21 @@
       "matchup": "LVNYJ",
       "stats": {
         "receptions": {
-          "line": 2.9,
+          "line": 2.8,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 7,
           "confidentRungs": 7
         },
         "rec_yds": {
-          "line": 24.5,
+          "line": 24.8,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 10,
           "confidentRungs": 10
         },
         "any_tds": {
-          "line": 0.22,
+          "line": 0.205,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -3959,21 +4251,21 @@
       "matchup": "ATLTB",
       "stats": {
         "pass_yds": {
-          "line": 230.3,
+          "line": 230.8,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 9,
           "confidentRungs": 9
         },
         "pass_tds": {
-          "line": 1.3,
+          "line": 1.2,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 4,
           "confidentRungs": 4
         },
         "any_tds": {
-          "line": 0.07,
+          "line": 0.075,
           "lineSource": "expected",
           "expected": null,
           "rungs": 1,
@@ -3988,14 +4280,14 @@
       "matchup": "ARIDAL",
       "stats": {
         "rec_yds": {
-          "line": 52.8,
+          "line": 57.5,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 12,
           "confidentRungs": 12
         },
         "any_tds": {
-          "line": 0.4,
+          "line": 0.385,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -4017,14 +4309,14 @@
           "confidentRungs": 6
         },
         "rec_yds": {
-          "line": 22.7,
+          "line": 23.7,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 10,
           "confidentRungs": 10
         },
         "any_tds": {
-          "line": 0.31,
+          "line": 0.305,
           "lineSource": "expected",
           "expected": null,
           "rungs": 3,
@@ -4039,14 +4331,14 @@
       "matchup": "LVNYJ",
       "stats": {
         "rush_yds": {
-          "line": 29.1,
+          "line": 30.4,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 9,
           "confidentRungs": 9
         },
         "any_tds": {
-          "line": 0.235,
+          "line": 0.23,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -4121,7 +4413,7 @@
       "matchup": "KCDEN",
       "stats": {
         "any_tds": {
-          "line": 0.045,
+          "line": 0.05,
           "lineSource": "expected",
           "expected": null,
           "rungs": 1,
@@ -4136,7 +4428,7 @@
       "matchup": "INDJAC",
       "stats": {
         "any_tds": {
-          "line": 0.15,
+          "line": 0.16,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -4151,7 +4443,7 @@
       "matchup": "BALBUF",
       "stats": {
         "any_tds": {
-          "line": 0.055,
+          "line": 0.05,
           "lineSource": "expected",
           "expected": null,
           "rungs": 1,
@@ -4180,8 +4472,15 @@
       "kickoff": "26NOV01",
       "matchup": "NEMIA",
       "stats": {
+        "receptions": {
+          "line": 1.5,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 4
+        },
         "rec_yds": {
-          "line": 10.3,
+          "line": 10.5,
           "lineSource": "fitted",
           "expected": null,
           "rungs": 7,
@@ -4195,7 +4494,7 @@
           "confidentRungs": 12
         },
         "any_tds": {
-          "line": 0.535,
+          "line": 0.52,
           "lineSource": "expected",
           "expected": null,
           "rungs": 3,
@@ -4210,21 +4509,21 @@
       "matchup": "LVNYJ",
       "stats": {
         "receptions": {
-          "line": 3.1,
+          "line": 3.2,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 7,
           "confidentRungs": 7
         },
         "rec_yds": {
-          "line": 41.1,
+          "line": 41.3,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 12,
           "confidentRungs": 12
         },
         "any_tds": {
-          "line": 0.265,
+          "line": 0.255,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -4238,15 +4537,22 @@
       "kickoff": "26NOV01",
       "matchup": "LACLAR",
       "stats": {
+        "receptions": {
+          "line": 1.3,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 4
+        },
         "rec_yds": {
-          "line": 4.5,
+          "line": 4.6,
           "lineSource": "fitted",
           "expected": null,
           "rungs": 6,
           "confidentRungs": 6
         },
         "rush_yds": {
-          "line": 31.1,
+          "line": 29.5,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 10,
@@ -4268,7 +4574,7 @@
       "matchup": "LACLAR",
       "stats": {
         "any_tds": {
-          "line": 0.155,
+          "line": 0.145,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -4320,14 +4626,14 @@
           "confidentRungs": 9
         },
         "rec_yds": {
-          "line": 65.5,
+          "line": 65.4,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 14,
           "confidentRungs": 14
         },
         "any_tds": {
-          "line": 0.57,
+          "line": 0.575,
           "lineSource": "expected",
           "expected": null,
           "rungs": 3,
@@ -4349,14 +4655,14 @@
           "confidentRungs": 6
         },
         "rec_yds": {
-          "line": 25.3,
+          "line": 25.2,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 10,
           "confidentRungs": 10
         },
         "any_tds": {
-          "line": 0.23,
+          "line": 0.22,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -4378,7 +4684,7 @@
           "confidentRungs": 7
         },
         "pass_yds": {
-          "line": 225.3,
+          "line": 224.5,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 9,
@@ -4407,7 +4713,7 @@
       "matchup": "INDJAC",
       "stats": {
         "any_tds": {
-          "line": 0.065,
+          "line": 0.045,
           "lineSource": "expected",
           "expected": null,
           "rungs": 1,
@@ -4421,8 +4727,15 @@
       "kickoff": "26NOV01",
       "matchup": "LACLAR",
       "stats": {
+        "receptions": {
+          "line": 7.8,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 12,
+          "confidentRungs": 12
+        },
         "rec_yds": {
-          "line": 90.8,
+          "line": 89.5,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 14,
@@ -4458,15 +4771,22 @@
       "kickoff": "26NOV01",
       "matchup": "CLEPIT",
       "stats": {
-        "rec_yds": {
-          "line": 11.3,
+        "receptions": {
+          "line": 1.8,
           "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 5,
+          "confidentRungs": 5
+        },
+        "rec_yds": {
+          "line": 9.6,
+          "lineSource": "fitted",
           "expected": null,
           "rungs": 7,
           "confidentRungs": 7
         },
         "rush_yds": {
-          "line": 46.0,
+          "line": 46.6,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 10,
@@ -4502,6 +4822,13 @@
       "kickoff": "26NOV01",
       "matchup": "KCDEN",
       "stats": {
+        "receptions": {
+          "line": 3.1,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 7,
+          "confidentRungs": 7
+        },
         "rec_yds": {
           "line": 21.5,
           "lineSource": "interpolated",
@@ -4510,14 +4837,14 @@
           "confidentRungs": 10
         },
         "rush_yds": {
-          "line": 6.8,
+          "line": 7.8,
           "lineSource": "fitted",
           "expected": null,
           "rungs": 5,
           "confidentRungs": 5
         },
         "any_tds": {
-          "line": 0.195,
+          "line": 0.2,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -4532,21 +4859,21 @@
       "matchup": "PHIWAS",
       "stats": {
         "rec_yds": {
-          "line": 9.2,
-          "lineSource": "fitted",
+          "line": 10.9,
+          "lineSource": "interpolated",
           "expected": null,
           "rungs": 7,
-          "confidentRungs": 6
+          "confidentRungs": 7
         },
         "rush_yds": {
-          "line": 45.2,
+          "line": 45.5,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 10,
           "confidentRungs": 10
         },
         "any_tds": {
-          "line": 0.43,
+          "line": 0.41,
           "lineSource": "expected",
           "expected": null,
           "rungs": 3,
@@ -4568,14 +4895,14 @@
           "confidentRungs": 6
         },
         "rec_yds": {
-          "line": 24.5,
+          "line": 24.9,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 10,
           "confidentRungs": 10
         },
         "any_tds": {
-          "line": 0.2,
+          "line": 0.195,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -4590,7 +4917,7 @@
       "matchup": "BALBUF",
       "stats": {
         "rush_yds": {
-          "line": 4.8,
+          "line": 4.5,
           "lineSource": "fitted",
           "expected": null,
           "rungs": 7,
@@ -4612,7 +4939,7 @@
       "matchup": "ARIDAL",
       "stats": {
         "any_tds": {
-          "line": 0.065,
+          "line": 0.05,
           "lineSource": "expected",
           "expected": null,
           "rungs": 1,
@@ -4626,8 +4953,15 @@
       "kickoff": "26NOV01",
       "matchup": "NEMIA",
       "stats": {
+        "receptions": {
+          "line": 2.4,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 7,
+          "confidentRungs": 7
+        },
         "rec_yds": {
-          "line": 19.0,
+          "line": 18.7,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 9,
@@ -4655,19 +4989,33 @@
       "kickoff": "26NOV01",
       "matchup": "CLEPIT",
       "stats": {
+        "receptions": {
+          "line": 2.7,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 7,
+          "confidentRungs": 7
+        },
+        "rec_yds": {
+          "line": 14.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 8,
+          "confidentRungs": 8
+        },
         "rush_yds": {
-          "line": 25.3,
+          "line": 27.5,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 9,
           "confidentRungs": 9
         },
         "any_tds": {
-          "line": 0.265,
+          "line": 0.285,
           "lineSource": "expected",
           "expected": null,
-          "rungs": 2,
-          "confidentRungs": 2
+          "rungs": 3,
+          "confidentRungs": 3
         }
       }
     },
@@ -4685,14 +5033,14 @@
           "confidentRungs": 7
         },
         "rec_yds": {
-          "line": 33.5,
+          "line": 34.5,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 13,
           "confidentRungs": 13
         },
         "any_tds": {
-          "line": 0.26,
+          "line": 0.27,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -4707,21 +5055,21 @@
       "matchup": "MINDET",
       "stats": {
         "receptions": {
-          "line": 4.6,
+          "line": 4.5,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 9,
           "confidentRungs": 9
         },
         "rec_yds": {
-          "line": 48.2,
+          "line": 48.3,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 11,
           "confidentRungs": 11
         },
         "any_tds": {
-          "line": 0.315,
+          "line": 0.31,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -4750,14 +5098,14 @@
           "confidentRungs": 6
         },
         "rush_yds": {
-          "line": 22.0,
+          "line": 22.8,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 10,
-          "confidentRungs": 9
+          "confidentRungs": 10
         },
         "any_tds": {
-          "line": 0.34,
+          "line": 0.325,
           "lineSource": "expected",
           "expected": null,
           "rungs": 3,
@@ -4801,8 +5149,15 @@
       "kickoff": "26NOV01",
       "matchup": "MINDET",
       "stats": {
+        "rush_yds": {
+          "line": 4.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 6,
+          "confidentRungs": 5
+        },
         "any_tds": {
-          "line": 0.115,
+          "line": 0.12,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -4831,12 +5186,19 @@
       "kickoff": "26NOV01",
       "matchup": "PHIWAS",
       "stats": {
+        "rec_yds": {
+          "line": 38.8,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 12,
+          "confidentRungs": 12
+        },
         "any_tds": {
-          "line": 0.34,
+          "line": 0.345,
           "lineSource": "expected",
           "expected": null,
-          "rungs": 2,
-          "confidentRungs": 2
+          "rungs": 3,
+          "confidentRungs": 3
         }
       }
     },
@@ -4849,12 +5211,12 @@
         "receptions": {
           "line": 4.4,
           "lineSource": "interpolated",
-          "expected": null,
+          "expected": 4.5,
           "rungs": 9,
           "confidentRungs": 9
         },
         "rec_yds": {
-          "line": 39.2,
+          "line": 40.1,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 11,
@@ -4906,7 +5268,7 @@
       "matchup": "MINDET",
       "stats": {
         "any_tds": {
-          "line": 0.105,
+          "line": 0.095,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -4928,7 +5290,7 @@
           "confidentRungs": 4
         },
         "pass_yds": {
-          "line": 201.4,
+          "line": 202.9,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 8,
@@ -4972,7 +5334,7 @@
       "matchup": "ATLTB",
       "stats": {
         "any_tds": {
-          "line": 0.215,
+          "line": 0.195,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -4987,21 +5349,21 @@
       "matchup": "TENCIN",
       "stats": {
         "receptions": {
-          "line": 4.7,
+          "line": 4.8,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 9,
           "confidentRungs": 9
         },
         "rec_yds": {
-          "line": 67.8,
+          "line": 68.5,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 13,
           "confidentRungs": 13
         },
         "any_tds": {
-          "line": 0.57,
+          "line": 0.565,
           "lineSource": "expected",
           "expected": null,
           "rungs": 3,
@@ -5016,7 +5378,7 @@
       "matchup": "ATLTB",
       "stats": {
         "any_tds": {
-          "line": 0.205,
+          "line": 0.195,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -5031,7 +5393,7 @@
       "matchup": "LVNYJ",
       "stats": {
         "any_tds": {
-          "line": 0.055,
+          "line": 0.05,
           "lineSource": "expected",
           "expected": null,
           "rungs": 1,
@@ -5046,14 +5408,14 @@
       "matchup": "TENCIN",
       "stats": {
         "rush_yds": {
-          "line": 65.2,
+          "line": 64.3,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 12,
           "confidentRungs": 12
         },
         "any_tds": {
-          "line": 0.545,
+          "line": 0.525,
           "lineSource": "expected",
           "expected": null,
           "rungs": 3,
@@ -5068,7 +5430,7 @@
       "matchup": "INDJAC",
       "stats": {
         "any_tds": {
-          "line": 0.135,
+          "line": 0.14,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -5083,14 +5445,14 @@
       "matchup": "KCDEN",
       "stats": {
         "rec_yds": {
-          "line": 44.5,
+          "line": 44.2,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 12,
           "confidentRungs": 12
         },
         "any_tds": {
-          "line": 0.335,
+          "line": 0.33,
           "lineSource": "expected",
           "expected": null,
           "rungs": 3,
@@ -5112,14 +5474,14 @@
           "confidentRungs": 8
         },
         "rec_yds": {
-          "line": 45.7,
+          "line": 45.9,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 13,
           "confidentRungs": 13
         },
         "any_tds": {
-          "line": 0.29,
+          "line": 0.26,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -5134,14 +5496,14 @@
       "matchup": "NEMIA",
       "stats": {
         "rush_yds": {
-          "line": 18.5,
-          "lineSource": "interpolated",
+          "line": 15.6,
+          "lineSource": "fitted",
           "expected": null,
           "rungs": 9,
           "confidentRungs": 7
         },
         "any_tds": {
-          "line": 0.245,
+          "line": 0.24,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -5163,7 +5525,7 @@
           "confidentRungs": 7
         },
         "pass_yds": {
-          "line": 245.0,
+          "line": 244.7,
           "lineSource": "interpolated",
           "expected": 232.5,
           "rungs": 10,
@@ -5199,14 +5561,14 @@
           "confidentRungs": 12
         },
         "rec_yds": {
-          "line": 70.5,
+          "line": 69.9,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 12,
           "confidentRungs": 12
         },
         "any_tds": {
-          "line": 0.64,
+          "line": 0.645,
           "lineSource": "expected",
           "expected": null,
           "rungs": 3,
@@ -5221,7 +5583,7 @@
       "matchup": "PHIWAS",
       "stats": {
         "any_tds": {
-          "line": 0.185,
+          "line": 0.18,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -5236,7 +5598,7 @@
       "matchup": "KCDEN",
       "stats": {
         "any_tds": {
-          "line": 0.16,
+          "line": 0.165,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -5266,7 +5628,7 @@
       "matchup": "BALBUF",
       "stats": {
         "receptions": {
-          "line": 2.1,
+          "line": 2.0,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 6,
@@ -5295,7 +5657,7 @@
       "matchup": "ARIDAL",
       "stats": {
         "any_tds": {
-          "line": 0.3,
+          "line": 0.295,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -5317,7 +5679,7 @@
           "confidentRungs": 9
         },
         "any_tds": {
-          "line": 0.185,
+          "line": 0.19,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -5332,7 +5694,7 @@
       "matchup": "LACLAR",
       "stats": {
         "any_tds": {
-          "line": 0.325,
+          "line": 0.33,
           "lineSource": "expected",
           "expected": null,
           "rungs": 3,
@@ -5347,7 +5709,7 @@
       "matchup": "PHIWAS",
       "stats": {
         "any_tds": {
-          "line": 0.145,
+          "line": 0.14,
           "lineSource": "expected",
           "expected": null,
           "rungs": 1,
@@ -5362,7 +5724,7 @@
       "matchup": "TENCIN",
       "stats": {
         "rec_yds": {
-          "line": 36.7,
+          "line": 36.2,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 11,
@@ -5384,7 +5746,7 @@
       "matchup": "NEMIA",
       "stats": {
         "any_tds": {
-          "line": 0.065,
+          "line": 0.06,
           "lineSource": "expected",
           "expected": null,
           "rungs": 1,
@@ -5414,7 +5776,7 @@
       "matchup": "KCDEN",
       "stats": {
         "any_tds": {
-          "line": 0.315,
+          "line": 0.32,
           "lineSource": "expected",
           "expected": null,
           "rungs": 3,
@@ -5429,7 +5791,7 @@
       "matchup": "ATLTB",
       "stats": {
         "any_tds": {
-          "line": 0.12,
+          "line": 0.115,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -5444,21 +5806,21 @@
       "matchup": "BALBUF",
       "stats": {
         "receptions": {
-          "line": 5.9,
+          "line": 6.1,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 11,
           "confidentRungs": 11
         },
         "rec_yds": {
-          "line": 85.1,
+          "line": 84.0,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 13,
           "confidentRungs": 13
         },
         "any_tds": {
-          "line": 0.44,
+          "line": 0.445,
           "lineSource": "expected",
           "expected": null,
           "rungs": 3,
@@ -5473,11 +5835,11 @@
       "matchup": "CHISEA",
       "stats": {
         "any_tds": {
-          "line": 0.35,
+          "line": 0.36,
           "lineSource": "expected",
           "expected": null,
-          "rungs": 2,
-          "confidentRungs": 2
+          "rungs": 3,
+          "confidentRungs": 3
         }
       }
     },
@@ -5488,7 +5850,7 @@
       "matchup": "CHISEA",
       "stats": {
         "any_tds": {
-          "line": 0.14,
+          "line": 0.145,
           "lineSource": "expected",
           "expected": null,
           "rungs": 1,
@@ -5503,14 +5865,14 @@
       "matchup": "CHISEA",
       "stats": {
         "rush_yds": {
-          "line": 19.5,
+          "line": 20.6,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 8,
           "confidentRungs": 8
         },
         "pass_yds": {
-          "line": 225.4,
+          "line": 221.1,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 9,
@@ -5539,7 +5901,7 @@
       "matchup": "CHISEA",
       "stats": {
         "rec_yds": {
-          "line": 38.1,
+          "line": 38.2,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 12,
@@ -5576,11 +5938,11 @@
       "matchup": "CHISEA",
       "stats": {
         "any_tds": {
-          "line": 0.655,
+          "line": 0.69,
           "lineSource": "expected",
           "expected": null,
-          "rungs": 2,
-          "confidentRungs": 2
+          "rungs": 3,
+          "confidentRungs": 3
         }
       }
     },
@@ -5591,11 +5953,11 @@
       "matchup": "CHISEA",
       "stats": {
         "any_tds": {
-          "line": 0.465,
+          "line": 0.645,
           "lineSource": "expected",
           "expected": null,
-          "rungs": 2,
-          "confidentRungs": 1
+          "rungs": 3,
+          "confidentRungs": 3
         }
       }
     },
@@ -5621,11 +5983,11 @@
       "matchup": "CHISEA",
       "stats": {
         "any_tds": {
-          "line": 0.29,
+          "line": 0.215,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
-          "confidentRungs": 1
+          "confidentRungs": 2
         }
       }
     },
@@ -5636,18 +5998,18 @@
       "matchup": "CHISEA",
       "stats": {
         "rec_yds": {
-          "line": 100.5,
+          "line": 100.2,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 16,
           "confidentRungs": 16
         },
         "any_tds": {
-          "line": 0.665,
+          "line": 0.7,
           "lineSource": "expected",
           "expected": null,
-          "rungs": 2,
-          "confidentRungs": 2
+          "rungs": 3,
+          "confidentRungs": 3
         }
       }
     },
@@ -5680,18 +6042,18 @@
       "matchup": "CHISEA",
       "stats": {
         "rec_yds": {
-          "line": 49.0,
+          "line": 51.5,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 12,
           "confidentRungs": 12
         },
         "any_tds": {
-          "line": 0.325,
+          "line": 0.36,
           "lineSource": "expected",
           "expected": null,
-          "rungs": 2,
-          "confidentRungs": 2
+          "rungs": 3,
+          "confidentRungs": 3
         }
       }
     },
@@ -5702,7 +6064,7 @@
       "matchup": "CHISEA",
       "stats": {
         "rec_yds": {
-          "line": 38.6,
+          "line": 42.1,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 12,
@@ -5724,7 +6086,7 @@
       "matchup": "CHISEA",
       "stats": {
         "any_tds": {
-          "line": 0.2,
+          "line": 0.21,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -5754,14 +6116,14 @@
       "matchup": "CHISEA",
       "stats": {
         "rush_yds": {
-          "line": 4.6,
+          "line": 4.7,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 6,
           "confidentRungs": 6
         },
         "pass_yds": {
-          "line": 233.9,
+          "line": 233.1,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 10,
@@ -5805,7 +6167,7 @@
       "matchup": "CHISEA",
       "stats": {
         "any_tds": {
-          "line": 0.205,
+          "line": 0.21,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -5850,21 +6212,21 @@
       "matchup": "CARGB",
       "stats": {
         "receptions": {
-          "line": 0.6,
-          "lineSource": "interpolated",
+          "line": 0.5,
+          "lineSource": "fitted",
           "expected": null,
           "rungs": 3,
           "confidentRungs": 3
         },
         "rec_yds": {
-          "line": 6.6,
+          "line": 7.1,
           "lineSource": "fitted",
           "expected": null,
           "rungs": 8,
           "confidentRungs": 8
         },
         "any_tds": {
-          "line": 0.09,
+          "line": 0.1,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -5886,7 +6248,7 @@
           "confidentRungs": 6
         },
         "pass_yds": {
-          "line": 252.4,
+          "line": 254.0,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 8,
@@ -5900,7 +6262,7 @@
           "confidentRungs": 4
         },
         "any_tds": {
-          "line": 0.12,
+          "line": 0.13,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -5915,14 +6277,14 @@
       "matchup": "CARGB",
       "stats": {
         "receptions": {
-          "line": 0.6,
-          "lineSource": "interpolated",
+          "line": 0.5,
+          "lineSource": "fitted",
           "expected": null,
           "rungs": 4,
           "confidentRungs": 4
         },
         "rec_yds": {
-          "line": 5.3,
+          "line": 3.5,
           "lineSource": "fitted",
           "expected": null,
           "rungs": 7,
@@ -5961,12 +6323,12 @@
         "receptions": {
           "line": 4.7,
           "lineSource": "interpolated",
-          "expected": 4.7,
+          "expected": 4.8,
           "rungs": 10,
           "confidentRungs": 10
         },
         "rec_yds": {
-          "line": 70.1,
+          "line": 71.0,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 15,
@@ -5995,14 +6357,14 @@
           "confidentRungs": 6
         },
         "rec_yds": {
-          "line": 16.6,
+          "line": 16.8,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 8,
           "confidentRungs": 8
         },
         "rush_yds": {
-          "line": 69.1,
+          "line": 68.3,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 12,
@@ -6024,14 +6386,14 @@
       "matchup": "CARGB",
       "stats": {
         "receptions": {
-          "line": 2.1,
+          "line": 2.0,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 6,
           "confidentRungs": 6
         },
         "rec_yds": {
-          "line": 20.9,
+          "line": 21.4,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 9,
@@ -6053,7 +6415,7 @@
       "matchup": "CARGB",
       "stats": {
         "any_tds": {
-          "line": 0.135,
+          "line": 0.115,
           "lineSource": "expected",
           "expected": null,
           "rungs": 1,
@@ -6068,7 +6430,7 @@
       "matchup": "CARGB",
       "stats": {
         "any_tds": {
-          "line": 0.07,
+          "line": 0.06,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -6090,7 +6452,7 @@
           "confidentRungs": 9
         },
         "rec_yds": {
-          "line": 61.0,
+          "line": 61.9,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 13,
@@ -6112,14 +6474,14 @@
       "matchup": "CARGB",
       "stats": {
         "receptions": {
-          "line": 1.7,
+          "line": 1.8,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 5,
           "confidentRungs": 5
         },
         "rec_yds": {
-          "line": 15.6,
+          "line": 16.5,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 8,
@@ -6148,7 +6510,7 @@
           "confidentRungs": 3
         },
         "rec_yds": {
-          "line": 5.6,
+          "line": 4.3,
           "lineSource": "fitted",
           "expected": null,
           "rungs": 6,
@@ -6177,7 +6539,7 @@
           "confidentRungs": 6
         },
         "pass_yds": {
-          "line": 263.9,
+          "line": 264.6,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 5,
@@ -6206,28 +6568,28 @@
       "matchup": "CARGB",
       "stats": {
         "receptions": {
-          "line": 2.8,
+          "line": 2.7,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 6,
           "confidentRungs": 6
         },
         "rec_yds": {
-          "line": 17.8,
+          "line": 18.2,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 8,
           "confidentRungs": 8
         },
         "rush_yds": {
-          "line": 59.9,
+          "line": 61.4,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 11,
           "confidentRungs": 11
         },
         "any_tds": {
-          "line": 0.765,
+          "line": 0.775,
           "lineSource": "expected",
           "expected": null,
           "rungs": 3,
@@ -6257,28 +6619,28 @@
       "matchup": "CARGB",
       "stats": {
         "receptions": {
-          "line": 1.2,
+          "line": 1.1,
           "lineSource": "fitted",
           "expected": null,
           "rungs": 3,
           "confidentRungs": 3
         },
         "rec_yds": {
-          "line": 5.8,
+          "line": 6.5,
           "lineSource": "fitted",
           "expected": null,
           "rungs": 6,
           "confidentRungs": 6
         },
         "rush_yds": {
-          "line": 16.6,
+          "line": 16.8,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 8,
           "confidentRungs": 8
         },
         "any_tds": {
-          "line": 0.215,
+          "line": 0.205,
           "lineSource": "expected",
           "expected": null,
           "rungs": 3,
@@ -6293,7 +6655,7 @@
       "matchup": "CARGB",
       "stats": {
         "any_tds": {
-          "line": 0.055,
+          "line": 0.075,
           "lineSource": "expected",
           "expected": null,
           "rungs": 1,
@@ -6307,19 +6669,26 @@
       "kickoff": "26OCT29",
       "matchup": "CARGB",
       "stats": {
+        "receptions": {
+          "line": 4.4,
+          "lineSource": "interpolated",
+          "expected": 4.5,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
         "rec_yds": {
-          "line": 58.9,
+          "line": 55.1,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 13,
           "confidentRungs": 13
         },
         "any_tds": {
-          "line": 0.41,
+          "line": 0.425,
           "lineSource": "expected",
           "expected": null,
-          "rungs": 2,
-          "confidentRungs": 2
+          "rungs": 3,
+          "confidentRungs": 3
         }
       }
     },
@@ -6330,14 +6699,14 @@
       "matchup": "CARGB",
       "stats": {
         "receptions": {
-          "line": 1.1,
+          "line": 1.0,
           "lineSource": "fitted",
           "expected": null,
           "rungs": 3,
           "confidentRungs": 3
         },
         "rec_yds": {
-          "line": 8.0,
+          "line": 7.8,
           "lineSource": "fitted",
           "expected": null,
           "rungs": 6,
@@ -6359,7 +6728,7 @@
       "matchup": "CARGB",
       "stats": {
         "any_tds": {
-          "line": 0.055,
+          "line": 0.05,
           "lineSource": "expected",
           "expected": null,
           "rungs": 1,
@@ -6388,14 +6757,14 @@
           "confidentRungs": 10
         },
         "rush_yds": {
-          "line": 3.3,
+          "line": 4.6,
           "lineSource": "fitted",
           "expected": null,
           "rungs": 5,
           "confidentRungs": 5
         },
         "any_tds": {
-          "line": 0.21,
+          "line": 0.2,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -6410,14 +6779,14 @@
       "matchup": "CARGB",
       "stats": {
         "receptions": {
-          "line": 5.2,
+          "line": 5.3,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 9,
           "confidentRungs": 9
         },
         "rec_yds": {
-          "line": 72.3,
+          "line": 73.0,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 13,
@@ -6446,14 +6815,14 @@
           "confidentRungs": 6
         },
         "rec_yds": {
-          "line": 14.8,
+          "line": 15.2,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 8,
           "confidentRungs": 8
         },
         "any_tds": {
-          "line": 0.18,
+          "line": 0.17,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -6468,7 +6837,7 @@
       "matchup": "CARGB",
       "stats": {
         "rush_yds": {
-          "line": 9.3,
+          "line": 9.2,
           "lineSource": "fitted",
           "expected": null,
           "rungs": 5,
@@ -6504,7 +6873,7 @@
           "confidentRungs": 12
         },
         "any_tds": {
-          "line": 0.395,
+          "line": 0.385,
           "lineSource": "expected",
           "expected": null,
           "rungs": 3,
