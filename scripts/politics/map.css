@@ -1,0 +1,55 @@
+/* The forecast map (politics-map). */
+.views .seg button { font-size: 1.1rem; padding: 7px 16px; }
+@media (max-width: 600px) { .views .seg button, .seg button { padding: 6px 9px; font-size: 0.95rem; } }
+.seglab { font-family: var(--mono); font-size: 0.72rem; text-transform: uppercase; color: var(--muted); }
+.chk { font-family: var(--mono); font-size: 0.8rem; color: var(--ink-2); }
+.chk input { accent-color: var(--red); }
+.tally span {
+    background: none; border: 0; border-bottom: 1px dotted var(--rule-soft);
+    padding: 2px 4px; font-family: var(--mono); color: var(--ink-2);
+}
+.tally b { color: var(--ink); }
+.tally i, .legend i, .dl span i { box-shadow: inset 0 0 0 1px rgba(26, 26, 26, 0.25); }
+
+.mapcard {
+    background: transparent; border: 0; border-top: 2px solid var(--rule);
+    border-bottom: 1px solid var(--rule); padding: 12px 0;
+}
+/* Paper-white borders between shaded states, ink on hover and selection. */
+#map .st, #map .sq, #map .cb, #map .ds { stroke: var(--paper); }
+#map .st:hover, #map .sq:hover, #map .cb:hover, #map .ds:hover, #map .sel, #map .ds.sel { stroke: var(--ink); }
+#map .sb { stroke: var(--ink); stroke-width: 1px; }
+#map .lab, #map .dn {
+    fill: var(--ink); stroke: rgba(243, 240, 232, 0.85); font-family: var(--mono); font-weight: 600;
+}
+#map .tl { fill: var(--muted); font-family: var(--display); font-size: 13px; }
+.zoom button {
+    background: var(--paper); border: 1px solid var(--ink); color: var(--ink);
+    font-family: var(--display); font-size: 1rem; text-transform: uppercase;
+}
+.zoom button:hover { background: var(--ink); color: var(--paper); }
+.legend, .note { font-family: var(--mono); color: var(--muted); }
+
+/* The race panel that slides in when a race is clicked. */
+.detail {
+    top: calc(var(--nav-h, 60px) + 12px); max-height: calc(100vh - var(--nav-h, 60px) - 24px);
+    z-index: 120; background: var(--paper);
+    border: 1px solid var(--ink); border-top: 3px solid var(--ink);
+    box-shadow: 6px 6px 0 rgba(26, 26, 26, 0.15);
+}
+.detail .card { background: var(--paper); border: 0; padding: 12px 52px 14px 14px; }
+.rname { font-family: var(--display); font-weight: 800; font-size: 1.35rem; text-transform: uppercase; line-height: 1.05; }
+.rsub { font-family: var(--mono); color: var(--muted); }
+.cand { font-size: 0.9rem; }
+.demo { border-top-color: var(--rule-faint); color: var(--muted); }
+.tiphint { color: var(--red); border-top-color: var(--rule-faint); }
+
+/* Rating pills: ink text beside a swatch of the race's shade (see PILL_NEW). */
+.pill { background: none; color: var(--ink); padding: 2px 0; }
+.pill .sw {
+    display: inline-block; width: 11px; height: 11px; margin-right: 6px; vertical-align: -1px;
+    box-shadow: inset 0 0 0 1px rgba(26, 26, 26, 0.25);
+}
+
+.list h3 { font-family: var(--display); font-weight: 800; font-size: 1.4rem; letter-spacing: 0.02em; color: var(--ink); }
+.mut { color: var(--muted); }

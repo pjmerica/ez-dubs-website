@@ -1,0 +1,76 @@
+name: Election Forecast Pull
+
+on:
+  schedule:
+    # The Politics pages mirror the election forecast built in
+    # pjmerica/polling-agg-2026, which refreshes its market prices every two
+    # hours (:41 past odd UTC hours) and re-runs the model after its twice-daily
+    # poll refresh. This runs every two hours in between. GitHub starts this
+    # account's cron runs 1.5-4.5 hours late, so exact offsets do not matter;
+    # a run that finds nothing new commits nothing. Not on the hour, where the
+    # scheduler is busiest, and clear of the other workflows' :00/:30/:45.
+    - cron: '20 */2 * * *'
+  workflow_dispatch:
+
+# One run at a time; a dispatch landing on a scheduled run would otherwise
+# commit the same files twice and the second push's rebase would conflict.
+concurrency:
+  group: politics-pull
+  cancel-in-progress: false
+
+jobs:
+  pull:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install deps
+        run: pip install requests
+
+      # Copies the four data files and rebuilds the two pages from upstream's
+      # published HTML (scripts/pull_politics.py explains why they are rebuilt,
+      # not hand-made). It exits 1 when something could not be mirrored, but
+      # whatever DID update is still committed: the data files keep refreshing
+      # even if a page change upstream needs this script fixing first.
+      - name: Pull the election forecast
+        id: pull
+        continue-on-error: true
+        run: python scripts/pull_politics.py
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name  "ezdubs-bot"
+          git config user.email "ezdubs-bot@users.noreply.github.com"
+          git add dashboards/politics-data/ dashboards/politics-map/ dashboards/politics-forecast/
+          if git diff --cached --quiet; then
+            echo "No new forecast to commit."
+            exit 0
+          fi
+          git commit -m "Auto: election forecast $(date -u +%Y-%m-%dT%H:%MZ)"
+          # Retry with rebase: this shares main with the other data workflows and
+          # with hand pushes. They touch different files.
+          for i in 1 2 3 4 5; do
+            if git push; then
+              echo "Pushed on attempt $i."
+              exit 0
+            fi
+            echo "Push attempt $i failed; rebasing on remote."
+            git rebase --abort 2>/dev/null || true
+            git pull --rebase --autostash origin main || git rebase --abort 2>/dev/null || true
+          done
+          echo "Push failed after 5 attempts." >&2
+          exit 1
+
+      # Red run when the mirror could not do everything, after committing
+      # whatever it could, so a page that stopped rebuilding gets noticed.
+      - name: Fail if the mirror reported a problem
+        if: steps.pull.outcome == 'failure'
+        run: |
+          echo "pull_politics.py reported a problem; see the 'Pull the election forecast' step." >&2
+          exit 1

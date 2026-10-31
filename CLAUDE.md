@@ -12,6 +12,58 @@ Context for future Claude sessions in this repo. Read `README.md` first for the 
 - **Arb Calculator** at `dashboards/arb-calculator/`. Free tool. Accepts URL params (`?labelA=Kalshi&labelB=Polymarket&ayes=0.42&bno=0.55&...`) so the pred-mkt cards can hand off a prefilled setup.
 - **Contact** at `/contact.html`. Formspree form.
 - **Blog** — external link to Substack (`https://substack.com/@ezdubsanalytics`).
+- **Politics > Forecast Map / Race by Race** at `dashboards/politics-map/` and `dashboards/politics-forecast/`. The user's election forecast, generated from polling-agg-2026 (see "Politics pages" below).
+
+
+## Politics pages (2026-10-31)
+
+The user's 2026 election forecast, under a **Politics** menu in the nav. The
+user named it **"The EZ Dub Election Forecast"** (their wording, "EZ Dub"
+without the s; it is the H1 on both pages, `TITLE` in the script). The model,
+its data and the original pages live in **`pjmerica/polling-agg-2026`** (local
+checkout: `Documents/Polling Agg/Polling agg and Prediction markets`), which
+publishes them on its own Pages site; the user gave permission to edit that repo.
+
+- **Both pages are generated. Do not hand-edit them.** `scripts/pull_politics.py`
+  fetches upstream's published `map.html` and `predictions.html` and rebuilds
+  `politics-map/index.html` and `politics-forecast/index.html` on every run:
+  upstream's markup and inline script verbatim, upstream's own header dropped,
+  the site nav and footer lifted from the arb calculator (as the NFL port does),
+  upstream's CSS re-themed plus the overrides in `scripts/politics/*.css`. The
+  look is changed in those CSS files and the colour tables in the script, then
+  re-run. Upstream is under active development (several map changes a day), and
+  rebuilding is what keeps the site's copy from drifting.
+- **Colours in upstream's script** are swapped by `JS_HEX` (map shades to
+  newsprint blues/reds), `PCOL_NEW` (party colours dark enough for text on
+  paper), `INK_FN` (white-or-ink text by real WCAG contrast) and `PILL_NEW` (the
+  map's rating pills are ink text beside a swatch: some continuous mid shades
+  give neither white nor ink 4.5:1, which axe caught). A new hex upstream is
+  reported in the run log and shows in upstream's colour until it is added.
+- **It fails safe.** If upstream changes shape (an element id gone, the inline
+  script missing, a required substitution not matching, a link to an upstream
+  page the site doesn't have), that page is NOT rebuilt, the last good one stays
+  live and the run goes red. The data files still update.
+- **Data:** `dashboards/politics-data/` holds the four files the pages load
+  (`forecast_data.js` ~2 MB, `data.js`, two map-shape files), byte for byte.
+  They are `-text` in `.gitattributes`: upstream's carry CRLF, and the `*.js eol=lf`
+  rule made every run look changed. Each page loads them with a content-hash
+  `?v=`, so a data change rebuilds the page too and Pages' 10-minute cache cannot
+  pair a new page with old data. A data file that fails to load shows the site's
+  one `.load-error` notice (built into the page shell by the script).
+- **Schedule:** `.github/workflows/politics-pull.yml`, every two hours at :20.
+  Upstream refreshes markets every two hours and re-runs the model after its
+  twice-daily poll refresh. Each data change is a commit (forecast_data.js is
+  the big one); that history growth was accepted for the election window.
+- **Mirror, don't link.** The pages can't load from upstream's Pages site
+  directly: that URL names the GitHub account, which `verify_no_identity` and the
+  pseudonymous brand rule out. The account URL lives only in the script
+  (`scripts/` is not published).
+- Not mirrored (yet): upstream's dashboard, poll explorer, primaries and
+  election-night pages. Adding one means a `PAGES` entry, a theme CSS file, and
+  removing its name from the stray-link check's failures.
+- The NFL port (AI_Agent_work) needs no change for the new menu: it rewrites
+  only the NFL dropdown on each page and copies the rest of the nav from the
+  calculator, which carries Politics.
 
 
 ## NFL Redraft/In-Season pages (2026-10-01)
@@ -34,8 +86,9 @@ Two things that look like mistakes and are not:
   reverted. Per-page heading, subtitle and description live in the `PAGES` dict
   in that script, the shared head tags in its `HEAD_TMPL`; edit them there and
   re-run the port. The `?v=` cache-bust tag is a content hash the port computes.
-  The port also rewrites the nav on all eight pages, so check `git status` after
-  running it (it should touch only the two NFL `index.html` files).
+  The port also rewrites the nav on every page (the two Politics pages included
+  since 2026-10-31), so check `git status` after running it (it should touch
+  only the two NFL `index.html` files).
 - **The NFL pages' look comes from the port, not from hand edits.**
   `nfl-shared/style.css` is a re-themed copy of the lineup template's
   stylesheet (`SITE_THEME` and `RGBA_THEME` in the port invert its purple

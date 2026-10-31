@@ -1,0 +1,36 @@
+/* Race by race (politics-forecast). */
+.chambers { gap: 28px; }
+.chamber { background: none; border: 0; border-top: 3px solid var(--rule); padding: 10px 0 0; }
+.chamber h3 { font-family: var(--display); font-weight: 800; font-size: 1.35rem; letter-spacing: 0.02em; color: var(--ink); }
+.chamber .seats { font-family: var(--mono); color: var(--ink-2); }
+.chamber .seats b { color: var(--ink); }
+.tally .d, .tally .r { font-family: var(--display); font-weight: 800; font-size: 2.8rem; line-height: 1; }
+.tally .d { color: var(--dem-soft); }
+.tally .r { color: var(--rep-soft); }
+.tally .mid { font-family: var(--mono); color: var(--muted); }
+.tally small { font-family: var(--mono); color: var(--muted); }
+.tile:hover { outline: 2px solid var(--ink); }
+.legend { font-family: var(--mono); color: var(--muted); }
+
+/* The filter bar sticks below the site nav, which is sticky too. */
+.controls {
+    top: var(--nav-h, 0px); background: var(--paper);
+    border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+}
+.controls input, .controls select {
+    background: var(--field); border: 1px solid var(--rule); color: var(--ink);
+    font-family: var(--mono); font-size: 0.82rem;
+}
+.controls input:focus, .controls select:focus { outline: 2px solid var(--red); outline-offset: 0; border-color: var(--rule); }
+
+.grid { gap: 22px 32px; }
+.card { background: none; border: 0; border-top: 2px solid var(--rule); padding: 10px 0 12px; }
+.card:hover { border-top-color: var(--red); }
+.card.flash { border-top-color: var(--red); background: var(--paper-2); }
+.race-name { font-family: var(--display); font-weight: 800; font-size: 1.35rem; text-transform: uppercase; line-height: 1.05; }
+.race-sub { font-family: var(--mono); font-size: 0.72rem; color: var(--muted); }
+.bar { background: var(--paper-2); height: 8px; }
+.bar .mid { background: var(--paper); }
+.foot { font-family: var(--mono); color: var(--muted); }
+.foot b { color: var(--ink); }
+.empty { font-family: var(--mono); color: var(--muted); }

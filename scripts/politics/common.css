@@ -1,0 +1,114 @@
+/* Box Score look for the election forecast pages, shared by both. Inlined
+   after upstream's re-themed CSS by scripts/pull_politics.py, so these win.
+   Upstream's token names are kept and pointed at the site's tokens, which
+   re-themes every rule (and every inline style in its script) that uses them. */
+:root {
+    --bg: var(--paper); --panel: var(--paper); --panel2: var(--paper-2);
+    --line: var(--rule-faint); --line2: var(--rule-soft); --text: var(--ink);
+    --faint: var(--muted); --accent: var(--red);
+    /* map fills: a coin flip, on the ballot with no number, no race at all */
+    --toss: #d9a93f; --none: #d3ccbd; --off: #e6e1d6;
+    /* party colours: --dem/--rep fill bars; the -soft ones are text and badges */
+    --dem: #4f78b0; --dem-soft: #1f4e8c; --rep: #c95547; --rep-soft: #b3261e;
+    --ind: #5f3f92; --oth: #6f6a60;
+    /* rating tiers: Safe and Likely carry white text, Lean carries ink */
+    --safe-d: #1f4e8c; --likely-d: #3a68a6; --lean-d: #b3c6e0;
+    --safe-r: #8f1f18; --likely-r: #b3261e; --lean-r: #e8b0a6;
+}
+
+.pol-head { max-width: 1240px; margin: 0 auto; padding: 32px 20px 0; }
+.pol-head .headline { font-size: clamp(2.3rem, 6vw, 3.6rem); }
+@media (max-width: 600px) { .pol-head { padding: 24px 16px 0; } }
+.pol .wrap { max-width: 1240px; }
+
+.hero { padding: 12px 0 4px; }
+.hero h2 {
+    font-family: var(--display); font-weight: 800; text-transform: uppercase;
+    font-size: clamp(1.35rem, 3vw, 1.85rem); line-height: 1.05; letter-spacing: 0.01em;
+}
+.hero p { color: var(--ink-2); font-size: 1.02rem; line-height: 1.55; max-width: 760px; }
+.asof { font-family: var(--mono); font-size: 0.74rem; color: var(--muted); }
+.pol a { color: var(--ink); text-decoration: underline; text-underline-offset: 2px; }
+.pol a:hover { color: var(--red); }
+
+/* Segmented controls: square boxes, the chosen one in solid ink. Each button
+   draws its own border and overlaps its neighbour by 1px, so a row that wraps
+   on a phone still reads as one grid instead of breaking a label in two. */
+.seg, .tabs2 { background: none; border: 0; padding: 0 0 1px 1px; gap: 0; flex-wrap: wrap; }
+.seg button, .tabs2 button {
+    font-family: var(--display); font-weight: 700; font-size: 1rem;
+    text-transform: uppercase; letter-spacing: 0.03em; color: var(--ink);
+    padding: 6px 14px; border: 1px solid var(--rule); margin: 0 0 -1px -1px; white-space: nowrap;
+}
+.seg button:hover:not(.on), .tabs2 button:hover:not(.on) { background: var(--paper-2); color: var(--red); }
+.seg button.on, .seg.src button.on, .tabs2 button.on { background: var(--ink); color: var(--paper); }
+
+/* Labels, badges, flags. */
+.pill { font-family: var(--mono); font-weight: 600; letter-spacing: 0.02em; text-transform: uppercase; }
+.pb { color: var(--paper); font-family: var(--mono); font-weight: 600; }
+.chip { font-family: var(--mono); background: none; border: 1px solid var(--rule-soft); color: var(--muted); }
+.chip.warn, .warn, .rnote, .xnote, .card .note { color: var(--amber); }
+.chip.warn { border-color: var(--amber); }
+.xnote, .card .note {
+    background: none; border: 0; border-left: 3px solid var(--amber);
+    padding: 3px 0 3px 10px; font-size: 0.8rem;
+}
+
+/* Tables: mono, ink header rule, dotted rows. */
+.tw { border: 0; border-top: 2px solid var(--rule); }
+.tbl { font-family: var(--mono); font-size: 0.8rem; }
+.tbl th {
+    font-family: var(--mono); font-weight: 600; color: var(--muted); background: transparent;
+    border-bottom: 1px solid var(--rule);
+}
+.tbl td { border-bottom: 1px dotted var(--rule-soft); }
+.tbl tbody tr:hover td { background: var(--paper-2); }
+
+/* Numbers in mono. */
+.stat .v, .cand b, .cand .pct, .f-imp, .count, .meta, .f-val { font-family: var(--mono); }
+.cand .nm b { font-family: var(--serif); font-weight: 600; }   /* the forecast page's names */
+
+/* Buttons. */
+.why, .more {
+    background: none; border: 1px solid var(--ink); color: var(--ink);
+    font-family: var(--display); font-weight: 700; font-size: 0.95rem;
+    text-transform: uppercase; letter-spacing: 0.03em;
+}
+.why:hover, .more:hover { background: var(--ink); color: var(--paper); }
+.why.sm { font-size: 0.8rem; padding: 0 7px; }
+.why.big { background: var(--red); border-color: var(--red); color: #fff; font-size: 1.05rem; padding: 8px 14px; }
+.why.big:hover { background: var(--ink); border-color: var(--ink); color: var(--paper); filter: none; }
+.x { background: var(--paper); border: 1px solid var(--ink); color: var(--ink); }
+.x:hover { background: var(--ink); color: var(--paper); }
+
+/* The explainer drawer, over the sticky site nav. */
+.scrim { background: rgba(26, 26, 26, 0.45); z-index: 200; }
+.drawer { background: var(--paper); border-left: 3px double var(--rule); z-index: 210; }
+/* Closed, the drawer is aria-hidden but its close button could still take
+   focus (axe: aria-hidden-focus). Hidden once the slide-out finishes. */
+.drawer:not(.on) { visibility: hidden; transition: transform 0.2s ease, visibility 0s linear 0.2s; }
+.d-head { border-bottom: 3px double var(--rule); }
+.d-head h3 { font-family: var(--display); font-weight: 800; font-size: 1.6rem; text-transform: uppercase; line-height: 1.05; }
+.d-head p { font-family: var(--mono); color: var(--muted); }
+.sec h4 {
+    font-family: var(--display); font-weight: 700; font-size: 1.05rem; letter-spacing: 0.05em;
+    color: var(--red);
+}
+.stat { background: none; border: 0; border-top: 2px solid var(--rule); padding: 8px 0 4px; }
+.stat .l { font-family: var(--mono); color: var(--muted); }
+.chain { color: var(--ink-2); }
+.factor { border-bottom: 1px dotted var(--rule-soft); }
+.f-desc, .hint { color: var(--muted); }
+.dv .axis { background: var(--rule); }
+.tip {
+    background: var(--paper); border: 1px solid var(--rule); border-top: 3px solid var(--rule);
+    color: var(--ink); z-index: 220; font-size: 0.82rem;
+}
+
+/* Explanatory footer section. */
+.how { border-top: 3px double var(--rule); color: var(--ink-2); font-size: 0.98rem; line-height: 1.55; }
+.how h3 { font-family: var(--display); font-weight: 800; font-size: 1.4rem; text-transform: uppercase; color: var(--ink); }
+.how b { color: var(--ink); }
+.defs { font-size: 0.92rem; }
+.defs dt { color: var(--ink); }
+.defs dd { color: var(--ink-2); }

@@ -19,5 +19,10 @@
 *.yml  text eol=lf
 *.md   text eol=lf
 
+# The election forecast's data files are mirrored byte for byte from upstream,
+# and some of them carry CRLF. scripts/pull_politics.py compares bytes, so the
+# *.js rule above would make every file look changed on every run. (2026-10-31)
+dashboards/politics-data/* -text
+
 # Self-hosted fonts are binary; never let autocrlf touch them.
 *.woff2 binary
