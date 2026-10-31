@@ -1,10 +1,10 @@
 {
  "source": "The Odds API",
  "region": "us",
- "lastUpdated": "2026-10-30T18:57:22+00:00",
- "gameCount": 26,
- "quotaUsed": "3316",
- "quotaRemaining": "16684",
+ "lastUpdated": "2026-10-31T18:22:19+00:00",
+ "gameCount": 28,
+ "quotaUsed": "3396",
+ "quotaRemaining": "16604",
  "note": "Median spread and total across books. Implied team total = total/2 - spread/2. Used to score D/ST and K, which have no prop market.",
  "games": [
   {
@@ -129,18 +129,18 @@
    "homeName": "Detroit Lions",
    "awayName": "Minnesota Vikings",
    "kickoff": "2026-11-01T18:00:00Z",
-   "total": 46.0,
+   "total": 45.5,
    "homeSpread": -3.5,
    "teams": {
     "DET": {
-     "implied": 24.75,
+     "implied": 24.5,
      "spread": -3.5,
-     "oppImplied": 21.25
+     "oppImplied": 21.0
     },
     "MIN": {
-     "implied": 21.25,
+     "implied": 21.0,
      "spread": 3.5,
-     "oppImplied": 24.75
+     "oppImplied": 24.5
     }
    },
    "bookCount": 11
@@ -267,18 +267,18 @@
    "homeName": "Washington Commanders",
    "awayName": "Philadelphia Eagles",
    "kickoff": "2026-11-02T01:20:00Z",
-   "total": 40.5,
+   "total": 40.0,
    "homeSpread": -6.0,
    "teams": {
     "WAS": {
-     "implied": 23.25,
+     "implied": 23.0,
      "spread": -6.0,
-     "oppImplied": 17.25
+     "oppImplied": 17.0
     },
     "PHI": {
-     "implied": 17.25,
+     "implied": 17.0,
      "spread": 6.0,
-     "oppImplied": 23.25
+     "oppImplied": 23.0
     }
    },
    "bookCount": 11
@@ -327,7 +327,7 @@
      "oppImplied": 25.75
     }
    },
-   "bookCount": 8
+   "bookCount": 9
   },
   {
    "matchup": "CINATL",
@@ -353,6 +353,29 @@
    "bookCount": 7
   },
   {
+   "matchup": "DENCAR",
+   "home": "CAR",
+   "away": "DEN",
+   "homeName": "Carolina Panthers",
+   "awayName": "Denver Broncos",
+   "kickoff": "2026-11-08T18:00:00Z",
+   "total": 44.5,
+   "homeSpread": 2.5,
+   "teams": {
+    "CAR": {
+     "implied": 21.0,
+     "spread": 2.5,
+     "oppImplied": 23.5
+    },
+    "DEN": {
+     "implied": 23.5,
+     "spread": -2.5,
+     "oppImplied": 21.0
+    }
+   },
+   "bookCount": 8
+  },
+  {
    "matchup": "CLENO",
    "home": "NO",
    "away": "CLE",
@@ -373,7 +396,7 @@
      "oppImplied": 22.75
     }
    },
-   "bookCount": 7
+   "bookCount": 8
   },
   {
    "matchup": "DALIND",
@@ -396,7 +419,7 @@
      "oppImplied": 23.5
     }
    },
-   "bookCount": 7
+   "bookCount": 8
   },
   {
    "matchup": "DETMIA",
@@ -419,7 +442,7 @@
      "oppImplied": 20.75
     }
    },
-   "bookCount": 7
+   "bookCount": 8
   },
   {
    "matchup": "NYJKC",
@@ -442,7 +465,7 @@
      "oppImplied": 26.5
     }
    },
-   "bookCount": 7
+   "bookCount": 8
   },
   {
    "matchup": "LARWAS",
@@ -452,20 +475,20 @@
    "awayName": "Los Angeles Rams",
    "kickoff": "2026-11-08T18:00:00Z",
    "total": 48.5,
-   "homeSpread": 5.5,
+   "homeSpread": 5.25,
    "teams": {
     "WAS": {
-     "implied": 21.5,
-     "spread": 5.5,
-     "oppImplied": 27.0
+     "implied": 21.62,
+     "spread": 5.25,
+     "oppImplied": 26.88
     },
     "LAR": {
-     "implied": 27.0,
-     "spread": -5.5,
-     "oppImplied": 21.5
+     "implied": 26.88,
+     "spread": -5.25,
+     "oppImplied": 21.62
     }
    },
-   "bookCount": 7
+   "bookCount": 8
   },
   {
    "matchup": "NYGPHI",
@@ -488,7 +511,7 @@
      "oppImplied": 19.5
     }
    },
-   "bookCount": 7
+   "bookCount": 8
   },
   {
    "matchup": "HOULAC",
@@ -555,6 +578,29 @@
      "implied": 16.75,
      "spread": 11.0,
      "oppImplied": 27.75
+    }
+   },
+   "bookCount": 7
+  },
+  {
+   "matchup": "GBNE",
+   "home": "NE",
+   "away": "GB",
+   "homeName": "New England Patriots",
+   "awayName": "Green Bay Packers",
+   "kickoff": "2026-11-08T21:25:00Z",
+   "total": 47.5,
+   "homeSpread": -2.5,
+   "teams": {
+    "NE": {
+     "implied": 25.0,
+     "spread": -2.5,
+     "oppImplied": 22.5
+    },
+    "GB": {
+     "implied": 22.5,
+     "spread": 2.5,
+     "oppImplied": 25.0
     }
    },
    "bookCount": 7
