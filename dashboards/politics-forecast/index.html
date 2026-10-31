@@ -101,6 +101,7 @@
                   border-left: 1px solid var(--line2); z-index: 50; transform: translateX(100%); transition: transform 0.2s ease;
                   display: flex; flex-direction: column; }
         .drawer.on { transform: none; }
+        .drawer:not(.on) { visibility: hidden; transition: transform 0.2s ease, visibility 0s linear 0.2s; }
         .d-head { padding: 18px 20px 14px; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; gap: 12px; }
         .d-head h3 { font-size: 1.15rem; font-weight: 750; }
         .d-head p { font-size: 0.8rem; color: var(--muted); margin-top: 3px; }
@@ -434,7 +435,7 @@
         </div>
     </footer>
 
-    <script src="../politics-data/forecast_data.js?v=1c4b15b12b"></script>
+    <script src="../politics-data/forecast_data.js?v=be26ce63fb"></script>
     <script>
     // The page's own script below assumes its data loaded. If a file failed,
     // say so once, where the content would have been (site convention:
