@@ -463,7 +463,7 @@
   <div class="views">
     <span class="seglab">Show</span>
     <div class="seg" id="metric" role="tablist" aria-label="What the map shows">
-      <button data-m="margin" role="tab">Margin</button><button data-m="win" class="on" role="tab">Win %</button><button data-m="cmp" role="tab">Model vs markets</button><button data-m="mcmp" role="tab">Margin vs markets</button>
+      <button data-m="margin" role="tab">Margin</button><button data-m="win" class="on" role="tab">Win %</button><button data-m="cmp" role="tab">Win % model vs market</button><button data-m="mcmp" role="tab">Margin vs markets</button>
     </div>
   </div>
   <div class="bar">
@@ -502,11 +502,11 @@
     <h3>How to read it</h3>
     <ul>
       <li><b>Click or tap a race</b> for its numbers in a panel on the right; <b>What's driving this prediction?</b> opens the same explainer as the forecast page: every candidate, the markets and the factors behind the numbers, each defined. On the district map the first tap zooms to the state.</li>
-      <li><b>Four views:</b> <b>Margin</b> shades each race by the model's projected margin of victory in points, <b>Win %</b> by the favored party's chance to win (the model's or a market's), <b>Model vs markets</b> by how far the model's win chance is from Kalshi or Polymarket, and <b>Margin vs markets</b> by how far the model's margin is from Polymarket's.</li>
+      <li><b>Four views:</b> <b>Margin</b> shades each race by the model's projected margin of victory in points, <b>Win %</b> by the favored party's chance to win (the model's or a market's), <b>Win % model vs market</b> by how far the model's win chance is from Kalshi or Polymarket, and <b>Margin vs markets</b> by how far the model's margin is from Polymarket's.</li>
       <li><b>Market margins:</b> on the Margin view, <b>Kalshi</b> shades each race by its average margin, the probability-weighted result implied by its margin brackets ("Talarico by 2-4%", straight bets on the final margin in 16 headline races) or else its "Democrats win by at least N points" markets; <b>Polymarket</b> by the median of its bracket ladder ("Democrat by 3-6%", normalized to 100%). Most races list only the favorite's side; a race stays gray when the markets don't price enough of the outcome to read.</li>
       <li><b>Margin:</b> the margin model's projected lead of the front-runner over the runner-up, in points; deep blue or red is a margin of 30+ points, light is a close race, gold is under 1 point. The margin comes from a separate model from the win chance, so in a few close races the two pick different leaders ("Models split"). Where the top two are from the same party (California's top-two, Louisiana's all-party first round) the shade is that party's color and the margin is between the two of them.</li>
       <li><b>Margin vs markets:</b> each race is shaded by the margin model's projected result minus Kalshi's average margin or Polymarket's ladder median (switch with the venue buttons), both signed toward the Democrat, in points. Blue means the model expects a bluer result than the market, red a redder one, pale within 2 points. Races with no ladder median or no model margin stay gray.</li>
-      <li><b>Model vs markets:</b> every number is the Democrat's chance to win (an independent in the Democrats' place, like Nebraska's Osborn, counts as the Democrat). Each race is shaded by our model's chance minus the market's: blue means the model gives the Democrat a higher chance, red a lower one, pale within 2 points. The table lists the biggest disagreements first, with our model, Kalshi and Polymarket side by side.</li>
+      <li><b>Win % model vs market:</b> every number is the Democrat's chance to win (an independent in the Democrats' place, like Nebraska's Osborn, counts as the Democrat). Each race is shaded by our model's chance minus the market's: blue means the model gives the Democrat a higher chance, red a lower one, pale within 2 points. The table lists the biggest disagreements first, with our model, Kalshi and Polymarket side by side.</li>
       <li><b>Our model:</b> each race's shade is the model's chance that its favored party wins the seat (that party's candidates combined), from light at 51% to deep near 100%; gold means the favorite is under 51%. The labels are the forecast page's tiers (Safe 95%+, Likely 80-95%, Lean 60-80%, Tossup under 60%); the <a href="../politics-forecast/">forecast page</a> rates each candidate and explains every race.</li>
       <li><b>No polls:</b> races no pollster has covered, most House seats, use the model's no-polls version: which party holds the seat, its past results (the new map's lean where districts were redrawn for 2026), the national environment, fundraising and the candidates' experience. Tick <b>Polled races only</b> to gray them out.</li>
       <li><b>Kalshi and Polymarket:</b> the same tiers applied to each venue's price for each party to win the seat. Prices are normalized so the outcomes add up to 100% (the venue's built-in margin removed), from the dashboard's last market refresh. Gray races have no party market on that venue.</li>
@@ -1474,7 +1474,7 @@
     const srcAsof = upd ? `${V} prices from the dashboard's market refresh of ${esc(upd)} UTC` : '';
     const all_ = Object.values(fc[office]), np_ = all_.filter(r => r.basis === 'fundamentals').length;
     const modelNote = `${nv} of ${nb} ${what} shown: ${all_.length - np_} from polls${st.polledOnly ? '' : `, ${np_} from the no-polls model`}.`;
-    setText('tag', { margin: 'Projected margin by race', win: 'Confidence by race', cmp: 'Model vs markets', mcmp: 'Margin vs markets' }[st.metric]);
+    setText('tag', { margin: 'Projected margin by race', win: 'Confidence by race', cmp: 'Win % model vs market', mcmp: 'Margin vs markets' }[st.metric]);
     if (st.metric === 'margin' && src !== 'model') {
       setText('title', `${V}'s projected margin, race by race`);
       setText('lede', src === 'kalshi'
