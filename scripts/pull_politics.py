@@ -496,8 +496,12 @@ def build_summary(raw: bytes) -> str:
             sides[letter.get(c.get("party"), "I")] += c.get("win") or 0
         side = max(sides, key=sides.get)
         top = max(r["cands"], key=lambda c: c.get("win") or 0)
+        # the top three candidates for the map's hover card (2026-11-02)
+        cands = sorted(r["cands"], key=lambda c: -(c.get("win") or 0))[:3]
         senate[r["state"]] = {"id": r["id"], "name": r.get("state_name"), "special": bool(r.get("special")),
-                              "side": side, "p": round(sides[side], 4), "fav": top["name"]}
+                              "side": side, "p": round(sides[side], 4), "fav": top["name"],
+                              "cands": [[c["name"], letter.get(c.get("party"), "I"), round(c.get("win") or 0, 4)]
+                                        for c in cands]}
     return json.dumps({"predictions_as_of": f.get("predictions_as_of"), "polls_as_of": f.get("polls_as_of"),
                        "chambers": chambers, "closest": closest, "senate": senate}, indent=1) + "\n"
 

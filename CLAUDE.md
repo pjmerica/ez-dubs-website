@@ -56,7 +56,9 @@ publishes them on its own Pages site; the user gave permission to edit that repo
   the big one); that history growth was accepted for the election window.
 - **The forecast is the home page's lead story (user, 2026-11-02).** Headline
   ("Democrats 83% to win the Senate"), a Senate map shaded Safe/Likely/Lean/
-  Tossup, who controls what (control odds and seat ranges) and the closest races,
+  Tossup (each state a link to its race's explainer, with a hover/focus card and
+  tap-once-to-preview, tap-again-to-open on touch screens), who controls what
+  (control odds and seat ranges) and the closest races,
   each linking to that race's explainer (`politics-forecast/#<race id>`). Start/Sit
   moved to the top of the right column, its table cut to the rushing line. It all
   reads `politics-data/summary.json`, a few KB `build_summary()` in the script

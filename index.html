@@ -99,11 +99,24 @@
         }
 
         /* The election lead: a Senate map, who controls what, the closest races. */
-        .el-map { margin: 4px 0 18px; }
-        .el-map-link { display: block; }
+        .el-map { position: relative; margin: 4px 0 18px; }
         .el-map svg { display: block; width: 100%; height: auto; }
         .el-map path { stroke: var(--paper); stroke-width: 0.8; }
-        .el-map-link:hover path { stroke: var(--rule-soft); }
+        .el-map a { cursor: pointer; }
+        .el-map a:focus { outline: none; }               /* the ink outline below marks it */
+        .el-map .el-hl { fill: none; stroke: var(--ink); stroke-width: 2.2; pointer-events: none; }
+        /* The hover card: race, rating, the top candidates' chances, and what a click does. */
+        .el-tip {
+            position: absolute; z-index: 5; pointer-events: none; width: 230px;
+            background: var(--paper); border: 1px solid var(--rule); border-top: 3px solid var(--rule);
+            padding: 8px 10px 9px; font-family: var(--mono); font-size: 0.78rem; line-height: 1.45;
+            box-shadow: 4px 4px 0 var(--rule-faint);
+        }
+        .el-tip .t { font-family: var(--display); font-weight: 800; font-size: 1.15rem; text-transform: uppercase; line-height: 1.05; }
+        .el-tip .r { color: var(--muted); margin-bottom: 4px; }
+        .el-tip .c { display: flex; justify-content: space-between; gap: 10px; }
+        .el-tip .c b { font-weight: 700; }
+        .el-tip .go { margin-top: 5px; padding-top: 5px; border-top: 1px dotted var(--rule-soft); color: var(--red); }
         .el-key {
             display: flex; flex-wrap: wrap; gap: 4px 14px; margin-top: 8px;
             font-family: var(--mono); font-size: 0.7rem; color: var(--muted);
@@ -215,7 +228,8 @@
                 <div id="el-error" hidden></div>
                 <div id="el-body" hidden>
                     <figure class="el-map" id="el-map-fig" hidden>
-                        <a href="dashboards/politics-map/" class="el-map-link"><svg id="el-map" viewBox="0 0 975 610" role="img" aria-label="Senate forecast map"></svg></a>
+                        <svg id="el-map" viewBox="0 0 975 610" role="group" aria-label="Senate forecast map"></svg>
+                        <div class="el-tip" id="el-tip" hidden></div>
                         <figcaption class="el-key" id="el-key"></figcaption>
                     </figure>
                     <div class="el-tables">
@@ -486,27 +500,81 @@
             } catch (e) { /* the map is extra; the numbers above stand on their own */ }
         }
 
+        // The Senate map. Every state with a race is a link to that race's explainer;
+        // hovering (or focusing, or a first tap on a touch screen) shows a card with
+        // the race, its rating and the top candidates' chances. (2026-11-02)
         function drawSenateMap(M, races) {
             const n = { D: 0, R: 0, I: 0, T: 0 };
+            const rating = (r) => tier(r.p) === 'tossup' ? 'Tossup' : `${tier(r.p)[0].toUpperCase() + tier(r.p).slice(1)} ${r.side}`;
             let svg = '';
             for (const [ab, st] of Object.entries(M.states || {})) {
                 const r = races[ab];
-                const fill = r ? fillOf(r) : 'var(--no-race)';
-                if (r) n[tier(r.p) === 'tossup' ? 'T' : r.side]++;
-                const tip = r ? `${st.name}${r.special ? ' (special)' : ''}: ${surname(r.fav)} ${pct(r.p)}, ${tier(r.p) === 'tossup' ? 'tossup' : tier(r.p) + ' ' + r.side}`
-                              : `${st.name}: no Senate race`;
-                svg += `<path d="${st.d}" style="fill:${fill}"><title>${esc(tip)}</title></path>`;
+                if (!r) { svg += `<path d="${st.d}" data-st="${ab}" style="fill:var(--no-race)" aria-hidden="true"></path>`; continue; }
+                n[tier(r.p) === 'tossup' ? 'T' : r.side]++;
+                const label = `${st.name} Senate${r.special ? ' (special)' : ''}: ${surname(r.fav)} ${pct(r.p)}, ${rating(r)}. Open what's driving it.`;
+                svg += `<a href="dashboards/politics-forecast/#${encodeURIComponent(r.id)}" data-st="${ab}" aria-label="${esc(label)}">` +
+                       `<path d="${st.d}" style="fill:${fillOf(r)}"></path></a>`;
             }
-            const map = $('el-map');
-            map.innerHTML = svg;
+            const map = $('el-map'), tip = $('el-tip'), fig = $('el-map-fig');
+            map.innerHTML = svg + '<path class="el-hl" id="el-hl" d=""></path>';
             map.setAttribute('aria-label', `Senate forecast map: Democrats favored in ${n.D} races, Republicans in ${n.R}` +
-                (n.I ? `, independents in ${n.I}` : '') + `, ${n.T} tossups. Opens the full map.`);
+                (n.I ? `, independents in ${n.I}` : '') + `, ${n.T} tossups. Each state with a race opens its explainer.`);
+
+            let shown = null, pointer = 'mouse', downAt = 0;
+            const card = (ab) => {
+                const st = M.states[ab], r = races[ab];
+                if (!r) return `<div class="t">${esc(st.name)}</div><div class="r">No Senate race this year</div>`;
+                const cs = (r.cands || []).filter((c) => c[2] >= 0.005);
+                return `<div class="t">${esc(st.name)} Senate${r.special ? ' (special)' : ''}</div><div class="r">${rating(r)}</div>` +
+                    cs.map(([nm, pty, w]) => `<div class="c"><span>${esc(surname(nm))} (${pty})</span><b>${esc(pct(w))}</b></div>`).join('') +
+                    `<div class="go">${pointer === 'touch' ? 'Tap again' : 'Click'} for what's driving it</div>`;
+            };
+            // place the card beside a point given in the figure's own pixels, kept inside it
+            const place = (x, y) => {
+                const w = fig.clientWidth, tw = tip.offsetWidth, th = tip.offsetHeight;
+                let left = x + 14, top = y + 14;
+                if (left + tw > w) left = Math.max(0, x - tw - 14);
+                if (top + th > map.clientHeight + 40) top = Math.max(0, y - th - 14);
+                tip.style.left = left + 'px'; tip.style.top = top + 'px';
+            };
+            const show = (ab, x, y) => {
+                if (shown !== ab) { tip.innerHTML = card(ab); $('el-hl').setAttribute('d', M.states[ab].d); shown = ab; }
+                tip.hidden = false; place(x, y);
+            };
+            const hide = () => { tip.hidden = true; shown = null; $('el-hl').setAttribute('d', ''); };
+            const at = (e) => { const b = fig.getBoundingClientRect(); return [e.clientX - b.left, e.clientY - b.top]; };
+            const stateOf = (e) => { const el = e.target.closest && e.target.closest('[data-st]'); return el ? el.dataset.st : null; };
+
+            map.addEventListener('pointerdown', (e) => { pointer = e.pointerType || 'mouse'; downAt = Date.now(); });
+            map.addEventListener('pointermove', (e) => {
+                if (e.pointerType === 'touch') return;
+                const ab = stateOf(e);
+                if (ab) show(ab, ...at(e)); else hide();
+            });
+            map.addEventListener('pointerleave', (e) => { if (e.pointerType !== 'touch') hide(); });
+            // touch: the first tap on a state shows its card, a second tap follows the link
+            map.addEventListener('click', (e) => {
+                if (pointer !== 'touch') return;
+                const ab = stateOf(e);
+                if (!ab) { hide(); return; }
+                if (shown !== ab || !races[ab]) { e.preventDefault(); show(ab, ...at(e)); }
+            });
+            // keyboard: the focused state's card sits by its label point. Focus that a tap or
+            // click just caused is left to the pointer handlers, or a first tap would count as two.
+            map.addEventListener('focusin', (e) => {
+                const ab = stateOf(e); if (!ab || Date.now() - downAt < 800) return;
+                const s = map.clientWidth / 975, st = M.states[ab];
+                show(ab, (st.lx || 0) * s, (st.ly || 0) * s);
+            });
+            map.addEventListener('focusout', hide);
+            document.addEventListener('keydown', (e) => { if (e.key === 'Escape') hide(); });
+
             const key = [['Safe D', 'var(--safe-d)'], ['Likely D', 'var(--likely-d)'], ['Lean D', 'var(--lean-d)'], ['Tossup', 'var(--tossup)'],
                          ['Lean R', 'var(--lean-r)'], ['Likely R', 'var(--likely-r)'], ['Safe R', 'var(--safe-r)'], ['No race', 'var(--no-race)']];
             if (n.I) key.splice(7, 0, ['Independent', 'var(--likely-i)']);
-            $('el-key').innerHTML = '<span class="el-cap">Senate races, by the favorite\'s chance</span>' +
+            $('el-key').innerHTML = '<span class="el-cap">Senate races, by the favorite\'s chance. Hover over or tap a state to see its race, then click it for what\'s driving the forecast.</span>' +
                 key.map(([l, c]) => `<span><i style="background:${c}"></i>${l}</span>`).join('');
-            $('el-map-fig').hidden = false;
+            fig.hidden = false;
         }
 
         function esc(s) {
