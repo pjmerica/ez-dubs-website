@@ -4,6 +4,10 @@
 .chamber h3 { font-family: var(--display); font-weight: 800; font-size: 1.35rem; letter-spacing: 0.02em; color: var(--ink); }
 .chamber .seats { font-family: var(--mono); color: var(--ink-2); }
 .chamber .seats b { color: var(--ink); }
+/* The chance Democrats win the chamber: the card's headline number (upstream .ctl, 2026-11-02). */
+.chamber .ctl { margin: 6px 0 4px; padding-bottom: 8px; border-bottom: 1px dotted var(--rule-soft); }
+.chamber .ctl b { font-family: var(--display); font-weight: 800; font-size: 3.4rem; color: var(--blue); }
+.chamber .ctl span { font-family: var(--mono); font-size: 0.76rem; text-transform: uppercase; color: var(--ink-2); max-width: 12em; }
 .tally .d, .tally .r { font-family: var(--display); font-weight: 800; font-size: 2.8rem; line-height: 1; }
 .tally .d { color: var(--dem-soft); }
 .tally .r { color: var(--rep-soft); }

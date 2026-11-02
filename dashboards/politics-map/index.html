@@ -46,6 +46,11 @@
         }
         .chk { display: inline-flex; align-items: center; gap: 6px; font-size: 0.8rem; color: var(--muted); cursor: pointer; }
         .chk input { accent-color: var(--accent); }
+        .ctl { margin: 4px 0 12px; }
+        .ctl-main { font-size: 1.05rem; font-weight: 650; }
+        .ctl-main b { font-size: 1.5rem; font-weight: 800; color: var(--likely-d); font-variant-numeric: tabular-nums; margin-left: 4px; }
+        .ctl-k { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-right: 6px; }
+        .ctl-sub { font-size: 0.76rem; color: var(--muted); margin-top: 2px; }
         .tally { display: flex; flex-wrap: wrap; gap: 6px; font-size: 0.74rem; }
         .tally span { display: inline-flex; align-items: center; gap: 5px; padding: 3px 8px; border-radius: 0; background: var(--panel); border: 1px solid var(--line); color: var(--muted); }
         .tally b { color: var(--text); font-variant-numeric: tabular-nums; }
@@ -338,6 +343,14 @@
         .tally b { color: var(--ink); }
         .tally i, .legend i, .dl span i { box-shadow: inset 0 0 0 1px rgba(26, 26, 26, 0.25); }
 
+        /* The model's chance Democrats win the chamber on the open tab (upstream .ctl, 2026-11-02). */
+        .ctl { margin: 6px 0 14px; padding-top: 10px; border-top: 2px solid var(--rule); }
+        .ctl-main { font-family: var(--display); font-weight: 800; font-size: 1.45rem; text-transform: uppercase; line-height: 1.1; }
+        .ctl-main b { font-family: var(--display); font-size: 2.6rem; color: var(--blue); vertical-align: -4px; margin-left: 8px; }
+        .ctl-k { font-family: var(--mono); font-size: 0.72rem; font-weight: 600; color: var(--red); letter-spacing: 0.06em; }
+        .ctl-sub { font-family: var(--mono); font-size: 0.76rem; color: var(--ink-2); margin-top: 4px; }
+        @media (max-width: 600px) { .ctl-main { font-size: 1.15rem; } .ctl-main b { font-size: 2.1rem; } .ctl-k { display: block; } }
+
         .mapcard {
             background: transparent; border: 0; border-top: 2px solid var(--rule);
             border-bottom: 1px solid var(--rule); padding: 12px 0;
@@ -470,6 +483,7 @@
     <div class="tally" id="tally"></div>
   </div>
 
+  <div class="ctl" id="ctl" aria-live="polite"></div>
   <div class="mapcard">
     <div class="zoom" id="zoom"><button data-z="in" aria-label="Zoom in">+</button><button data-z="out" aria-label="Zoom out">&minus;</button><button data-z="all" id="zoom-all">All states</button></div>
     <div class="mapscroll" tabindex="0"><svg id="map" viewBox="0 0 975 610" role="img" aria-label="Map of 2026 races shaded by confidence"></svg></div>
@@ -629,6 +643,23 @@
   const fmtVol = v => v >= 1e6 ? (v / 1e6).toFixed(1) + 'M' : v >= 1e3 ? Math.round(v / 1e3) + 'K' : String(v);
   const mvol = (vn, v) => vn === 'polymarket' ? '$' + fmtVol(v) : fmtVol(v) + ' contracts';   // margin ladder volume
   const gap = (a, b) => { const d = Math.round((a - b) * 100) || 0; return `${d > 0 ? '+' : ''}${d} pts`; };
+
+  // ---------- chamber control (2026-11-02) ----------
+  // The model's chance Democrats win the chamber on the open tab, from the seat simulation (model repo
+  // src/simulate_seats.py: every race keeps its odds, one shared national error per simulated election).
+  // It is the model's number whichever source the map is showing.
+  function ctlHtml(office) {
+    const s = F.seat_sim && F.seat_sim.chambers && F.seat_sim.chambers[office];
+    if (!s || s.p_dem_control == null) return '';
+    const P = p => p > 0.99 ? '&gt;99%' : p < 0.01 ? '&lt;1%' : Math.round(p * 100) + '%';
+    const what = office === 'Governor' ? 'a majority of governorships' : `the ${office}`;
+    const d = s.dem_seats || {}, unit = office === 'Governor' ? 'governorships' : 'seats';
+    const runs = F.seat_sim.runs ? `, from ${F.seat_sim.runs.toLocaleString()} simulated elections` : '';
+    return `<div class="ctl-main"><span class="ctl-k">Our model</span>Chance Democrats win ${what}:<b>${P(s.p_dem_control)}</b></div>` +
+      `<div class="ctl-sub">Republicans ${P(s.p_rep_control)}` +
+      `${s.p_neither >= 0.005 ? ` &middot; ${office === 'Senate' ? 'independents decide' : 'neither'} ${P(s.p_neither)}` : ''}` +
+      `${d.median != null ? ` &middot; Democratic ${unit}: ${d.median} (80% range ${d.p10} to ${d.p90} of ${s.total})` : ''}${runs}</div>`;
+  }
 
   // ---------- races, keyed by state (Senate/Governor) or state-district (House) ----------
   const fc = { Senate: {}, House: {}, Governor: {} };
@@ -1487,6 +1518,7 @@
       if (x.dataset.s === 'kalshi') x.style.display = '';
     }
     mark(srcs, 's', src);
+    setText('ctl', ctlHtml(office));
     setText('tally', tally(office));
     setText('legend', legend(office));
     setText('list-title', st.metric === 'margin' ? `${office}: closest margins first`

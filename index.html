@@ -99,6 +99,19 @@
         }
 
         /* The election lead: a Senate map, who controls what, the closest races. */
+        /* The chance Democrats win each chamber, the biggest numbers on the page. */
+        .el-odds { display: flex; margin: 0 0 20px; border-top: 2px solid var(--rule); border-bottom: 1px solid var(--rule); }
+        .el-odds > div { flex: 1 1 0; min-width: 0; padding: 10px 0 12px; }
+        .el-odds > div + div { border-left: 1px solid var(--rule); padding-left: 20px; }
+        .el-odds .k {
+            display: block; font-family: var(--display); font-weight: 800; font-size: 1.1rem;
+            text-transform: uppercase; letter-spacing: 0.03em;
+        }
+        .el-odds b {
+            display: block; font-family: var(--display); font-weight: 800; line-height: 1;
+            font-size: clamp(3rem, 8vw, 4.6rem); color: var(--blue); margin: 2px 0 4px;
+        }
+        .el-odds .w { display: block; font-family: var(--mono); font-size: 0.75rem; color: var(--ink-2); }
         .el-map { position: relative; margin: 4px 0 18px; }
         .el-map svg { display: block; width: 100%; height: auto; }
         .el-map path { stroke: var(--paper); stroke-width: 0.8; }
@@ -225,6 +238,10 @@
                 <p class="kicker">The EZ Dub Election Forecast<span id="el-when"></span></p>
                 <h1 class="headline" id="el-head">Every 2026 race, and what's driving it</h1>
                 <p class="dek" id="el-dek">The model's chance for every Senate, House and governor race, built from the polls, the money, each seat's history and the national mood. Open any race to see what's driving it.</p>
+                <div class="el-odds" id="el-odds" hidden>
+                    <div><span class="k">Senate</span><b id="el-o-sen"></b><span class="w" id="el-w-sen"></span></div>
+                    <div><span class="k">House</span><b id="el-o-house"></b><span class="w" id="el-w-house"></span></div>
+                </div>
                 <div id="el-error" hidden></div>
                 <div id="el-body" hidden>
                     <figure class="el-map" id="el-map-fig" hidden>
@@ -471,10 +488,27 @@
             const ch = s.chambers || {}, sen = ch.Senate, now = new Date();
             const over = now >= AFTER, today = now >= ELECTION && !over;
             $('el-when').textContent = over ? ' · Final' : today ? ' · Election Day' : ' · Election Day is Nov. 3';
-            if (sen && sen.p_dem != null) {
-                const dem = sen.p_dem >= sen.p_rep, lead = dem ? 'Democrats' : 'Republicans', p = dem ? sen.p_dem : sen.p_rep;
-                $('el-head').textContent = over ? `The forecast had ${lead} at ${pct(p)} for the Senate` : `${lead} ${pct(p)} to win the Senate`;
+            // The headline names both chambers (user, 2026-11-02), each with its favourite's chance;
+            // the strip under it gives the Democrats' chance in each, as asked.
+            const house = ch.House;
+            const fav = (c) => c.p_dem >= c.p_rep ? ['Democrats', c.p_dem] : ['Republicans', c.p_rep];
+            if (sen && sen.p_dem != null && house && house.p_dem != null) {
+                const [ls, ps] = fav(sen), [lh, ph] = fav(house);
+                $('el-head').textContent = over
+                    ? (ls === lh ? `The forecast had ${ls} at ${pct(ps)} for the Senate and ${pct(ph)} for the House`
+                                 : `The forecast had ${ls} at ${pct(ps)} for the Senate, ${lh} at ${pct(ph)} for the House`)
+                    : (ls === lh ? `${ls} ${pct(ps)} to win the Senate, ${pct(ph)} to win the House`
+                                 : `${ls} ${pct(ps)} to win the Senate, ${lh} ${pct(ph)} the House`);
+            } else if (sen && sen.p_dem != null) {
+                const [ls, ps] = fav(sen);
+                $('el-head').textContent = over ? `The forecast had ${ls} at ${pct(ps)} for the Senate` : `${ls} ${pct(ps)} to win the Senate`;
             }
+            const odds = [['sen', sen], ['house', house]].filter(([, c]) => c && c.p_dem != null);
+            for (const [k, c] of odds) {
+                $('el-o-' + k).textContent = pct(c.p_dem);
+                $('el-w-' + k).textContent = `chance Democrats win · Republicans ${pct(c.p_rep)}`;
+            }
+            if (odds.length === 2) $('el-odds').hidden = false;
             if (over) $('el-dek').textContent = 'How every Senate, House and governor race looked to the model before the votes were counted, and what was driving each one.';
 
             const rows = [['Senate', 'Senate'], ['House', 'House'], ['Governor', 'Governorships']]

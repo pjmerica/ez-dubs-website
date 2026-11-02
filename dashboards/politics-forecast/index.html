@@ -33,6 +33,9 @@
         .chamber { min-width: 0; background: var(--panel); border: 1px solid var(--line); border-radius: 0; padding: 16px 16px 14px; }
         .chamber .seats { font-size: 0.78rem; color: var(--muted); margin: 8px 0 6px; line-height: 1.5; }
         .chamber .seats b { color: var(--text); }
+        .chamber .ctl { display: flex; align-items: baseline; gap: 10px; margin: 8px 0 2px; }
+        .chamber .ctl b { font-size: 2.2rem; font-weight: 800; color: var(--dem-soft); font-variant-numeric: tabular-nums; line-height: 1; }
+        .chamber .ctl span { font-size: 0.82rem; color: var(--muted); }
         .chamber h3 { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); font-weight: 700; }
         .tally { display: flex; justify-content: space-between; align-items: baseline; margin: 8px 0 12px; }
         .tally .d { color: var(--dem-soft); font-size: 1.7rem; font-weight: 800; }
@@ -308,6 +311,10 @@
         .chamber h3 { font-family: var(--display); font-weight: 800; font-size: 1.35rem; letter-spacing: 0.02em; color: var(--ink); }
         .chamber .seats { font-family: var(--mono); color: var(--ink-2); }
         .chamber .seats b { color: var(--ink); }
+        /* The chance Democrats win the chamber: the card's headline number (upstream .ctl, 2026-11-02). */
+        .chamber .ctl { margin: 6px 0 4px; padding-bottom: 8px; border-bottom: 1px dotted var(--rule-soft); }
+        .chamber .ctl b { font-family: var(--display); font-weight: 800; font-size: 3.4rem; color: var(--blue); }
+        .chamber .ctl span { font-family: var(--mono); font-size: 0.76rem; text-transform: uppercase; color: var(--ink-2); max-width: 12em; }
         .tally .d, .tally .r { font-family: var(--display); font-weight: 800; font-size: 2.8rem; line-height: 1; }
         .tally .d { color: var(--dem-soft); }
         .tally .r { color: var(--rep-soft); }
@@ -627,6 +634,12 @@
     return `<div class="seats" title="Simulated ${F.seat_sim.runs.toLocaleString()} times; each race keeps its published odds, and one shared national error moves every race together (correlation fitted on 1998-2024 results). Includes the ${s.not_up.D} Dem and ${s.not_up.R} Rep seats not up this year.">
       Dem seats: <b>${d.median}</b> (80% range ${d.p10}-${d.p90} of ${s.total})<br>${ctl}</div>`;
   }
+  // the chance Democrats win the chamber, from the same seat simulation (2026-11-02)
+  function ctlLine(off) {
+    const s = F.seat_sim && F.seat_sim.chambers && F.seat_sim.chambers[off];
+    if (!s || s.p_dem_control == null) return '';
+    return `<div class="ctl"><b>${pct(s.p_dem_control, 0)}</b><span>chance Democrats win ${off === 'Governor' ? 'a majority of governorships' : 'the ' + off}</span></div>`;
+  }
   ['Senate', 'Governor', 'House'].forEach(off => {
     const rs = races.filter(r => r.office === off).sort((a, b) => b._lean - a._lean);
     const nD = rs.filter(r => r._rt.side === 'D' && r._rt.tier !== 'Tossup').length;
@@ -636,7 +649,7 @@
     const np = rs.filter(r => r.basis === 'fundamentals').length;
     const title = np ? `${off} (${np} without polls)` : off === 'House' ? 'House (polled races)' : off;
     const el = document.createElement('div'); el.className = 'chamber';
-    el.innerHTML = `<h3>${title}</h3>
+    el.innerHTML = `<h3>${title}</h3>${ctlLine(off)}
       <div class="tally"><div class="d">${nD}<small>Dem favored</small></div>
       <div class="mid">${nT} tossup${nT === 1 ? '' : 's'}${nI ? `<br>${nI} independent` : ''}<br>${rs.length} races</div>
       <div class="r" style="text-align:right">${nR}<small>Rep favored</small></div></div>
