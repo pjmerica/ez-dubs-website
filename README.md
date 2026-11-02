@@ -59,7 +59,8 @@ Both are **generated**, not hand-made: `scripts/pull_politics.py` copies the
 forecast's data files from `pjmerica/polling-agg-2026`'s Pages site and rebuilds
 the two pages from that site's `map.html` and `predictions.html`, re-themed to
 this site's look (`scripts/politics/*.css`). `politics-pull.yml` runs it every
-two hours. Don't edit the two `index.html` files or `dashboards/politics-data/`
+two hours. It also writes `politics-data/summary.json`, the handful of numbers
+the home page's election block shows. Don't edit the two `index.html` files or `dashboards/politics-data/`
 by hand; change the script or upstream. See CLAUDE.md, "Politics pages".
 
 ## Prediction Markets

@@ -36,7 +36,7 @@
                       padding: 7px 16px; border-radius: 0; cursor: pointer; }
         .seg button.on { background: var(--panel2); color: var(--text);  }
         .seg.src button.on { background: transparent; color: var(--ink);  }
-        .views { margin: 18px 0 0; }
+        .views { margin: 18px 0 0; display: flex; align-items: center; gap: 10px 12px; flex-wrap: wrap; }
         .views .seg button { font-size: 0.92rem; padding: 8px 18px; }
         .views + .bar { margin-top: 10px; }
         .seglab { font-size: 0.74rem; color: var(--faint); margin-right: -4px; }
@@ -159,20 +159,35 @@
         .tabs2 { display: inline-flex; background: var(--panel2); border: 1px solid var(--line2); border-radius: 0; padding: 3px; margin-bottom: 10px; }
         .tabs2 button { background: none; border: none; color: var(--muted); font: inherit; font-size: 0.78rem; font-weight: 600; padding: 5px 11px; border-radius: 0; cursor: pointer; }
         .tabs2 button.on { background: var(--panel); color: var(--text);  }
-        .chain { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px; }
-        .chain b { color: var(--text); }
-        .factor { display: grid; grid-template-columns: minmax(0, 1fr) minmax(90px, 170px) 64px; gap: 10px; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--line); }
-        .factor:last-of-type { border-bottom: none; }
-        .f-name { font-size: 0.82rem; font-weight: 600; }
-        .f-val { font-size: 0.72rem; color: var(--muted); margin-top: 1px; }
-        .f-desc { font-size: 0.72rem; color: var(--faint); margin-top: 3px; }
-        .f-imp { font-size: 0.78rem; font-weight: 750; text-align: right; font-variant-numeric: tabular-nums; }
         .dv { position: relative; height: 18px; }
         .dv .axis { position: absolute; left: 50%; top: -2px; bottom: -2px; width: 1px; background: var(--line2); }
         .dv .b { position: absolute; top: 3px; height: 12px; border-radius: 0; }
         .hint { font-size: 0.72rem; color: var(--faint); margin-top: 8px; }
         .xnote { font-size: 0.72rem; color: var(--toss); background: transparent; border: 1px solid transparent; padding: 6px 9px; border-radius: 0; }
         .xnote + .xnote { margin-top: 6px; }
+        .xp-sum { font-size: 0.9rem; line-height: 1.5; margin: 2px 0 12px; }
+        .xp-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(80px, 160px) 104px; gap: 4px 12px; align-items: center;
+                  padding: 10px 0; border-bottom: 1px solid var(--line); }
+        .xp-keyrow { padding: 0 0 4px; border-bottom: none; }
+        .xp-key { display: flex; justify-content: space-between; gap: 6px; font-size: 0.68rem; font-weight: 700; white-space: nowrap; }
+        .xp-g { display: block; font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 1px; }
+        .xp-name { font-size: 0.86rem; font-weight: 650; }
+        .xp-vals { font-size: 0.76rem; color: var(--muted); margin-top: 2px; }
+        .xp-vals b { color: var(--text); font-weight: 600; }
+        .xp-desc { font-size: 0.72rem; color: var(--faint); margin-top: 3px; line-height: 1.4; }
+        .xp-imp { text-align: right; font-weight: 750; font-size: 0.84rem; font-variant-numeric: tabular-nums; line-height: 1.2; }
+        .xp-imp small { display: block; font-size: 0.62rem; font-weight: 500; color: var(--muted); }
+        .xp-rest .xp-name { font-style: italic; }
+        .xp-total { display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; font-size: 0.82rem; color: var(--muted);
+                    border-bottom: 1px solid var(--line); }
+        .xp-total b { color: var(--text); font-variant-numeric: tabular-nums; }
+        .xp-end { border-top: 2px solid var(--line2); border-bottom: none; font-weight: 650; color: var(--text); }
+        @media (max-width: 600px) {
+        .xp-row { grid-template-columns: minmax(0, 1fr) 104px; }
+        .xp-row .xp-what { grid-column: 1 / -1; }
+        .xp-keyrow > div:first-child, .xp-keyrow > div:last-child { display: none; }
+        .xp-keyrow .xp-key { grid-column: 1 / -1; }
+        }
         /* EZ Dubs overrides */
         /* Box Score look for the election forecast pages, shared by both. Inlined
            after upstream's re-themed CSS by scripts/pull_politics.py, so these win.
@@ -280,6 +295,27 @@
             background: var(--paper); border: 1px solid var(--rule); border-top: 3px solid var(--rule);
             color: var(--ink); z-index: 220; font-size: 0.82rem;
         }
+
+        /* What's driving this prediction (the shared explainer block upstream, 2026-11-01). The
+           summary reads as body copy; every number is mono; each input is a dotted-rule row. */
+        .sec.xp h4 { font-size: 1.25rem; }
+        .xp-sum { font-family: var(--serif); font-size: 1.02rem; line-height: 1.55; color: var(--ink); }
+        .xp-sum b { font-weight: 700; }
+        .xp-row { border-bottom: 1px dotted var(--rule-soft); grid-template-columns: minmax(0, 1fr) minmax(70px, 140px) 124px; }
+        @media (max-width: 600px) { .xp-row { grid-template-columns: minmax(0, 1fr) 124px; } }
+        .xp-keyrow { border-bottom: 0; }
+        .xp-key { font-family: var(--mono); font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.02em; }
+        .xp-g { font-family: var(--mono); font-size: 0.66rem; font-weight: 600; color: var(--red); letter-spacing: 0.06em; }
+        .xp-name { font-family: var(--serif); font-size: 1rem; font-weight: 700; color: var(--ink); }
+        .xp-vals { font-family: var(--mono); font-size: 0.78rem; color: var(--ink-2); }
+        .xp-vals b { color: var(--ink); }
+        .xp-desc { font-family: var(--serif); font-size: 0.86rem; color: var(--muted); line-height: 1.45; }
+        .xp-imp { font-family: var(--mono); font-size: 0.86rem; font-weight: 700; }
+        .xp-imp small { font-family: var(--mono); color: var(--muted); font-size: 0.64rem; }
+        .xp-total { font-family: var(--mono); font-size: 0.8rem; color: var(--ink-2); border-bottom: 1px solid var(--rule); }
+        .xp-total b { color: var(--ink); font-size: 0.95rem; }
+        .xp-end { border-top: 2px solid var(--rule); border-bottom: 0; color: var(--ink); }
+        .dv .b { opacity: 0.9; }
 
         /* Explanatory footer section. */
         .how { border-top: 3px double var(--rule); color: var(--ink-2); font-size: 0.98rem; line-height: 1.55; }
@@ -410,19 +446,23 @@
     <div class="asof" id="asof"></div>
   </section>
 
+  <!-- every control group is labelled (2026-11-01): first-time visitors saw two rows of unlabelled buttons -->
   <div class="views">
+    <span class="seglab">Show</span>
     <div class="seg" id="metric" role="tablist" aria-label="What the map shows">
       <button data-m="margin" role="tab">Margin</button><button data-m="win" class="on" role="tab">Win %</button><button data-m="cmp" role="tab">Model vs markets</button><button data-m="mcmp" role="tab">Margin vs markets</button>
     </div>
   </div>
   <div class="bar">
-    <span class="seglab" id="src-lab" style="display:none">Compare with</span>
+    <span class="seglab" id="src-lab">Numbers from</span>
     <div class="seg src" id="src" role="tablist" aria-label="Whose numbers">
       <button data-s="model" class="on" role="tab">Our model</button><button data-s="kalshi" role="tab">Kalshi</button><button data-s="polymarket" role="tab">Polymarket</button>
     </div>
+    <span class="seglab">Office</span>
     <div class="seg" id="tabs" role="tablist" aria-label="Office">
       <button data-v="Senate" class="on" role="tab">Senate</button><button data-v="House" role="tab">House</button><button data-v="Governor" role="tab">Governor</button>
     </div>
+    <span class="seglab" id="hv-lab" style="display:none">House view</span>
     <div class="seg" id="hv" role="tablist" aria-label="House view" style="display:none">
       <button data-h="map" class="on" role="tab">Map</button><button data-h="tiles" role="tab">Squares</button>
     </div>
@@ -459,7 +499,7 @@
       <li><b>House map:</b> the 435 districts on the lines in force for November 3, 2026. Nine states redrew since 2024 (Texas, California, North Carolina, Ohio, Utah, Florida, Tennessee, Louisiana and Alabama); Missouri and Virginia vote on their old maps after courts blocked the new ones. Click a state to zoom in, use + and &minus;, and drag to move around. <b>Squares</b> shows each state's districts as equal squares instead, so small urban districts are as easy to see as rural ones.</li>
       <li><b>District profiles</b> (in each district's card): the Census Bureau's 2020-2024 American Community Survey. For the 173 redrawn districts there are no official figures yet, so they are summed from block groups on the new lines; the same method reproduces the official figures for the old lines to within about 0.1 point. Redrawn districts also show the same-numbered district on the 2024 lines.</li>
       <li><b>Fragile</b> races are ones where the model's pick flips if every poll is off by 3 points in one direction, which has happened in past cycles.</li>
-      <li><b>Why:</b> click a race, then <b>Why? Explain this race</b> (or <b>Why</b> beside any race in the table) for the explainer: every candidate's chance and margin, what happens if the polls are off, the markets, and the factors that moved the model, each with a definition.</li>
+      <li><b>What's driving this prediction:</b> click a race, then the button in its panel (or <b>Why</b> beside any race in the table). It opens with the inputs that move the model most in that race: which candidate each one helps and how much, both candidates' values, and what it measures, then every candidate's chance and margin and the markets. The <a href="../politics-forecast/#inputs">forecast page lists every input</a> the models use.</li>
       <li>The model updates with every model run and the venues with every market refresh. Shapes: the Census Bureau's cartographic boundaries (states via us-atlas; 119th Congress districts) and each redrawn state's official 2026 plan.</li>
     </ul>
     <h3>Every number on this page</h3>
@@ -467,7 +507,7 @@
   </section>
 </div>
 <div class="scrim" id="scrim"></div>
-<aside class="drawer" id="drawer" aria-hidden="true">
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="d-title" aria-hidden="true">
   <div class="d-head"><div><h3 id="d-title"></h3><p id="d-sub"></p></div><button class="x" id="d-close" aria-label="Close">&times;</button></div>
   <div class="d-body" id="d-body"></div>
 </aside>
@@ -486,8 +526,8 @@
         </div>
     </footer>
 
-    <script src="../politics-data/forecast_data.js?v=80eb1794f1"></script>
-    <script src="../politics-data/data.js?v=415c06704a"></script>
+    <script src="../politics-data/forecast_data.js?v=8c5f78b07e"></script>
+    <script src="../politics-data/data.js?v=d69c8bdba8"></script>
     <script src="../politics-data/us_map_geo.js?v=cf48737e38"></script>
     <script src="../politics-data/us_house_2026_geo.js?v=b3fd00368d"></script>
     <script>
@@ -1040,7 +1080,7 @@
     ['even', 'Even / gold', "Win %: the favorite's chance is under 51%. Margin: the lead is under 1 point. A coin flip either way."],
     ['surveys', 'Surveys', 'How many separate polls of the race the model used.'],
     ['pollavg', 'Poll avg', "The candidate's average share across the race's polls."],
-    ['factor', 'Factors (why)', "What moved the model for this race, from SHAP values: each bar is how many points of win chance (or margin) that input adds or removes on its own. Value is the candidate's own number for that input; the opponent's is beside it."],
+    ['factor', "What's driving this prediction", "The inputs that move the model most in this race, from SHAP values (a standard way to split a model's prediction among its inputs). Each bar shows which candidate an input helps and how hard, starting from an even race: points of win chance it would add on its own, or points of margin. Under each input are both candidates' own values and what the input measures; the last row adds up every input not listed."],
   ];
   const GL = {};
   for (const [k, t, d] of GLOSS) GL[k] = d;
@@ -1171,50 +1211,131 @@
   function closeDrawer() {
     if (!drawer) return;
     drawer.classList.remove('on'); if (scrim) scrim.classList.remove('on'); drawer.setAttribute('aria-hidden', 'true');
+    // keyboard users land back on the button that opened it (2026-11-01)
+    if (drawer._back && drawer._back.isConnected && drawer._back.focus) drawer._back.focus();
+    drawer._back = null;
   }
-  const last = n => String(n).trim().split(/\s+/).slice(-1)[0];
-  function fmtVal(x) {
-    if (x == null || Number.isNaN(x)) return 'n/a';
-    if (Number.isInteger(x)) return String(x);
-    const a = Math.abs(x);
-    return a >= 100 ? x.toFixed(0) : a >= 10 ? x.toFixed(1) : x.toFixed(2);
-  }
-  // win-model contributions are log-odds: show each as the points of raw win chance it adds on its own,
-  // sigmoid(logit(pred)) - sigmoid(logit(pred) - shap); margin contributions are already points
-  const logit = p => Math.log(p / (1 - p)), sig = x => 1 / (1 + Math.exp(-x));
-  function impact(f, b, k) {
-    if (k === 'margin') return f.shap;
-    const p = Math.min(Math.max(b.pred, 1e-6), 1 - 1e-6);
-    return (p - sig(logit(p) - f.shap)) * 100;
-  }
-  function factorRows(b, k, cand) {
-    const feats = (b.feats || []).map(f => Object.assign({}, f, { imp: impact(f, b, k) })).sort((x, y) => Math.abs(y.imp) - Math.abs(x.imp));
-    const max = Math.max(...feats.map(f => Math.abs(f.imp)), 1e-9), col = PCOL[cand.party] || '#6f6a60';
-    return feats.map(f => {
-      const w = Math.abs(f.imp) / max * 50, pos = f.imp >= 0;
-      const name = f.label && f.label !== f.f ? f.label : f.f.replace(/_/g, ' ');
-      return `<div class="factor"><div><div class="f-name">${esc(name)}</div>` +
-        `<div class="f-val">${esc(last(cand.name))}: ${esc(fmtVal(f.val))}${b.vs && f.vs_val !== undefined ? ` · ${esc(last(b.vs))}: ${esc(fmtVal(f.vs_val))}` : ''}</div>` +
-        `<div class="f-desc">${esc(f.desc || 'No description available.')}</div></div>` +
-        `<div class="dv"><div class="axis"></div><div class="b" style="${pos ? `left:50%;width:${w}%;background:${col}` : `right:50%;width:${w}%;background:#8a8478`}"></div></div>` +
-        `<div class="f-imp" style="color:${pos ? col : '#4a4740'}">${pos ? '+' : '−'}${Math.abs(f.imp).toFixed(1)} pts</div></div>`;
-    }).join('');
-  }
+  // ===== EXPLAINER: what's driving a race's prediction (2026-11-01) =====
+  // This block is IDENTICAL in ../politics-map/ and ../politics-forecast/; tests/test_explainer_shared.py fails if
+  // the two copies drift. Each page passes its own colours (o.col) and the link to the input list.
+  //   win:    SHAP in log-odds of the head-to-head. Each input is shown as the points of win chance it
+  //           would add to the starting point (an even race) on its own: order-free, and readable at
+  //           any final chance (the old "points it removes from the final chance" made every input look
+  //           tiny in a 98% race). Bar lengths are the log-odds themselves, so they compare fairly.
+  //   margin: SHAP in points of margin; with every other input they add up exactly to the margin.
+  // "All other inputs" is the remainder, so the rows always account for the whole published number.
+  const XP = (function () {
+    const IN = (typeof FORECAST !== 'undefined' && FORECAST && FORECAST.inputs) || null;
+    const xesc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+    const SUF = /^(jr\.?|sr\.?|ii|iii|iv)$/i;
+    const sur = n => { const w = String(n || '').trim().split(/\s+/).filter(x => !SUF.test(x)); return w.length ? w[w.length - 1] : String(n || ''); };
+    const lg = p => { p = Math.min(Math.max(p, 1e-6), 1 - 1e-6); return Math.log(p / (1 - p)); };
+    const sg = x => 1 / (1 + Math.exp(-x));
+    const P = p => p > 0.99 ? '&gt;99%' : p > 0 && p < 0.01 ? '&lt;1%' : Math.round(p * 100) + '%';
+    const OFFICE = { 4: 'Elected federal office', 3: 'Elected statewide office', 2: 'State legislature', 1: 'Local elected office',
+                     0.75: 'Appointed federal post', 0.5: 'Appointed state or local post', 0: 'No prior office' };
+    const money = d => d >= 1e6 ? '$' + (d / 1e6).toFixed(d >= 1e7 ? 0 : 1) + 'M' : d >= 1e3 ? '$' + Math.round(d / 1e3) + 'K' : '$' + Math.round(d);
+    const signed = (x, d) => (x > 0 ? '+' : x < 0 ? '−' : '') + Math.abs(x).toFixed(d).replace(/\.0+$/, '');
+    function fmt(v, kind) {
+      if (v == null || Number.isNaN(v)) return 'no data';
+      switch (kind) {
+        case 'pct01': return (v * 100).toFixed(Math.abs(v) >= 0.1 || v === 0 ? 0 : 1) + '%';
+        case 'pts01': return signed(v * 100, 1) + ' pts';
+        case 'pct': return v.toFixed(1).replace(/\.0$/, '') + '%';
+        case 'apts': return v.toFixed(1).replace(/\.0$/, '') + ' pts';
+        case 'yesno': return v >= 0.5 ? 'Yes' : 'No';
+        case 'money_ln': return money(Math.exp(v));
+        case 'office': return OFFICE[v] || String(v);
+        case 'int': return String(Math.round(v));
+        case 'days': return Math.round(v) + ' days';
+        case 'num': return Math.abs(v) >= 10 ? v.toFixed(1) : v.toFixed(2);
+        default: return signed(v, 1) + ' pts';
+      }
+    }
+    // the catalogue (scripts/model_inputs.py) when the data carries it, else what the race's own
+    // explainer says about the input
+    const meta = f => { const m = (IN && IN.inputs && IN.inputs[f.f]) ||
+      { label: f.label || f.f.replace(/_/g, ' '), desc: f.desc || '', group: '', fmt: 'num' };
+      return Object.assign({}, m, { label: nice(m.label), desc: yes(m.desc) }); };
+    // unit tags the formatted values already show, and 0/1 definitions read against Yes/No
+    const nice = label => String(label).replace(/\s*\((pts|%|log \$)\)\s*$/, '').replace(/, pts\)$/, ')');
+    const yes = desc => String(desc || '').replace(/^1 if /, 'Yes if ');
+    const short = label => String(label).replace(/\s*\([^)]*\)\s*$/, '').replace(/^#/, 'number').replace(/^./, c => c.toLowerCase());
+    const modelKey = (r, k) => (r.basis === 'fundamentals' ? 'nopolls_' : 'polls_') + k;
+    const nInputs = (r, k) => { const m = IN && IN.models && IN.models[modelKey(r, k)]; return m ? m.features.length : null; };
+
+    function pane(r, k, o) {
+      const ex = r.explain;
+      let b = ex && ex[k];
+      if (!b) return `<div class="hint">${k === 'margin' && r.basis === 'fundamentals'
+        ? 'The no-polls margin model has no explainer yet; the win chance above is explained.' : 'No explainer is available for this race.'}</div>`;
+      let cand = r.cands.find(c => c.name === ex.candidate) || { name: ex.candidate, party: ex.party };
+      let opp = b.vs ? (r.cands.find(c => c.name === b.vs) || { name: b.vs, party: '' }) : null;
+      // explain the race's favourite (the model repo explains the leading Democrat): a head-to-head
+      // is symmetric, so the flipped block is the same explanation told from the other side
+      const fav = r.cands[0];
+      if (opp && fav && opp.name === fav.name && cand.name !== fav.name) {
+        [cand, opp] = [opp, cand];
+        b = Object.assign({}, b, { vs: opp.name, base: k === 'win' ? 1 - (b.base == null ? 0.5 : b.base) : -(b.base || 0),
+          pred: k === 'win' ? 1 - b.pred : -b.pred,
+          feats: (b.feats || []).map(f => Object.assign({}, f, { shap: -(f.shap || 0), val: f.vs_val, vs_val: f.val })) });
+      }
+      const A = xesc(sur(cand.name)), B = opp ? xesc(sur(opp.name)) : 'the field';
+      const colA = o.col(cand.party), colB = opp && opp.party && opp.party !== cand.party ? o.col(opp.party) : '#6f6a60';
+      const win = k === 'win', base = b.base == null ? (win ? 0.5 : 0) : b.base;
+      const rows = (b.feats || []).map(f => Object.assign({ s: f.shap || 0, m: meta(f) }, f))
+        .sort((x, y) => Math.abs(y.s) - Math.abs(x.s));
+      const total = win ? lg(b.pred) - lg(base) : b.pred - base;
+      const rest = total - rows.reduce((t, x) => t + x.s, 0);
+      const n = nInputs(r, k), others = n ? n - rows.length : null;
+      const max = Math.max(...rows.map(x => Math.abs(x.s)), Math.abs(rest), 1e-9);
+      // what an input does on its own: points of win chance from an even race, or points of margin
+      const alone = s => win ? (sg(lg(base) + s) - base) * 100 : s;
+      const side = s => s >= 0 ? A : B, colOf = s => s >= 0 ? colA : colB;
+      const bar = s => { const w = (Math.abs(s) / max * 50).toFixed(1);
+        return `<div class="dv" aria-hidden="true"><div class="axis"></div><div class="b" style="${s >= 0 ? 'left' : 'right'}:50%;width:${w}%;background:${colOf(s)}"></div></div>`; };
+      const imp = s => { const a = Math.abs(alone(s));
+        return `<div class="xp-imp" style="color:${colOf(s)}">${side(s)} +${a < 0.05 ? '0' : a.toFixed(1)}<small>${win ? 'pts of win chance' : 'pts of margin'}</small></div>`; };
+      const vals = f => `${A}: <b>${xesc(fmt(f.val, f.m.fmt))}</b>` + (opp && f.vs_val !== undefined ? ` &middot; ${B}: <b>${xesc(fmt(f.vs_val, f.m.fmt))}</b>` : '');
+      const anyMissing = rows.some(f => f.val == null || (opp && f.vs_val === null));
+
+      // the summary sentence: the strongest inputs on each side, in words
+      const pos = rows.filter(x => x.s > 0).slice(0, 3), neg = rows.filter(x => x.s < 0).slice(0, 2);
+      const names = xs => { const t = xs.map(x => `<b>${xesc(short(x.m.label))}</b>`);
+        return t.length > 1 ? t.slice(0, -1).join(', ') + ' and ' + t[t.length - 1] : t[0]; };
+      const two = r.cands.length === 2, w = r.cands.find(c => c.name === cand.name);
+      const head = win
+        ? `The model gives <b>${A}</b> a <b>${P(b.pred)}</b> chance against ${B}${opp && !two && w && Math.abs((w.win || 0) - b.pred) >= 0.01 ? ` head to head (<b>${P(w.win || 0)}</b> once the rest of the field takes its share)` : ''}.`
+        : `The margin model has <b>${A}</b> ${b.pred >= 0 ? 'ahead of' : 'behind'} ${B} by <b>${Math.abs(b.pred).toFixed(1)} points</b>.`;
+      const sum = `<p class="xp-sum">${head}${pos.length ? ` The inputs pushing hardest toward ${A}: ${names(pos)}.` : ''}` +
+        `${neg.length ? ` Pushing toward ${B}: ${names(neg)}.` : ''}</p>`;
+
+      const row = f => `<div class="xp-row"><div class="xp-what">${f.m.group ? `<span class="xp-g">${xesc(f.m.group)}</span>` : ''}` +
+        `<div class="xp-name">${xesc(f.m.label)}</div><div class="xp-vals">${vals(f)}</div>` +
+        `${f.m.desc ? `<div class="xp-desc">${xesc(f.m.desc)}</div>` : ''}</div>${bar(f.s)}${imp(f.s)}</div>`;
+      const restRow = `<div class="xp-row xp-rest"><div class="xp-what"><div class="xp-name">${others ? `All ${others} other inputs combined` : 'Every other input combined'}</div>` +
+        `<div class="xp-desc">Each of these moves this race less than the ones above. Together they make up the rest of the number.</div></div>${bar(rest)}${imp(rest)}</div>`;
+      const start = `<div class="xp-total"><span>Starting point: an even race</span><b>${win ? P(base) : '0'}</b></div>`;
+      const end = `<div class="xp-total xp-end"><span>${win ? `Result: ${A}'s chance against ${B}` : `Result: ${A}'s projected margin`}</span>` +
+        `<b>${win ? P(b.pred) : signed(b.pred, 1)}</b></div>`;
+      const key = `<div class="xp-row xp-keyrow" aria-hidden="true"><div></div><div class="xp-key"><span style="color:${colB}">&#9664; helps ${B}</span>` +
+        `<span style="color:${colA}">helps ${A} &#9654;</span></div><div></div></div>`;
+      const how = win
+        ? `Each number is how many points of win chance that input would add to an even race <b>on its own</b>. ` +
+          `The model combines inputs on an odds scale, so the numbers don't add up to the final chance, but the bars compare them fairly: a bar twice as long pushes twice as hard.`
+        : `Each number is how many points of margin that input adds. With the other inputs they add up exactly to the projected margin.`;
+      return sum + key + start + rows.map(row).join('') + restRow + end +
+        `<div class="hint">${how} Under each name: each candidate's own value for that input.` +
+        `${anyMissing ? ' "No data" means the input was missing (for example, no campaign finance report yet); the model reads a gap as information too.' : ''}` +
+        ` Shown: the ${rows.length} inputs that matter most in this race${n ? `, of the ${n} this model uses` : ''}. ` +
+        `<a href="${o.inputsHref}">See every input the model uses &rarr;</a></div>`;
+    }
+    return { pane, fmt, meta };
+  })();
+  // ===== end of the shared explainer block =====
+  const XO = { col: p => PCOL[p] || '#6f6a60', inputsHref: '../politics-forecast/#inputs' };
+  const explainPane = (r, k) => XP.pane(r, k, XO);
   const defs = keys => `<dl class="defs">${keys.map(k => { const g = GLOSS.find(x => x[0] === k); return `<dt>${esc(g[1])}</dt><dd>${esc(g[2])}</dd>`; }).join('')}</dl>`;
-  function explainPane(r, k) {
-    const ex = r.explain, b = ex && ex[k];
-    if (!b) return '<div class="hint">Not available for this race.</div>';
-    const cand = r.cands.find(c => c.name === ex.candidate) || { name: ex.candidate, party: ex.party }, who = esc(last(ex.candidate));
-    const sgn = x => (x >= 0 ? '+' : '') + x.toFixed(1);
-    const chain = !b.vs
-      ? (k === 'win' ? `A typical candidate starts at <b>${pct(b.base)}</b>; these factors move ${who}'s raw score to <b>${pct(b.pred)}</b>, which becomes <b>${pct(cand.win || 0)}</b> after weighing it against the opponents' scores.`
-        : `A typical candidate's projected margin is <b>${sgn(b.base)}</b>; these factors move ${who} to <b>${sgn(b.pred)}</b> against the strongest opponent.`)
-      : (k === 'win' ? `An even race starts at <b>50%</b>. Each factor compares ${who} with ${esc(last(b.vs))}, and together they move ${who} to <b>${pct(b.pred)}</b> head to head${r.cands.length === 2 ? '' : `, or <b>${pct(cand.win || 0)}</b> once the rest of the field takes its share`}.`
-        : `An even race starts at <b>0</b>. Each factor compares ${who} with ${esc(last(b.vs))}, and together they add up to the projected margin of <b>${sgn(b.pred)}</b>.`);
-    return `<div class="chain">${chain}</div>${factorRows(b, k, cand)}<div class="hint">Bars to the right help ${who}, bars to the left hurt. ` +
-      (k === 'win' ? 'Each number is roughly how many points of win chance that factor adds or removes on its own.' : 'Each number is how many points of margin that factor adds or removes.') +
-      ` Only the ${b.feats.length} strongest factors are shown; the line under each name is ${who}'s value${b.vs ? ` and ${esc(last(b.vs))}'s` : ''}, and the grey text says what it measures.</div>`;
-  }
   function openDrawer(office, key) {
     const r = fc[office][key], b = ballot[office][key];
     if (!r || !drawer) return;
@@ -1226,6 +1347,15 @@
       (m ? `<div class="stat"><div class="v">+${m.v.toFixed(1)}</div><div class="l">Projected margin, ${esc(surname(m.name))}</div></div>` : '') +
       `<div class="stat"><div class="v">${pill({ col: color(r._rt), label: r._rt.label })}</div><div class="l">Rating (${esc(PNAME[side])}s ${pct(r._sides[side])})</div></div></div>` +
       `<div class="hint"><a href="../politics-forecast/#${encodeURIComponent(r.id)}">Open this race in the forecast &rarr;</a></div></div>`;
+    // caveats, then what's driving the numbers, come straight after the headline numbers (2026-11-01;
+    // the explainer used to sit at the bottom, under the candidates and the markets)
+    const notes = (r.notes || []).filter(n => !/^Models split/.test(n));
+    if (notes.length) h += `<div class="sec">${notes.map(n => `<div class="xnote">${esc(n)}</div>`).join('')}</div>`;
+    const ex = r.explain;
+    if (ex && (ex.win || ex.margin))
+      h += `<div class="sec xp"><h4>What's driving this prediction</h4><div class="tabs2" id="ex-tabs" role="group" aria-label="Which number to explain">` +
+        `<button data-k="win" class="on">Win chance</button>${ex.margin ? '<button data-k="margin">Margin</button>' : ''}</div><div id="ex-pane">${explainPane(r, 'win')}</div></div>`;
+    else h += '<div class="sec"><div class="hint">No explainer available for this race.</div></div>';
     const hasM = r.cands.some(c => c.margin != null);
     h += `<div class="sec"><h4>Candidates</h4><table class="tbl dt"><thead><tr><th>Candidate</th>${th('chance', 'Win', 1)}` +
       (noPolls ? '' : th('pollavg', 'Poll avg', 1)) + (hasM ? th('margin', 'Margin', 1) : '') + '</tr></thead><tbody>' +
@@ -1246,13 +1376,6 @@
           `</div>` : '') +
         `<div class="hint">Each venue's normalized price for the ${esc(PNAME[side])} side, with the model's chance minus it in points.${pm ? " Margins are signed by party; the small number is the model's margin minus the venue's." : ''}${r.split ? ' The models split in this race, so treat any edge with care.' : ''}</div></div>`;
     }
-    const notes = (r.notes || []).filter(n => !/^Models split/.test(n));
-    if (notes.length) h += `<div class="sec">${notes.map(n => `<div class="xnote">${esc(n)}</div>`).join('')}</div>`;
-    const ex = r.explain;
-    if (ex && (ex.win || ex.margin))
-      h += `<div class="sec"><h4>Why: the factors behind ${esc(ex.candidate)}'s numbers</h4><div class="tabs2" id="ex-tabs"><button data-k="win" class="on">Win probability</button>` +
-        `${ex.margin ? '<button data-k="margin">Margin</button>' : ''}</div><div id="ex-pane">${explainPane(r, 'win')}</div></div>`;
-    else h += '<div class="sec"><div class="hint">No explainer available for this race.</div></div>';
     const flags = ['nopolls', 'fragile', 'split', 'sameparty'].filter(k => (k === 'nopolls' && noPolls) || (k === 'fragile' && r.fragile && !noPolls) || (k === 'split' && r.split) ||
       (k === 'sameparty' && m && m.o && m.o.party === m.c.party));
     h += `<div class="sec"><h4>What the numbers mean</h4>${defs(['chance', 'conf', 'margin', ...flags, 'factor'])}</div>`;
@@ -1264,8 +1387,10 @@
       for (const x of tabs2.querySelectorAll('button')) x.classList.toggle('on', x === bt);
       setText('ex-pane', explainPane(r, bt.dataset.k));
     });
+    drawer._back = drawer._back || document.activeElement;
     drawer.classList.add('on'); if (scrim) scrim.classList.add('on'); drawer.setAttribute('aria-hidden', 'false');
     const db = document.getElementById('d-body'); if (db) db.scrollTop = 0;
+    if (dclose) setTimeout(() => dclose.focus({ preventScroll: true }), 30);   // focus moves into the dialog
     hideTip();
   }
   // close the race panel: no race selected, nothing highlighted
@@ -1302,6 +1427,7 @@
     const za = document.getElementById('zoom-all');
     if (za && za.style) za.style.display = st.vb ? '' : 'none';
     if (hvs && hvs.style) hvs.style.display = office === 'House' ? '' : 'none';
+    const hl = document.getElementById('hv-lab'); if (hl) hl.style.display = office === 'House' ? '' : 'none';
     const nv = all(office).length, nb = Object.keys(ballot[office]).length;
     const what = office === 'House' ? 'districts' : `${office.toLowerCase()} races`;
     const nrd = H && H.districts ? Object.values(H.districts).filter(d => d.rd).length : 0;
@@ -1353,9 +1479,9 @@
     }
     const pw = document.getElementById('polled-wrap');
     if (pw && pw.style) pw.style.display = src === 'model' || st.metric === 'cmp' || st.metric === 'mcmp' ? '' : 'none';
-    // the source switch: "Our model" hidden when comparing with the model
+    // the source switch: "Our model" hidden when comparing with the model; its label says which job it is doing
     const sl = document.getElementById('src-lab');
-    if (sl && sl.style) sl.style.display = st.metric === 'cmp' || st.metric === 'mcmp' ? '' : 'none';
+    if (sl) sl.textContent = st.metric === 'cmp' || st.metric === 'mcmp' ? 'Compare with' : 'Numbers from';
     if (srcs) for (const x of srcs.querySelectorAll('button')) {
       if (x.dataset.s === 'model') x.style.display = st.metric === 'cmp' || st.metric === 'mcmp' ? 'none' : '';
       if (x.dataset.s === 'kalshi') x.style.display = '';

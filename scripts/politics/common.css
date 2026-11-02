@@ -105,6 +105,27 @@
     color: var(--ink); z-index: 220; font-size: 0.82rem;
 }
 
+/* What's driving this prediction (the shared explainer block upstream, 2026-11-01). The
+   summary reads as body copy; every number is mono; each input is a dotted-rule row. */
+.sec.xp h4 { font-size: 1.25rem; }
+.xp-sum { font-family: var(--serif); font-size: 1.02rem; line-height: 1.55; color: var(--ink); }
+.xp-sum b { font-weight: 700; }
+.xp-row { border-bottom: 1px dotted var(--rule-soft); grid-template-columns: minmax(0, 1fr) minmax(70px, 140px) 124px; }
+@media (max-width: 600px) { .xp-row { grid-template-columns: minmax(0, 1fr) 124px; } }
+.xp-keyrow { border-bottom: 0; }
+.xp-key { font-family: var(--mono); font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.02em; }
+.xp-g { font-family: var(--mono); font-size: 0.66rem; font-weight: 600; color: var(--red); letter-spacing: 0.06em; }
+.xp-name { font-family: var(--serif); font-size: 1rem; font-weight: 700; color: var(--ink); }
+.xp-vals { font-family: var(--mono); font-size: 0.78rem; color: var(--ink-2); }
+.xp-vals b { color: var(--ink); }
+.xp-desc { font-family: var(--serif); font-size: 0.86rem; color: var(--muted); line-height: 1.45; }
+.xp-imp { font-family: var(--mono); font-size: 0.86rem; font-weight: 700; }
+.xp-imp small { font-family: var(--mono); color: var(--muted); font-size: 0.64rem; }
+.xp-total { font-family: var(--mono); font-size: 0.8rem; color: var(--ink-2); border-bottom: 1px solid var(--rule); }
+.xp-total b { color: var(--ink); font-size: 0.95rem; }
+.xp-end { border-top: 2px solid var(--rule); border-bottom: 0; color: var(--ink); }
+.dv .b { opacity: 0.9; }
+
 /* Explanatory footer section. */
 .how { border-top: 3px double var(--rule); color: var(--ink-2); font-size: 0.98rem; line-height: 1.55; }
 .how h3 { font-family: var(--display); font-weight: 800; font-size: 1.4rem; text-transform: uppercase; color: var(--ink); }

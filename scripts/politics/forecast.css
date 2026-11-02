@@ -34,3 +34,23 @@
 .foot { font-family: var(--mono); color: var(--muted); }
 .foot b { color: var(--ink); }
 .empty { font-family: var(--mono); color: var(--muted); }
+
+/* Every input the model uses (2026-11-01). Sits under the sticky nav and filter bar. */
+.inputs { border-top: 3px double var(--rule); scroll-margin-top: calc(var(--nav-h, 60px) + 64px); }
+.inputs h3 { font-family: var(--display); font-weight: 800; font-size: 1.6rem; text-transform: uppercase; color: var(--ink); }
+.inputs p { color: var(--ink-2); font-size: 1rem; line-height: 1.55; max-width: 820px; }
+.inputs h4 { font-family: var(--display); font-weight: 800; font-size: 1.3rem; text-transform: uppercase; letter-spacing: 0.02em; color: var(--ink); }
+.inputs h4 small { font-family: var(--mono); font-size: 0.72rem; font-weight: 500; text-transform: none; letter-spacing: 0; }
+.inputs .gnote { font-family: var(--serif); font-size: 0.95rem; color: var(--ink-2); }
+.tbl.inp td:first-child b { font-family: var(--serif); font-weight: 700; font-size: 0.95rem; }
+.xp-cnt { background: var(--rule-faint); }
+.xp-cnt i { background: var(--ink); }
+
+/* On a phone the four-row filter bar would take a quarter of the screen if it stuck, so it
+   scrolls away with the page there; the input list's anchor then only clears the nav. */
+@media (max-width: 600px) {
+    .controls { position: static; }
+    .inputs { scroll-margin-top: calc(var(--nav-h, 56px) + 12px); }
+    .tbl.inp td:first-child { min-width: 150px; }
+    .xp-cnt { display: none; }
+}

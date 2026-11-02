@@ -107,8 +107,8 @@ JS_HEX = {
     # demographics bar (DCOL); #94a3b8 is also the unknown-party fallback, so it
     # must work as a badge behind paper text too (4.7:1)
     "#94a3b8": "#6f6a60", "#c084fc": "#7a5aa6", "#34d399": "#3f8f6a", "#fb923c": "#c97a2e", "#475569": "#b8b0a0",
-    # explainer factor bars: the "against" bar and its number
-    "#6b7489": "#8a8478", "#aab3c5": "#4a4740",
+    # explainer: the neutral side's bar and its label (text too, so 4.7:1, not the 3.3:1 rule grey)
+    "#6b7489": "#6f6a60", "#aab3c5": "#4a4740",
     # dark text on a light shade
     "#0b0e14": "#1a1a1a",
 }
@@ -157,7 +157,7 @@ JS_SUBS = [
 FORECAST_HEX = {
     # the independent tiers on the forecast page; Likely must carry white text
     "#7c3aed": "#5f3f92", "#8b5cf6": "#6e4ea3", "#c4b5fd": "#cbbbe0",
-    "#0b0e14": "#1a1a1a", "#6b7489": "#8a8478", "#aab3c5": "#4a4740",
+    "#0b0e14": "#1a1a1a", "#6b7489": "#6f6a60", "#aab3c5": "#4a4740",
 }
 
 # Hex colours in upstream's CSS. Dark backgrounds become paper, white text and
@@ -459,6 +459,35 @@ def build_page(slug: str, cfg: dict, upstream: str, data_hash: dict, notes: list
         script=retheme_js(script, slug, notes).strip("\n"))
 
 
+def build_summary(raw: bytes) -> str:
+    """dashboards/politics-data/summary.json: the few numbers the home page shows (2026-11-01).
+
+    The home page should not download the 2 MB forecast to print three lines, so this keeps each
+    chamber's control odds and seat range (upstream's seat simulation) and the closest races.
+    Derived only from the mirrored file, so it changes exactly when the forecast does."""
+    text = raw.decode("utf-8")
+    f = json.loads(text[len("const FORECAST = "):].rstrip().rstrip(";"))
+    sim = (f.get("seat_sim") or {}).get("chambers") or {}
+    chambers = {}
+    for off, s in sim.items():
+        d = s.get("dem_seats") or {}
+        chambers[off] = {"p_dem": s.get("p_dem_control"), "p_rep": s.get("p_rep_control"),
+                         "p_neither": s.get("p_neither"), "total": s.get("total"),
+                         "dem_median": d.get("median"), "dem_p10": d.get("p10"), "dem_p90": d.get("p90")}
+    closest = {}
+    for off in ("Senate", "Governor", "House"):
+        rows = []
+        for r in f.get("races", []):
+            if r.get("office") != off or not r.get("cands"):
+                continue
+            top = max(r["cands"], key=lambda c: c.get("win") or 0)
+            rows.append({"id": r["id"], "state": r.get("state_name"), "district": r.get("district") or "",
+                         "fav": top["name"], "party": top.get("party"), "p": top.get("win")})
+        closest[off] = sorted(rows, key=lambda x: x["p"] or 0)[:3]
+    return json.dumps({"predictions_as_of": f.get("predictions_as_of"), "polls_as_of": f.get("polls_as_of"),
+                       "chambers": chambers, "closest": closest}, indent=1) + "\n"
+
+
 # ---------------------------------------------------------------------------
 def main() -> int:
     ap = argparse.ArgumentParser()
@@ -486,6 +515,18 @@ def main() -> int:
         else:
             log(f"  {name}: unchanged")
         data_hash[name] = hashlib.sha256(raw).hexdigest()[:10]
+
+    # --- the home page's summary ----------------------------------------------
+    fc = DATA_DIR / "forecast_data.js"
+    if fc.exists():
+        try:
+            summary = build_summary(fc.read_bytes())
+        except (ValueError, KeyError, TypeError) as e:
+            log(f"  summary.json: not rebuilt ({e})")
+            failed = True
+        else:
+            changed = write_if_changed(DATA_DIR / "summary.json", summary.encode("utf-8"), args.dry_run)
+            log(f"  summary.json: {('WOULD UPDATE' if args.dry_run else 'updated') if changed else 'unchanged'}")
 
     # --- pages --------------------------------------------------------------
     for slug, cfg in PAGES.items():

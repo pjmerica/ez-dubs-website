@@ -1,0 +1,113 @@
+{
+ "predictions_as_of": "2026-11-02T04:37:12",
+ "polls_as_of": "2026-11-01",
+ "chambers": {
+  "Senate": {
+   "p_dem": 0.8295,
+   "p_rep": 0.1524,
+   "p_neither": 0.0181,
+   "total": 100,
+   "dem_median": 53,
+   "dem_p10": 50,
+   "dem_p90": 55
+  },
+  "House": {
+   "p_dem": 0.9637,
+   "p_rep": 0.0338,
+   "p_neither": 0.0025,
+   "total": 435,
+   "dem_median": 233,
+   "dem_p10": 222,
+   "dem_p90": 246
+  },
+  "Governor": {
+   "p_dem": 0.8096,
+   "p_rep": 0.0969,
+   "p_neither": 0.0935,
+   "total": 50,
+   "dem_median": 28,
+   "dem_p10": 24,
+   "dem_p90": 31
+  }
+ },
+ "closest": {
+  "Senate": [
+   {
+    "id": "2026_IA_Senate",
+    "state": "Iowa",
+    "district": "",
+    "fav": "Josh Turek",
+    "party": "DEM",
+    "p": 0.5102
+   },
+   {
+    "id": "2026_SC_Senate",
+    "state": "South Carolina",
+    "district": "",
+    "fav": "Darline Graham",
+    "party": "REP",
+    "p": 0.5823
+   },
+   {
+    "id": "2026_TX_Senate",
+    "state": "Texas",
+    "district": "",
+    "fav": "James Talarico",
+    "party": "DEM",
+    "p": 0.6361
+   }
+  ],
+  "Governor": [
+   {
+    "id": "2026_NV_Governor",
+    "state": "Nevada",
+    "district": "",
+    "fav": "Joe Lombardo",
+    "party": "REP",
+    "p": 0.6314
+   },
+   {
+    "id": "2026_KS_Governor",
+    "state": "Kansas",
+    "district": "",
+    "fav": "Ty Masterson",
+    "party": "REP",
+    "p": 0.6412
+   },
+   {
+    "id": "2026_ME_Governor",
+    "state": "Maine",
+    "district": "",
+    "fav": "Hannah Pingree",
+    "party": "DEM",
+    "p": 0.6734
+   }
+  ],
+  "House": [
+   {
+    "id": "2026_WA_House-3",
+    "state": "Washington",
+    "district": "3",
+    "fav": "John Braun",
+    "party": "REP",
+    "p": 0.5116
+   },
+   {
+    "id": "2026_CO_House-8",
+    "state": "Colorado",
+    "district": "8",
+    "fav": "Gabe Evans",
+    "party": "REP",
+    "p": 0.5139
+   },
+   {
+    "id": "2026_IA_House-2",
+    "state": "Iowa",
+    "district": "2",
+    "fav": "Joe Mitchell",
+    "party": "REP",
+    "p": 0.5247
+   }
+  ]
+ }
+}

@@ -54,6 +54,19 @@ publishes them on its own Pages site; the user gave permission to edit that repo
   Upstream refreshes markets every two hours and re-runs the model after its
   twice-daily poll refresh. Each data change is a commit (forecast_data.js is
   the big one); that history growth was accepted for the election window.
+- **Home page block (2026-11-01).** The home page's right column leads with the
+  forecast: Senate and House control odds and the closest Senate race. It reads
+  `politics-data/summary.json`, a few hundred bytes `build_summary()` in the
+  script derives from the mirrored `forecast_data.js` (the home page must not
+  pull 2 MB). From Nov. 4 the copy turns past tense ("The forecast had
+  Democrats at 83% for the Senate", kicker "Final"), so it never claims a result.
+- **The explainer ("What's driving this prediction", 2026-11-01)** is built
+  upstream, as one block shared by both upstream pages (polling-agg HANDOFF.md
+  and `tests/test_explainer_shared.py` there). It reads `FORECAST.inputs`, the
+  full catalogue of the models' 75 inputs, and the forecast page lists them all
+  under `#inputs`. The site only styles it (`.xp-*` in `scripts/politics/common.css`,
+  `.inputs` in `forecast.css`). On phones the forecast page's filter bar does not
+  stick (it would cover a quarter of the screen).
 - **Mirror, don't link.** The pages can't load from upstream's Pages site
   directly: that URL names the GitHub account, which `verify_no_identity` and the
   pseudonymous brand rule out. The account URL lives only in the script

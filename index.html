@@ -18,7 +18,8 @@
     <link rel="stylesheet" href="assets/site.css?v=box-score-4">
     <style>
         /* The home page is a front page: a dateline, a lead story with a table
-           on the left, two shorter stories stacked on the right, and a row of
+           on the left, three shorter stories stacked on the right (the election
+           forecast, prediction markets, the Best Ball archive), and a row of
            smaller items under a double rule. The tables and numbers are read
            from the same JSON the dashboards use, so they are never stale. */
         main { max-width: 1200px; margin: 0 auto; padding: 0 28px; }
@@ -168,7 +169,7 @@
     <main>
         <div class="dateline">
             <span id="today">Data tools for sports and prediction markets</span>
-            <span>NFL <span id="week-dateline">in season</span> &#183; Prediction markets &#183; Best Ball archive</span>
+            <span>NFL <span id="week-dateline">in season</span> &#183; Election forecast &#183; Prediction markets &#183; Best Ball archive</span>
             <span>Arbitrage picks refresh every few hours</span>
         </div>
 
@@ -194,6 +195,19 @@
             </article>
 
             <div class="side">
+                <article>
+                    <p class="kicker">The EZ Dub Election Forecast<span id="el-final" hidden> &#183; Final</span></p>
+                    <h2 class="headline" id="el-head">Every 2026 race, and what's driving it</h2>
+                    <p class="dek" id="el-dek">The model's chance for every Senate, House and governor race, and the inputs that move each one.</p>
+                    <dl class="stat-list" id="el-stats" hidden>
+                        <div><dt>Senate control</dt><dd id="el-sen"></dd></div>
+                        <div><dt>House control</dt><dd id="el-house"></dd></div>
+                        <div><dt id="el-close-label">Closest Senate race</dt><dd id="el-close"></dd></div>
+                    </dl>
+                    <a class="more" href="dashboards/politics-map/">The map</a>
+                    <a class="more" href="dashboards/politics-forecast/">Race by race</a>
+                </article>
+
                 <article>
                     <p class="kicker">Prediction markets</p>
                     <h2 class="headline" id="arb-head">Where the prediction markets disagree</h2>
@@ -356,11 +370,40 @@
             } catch (e) { /* keep the static headline */ }
         }
 
+        // The election forecast's headline numbers, from the small summary the
+        // politics mirror writes (scripts/pull_politics.py), not the 2 MB forecast.
+        // After election day the copy turns past tense, so it never claims a result.
+        async function loadElection() {
+            try {
+                const s = await getJSON('dashboards/politics-data/summary.json');
+                const sen = s.chambers && s.chambers.Senate, house = s.chambers && s.chambers.House;
+                if (!sen || sen.p_dem == null) return;
+                const pct = (p) => p > 0.99 ? 'over 99%' : p < 0.01 ? 'under 1%' : Math.round(p * 100) + '%';
+                const control = (c) => `Dem ${pct(c.p_dem)} · Rep ${pct(c.p_rep)}`;
+                const dem = sen.p_dem >= sen.p_rep, lead = dem ? 'Democrats' : 'Republicans', p = dem ? sen.p_dem : sen.p_rep;
+                const over = new Date() >= new Date(2026, 10, 4);   // local midnight after Nov. 3
+                $('el-head').textContent = over ? `The forecast had ${lead} at ${pct(p)} for the Senate`
+                                                : `${lead} ${pct(p)} to win the Senate`;
+                $('el-dek').textContent = over
+                    ? 'How every Senate, House and governor race looked to the model before the votes were counted, and the inputs behind each one.'
+                    : `The model's chance for every Senate, House and governor race on Nov. 3, and the inputs that move each one.`;
+                $('el-final').hidden = !over;
+                $('el-sen').textContent = control(sen);
+                if (house && house.p_dem != null) $('el-house').textContent = control(house);
+                else $('el-house').parentElement.hidden = true;
+                const c = ((s.closest || {}).Senate || [])[0];
+                if (c) $('el-close').textContent = `${c.state}: ${c.fav.split(' ').filter((w) => !/^(jr\.?|sr\.?|ii|iii|iv)$/i.test(w)).pop()} ${pct(c.p)}`;
+                else $('el-close').parentElement.hidden = true;
+                $('el-stats').hidden = false;
+            } catch (e) { /* keep the static headline */ }
+        }
+
         function esc(s) {
             return String(s || '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
         }
 
         loadRunningBacks();
+        loadElection();
         loadArbs();
     </script>
 </body>
