@@ -54,12 +54,18 @@ publishes them on its own Pages site; the user gave permission to edit that repo
   Upstream refreshes markets every two hours and re-runs the model after its
   twice-daily poll refresh. Each data change is a commit (forecast_data.js is
   the big one); that history growth was accepted for the election window.
-- **Home page block (2026-11-01).** The home page's right column leads with the
-  forecast: Senate and House control odds and the closest Senate race. It reads
-  `politics-data/summary.json`, a few hundred bytes `build_summary()` in the
-  script derives from the mirrored `forecast_data.js` (the home page must not
-  pull 2 MB). From Nov. 4 the copy turns past tense ("The forecast had
-  Democrats at 83% for the Senate", kicker "Final"), so it never claims a result.
+- **The forecast is the home page's lead story (user, 2026-11-02).** Headline
+  ("Democrats 83% to win the Senate"), a Senate map shaded Safe/Likely/Lean/
+  Tossup, who controls what (control odds and seat ranges) and the closest races,
+  each linking to that race's explainer (`politics-forecast/#<race id>`). Start/Sit
+  moved to the top of the right column, its table cut to the rushing line. It all
+  reads `politics-data/summary.json`, a few KB `build_summary()` in the script
+  derives from the mirrored `forecast_data.js` (the home page must not pull 2 MB);
+  the map's shapes (`us_map_geo.js`, 110 KB) load after the numbers and the map
+  is simply left out if they fail. The fills are site.css tokens (`--safe-d` ...
+  `--tossup`, `--no-race`). From Nov. 4 the copy turns past tense ("The forecast
+  had Democrats at 83% for the Senate", kicker "Final"), so it never claims a
+  result. Whether and when Start/Sit goes back to the lead is the user's call.
 - **The explainer ("What's driving this prediction", 2026-11-01)** is built
   upstream, as one block shared by both upstream pages (polling-agg HANDOFF.md
   and `tests/test_explainer_shared.py` there). It reads `FORECAST.inputs`, the
@@ -238,7 +244,7 @@ corners, rules and dotted row lines instead of boxes, no emoji in the UI.
   switch to Google Fonts without changing the CSP on every page. 404.html can't
   link site.css (its CSP allows inline styles only), so it carries its own
   `@font-face` copies by absolute path.
-- **site.css is linked as `site.css?v=box-score-4`** so a deploy does not pair
+- **site.css is linked as `site.css?v=box-score-5`** so a deploy does not pair
   new HTML with the 10-minute-cached old stylesheet. Bump the tag on the six
   hand-made pages after any site.css change and re-run the NFL port (it copies
   the link from the calculator).

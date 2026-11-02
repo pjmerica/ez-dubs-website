@@ -6,20 +6,21 @@
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://formspree.io; font-src 'self'; base-uri 'self'; form-action 'self' https://formspree.io">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <title>EZ Dubs Analytics</title>
-    <meta name="description" content="Data tools for sports, prediction markets, and more. Daily dashboards that surface where the books disagree.">
+    <meta name="description" content="The EZ Dub Election Forecast for every 2026 Senate, House and governor race, plus data tools for sports and prediction markets.">
     <link rel="icon" href="/EDA.png" type="image/png">
     <meta property="og:title" content="EZ Dubs Analytics">
-    <meta property="og:description" content="Data tools for sports, prediction markets, and more. Daily dashboards that surface where the books disagree.">
+    <meta property="og:description" content="The EZ Dub Election Forecast for every 2026 Senate, House and governor race, plus data tools for sports and prediction markets.">
     <meta property="og:url" content="https://ezdubsanalytics.com/">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://ezdubsanalytics.com/EDA.png">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:image" content="https://ezdubsanalytics.com/EDA.png">
-    <link rel="stylesheet" href="assets/site.css?v=box-score-4">
+    <link rel="stylesheet" href="assets/site.css?v=box-score-5">
     <style>
-        /* The home page is a front page: a dateline, a lead story with a table
-           on the left, three shorter stories stacked on the right (the election
-           forecast, prediction markets, the Best Ball archive), and a row of
+        /* The home page is a front page: a dateline, a lead story on the left
+           (the election forecast since 2026-11-02: a Senate map and two tables),
+           three shorter stories stacked on the right (Start/Sit with its running
+           back table, prediction markets, the Best Ball archive), and a row of
            smaller items under a double rule. The tables and numbers are read
            from the same JSON the dashboards use, so they are never stale. */
         main { max-width: 1200px; margin: 0 auto; padding: 0 28px; }
@@ -97,6 +98,33 @@
             font-family: var(--mono); font-size: 0.75rem; color: var(--muted);
         }
 
+        /* The election lead: a Senate map, who controls what, the closest races. */
+        .el-map { margin: 4px 0 18px; }
+        .el-map-link { display: block; }
+        .el-map svg { display: block; width: 100%; height: auto; }
+        .el-map path { stroke: var(--paper); stroke-width: 0.8; }
+        .el-map-link:hover path { stroke: var(--rule-soft); }
+        .el-key {
+            display: flex; flex-wrap: wrap; gap: 4px 14px; margin-top: 8px;
+            font-family: var(--mono); font-size: 0.7rem; color: var(--muted);
+        }
+        .el-key .el-cap { flex-basis: 100%; color: var(--ink-2); }
+        .el-key i {
+            display: inline-block; width: 11px; height: 11px; margin-right: 5px;
+            vertical-align: -1px; border: 1px solid var(--rule-soft);
+        }
+        .el-tables { display: flex; flex-wrap: wrap; gap: 0 28px; }
+        .el-tables > div { flex: 1 1 300px; min-width: 0; }
+        table.agate.el { min-width: 0; }
+        .agate td a { color: var(--ink); }
+        .agate td a:hover { color: var(--red); }
+        .agate .dim { color: var(--muted); font-weight: 400; }
+        /* Start/Sit sits in the narrow column now: the rushing line is the story,
+           so the two receiving columns go, as they do on a phone. */
+        .side table.agate { min-width: 0; }
+        .side .agate th:nth-child(n+4), .side .agate td:nth-child(n+4) { display: none; }
+        .side .agate th:nth-child(3), .side .agate td:nth-child(3) { padding-right: 0; }
+
         @media (max-width: 900px) {
             /* Stacked: the right column's rule and padding turn into a top rule. */
             .lead { padding-right: 0; border-right: 0; }
@@ -114,6 +142,9 @@
             table.agate { min-width: 0; }
             .agate th:nth-child(n+4), .agate td:nth-child(n+4) { display: none; }
             .agate th:nth-child(3), .agate td:nth-child(3) { padding-right: 0; }
+            /* ...but the election tables keep every column; they are narrow. */
+            .agate.el th:nth-child(n+4), .agate.el td:nth-child(n+4) { display: table-cell; }
+            .agate.el th:nth-child(3), .agate.el td:nth-child(3) { padding-right: 8px; }
         }
     </style>
 </head>
@@ -169,43 +200,71 @@
     <main>
         <div class="dateline">
             <span id="today">Data tools for sports and prediction markets</span>
-            <span>NFL <span id="week-dateline">in season</span> &#183; Election forecast &#183; Prediction markets &#183; Best Ball archive</span>
+            <span>Election forecast &#183; NFL <span id="week-dateline">in season</span> &#183; Prediction markets &#183; Best Ball archive</span>
             <span>Arbitrage picks refresh every few hours</span>
         </div>
 
         <div class="front">
+            <!-- The lead story is the election forecast (user, 2026-11-02): a Senate map,
+                 who controls what, and the closest races, all from politics-data/summary.json.
+                 Start/Sit moved to the top of the right column. -->
             <article class="lead">
-                <p class="kicker">Start/Sit<span id="week-kicker"></span></p>
-                <h1 class="headline">Who to start, priced by the people betting on it</h1>
-                <p class="dek">Start/Sit reads your Sleeper leagues and scores each lineup from prop and game lines, under that league's own scoring. Where books have priced only a player's touchdown, his yards come from a season projection, and the lineup says so.</p>
-
-                <p class="table-title" id="rb-title">Running backs, by rushing yards line</p>
-                <div class="table-wrap" tabindex="0" role="region" aria-labelledby="rb-title">
-                    <table class="agate">
-                        <thead>
-                            <tr><th scope="col">Player</th><th scope="col" class="l">Game</th><th scope="col">Rush yds</th><th scope="col">Rec</th><th scope="col">Rec yds</th></tr>
-                        </thead>
-                        <tbody id="rb-body"></tbody>
-                    </table>
+                <p class="kicker">The EZ Dub Election Forecast<span id="el-when"></span></p>
+                <h1 class="headline" id="el-head">Every 2026 race, and what's driving it</h1>
+                <p class="dek" id="el-dek">The model's chance for every Senate, House and governor race, built from the polls, the money, each seat's history and the national mood. Open any race to see what's driving it.</p>
+                <div id="el-error" hidden></div>
+                <div id="el-body" hidden>
+                    <figure class="el-map" id="el-map-fig" hidden>
+                        <a href="dashboards/politics-map/" class="el-map-link"><svg id="el-map" viewBox="0 0 975 610" role="img" aria-label="Senate forecast map"></svg></a>
+                        <figcaption class="el-key" id="el-key"></figcaption>
+                    </figure>
+                    <div class="el-tables">
+                        <div>
+                            <p class="table-title" id="el-control-title">Who controls what</p>
+                            <div class="table-wrap" tabindex="0" role="region" aria-labelledby="el-control-title">
+                                <table class="agate el">
+                                    <thead><tr><th scope="col">Chamber</th><th scope="col">Dem</th><th scope="col">Rep</th><th scope="col">Dem seats</th></tr></thead>
+                                    <tbody id="el-control"></tbody>
+                                </table>
+                            </div>
+                            <p class="table-note">Chance each party controls it, and the median Democratic seat count with its 80% range, from 20,000 simulated elections.</p>
+                        </div>
+                        <div>
+                            <p class="table-title" id="el-close-title">Closest races</p>
+                            <div class="table-wrap" tabindex="0" role="region" aria-labelledby="el-close-title">
+                                <table class="agate el">
+                                    <thead><tr><th scope="col">Race</th><th scope="col" class="l">Favorite</th><th scope="col">Chance</th></tr></thead>
+                                    <tbody id="el-close"></tbody>
+                                </table>
+                            </div>
+                            <p class="table-note" id="el-note">Click a race for what's driving it.</p>
+                        </div>
+                    </div>
                 </div>
-                <p class="table-empty" id="rb-empty" hidden>This week's lines are not posted yet.</p>
-                <p class="table-note" id="rb-note">Kalshi player props. A game's lines lock at kickoff.</p>
-                <a class="more" href="dashboards/nfl-start-sit/">Load your leagues</a>
-                <a class="more" href="dashboards/nfl-rooting/">Who to root for</a>
+                <a class="more" href="dashboards/politics-map/">Open the map</a>
+                <a class="more" href="dashboards/politics-forecast/">Every race</a>
+                <a class="more" href="dashboards/politics-forecast/#inputs">What goes into the model</a>
             </article>
 
             <div class="side">
                 <article>
-                    <p class="kicker">The EZ Dub Election Forecast<span id="el-final" hidden> &#183; Final</span></p>
-                    <h2 class="headline" id="el-head">Every 2026 race, and what's driving it</h2>
-                    <p class="dek" id="el-dek">The model's chance for every Senate, House and governor race, and the inputs that move each one.</p>
-                    <dl class="stat-list" id="el-stats" hidden>
-                        <div><dt>Senate control</dt><dd id="el-sen"></dd></div>
-                        <div><dt>House control</dt><dd id="el-house"></dd></div>
-                        <div><dt id="el-close-label">Closest Senate race</dt><dd id="el-close"></dd></div>
-                    </dl>
-                    <a class="more" href="dashboards/politics-map/">The map</a>
-                    <a class="more" href="dashboards/politics-forecast/">Race by race</a>
+                    <p class="kicker">Start/Sit<span id="week-kicker"></span></p>
+                    <h2 class="headline">Who to start, priced by the people betting on it</h2>
+                    <p class="dek">Start/Sit reads your Sleeper leagues and scores each lineup from prop and game lines, under that league's own scoring. Where books have priced only a player's touchdown, his yards come from a season projection, and the lineup says so.</p>
+
+                    <p class="table-title" id="rb-title">Running backs, by rushing yards line</p>
+                    <div class="table-wrap" id="rb-wrap" tabindex="0" role="region" aria-labelledby="rb-title">
+                        <table class="agate">
+                            <thead>
+                                <tr><th scope="col">Player</th><th scope="col" class="l">Game</th><th scope="col">Rush yds</th><th scope="col">Rec</th><th scope="col">Rec yds</th></tr>
+                            </thead>
+                            <tbody id="rb-body"></tbody>
+                        </table>
+                    </div>
+                    <p class="table-empty" id="rb-empty" hidden>This week's lines are not posted yet.</p>
+                    <p class="table-note" id="rb-note">Kalshi player props. A game's lines lock at kickoff.</p>
+                    <a class="more" href="dashboards/nfl-start-sit/">Load your leagues</a>
+                    <a class="more" href="dashboards/nfl-rooting/">Who to root for</a>
                 </article>
 
                 <article>
@@ -320,7 +379,7 @@
                 const kick = new Map((lines.games || []).map((g) => [g.matchup, Date.parse(g.kickoff)]));
                 const ahead = backs.filter((p) => !(kick.get(p.matchup) <= Date.now()));
                 const played = !ahead.length;
-                const rows = (played ? backs : ahead).slice(0, 8);
+                const rows = (played ? backs : ahead).slice(0, 6);
                 if (played) $('rb-title').textContent = weekly.week ? `Week ${weekly.week} closing lines: running backs` : 'Closing lines: running backs';
                 $('rb-body').innerHTML = rows.map((p) => {
                     const team = who.get(p.name)[2] || '';
@@ -335,7 +394,7 @@
                 if (played) $('rb-note').textContent = `These games have been played; these were Kalshi's last lines before kickoff.`;
                 else if (!isNaN(upd)) $('rb-note').textContent = `Kalshi player props as of ${shortDate(upd)}. A game's lines lock at kickoff.`;
             } catch (e) {
-                document.querySelector('.lead .table-wrap').hidden = true;
+                $('rb-wrap').hidden = true;
                 if (e.message === 'no lines') $('rb-empty').hidden = false;
                 else {
                     $('rb-title').hidden = $('rb-note').hidden = true;
@@ -370,40 +429,92 @@
             } catch (e) { /* keep the static headline */ }
         }
 
-        // The election forecast's headline numbers, from the small summary the
-        // politics mirror writes (scripts/pull_politics.py), not the 2 MB forecast.
-        // After election day the copy turns past tense, so it never claims a result.
+        // The election forecast lead: headline, Senate map, control odds and the
+        // closest races, from the small summary the politics mirror writes
+        // (scripts/pull_politics.py), not the 2 MB forecast. The map's state shapes
+        // load after the numbers, and the map is left out if they fail. From
+        // Nov. 4 the copy turns past tense, so it never claims a result.
+        const ELECTION = new Date(2026, 10, 3), AFTER = new Date(2026, 10, 4);
+        const pct = (p) => p > 0.99 ? '>99%' : p < 0.01 ? '<1%' : Math.round(p * 100) + '%';
+        const surname = (n) => String(n).split(' ').filter((w) => !/^(jr\.?|sr\.?|ii|iii|iv)$/i.test(w)).pop();
+        const ordinal = (n) => { const s = ['th', 'st', 'nd', 'rd'], v = n % 100; return n + (s[(v - 20) % 10] || s[v] || s[0]); };
+        const tier = (p) => p >= 0.95 ? 'safe' : p >= 0.8 ? 'likely' : p >= 0.6 ? 'lean' : 'tossup';
+        const fillOf = (x) => { const t = tier(x.p); return t === 'tossup' ? 'var(--tossup)' : `var(--${t}-${x.side.toLowerCase()})`; };
+        const PARTY = { DEM: 'D', REP: 'R' };
+
+        function loadScript(src) {
+            return new Promise((ok, fail) => {
+                const s = document.createElement('script');
+                s.src = src; s.onload = ok; s.onerror = () => fail(new Error(src));
+                document.head.appendChild(s);
+            });
+        }
+
         async function loadElection() {
-            try {
-                const s = await getJSON('dashboards/politics-data/summary.json');
-                const sen = s.chambers && s.chambers.Senate, house = s.chambers && s.chambers.House;
-                if (!sen || sen.p_dem == null) return;
-                const pct = (p) => p > 0.99 ? 'over 99%' : p < 0.01 ? 'under 1%' : Math.round(p * 100) + '%';
-                const control = (c) => `Dem ${pct(c.p_dem)} · Rep ${pct(c.p_rep)}`;
+            let s;
+            try { s = await getJSON('dashboards/politics-data/summary.json'); }
+            catch (e) { showLoadError($('el-error'), 'The election forecast could not be loaded.', e.message); return; }
+            const ch = s.chambers || {}, sen = ch.Senate, now = new Date();
+            const over = now >= AFTER, today = now >= ELECTION && !over;
+            $('el-when').textContent = over ? ' · Final' : today ? ' · Election Day' : ' · Election Day is Nov. 3';
+            if (sen && sen.p_dem != null) {
                 const dem = sen.p_dem >= sen.p_rep, lead = dem ? 'Democrats' : 'Republicans', p = dem ? sen.p_dem : sen.p_rep;
-                const over = new Date() >= new Date(2026, 10, 4);   // local midnight after Nov. 3
-                $('el-head').textContent = over ? `The forecast had ${lead} at ${pct(p)} for the Senate`
-                                                : `${lead} ${pct(p)} to win the Senate`;
-                $('el-dek').textContent = over
-                    ? 'How every Senate, House and governor race looked to the model before the votes were counted, and the inputs behind each one.'
-                    : `The model's chance for every Senate, House and governor race on Nov. 3, and the inputs that move each one.`;
-                $('el-final').hidden = !over;
-                $('el-sen').textContent = control(sen);
-                if (house && house.p_dem != null) $('el-house').textContent = control(house);
-                else $('el-house').parentElement.hidden = true;
-                const c = ((s.closest || {}).Senate || [])[0];
-                if (c) $('el-close').textContent = `${c.state}: ${c.fav.split(' ').filter((w) => !/^(jr\.?|sr\.?|ii|iii|iv)$/i.test(w)).pop()} ${pct(c.p)}`;
-                else $('el-close').parentElement.hidden = true;
-                $('el-stats').hidden = false;
-            } catch (e) { /* keep the static headline */ }
+                $('el-head').textContent = over ? `The forecast had ${lead} at ${pct(p)} for the Senate` : `${lead} ${pct(p)} to win the Senate`;
+            }
+            if (over) $('el-dek').textContent = 'How every Senate, House and governor race looked to the model before the votes were counted, and what was driving each one.';
+
+            const rows = [['Senate', 'Senate'], ['House', 'House'], ['Governor', 'Governorships']]
+                .filter(([k]) => ch[k] && ch[k].p_dem != null)
+                .map(([k, label]) => { const c = ch[k];
+                    return `<tr><td class="name">${label}</td><td class="big">${esc(pct(c.p_dem))}</td><td>${esc(pct(c.p_rep))}</td>` +
+                           `<td>${c.dem_median} <span class="dim">(${c.dem_p10} to ${c.dem_p90})</span></td></tr>`; });
+            $('el-control').innerHTML = rows.join('');
+
+            const RACE = { Senate: (r) => `${r.state} Senate`, Governor: (r) => `${r.state} governor`,
+                           House: (r) => `${r.state} ${r.district ? ordinal(+r.district) : 'at-large'}` };
+            const close = [['Senate', 3], ['Governor', 2], ['House', 3]].flatMap(([k, n]) => ((s.closest || {})[k] || []).slice(0, n).map((r) => [k, r]));
+            $('el-close').innerHTML = close.map(([k, r]) =>
+                `<tr><td class="name"><a href="dashboards/politics-forecast/#${encodeURIComponent(r.id)}">${esc(RACE[k](r))}</a></td>` +
+                `<td class="l">${esc(surname(r.fav))} <span class="dim">(${PARTY[r.party] || 'I'})</span></td><td class="big">${esc(pct(r.p))}</td></tr>`).join('');
+            const run = new Date(s.predictions_as_of);
+            if (!isNaN(run)) $('el-note').textContent = `Model run ${shortDate(run)}. Click a race for what's driving it.`;
+            $('el-body').hidden = false;
+
+            try {
+                if (typeof US_MAP === 'undefined') await loadScript('dashboards/politics-data/us_map_geo.js');
+                drawSenateMap(US_MAP, s.senate || {});
+            } catch (e) { /* the map is extra; the numbers above stand on their own */ }
+        }
+
+        function drawSenateMap(M, races) {
+            const n = { D: 0, R: 0, I: 0, T: 0 };
+            let svg = '';
+            for (const [ab, st] of Object.entries(M.states || {})) {
+                const r = races[ab];
+                const fill = r ? fillOf(r) : 'var(--no-race)';
+                if (r) n[tier(r.p) === 'tossup' ? 'T' : r.side]++;
+                const tip = r ? `${st.name}${r.special ? ' (special)' : ''}: ${surname(r.fav)} ${pct(r.p)}, ${tier(r.p) === 'tossup' ? 'tossup' : tier(r.p) + ' ' + r.side}`
+                              : `${st.name}: no Senate race`;
+                svg += `<path d="${st.d}" style="fill:${fill}"><title>${esc(tip)}</title></path>`;
+            }
+            const map = $('el-map');
+            map.innerHTML = svg;
+            map.setAttribute('aria-label', `Senate forecast map: Democrats favored in ${n.D} races, Republicans in ${n.R}` +
+                (n.I ? `, independents in ${n.I}` : '') + `, ${n.T} tossups. Opens the full map.`);
+            const key = [['Safe D', 'var(--safe-d)'], ['Likely D', 'var(--likely-d)'], ['Lean D', 'var(--lean-d)'], ['Tossup', 'var(--tossup)'],
+                         ['Lean R', 'var(--lean-r)'], ['Likely R', 'var(--likely-r)'], ['Safe R', 'var(--safe-r)'], ['No race', 'var(--no-race)']];
+            if (n.I) key.splice(7, 0, ['Independent', 'var(--likely-i)']);
+            $('el-key').innerHTML = '<span class="el-cap">Senate races, by the favorite\'s chance</span>' +
+                key.map(([l, c]) => `<span><i style="background:${c}"></i>${l}</span>`).join('');
+            $('el-map-fig').hidden = false;
         }
 
         function esc(s) {
             return String(s || '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
         }
 
-        loadRunningBacks();
         loadElection();
+        loadRunningBacks();
         loadArbs();
     </script>
 </body>

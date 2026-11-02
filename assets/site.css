@@ -43,6 +43,13 @@
     --green: #1d6b3a;        /* YES, returns, success */
     --amber: #865400;        /* warnings, flags */
     --blue: #1f4e8c;         /* a fourth series colour (WR badges), 7.6:1 */
+    /* Election forecast ratings, as map FILLS (the home page's Senate map;
+       the politics pages use the same values). Never text colours: Safe and
+       Likely carry white text, Lean and Tossup carry ink. (2026-11-02) */
+    --safe-d: #1f4e8c; --likely-d: #3a68a6; --lean-d: #b3c6e0;
+    --safe-r: #8f1f18; --likely-r: #b3261e; --lean-r: #e8b0a6;
+    --safe-i: #5f3f92; --likely-i: #6e4ea3; --lean-i: #cbbbe0;
+    --tossup: #d9a93f; --no-race: #e6e1d6;
     --display: 'Barlow Condensed', 'Arial Narrow', sans-serif;
     --serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
     --mono: 'Roboto Mono', ui-monospace, Menlo, Consolas, monospace;

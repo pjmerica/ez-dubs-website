@@ -484,8 +484,22 @@ def build_summary(raw: bytes) -> str:
             rows.append({"id": r["id"], "state": r.get("state_name"), "district": r.get("district") or "",
                          "fav": top["name"], "party": top.get("party"), "p": top.get("win")})
         closest[off] = sorted(rows, key=lambda x: x["p"] or 0)[:3]
+    # the home page's Senate map (2026-11-02): per state, the party favoured to win the seat and
+    # that party's combined chance, the same reading as the map page's Win % view
+    letter = {"DEM": "D", "REP": "R"}
+    senate = {}
+    for r in f.get("races", []):
+        if r.get("office") != "Senate" or not r.get("cands"):
+            continue
+        sides = {"D": 0.0, "R": 0.0, "I": 0.0}
+        for c in r["cands"]:
+            sides[letter.get(c.get("party"), "I")] += c.get("win") or 0
+        side = max(sides, key=sides.get)
+        top = max(r["cands"], key=lambda c: c.get("win") or 0)
+        senate[r["state"]] = {"id": r["id"], "name": r.get("state_name"), "special": bool(r.get("special")),
+                              "side": side, "p": round(sides[side], 4), "fav": top["name"]}
     return json.dumps({"predictions_as_of": f.get("predictions_as_of"), "polls_as_of": f.get("polls_as_of"),
-                       "chambers": chambers, "closest": closest}, indent=1) + "\n"
+                       "chambers": chambers, "closest": closest, "senate": senate}, indent=1) + "\n"
 
 
 # ---------------------------------------------------------------------------
