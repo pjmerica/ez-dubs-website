@@ -101,8 +101,28 @@
         /* The election lead: a Senate map, who controls what, the closest races. */
         /* The chance Democrats win each chamber, the biggest numbers on the page. */
         .el-odds { display: flex; margin: 0 0 20px; border-top: 2px solid var(--rule); border-bottom: 1px solid var(--rule); }
-        .el-odds > div { flex: 1 1 0; min-width: 0; padding: 10px 0 12px; }
-        .el-odds > div + div { border-left: 1px solid var(--rule); padding-left: 20px; }
+        .el-odds > a { flex: 1 1 0; min-width: 0; padding: 10px 0 12px; display: block; color: var(--ink); text-decoration: none; }
+        .el-odds > a + a { border-left: 1px solid var(--rule); padding-left: 20px; }
+        .el-odds .go {
+            display: inline-block; margin-top: 6px; font-family: var(--display); font-weight: 700; font-size: 1rem;
+            text-transform: uppercase; letter-spacing: 0.03em; color: var(--red);
+            text-decoration: underline; text-underline-offset: 3px;
+        }
+        .el-odds > a:hover .go, .el-odds > a:focus-visible .go { color: var(--ink); }
+        .el-odds > a:hover b { text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 6px; }
+        /* The way into the dashboards, straight under the dek (user, 2026-11-03: "make it easier to
+           click into the actual dashboard"). */
+        .el-cta { display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 20px; }
+        .el-cta a {
+            display: inline-block; font-family: var(--display); font-weight: 800; font-size: 1.2rem;
+            text-transform: uppercase; letter-spacing: 0.04em; text-decoration: none;
+            padding: 10px 18px; border: 2px solid var(--ink);
+        }
+        .el-cta .btn-solid { background: var(--ink); color: var(--paper); }
+        .el-cta .btn-solid:hover, .el-cta .btn-solid:focus-visible { background: var(--red); border-color: var(--red); }
+        .el-cta .btn-line { color: var(--ink); }
+        .el-cta .btn-line:hover, .el-cta .btn-line:focus-visible { background: var(--ink); color: var(--paper); }
+        @media (max-width: 600px) { .el-cta a { flex: 1 1 100%; text-align: center; } }
         .el-odds .k {
             display: block; font-family: var(--display); font-weight: 800; font-size: 1.1rem;
             text-transform: uppercase; letter-spacing: 0.03em;
@@ -244,9 +264,13 @@
                 <p class="kicker">The EZ Dub Election Forecast<span id="el-when"></span></p>
                 <h1 class="headline" id="el-head">Every 2026 race, and what's driving it</h1>
                 <p class="dek" id="el-dek">The model's chance for every Senate, House and governor race, built from the polls, the money, each seat's history and the national mood. Open any race to see what's driving it.</p>
+                <p class="el-cta">
+                    <a class="btn-solid" href="dashboards/politics-map/">Open the forecast map &rarr;</a>
+                    <a class="btn-line" href="dashboards/politics-forecast/">Every race &rarr;</a>
+                </p>
                 <div class="el-odds" id="el-odds" hidden>
-                    <div><span class="k">Senate</span><b id="el-o-sen"></b><span class="w" id="el-w-sen"></span></div>
-                    <div><span class="k">House</span><b id="el-o-house"></b><span class="w" id="el-w-house"></span></div>
+                    <a href="dashboards/politics-map/#senate"><span class="k">Senate</span><b id="el-o-sen"></b><span class="w" id="el-w-sen"></span><span class="go">Senate map &rarr;</span></a>
+                    <a href="dashboards/politics-map/#house"><span class="k">House</span><b id="el-o-house"></b><span class="w" id="el-w-house"></span><span class="go">House map &rarr;</span></a>
                 </div>
                 <p class="el-lock" id="el-lock" hidden></p>
                 <div id="el-error" hidden></div>
