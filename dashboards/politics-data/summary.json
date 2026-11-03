@@ -1,32 +1,32 @@
 {
- "predictions_as_of": "2026-11-02T22:26:14",
+ "predictions_as_of": "2026-11-03T05:32:51",
  "polls_as_of": "2026-11-02",
  "chambers": {
   "Senate": {
-   "p_dem": 0.8155,
-   "p_rep": 0.1654,
-   "p_neither": 0.0191,
+   "p_dem": 0.822,
+   "p_rep": 0.1591,
+   "p_neither": 0.0188,
    "total": 100,
-   "dem_median": 52,
+   "dem_median": 53,
    "dem_p10": 50,
    "dem_p90": 55
   },
   "House": {
-   "p_dem": 0.9637,
-   "p_rep": 0.0338,
+   "p_dem": 0.9628,
+   "p_rep": 0.0347,
    "p_neither": 0.0025,
    "total": 435,
    "dem_median": 233,
    "dem_p10": 222,
-   "dem_p90": 246
+   "dem_p90": 245
   },
   "Governor": {
-   "p_dem": 0.8121,
-   "p_rep": 0.0945,
-   "p_neither": 0.0934,
+   "p_dem": 0.8065,
+   "p_rep": 0.0984,
+   "p_neither": 0.095,
    "total": 50,
-   "dem_median": 28,
-   "dem_p10": 25,
+   "dem_median": 27,
+   "dem_p10": 24,
    "dem_p90": 31
   }
  },
@@ -38,7 +38,7 @@
     "district": "",
     "fav": "Josh Turek",
     "party": "DEM",
-    "p": 0.5061
+    "p": 0.5369
    },
    {
     "id": "2026_AK_Senate",
@@ -49,15 +49,23 @@
     "p": 0.6283
    },
    {
-    "id": "2026_TX_Senate",
-    "state": "Texas",
-    "district": "",
-    "fav": "James Talarico",
+    "id": "2026_OH_Senate-S",
+    "state": "Ohio",
+    "district": "S",
+    "fav": "Sherrod Brown",
     "party": "DEM",
-    "p": 0.6361
+    "p": 0.657
    }
   ],
   "Governor": [
+   {
+    "id": "2026_KS_Governor",
+    "state": "Kansas",
+    "district": "",
+    "fav": "Ty Masterson",
+    "party": "REP",
+    "p": 0.608
+   },
    {
     "id": "2026_NV_Governor",
     "state": "Nevada",
@@ -65,14 +73,6 @@
     "fav": "Joe Lombardo",
     "party": "REP",
     "p": 0.6314
-   },
-   {
-    "id": "2026_KS_Governor",
-    "state": "Kansas",
-    "district": "",
-    "fav": "Ty Masterson",
-    "party": "REP",
-    "p": 0.6378
    },
    {
     "id": "2026_ME_Governor",
@@ -181,18 +181,18 @@
    "name": "Colorado",
    "special": false,
    "side": "D",
-   "p": 0.993,
+   "p": 0.9958,
    "fav": "John Hickenlooper",
    "cands": [
     [
      "John Hickenlooper",
      "D",
-     0.993
+     0.9958
     ],
     [
      "Mark Baisley",
      "R",
-     0.007
+     0.0042
     ]
    ]
   },
@@ -226,18 +226,18 @@
    "name": "Georgia",
    "special": false,
    "side": "D",
-   "p": 0.9812,
+   "p": 0.9846,
    "fav": "Jon Ossoff",
    "cands": [
     [
      "Jon Ossoff",
      "D",
-     0.9812
+     0.9846
     ],
     [
      "Mike Collins",
      "R",
-     0.0188
+     0.0154
     ]
    ]
   },
@@ -246,18 +246,18 @@
    "name": "Iowa",
    "special": false,
    "side": "D",
-   "p": 0.5061,
+   "p": 0.5369,
    "fav": "Josh Turek",
    "cands": [
     [
      "Josh Turek",
      "D",
-     0.5061
+     0.5369
     ],
     [
      "Ashley Hinson",
      "R",
-     0.4939
+     0.4631
     ],
     [
      "Thomas Laehn",
@@ -296,18 +296,18 @@
    "name": "Illinois",
    "special": false,
    "side": "D",
-   "p": 0.9867,
+   "p": 0.9874,
    "fav": "Juliana Stratton",
    "cands": [
     [
      "Juliana Stratton",
      "D",
-     0.9867
+     0.9874
     ],
     [
      "Don Tracy",
      "R",
-     0.0133
+     0.0126
     ]
    ]
   },
@@ -316,18 +316,18 @@
    "name": "Kansas",
    "special": false,
    "side": "D",
-   "p": 0.7393,
+   "p": 0.7411,
    "fav": "Adam Hamilton",
    "cands": [
     [
      "Adam Hamilton",
      "D",
-     0.7393
+     0.7411
     ],
     [
      "Roger Marshall",
      "R",
-     0.2607
+     0.2589
     ],
     [
      "David Graham",
@@ -406,18 +406,18 @@
    "name": "Maine",
    "special": false,
    "side": "D",
-   "p": 0.8,
+   "p": 0.8111,
    "fav": "Troy Jackson",
    "cands": [
     [
      "Troy Jackson",
      "D",
-     0.8
+     0.8111
     ],
     [
      "Susan Collins",
      "R",
-     0.2
+     0.1889
     ]
    ]
   },
@@ -426,18 +426,18 @@
    "name": "Michigan",
    "special": false,
    "side": "D",
-   "p": 0.7604,
+   "p": 0.7941,
    "fav": "Abdul El-Sayed",
    "cands": [
     [
      "Abdul El-Sayed",
      "D",
-     0.7604
+     0.7941
     ],
     [
      "Mike Rogers",
      "R",
-     0.2396
+     0.2059
     ],
     [
      "Walter Kristy",
@@ -451,18 +451,18 @@
    "name": "Minnesota",
    "special": false,
    "side": "D",
-   "p": 0.9267,
+   "p": 0.9082,
    "fav": "Peggy Flanagan",
    "cands": [
     [
      "Peggy Flanagan",
      "D",
-     0.9267
+     0.9082
     ],
     [
      "Michele Tafoya",
      "R",
-     0.0733
+     0.0918
     ],
     [
      "Marisa Simonetti",
@@ -576,18 +576,18 @@
    "name": "New Hampshire",
    "special": false,
    "side": "D",
-   "p": 0.9458,
+   "p": 0.948,
    "fav": "Chris Pappas",
    "cands": [
     [
      "Chris Pappas",
      "D",
-     0.9458
+     0.948
     ],
     [
      "John E. Sununu",
      "R",
-     0.0542
+     0.052
     ],
     [
      "Edmond Laplante",
@@ -601,18 +601,18 @@
    "name": "New Mexico",
    "special": false,
    "side": "D",
-   "p": 0.9943,
+   "p": 0.9938,
    "fav": "Ben Ray Luj\u00e1n",
    "cands": [
     [
      "Ben Ray Luj\u00e1n",
      "D",
-     0.9943
+     0.9938
     ],
     [
      "Larry Marker",
      "R",
-     0.0057
+     0.0062
     ]
    ]
   },
@@ -621,18 +621,18 @@
    "name": "Ohio",
    "special": true,
    "side": "D",
-   "p": 0.7057,
+   "p": 0.657,
    "fav": "Sherrod Brown",
    "cands": [
     [
      "Sherrod Brown",
      "D",
-     0.7057
+     0.657
     ],
     [
      "Jon Husted",
      "R",
-     0.2943
+     0.343
     ],
     [
      "Bill Redpath",
@@ -696,18 +696,18 @@
    "name": "South Carolina",
    "special": false,
    "side": "R",
-   "p": 0.6752,
+   "p": 0.6743,
    "fav": "Darline Graham",
    "cands": [
     [
      "Darline Graham",
      "R",
-     0.6752
+     0.6743
     ],
     [
      "Annie Andrews",
      "D",
-     0.3248
+     0.3257
     ],
     [
      "Mark Hackett",
@@ -741,18 +741,18 @@
    "name": "Tennessee",
    "special": false,
    "side": "R",
-   "p": 0.9867,
+   "p": 0.9885,
    "fav": "Bill Hagerty",
    "cands": [
     [
      "Bill Hagerty",
      "R",
-     0.9867
+     0.9885
     ],
     [
      "Marquita Bradshaw",
      "D",
-     0.0133
+     0.0115
     ]
    ]
   },
@@ -761,18 +761,18 @@
    "name": "Texas",
    "special": false,
    "side": "D",
-   "p": 0.6361,
+   "p": 0.6642,
    "fav": "James Talarico",
    "cands": [
     [
      "James Talarico",
      "D",
-     0.6361
+     0.6642
     ],
     [
      "Ken Paxton",
      "R",
-     0.3639
+     0.3358
     ],
     [
      "Ted Brown",
