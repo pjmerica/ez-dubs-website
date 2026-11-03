@@ -96,6 +96,14 @@ jobs:
       - uses: browser-actions/setup-chrome@v1
         id: chrome
 
+      # The forecast map's link-preview image is drawn in this same Chrome by
+      # politics-pull.yml; rendering it here (not committed) catches a broken
+      # renderer before the next forecast change needs it.
+      - name: Render the forecast map's link-preview image
+        run: node scripts/render_og_card.js
+        env:
+          CHROME_BIN: ${{ steps.chrome.outputs.chrome-path }}
+
       - name: Verify the Content-Security-Policy
         run: node scripts/verify_csp.test.js
         env:
