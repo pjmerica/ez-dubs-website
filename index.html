@@ -112,6 +112,11 @@
             font-size: clamp(3rem, 8vw, 4.6rem); color: var(--blue); margin: 2px 0 4px;
         }
         .el-odds .w { display: block; font-family: var(--mono); font-size: 0.75rem; color: var(--ink-2); }
+        /* Locked at 6 p.m. Eastern on Election Day (user, 2026-11-03); same note as the politics pages. */
+        .el-lock {
+            font-family: var(--mono); font-size: 0.8rem; line-height: 1.5; color: var(--ink);
+            border-left: 3px solid var(--red); padding: 4px 0 4px 12px; margin: -6px 0 20px;
+        }
         .el-map { position: relative; margin: 4px 0 18px; }
         .el-map svg { display: block; width: 100%; height: auto; }
         .el-map path { stroke: var(--paper); stroke-width: 0.8; }
@@ -243,6 +248,7 @@
                     <div><span class="k">Senate</span><b id="el-o-sen"></b><span class="w" id="el-w-sen"></span></div>
                     <div><span class="k">House</span><b id="el-o-house"></b><span class="w" id="el-w-house"></span></div>
                 </div>
+                <p class="el-lock" id="el-lock" hidden></p>
                 <div id="el-error" hidden></div>
                 <div id="el-body" hidden>
                     <figure class="el-map" id="el-map-fig" hidden>
@@ -467,6 +473,9 @@
         // load after the numbers, and the map is left out if they fail. From
         // Nov. 4 the copy turns past tense, so it never claims a result.
         const ELECTION = new Date(2026, 10, 3), AFTER = new Date(2026, 10, 4);
+        // The forecast stops updating at 6 p.m. Eastern on Election Day (user, 2026-11-03;
+        // LOCK_AT in scripts/pull_politics.py, which writes nothing after it).
+        const LOCK = new Date(Date.UTC(2026, 10, 3, 23));
         const pct = (p) => p > 0.99 ? '>99%' : p < 0.01 ? '<1%' : Math.round(p * 100) + '%';
         const surname = (n) => String(n).split(' ').filter((w) => !/^(jr\.?|sr\.?|ii|iii|iv)$/i.test(w)).pop();
         const ordinal = (n) => { const s = ['th', 'st', 'nd', 'rd'], v = n % 100; return n + (s[(v - 20) % 10] || s[v] || s[0]); };
@@ -510,6 +519,10 @@
                 $('el-w-' + k).textContent = `chance Democrats win · Republicans ${pct(c.p_rep)}`;
             }
             if (odds.length === 2) $('el-odds').hidden = false;
+            $('el-lock').textContent = now >= LOCK
+                ? "Locked at 6 p.m. Eastern on Election Day, Nov. 3. These are the forecast's final numbers; they don't change as results come in."
+                : "The forecast locks at 6 p.m. Eastern on Election Day, Nov. 3, and won't change after that.";
+            $('el-lock').hidden = false;
             if (over) $('el-dek').textContent = 'How every Senate, House and governor race looked to the model before the votes were counted, and what was driving each one.';
 
             const rows = [['Senate', 'Senate'], ['House', 'House'], ['Governor', 'Governorships']]

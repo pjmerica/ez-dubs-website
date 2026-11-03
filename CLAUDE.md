@@ -54,6 +54,19 @@ publishes them on its own Pages site; the user gave permission to edit that repo
   Upstream refreshes markets every two hours and re-runs the model after its
   twice-daily poll refresh. Each data change is a commit (forecast_data.js is
   the big one); that history growth was accepted for the election window.
+- **The forecast is locked at 6 p.m. Eastern on Election Day (user, 2026-11-03).**
+  `LOCK_AT` in `pull_politics.py` (23:00 UTC Nov. 3): after it the script logs
+  and writes nothing, so the pages, the four data files and `summary.json` are
+  the final forecast. Upstream keeps updating its own pages; the site does not
+  follow. The last copy came from a `politics-pull.yml` dispatch with
+  `wait_until=2026-11-03T22:58:00Z` (the input sleeps before the checkout, in a
+  concurrency group of its own). Both politics pages (`.pol-lock`, built into
+  the page shell) and the home page (`#el-lock`) say "locks at 6 p.m." and
+  switch to "Locked at 6 p.m. ... final numbers" in the browser at that moment.
+  Don't move the lock or re-run the pull unless the user asks; a restyle after
+  the lock means editing the generated pages' CSS some other way or lifting
+  the lock on purpose (it would also pull post-lock data). The cron can be
+  turned off once the user is done with the election pages.
 - **The forecast is the home page's lead story (user, 2026-11-02).** Headline
   ("Democrats 83% to win the Senate"), a Senate map shaded Safe/Likely/Lean/
   Tossup (each state a link to its race's explainer, with a hover/focus card and

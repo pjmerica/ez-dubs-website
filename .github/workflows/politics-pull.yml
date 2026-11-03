@@ -11,19 +11,43 @@ on:
     # scheduler is busiest, and clear of the other workflows' :00/:30/:45.
     - cron: '20 */2 * * *'
   workflow_dispatch:
+    inputs:
+      wait_until:
+        description: >-
+          Optional ISO UTC time (e.g. 2026-11-03T22:58:00Z). The run sleeps until then before
+          checking out and pulling, so one copy lands at a set minute; that is how the last
+          copy before the 6 p.m. Election Day lock was taken (LOCK_AT in pull_politics.py).
+        required: false
+        default: ''
 
 # One run at a time; a dispatch landing on a scheduled run would otherwise
 # commit the same files twice and the second push's rebase would conflict.
+# A waiting run (wait_until) has a group of its own, so the scheduled runs keep
+# going while it sleeps; it checks out only after waking, so it starts from them.
 concurrency:
-  group: politics-pull
+  group: politics-pull${{ inputs.wait_until && '-timed' || '' }}
   cancel-in-progress: false
 
 jobs:
   pull:
     runs-on: ubuntu-latest
+    timeout-minutes: 355
     permissions:
       contents: write
     steps:
+      # Before the checkout, so a run that sleeps for hours still starts from
+      # the latest main. Jobs are capped at 6 hours, so wait_until must be
+      # under about 5.5 hours away.
+      - name: Wait until the set time
+        if: inputs.wait_until != ''
+        env:
+          WAIT_UNTIL: ${{ inputs.wait_until }}
+        run: |
+          target=$(date -d "$WAIT_UNTIL" +%s) || { echo "Bad wait_until: $WAIT_UNTIL" >&2; exit 1; }
+          left=$(( target - $(date +%s) ))
+          echo "Waiting $left s, until $(date -u -d "@$target")."
+          if [ "$left" -gt 0 ]; then sleep "$left"; fi
+
       - uses: actions/checkout@v4
 
       - uses: actions/setup-python@v5

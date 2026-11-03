@@ -41,6 +41,7 @@ import hashlib
 import json
 import re
 import sys
+from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -61,6 +62,17 @@ MIN_BYTES = 2000
 TIMEOUT = 60
 
 TITLE = "The EZ Dub Election Forecast"   # the user's name for it (2026-10-31)
+
+# The forecast is locked at 6 p.m. Eastern on Election Day (user, 2026-11-03): from then on this
+# script writes nothing, so the pages, data and summary.json stay exactly as they were. The last
+# copy is taken by a politics-pull.yml dispatch that waits until just before this time
+# (its wait_until input); the cron runs alone start hours late. Each page and the home page carry
+# a note that says so, switching from "locks at" to "locked at" in the browser at this moment.
+LOCK_AT = datetime(2026, 11, 3, 23, 0, tzinfo=timezone.utc)   # 6 p.m. EST
+LOCK_MS = int(LOCK_AT.timestamp() * 1000)
+LOCK_NOTE_BEFORE = "The forecast locks at 6 p.m. Eastern on Election Day, Nov. 3, and won't change after that."
+LOCK_NOTE_AFTER = ("Locked at 6 p.m. Eastern on Election Day, Nov. 3. These are the forecast's final numbers; "
+                   "they don't change as results come in.")
 
 PAGES = {
     "politics-map": {
@@ -378,6 +390,7 @@ HEAD = """<!DOCTYPE html>
     <header class="pol-head">
         <p class="kicker">{kicker}</p>
         <h1 class="headline">{h1}</h1>
+        <p class="pol-lock" id="pol-lock">{lock_before}</p>
         <div id="pol-load-error" hidden></div>
     </header>
 {body}
@@ -386,6 +399,10 @@ HEAD = """<!DOCTYPE html>
 {footer}
 
 {data_scripts}
+    <script>
+    // The forecast was locked at 6 p.m. Eastern on Election Day (LOCK_AT in the script).
+    if (Date.now() >= {lock_ms}) document.getElementById('pol-lock').textContent = {lock_after};
+    </script>
     <script>
     // The page's own script below assumes its data loaded. If a file failed,
     // say so once, where the content would have been (site convention:
@@ -456,6 +473,7 @@ def build_page(slug: str, cfg: dict, upstream: str, data_hash: dict, notes: list
         title=cfg["title"], desc=cfg["desc"], slug=slug, src=cfg["src"], css_link=site_css_link(),
         style=css, nav=site_nav(slug), kicker=cfg["kicker"], h1=TITLE, body=body.rstrip(),
         footer=site_footer(), data_scripts=data_scripts, globals=globals_,
+        lock_before=LOCK_NOTE_BEFORE, lock_ms=LOCK_MS, lock_after=json.dumps(LOCK_NOTE_AFTER),
         script=retheme_js(script, slug, notes).strip("\n"))
 
 
@@ -512,6 +530,10 @@ def main() -> int:
     ap.add_argument("--dry-run", action="store_true", help="fetch and report, write nothing")
     ap.add_argument("--src", help="read upstream's docs/ folder from disk instead of its Pages site")
     args = ap.parse_args()
+
+    if datetime.now(timezone.utc) >= LOCK_AT:
+        log(f"The forecast was locked at {LOCK_AT:%Y-%m-%d %H:%M} UTC (6 p.m. Eastern, Election Day); nothing to do.")
+        return 0
 
     log(f"Mirroring the election forecast from {args.src or BASE}")
     failed = False

@@ -19,6 +19,9 @@
 .pol-head { max-width: 1240px; margin: 0 auto; padding: 32px 20px 0; }
 .pol-head .headline { font-size: clamp(2.3rem, 6vw, 3.6rem); }
 @media (max-width: 600px) { .pol-head { padding: 24px 16px 0; } }
+/* Locked at 6 p.m. Eastern on Election Day (user, 2026-11-03). */
+.pol-lock { font-family: var(--mono); font-size: 0.82rem; line-height: 1.5; color: var(--ink); max-width: 760px;
+            border-left: 3px solid var(--red); padding: 4px 0 4px 12px; margin: 10px 0 0; }
 .pol .wrap { max-width: 1240px; }
 
 .hero { padding: 12px 0 4px; }
