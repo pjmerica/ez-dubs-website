@@ -395,7 +395,7 @@
         .cand b { font-size: 1.4rem; font-weight: 700; white-space: nowrap; }
         .cands .cand > span b { font-size: inherit; font-family: var(--serif); }
         .cand b span { font-size: 0.6em; font-weight: 500; }
-        /* Win % model vs market: whose chance the numbers are (the Democrat's), above them (2026-11-03). */
+        /* Win % model vs market: the model's favorite, named above the numbers (2026-11-03). */
         .cmp-who { font-family: var(--mono); font-size: 0.7rem; font-weight: 600; color: var(--ink-2); }
         .demo { border-top-color: var(--rule-faint); color: var(--muted); }
         .tiphint { color: var(--red); border-top-color: var(--rule-faint); }
@@ -523,7 +523,7 @@
       <li><b>Market margins:</b> on the Margin view, <b>Kalshi</b> shades each race by its average margin, the probability-weighted result implied by its margin brackets ("Talarico by 2-4%", straight bets on the final margin in 16 headline races) or else its "Democrats win by at least N points" markets; <b>Polymarket</b> by the median of its bracket ladder ("Democrat by 3-6%", normalized to 100%). Most races list only the favorite's side; a race stays gray when the markets don't price enough of the outcome to read.</li>
       <li><b>Margin:</b> the margin model's projected lead of the front-runner over the runner-up, in points; deep blue or red is a margin of 30+ points, light is a close race, gold is under 1 point. The margin comes from a separate model from the win chance, so in a few close races the two pick different leaders ("Models split"). Where the top two are from the same party (California's top-two, Louisiana's all-party first round) the shade is that party's color and the margin is between the two of them.</li>
       <li><b>Margin vs markets:</b> each race is shaded by the margin model's projected result minus Kalshi's average margin or Polymarket's ladder median (switch with the venue buttons), both signed toward the Democrat, in points. Blue means the model expects a bluer result than the market, red a redder one, pale within 2 points. Races with no ladder median or no model margin stay gray.</li>
-      <li><b>Win % model vs market:</b> every number is the Democrat's chance to win (an independent in the Democrats' place, like Nebraska's Osborn, counts as the Democrat). Each race is shaded by our model's chance minus the market's: blue means the model gives the Democrat a higher chance, red a lower one, pale within 2 points. The table lists the biggest disagreements first, with our model, Kalshi and Polymarket side by side.</li>
+      <li><b>Win % model vs market:</b> each race card and table row names our model's favorite and gives that side's chance from our model, Kalshi and Polymarket side by side (an independent in the Democrats' place, like Nebraska's Osborn, counts as the Democrat). The shading is signed toward the Democrat: our model's chance for the Democrat minus the market's, blue where the model gives the Democrat a higher chance, red a lower one, pale within 2 points. The table lists the biggest disagreements first.</li>
       <li><b>Our model:</b> each race's shade is the model's chance that its favored party wins the seat (that party's candidates combined), from light at 51% to deep near 100%; gold means the favorite is under 51%. The labels are the forecast page's tiers (Safe 95%+, Likely 80-95%, Lean 60-80%, Tossup under 60%); the <a href="../politics-forecast/">forecast page</a> rates each candidate and explains every race.</li>
       <li><b>No polls:</b> races no pollster has covered, most House seats, use the model's no-polls version: which party holds the seat, its past results (the new map's lean where districts were redrawn for 2026), the national environment, fundraising and the candidates' experience. Tick <b>Polled races only</b> to gray them out.</li>
       <li><b>Kalshi and Polymarket:</b> the same tiers applied to each venue's price for each party to win the seat. Prices are normalized so the outcomes add up to 100% (the venue's built-in margin removed), from the dashboard's last market refresh. Gray races have no party market on that venue.</li>
@@ -764,6 +764,14 @@
   // Model vs markets: the model's chance for the Democrat minus the market's, in points ("Dem +5" = the model likes the Democrat more)
   const dLabel = g => Math.abs(g) < 2 ? 'Within 2 pts' : `Dem ${g > 0 ? '+' : '−'}${Math.round(Math.abs(g))}`;
   const dPrice = (b, vn) => book(b, vn) ? 1 - (b[vn].R || 0) : null;   // a venue's Democratic-side chance
+  // Win % model vs market shows the model's favourite by name, with every source's chance for that same
+  // side (user, 2026-11-03: "always show the favorite and put their name on it"); the map colour stays
+  // signed toward the Democrat. Two sides: the Democratic slot (an independent like Osborn included) or R.
+  function cmpFav(r) {
+    const dm = 1 - r._sides.R, dem = dm >= 0.5;
+    return { dem, c: dem ? (topOf(r, 'D') || topOf(r, 'I')) : topOf(r, 'R'), p: dem ? dm : r._sides.R,
+             mkt: (b, vn) => { const d = dPrice(b, vn); return d == null ? null : dem ? d : 1 - d; } };
+  }
   const gapLabel = (g, ns) => Math.abs(g) < 2 ? 'Within 2 pts' : `Model +${Math.round(Math.abs(g))} ${g > 0 ? ns : 'R'}`;
   const modelRace = (office, key) => { const r = fc[office][key] || null; return r && !(st.polledOnly && r.basis === 'fundamentals') ? r : null; };
   // one race under the current view: col (fill), label (pill), sort (table order, ascending), lean (squares
@@ -863,14 +871,13 @@
     const meta = [];
     let rows;
     if (st.metric === 'cmp') {
-      // every source's chance for the Democrat, the compared one in bold. Said at the top whose chance
-      // it is, and the Republican side's below: a race the Republican leads showed 59% on Win % and
-      // 41% here with only a footnote to say why (CO-03, user 2026-11-03).
-      const mp = 1 - r._sides.R, dc = topOf(r, 'D') || topOf(r, 'I'), rc = topOf(r, 'R');
-      rows = `<div class="cmp-who">Chance ${dc ? cname(dc) : 'the Democrat'} wins</div>` + [['model', mp]].concat(sources().map(vn => [vn, dPrice(b, vn)]).filter(x => x[1] != null)).map(([vn, p]) =>
+      // the model's favourite, named, with every source's chance for that side, the compared one in bold
+      // (2026-11-03: CO-03 showed Hurd 59% on Win % and the Democrat's 41% here)
+      const f = cmpFav(r), mp = f.p;
+      rows = `<div class="cmp-who">Our model's favorite: ${f.c ? cname(f.c) : f.dem ? 'the Democrat' : 'the Republican'}</div>` +
+        [['model', mp]].concat(sources().map(vn => [vn, f.mkt(b, vn)]).filter(x => x[1] != null)).map(([vn, p]) =>
         `<div class="cand"><span>${vn === src ? '<b>' + esc(VENUE[vn]) + '</b>' : vn === 'model' ? 'Our model' : esc(VENUE[vn])}</span>` +
         `<b>${pct(p)}${vn === 'model' ? '' : ` <span style="color:var(--muted);font-weight:500">(model ${gap(mp, p)})</span>`}</b></div>`).join('');
-      if (rc) meta.push(`Our model, Republican side: ${esc(rc.name)} ${pct(r._sides.R)}`);
       if (v.vol) meta.push(`${VENUE[src]} volume ${fmtVol(v.vol)}`);
       meta.push(r.basis === 'fundamentals' ? 'No polls: the no-polls model' : `${r.n_surveys || 0} surveys`);
     } else if ((st.metric === 'margin' && src !== 'model') || st.metric === 'mcmp') {
@@ -1116,9 +1123,9 @@
     ['ourside', 'Our model, same side', "The model's chance for the party the venue favors."],
     ['vgap', 'Model minus venue', "The model's chance minus the venue's for the venue's favored party, in percentage points. Positive = the model likes that party more than the market does."],
     ['cmpgap', 'Model minus market (map colour)', "The Democrat's chance to win in our model minus the market's, in points ('Dem +5' = the model gives the Democrat 5 points more). Blue = the model gives the Democrat a higher chance, red = lower, pale = within 2 points."],
-    ['dcand', 'Democrat', "The Democratic candidate, or the independent running in the Democrats' place (Osborn in Nebraska)."],
-    ['dchance', 'Our model: Dem win %', "The model's chance that the Democrat (or the independent in the Democratic slot) wins the seat."],
-    ['dmkt', 'Kalshi / Polymarket (Dem win %)', "The venue's price for the Democrat (or the independent in the Democratic slot) winning, read as a chance. Prices are normalized so the venue's outcomes add up to 100% (its built-in margin removed)."],
+    ['dcand', 'Model favorite', "The candidate our model favors: the Democrat (or the independent running in the Democrats' place, Osborn in Nebraska) or the Republican, whichever it gives over 50%."],
+    ['dchance', 'Our model', "The model's chance that the favorite's side wins the seat."],
+    ['dmkt', 'Kalshi / Polymarket', "The venue's price for the same side winning, read as a chance. Prices are normalized so the venue's outcomes add up to 100% (its built-in margin removed)."],
     ['pmmargin', 'Polymarket margin', "The median of Polymarket's margin-of-victory ladder: the bracket markets ('Democrat by 3-6%', ..., 'Republican by 6% or more') normalized to add up to 100%, read as the market's spread of outcomes; half the probability lies on each side of the median."],
     ['kavg', 'Kalshi average margin', "The probability-weighted average margin implied by Kalshi's race markets. In 16 headline Senate and Governor races Kalshi lists margin brackets, straight bets on the final margin ('Talarico by 2-4%'; marked Brackets), and those are used; elsewhere its markets that one side wins by at least N points ('Democrats, 4+ pts'). Within 0.3 pts of each other where both exist. Prices come from the middle of each order book (not the last trade, which can be stale), smoothed so a bigger margin is never priced above a smaller one; the probability between two neighbouring thresholds counts at their midpoint. 'D 8+' means most of the probability is past Kalshi's last threshold, so there is no average to compare."],
     ['pmtop', 'Most likely bracket', "The single margin bracket the venue prices highest, with its chance. For Kalshi, a bracket is the gap between two neighbouring thresholds."],
@@ -1155,7 +1162,7 @@
       return '<tr>' + th('race', 'Race') + th('mgap', `Model minus ${VENUE[src]}`) + th('margin', 'Our model margin', 1) + th('pmmargin', `${VENUE[src]} margin`, 1) +
         th('pmtop', 'Most likely bracket') + th('winlead', 'Win model, leader’s party', 1) + th('vol', 'Volume', 1) + th('notes', 'Notes') + '</tr>';
     if (st.metric === 'cmp')
-      return '<tr>' + th('race', 'Race') + th('cmpgap', `Model minus ${VENUE[src]}`) + th('dcand', 'Democrat') + th('dchance', 'Our model: Dem win %', 1) +
+      return '<tr>' + th('race', 'Race') + th('cmpgap', `Model minus ${VENUE[src]}`) + th('dcand', 'Model favorite') + th('dchance', 'Our model', 1) +
         sources().map(vn => th('dmkt', vn === src ? '<b>' + VENUE[vn] + '</b>' : VENUE[vn], 1)).join('') +
         th('vol', `${VENUE[src]} volume`, 1) + th('notes', 'Notes') + '</tr>';
     if (src === 'model')
@@ -1200,9 +1207,9 @@
           `<td class="n">${pm.vol ? mvol(src, pm.vol) : '-'}</td><td>${notesOf(r)}</td></tr>`;
       }
       if (st.metric === 'cmp') {
-        const dc = topOf(r, 'D') || topOf(r, 'I');
-        return `<tr><td>${link}</td><td>${pill(v)}</td><td>${dc ? cname(dc) : '-'}</td><td class="n">${pct(v.mp)}</td>` +
-          sources().map(vn => { const p = dPrice(v.b, vn); return `<td class="n">${p == null ? '-' : vn === src ? '<b>' + pct(p, 0) + '</b>' : pct(p, 0)}</td>`; }).join('') +
+        const f = cmpFav(r);
+        return `<tr><td>${link}</td><td>${pill(v)}</td><td>${f.c ? cname(f.c) : '-'}</td><td class="n">${pct(f.p)}</td>` +
+          sources().map(vn => { const p = f.mkt(v.b, vn); return `<td class="n">${p == null ? '-' : vn === src ? '<b>' + pct(p, 0) + '</b>' : pct(p, 0)}</td>`; }).join('') +
           `<td class="n">${v.vol ? fmtVol(v.vol) : '-'}</td><td>${notesOf(r)}</td></tr>`;
       }
       if (src === 'model') {
