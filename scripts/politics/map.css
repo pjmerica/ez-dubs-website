@@ -56,6 +56,8 @@
 .cand b { font-size: 1.4rem; font-weight: 700; white-space: nowrap; }
 .cands .cand > span b { font-size: inherit; font-family: var(--serif); }
 .cand b span { font-size: 0.6em; font-weight: 500; }
+/* Win % model vs market: whose chance the numbers are (the Democrat's), above them (2026-11-03). */
+.cmp-who { font-family: var(--mono); font-size: 0.7rem; font-weight: 600; color: var(--ink-2); }
 .demo { border-top-color: var(--rule-faint); color: var(--muted); }
 .tiphint { color: var(--red); border-top-color: var(--rule-faint); }
 

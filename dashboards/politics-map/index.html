@@ -104,6 +104,7 @@
         .cand { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; font-size: 1.08rem; font-weight: 600; }
         .cand b { font-variant-numeric: tabular-nums; font-size: 1.32rem; font-weight: 800; }
         .cands .cand > span b { font-size: inherit; }
+        .cmp-who { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
         .cand b span { font-size: 0.68em; font-weight: 500; white-space: nowrap; }
         .pb { font-size: 0.62rem; font-weight: 800; padding: 1px 5px; border-radius: 0; color: var(--paper); margin-right: 6px; }
         .pill { font-size: 0.7rem; font-weight: 750; padding: 2px 8px; border-radius: 0; white-space: nowrap; display: inline-block; }
@@ -394,6 +395,8 @@
         .cand b { font-size: 1.4rem; font-weight: 700; white-space: nowrap; }
         .cands .cand > span b { font-size: inherit; font-family: var(--serif); }
         .cand b span { font-size: 0.6em; font-weight: 500; }
+        /* Win % model vs market: whose chance the numbers are (the Democrat's), above them (2026-11-03). */
+        .cmp-who { font-family: var(--mono); font-size: 0.7rem; font-weight: 600; color: var(--ink-2); }
         .demo { border-top-color: var(--rule-faint); color: var(--muted); }
         .tiphint { color: var(--red); border-top-color: var(--rule-faint); }
 
@@ -760,7 +763,6 @@
   const gKey = g => Math.abs(g) < 2 ? 'Agree' : `${g > 0 ? 'D' : 'R'} ${GB.find(x => Math.abs(g) >= x[1])[0]}`;
   // Model vs markets: the model's chance for the Democrat minus the market's, in points ("Dem +5" = the model likes the Democrat more)
   const dLabel = g => Math.abs(g) < 2 ? 'Within 2 pts' : `Dem ${g > 0 ? '+' : '−'}${Math.round(Math.abs(g))}`;
-  const demName = r => candFor(r, 'D') || (candFor(r, 'I') ? `${candFor(r, 'I')} (independent in the Democratic slot)` : 'Democrat');
   const dPrice = (b, vn) => book(b, vn) ? 1 - (b[vn].R || 0) : null;   // a venue's Democratic-side chance
   const gapLabel = (g, ns) => Math.abs(g) < 2 ? 'Within 2 pts' : `Model +${Math.round(Math.abs(g))} ${g > 0 ? ns : 'R'}`;
   const modelRace = (office, key) => { const r = fc[office][key] || null; return r && !(st.polledOnly && r.basis === 'fundamentals') ? r : null; };
@@ -861,12 +863,14 @@
     const meta = [];
     let rows;
     if (st.metric === 'cmp') {
-      // every source's chance for the Democrat, the compared one in bold
-      const mp = 1 - r._sides.R;
-      rows = [['model', mp]].concat(sources().map(vn => [vn, dPrice(b, vn)]).filter(x => x[1] != null)).map(([vn, p]) =>
+      // every source's chance for the Democrat, the compared one in bold. Said at the top whose chance
+      // it is, and the Republican side's below: a race the Republican leads showed 59% on Win % and
+      // 41% here with only a footnote to say why (CO-03, user 2026-11-03).
+      const mp = 1 - r._sides.R, dc = topOf(r, 'D') || topOf(r, 'I'), rc = topOf(r, 'R');
+      rows = `<div class="cmp-who">Chance ${dc ? cname(dc) : 'the Democrat'} wins</div>` + [['model', mp]].concat(sources().map(vn => [vn, dPrice(b, vn)]).filter(x => x[1] != null)).map(([vn, p]) =>
         `<div class="cand"><span>${vn === src ? '<b>' + esc(VENUE[vn]) + '</b>' : vn === 'model' ? 'Our model' : esc(VENUE[vn])}</span>` +
         `<b>${pct(p)}${vn === 'model' ? '' : ` <span style="color:var(--muted);font-weight:500">(model ${gap(mp, p)})</span>`}</b></div>`).join('');
-      meta.push(`Chance the Democrat wins: ${esc(demName(r))}`);
+      if (rc) meta.push(`Our model, Republican side: ${esc(rc.name)} ${pct(r._sides.R)}`);
       if (v.vol) meta.push(`${VENUE[src]} volume ${fmtVol(v.vol)}`);
       meta.push(r.basis === 'fundamentals' ? 'No polls: the no-polls model' : `${r.n_surveys || 0} surveys`);
     } else if ((st.metric === 'margin' && src !== 'model') || st.metric === 'mcmp') {
