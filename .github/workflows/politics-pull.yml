@@ -57,6 +57,16 @@ jobs:
       - name: Install deps
         run: pip install requests
 
+      # The forecast map's link-preview image (og-map.png) is drawn in headless
+      # Chrome by scripts/render_og_card.js, which pull_politics.py runs when
+      # summary.json changes. Without these the old image stays (a warning).
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --no-audit --no-fund
+      - uses: browser-actions/setup-chrome@v1
+        id: chrome
+
       # Copies the four data files and rebuilds the two pages from upstream's
       # published HTML (scripts/pull_politics.py explains why they are rebuilt,
       # not hand-made). It exits 1 when something could not be mirrored, but
@@ -66,6 +76,8 @@ jobs:
         id: pull
         continue-on-error: true
         run: python scripts/pull_politics.py
+        env:
+          CHROME_BIN: ${{ steps.chrome.outputs.chrome-path }}
 
       - name: Commit and push if changed
         run: |

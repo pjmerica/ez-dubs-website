@@ -67,6 +67,16 @@ publishes them on its own Pages site; the user gave permission to edit that repo
   the lock means editing the generated pages' CSS some other way or lifting
   the lock on purpose (it would also pull post-lock data). The cron can be
   turned off once the user is done with the election pages.
+- **The forecast map's link preview is the current map (user, 2026-11-03).** A
+  link shared on Reddit showed only the EDA logo. `pull_politics.py` runs
+  `scripts/render_og_card.js` (puppeteer-core + Chrome; `CHROME_BIN` in CI,
+  set up in politics-pull.yml) whenever `summary.json` changes, drawing
+  `scripts/politics/og_card.html` (the home page's Senate map plus the Senate
+  and House odds) to `politics-data/og-map.png`, 1200x630. Only the map page
+  (`og_image` in `PAGES`) points `og:image` at it, with a content-hash `?v=`
+  because sites cache previews by URL; without node or Chrome the old image
+  stays. From 15 minutes before the lock the card says "Final forecast,
+  locked 6 p.m. ET Nov. 3".
 - **The forecast is the home page's lead story (user, 2026-11-02).** Headline
   ("Democrats 83% to win the Senate"), a Senate map shaded Safe/Likely/Lean/
   Tossup (each state a link to its race's explainer, with a hover/focus card and

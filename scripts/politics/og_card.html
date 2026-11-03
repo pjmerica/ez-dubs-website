@@ -1,0 +1,85 @@
+<!doctype html>
+<!-- The link-preview image for the forecast map (dashboards/politics-map/): what Reddit, X, iMessage
+     and the like show when the page is shared (user, 2026-11-03: "it just shows my EDA logo").
+     scripts/render_og_card.js opens this file in headless Chrome, hands it the mirrored
+     summary.json as window.SUMMARY, and saves a 1200x630 screenshot to
+     dashboards/politics-data/og-map.png. Never published (scripts/ is excluded); the drawing is
+     the home page's Senate map (index.html drawSenateMap), so the two look the same. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+@font-face { font-family: 'Barlow Condensed'; font-weight: 800; src: url('../../assets/fonts/barlow-condensed-800.woff2') format('woff2'); }
+@font-face { font-family: 'Roboto Mono'; font-weight: 100 700; src: url('../../assets/fonts/roboto-mono.woff2') format('woff2'); }
+:root {
+    --paper: #f3f0e8; --ink: #1a1a1a; --ink-2: #3a3833; --muted: #4a4740; --red: #b3261e; --blue: #1f4e8c;
+    --safe-d: #1f4e8c; --likely-d: #3a68a6; --lean-d: #b3c6e0;
+    --safe-r: #8f1f18; --likely-r: #b3261e; --lean-r: #e8b0a6;
+    --safe-i: #5f3f92; --likely-i: #6e4ea3; --lean-i: #cbbbe0;
+    --tossup: #d9a93f; --no-race: #e6e1d6;
+}
+* { box-sizing: border-box; margin: 0; }
+html, body { width: 1200px; height: 630px; background: var(--paper); color: var(--ink); overflow: hidden; }
+.card { display: flex; width: 1200px; height: 630px; padding: 40px 44px 34px; border-top: 10px solid var(--ink); }
+.side { width: 390px; flex: none; display: flex; flex-direction: column; }
+.kicker { font-family: 'Roboto Mono'; font-weight: 600; font-size: 17px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--red); }
+h1 { font-family: 'Barlow Condensed'; font-weight: 800; font-size: 56px; line-height: 0.95; text-transform: uppercase; margin: 10px 0 20px; }
+.odds { border-top: 3px solid var(--ink); }
+.odds div { padding: 8px 0 10px; border-bottom: 1px solid var(--ink); }
+.odds .k { font-family: 'Barlow Condensed'; font-weight: 800; font-size: 22px; text-transform: uppercase; letter-spacing: 0.03em; }
+.odds b { display: block; font-family: 'Barlow Condensed'; font-weight: 800; font-size: 80px; line-height: 0.9; color: var(--blue); }
+.odds .w { font-family: 'Roboto Mono'; font-size: 14px; color: var(--ink-2); white-space: nowrap; }
+.foot { margin-top: auto; font-family: 'Roboto Mono'; font-size: 16px; color: var(--muted); }
+.foot b { color: var(--ink); font-weight: 700; }
+.map { flex: 1; min-width: 0; display: flex; flex-direction: column; justify-content: center; padding-left: 28px; }
+svg { display: block; width: 100%; height: auto; }
+path { stroke: var(--paper); stroke-width: 0.9; }
+.key { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 16px; margin-top: 12px; font-family: 'Roboto Mono'; font-size: 15px; color: var(--muted); }
+.key i { display: inline-block; width: 14px; height: 14px; margin-right: 6px; vertical-align: -2px; box-shadow: inset 0 0 0 1px rgba(26,26,26,0.25); }
+</style>
+</head>
+<body>
+<div class="card">
+    <div class="side">
+        <p class="kicker">The EZ Dub Election Forecast</p>
+        <h1>Who controls Congress</h1>
+        <div class="odds">
+            <div><span class="k">Senate</span><b id="sen"></b><span class="w" id="sen-w"></span></div>
+            <div><span class="k">House</span><b id="house"></b><span class="w" id="house-w"></span></div>
+        </div>
+        <p class="foot"><b>ezdubsanalytics.com</b><br><span id="when"></span></p>
+    </div>
+    <div class="map">
+        <svg id="map" viewBox="0 0 975 610"></svg>
+        <p class="key" id="key"></p>
+    </div>
+</div>
+<script src="../../dashboards/politics-data/us_map_geo.js"></script>
+<script>
+// The same tiers and fills as the home page's map (index.html tier / fillOf).
+const pct = (p) => p > 0.99 ? '>99%' : p < 0.01 ? '<1%' : Math.round(p * 100) + '%';
+const tier = (p) => p >= 0.95 ? 'safe' : p >= 0.8 ? 'likely' : p >= 0.6 ? 'lean' : 'tossup';
+const fillOf = (x) => { const t = tier(x.p); return t === 'tossup' ? 'var(--tossup)' : `var(--${t}-${x.side.toLowerCase()})`; };
+const s = window.SUMMARY, ch = s.chambers || {}, races = s.senate || {};
+let svg = '';
+for (const [ab, st] of Object.entries(US_MAP.states)) svg += `<path d="${st.d}" style="fill:${races[ab] ? fillOf(races[ab]) : 'var(--no-race)'}"></path>`;
+document.getElementById('map').innerHTML = svg;
+for (const [id, c] of [['sen', ch.Senate], ['house', ch.House]]) {
+    if (!c || c.p_dem == null) continue;
+    document.getElementById(id).textContent = pct(c.p_dem);
+    document.getElementById(id + '-w').textContent = `chance Democrats win · Republicans ${pct(c.p_rep)}`;
+}
+// The last render is the final pull just before the 6 p.m. Election Day lock (LOCK_AT in
+// pull_politics.py, nothing is rendered after it), so from 15 minutes before, it says it is final.
+const locked = Date.now() >= Date.UTC(2026, 10, 3, 23) - 15 * 60 * 1000;
+const run = new Date(s.predictions_as_of + (/Z|[+-]\d\d:?\d\d$/.test(s.predictions_as_of) ? '' : 'Z'));
+document.getElementById('when').textContent = locked ? 'Final forecast, locked 6 p.m. ET Nov. 3'
+    : `Model run ${run.toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' })}`;
+const used = new Set(Object.values(races).map((r) => tier(r.p) === 'tossup' ? 'tossup' : `${tier(r.p)}-${r.side.toLowerCase()}`));
+const KEY = [['safe-d', 'Safe D'], ['likely-d', 'Likely D'], ['lean-d', 'Lean D'], ['tossup', 'Tossup'], ['lean-r', 'Lean R'], ['likely-r', 'Likely R'],
+             ['safe-r', 'Safe R'], ['lean-i', 'Lean I'], ['likely-i', 'Likely I'], ['safe-i', 'Safe I']];
+document.getElementById('key').innerHTML = KEY.filter(([k]) => used.has(k)).map(([k, l]) => `<span><i style="background:var(--${k})"></i>${l}</span>`).join('');
+document.body.dataset.ready = '1';
+</script>
+</body>
+</html>
