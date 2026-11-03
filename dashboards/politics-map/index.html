@@ -51,6 +51,7 @@
         .ctl-main b { font-size: 1.5rem; font-weight: 800; color: var(--likely-d); font-variant-numeric: tabular-nums; margin-left: 4px; }
         .ctl-k { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-right: 6px; }
         .ctl-sub { font-size: 0.76rem; color: var(--muted); margin-top: 2px; }
+        .ctl-note { font-size: 0.76rem; color: var(--muted); margin-top: 4px; max-width: 760px; }
         .tally { display: flex; flex-wrap: wrap; gap: 6px; font-size: 0.74rem; }
         .tally span { display: inline-flex; align-items: center; gap: 5px; padding: 3px 8px; border-radius: 0; background: var(--panel); border: 1px solid var(--line); color: var(--muted); }
         .tally b { color: var(--text); font-variant-numeric: tabular-nums; }
@@ -349,6 +350,8 @@
         .ctl-main b { font-family: var(--display); font-size: 2.6rem; color: var(--blue); vertical-align: -4px; margin-left: 8px; }
         .ctl-k { font-family: var(--mono); font-size: 0.72rem; font-weight: 600; color: var(--red); letter-spacing: 0.06em; }
         .ctl-sub { font-family: var(--mono); font-size: 0.76rem; color: var(--ink-2); margin-top: 4px; }
+        /* Senate and House: a polling miss moves races together (replaced the per-race Fragile flag, 2026-11-02). */
+        .ctl-note { font-family: var(--serif); font-size: 0.92rem; line-height: 1.45; color: var(--ink-2); margin-top: 6px; max-width: 760px; }
         @media (max-width: 600px) { .ctl-main { font-size: 1.15rem; } .ctl-main b { font-size: 2.1rem; } .ctl-k { display: block; } }
 
         .mapcard {
@@ -512,7 +515,6 @@
       <li><b>Kalshi and Polymarket:</b> the same tiers applied to each venue's price for each party to win the seat. Prices are normalized so the outcomes add up to 100% (the venue's built-in margin removed), from the dashboard's last market refresh. Gray races have no party market on that venue.</li>
       <li><b>House map:</b> the 435 districts on the lines in force for November 3, 2026. Nine states redrew since 2024 (Texas, California, North Carolina, Ohio, Utah, Florida, Tennessee, Louisiana and Alabama); Missouri and Virginia vote on their old maps after courts blocked the new ones. Click a state to zoom in, use + and &minus;, and drag to move around. <b>Squares</b> shows each state's districts as equal squares instead, so small urban districts are as easy to see as rural ones.</li>
       <li><b>District profiles</b> (in each district's card): the Census Bureau's 2020-2024 American Community Survey. For the 173 redrawn districts there are no official figures yet, so they are summed from block groups on the new lines; the same method reproduces the official figures for the old lines to within about 0.1 point. Redrawn districts also show the same-numbered district on the 2024 lines.</li>
-      <li><b>Fragile</b> races are ones where the model's pick flips if every poll is off by 3 points in one direction, which has happened in past cycles.</li>
       <li><b>What's driving this prediction:</b> click a race, then the button in its panel (or <b>Why</b> beside any race in the table). It opens with the inputs that move the model most in that race: which candidate each one helps and how much, both candidates' values, and what it measures, then every candidate's chance and margin and the markets. The <a href="../politics-forecast/#inputs">forecast page lists every input</a> the models use.</li>
       <li>The model updates with every model run and the venues with every market refresh. Shapes: the Census Bureau's cartographic boundaries (states via us-atlas; 119th Congress districts) and each redrawn state's official 2026 plan.</li>
     </ul>
@@ -540,8 +542,8 @@
         </div>
     </footer>
 
-    <script src="../politics-data/forecast_data.js?v=af111e8649"></script>
-    <script src="../politics-data/data.js?v=9d0e5ec0b7"></script>
+    <script src="../politics-data/forecast_data.js?v=c20da82128"></script>
+    <script src="../politics-data/data.js?v=2dbfb677c5"></script>
     <script src="../politics-data/us_map_geo.js?v=cf48737e38"></script>
     <script src="../politics-data/us_house_2026_geo.js?v=b3fd00368d"></script>
     <script>
@@ -658,7 +660,9 @@
     return `<div class="ctl-main"><span class="ctl-k">Our model</span>Chance Democrats win ${what}:<b>${P(s.p_dem_control)}</b></div>` +
       `<div class="ctl-sub">Republicans ${P(s.p_rep_control)}` +
       `${s.p_neither >= 0.005 ? ` &middot; ${office === 'Senate' ? 'independents decide' : 'neither'} ${P(s.p_neither)}` : ''}` +
-      `${d.median != null ? ` &middot; Democratic ${unit}: ${d.median} (80% range ${d.p10} to ${d.p90} of ${s.total})` : ''}${runs}</div>`;
+      `${d.median != null ? ` &middot; Democratic ${unit}: ${d.median} (80% range ${d.p10} to ${d.p90} of ${s.total})` : ''}${runs}</div>` +
+      // the per-race Fragile flag gave way to this note on the chambers (2026-11-02, user call)
+      (office === 'Governor' ? '' : `<div class="ctl-note">Races move together: when polls miss, they tend to miss the same way across the country, so the simulation shifts every race at once. That is why the seat range is wide.</div>`);
   }
 
   // ---------- races, keyed by state (Senate/Governor) or state-district (House) ----------
@@ -894,13 +898,12 @@
         meta.push(`Our model, same side: ${pct(mp)} (${gap(mp, v.rt.p)})`);
       } else meta.push('Our model: no projection');
     }
-    const fragile = (modelish && r && r.fragile && r.basis !== 'fundamentals' ? '<span class="warn">Fragile: the pick flips if every poll is off by 3 points one way</span>' : '') +
-      (modelish && r && r.split ? `<span class="warn">Models split: the margin model has ${esc(r.split)} ahead</span>` : '');
+    const warns = (modelish && r && r.split ? `<span class="warn">Models split: the margin model has ${esc(r.split)} ahead</span>` : '');
     // the forecast's race notes (Louisiana's Nov 3 first round, ranked choice, same-party fields);
     // the no-polls note is already the "No polls" line above
     const notes = (r && r.notes || []).filter(n => !/^No public polls/.test(n) && !/^Models split/.test(n))
       .map(n => `<div class="rnote">${esc(n)}</div>`).join('');
-    return head + `<div class="cands">${rows}</div><div class="meta">${meta.map(x => `<span>${x}</span>`).join('')}${fragile}</div>` + notes + demo;
+    return head + `<div class="cands">${rows}</div><div class="meta">${meta.map(x => `<span>${x}</span>`).join('')}${warns}</div>` + notes + demo;
   }
   const tip = document.getElementById('tip');
   function showTip(e, office, key) {
@@ -1103,9 +1106,8 @@
     ['pmpd', 'Democrat wins (ladder)', "The share of the venue's margin ladder on the Democratic side of zero (independents like Osborn count here). Most ladders list only the favored party's side; the other side's chance then comes from the venue's winner market, and a race whose middle outcome falls on that unlisted side is left gray. Blank when Kalshi lists one side and has no winner market for the race."],
     ['mgap', 'Model minus market (margin)', "Our margin model's projection minus the venue's median margin, both signed toward the Democrat, in points. Positive = the model expects a bluer result than the market."],
     ['vol', 'Volume', "How much has traded in the race's party markets: contracts on Kalshi, dollars on Polymarket."],
-    ['notes', 'Notes', 'Flags on the race, defined below: No polls, Fragile, Models split, Same party.'],
+    ['notes', 'Notes', 'Flags on the race, defined below: No polls, Models split, Same party.'],
     ['nopolls', 'No polls', "No public poll covers the race, so it uses the no-polls model: who holds the seat, its past results and presidential lean, the national mood, fundraising and the candidates' experience. Expect a wider miss."],
-    ['fragile', 'Fragile', "The model's pick flips if every poll is off by 3 points in the same direction, a miss that has happened in past cycles."],
     ['split', 'Models split', 'The win model and the margin model have different candidates ahead. Both numbers are shown; neither is overridden.'],
     ['sameparty', 'Same party', "The top two are from the same party (California top-two, Louisiana's first round), so the seat's party is settled and the margin is between the two of them."],
     ['even', 'Even / gold', "Win %: the favorite's chance is under 51%. Margin: the lead is under 1 point. A coin flip either way."],
@@ -1146,7 +1148,6 @@
   }
   const cname = c => c ? `${esc(c.name)} (${esc(PARTY[c.party] || c.party)})` : '-';
   const notesOf = r => (r.basis === 'fundamentals' ? '<span class="mut">No polls</span>' : '') +
-    (r.fragile && r.basis !== 'fundamentals' ? '<span class="warn">Fragile</span>' : '') +
     (r.split ? '<span class="warn">Models split</span>' : '');
   const MORE = { margin: 'closest', cmp: 'biggest gaps', mcmp: 'biggest gaps', win: 'least certain' };
   function rowsHtml(office) {
@@ -1407,7 +1408,7 @@
           `</div>` : '') +
         `<div class="hint">Each venue's normalized price for the ${esc(PNAME[side])} side, with the model's chance minus it in points.${pm ? " Margins are signed by party; the small number is the model's margin minus the venue's." : ''}${r.split ? ' The models split in this race, so treat any edge with care.' : ''}</div></div>`;
     }
-    const flags = ['nopolls', 'fragile', 'split', 'sameparty'].filter(k => (k === 'nopolls' && noPolls) || (k === 'fragile' && r.fragile && !noPolls) || (k === 'split' && r.split) ||
+    const flags = ['nopolls', 'split', 'sameparty'].filter(k => (k === 'nopolls' && noPolls) || (k === 'split' && r.split) ||
       (k === 'sameparty' && m && m.o && m.o.party === m.c.party));
     h += `<div class="sec"><h4>What the numbers mean</h4>${defs(['chance', 'conf', 'margin', ...flags, 'factor'])}</div>`;
     setText('d-body', h);

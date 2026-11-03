@@ -17,6 +17,8 @@
 .ctl-main b { font-family: var(--display); font-size: 2.6rem; color: var(--blue); vertical-align: -4px; margin-left: 8px; }
 .ctl-k { font-family: var(--mono); font-size: 0.72rem; font-weight: 600; color: var(--red); letter-spacing: 0.06em; }
 .ctl-sub { font-family: var(--mono); font-size: 0.76rem; color: var(--ink-2); margin-top: 4px; }
+/* Senate and House: a polling miss moves races together (replaced the per-race Fragile flag, 2026-11-02). */
+.ctl-note { font-family: var(--serif); font-size: 0.92rem; line-height: 1.45; color: var(--ink-2); margin-top: 6px; max-width: 760px; }
 @media (max-width: 600px) { .ctl-main { font-size: 1.15rem; } .ctl-main b { font-size: 2.1rem; } .ctl-k { display: block; } }
 
 .mapcard {

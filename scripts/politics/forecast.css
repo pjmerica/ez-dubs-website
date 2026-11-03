@@ -8,6 +8,8 @@
 .chamber .ctl { margin: 6px 0 4px; padding-bottom: 8px; border-bottom: 1px dotted var(--rule-soft); }
 .chamber .ctl b { font-family: var(--display); font-weight: 800; font-size: 3.4rem; color: var(--blue); }
 .chamber .ctl span { font-family: var(--mono); font-size: 0.76rem; text-transform: uppercase; color: var(--ink-2); max-width: 12em; }
+/* Senate and House: a polling miss moves races together (replaced the per-race Fragile chip, 2026-11-02). */
+.chamber .ctl-note { font-family: var(--serif); font-size: 0.88rem; line-height: 1.45; color: var(--ink-2); margin: 6px 0 4px; }
 .tally .d, .tally .r { font-family: var(--display); font-weight: 800; font-size: 2.8rem; line-height: 1; }
 .tally .d { color: var(--dem-soft); }
 .tally .r { color: var(--rep-soft); }

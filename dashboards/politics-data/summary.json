@@ -1,13 +1,13 @@
 {
- "predictions_as_of": "2026-11-02T04:37:12",
- "polls_as_of": "2026-11-01",
+ "predictions_as_of": "2026-11-02T22:26:14",
+ "polls_as_of": "2026-11-02",
  "chambers": {
   "Senate": {
-   "p_dem": 0.8295,
-   "p_rep": 0.1524,
-   "p_neither": 0.0181,
+   "p_dem": 0.8155,
+   "p_rep": 0.1654,
+   "p_neither": 0.0191,
    "total": 100,
-   "dem_median": 53,
+   "dem_median": 52,
    "dem_p10": 50,
    "dem_p90": 55
   },
@@ -21,12 +21,12 @@
    "dem_p90": 246
   },
   "Governor": {
-   "p_dem": 0.8096,
-   "p_rep": 0.0969,
-   "p_neither": 0.0935,
+   "p_dem": 0.8121,
+   "p_rep": 0.0945,
+   "p_neither": 0.0934,
    "total": 50,
    "dem_median": 28,
-   "dem_p10": 24,
+   "dem_p10": 25,
    "dem_p90": 31
   }
  },
@@ -38,15 +38,15 @@
     "district": "",
     "fav": "Josh Turek",
     "party": "DEM",
-    "p": 0.5102
+    "p": 0.5061
    },
    {
-    "id": "2026_SC_Senate",
-    "state": "South Carolina",
+    "id": "2026_AK_Senate",
+    "state": "Alaska",
     "district": "",
-    "fav": "Darline Graham",
-    "party": "REP",
-    "p": 0.5823
+    "fav": "Mary Peltola",
+    "party": "DEM",
+    "p": 0.6283
    },
    {
     "id": "2026_TX_Senate",
@@ -72,7 +72,7 @@
     "district": "",
     "fav": "Ty Masterson",
     "party": "REP",
-    "p": 0.6412
+    "p": 0.6378
    },
    {
     "id": "2026_ME_Governor",
@@ -116,18 +116,18 @@
    "name": "Alaska",
    "special": false,
    "side": "D",
-   "p": 0.6542,
+   "p": 0.6283,
    "fav": "Mary Peltola",
    "cands": [
     [
      "Mary Peltola",
      "D",
-     0.6542
+     0.6283
     ],
     [
      "Dan Sullivan",
      "R",
-     0.3458
+     0.3717
     ]
    ]
   },
@@ -181,18 +181,18 @@
    "name": "Colorado",
    "special": false,
    "side": "D",
-   "p": 0.9915,
+   "p": 0.993,
    "fav": "John Hickenlooper",
    "cands": [
     [
      "John Hickenlooper",
      "D",
-     0.9915
+     0.993
     ],
     [
      "Mark Baisley",
      "R",
-     0.0085
+     0.007
     ]
    ]
   },
@@ -201,18 +201,18 @@
    "name": "Florida",
    "special": true,
    "side": "R",
-   "p": 0.9627,
+   "p": 0.9665,
    "fav": "Ashley Moody",
    "cands": [
     [
      "Ashley Moody",
      "R",
-     0.9627
+     0.9665
     ],
     [
      "Angie Nixon",
      "D",
-     0.0373
+     0.0335
     ],
     [
      "Neil Gillespie",
@@ -226,18 +226,18 @@
    "name": "Georgia",
    "special": false,
    "side": "D",
-   "p": 0.9804,
+   "p": 0.9812,
    "fav": "Jon Ossoff",
    "cands": [
     [
      "Jon Ossoff",
      "D",
-     0.9804
+     0.9812
     ],
     [
      "Mike Collins",
      "R",
-     0.0196
+     0.0188
     ]
    ]
   },
@@ -246,18 +246,18 @@
    "name": "Iowa",
    "special": false,
    "side": "D",
-   "p": 0.5102,
+   "p": 0.5061,
    "fav": "Josh Turek",
    "cands": [
     [
      "Josh Turek",
      "D",
-     0.5102
+     0.5061
     ],
     [
      "Ashley Hinson",
      "R",
-     0.4898
+     0.4939
     ],
     [
      "Thomas Laehn",
@@ -316,18 +316,18 @@
    "name": "Kansas",
    "special": false,
    "side": "D",
-   "p": 0.735,
+   "p": 0.7393,
    "fav": "Adam Hamilton",
    "cands": [
     [
      "Adam Hamilton",
      "D",
-     0.735
+     0.7393
     ],
     [
      "Roger Marshall",
      "R",
-     0.265
+     0.2607
     ],
     [
      "David Graham",
@@ -406,18 +406,18 @@
    "name": "Maine",
    "special": false,
    "side": "D",
-   "p": 0.8418,
+   "p": 0.8,
    "fav": "Troy Jackson",
    "cands": [
     [
      "Troy Jackson",
      "D",
-     0.8418
+     0.8
     ],
     [
      "Susan Collins",
      "R",
-     0.1582
+     0.2
     ]
    ]
   },
@@ -426,18 +426,18 @@
    "name": "Michigan",
    "special": false,
    "side": "D",
-   "p": 0.7632,
+   "p": 0.7604,
    "fav": "Abdul El-Sayed",
    "cands": [
     [
      "Abdul El-Sayed",
      "D",
-     0.7632
+     0.7604
     ],
     [
      "Mike Rogers",
      "R",
-     0.2368
+     0.2396
     ],
     [
      "Walter Kristy",
@@ -451,18 +451,18 @@
    "name": "Minnesota",
    "special": false,
    "side": "D",
-   "p": 0.9198,
+   "p": 0.9267,
    "fav": "Peggy Flanagan",
    "cands": [
     [
      "Peggy Flanagan",
      "D",
-     0.9198
+     0.9267
     ],
     [
      "Michele Tafoya",
      "R",
-     0.0802
+     0.0733
     ],
     [
      "Marisa Simonetti",
@@ -551,18 +551,18 @@
    "name": "Nebraska",
    "special": false,
    "side": "R",
-   "p": 0.7168,
+   "p": 0.7299,
    "fav": "Pete Ricketts",
    "cands": [
     [
      "Pete Ricketts",
      "R",
-     0.7168
+     0.7299
     ],
     [
      "Dan Osborn",
      "I",
-     0.2832
+     0.2701
     ],
     [
      "Chuck Conboy",
@@ -576,18 +576,18 @@
    "name": "New Hampshire",
    "special": false,
    "side": "D",
-   "p": 0.9471,
+   "p": 0.9458,
    "fav": "Chris Pappas",
    "cands": [
     [
      "Chris Pappas",
      "D",
-     0.9471
+     0.9458
     ],
     [
      "John E. Sununu",
      "R",
-     0.0529
+     0.0542
     ],
     [
      "Edmond Laplante",
@@ -621,18 +621,18 @@
    "name": "Ohio",
    "special": true,
    "side": "D",
-   "p": 0.6787,
+   "p": 0.7057,
    "fav": "Sherrod Brown",
    "cands": [
     [
      "Sherrod Brown",
      "D",
-     0.6787
+     0.7057
     ],
     [
      "Jon Husted",
      "R",
-     0.3213
+     0.2943
     ],
     [
      "Bill Redpath",
@@ -696,18 +696,18 @@
    "name": "South Carolina",
    "special": false,
    "side": "R",
-   "p": 0.5823,
+   "p": 0.6752,
    "fav": "Darline Graham",
    "cands": [
     [
      "Darline Graham",
      "R",
-     0.5823
+     0.6752
     ],
     [
      "Annie Andrews",
      "D",
-     0.4176
+     0.3248
     ],
     [
      "Mark Hackett",

@@ -36,6 +36,7 @@
         .chamber .ctl { display: flex; align-items: baseline; gap: 10px; margin: 8px 0 2px; }
         .chamber .ctl b { font-size: 2.2rem; font-weight: 800; color: var(--dem-soft); font-variant-numeric: tabular-nums; line-height: 1; }
         .chamber .ctl span { font-size: 0.82rem; color: var(--muted); }
+        .chamber .ctl-note { font-size: 0.74rem; color: var(--muted); line-height: 1.45; margin: 4px 0 8px; }
         .chamber h3 { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); font-weight: 700; }
         .tally { display: flex; justify-content: space-between; align-items: baseline; margin: 8px 0 12px; }
         .tally .d { color: var(--dem-soft); font-size: 1.7rem; font-weight: 800; }
@@ -315,6 +316,8 @@
         .chamber .ctl { margin: 6px 0 4px; padding-bottom: 8px; border-bottom: 1px dotted var(--rule-soft); }
         .chamber .ctl b { font-family: var(--display); font-weight: 800; font-size: 3.4rem; color: var(--blue); }
         .chamber .ctl span { font-family: var(--mono); font-size: 0.76rem; text-transform: uppercase; color: var(--ink-2); max-width: 12em; }
+        /* Senate and House: a polling miss moves races together (replaced the per-race Fragile chip, 2026-11-02). */
+        .chamber .ctl-note { font-family: var(--serif); font-size: 0.88rem; line-height: 1.45; color: var(--ink-2); margin: 6px 0 4px; }
         .tally .d, .tally .r { font-family: var(--display); font-weight: 800; font-size: 2.8rem; line-height: 1; }
         .tally .d { color: var(--dem-soft); }
         .tally .r { color: var(--rep-soft); }
@@ -481,12 +484,11 @@
       <li><b>Projected margin</b> comes from a separate margin model (half the gap between the top two candidates' projected results).
           The two models can occasionally disagree on a close race.</li>
       <li><b>Ratings</b>: the leader at 95%+ is <i>Safe</i>, 80-95% <i>Likely</i>, 60-80% <i>Lean</i>, under 60% <i>Tossup</i>.</li>
-      <li><b>Fragile</b> means the pick flips if every poll in the country is off by 3 points in one direction, which has happened in past cycles.</li>
       <li><b>Markets</b> are the average of Kalshi and Polymarket for the same outcome, shown only for comparison. They are not an input to the model.</li>
       <li><b>No polls</b>: races no pollster has covered (most House seats) use the no-polls model, trained on the same
           races since 1998 without their polls. It weighs which party holds the seat, the seat's past results (the new map's
           lean where districts were redrawn for 2026), the national environment, fundraising and the candidates' experience.
-          It has no margin projection or polling stress test. Most of these are safe seats, and its picks match the markets'
+          Most of these are safe seats, and its picks match the markets'
           in nearly every one.</li>
     </ul>
   </section>
@@ -512,7 +514,7 @@
         </div>
     </footer>
 
-    <script src="../politics-data/forecast_data.js?v=af111e8649"></script>
+    <script src="../politics-data/forecast_data.js?v=c20da82128"></script>
     <script>
     // The page's own script below assumes its data loaded. If a file failed,
     // say so once, where the content would have been (site convention:
@@ -632,7 +634,9 @@
       : `Control: <b>Dem ${pct(s.p_dem_control, 0)}</b> · <b>Rep ${pct(s.p_rep_control, 0)}</b>`
         + (s.p_neither >= 0.005 ? ` · ${off === 'Senate' ? 'independents decide' : 'neither'} ${pct(s.p_neither, 0)}` : '');
     return `<div class="seats" title="Simulated ${F.seat_sim.runs.toLocaleString()} times; each race keeps its published odds, and one shared national error moves every race together (correlation fitted on 1998-2024 results). Includes the ${s.not_up.D} Dem and ${s.not_up.R} Rep seats not up this year.">
-      Dem seats: <b>${d.median}</b> (80% range ${d.p10}-${d.p90} of ${s.total})<br>${ctl}</div>`;
+      Dem seats: <b>${d.median}</b> (80% range ${d.p10}-${d.p90} of ${s.total})<br>${ctl}</div>` +
+      // the per-race Fragile chip gave way to this note on the chambers (2026-11-02, user call)
+      (off === 'Governor' ? '' : `<div class="ctl-note">Races move together: when polls miss, they tend to miss the same way across the country, so the simulation shifts every race at once. That is why the seat range is wide.</div>`);
   }
   // the chance Democrats win the chamber, from the same seat simulation (2026-11-02)
   function ctlLine(off) {
@@ -681,7 +685,6 @@
       `<div style="width:${(c.win * 100).toFixed(2)}%;background:${pcol(c.party)}" title="${esc(c.name)} ${pct(c.win, 1)}"></div>`).join('');
     const m = r._m, mk = r._mk;
     const chips = [];
-    if (r.fragile) chips.push(`<span class="chip warn" title="The pick flips if all polls are off by 3 points in one direction">Fragile</span>`);
     if (r.split) chips.push(`<span class="chip warn" title="The win model and the separate margin model pick different favourites (the margin model has ${esc(r.split)} ahead)">Models split</span>`);
     if (rt.same) chips.push(`<span class="chip">${pab(a.party)} vs ${pab(a.party)}</span>`);
     if (r.basis === 'fundamentals') chips.push(`<span class="chip" title="No public polls in this race: the no-polls model's estimate">No polls</span>`);
@@ -880,7 +883,6 @@
     document.getElementById('d-title').textContent = `${r._name} · ${r.office === 'House' ? 'House' : r.office}`;
     document.getElementById('d-sub').textContent = raceSub(r);
     const m = r._m, mk = r._mk, top = a;
-    const stress = r.cands.filter(c => c.win_r3 != null).slice(0, 2);
     let html = `<div class="sec"><div class="big">
         <div class="stat"><div class="v" style="color:${psoft(top.party)}">${pct(top.win)}</div><div class="l">${esc(top.name)} wins</div></div>
         ${m ? `<div class="stat"><div class="v">+${m.v.toFixed(1)}</div><div class="l">Projected margin, ${esc(m.name)}</div></div>` : ''}
@@ -889,7 +891,7 @@
       <div class="hint"><a href="../politics-map/#${r.office === 'House' ? `house-${r.state.toLowerCase()}-${+r.district || 1}`
         : `${r.office.toLowerCase()}-${r.state.toLowerCase()}`}">See it on the map &rarr;</a></div></div>`;
     // caveats, then what's driving the numbers, straight after the headline numbers (2026-11-01;
-    // the explainer used to come last, under the candidates, the stress test and the markets)
+    // the explainer used to come last, under the candidates and the markets)
     if (r.notes && r.notes.length) html += `<div class="sec">${r.notes.map(n => `<div class="note">${esc(n)}</div>`).join('')}</div>`;
     const hasEx = ex && (ex.win || ex.margin);
     html += hasEx
@@ -911,19 +913,8 @@
             ? "No public polls in this race, so these are the no-polls models' chances and margins: each candidate's projected result against their strongest opponent from the seat's history, money and the national mood. Expect a wider miss than in polled races."
             : "No public polls in this race, so these are the no-polls model's chances; it projects no margin in an uncontested race.")
           : "Margin is each candidate's projected result against their strongest opponent."}</div></div>`;
-    if (stress.length) {
-      // +/-6 added 2026-10-27: recent national misses ran 5-8 points (2016, 2020 toward Republicans)
-      const what = noPolls ? 'national mood' : 'polls';
-      const flips6 = stress.length === 2 && stress[0].win_r6 != null
-        && ((stress[0].win_r6 < stress[1].win_r6) || (stress[0].win_d6 < stress[1].win_d6));
-      html += `<div class="sec"><h4>If the ${noPolls ? 'national mood is' : 'polls are'} off</h4><table class="tbl"><thead><tr><th>Candidate</th>
-          <th class="n">Dems overstated 6</th><th class="n">by 3</th><th class="n">As ${noPolls ? 'measured' : 'polled'}</th><th class="n">Reps overstated 3</th><th class="n">by 6</th></tr></thead><tbody>
-          ${stress.map(c => `<tr><td>${esc(c.name)}</td><td class="n">${pct(c.win_r6)}</td><td class="n">${pct(c.win_r3)}</td><td class="n">${pct(c.win)}</td><td class="n">${pct(c.win_d3)}</td><td class="n">${pct(c.win_d6)}</td></tr>`).join('')}
-          </tbody></table>
-          <div class="hint">${r.fragile ? 'The pick changes with a 3-point shift - treat this race as fragile.'
-            : flips6 ? 'The pick holds at 3 points but changes at 6.' : 'The pick holds under every shift shown.'}
-          Each column moves every ${what} in the country the same way, in margin points. National misses of 5 to 8 points happened in 2016 and 2020.</div></div>`;
-    }
+    // (the "If the polls are off" stress table was removed here too, user call 2026-11-02;
+    // the chamber cards now note that a polling miss moves races together)
     if (mk) html += `<div class="sec"><h4>Model vs markets</h4><div class="big">
         <div class="stat"><div class="v">${pct(mk.model)}</div><div class="l">Model: ${esc(mk.name)}</div></div>
         <div class="stat"><div class="v">${pct(mk.mkt)}</div><div class="l">Markets (Kalshi / Polymarket avg)</div></div>
