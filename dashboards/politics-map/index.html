@@ -98,11 +98,15 @@
         .why.big { background: var(--accent); border-color: var(--accent); color: var(--ink); font-size: 0.86rem; padding: 8px 14px; }
         .why.big:hover { filter: brightness(1.1); }
         .card { background: var(--panel); border: 1px solid var(--line2); border-radius: 0; padding: 12px 14px; }
-        .rname { font-weight: 750; font-size: 0.95rem; }
-        .rsub { font-size: 0.74rem; color: var(--muted); margin-top: 1px; }
-        .cands { margin-top: 8px; display: grid; gap: 4px; }
-        .cand { display: flex; justify-content: space-between; gap: 12px; font-size: 0.82rem; }
-        .cand b { font-variant-numeric: tabular-nums; }
+        .rname { font-weight: 750; font-size: 0.86rem; }
+        .rsub { font-size: 0.68rem; color: var(--muted); margin-top: 1px; }
+        .cands { margin-top: 8px; display: grid; gap: 5px; align-items: baseline; }
+        .cand { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; font-size: 1rem; font-weight: 600; }
+        .cand b { font-variant-numeric: tabular-nums; font-size: 1.2rem; font-weight: 800; }
+        .cands .cand:first-child { font-size: 1.12rem; }
+        .cands .cand:first-child b { font-size: 1.45rem; }
+        .cands .cand > span b { font-size: inherit; }
+        .cand b span { font-size: 0.68em; font-weight: 500; white-space: nowrap; }
         .pb { font-size: 0.62rem; font-weight: 800; padding: 1px 5px; border-radius: 0; color: var(--paper); margin-right: 6px; }
         .pill { font-size: 0.7rem; font-weight: 750; padding: 2px 8px; border-radius: 0; white-space: nowrap; display: inline-block; }
         .meta { margin-top: 8px; font-size: 0.74rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 4px 12px; }
@@ -381,9 +385,16 @@
             box-shadow: 6px 6px 0 rgba(26, 26, 26, 0.15);
         }
         .detail .card { background: var(--paper); border: 0; padding: 12px 52px 14px 14px; }
-        .rname { font-family: var(--display); font-weight: 800; font-size: 1.35rem; text-transform: uppercase; line-height: 1.05; }
-        .rsub { font-family: var(--mono); color: var(--muted); }
-        .cand { font-size: 0.9rem; }
+        /* The candidates and their chances are the biggest thing in the race card; the race name and
+           whether the incumbent runs sit smaller above them (user, 2026-11-02). */
+        .rname { font-family: var(--display); font-weight: 800; font-size: 1.05rem; text-transform: uppercase; line-height: 1.05; letter-spacing: 0.02em; }
+        .rsub { font-family: var(--mono); font-size: 0.68rem; color: var(--muted); }
+        .cand { font-family: var(--serif); font-size: 1.05rem; font-weight: 600; }
+        .cand b { font-size: 1.25rem; font-weight: 700; white-space: nowrap; }
+        .cands .cand:first-child { font-size: 1.2rem; }
+        .cands .cand:first-child b { font-size: 1.55rem; }
+        .cands .cand > span b { font-size: inherit; font-family: var(--serif); }
+        .cand b span { font-size: 0.6em; font-weight: 500; }
         .demo { border-top-color: var(--rule-faint); color: var(--muted); }
         .tiphint { color: var(--red); border-top-color: var(--rule-faint); }
 

@@ -120,15 +120,18 @@
         .el-map .el-hl { fill: none; stroke: var(--ink); stroke-width: 2.2; pointer-events: none; }
         /* The hover card: race, rating, the top candidates' chances, and what a click does. */
         .el-tip {
-            position: absolute; z-index: 5; pointer-events: none; width: 230px;
+            position: absolute; z-index: 5; pointer-events: none; width: 250px;
             background: var(--paper); border: 1px solid var(--rule); border-top: 3px solid var(--rule);
             padding: 8px 10px 9px; font-family: var(--mono); font-size: 0.78rem; line-height: 1.45;
             box-shadow: 4px 4px 0 var(--rule-faint);
         }
-        .el-tip .t { font-family: var(--display); font-weight: 800; font-size: 1.15rem; text-transform: uppercase; line-height: 1.05; }
-        .el-tip .r { color: var(--muted); margin-bottom: 4px; }
-        .el-tip .c { display: flex; justify-content: space-between; gap: 10px; }
-        .el-tip .c b { font-weight: 700; }
+        /* The candidates and their chances are the biggest thing in it (user, 2026-11-02). */
+        .el-tip .t { font-family: var(--display); font-weight: 800; font-size: 0.98rem; text-transform: uppercase; line-height: 1.05; letter-spacing: 0.02em; }
+        .el-tip .r { color: var(--muted); font-size: 0.72rem; margin-bottom: 5px; }
+        .el-tip .c { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; font-family: var(--serif); font-weight: 600; font-size: 1rem; }
+        .el-tip .c b { font-family: var(--mono); font-weight: 700; font-size: 1.15rem; }
+        .el-tip .c:nth-child(3) { font-size: 1.12rem; }
+        .el-tip .c:nth-child(3) b { font-size: 1.4rem; }
         .el-tip .go { margin-top: 5px; padding-top: 5px; border-top: 1px dotted var(--rule-soft); color: var(--red); }
         .el-key {
             display: flex; flex-wrap: wrap; gap: 4px 14px; margin-top: 8px;

@@ -48,9 +48,16 @@
     box-shadow: 6px 6px 0 rgba(26, 26, 26, 0.15);
 }
 .detail .card { background: var(--paper); border: 0; padding: 12px 52px 14px 14px; }
-.rname { font-family: var(--display); font-weight: 800; font-size: 1.35rem; text-transform: uppercase; line-height: 1.05; }
-.rsub { font-family: var(--mono); color: var(--muted); }
-.cand { font-size: 0.9rem; }
+/* The candidates and their chances are the biggest thing in the race card; the race name and
+   whether the incumbent runs sit smaller above them (user, 2026-11-02). */
+.rname { font-family: var(--display); font-weight: 800; font-size: 1.05rem; text-transform: uppercase; line-height: 1.05; letter-spacing: 0.02em; }
+.rsub { font-family: var(--mono); font-size: 0.68rem; color: var(--muted); }
+.cand { font-family: var(--serif); font-size: 1.05rem; font-weight: 600; }
+.cand b { font-size: 1.25rem; font-weight: 700; white-space: nowrap; }
+.cands .cand:first-child { font-size: 1.2rem; }
+.cands .cand:first-child b { font-size: 1.55rem; }
+.cands .cand > span b { font-size: inherit; font-family: var(--serif); }
+.cand b span { font-size: 0.6em; font-weight: 500; }
 .demo { border-top-color: var(--rule-faint); color: var(--muted); }
 .tiphint { color: var(--red); border-top-color: var(--rule-faint); }
 
