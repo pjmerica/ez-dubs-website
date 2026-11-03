@@ -291,6 +291,23 @@ corners, rules and dotted row lines instead of boxes, no emoji in the UI.
   pre-box-score-2026-10-26` shows the whole old site; it is not published
   anywhere.
 
+## Link previews are screenshots of each page (2026-11-03)
+
+A shared link used to show the EDA logo on every page. The user asked for each
+page's preview to show that page. `scripts/render_previews.js` (puppeteer-core
++ Chrome, its own local server) screenshots each page at 1440x756 scaled to
+1200x630 into `assets/previews/<name>.png` and rewrites the page's `og:image`,
+`og:image:width/height`, `twitter:card` (summary_large_image) and
+`twitter:image` tags with a content-hash `?v=` (sites cache previews by URL).
+Run it with no arguments after a visible change to a page, then commit the
+PNGs and the pages. The generated pages build the same tags from the same file:
+`pull_politics.py` (politics-forecast, and it re-shoots that page and the home
+page whenever the forecast changes) and the NFL port (`preview_tags()` in
+AI_Agent_work's `port_lineup_to_ezdubs.py`). The forecast map is the exception:
+its preview is the drawn card `politics-data/og-map.png` (see "Politics
+pages"). 404.html has none. The Tests workflow renders one preview as a smoke
+test of the renderer in CI Chrome.
+
 ## UI and accessibility (audited 2026-10-08)
 
 See `dashboards/UI_AUDIT.md` for the full run, which predates the redesign (its

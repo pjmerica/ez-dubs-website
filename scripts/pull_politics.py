@@ -102,6 +102,8 @@ PAGES = {
         "desc": "The EZ Dub Election Forecast: who the model thinks wins every 2026 Senate, House and "
                 "governor race, with each candidate's chance and the factors behind it.",
         "ids": ["chambers", "legend", "grid", "count", "q", "drawer", "d-body", "tip", "asof"],
+        # a shared link shows a screenshot of the page (render_previews.js, PREVIEWS below)
+        "preview": True,
     },
 }
 LINKS = {"map.html": "../politics-map/", "predictions.html": "../politics-forecast/"}
@@ -112,6 +114,12 @@ LINKS = {"map.html": "../politics-map/", "predictions.html": "../politics-foreca
 # cache a preview image by URL.
 OG_IMAGE = DATA_DIR / "og-map.png"
 OG_RENDER = Path(__file__).resolve().parent / "render_og_card.js"
+# Every other page's preview is a screenshot of it (user, 2026-11-03), from render_previews.js,
+# which also rewrites the page's og:image tags. The forecast page and the home page show the
+# forecast, so they are re-shot here when it changes; render_previews.js and this script build
+# the same tags from the same file.
+PREVIEWS = ROOT / "assets" / "previews"
+PREVIEW_RENDER = Path(__file__).resolve().parent / "render_previews.js"
 
 # ---------------------------------------------------------------------------
 # Colours. Upstream is a dark navy page; this one is paper. The map shades are
@@ -478,14 +486,27 @@ def build_page(slug: str, cfg: dict, upstream: str, data_hash: dict, notes: list
         f'    <script src="../politics-data/{f}?v={data_hash[f]}"></script>' for f in cfg["data"])
     globals_ = "\n".join(f"        if (typeof {g} === 'undefined') missing.push('{f}');"
                          for f, g in DATA_FILES if f in cfg["data"])
+    shot = PREVIEWS / f"{slug}.png"
     if cfg.get("og_image") and OG_IMAGE.exists():
         img = f"https://ezdubsanalytics.com/dashboards/politics-data/og-map.png?v={hashlib.sha256(OG_IMAGE.read_bytes()).hexdigest()[:10]}"
+    elif cfg.get("preview") and shot.exists():
+        img = f"https://ezdubsanalytics.com/assets/previews/{slug}.png?v={hashlib.sha256(shot.read_bytes()).hexdigest()[:10]}"
+    else:
+        img = None
+    if img and cfg.get("og_image"):
         og = "\n".join([
             f'    <meta property="og:image" content="{img}">',
             '    <meta property="og:image:width" content="1200">',
             '    <meta property="og:image:height" content="630">',
             '    <meta property="og:image:alt" content="The EZ Dub Election Forecast: the Senate map and the chance '
             'Democrats win the Senate and the House">',
+            '    <meta name="twitter:card" content="summary_large_image">',
+            f'    <meta name="twitter:image" content="{img}">'])
+    elif img:   # the same block render_previews.js writes
+        og = "\n".join([
+            f'    <meta property="og:image" content="{img}">',
+            '    <meta property="og:image:width" content="1200">',
+            '    <meta property="og:image:height" content="630">',
             '    <meta name="twitter:card" content="summary_large_image">',
             f'    <meta name="twitter:image" content="{img}">'])
     else:
@@ -560,6 +581,18 @@ def render_og_image() -> None:
     log("  " + ((r.stdout or r.stderr).strip() or f"og-map.png: renderer exited {r.returncode}"))
 
 
+def render_previews(names: list[str]) -> None:
+    """Re-shoot these pages' link previews (render_previews.js, which also rewrites their og:image
+    tags). Without node or Chrome the old screenshots stay, a warning only."""
+    node = shutil.which("node")
+    if not node:
+        log("  previews: WARNING not rendered, node is not installed; the old screenshots stay")
+        return
+    r = subprocess.run([node, str(PREVIEW_RENDER), *names], cwd=ROOT, capture_output=True, text=True, timeout=300)
+    for line in (r.stdout + r.stderr).strip().splitlines():
+        log("  " + line)
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--dry-run", action="store_true", help="fetch and report, write nothing")
@@ -572,6 +605,7 @@ def main() -> int:
 
     log(f"Mirroring the election forecast from {args.src or BASE}")
     failed = False
+    reshoot: set[str] = set()   # pages whose preview screenshot is out of date
 
     # --- data ---------------------------------------------------------------
     data_hash = {}
@@ -604,6 +638,8 @@ def main() -> int:
             log(f"  summary.json: {('WOULD UPDATE' if args.dry_run else 'updated') if changed else 'unchanged'}")
             if (changed or not OG_IMAGE.exists()) and not args.dry_run:
                 render_og_image()
+            if changed and not args.dry_run:
+                reshoot.add("home")
 
     # --- pages --------------------------------------------------------------
     for slug, cfg in PAGES.items():
@@ -627,9 +663,13 @@ def main() -> int:
         # LF throughout: upstream's pages mix in CRLF, and the repo stores LF.
         changed = write_if_changed(out, html.replace("\r\n", "\n").encode("utf-8"), args.dry_run)
         log(f"  {slug}: {('WOULD UPDATE' if args.dry_run else 'rebuilt') if changed else 'unchanged'}")
+        if cfg.get("preview") and changed and not args.dry_run:
+            reshoot.add(slug)
         for n in sorted(set(notes)):
             log(f"      {n}")
 
+    if reshoot:
+        render_previews(sorted(reshoot))
     return 1 if failed else 0
 
 
