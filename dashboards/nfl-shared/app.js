@@ -2898,8 +2898,12 @@
       const cx = x(d.pts).toFixed(1);
       const cls = "sp-dot" + (d.id === "kalshi" ? " kalshi" : "") +
         (d.id === spreadBook ? " hl" : "");
-      out += "<g><title>" + escapeHtml(sourceLabel(d.id) + ": " + d.pts.toFixed(1) +
-        " pts (priced " + d.priced.join(", ") + ")") + "</title>" +
+      // The tooltip is HTML (wireSpread), not an SVG <title>: the browser's
+      // own tooltip waited a second, often missed a 9px dot and never showed
+      // on a phone (2026-11-05).
+      out += '<g class="sp-g" data-book="' + escapeHtml(sourceLabel(d.id)) +
+        '" data-pts="' + d.pts.toFixed(1) + '" data-priced="' +
+        escapeHtml(d.priced.join(", ")) + '">' +
         '<circle class="sp-hit" cx="' + cx + '" cy="12" r="9"/>' +
         '<circle class="' + cls + '" cx="' + cx + '" cy="12" r="' +
         (d.id === spreadBook ? 5.5 : 4.5) + '"/></g>';
@@ -2984,6 +2988,45 @@
   (function wireSpread() {
     const $view = document.getElementById("spread-view");
     if (!$view) return;
+
+    // One floating tooltip for every dot: the book's name first, then its
+    // projection and what it priced. Hover on a mouse, tap on a touch screen
+    // (a tap elsewhere closes it).
+    const $tip = document.createElement("div");
+    $tip.className = "spread-tip";
+    $tip.setAttribute("role", "tooltip");
+    $tip.hidden = true;
+    document.body.appendChild($tip);
+    const dotOf = (e) => (e.target && e.target.closest) ? e.target.closest(".sp-g") : null;
+    const showTip = (g, x, y) => {
+      $tip.innerHTML = "<strong>" + escapeHtml(g.dataset.book) + "</strong> " +
+        escapeHtml(g.dataset.pts) + " pts" +
+        '<span class="spread-tip-sub">priced ' + escapeHtml(g.dataset.priced) + "</span>";
+      $tip.hidden = false;
+      const w = $tip.offsetWidth, h = $tip.offsetHeight;
+      const left = Math.min(Math.max(8, x - w / 2), window.innerWidth - w - 8);
+      const top = y - h - 14 < 8 ? y + 18 : y - h - 14;
+      $tip.style.left = left + "px";
+      $tip.style.top = top + "px";
+    };
+    const $out = document.getElementById("spread-output");
+    if ($out) {
+      $out.addEventListener("pointermove", (e) => {
+        if (e.pointerType !== "mouse") return;
+        const g = dotOf(e);
+        if (g) showTip(g, e.clientX, e.clientY);
+        else $tip.hidden = true;
+      });
+      $out.addEventListener("pointerleave", () => { $tip.hidden = true; });
+      $out.addEventListener("click", (e) => {
+        const g = dotOf(e);
+        if (!g) { $tip.hidden = true; return; }
+        const r = g.querySelector(".sp-dot").getBoundingClientRect();
+        showTip(g, r.left + r.width / 2, r.top);
+      });
+    }
+    document.addEventListener("click", (e) => { if (!dotOf(e)) $tip.hidden = true; });
+    window.addEventListener("scroll", () => { $tip.hidden = true; }, { passive: true });
     $view.querySelectorAll(".spread-pos .chip").forEach((b) => {
       b.addEventListener("click", () => {
         spreadPos = b.dataset.pos;

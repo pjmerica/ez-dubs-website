@@ -561,6 +561,18 @@ tr.row-nan:hover { opacity: 0.85; }
 .spread-ends { font-size: 12px; color: #4a4740; white-space: nowrap; }
 .spread-ends .hl { color: #b3261e; font-weight: 700; }
 .spread-more { text-align: center; margin: 14px 0 0; }
+/* The dot tooltip: a panel with a full rule and a shadow, so it reads as a
+   layer above the table. position: fixed, placed by wireSpread. */
+.spread-tip {
+  position: fixed; z-index: 60; pointer-events: none;
+  background: #efebe1; color: #1a1a1a; border: 1px solid #8a8478;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
+  padding: 6px 9px; font-size: 13px; line-height: 1.35; max-width: 260px;
+}
+.spread-tip[hidden] { display: none; }
+.spread-tip strong { font-weight: 700; }
+.spread-tip-sub { display: block; font-size: 11px; color: #3a3833; }
+.spread-svg .sp-g { cursor: pointer; }
 @media (max-width: 600px) {
   .spread-table .spread-ends, .spread-table th.spread-ends-h { display: none; }
   .spread-table td.spread-strip { width: auto; }
