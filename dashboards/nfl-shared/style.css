@@ -520,12 +520,11 @@ tr.row-nan:hover { opacity: 0.85; }
   vertical-align: super;
 }
 
-/* A book-sourced chip where the books do NOT all agree on the number. The
-   dotted underline is the cue to hover and read the per-book breakdown. */
-.market-chip.book-split {
-  border-bottom-style: dotted;
-  border-bottom-width: 2px;
-}
+/* Book-priced chips have one plain solid border, agreeing books or not. A
+   dotted bottom edge used to mark lines where the books disagreed (the
+   tooltip still lists each book), but nearly every multi-book line differs a
+   little, nothing on the page explained it, and it read as the dashed
+   "projected" border. Dashed now means only that (2026-11-05, user's call). */
 
 
 /* ── Start/Sit view ───────────────────────────────────────────────────────── */

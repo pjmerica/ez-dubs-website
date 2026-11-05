@@ -878,7 +878,7 @@
       // stat silently vanishing and the total dropping for no visible reason.
       const off = lineUnderFilter(s) == null;
       parts.push(
-        `<span class="market-chip ${cls}${off ? " stat-off" : ""}${s.lineSource === "books" && s.min !== s.max ? " book-split" : ""}" ` +
+        `<span class="market-chip ${cls}${off ? " stat-off" : ""}" ` +
         `title="${escapeHtml(WEEKLY_SOURCE_LABEL[s.lineSource] || "")}\n${escapeHtml(detail)}">` +
         `<span class="mk-label">${escapeHtml(STAT_LABELS[k] || k)}</span> ` +
         `${mark}${s.line.toFixed(dec)}</span>`
