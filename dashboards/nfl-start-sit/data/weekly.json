@@ -1,31 +1,32 @@
 {
-  "lastUpdated": "2026-11-03T17:24:56+00:00",
+  "lastUpdated": "2026-11-05T09:16:11+00:00",
   "season": "2026",
   "source": "Kalshi (per-game)",
   "note": "Per-game player props for the upcoming slate. Kalshi purges settled markets, so whatever is open is the next set of games -- there is no way to fetch a week that has already been played.",
   "week": 9,
   "kickoffs": [
     "26NOV05",
-    "26NOV08"
+    "26NOV08",
+    "26NOV09"
   ],
-  "gameCount": 2,
-  "playerGameCount": 41,
+  "gameCount": 15,
+  "playerGameCount": 297,
   "matchupConflicts": [],
   "statCounts": {
-    "any_tds": 41,
-    "rec_yds": 19,
-    "rush_yds": 7,
-    "receptions": 12,
-    "pass_yds": 3,
-    "pass_tds": 3
+    "any_tds": 297,
+    "rec_yds": 99,
+    "rush_yds": 56,
+    "receptions": 14,
+    "pass_yds": 28,
+    "pass_tds": 27
   },
   "seriesMarketCounts": {
-    "KXNFLREC": 66,
-    "KXNFLRECYDS": 178,
-    "KXNFLRSHYDS": 78,
-    "KXNFLPASSYDS": 27,
-    "KXNFLPASSTDS": 14,
-    "KXNFLTD": 77
+    "KXNFLREC": 80,
+    "KXNFLRECYDS": 1051,
+    "KXNFLRSHYDS": 528,
+    "KXNFLPASSYDS": 256,
+    "KXNFLPASSTDS": 116,
+    "KXNFLTD": 554
   },
   "players": [
     {
@@ -35,7 +36,7 @@
       "matchup": "JACBAL",
       "stats": {
         "any_tds": {
-          "line": 0.09,
+          "line": 0.125,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -50,7 +51,7 @@
       "matchup": "JACBAL",
       "stats": {
         "any_tds": {
-          "line": 0.11,
+          "line": 0.08,
           "lineSource": "expected",
           "expected": null,
           "rungs": 1,
@@ -65,21 +66,21 @@
       "matchup": "JACBAL",
       "stats": {
         "rec_yds": {
-          "line": 19.6,
+          "line": 14.5,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 7,
           "confidentRungs": 3
         },
         "rush_yds": {
-          "line": 70.1,
+          "line": 65.4,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 11,
-          "confidentRungs": 11
+          "confidentRungs": 10
         },
         "any_tds": {
-          "line": 0.56,
+          "line": 0.605,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -101,14 +102,14 @@
           "confidentRungs": 8
         },
         "rec_yds": {
-          "line": 35.2,
+          "line": 35.6,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 11,
           "confidentRungs": 11
         },
         "any_tds": {
-          "line": 0.315,
+          "line": 0.295,
           "lineSource": "expected",
           "expected": null,
           "rungs": 3,
@@ -130,14 +131,14 @@
           "confidentRungs": 3
         },
         "rec_yds": {
-          "line": 10.4,
+          "line": 12.9,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 8,
           "confidentRungs": 8
         },
         "any_tds": {
-          "line": 0.15,
+          "line": 0.135,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -152,18 +153,18 @@
       "matchup": "JACBAL",
       "stats": {
         "rush_yds": {
-          "line": 13.2,
+          "line": 51.5,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 10,
           "confidentRungs": 6
         },
         "any_tds": {
-          "line": 0.525,
+          "line": 0.61,
           "lineSource": "expected",
           "expected": null,
-          "rungs": 2,
-          "confidentRungs": 2
+          "rungs": 3,
+          "confidentRungs": 3
         }
       }
     },
@@ -181,21 +182,21 @@
           "confidentRungs": 4
         },
         "rec_yds": {
-          "line": 6.6,
+          "line": 8.0,
           "lineSource": "fitted",
           "expected": null,
           "rungs": 6,
           "confidentRungs": 6
         },
         "rush_yds": {
-          "line": 68.7,
+          "line": 66.9,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 14,
           "confidentRungs": 14
         },
         "any_tds": {
-          "line": 0.64,
+          "line": 0.525,
           "lineSource": "expected",
           "expected": null,
           "rungs": 3,
@@ -210,7 +211,7 @@
       "matchup": "JACBAL",
       "stats": {
         "any_tds": {
-          "line": 0.165,
+          "line": 0.1,
           "lineSource": "expected",
           "expected": null,
           "rungs": 1,
@@ -225,21 +226,21 @@
       "matchup": "JACBAL",
       "stats": {
         "receptions": {
-          "line": 1.5,
+          "line": 1.6,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 5,
           "confidentRungs": 5
         },
         "rec_yds": {
-          "line": 13.7,
+          "line": 16.8,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 9,
           "confidentRungs": 9
         },
         "any_tds": {
-          "line": 0.11,
+          "line": 0.105,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -253,19 +254,55 @@
       "kickoff": "26NOV05",
       "matchup": "JACBAL",
       "stats": {
+        "receptions": {
+          "line": 3.0,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 7,
+          "confidentRungs": 7
+        },
         "rec_yds": {
-          "line": 39.5,
+          "line": 38.2,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 12,
           "confidentRungs": 12
         },
         "any_tds": {
-          "line": 0.25,
+          "line": 0.235,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
           "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Joe Fagnano",
+      "game": "26NOV05:JACBAL",
+      "kickoff": "26NOV05",
+      "matchup": "JACBAL",
+      "stats": {
+        "pass_yds": {
+          "line": 159.1,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "pass_tds": {
+          "line": 0.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        },
+        "any_tds": {
+          "line": 0.065,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
         }
       }
     },
@@ -276,21 +313,21 @@
       "matchup": "JACBAL",
       "stats": {
         "receptions": {
-          "line": 1.5,
-          "lineSource": "interpolated",
+          "line": 1.2,
+          "lineSource": "fitted",
           "expected": null,
           "rungs": 5,
           "confidentRungs": 5
         },
         "rec_yds": {
-          "line": 14.0,
+          "line": 9.9,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 9,
           "confidentRungs": 9
         },
         "any_tds": {
-          "line": 0.145,
+          "line": 0.115,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -309,17 +346,17 @@
           "lineSource": "fitted",
           "expected": null,
           "rungs": 4,
-          "confidentRungs": 4
+          "confidentRungs": 3
         },
         "rec_yds": {
-          "line": 8.3,
+          "line": 9.0,
           "lineSource": "fitted",
           "expected": null,
           "rungs": 7,
           "confidentRungs": 7
         },
         "any_tds": {
-          "line": 0.045,
+          "line": 0.04,
           "lineSource": "expected",
           "expected": null,
           "rungs": 1,
@@ -333,22 +370,29 @@
       "kickoff": "26NOV05",
       "matchup": "JACBAL",
       "stats": {
+        "receptions": {
+          "line": 2.6,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 7,
+          "confidentRungs": 6
+        },
         "rec_yds": {
-          "line": 13.8,
+          "line": 14.7,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 7,
           "confidentRungs": 7
         },
         "rush_yds": {
-          "line": 15.6,
+          "line": 13.6,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 8,
           "confidentRungs": 8
         },
         "any_tds": {
-          "line": 0.175,
+          "line": 0.16,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -363,7 +407,7 @@
       "matchup": "JACBAL",
       "stats": {
         "any_tds": {
-          "line": 0.085,
+          "line": 0.065,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -378,14 +422,14 @@
       "matchup": "JACBAL",
       "stats": {
         "receptions": {
-          "line": 2.6,
+          "line": 2.7,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 7,
           "confidentRungs": 7
         },
         "rec_yds": {
-          "line": 16.8,
+          "line": 19.7,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 9,
@@ -407,21 +451,21 @@
       "matchup": "JACBAL",
       "stats": {
         "receptions": {
-          "line": 1.0,
+          "line": 0.8,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 4,
           "confidentRungs": 4
         },
         "rec_yds": {
-          "line": 7.9,
+          "line": 9.6,
           "lineSource": "fitted",
           "expected": null,
           "rungs": 7,
           "confidentRungs": 7
         },
         "any_tds": {
-          "line": 0.135,
+          "line": 0.15,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -436,21 +480,21 @@
       "matchup": "JACBAL",
       "stats": {
         "receptions": {
-          "line": 4.3,
+          "line": 4.2,
           "lineSource": "interpolated",
-          "expected": null,
+          "expected": 4.4,
           "rungs": 9,
           "confidentRungs": 9
         },
         "rec_yds": {
-          "line": 61.7,
+          "line": 63.8,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 14,
           "confidentRungs": 14
         },
         "any_tds": {
-          "line": 0.49,
+          "line": 0.465,
           "lineSource": "expected",
           "expected": null,
           "rungs": 3,
@@ -465,14 +509,14 @@
       "matchup": "JACBAL",
       "stats": {
         "receptions": {
-          "line": 1.5,
-          "lineSource": "interpolated",
+          "line": 1.4,
+          "lineSource": "fitted",
           "expected": null,
           "rungs": 5,
           "confidentRungs": 5
         },
         "rec_yds": {
-          "line": 13.1,
+          "line": 15.8,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 9,
@@ -494,21 +538,21 @@
       "matchup": "JACBAL",
       "stats": {
         "receptions": {
-          "line": 1.2,
+          "line": 1.1,
           "lineSource": "fitted",
           "expected": null,
           "rungs": 3,
           "confidentRungs": 3
         },
         "rec_yds": {
-          "line": 9.5,
+          "line": 10.5,
           "lineSource": "fitted",
           "expected": null,
           "rungs": 8,
           "confidentRungs": 8
         },
         "any_tds": {
-          "line": 0.12,
+          "line": 0.105,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -523,14 +567,14 @@
       "matchup": "JACBAL",
       "stats": {
         "rush_yds": {
-          "line": 11.2,
+          "line": 12.1,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 7,
           "confidentRungs": 7
         },
         "pass_yds": {
-          "line": 238.3,
+          "line": 235.4,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 8,
@@ -544,7 +588,7 @@
           "confidentRungs": 5
         },
         "any_tds": {
-          "line": 0.21,
+          "line": 0.2,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -559,25 +603,62 @@
       "matchup": "JACBAL",
       "stats": {
         "receptions": {
-          "line": 3.9,
+          "line": 4.3,
           "lineSource": "interpolated",
-          "expected": null,
+          "expected": 4.4,
           "rungs": 9,
           "confidentRungs": 9
         },
         "rec_yds": {
-          "line": 44.5,
+          "line": 49.5,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 13,
           "confidentRungs": 13
         },
         "any_tds": {
-          "line": 0.245,
+          "line": 0.22,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
           "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "AJ Barner",
+      "game": "26NOV08:ARISEA",
+      "kickoff": "26NOV08",
+      "matchup": "ARISEA",
+      "stats": {
+        "rec_yds": {
+          "line": 16.7,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 9
+        },
+        "any_tds": {
+          "line": 0.29,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "ARI Cardinals D/ST",
+      "game": "26NOV08:ARISEA",
+      "kickoff": "26NOV08",
+      "matchup": "ARISEA",
+      "stats": {
+        "any_tds": {
+          "line": 0.075,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
         }
       }
     },
@@ -597,13 +678,212 @@
       }
     },
     {
+      "name": "Adam Trautman",
+      "game": "26NOV08:DENCAR",
+      "kickoff": "26NOV08",
+      "matchup": "DENCAR",
+      "stats": {
+        "any_tds": {
+          "line": 0.065,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Adonai Mitchell",
+      "game": "26NOV08:NYJKC",
+      "kickoff": "26NOV08",
+      "matchup": "NYJKC",
+      "stats": {
+        "any_tds": {
+          "line": 0.295,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Alvin Kamara",
+      "game": "26NOV08:CLENO",
+      "kickoff": "26NOV08",
+      "matchup": "CLENO",
+      "stats": {
+        "any_tds": {
+          "line": 0.31,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Amon-Ra St. Brown",
+      "game": "26NOV08:DETMIA",
+      "kickoff": "26NOV08",
+      "matchup": "DETMIA",
+      "stats": {
+        "rec_yds": {
+          "line": 54.5,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 13,
+          "confidentRungs": 12
+        },
+        "any_tds": {
+          "line": 0.61,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Andrew Armstrong",
+      "game": "26NOV08:NYJKC",
+      "kickoff": "26NOV08",
+      "matchup": "NYJKC",
+      "stats": {
+        "any_tds": {
+          "line": 0.06,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Antonio Williams",
+      "game": "26NOV08:LARWAS",
+      "kickoff": "26NOV08",
+      "matchup": "LARWAS",
+      "stats": {
+        "rec_yds": {
+          "line": 37.6,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 12,
+          "confidentRungs": 9
+        },
+        "any_tds": {
+          "line": 0.27,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Ashton Dulin",
+      "game": "26NOV08:DALIND",
+      "kickoff": "26NOV08",
+      "matchup": "DALIND",
+      "stats": {
+        "any_tds": {
+          "line": 0.075,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Ashton Jeanty",
+      "game": "26NOV08:LVSF",
+      "kickoff": "26NOV08",
+      "matchup": "LVSF",
+      "stats": {
+        "rec_yds": {
+          "line": 31.8,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 9
+        },
+        "rush_yds": {
+          "line": 29.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 9
+        },
+        "any_tds": {
+          "line": 0.585,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Austin Ekeler",
+      "game": "26NOV08:LARWAS",
+      "kickoff": "26NOV08",
+      "matchup": "LARWAS",
+      "stats": {
+        "any_tds": {
+          "line": 0.23,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
       "name": "Austin Hooper",
       "game": "26NOV08:CINATL",
       "kickoff": "26NOV08",
       "matchup": "CINATL",
       "stats": {
         "any_tds": {
-          "line": 0.08,
+          "line": 0.09,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Baker Mayfield",
+      "game": "26NOV08:TBCHI",
+      "kickoff": "26NOV08",
+      "matchup": "TBCHI",
+      "stats": {
+        "rush_yds": {
+          "line": 15.1,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 7,
+          "confidentRungs": 7
+        },
+        "pass_yds": {
+          "line": 210.5,
+          "lineSource": "interpolated",
+          "expected": 201.7,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "pass_tds": {
+          "line": 1.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 3
+        },
+        "any_tds": {
+          "line": 0.155,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -618,25 +898,392 @@
       "matchup": "CINATL",
       "stats": {
         "rec_yds": {
-          "line": 20.0,
+          "line": 24.8,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 7
+        },
+        "rush_yds": {
+          "line": 92.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 16,
+          "confidentRungs": 15
+        },
+        "any_tds": {
+          "line": 0.995,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Blake Corum",
+      "game": "26NOV08:LARWAS",
+      "kickoff": "26NOV08",
+      "matchup": "LARWAS",
+      "stats": {
+        "rush_yds": {
+          "line": 49.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 13,
+          "confidentRungs": 12
+        },
+        "any_tds": {
+          "line": 0.505,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Blake Whiteheart",
+      "game": "26NOV08:CLENO",
+      "kickoff": "26NOV08",
+      "matchup": "CLENO",
+      "stats": {
+        "any_tds": {
+          "line": 0.045,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Bo Melton",
+      "game": "26NOV08:GBNE",
+      "kickoff": "26NOV08",
+      "matchup": "GBNE",
+      "stats": {
+        "any_tds": {
+          "line": 0.06,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Bo Nix",
+      "game": "26NOV08:DENCAR",
+      "kickoff": "26NOV08",
+      "matchup": "DENCAR",
+      "stats": {
+        "rush_yds": {
+          "line": 13.1,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 8,
+          "confidentRungs": 8
+        },
+        "pass_yds": {
+          "line": 212.0,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 9,
           "confidentRungs": 9
         },
-        "rush_yds": {
-          "line": 89.0,
+        "pass_tds": {
+          "line": 1.3,
           "lineSource": "interpolated",
           "expected": null,
-          "rungs": 16,
-          "confidentRungs": 16
+          "rungs": 4,
+          "confidentRungs": 4
         },
         "any_tds": {
-          "line": 0.86,
+          "line": 0.19,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
           "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Braelon Allen",
+      "game": "26NOV08:NYJKC",
+      "kickoff": "26NOV08",
+      "matchup": "NYJKC",
+      "stats": {
+        "any_tds": {
+          "line": 0.435,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Brandin Cooks",
+      "game": "26NOV08:LVSF",
+      "kickoff": "26NOV08",
+      "matchup": "LVSF",
+      "stats": {
+        "any_tds": {
+          "line": 0.225,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Brevyn Spann-Ford",
+      "game": "26NOV08:DALIND",
+      "kickoff": "26NOV08",
+      "matchup": "DALIND",
+      "stats": {
+        "any_tds": {
+          "line": 0.24,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Brock Bowers",
+      "game": "26NOV08:LVSF",
+      "kickoff": "26NOV08",
+      "matchup": "LVSF",
+      "stats": {
+        "rec_yds": {
+          "line": 74.3,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 13,
+          "confidentRungs": 13
+        },
+        "any_tds": {
+          "line": 0.51,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Brock Purdy",
+      "game": "26NOV08:LVSF",
+      "kickoff": "26NOV08",
+      "matchup": "LVSF",
+      "stats": {
+        "rush_yds": {
+          "line": 14.7,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 8,
+          "confidentRungs": 7
+        },
+        "pass_yds": {
+          "line": 247.9,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 8
+        },
+        "pass_tds": {
+          "line": 2.1,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 5,
+          "confidentRungs": 4
+        },
+        "any_tds": {
+          "line": 0.23,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Brock Wright",
+      "game": "26NOV08:DETMIA",
+      "kickoff": "26NOV08",
+      "matchup": "DETMIA",
+      "stats": {
+        "any_tds": {
+          "line": 0.095,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Bryce Lance",
+      "game": "26NOV08:CLENO",
+      "kickoff": "26NOV08",
+      "matchup": "CLENO",
+      "stats": {
+        "any_tds": {
+          "line": 0.145,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Bryce Young",
+      "game": "26NOV08:DENCAR",
+      "kickoff": "26NOV08",
+      "matchup": "DENCAR",
+      "stats": {
+        "rush_yds": {
+          "line": 7.5,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 5,
+          "confidentRungs": 5
+        },
+        "pass_yds": {
+          "line": 232.8,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 8
+        },
+        "pass_tds": {
+          "line": 1.4,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 4
+        },
+        "any_tds": {
+          "line": 0.115,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Brycen Tremayne",
+      "game": "26NOV08:DENCAR",
+      "kickoff": "26NOV08",
+      "matchup": "DENCAR",
+      "stats": {
+        "any_tds": {
+          "line": 0.05,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Bucky Irving",
+      "game": "26NOV08:TBCHI",
+      "kickoff": "26NOV08",
+      "matchup": "TBCHI",
+      "stats": {
+        "rec_yds": {
+          "line": 12.6,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 8,
+          "confidentRungs": 7
+        },
+        "rush_yds": {
+          "line": 62.7,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 11,
+          "confidentRungs": 11
+        },
+        "any_tds": {
+          "line": 0.545,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "C.J. Stroud",
+      "game": "26NOV08:HOULAC",
+      "kickoff": "26NOV08",
+      "matchup": "HOULAC",
+      "stats": {
+        "rush_yds": {
+          "line": 9.2,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 6,
+          "confidentRungs": 5
+        },
+        "pass_yds": {
+          "line": 246.4,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "pass_tds": {
+          "line": 1.0,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 5,
+          "confidentRungs": 3
+        },
+        "any_tds": {
+          "line": 0.15,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "CAR Panthers D/ST",
+      "game": "26NOV08:DENCAR",
+      "kickoff": "26NOV08",
+      "matchup": "DENCAR",
+      "stats": {
+        "any_tds": {
+          "line": 0.115,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "CHI Bears D/ST",
+      "game": "26NOV08:TBCHI",
+      "kickoff": "26NOV08",
+      "matchup": "TBCHI",
+      "stats": {
+        "any_tds": {
+          "line": 0.13,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
         }
       }
     },
@@ -656,13 +1303,138 @@
       }
     },
     {
+      "name": "CLE Browns D/ST",
+      "game": "26NOV08:CLENO",
+      "kickoff": "26NOV08",
+      "matchup": "CLENO",
+      "stats": {
+        "any_tds": {
+          "line": 0.095,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Cade Otton",
+      "game": "26NOV08:TBCHI",
+      "kickoff": "26NOV08",
+      "matchup": "TBCHI",
+      "stats": {
+        "any_tds": {
+          "line": 0.205,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Caleb Douglas",
+      "game": "26NOV08:DETMIA",
+      "kickoff": "26NOV08",
+      "matchup": "DETMIA",
+      "stats": {
+        "rec_yds": {
+          "line": 38.6,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 13,
+          "confidentRungs": 12
+        },
+        "any_tds": {
+          "line": 0.26,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Caleb Williams",
+      "game": "26NOV08:TBCHI",
+      "kickoff": "26NOV08",
+      "matchup": "TBCHI",
+      "stats": {
+        "rush_yds": {
+          "line": 15.7,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 8,
+          "confidentRungs": 6
+        },
+        "pass_yds": {
+          "line": 251.3,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 7
+        },
+        "pass_tds": {
+          "line": 1.7,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 5,
+          "confidentRungs": 4
+        },
+        "any_tds": {
+          "line": 0.23,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
       "name": "Cam Grandy",
       "game": "26NOV08:CINATL",
       "kickoff": "26NOV08",
       "matchup": "CINATL",
       "stats": {
         "any_tds": {
-          "line": 0.09,
+          "line": 0.065,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "CeeDee Lamb",
+      "game": "26NOV08:DALIND",
+      "kickoff": "26NOV08",
+      "matchup": "DALIND",
+      "stats": {
+        "rec_yds": {
+          "line": 78.4,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 14,
+          "confidentRungs": 12
+        },
+        "any_tds": {
+          "line": 0.62,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Charlie Kolar",
+      "game": "26NOV08:HOULAC",
+      "kickoff": "26NOV08",
+      "matchup": "HOULAC",
+      "stats": {
+        "any_tds": {
+          "line": 0.14,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -692,21 +1464,65 @@
       "matchup": "CINATL",
       "stats": {
         "rec_yds": {
-          "line": 19.8,
+          "line": 21.0,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 9,
           "confidentRungs": 9
         },
         "rush_yds": {
-          "line": 48.8,
+          "line": 49.1,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 12,
           "confidentRungs": 12
         },
         "any_tds": {
-          "line": 0.67,
+          "line": 0.79,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Chig Okonkwo",
+      "game": "26NOV08:LARWAS",
+      "kickoff": "26NOV08",
+      "matchup": "LARWAS",
+      "stats": {
+        "rec_yds": {
+          "line": 17.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 11,
+          "confidentRungs": 10
+        },
+        "any_tds": {
+          "line": 0.23,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Chris Bell",
+      "game": "26NOV08:DETMIA",
+      "kickoff": "26NOV08",
+      "matchup": "DETMIA",
+      "stats": {
+        "rec_yds": {
+          "line": 21.4,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 11,
+          "confidentRungs": 11
+        },
+        "any_tds": {
+          "line": 0.17,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -721,11 +1537,580 @@
       "matchup": "CINATL",
       "stats": {
         "any_tds": {
-          "line": 0.04,
+          "line": 0.045,
           "lineSource": "expected",
           "expected": null,
           "rungs": 1,
           "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Chris Godwin Jr.",
+      "game": "26NOV08:TBCHI",
+      "kickoff": "26NOV08",
+      "matchup": "TBCHI",
+      "stats": {
+        "any_tds": {
+          "line": 0.24,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Chris Olave",
+      "game": "26NOV08:CLENO",
+      "kickoff": "26NOV08",
+      "matchup": "CLENO",
+      "stats": {
+        "rec_yds": {
+          "line": 62.1,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 13,
+          "confidentRungs": 12
+        },
+        "any_tds": {
+          "line": 0.43,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Chuba Hubbard",
+      "game": "26NOV08:DENCAR",
+      "kickoff": "26NOV08",
+      "matchup": "DENCAR",
+      "stats": {
+        "rec_yds": {
+          "line": 14.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 8,
+          "confidentRungs": 7
+        },
+        "rush_yds": {
+          "line": 62.8,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 12,
+          "confidentRungs": 11
+        },
+        "any_tds": {
+          "line": 0.615,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Cody White",
+      "game": "26NOV08:LVSF",
+      "kickoff": "26NOV08",
+      "matchup": "LVSF",
+      "stats": {
+        "any_tds": {
+          "line": 0.06,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Colston Loveland",
+      "game": "26NOV08:TBCHI",
+      "kickoff": "26NOV08",
+      "matchup": "TBCHI",
+      "stats": {
+        "rec_yds": {
+          "line": 49.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 13,
+          "confidentRungs": 12
+        },
+        "any_tds": {
+          "line": 0.43,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Connor Heyward",
+      "game": "26NOV08:LVSF",
+      "kickoff": "26NOV08",
+      "matchup": "LVSF",
+      "stats": {
+        "any_tds": {
+          "line": 0.06,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Cooper Kupp",
+      "game": "26NOV08:ARISEA",
+      "kickoff": "26NOV08",
+      "matchup": "ARISEA",
+      "stats": {
+        "any_tds": {
+          "line": 0.2,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Corey Kiner",
+      "game": "26NOV08:GBNE",
+      "kickoff": "26NOV08",
+      "matchup": "GBNE",
+      "stats": {
+        "any_tds": {
+          "line": 0.28,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Courtland Sutton",
+      "game": "26NOV08:DENCAR",
+      "kickoff": "26NOV08",
+      "matchup": "DENCAR",
+      "stats": {
+        "rec_yds": {
+          "line": 28.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 11,
+          "confidentRungs": 10
+        },
+        "any_tds": {
+          "line": 0.315,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Cyrus Allen",
+      "game": "26NOV08:NYJKC",
+      "kickoff": "26NOV08",
+      "matchup": "NYJKC",
+      "stats": {
+        "rec_yds": {
+          "line": 14.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 9
+        },
+        "any_tds": {
+          "line": 0.16,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "D'Andre Swift",
+      "game": "26NOV08:TBCHI",
+      "kickoff": "26NOV08",
+      "matchup": "TBCHI",
+      "stats": {
+        "rec_yds": {
+          "line": 19.9,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 8
+        },
+        "rush_yds": {
+          "line": 62.4,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 11,
+          "confidentRungs": 10
+        },
+        "any_tds": {
+          "line": 0.82,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "DAL Cowboys D/ST",
+      "game": "26NOV08:DALIND",
+      "kickoff": "26NOV08",
+      "matchup": "DALIND",
+      "stats": {
+        "any_tds": {
+          "line": 0.11,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "DEN Broncos D/ST",
+      "game": "26NOV08:DENCAR",
+      "kickoff": "26NOV08",
+      "matchup": "DENCAR",
+      "stats": {
+        "any_tds": {
+          "line": 0.1,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "DET Lions D/ST",
+      "game": "26NOV08:DETMIA",
+      "kickoff": "26NOV08",
+      "matchup": "DETMIA",
+      "stats": {
+        "any_tds": {
+          "line": 0.125,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Dak Prescott",
+      "game": "26NOV08:DALIND",
+      "kickoff": "26NOV08",
+      "matchup": "DALIND",
+      "stats": {
+        "rush_yds": {
+          "line": 6.3,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 5,
+          "confidentRungs": 5
+        },
+        "pass_yds": {
+          "line": 260.6,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 8
+        },
+        "pass_tds": {
+          "line": 2.0,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 5,
+          "confidentRungs": 5
+        },
+        "any_tds": {
+          "line": 0.14,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Dallas Goedert",
+      "game": "26NOV08:NYGPHI",
+      "kickoff": "26NOV08",
+      "matchup": "NYGPHI",
+      "stats": {
+        "any_tds": {
+          "line": 0.245,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Dalton Schultz",
+      "game": "26NOV08:HOULAC",
+      "kickoff": "26NOV08",
+      "matchup": "HOULAC",
+      "stats": {
+        "rec_yds": {
+          "line": null,
+          "lineSource": null,
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 0
+        },
+        "any_tds": {
+          "line": 0.24,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Daniel Jones",
+      "game": "26NOV08:DALIND",
+      "kickoff": "26NOV08",
+      "matchup": "DALIND",
+      "stats": {
+        "rush_yds": {
+          "line": 7.7,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 6,
+          "confidentRungs": 6
+        },
+        "pass_yds": {
+          "line": 228.4,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 8,
+          "confidentRungs": 7
+        },
+        "pass_tds": {
+          "line": 1.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 4
+        },
+        "any_tds": {
+          "line": 0.18,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Dare Ogunbowale",
+      "game": "26NOV08:HOULAC",
+      "kickoff": "26NOV08",
+      "matchup": "HOULAC",
+      "stats": {
+        "any_tds": {
+          "line": 0.095,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Darius Cooper",
+      "game": "26NOV08:NYGPHI",
+      "kickoff": "26NOV08",
+      "matchup": "NYGPHI",
+      "stats": {
+        "any_tds": {
+          "line": 0.135,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Darnell Mooney",
+      "game": "26NOV08:NYGPHI",
+      "kickoff": "26NOV08",
+      "matchup": "NYGPHI",
+      "stats": {
+        "rec_yds": {
+          "line": 11.6,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 8,
+          "confidentRungs": 8
+        },
+        "any_tds": {
+          "line": 0.11,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Darren Waller",
+      "game": "26NOV08:DENCAR",
+      "kickoff": "26NOV08",
+      "matchup": "DENCAR",
+      "stats": {
+        "rec_yds": {
+          "line": 17.4,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 8
+        },
+        "any_tds": {
+          "line": 0.19,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "David Sills V",
+      "game": "26NOV08:TBCHI",
+      "kickoff": "26NOV08",
+      "matchup": "TBCHI",
+      "stats": {
+        "any_tds": {
+          "line": 0.045,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Davis Allen",
+      "game": "26NOV08:LARWAS",
+      "kickoff": "26NOV08",
+      "matchup": "LARWAS",
+      "stats": {
+        "any_tds": {
+          "line": 0.19,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "DeMario Douglas",
+      "game": "26NOV08:GBNE",
+      "kickoff": "26NOV08",
+      "matchup": "GBNE",
+      "stats": {
+        "any_tds": {
+          "line": 0.345,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Deion Burks",
+      "game": "26NOV08:DALIND",
+      "kickoff": "26NOV08",
+      "matchup": "DALIND",
+      "stats": {
+        "any_tds": {
+          "line": 0.07,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Denzel Boston",
+      "game": "26NOV08:CLENO",
+      "kickoff": "26NOV08",
+      "matchup": "CLENO",
+      "stats": {
+        "any_tds": {
+          "line": 0.305,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Devaughn Vele",
+      "game": "26NOV08:CLENO",
+      "kickoff": "26NOV08",
+      "matchup": "CLENO",
+      "stats": {
+        "any_tds": {
+          "line": 0.29,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Devin Duvernay",
+      "game": "26NOV08:ARISEA",
+      "kickoff": "26NOV08",
+      "matchup": "ARISEA",
+      "stats": {
+        "any_tds": {
+          "line": 0.05,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Devin Singletary",
+      "game": "26NOV08:NYGPHI",
+      "kickoff": "26NOV08",
+      "matchup": "NYGPHI",
+      "stats": {
+        "any_tds": {
+          "line": 0.46,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
         }
       }
     },
@@ -735,8 +2120,73 @@
       "kickoff": "26NOV08",
       "matchup": "CINATL",
       "stats": {
+        "rec_yds": {
+          "line": 14.1,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 8
+        },
         "any_tds": {
-          "line": 0.125,
+          "line": 0.18,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Drake London",
+      "game": "26NOV08:CINATL",
+      "kickoff": "26NOV08",
+      "matchup": "CINATL",
+      "stats": {
+        "rec_yds": {
+          "line": 71.6,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 14,
+          "confidentRungs": 13
+        },
+        "any_tds": {
+          "line": 0.49,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Drake Maye",
+      "game": "26NOV08:GBNE",
+      "kickoff": "26NOV08",
+      "matchup": "GBNE",
+      "stats": {
+        "rush_yds": {
+          "line": 23.8,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 8
+        },
+        "pass_yds": {
+          "line": 231.4,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "pass_tds": {
+          "line": 1.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 5,
+          "confidentRungs": 5
+        },
+        "any_tds": {
+          "line": 0.275,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -751,7 +2201,7 @@
       "matchup": "CINATL",
       "stats": {
         "any_tds": {
-          "line": 0.095,
+          "line": 0.115,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -760,28 +2210,28 @@
       }
     },
     {
-      "name": "Ja'Marr Chase",
-      "game": "26NOV08:CINATL",
+      "name": "Dyami Brown",
+      "game": "26NOV08:LARWAS",
       "kickoff": "26NOV08",
-      "matchup": "CINATL",
+      "matchup": "LARWAS",
       "stats": {
         "any_tds": {
-          "line": 0.56,
+          "line": 0.08,
           "lineSource": "expected",
           "expected": null,
-          "rungs": 2,
-          "confidentRungs": 2
+          "rungs": 1,
+          "confidentRungs": 1
         }
       }
     },
     {
-      "name": "Jack Endries",
-      "game": "26NOV08:CINATL",
+      "name": "Dylan Sampson",
+      "game": "26NOV08:CLENO",
       "kickoff": "26NOV08",
-      "matchup": "CINATL",
+      "matchup": "CLENO",
       "stats": {
         "any_tds": {
-          "line": 0.075,
+          "line": 0.185,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -790,17 +2240,91 @@
       }
     },
     {
-      "name": "Jahan Dotson",
-      "game": "26NOV08:CINATL",
+      "name": "Efton Chism III",
+      "game": "26NOV08:GBNE",
       "kickoff": "26NOV08",
-      "matchup": "CINATL",
+      "matchup": "GBNE",
+      "stats": {
+        "any_tds": {
+          "line": 0.28,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Eli Raridon",
+      "game": "26NOV08:GBNE",
+      "kickoff": "26NOV08",
+      "matchup": "GBNE",
+      "stats": {
+        "any_tds": {
+          "line": 0.38,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Elijah Higgins",
+      "game": "26NOV08:ARISEA",
+      "kickoff": "26NOV08",
+      "matchup": "ARISEA",
       "stats": {
         "rec_yds": {
-          "line": 22.9,
+          "line": 12.8,
           "lineSource": "interpolated",
           "expected": null,
-          "rungs": 11,
-          "confidentRungs": 11
+          "rungs": 9,
+          "confidentRungs": 8
+        },
+        "any_tds": {
+          "line": 0.11,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Emanuel Wilson",
+      "game": "26NOV08:ARISEA",
+      "kickoff": "26NOV08",
+      "matchup": "ARISEA",
+      "stats": {
+        "any_tds": {
+          "line": 0.055,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Emmett Johnson",
+      "game": "26NOV08:NYJKC",
+      "kickoff": "26NOV08",
+      "matchup": "NYJKC",
+      "stats": {
+        "rec_yds": {
+          "line": null,
+          "lineSource": null,
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        },
+        "rush_yds": {
+          "line": 9.5,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 8,
+          "confidentRungs": 7
         },
         "any_tds": {
           "line": 0.19,
@@ -812,27 +2336,13 @@
       }
     },
     {
-      "name": "Joe Burrow",
-      "game": "26NOV08:CINATL",
+      "name": "Eric Saubert",
+      "game": "26NOV08:ARISEA",
       "kickoff": "26NOV08",
-      "matchup": "CINATL",
+      "matchup": "ARISEA",
       "stats": {
-        "pass_yds": {
-          "line": 266.6,
-          "lineSource": "interpolated",
-          "expected": null,
-          "rungs": 10,
-          "confidentRungs": 10
-        },
-        "pass_tds": {
-          "line": 2.1,
-          "lineSource": "interpolated",
-          "expected": null,
-          "rungs": 5,
-          "confidentRungs": 5
-        },
         "any_tds": {
-          "line": 0.105,
+          "line": 0.06,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -841,42 +2351,145 @@
       }
     },
     {
-      "name": "Kyle Pitts Sr.",
-      "game": "26NOV08:CINATL",
+      "name": "Evan Engram",
+      "game": "26NOV08:DENCAR",
       "kickoff": "26NOV08",
-      "matchup": "CINATL",
+      "matchup": "DENCAR",
       "stats": {
         "rec_yds": {
-          "line": 41.4,
-          "lineSource": "interpolated",
-          "expected": null,
-          "rungs": 12,
-          "confidentRungs": 12
-        },
-        "any_tds": {
-          "line": 0.23,
-          "lineSource": "expected",
-          "expected": null,
-          "rungs": 2,
-          "confidentRungs": 2
-        }
-      }
-    },
-    {
-      "name": "Michael Penix Jr.",
-      "game": "26NOV08:CINATL",
-      "kickoff": "26NOV08",
-      "matchup": "CINATL",
-      "stats": {
-        "pass_yds": {
-          "line": 220.2,
+          "line": 17.1,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 9,
           "confidentRungs": 9
         },
+        "any_tds": {
+          "line": 0.16,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Evan Hull",
+      "game": "26NOV08:ARISEA",
+      "kickoff": "26NOV08",
+      "matchup": "ARISEA",
+      "stats": {
+        "any_tds": {
+          "line": 0.075,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Foster Moreau",
+      "game": "26NOV08:HOULAC",
+      "kickoff": "26NOV08",
+      "matchup": "HOULAC",
+      "stats": {
+        "any_tds": {
+          "line": 0.13,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "GB Packers D/ST",
+      "game": "26NOV08:GBNE",
+      "kickoff": "26NOV08",
+      "matchup": "GBNE",
+      "stats": {
+        "any_tds": {
+          "line": 0.125,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Gardner Minshew II",
+      "game": "26NOV08:ARISEA",
+      "kickoff": "26NOV08",
+      "matchup": "ARISEA",
+      "stats": {
+        "rush_yds": {
+          "line": 7.0,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 5,
+          "confidentRungs": 5
+        },
+        "pass_yds": {
+          "line": 202.3,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 8
+        },
         "pass_tds": {
-          "line": 1.4,
+          "line": 0.9,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        },
+        "any_tds": {
+          "line": 0.065,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Garrett Wilson",
+      "game": "26NOV08:NYJKC",
+      "kickoff": "26NOV08",
+      "matchup": "NYJKC",
+      "stats": {
+        "any_tds": {
+          "line": 0.31,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Geno Smith",
+      "game": "26NOV08:NYJKC",
+      "kickoff": "26NOV08",
+      "matchup": "NYJKC",
+      "stats": {
+        "rush_yds": {
+          "line": 6.7,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 6,
+          "confidentRungs": 6
+        },
+        "pass_yds": {
+          "line": 236.7,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 7
+        },
+        "pass_tds": {
+          "line": 1.1,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 4,
@@ -892,13 +2505,1980 @@
       }
     },
     {
-      "name": "Mike Gesicki",
+      "name": "George Holani",
+      "game": "26NOV08:ARISEA",
+      "kickoff": "26NOV08",
+      "matchup": "ARISEA",
+      "stats": {
+        "any_tds": {
+          "line": 0.1,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "George Kittle",
+      "game": "26NOV08:LVSF",
+      "kickoff": "26NOV08",
+      "matchup": "LVSF",
+      "stats": {
+        "any_tds": {
+          "line": 0.595,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "George Pickens",
+      "game": "26NOV08:DALIND",
+      "kickoff": "26NOV08",
+      "matchup": "DALIND",
+      "stats": {
+        "rec_yds": {
+          "line": 63.7,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 13,
+          "confidentRungs": 10
+        },
+        "any_tds": {
+          "line": 0.48,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Greg Dulcich",
+      "game": "26NOV08:DETMIA",
+      "kickoff": "26NOV08",
+      "matchup": "DETMIA",
+      "stats": {
+        "rec_yds": {
+          "line": 22.7,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 12,
+          "confidentRungs": 11
+        },
+        "any_tds": {
+          "line": 0.245,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "HOU Texans D/ST",
+      "game": "26NOV08:HOULAC",
+      "kickoff": "26NOV08",
+      "matchup": "HOULAC",
+      "stats": {
+        "any_tds": {
+          "line": 0.11,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Harold Fannin Jr.",
+      "game": "26NOV08:CLENO",
+      "kickoff": "26NOV08",
+      "matchup": "CLENO",
+      "stats": {
+        "rec_yds": {
+          "line": 41.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 13,
+          "confidentRungs": 12
+        },
+        "any_tds": {
+          "line": 0.49,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Hollywood Brown",
+      "game": "26NOV08:NYGPHI",
+      "kickoff": "26NOV08",
+      "matchup": "NYGPHI",
+      "stats": {
+        "any_tds": {
+          "line": 0.1,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Hunter Luepke",
+      "game": "26NOV08:DALIND",
+      "kickoff": "26NOV08",
+      "matchup": "DALIND",
+      "stats": {
+        "any_tds": {
+          "line": 0.05,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "IND Colts D/ST",
+      "game": "26NOV08:DALIND",
+      "kickoff": "26NOV08",
+      "matchup": "DALIND",
+      "stats": {
+        "any_tds": {
+          "line": 0.09,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Isaac TeSlaa",
+      "game": "26NOV08:DETMIA",
+      "kickoff": "26NOV08",
+      "matchup": "DETMIA",
+      "stats": {
+        "rec_yds": {
+          "line": 13.8,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 7
+        },
+        "any_tds": {
+          "line": 0.175,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Isaiah Davis",
+      "game": "26NOV08:NYJKC",
+      "kickoff": "26NOV08",
+      "matchup": "NYJKC",
+      "stats": {
+        "any_tds": {
+          "line": 0.14,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Isaiah Likely",
+      "game": "26NOV08:NYGPHI",
+      "kickoff": "26NOV08",
+      "matchup": "NYGPHI",
+      "stats": {
+        "rec_yds": {
+          "line": 44.7,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 12,
+          "confidentRungs": 12
+        },
+        "any_tds": {
+          "line": 0.325,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Isaiah Williams",
+      "game": "26NOV08:NYJKC",
+      "kickoff": "26NOV08",
+      "matchup": "NYJKC",
+      "stats": {
+        "any_tds": {
+          "line": 0.07,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "J.J. McCarthy",
+      "game": "26NOV08:NYGPHI",
+      "kickoff": "26NOV08",
+      "matchup": "NYGPHI",
+      "stats": {
+        "pass_yds": {
+          "line": 221.4,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 6
+        },
+        "pass_tds": {
+          "line": 1.1,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 4
+        },
+        "any_tds": {
+          "line": 0.19,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "J.K. Dobbins",
+      "game": "26NOV08:DENCAR",
+      "kickoff": "26NOV08",
+      "matchup": "DENCAR",
+      "stats": {
+        "any_tds": {
+          "line": 0.285,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Ja'Marr Chase",
+      "game": "26NOV08:CINATL",
+      "kickoff": "26NOV08",
+      "matchup": "CINATL",
+      "stats": {
+        "rec_yds": {
+          "line": 73.8,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 13,
+          "confidentRungs": 13
+        },
+        "any_tds": {
+          "line": 0.64,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Jack Bech",
+      "game": "26NOV08:LVSF",
+      "kickoff": "26NOV08",
+      "matchup": "LVSF",
+      "stats": {
+        "any_tds": {
+          "line": 0.14,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Jack Endries",
       "game": "26NOV08:CINATL",
       "kickoff": "26NOV08",
       "matchup": "CINATL",
       "stats": {
         "any_tds": {
+          "line": 0.07,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Jadarian Price",
+      "game": "26NOV08:ARISEA",
+      "kickoff": "26NOV08",
+      "matchup": "ARISEA",
+      "stats": {
+        "rec_yds": {
+          "line": 8.5,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 7,
+          "confidentRungs": 7
+        },
+        "rush_yds": {
+          "line": 50.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "any_tds": {
+          "line": 0.49,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Jahan Dotson",
+      "game": "26NOV08:CINATL",
+      "kickoff": "26NOV08",
+      "matchup": "CINATL",
+      "stats": {
+        "rec_yds": {
+          "line": 26.9,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 11,
+          "confidentRungs": 10
+        },
+        "any_tds": {
+          "line": 0.265,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Jahmyr Gibbs",
+      "game": "26NOV08:DETMIA",
+      "kickoff": "26NOV08",
+      "matchup": "DETMIA",
+      "stats": {
+        "rec_yds": {
+          "line": 29.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "rush_yds": {
+          "line": 97.4,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 14,
+          "confidentRungs": 14
+        },
+        "any_tds": {
+          "line": 1.19,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Jalen Coker",
+      "game": "26NOV08:DENCAR",
+      "kickoff": "26NOV08",
+      "matchup": "DENCAR",
+      "stats": {
+        "rec_yds": {
+          "line": 35.0,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 13,
+          "confidentRungs": 11
+        },
+        "any_tds": {
+          "line": 0.32,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Jalen Nailor",
+      "game": "26NOV08:LVSF",
+      "kickoff": "26NOV08",
+      "matchup": "LVSF",
+      "stats": {
+        "any_tds": {
+          "line": 0.17,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Jalen Royals",
+      "game": "26NOV08:NYJKC",
+      "kickoff": "26NOV08",
+      "matchup": "NYJKC",
+      "stats": {
+        "any_tds": {
+          "line": 0.1,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Jameson Williams",
+      "game": "26NOV08:DETMIA",
+      "kickoff": "26NOV08",
+      "matchup": "DETMIA",
+      "stats": {
+        "rec_yds": {
+          "line": 50.9,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 13,
+          "confidentRungs": 12
+        },
+        "any_tds": {
+          "line": 0.45,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Jared Goff",
+      "game": "26NOV08:DETMIA",
+      "kickoff": "26NOV08",
+      "matchup": "DETMIA",
+      "stats": {
+        "pass_yds": {
+          "line": 261.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 9
+        },
+        "pass_tds": {
+          "line": null,
+          "lineSource": null,
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        },
+        "any_tds": {
+          "line": 0.05,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Javonte Williams",
+      "game": "26NOV08:DALIND",
+      "kickoff": "26NOV08",
+      "matchup": "DALIND",
+      "stats": {
+        "rec_yds": {
+          "line": 8.5,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 6,
+          "confidentRungs": 6
+        },
+        "rush_yds": {
+          "line": 55.0,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 12,
+          "confidentRungs": 11
+        },
+        "any_tds": {
+          "line": 0.86,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Jaxon Smith-Njigba",
+      "game": "26NOV08:ARISEA",
+      "kickoff": "26NOV08",
+      "matchup": "ARISEA",
+      "stats": {
+        "rec_yds": {
+          "line": 93.1,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 16,
+          "confidentRungs": 11
+        },
+        "any_tds": {
+          "line": 0.695,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Jayden Daniels",
+      "game": "26NOV08:LARWAS",
+      "kickoff": "26NOV08",
+      "matchup": "LARWAS",
+      "stats": {
+        "rush_yds": {
+          "line": 18.6,
+          "lineSource": "interpolated",
+          "expected": 34.7,
+          "rungs": 12,
+          "confidentRungs": 10
+        },
+        "pass_yds": {
+          "line": 163.3,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 9
+        },
+        "pass_tds": {
+          "line": 1.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 4
+        },
+        "any_tds": {
+          "line": 0.315,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Jaylen Waddle",
+      "game": "26NOV08:DENCAR",
+      "kickoff": "26NOV08",
+      "matchup": "DENCAR",
+      "stats": {
+        "rec_yds": {
+          "line": 42.8,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 11,
+          "confidentRungs": 11
+        },
+        "any_tds": {
+          "line": 0.34,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Jaylen Wright",
+      "game": "26NOV08:DETMIA",
+      "kickoff": "26NOV08",
+      "matchup": "DETMIA",
+      "stats": {
+        "rush_yds": {
+          "line": 5.8,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 6,
+          "confidentRungs": 5
+        },
+        "any_tds": {
+          "line": 0.135,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Jerry Jeudy",
+      "game": "26NOV08:CLENO",
+      "kickoff": "26NOV08",
+      "matchup": "CLENO",
+      "stats": {
+        "any_tds": {
+          "line": 0.13,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Joe Burrow",
+      "game": "26NOV08:CINATL",
+      "kickoff": "26NOV08",
+      "matchup": "CINATL",
+      "stats": {
+        "rush_yds": {
+          "line": 7.1,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 5,
+          "confidentRungs": 5
+        },
+        "pass_yds": {
+          "line": 276.4,
+          "lineSource": "interpolated",
+          "expected": 260.3,
+          "rungs": 10,
+          "confidentRungs": 9
+        },
+        "pass_tds": {
+          "line": 2.2,
+          "lineSource": "interpolated",
+          "expected": 2.2,
+          "rungs": 5,
+          "confidentRungs": 5
+        },
+        "any_tds": {
+          "line": 0.175,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Joe Milton III",
+      "game": "26NOV08:NYGPHI",
+      "kickoff": "26NOV08",
+      "matchup": "NYGPHI",
+      "stats": {
+        "pass_yds": {
+          "line": 188.8,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 7
+        },
+        "pass_tds": {
+          "line": 0.9,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        },
+        "any_tds": {
+          "line": 0.155,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "John Metchie III",
+      "game": "26NOV08:DENCAR",
+      "kickoff": "26NOV08",
+      "matchup": "DENCAR",
+      "stats": {
+        "any_tds": {
+          "line": 0.125,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Jonah Coleman",
+      "game": "26NOV08:DENCAR",
+      "kickoff": "26NOV08",
+      "matchup": "DENCAR",
+      "stats": {
+        "any_tds": {
+          "line": 0.565,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Jonathan Mingo",
+      "game": "26NOV08:DALIND",
+      "kickoff": "26NOV08",
+      "matchup": "DALIND",
+      "stats": {
+        "any_tds": {
+          "line": 0.09,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Jonathan Taylor",
+      "game": "26NOV08:DALIND",
+      "kickoff": "26NOV08",
+      "matchup": "DALIND",
+      "stats": {
+        "any_tds": {
+          "line": 0.68,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Jonnu Smith",
+      "game": "26NOV08:GBNE",
+      "kickoff": "26NOV08",
+      "matchup": "GBNE",
+      "stats": {
+        "any_tds": {
+          "line": 0.06,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Jordan Love",
+      "game": "26NOV08:GBNE",
+      "kickoff": "26NOV08",
+      "matchup": "GBNE",
+      "stats": {
+        "rush_yds": {
+          "line": 5.1,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 4
+        },
+        "pass_yds": {
+          "line": 275.4,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "pass_tds": {
+          "line": 1.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 5,
+          "confidentRungs": 5
+        },
+        "any_tds": {
+          "line": 0.08,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Jordan Watkins",
+      "game": "26NOV08:LVSF",
+      "kickoff": "26NOV08",
+      "matchup": "LVSF",
+      "stats": {
+        "any_tds": {
+          "line": 0.165,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Jordan Whittington",
+      "game": "26NOV08:LARWAS",
+      "kickoff": "26NOV08",
+      "matchup": "LARWAS",
+      "stats": {
+        "any_tds": {
+          "line": 0.05,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Josh Downs",
+      "game": "26NOV08:DALIND",
+      "kickoff": "26NOV08",
+      "matchup": "DALIND",
+      "stats": {
+        "any_tds": {
+          "line": 0.25,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Josh Jacobs",
+      "game": "26NOV08:GBNE",
+      "kickoff": "26NOV08",
+      "matchup": "GBNE",
+      "stats": {
+        "rec_yds": {
+          "line": 16.1,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 8
+        },
+        "rush_yds": {
+          "line": 41.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 11,
+          "confidentRungs": 11
+        },
+        "any_tds": {
+          "line": 0.625,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Justin Herbert",
+      "game": "26NOV08:HOULAC",
+      "kickoff": "26NOV08",
+      "matchup": "HOULAC",
+      "stats": {
+        "rush_yds": {
+          "line": 15.5,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 7
+        },
+        "pass_yds": {
+          "line": 207.8,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 7
+        },
+        "pass_tds": {
+          "line": 1.0,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 4
+        },
+        "any_tds": {
+          "line": 0.16,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Juwan Johnson",
+      "game": "26NOV08:CLENO",
+      "kickoff": "26NOV08",
+      "matchup": "CLENO",
+      "stats": {
+        "any_tds": {
+          "line": 0.235,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "KC Chiefs D/ST",
+      "game": "26NOV08:NYJKC",
+      "kickoff": "26NOV08",
+      "matchup": "NYJKC",
+      "stats": {
+        "any_tds": {
+          "line": 0.115,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "KC Concepcion Jr.",
+      "game": "26NOV08:CLENO",
+      "kickoff": "26NOV08",
+      "matchup": "CLENO",
+      "stats": {
+        "rec_yds": {
+          "line": 39.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 12,
+          "confidentRungs": 10
+        },
+        "any_tds": {
           "line": 0.275,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Kaelon Black",
+      "game": "26NOV08:LVSF",
+      "kickoff": "26NOV08",
+      "matchup": "LVSF",
+      "stats": {
+        "any_tds": {
+          "line": 0.28,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Kalif Raymond",
+      "game": "26NOV08:TBCHI",
+      "kickoff": "26NOV08",
+      "matchup": "TBCHI",
+      "stats": {
+        "rec_yds": {
+          "line": 15.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "any_tds": {
+          "line": 0.19,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Kayshon Boutte",
+      "game": "26NOV08:HOULAC",
+      "kickoff": "26NOV08",
+      "matchup": "HOULAC",
+      "stats": {
+        "any_tds": {
+          "line": 0.135,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Keaton Mitchell",
+      "game": "26NOV08:HOULAC",
+      "kickoff": "26NOV08",
+      "matchup": "HOULAC",
+      "stats": {
+        "any_tds": {
+          "line": 0.16,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Keenan Allen",
+      "game": "26NOV08:DALIND",
+      "kickoff": "26NOV08",
+      "matchup": "DALIND",
+      "stats": {
+        "any_tds": {
+          "line": 0.305,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Kendre Miller",
+      "game": "26NOV08:CLENO",
+      "kickoff": "26NOV08",
+      "matchup": "CLENO",
+      "stats": {
+        "any_tds": {
+          "line": 0.41,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Kenneth Walker III",
+      "game": "26NOV08:NYJKC",
+      "kickoff": "26NOV08",
+      "matchup": "NYJKC",
+      "stats": {
+        "rec_yds": {
+          "line": null,
+          "lineSource": null,
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        },
+        "rush_yds": {
+          "line": 67.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 14,
+          "confidentRungs": 12
+        },
+        "any_tds": {
+          "line": 0.905,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Kenny Gainwell",
+      "game": "26NOV08:TBCHI",
+      "kickoff": "26NOV08",
+      "matchup": "TBCHI",
+      "stats": {
+        "rec_yds": {
+          "line": 11.3,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 7,
+          "confidentRungs": 5
+        },
+        "rush_yds": {
+          "line": 24.9,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 7
+        },
+        "any_tds": {
+          "line": 0.255,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Kenyon Sadiq",
+      "game": "26NOV08:NYJKC",
+      "kickoff": "26NOV08",
+      "matchup": "NYJKC",
+      "stats": {
+        "any_tds": {
+          "line": 0.18,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Kevin Coleman Jr.",
+      "game": "26NOV08:DETMIA",
+      "kickoff": "26NOV08",
+      "matchup": "DETMIA",
+      "stats": {
+        "any_tds": {
+          "line": 0.09,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Kimani Vidal",
+      "game": "26NOV08:HOULAC",
+      "kickoff": "26NOV08",
+      "matchup": "HOULAC",
+      "stats": {
+        "rush_yds": {
+          "line": 24.7,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 7
+        },
+        "any_tds": {
+          "line": 0.195,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Kirk Cousins",
+      "game": "26NOV08:LVSF",
+      "kickoff": "26NOV08",
+      "matchup": "LVSF",
+      "stats": {
+        "rush_yds": {
+          "line": 3.8,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        },
+        "pass_yds": {
+          "line": 254.0,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 8,
+          "confidentRungs": 8
+        },
+        "pass_tds": {
+          "line": 1.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 3
+        },
+        "any_tds": {
+          "line": 0.045,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Konata Mumpfield",
+      "game": "26NOV08:LARWAS",
+      "kickoff": "26NOV08",
+      "matchup": "LARWAS",
+      "stats": {
+        "any_tds": {
+          "line": 0.15,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Kyle Juszczyk",
+      "game": "26NOV08:LVSF",
+      "kickoff": "26NOV08",
+      "matchup": "LVSF",
+      "stats": {
+        "any_tds": {
+          "line": 0.13,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Kyle Pitts Sr.",
+      "game": "26NOV08:CINATL",
+      "kickoff": "26NOV08",
+      "matchup": "CINATL",
+      "stats": {
+        "rec_yds": {
+          "line": 41.6,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 12,
+          "confidentRungs": 12
+        },
+        "any_tds": {
+          "line": 0.295,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Kyle Williams",
+      "game": "26NOV08:GBNE",
+      "kickoff": "26NOV08",
+      "matchup": "GBNE",
+      "stats": {
+        "any_tds": {
+          "line": 0.175,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Kyren Williams",
+      "game": "26NOV08:LARWAS",
+      "kickoff": "26NOV08",
+      "matchup": "LARWAS",
+      "stats": {
+        "rec_yds": {
+          "line": 15.8,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 7
+        },
+        "rush_yds": {
+          "line": 56.3,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 13,
+          "confidentRungs": 13
+        },
+        "any_tds": {
+          "line": 0.72,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "LA Chargers D/ST",
+      "game": "26NOV08:HOULAC",
+      "kickoff": "26NOV08",
+      "matchup": "HOULAC",
+      "stats": {
+        "any_tds": {
+          "line": 0.09,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "LA Rams D/ST",
+      "game": "26NOV08:LARWAS",
+      "kickoff": "26NOV08",
+      "matchup": "LARWAS",
+      "stats": {
+        "any_tds": {
+          "line": 0.125,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "LV Raiders D/ST",
+      "game": "26NOV08:LVSF",
+      "kickoff": "26NOV08",
+      "matchup": "LVSF",
+      "stats": {
+        "any_tds": {
+          "line": 0.08,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Ladd McConkey",
+      "game": "26NOV08:HOULAC",
+      "kickoff": "26NOV08",
+      "matchup": "HOULAC",
+      "stats": {
+        "rec_yds": {
+          "line": 45.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 12,
+          "confidentRungs": 11
+        },
+        "any_tds": {
+          "line": 0.24,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Laquon Treadwell",
+      "game": "26NOV08:DALIND",
+      "kickoff": "26NOV08",
+      "matchup": "DALIND",
+      "stats": {
+        "any_tds": {
+          "line": 0.17,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Lil'Jordan Humphrey",
+      "game": "26NOV08:DENCAR",
+      "kickoff": "26NOV08",
+      "matchup": "DENCAR",
+      "stats": {
+        "any_tds": {
+          "line": 0.045,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Luke Farrell",
+      "game": "26NOV08:LVSF",
+      "kickoff": "26NOV08",
+      "matchup": "LVSF",
+      "stats": {
+        "any_tds": {
+          "line": 0.06,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Luther Burden III",
+      "game": "26NOV08:TBCHI",
+      "kickoff": "26NOV08",
+      "matchup": "TBCHI",
+      "stats": {
+        "rec_yds": {
+          "line": 67.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 16,
+          "confidentRungs": 15
+        },
+        "any_tds": {
+          "line": 0.43,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "MIA Dolphins D/ST",
+      "game": "26NOV08:DETMIA",
+      "kickoff": "26NOV08",
+      "matchup": "DETMIA",
+      "stats": {
+        "any_tds": {
+          "line": 0.095,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Makai Lemon",
+      "game": "26NOV08:NYGPHI",
+      "kickoff": "26NOV08",
+      "matchup": "NYGPHI",
+      "stats": {
+        "any_tds": {
+          "line": 0.215,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Malachi Fields",
+      "game": "26NOV08:NYGPHI",
+      "kickoff": "26NOV08",
+      "matchup": "NYGPHI",
+      "stats": {
+        "rec_yds": {
+          "line": 27.3,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 11,
+          "confidentRungs": 11
+        },
+        "any_tds": {
+          "line": 0.16,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Malik Nabers",
+      "game": "26NOV08:NYGPHI",
+      "kickoff": "26NOV08",
+      "matchup": "NYGPHI",
+      "stats": {
+        "rec_yds": {
+          "line": 76.0,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 14,
+          "confidentRungs": 13
+        },
+        "any_tds": {
+          "line": 0.44,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Malik Washington",
+      "game": "26NOV08:DETMIA",
+      "kickoff": "26NOV08",
+      "matchup": "DETMIA",
+      "stats": {
+        "rec_yds": {
+          "line": 37.6,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 12,
+          "confidentRungs": 12
+        },
+        "any_tds": {
+          "line": 0.35,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Malik Willis",
+      "game": "26NOV08:DETMIA",
+      "kickoff": "26NOV08",
+      "matchup": "DETMIA",
+      "stats": {
+        "rush_yds": {
+          "line": 26.3,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "pass_yds": {
+          "line": 209.0,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 8
+        },
+        "pass_tds": {
+          "line": 1.1,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 4
+        },
+        "any_tds": {
+          "line": 0.3,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Mark Redman",
+      "game": "26NOV08:GBNE",
+      "kickoff": "26NOV08",
+      "matchup": "GBNE",
+      "stats": {
+        "any_tds": {
+          "line": 0.055,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Marvin Harrison Jr.",
+      "game": "26NOV08:HOULAC",
+      "kickoff": "26NOV08",
+      "matchup": "HOULAC",
+      "stats": {
+        "rec_yds": {
+          "line": 24.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 11,
+          "confidentRungs": 11
+        },
+        "any_tds": {
+          "line": 0.2,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Marvin Mims Jr.",
+      "game": "26NOV08:DENCAR",
+      "kickoff": "26NOV08",
+      "matchup": "DENCAR",
+      "stats": {
+        "rec_yds": {
+          "line": 13.0,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 8,
+          "confidentRungs": 8
+        },
+        "any_tds": {
+          "line": 0.15,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Matthew Golden",
+      "game": "26NOV08:GBNE",
+      "kickoff": "26NOV08",
+      "matchup": "GBNE",
+      "stats": {
+        "rec_yds": {
+          "line": 66.9,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 14,
+          "confidentRungs": 13
+        },
+        "any_tds": {
+          "line": 0.455,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Matthew Stafford",
+      "game": "26NOV08:LARWAS",
+      "kickoff": "26NOV08",
+      "matchup": "LARWAS",
+      "stats": {
+        "pass_yds": {
+          "line": 252.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 8
+        },
+        "pass_tds": {
+          "line": 1.8,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 5,
+          "confidentRungs": 5
+        },
+        "any_tds": {
+          "line": 0.04,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Michael Mayer",
+      "game": "26NOV08:LVSF",
+      "kickoff": "26NOV08",
+      "matchup": "LVSF",
+      "stats": {
+        "any_tds": {
+          "line": 0.21,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Michael Penix Jr.",
+      "game": "26NOV08:CINATL",
+      "kickoff": "26NOV08",
+      "matchup": "CINATL",
+      "stats": {
+        "rush_yds": {
+          "line": 5.6,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 5,
+          "confidentRungs": 5
+        },
+        "pass_yds": {
+          "line": 224.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "pass_tds": {
+          "line": 1.4,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 4
+        },
+        "any_tds": {
+          "line": 0.09,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Mike Gesicki",
+      "game": "26NOV08:CINATL",
+      "kickoff": "26NOV08",
+      "matchup": "CINATL",
+      "stats": {
+        "rec_yds": {
+          "line": 21.1,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 11,
+          "confidentRungs": 10
+        },
+        "any_tds": {
+          "line": 0.325,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Mike Washington Jr.",
+      "game": "26NOV08:LVSF",
+      "kickoff": "26NOV08",
+      "matchup": "LVSF",
+      "stats": {
+        "rush_yds": {
+          "line": 37.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 9
+        },
+        "any_tds": {
+          "line": 0.365,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Mitchell Evans",
+      "game": "26NOV08:DENCAR",
+      "kickoff": "26NOV08",
+      "matchup": "DENCAR",
+      "stats": {
+        "any_tds": {
+          "line": 0.11,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Mitchell Tinsley",
+      "game": "26NOV08:CINATL",
+      "kickoff": "26NOV08",
+      "matchup": "CINATL",
+      "stats": {
+        "any_tds": {
+          "line": 0.05,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Mo Alie-Cox",
+      "game": "26NOV08:DALIND",
+      "kickoff": "26NOV08",
+      "matchup": "DALIND",
+      "stats": {
+        "any_tds": {
+          "line": 0.05,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "NE Patriots D/ST",
+      "game": "26NOV08:GBNE",
+      "kickoff": "26NOV08",
+      "matchup": "GBNE",
+      "stats": {
+        "any_tds": {
+          "line": 0.105,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "NO Saints D/ST",
+      "game": "26NOV08:CLENO",
+      "kickoff": "26NOV08",
+      "matchup": "CLENO",
+      "stats": {
+        "any_tds": {
+          "line": 0.125,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "NY Giants D/ST",
+      "game": "26NOV08:NYGPHI",
+      "kickoff": "26NOV08",
+      "matchup": "NYGPHI",
+      "stats": {
+        "any_tds": {
+          "line": 0.13,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "NY Jets D/ST",
+      "game": "26NOV08:NYJKC",
+      "kickoff": "26NOV08",
+      "matchup": "NYJKC",
+      "stats": {
+        "any_tds": {
+          "line": 0.09,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Nate Adkins",
+      "game": "26NOV08:DENCAR",
+      "kickoff": "26NOV08",
+      "matchup": "DENCAR",
+      "stats": {
+        "any_tds": {
+          "line": 0.09,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Nico Collins",
+      "game": "26NOV08:HOULAC",
+      "kickoff": "26NOV08",
+      "matchup": "HOULAC",
+      "stats": {
+        "rec_yds": {
+          "line": 64.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 13,
+          "confidentRungs": 12
+        },
+        "any_tds": {
+          "line": 0.475,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Noah Fant",
+      "game": "26NOV08:CLENO",
+      "kickoff": "26NOV08",
+      "matchup": "CLENO",
+      "stats": {
+        "any_tds": {
+          "line": 0.12,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Noah Gray",
+      "game": "26NOV08:NYJKC",
+      "kickoff": "26NOV08",
+      "matchup": "NYJKC",
+      "stats": {
+        "rec_yds": {
+          "line": 10.6,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 8,
+          "confidentRungs": 8
+        },
+        "any_tds": {
+          "line": 0.17,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -913,7 +4493,442 @@
       "matchup": "CINATL",
       "stats": {
         "any_tds": {
-          "line": 0.105,
+          "line": 0.125,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Ollie Gordon II",
+      "game": "26NOV08:DETMIA",
+      "kickoff": "26NOV08",
+      "matchup": "DETMIA",
+      "stats": {
+        "rec_yds": {
+          "line": 7.7,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 8,
+          "confidentRungs": 7
+        },
+        "rush_yds": {
+          "line": 62.0,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 14,
+          "confidentRungs": 11
+        },
+        "any_tds": {
+          "line": 0.535,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Omar Cooper Jr.",
+      "game": "26NOV08:NYJKC",
+      "kickoff": "26NOV08",
+      "matchup": "NYJKC",
+      "stats": {
+        "any_tds": {
+          "line": 0.255,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Omarion Hampton",
+      "game": "26NOV08:HOULAC",
+      "kickoff": "26NOV08",
+      "matchup": "HOULAC",
+      "stats": {
+        "rush_yds": {
+          "line": 25.8,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 8
+        },
+        "any_tds": {
+          "line": 0.26,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Oronde Gadsden",
+      "game": "26NOV08:HOULAC",
+      "kickoff": "26NOV08",
+      "matchup": "HOULAC",
+      "stats": {
+        "any_tds": {
+          "line": 0.145,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Oscar Delp",
+      "game": "26NOV08:CLENO",
+      "kickoff": "26NOV08",
+      "matchup": "CLENO",
+      "stats": {
+        "any_tds": {
+          "line": 0.1,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "PHI Eagles D/ST",
+      "game": "26NOV08:NYGPHI",
+      "kickoff": "26NOV08",
+      "matchup": "NYGPHI",
+      "stats": {
+        "any_tds": {
+          "line": 0.11,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Patrick Mahomes",
+      "game": "26NOV08:NYJKC",
+      "kickoff": "26NOV08",
+      "matchup": "NYJKC",
+      "stats": {
+        "rush_yds": {
+          "line": 9.7,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 7,
+          "confidentRungs": 7
+        },
+        "pass_yds": {
+          "line": 247.7,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 9
+        },
+        "pass_tds": {
+          "line": 2.1,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 5,
+          "confidentRungs": 5
+        },
+        "any_tds": {
+          "line": 0.17,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Payne Durham",
+      "game": "26NOV08:TBCHI",
+      "kickoff": "26NOV08",
+      "matchup": "TBCHI",
+      "stats": {
+        "any_tds": {
+          "line": 0.04,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Puka Nacua",
+      "game": "26NOV08:LARWAS",
+      "kickoff": "26NOV08",
+      "matchup": "LARWAS",
+      "stats": {
+        "rec_yds": {
+          "line": 90.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 15,
+          "confidentRungs": 11
+        },
+        "any_tds": {
+          "line": 0.66,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Quentin Johnston",
+      "game": "26NOV08:HOULAC",
+      "kickoff": "26NOV08",
+      "matchup": "HOULAC",
+      "stats": {
+        "rec_yds": {
+          "line": 29.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 12,
+          "confidentRungs": 11
+        },
+        "any_tds": {
+          "line": 0.205,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Quinshon Judkins",
+      "game": "26NOV08:CLENO",
+      "kickoff": "26NOV08",
+      "matchup": "CLENO",
+      "stats": {
+        "rush_yds": {
+          "line": 61.6,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 11,
+          "confidentRungs": 10
+        },
+        "any_tds": {
+          "line": 0.525,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Rachaad White",
+      "game": "26NOV08:LARWAS",
+      "kickoff": "26NOV08",
+      "matchup": "LARWAS",
+      "stats": {
+        "rec_yds": {
+          "line": 14.7,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 8,
+          "confidentRungs": 7
+        },
+        "rush_yds": {
+          "line": 38.0,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 11,
+          "confidentRungs": 10
+        },
+        "any_tds": {
+          "line": 0.56,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Rashee Rice",
+      "game": "26NOV08:NYJKC",
+      "kickoff": "26NOV08",
+      "matchup": "NYJKC",
+      "stats": {
+        "any_tds": {
+          "line": 0.47,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Reggie Virgil",
+      "game": "26NOV08:ARISEA",
+      "kickoff": "26NOV08",
+      "matchup": "ARISEA",
+      "stats": {
+        "any_tds": {
+          "line": 0.095,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Rhamondre Stevenson",
+      "game": "26NOV08:GBNE",
+      "kickoff": "26NOV08",
+      "matchup": "GBNE",
+      "stats": {
+        "rush_yds": {
+          "line": 52.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 11,
+          "confidentRungs": 9
+        },
+        "any_tds": {
+          "line": 0.685,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Rome Odunze",
+      "game": "26NOV08:TBCHI",
+      "kickoff": "26NOV08",
+      "matchup": "TBCHI",
+      "stats": {
+        "rec_yds": {
+          "line": 38.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 15,
+          "confidentRungs": 12
+        },
+        "any_tds": {
+          "line": 0.39,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Roschon Johnson",
+      "game": "26NOV08:TBCHI",
+      "kickoff": "26NOV08",
+      "matchup": "TBCHI",
+      "stats": {
+        "any_tds": {
+          "line": 0.26,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Ryan Flournoy",
+      "game": "26NOV08:DALIND",
+      "kickoff": "26NOV08",
+      "matchup": "DALIND",
+      "stats": {
+        "rec_yds": {
+          "line": 38.8,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 11,
+          "confidentRungs": 9
+        },
+        "any_tds": {
+          "line": 0.31,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "SEA Seahawks D/ST",
+      "game": "26NOV08:ARISEA",
+      "kickoff": "26NOV08",
+      "matchup": "ARISEA",
+      "stats": {
+        "any_tds": {
+          "line": 0.12,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "SF 49ers D/ST",
+      "game": "26NOV08:LVSF",
+      "kickoff": "26NOV08",
+      "matchup": "LVSF",
+      "stats": {
+        "any_tds": {
+          "line": 0.12,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Sam LaPorta",
+      "game": "26NOV08:DETMIA",
+      "kickoff": "26NOV08",
+      "matchup": "DETMIA",
+      "stats": {
+        "rec_yds": {
+          "line": 42.7,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 12,
+          "confidentRungs": 12
+        },
+        "any_tds": {
+          "line": 0.405,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Sam Roush",
+      "game": "26NOV08:TBCHI",
+      "kickoff": "26NOV08",
+      "matchup": "TBCHI",
+      "stats": {
+        "any_tds": {
+          "line": 0.13,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -926,6 +4941,219 @@
       "game": "26NOV08:CINATL",
       "kickoff": "26NOV08",
       "matchup": "CINATL",
+      "stats": {
+        "rec_yds": {
+          "line": 6.2,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 6,
+          "confidentRungs": 6
+        },
+        "rush_yds": {
+          "line": 16.3,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "any_tds": {
+          "line": 0.29,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Saquon Barkley",
+      "game": "26NOV08:NYGPHI",
+      "kickoff": "26NOV08",
+      "matchup": "NYGPHI",
+      "stats": {
+        "rec_yds": {
+          "line": 9.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 7,
+          "confidentRungs": 1
+        },
+        "rush_yds": {
+          "line": 61.9,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 12,
+          "confidentRungs": 10
+        },
+        "any_tds": {
+          "line": 0.5,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Savion Williams",
+      "game": "26NOV08:GBNE",
+      "kickoff": "26NOV08",
+      "matchup": "GBNE",
+      "stats": {
+        "rec_yds": {
+          "line": 19.7,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "any_tds": {
+          "line": 0.215,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Sean Tucker",
+      "game": "26NOV08:TBCHI",
+      "kickoff": "26NOV08",
+      "matchup": "TBCHI",
+      "stats": {
+        "any_tds": {
+          "line": 0.11,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Simi Fehoko",
+      "game": "26NOV08:ARISEA",
+      "kickoff": "26NOV08",
+      "matchup": "ARISEA",
+      "stats": {
+        "any_tds": {
+          "line": 0.065,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Sione Vaki",
+      "game": "26NOV08:DETMIA",
+      "kickoff": "26NOV08",
+      "matchup": "DETMIA",
+      "stats": {
+        "rush_yds": {
+          "line": 18.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 7
+        },
+        "any_tds": {
+          "line": 0.195,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Stefon Diggs",
+      "game": "26NOV08:LARWAS",
+      "kickoff": "26NOV08",
+      "matchup": "LARWAS",
+      "stats": {
+        "rec_yds": {
+          "line": 18.4,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 11,
+          "confidentRungs": 7
+        },
+        "any_tds": {
+          "line": 0.34,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "TB Buccaneers D/ST",
+      "game": "26NOV08:TBCHI",
+      "kickoff": "26NOV08",
+      "matchup": "TBCHI",
+      "stats": {
+        "any_tds": {
+          "line": 0.085,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Tank Dell",
+      "game": "26NOV08:HOULAC",
+      "kickoff": "26NOV08",
+      "matchup": "HOULAC",
+      "stats": {
+        "any_tds": {
+          "line": 0.13,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Tanner McKee",
+      "game": "26NOV08:NYGPHI",
+      "kickoff": "26NOV08",
+      "matchup": "NYGPHI",
+      "stats": {
+        "pass_yds": {
+          "line": 37.4,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 4
+        },
+        "pass_tds": {
+          "line": 0.0,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 1
+        },
+        "any_tds": {
+          "line": 0.13,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Ted Hurst III",
+      "game": "26NOV08:TBCHI",
+      "kickoff": "26NOV08",
+      "matchup": "TBCHI",
       "stats": {
         "any_tds": {
           "line": 0.22,
@@ -950,7 +5178,908 @@
           "confidentRungs": 1
         },
         "any_tds": {
-          "line": 0.465,
+          "line": 0.525,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Tetairoa McMillan",
+      "game": "26NOV08:DENCAR",
+      "kickoff": "26NOV08",
+      "matchup": "DENCAR",
+      "stats": {
+        "rec_yds": {
+          "line": 60.1,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 13,
+          "confidentRungs": 12
+        },
+        "any_tds": {
+          "line": 0.39,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Tez Johnson",
+      "game": "26NOV08:TBCHI",
+      "kickoff": "26NOV08",
+      "matchup": "TBCHI",
+      "stats": {
+        "any_tds": {
+          "line": 0.215,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Theo Johnson",
+      "game": "26NOV08:NYGPHI",
+      "kickoff": "26NOV08",
+      "matchup": "NYGPHI",
+      "stats": {
+        "any_tds": {
+          "line": 0.105,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Tim Patrick",
+      "game": "26NOV08:NYJKC",
+      "kickoff": "26NOV08",
+      "matchup": "NYJKC",
+      "stats": {
+        "any_tds": {
+          "line": 0.07,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Tommy Tremble",
+      "game": "26NOV08:DENCAR",
+      "kickoff": "26NOV08",
+      "matchup": "DENCAR",
+      "stats": {
+        "rec_yds": {
+          "line": 16.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 8,
+          "confidentRungs": 7
+        },
+        "any_tds": {
+          "line": 0.16,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Tory Horton",
+      "game": "26NOV08:ARISEA",
+      "kickoff": "26NOV08",
+      "matchup": "ARISEA",
+      "stats": {
+        "any_tds": {
+          "line": 0.155,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Travis Kelce",
+      "game": "26NOV08:NYJKC",
+      "kickoff": "26NOV08",
+      "matchup": "NYJKC",
+      "stats": {
+        "any_tds": {
+          "line": 0.355,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Tre Tucker",
+      "game": "26NOV08:LVSF",
+      "kickoff": "26NOV08",
+      "matchup": "LVSF",
+      "stats": {
+        "rec_yds": {
+          "line": 18.4,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 12,
+          "confidentRungs": 11
+        },
+        "any_tds": {
+          "line": 0.255,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Tre' Harris",
+      "game": "26NOV08:HOULAC",
+      "kickoff": "26NOV08",
+      "matchup": "HOULAC",
+      "stats": {
+        "any_tds": {
+          "line": 0.18,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Trevor Etienne",
+      "game": "26NOV08:DENCAR",
+      "kickoff": "26NOV08",
+      "matchup": "DENCAR",
+      "stats": {
+        "any_tds": {
+          "line": 0.055,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Trey McBride",
+      "game": "26NOV08:ARISEA",
+      "kickoff": "26NOV08",
+      "matchup": "ARISEA",
+      "stats": {
+        "rec_yds": {
+          "line": 58.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 14,
+          "confidentRungs": 9
+        },
+        "any_tds": {
+          "line": 0.36,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Treylon Burks",
+      "game": "26NOV08:LARWAS",
+      "kickoff": "26NOV08",
+      "matchup": "LARWAS",
+      "stats": {
+        "rec_yds": {
+          "line": 14.4,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 11,
+          "confidentRungs": 8
+        },
+        "any_tds": {
+          "line": 0.2,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Treyton Welch",
+      "game": "26NOV08:CLENO",
+      "kickoff": "26NOV08",
+      "matchup": "CLENO",
+      "stats": {
+        "any_tds": {
+          "line": 0.05,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Troy Franklin",
+      "game": "26NOV08:DENCAR",
+      "kickoff": "26NOV08",
+      "matchup": "DENCAR",
+      "stats": {
+        "rec_yds": {
+          "line": 10.0,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 7,
+          "confidentRungs": 7
+        },
+        "any_tds": {
+          "line": 0.125,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Tucker Kraft",
+      "game": "26NOV08:GBNE",
+      "kickoff": "26NOV08",
+      "matchup": "GBNE",
+      "stats": {
+        "rec_yds": {
+          "line": 45.1,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 12,
+          "confidentRungs": 12
+        },
+        "any_tds": {
+          "line": 0.35,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Tutu Atwell",
+      "game": "26NOV08:LARWAS",
+      "kickoff": "26NOV08",
+      "matchup": "LARWAS",
+      "stats": {
+        "any_tds": {
+          "line": 0.155,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Tyler Allgeier",
+      "game": "26NOV08:ARISEA",
+      "kickoff": "26NOV08",
+      "matchup": "ARISEA",
+      "stats": {
+        "any_tds": {
+          "line": 0.41,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Tyler Goodson",
+      "game": "26NOV08:DALIND",
+      "kickoff": "26NOV08",
+      "matchup": "DALIND",
+      "stats": {
+        "any_tds": {
+          "line": 0.19,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Tyler Higbee",
+      "game": "26NOV08:LARWAS",
+      "kickoff": "26NOV08",
+      "matchup": "LARWAS",
+      "stats": {
+        "any_tds": {
+          "line": 0.28,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Tyler Shough",
+      "game": "26NOV08:CLENO",
+      "kickoff": "26NOV08",
+      "matchup": "CLENO",
+      "stats": {
+        "pass_yds": {
+          "line": 224.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 7,
+          "confidentRungs": 6
+        },
+        "pass_tds": {
+          "line": 1.4,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 4
+        },
+        "any_tds": {
+          "line": 0.22,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Tyler Warren",
+      "game": "26NOV08:DALIND",
+      "kickoff": "26NOV08",
+      "matchup": "DALIND",
+      "stats": {
+        "rec_yds": {
+          "line": 40.9,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 12,
+          "confidentRungs": 12
+        },
+        "any_tds": {
+          "line": 0.345,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "WAS Commanders D/ST",
+      "game": "26NOV08:LARWAS",
+      "kickoff": "26NOV08",
+      "matchup": "LARWAS",
+      "stats": {
+        "any_tds": {
+          "line": 0.095,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Woody Marks",
+      "game": "26NOV08:HOULAC",
+      "kickoff": "26NOV08",
+      "matchup": "HOULAC",
+      "stats": {
+        "rec_yds": {
+          "line": 12.0,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 8,
+          "confidentRungs": 7
+        },
+        "rush_yds": {
+          "line": 59.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "any_tds": {
+          "line": 0.51,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Xavier Hutchinson",
+      "game": "26NOV08:HOULAC",
+      "kickoff": "26NOV08",
+      "matchup": "HOULAC",
+      "stats": {
+        "any_tds": {
+          "line": 0.17,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Xavier Worthy",
+      "game": "26NOV08:NYJKC",
+      "kickoff": "26NOV08",
+      "matchup": "NYJKC",
+      "stats": {
+        "rec_yds": {
+          "line": 31.7,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 13,
+          "confidentRungs": 12
+        },
+        "any_tds": {
+          "line": 0.315,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Zach Charbonnet",
+      "game": "26NOV08:ARISEA",
+      "kickoff": "26NOV08",
+      "matchup": "ARISEA",
+      "stats": {
+        "rec_yds": {
+          "line": 7.9,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 6,
+          "confidentRungs": 4
+        },
+        "rush_yds": {
+          "line": 39.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 9
+        },
+        "any_tds": {
+          "line": 0.525,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Zavion Thomas",
+      "game": "26NOV08:TBCHI",
+      "kickoff": "26NOV08",
+      "matchup": "TBCHI",
+      "stats": {
+        "any_tds": {
+          "line": 0.05,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Aaron Jones Sr.",
+      "game": "26NOV09:BUFMIN",
+      "kickoff": "26NOV09",
+      "matchup": "BUFMIN",
+      "stats": {
+        "rush_yds": {
+          "line": 29.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "any_tds": {
+          "line": 0.285,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "BUF Bills D/ST",
+      "game": "26NOV09:BUFMIN",
+      "kickoff": "26NOV09",
+      "matchup": "BUFMIN",
+      "stats": {
+        "any_tds": {
+          "line": 0.1,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Ben Yurosek",
+      "game": "26NOV09:BUFMIN",
+      "kickoff": "26NOV09",
+      "matchup": "BUFMIN",
+      "stats": {
+        "any_tds": {
+          "line": 0.06,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Dalton Kincaid",
+      "game": "26NOV09:BUFMIN",
+      "kickoff": "26NOV09",
+      "matchup": "BUFMIN",
+      "stats": {
+        "rec_yds": {
+          "line": 40.9,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 13,
+          "confidentRungs": 12
+        },
+        "any_tds": {
+          "line": 0.255,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Dawson Knox",
+      "game": "26NOV09:BUFMIN",
+      "kickoff": "26NOV09",
+      "matchup": "BUFMIN",
+      "stats": {
+        "any_tds": {
+          "line": 0.11,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Jackson Hawes",
+      "game": "26NOV09:BUFMIN",
+      "kickoff": "26NOV09",
+      "matchup": "BUFMIN",
+      "stats": {
+        "any_tds": {
+          "line": 0.05,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "James Cook III",
+      "game": "26NOV09:BUFMIN",
+      "kickoff": "26NOV09",
+      "matchup": "BUFMIN",
+      "stats": {
+        "rec_yds": {
+          "line": 11.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 8,
+          "confidentRungs": 7
+        },
+        "rush_yds": {
+          "line": 78.7,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 12,
+          "confidentRungs": 11
+        },
+        "any_tds": {
+          "line": 0.57,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Jauan Jennings",
+      "game": "26NOV09:BUFMIN",
+      "kickoff": "26NOV09",
+      "matchup": "BUFMIN",
+      "stats": {
+        "any_tds": {
+          "line": 0.095,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Jordan Addison",
+      "game": "26NOV09:BUFMIN",
+      "kickoff": "26NOV09",
+      "matchup": "BUFMIN",
+      "stats": {
+        "rec_yds": {
+          "line": 22.6,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 11,
+          "confidentRungs": 10
+        },
+        "any_tds": {
+          "line": 0.24,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Jordan Mason",
+      "game": "26NOV09:BUFMIN",
+      "kickoff": "26NOV09",
+      "matchup": "BUFMIN",
+      "stats": {
+        "rush_yds": {
+          "line": 41.8,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 11,
+          "confidentRungs": 10
+        },
+        "any_tds": {
+          "line": 0.335,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Josh Allen",
+      "game": "26NOV09:BUFMIN",
+      "kickoff": "26NOV09",
+      "matchup": "BUFMIN",
+      "stats": {
+        "rush_yds": {
+          "line": 25.8,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 9
+        },
+        "pass_yds": {
+          "line": 237.4,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "pass_tds": {
+          "line": 1.3,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 4
+        },
+        "any_tds": {
+          "line": 0.6,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Justin Jefferson",
+      "game": "26NOV09:BUFMIN",
+      "kickoff": "26NOV09",
+      "matchup": "BUFMIN",
+      "stats": {
+        "rec_yds": {
+          "line": 70.2,
+          "lineSource": "interpolated",
+          "expected": 70.1,
+          "rungs": 14,
+          "confidentRungs": 12
+        },
+        "any_tds": {
+          "line": 0.445,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Keon Coleman",
+      "game": "26NOV09:BUFMIN",
+      "kickoff": "26NOV09",
+      "matchup": "BUFMIN",
+      "stats": {
+        "rec_yds": {
+          "line": 17.0,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 11,
+          "confidentRungs": 8
+        },
+        "any_tds": {
+          "line": 0.145,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Khalil Shakir",
+      "game": "26NOV09:BUFMIN",
+      "kickoff": "26NOV09",
+      "matchup": "BUFMIN",
+      "stats": {
+        "rec_yds": {
+          "line": 34.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 11,
+          "confidentRungs": 9
+        },
+        "any_tds": {
+          "line": 0.235,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "MIN Vikings D/ST",
+      "game": "26NOV09:BUFMIN",
+      "kickoff": "26NOV09",
+      "matchup": "BUFMIN",
+      "stats": {
+        "any_tds": {
+          "line": 0.11,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Ray Davis",
+      "game": "26NOV09:BUFMIN",
+      "kickoff": "26NOV09",
+      "matchup": "BUFMIN",
+      "stats": {
+        "any_tds": {
+          "line": 0.055,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Skyler Bell",
+      "game": "26NOV09:BUFMIN",
+      "kickoff": "26NOV09",
+      "matchup": "BUFMIN",
+      "stats": {
+        "any_tds": {
+          "line": 0.27,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 0
+        }
+      }
+    },
+    {
+      "name": "T.J. Hockenson",
+      "game": "26NOV09:BUFMIN",
+      "kickoff": "26NOV09",
+      "matchup": "BUFMIN",
+      "stats": {
+        "rec_yds": {
+          "line": 38.8,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "any_tds": {
+          "line": 0.44,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Tai Felton",
+      "game": "26NOV09:BUFMIN",
+      "kickoff": "26NOV09",
+      "matchup": "BUFMIN",
+      "stats": {
+        "any_tds": {
+          "line": 0.075,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Ty Johnson",
+      "game": "26NOV09:BUFMIN",
+      "kickoff": "26NOV09",
+      "matchup": "BUFMIN",
+      "stats": {
+        "any_tds": {
+          "line": 0.12,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
