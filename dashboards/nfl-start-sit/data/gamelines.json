@@ -1,10 +1,10 @@
 {
  "source": "The Odds API",
  "region": "us",
- "lastUpdated": "2026-11-05T09:16:15+00:00",
+ "lastUpdated": "2026-11-05T20:55:30+00:00",
  "gameCount": 28,
- "quotaUsed": "405",
- "quotaRemaining": "19595",
+ "quotaUsed": "497",
+ "quotaRemaining": "19503",
  "note": "Median spread and total across books. Implied team total = total/2 - spread/2. Used to score D/ST and K, which have no prop market.",
  "games": [
   {
@@ -175,18 +175,18 @@
    "homeName": "Washington Commanders",
    "awayName": "Los Angeles Rams",
    "kickoff": "2026-11-08T18:00:00Z",
-   "total": 48.0,
+   "total": 48.5,
    "homeSpread": 4.5,
    "teams": {
     "WAS": {
-     "implied": 21.75,
+     "implied": 22.0,
      "spread": 4.5,
-     "oppImplied": 26.25
+     "oppImplied": 26.5
     },
     "LAR": {
-     "implied": 26.25,
+     "implied": 26.5,
      "spread": -4.5,
-     "oppImplied": 21.75
+     "oppImplied": 22.0
     }
    },
    "bookCount": 11
@@ -222,17 +222,17 @@
    "awayName": "Houston Texans",
    "kickoff": "2026-11-08T21:05:00Z",
    "total": 40.5,
-   "homeSpread": 4.5,
+   "homeSpread": 5.5,
    "teams": {
     "LAC": {
-     "implied": 18.0,
-     "spread": 4.5,
-     "oppImplied": 22.5
+     "implied": 17.5,
+     "spread": 5.5,
+     "oppImplied": 23.0
     },
     "HOU": {
-     "implied": 22.5,
-     "spread": -4.5,
-     "oppImplied": 18.0
+     "implied": 23.0,
+     "spread": -5.5,
+     "oppImplied": 17.5
     }
    },
    "bookCount": 11
@@ -244,18 +244,18 @@
    "homeName": "San Francisco 49ers",
    "awayName": "Las Vegas Raiders",
    "kickoff": "2026-11-08T21:05:00Z",
-   "total": 53.0,
+   "total": 52.0,
    "homeSpread": -10.0,
    "teams": {
     "SF": {
-     "implied": 31.5,
+     "implied": 31.0,
      "spread": -10.0,
-     "oppImplied": 21.5
+     "oppImplied": 21.0
     },
     "LV": {
-     "implied": 21.5,
+     "implied": 21.0,
      "spread": 10.0,
-     "oppImplied": 31.5
+     "oppImplied": 31.0
     }
    },
    "bookCount": 11
@@ -290,18 +290,18 @@
    "homeName": "New England Patriots",
    "awayName": "Green Bay Packers",
    "kickoff": "2026-11-08T21:25:00Z",
-   "total": 46.0,
+   "total": 45.5,
    "homeSpread": -3.0,
    "teams": {
     "NE": {
-     "implied": 24.5,
+     "implied": 24.25,
      "spread": -3.0,
-     "oppImplied": 21.5
+     "oppImplied": 21.25
     },
     "GB": {
-     "implied": 21.5,
+     "implied": 21.25,
      "spread": 3.0,
-     "oppImplied": 24.5
+     "oppImplied": 24.25
     }
    },
    "bookCount": 11
@@ -336,18 +336,18 @@
    "homeName": "Minnesota Vikings",
    "awayName": "Buffalo Bills",
    "kickoff": "2026-11-10T01:15:00Z",
-   "total": 45.5,
+   "total": 45.0,
    "homeSpread": 3.0,
    "teams": {
     "MIN": {
-     "implied": 21.25,
+     "implied": 21.0,
      "spread": 3.0,
-     "oppImplied": 24.25
+     "oppImplied": 24.0
     },
     "BUF": {
-     "implied": 24.25,
+     "implied": 24.0,
      "spread": -3.0,
-     "oppImplied": 21.25
+     "oppImplied": 21.0
     }
    },
    "bookCount": 11
@@ -383,20 +383,20 @@
    "awayName": "New England Patriots",
    "kickoff": "2026-11-15T14:30:00Z",
    "total": 49.5,
-   "homeSpread": 0.75,
+   "homeSpread": -0.5,
    "teams": {
     "DET": {
-     "implied": 24.38,
-     "spread": 0.75,
-     "oppImplied": 25.12
+     "implied": 25.0,
+     "spread": -0.5,
+     "oppImplied": 24.5
     },
     "NE": {
-     "implied": 25.12,
-     "spread": -0.75,
-     "oppImplied": 24.38
+     "implied": 24.5,
+     "spread": 0.5,
+     "oppImplied": 25.0
     }
    },
-   "bookCount": 6
+   "bookCount": 8
   },
   {
    "matchup": "KCATL",
@@ -498,20 +498,20 @@
    "awayName": "Minnesota Vikings",
    "kickoff": "2026-11-15T18:00:00Z",
    "total": 41.5,
-   "homeSpread": -2.5,
+   "homeSpread": -3.0,
    "teams": {
     "GB": {
-     "implied": 22.0,
-     "spread": -2.5,
-     "oppImplied": 19.5
+     "implied": 22.25,
+     "spread": -3.0,
+     "oppImplied": 19.25
     },
     "MIN": {
-     "implied": 19.5,
-     "spread": 2.5,
-     "oppImplied": 22.0
+     "implied": 19.25,
+     "spread": 3.0,
+     "oppImplied": 22.25
     }
    },
-   "bookCount": 7
+   "bookCount": 4
   },
   {
    "matchup": "MIAIND",
