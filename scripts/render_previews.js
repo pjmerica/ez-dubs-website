@@ -30,6 +30,7 @@ const PAGES = {
   "politics-forecast":    { url: "/dashboards/politics-forecast/",    file: "dashboards/politics-forecast/index.html" },
   "nfl-start-sit":        { url: "/dashboards/nfl-start-sit/",        file: "dashboards/nfl-start-sit/index.html" },
   "nfl-rooting":          { url: "/dashboards/nfl-rooting/",          file: "dashboards/nfl-rooting/index.html" },
+  "nfl-book-spread":      { url: "/dashboards/nfl-book-spread/",      file: "dashboards/nfl-book-spread/index.html" },
   "prediction-arbitrage": { url: "/dashboards/prediction-arbitrage/", file: "dashboards/prediction-arbitrage/index.html" },
   "arb-calculator":       { url: "/dashboards/arb-calculator/",       file: "dashboards/arb-calculator/index.html" },
   "best-ball-prices":     { url: "/dashboards/best-ball-prices/",     file: "dashboards/best-ball-prices/index.html" },

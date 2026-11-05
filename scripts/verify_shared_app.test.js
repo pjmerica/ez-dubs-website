@@ -97,7 +97,7 @@ for (const c of CONSTANTS) {
 
 // The two NFL pages must keep sharing ONE app. Splitting them into two copies is
 // the obvious-looking "cleanup" that would let them drift apart silently.
-for (const page of ["nfl-start-sit", "nfl-rooting"]) {
+for (const page of ["nfl-start-sit", "nfl-rooting", "nfl-book-spread"]) {
   const p = path.join(ROOT, "dashboards", page, "index.html");
   if (!fs.existsSync(p)) { check(`${page} exists`, false, p); continue; }
   const html = fs.readFileSync(p, "utf8");

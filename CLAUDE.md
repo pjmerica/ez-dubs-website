@@ -112,9 +112,22 @@ publishes them on its own Pages site; the user gave permission to edit that repo
 
 ## NFL Redraft/In-Season pages (2026-10-01)
 
-`dashboards/nfl-start-sit/` and `dashboards/nfl-rooting/`, ported from the
-`lineup/` page in `pjmerica/AI_Agent_work`. Full detail in
-**`dashboards/NFL_REDRAFT.md`** -- read that before changing either page.
+`dashboards/nfl-start-sit/`, `dashboards/nfl-rooting/` and (2026-11-05)
+`dashboards/nfl-book-spread/`, ported from the `lineup/` page in
+`pjmerica/AI_Agent_work`. Full detail in **`dashboards/NFL_REDRAFT.md`** -- read
+that before changing any of them.
+
+**Book Spread** ranks players by how far apart the sportsbooks' projections are:
+one dot per book (Kalshi hollow), each scored half-PPR from that book's own
+lines with the consensus filling stats it did not price. Books are not given a
+colour each (nine identities on one row cannot all stay distinguishable); a
+"Highlight" picker paints one book red across every row instead. It needs no
+sign-in, so the Sleeper end-to-end run in `verify_nfl_pages` does not cover it.
+Passing-TD and receptions quotes reach it, and Start/Sit, as **expected counts
+from line and price** (`_count_mean` in AI_Agent_work's
+`fetch_oddsapi_weekly_props.py`), not raw half-point lines: books post different
+main lines at very different prices, which read as a 4-point disagreement that
+wasn't one.
 
 Two things that look like mistakes and are not:
 

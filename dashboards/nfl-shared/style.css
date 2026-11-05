@@ -527,6 +527,46 @@ tr.row-nan:hover { opacity: 0.85; }
    "projected" border. Dashed now means only that (2026-11-05, user's call). */
 
 
+/* ── Book Spread view (2026-11-05) ──────────────────────────────────────────
+   One ink dot per book on a shared points scale, centred on the consensus.
+   No colour per book: eight or nine identities on one row cannot all stay
+   distinguishable, so the books are told apart by hover and by name in the
+   Low/High column, and one chosen book can be painted red across every row. */
+.spread-controls {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px;
+  margin: 0 0 14px;
+}
+.spread-pos { display: flex; gap: 6px; }
+.spread-pick { font-size: 13px; color: #4a4740; display: flex; align-items: center; gap: 6px; }
+.spread-pick select {
+  font: inherit; color: #1a1a1a; background: #f3f0e8;
+  border: 1px solid #8a8478; padding: 3px 6px;
+}
+.spread-table td.spread-strip { width: 300px; padding-top: 4px; padding-bottom: 4px; }
+.spread-table .spread-axis {
+  display: flex; justify-content: space-between; width: 280px;
+  font-weight: 400; text-transform: none; letter-spacing: 0;
+}
+.spread-svg { display: block; width: 280px; height: 24px; overflow: visible; }
+.spread-svg .sp-cons { stroke: #4a4740; stroke-width: 1; }
+.spread-svg .sp-base { stroke: #cfc8b8; stroke-width: 1; }
+.spread-svg .sp-dot { fill: #1a1a1a; stroke: #f3f0e8; stroke-width: 2; }
+.spread-svg .sp-dot.kalshi { fill: #f3f0e8; stroke: #1a1a1a; stroke-width: 2; }
+.spread-svg .sp-dot.hl { fill: #b3261e; stroke: #f3f0e8; }
+.spread-svg .sp-dot.kalshi.hl { fill: #f3f0e8; stroke: #b3261e; stroke-width: 2.5; }
+.spread-svg .sp-hit { fill: transparent; cursor: help; }
+.spread-nums { font-size: 12px; color: #3a3833; line-height: 1.6; }
+.spread-nums .hl { color: #b3261e; font-weight: 700; }
+.spread-gap { font-weight: 700; font-variant-numeric: tabular-nums; text-align: right; }
+.spread-ends { font-size: 12px; color: #4a4740; white-space: nowrap; }
+.spread-ends .hl { color: #b3261e; font-weight: 700; }
+.spread-more { text-align: center; margin: 14px 0 0; }
+@media (max-width: 600px) {
+  .spread-table .spread-ends, .spread-table th.spread-ends-h { display: none; }
+  .spread-table td.spread-strip { width: auto; }
+  .spread-svg, .spread-table .spread-axis { width: 200px; }
+}
+
 /* ── Start/Sit view ───────────────────────────────────────────────────────── */
 .sitstart-grid {
   display: grid;

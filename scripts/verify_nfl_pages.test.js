@@ -41,6 +41,7 @@ const htmlPages = [
   "dashboards/prediction-arbitrage/index.html",
   "dashboards/nfl-start-sit/index.html",
   "dashboards/nfl-rooting/index.html",
+  "dashboards/nfl-book-spread/index.html",
 ];
 for (const rel of htmlPages) {
   const f = path.join(REPO, rel);
@@ -80,11 +81,12 @@ for (const rel of htmlPages) {
 // Each NFL page shows ONE view and has no tab strip -- the nav switches them.
 console.log("");
 console.log("=== one view per page, no tab strip ===");
-for (const [slug, view] of [["nfl-start-sit", "sleeper"], ["nfl-rooting", "rooting"]]) {
+for (const [slug, view] of [["nfl-start-sit", "sleeper"], ["nfl-rooting", "rooting"],
+                            ["nfl-book-spread", "spread"]]) {
   const raw = fs.readFileSync(
     path.join(REPO, "dashboards", slug, "index.html"), "utf8");
   check(slug + " has no tab strip", !raw.includes('id="view-tabs"'));
-  const views = [...raw.matchAll(/id="(sitstart|sleeper|rooting)-view"/g)]
+  const views = [...raw.matchAll(/id="(sitstart|sleeper|rooting|spread)-view"/g)]
     .map((m) => m[1]);
   check(slug + " carries only the " + view + " view",
     views.length === 1 && views[0] === view, views.join(", ") || "(none)");
@@ -96,6 +98,7 @@ console.log("=== active state ===");
 for (const [rel, want] of [
   ["dashboards/nfl-start-sit/index.html", "Start/Sit"],
   ["dashboards/nfl-rooting/index.html", "Root For/Against"],
+  ["dashboards/nfl-book-spread/index.html", "Book Spread"],
   ["dashboards/best-ball-prices/index.html", "Price Differences"],
 ]) {
   const dom = new JSDOM(fs.readFileSync(path.join(REPO, rel), "utf8"));
@@ -124,7 +127,8 @@ check("it lives in the shared directory",
 // Data stored once, not twice.
 check("only nfl-start-sit carries data/",
   fs.existsSync(path.join(REPO, "dashboards/nfl-start-sit/data/weekly.json")) &&
-  !fs.existsSync(path.join(REPO, "dashboards/nfl-rooting/data")));
+  !fs.existsSync(path.join(REPO, "dashboards/nfl-rooting/data")) &&
+  !fs.existsSync(path.join(REPO, "dashboards/nfl-book-spread/data")));
 
 // ---- both pages actually run ----------------------------------------------
 async function runPage(slug, expectView) {

@@ -288,8 +288,19 @@
   // Allen with his xTD 0.75 and an unchanged 23.3. The Sleeper tab was fine
   // because it scores through leaguePoints, which always filtered.
   function weeklyPoints(stats, format) {
+    const v = {};
+    for (const k of ["pass_yds", "pass_tds", "rush_yds", "rec_yds", "any_tds", "receptions"]) {
+      v[k] = lineUnderFilter(stats[k]);
+    }
+    return pointsFromLines(v, format);
+  }
+
+  // The scoring itself, from plain numbers ({stat: line}). weeklyPoints feeds
+  // it the book-filtered lines; the Book Spread view feeds it one book's own
+  // lines, so both score a line exactly the same way.
+  function pointsFromLines(lines, format) {
     const g = (k) => {
-      const v = lineUnderFilter(stats[k]);
+      const v = lines[k];
       return v == null ? 0 : v;
     };
     let pts = 0;
@@ -2783,17 +2794,209 @@
   const $ssView = document.getElementById("sitstart-view");
   const $lgView = document.getElementById("sleeper-view");
   const $rtView = document.getElementById("rooting-view");
+  const $spView = document.getElementById("spread-view");
 
   function showView(name) {
     if ($ssView) $ssView.classList.toggle("hidden", name !== "sitstart");
     if ($lgView) $lgView.classList.toggle("hidden", name !== "sleeper");
     if ($rtView) $rtView.classList.toggle("hidden", name !== "rooting");
+    if ($spView) $spView.classList.toggle("hidden", name !== "spread");
     document.querySelectorAll(".view-tab").forEach((t) =>
       t.classList.toggle("active", t.dataset.view === name));
     if (name === "sitstart") showSitStartView();
     else if (name === "rooting") showRootingView();
+    else if (name === "spread") showSpreadView();
     else showLeaguesView();
   }
+
+  /* ── Book Spread ────────────────────────────────────────────────────────────
+   * Players ranked by how far apart the books' projections are (2026-11-05).
+   *
+   * Each source gets its own projection: that source's line for every stat it
+   * posted, the consensus (oddsapi's median) for the rest, scored half-PPR by
+   * pointsFromLines. Filling the gaps with the consensus means a dot moves only
+   * on what that book priced; a book that skipped receptions is not shown
+   * 2.5 points low for it. Kalshi is its own source, from weekly.json.
+   */
+  const SPREAD_LIMIT = 40;
+  const SPREAD_POS = new Set(["QB", "RB", "WR", "TE"]);
+  let spreadPos = "ALL", spreadBook = "", spreadNumbers = false, spreadAll = false;
+
+  function sourceLabel(id) {
+    return id === "kalshi" ? "Kalshi" : (BOOK_LABEL[id] || id);
+  }
+
+  function buildSpreadRows() {
+    const pool = buildSitStartPoolFull();
+    const live = (feed) => {
+      const m = new Map();
+      for (const p of ((feed && feed.players) || [])) {
+        if (!p.lockedAtKickoff) m.set(normPlayerName(p.name), p);
+      }
+      return m;
+    };
+    const oaBy = live(cache["oddsapi"]), wkBy = live(cache["weekly"]);
+    const rows = [];
+    for (const [key, pp] of pool) {
+      if (!SPREAD_POS.has(pp.position) || playerHasKickedOff(pp)) continue;
+      const o = oaBy.get(key), w = wkBy.get(key);
+      if (!o && !w) continue;
+      const consensus = {};
+      for (const [k, v] of Object.entries((o && o.stats) || {})) {
+        if (v && v.line != null) consensus[k] = v.line;
+      }
+      for (const [k, v] of Object.entries((w && w.stats) || {})) {
+        if (v && v.line != null && consensus[k] == null) consensus[k] = v.line;
+      }
+      const src = new Map();
+      const take = (id, k, line) => {
+        if (!src.has(id)) src.set(id, { lines: {}, priced: [] });
+        const s = src.get(id);
+        s.lines[k] = line;
+        s.priced.push(STAT_LABELS[k] || k);
+      };
+      for (const [k, v] of Object.entries((o && o.stats) || {})) {
+        for (const q of ((v && v.quotes) || [])) {
+          if (q && q.book && q.line != null) take(q.book, k, q.line);
+        }
+      }
+      // Kalshi's passing-TD and receptions lines are ladder medians; the books'
+      // are expected counts (fetch_oddsapi_weekly_props.py, 2026-11-05), so use
+      // the ladder's expectation where Kalshi gives one.
+      for (const [k, v] of Object.entries((w && w.stats) || {})) {
+        if (!v || v.line == null) continue;
+        const cnt = (k === "pass_tds" || k === "receptions") && v.expected != null;
+        take("kalshi", k, cnt ? v.expected : v.line);
+      }
+      if (src.size < 3) continue;
+      const dots = [...src.entries()].map(([id, s]) => ({
+        id, priced: s.priced,
+        pts: pointsFromLines({ ...consensus, ...s.lines }, "half"),
+      })).sort((a, b) => a.pts - b.pts);
+      const cons = pointsFromLines(consensus, "half");
+      rows.push({
+        name: pp.name, position: pp.position, matchup: pp.matchup, cons, dots,
+        low: dots[0], high: dots[dots.length - 1],
+        gap: dots[dots.length - 1].pts - dots[0].pts,
+      });
+    }
+    rows.sort((a, b) => b.gap - a.gap || b.cons - a.cons);
+    return rows;
+  }
+
+  function spreadStrip(r, half) {
+    const W = 280, H = 24, mid = W / 2, pad = 8;
+    const x = (pts) => mid + ((pts - r.cons) / half) * (mid - pad);
+    let out = '<svg class="spread-svg" viewBox="0 0 ' + W + " " + H + '" role="img" aria-label="' +
+      escapeHtml(r.dots.map((d) => sourceLabel(d.id) + " " + d.pts.toFixed(1)).join(", ")) + '">' +
+      '<line class="sp-base" x1="' + pad + '" x2="' + (W - pad) + '" y1="12" y2="12"/>' +
+      '<line class="sp-cons" x1="' + mid + '" x2="' + mid + '" y1="3" y2="21"/>';
+    // The highlighted book is drawn last so it sits on top of any overlap.
+    const order = r.dots.filter((d) => d.id !== spreadBook)
+      .concat(r.dots.filter((d) => d.id === spreadBook));
+    for (const d of order) {
+      const cx = x(d.pts).toFixed(1);
+      const cls = "sp-dot" + (d.id === "kalshi" ? " kalshi" : "") +
+        (d.id === spreadBook ? " hl" : "");
+      out += "<g><title>" + escapeHtml(sourceLabel(d.id) + ": " + d.pts.toFixed(1) +
+        " pts (priced " + d.priced.join(", ") + ")") + "</title>" +
+        '<circle class="sp-hit" cx="' + cx + '" cy="12" r="9"/>' +
+        '<circle class="' + cls + '" cx="' + cx + '" cy="12" r="' +
+        (d.id === spreadBook ? 5.5 : 4.5) + '"/></g>';
+    }
+    return out + "</svg>";
+  }
+
+  function renderSpread() {
+    const $out = document.getElementById("spread-output");
+    if (!$out) return;
+    const all = buildSpreadRows();
+    // The Highlight menu lists every source that priced anyone this week.
+    const $sel = document.getElementById("spread-book");
+    if ($sel) {
+      const ids = new Set();
+      all.forEach((r) => r.dots.forEach((d) => ids.add(d.id)));
+      const opts = [...ids].sort((a, b) => sourceLabel(a).localeCompare(sourceLabel(b)));
+      $sel.innerHTML = '<option value="">No book</option>' + opts.map((id) =>
+        '<option value="' + escapeHtml(id) + '"' + (id === spreadBook ? " selected" : "") +
+        ">" + escapeHtml(sourceLabel(id)) + "</option>").join("");
+    }
+    const rows = all.filter((r) => spreadPos === "ALL" || r.position === spreadPos);
+    if (!rows.length) {
+      $out.innerHTML = '<div class="empty">No player has lines from three or more ' +
+        "sources in a game that has not kicked off. Lines for the coming week " +
+        "usually post by Thursday.</div>";
+      return;
+    }
+    const shown = spreadAll ? rows : rows.slice(0, SPREAD_LIMIT);
+    // One scale for every row: half the widest swing shown, at least a point,
+    // rounded up to a half point so the axis labels are tidy.
+    const widest = Math.max(...shown.map((r) =>
+      Math.max(r.cons - r.low.pts, r.high.pts - r.cons)));
+    const half = Math.max(1, Math.ceil(widest * 2) / 2);
+    const name = (d) => escapeHtml(sourceLabel(d.id));
+    const hl = (d) => (d.id === spreadBook ? ' class="hl"' : "");
+    const ends = (r) => "<span" + hl(r.low) + ">" + name(r.low) + " " + r.low.pts.toFixed(1) +
+      "</span> &middot; <span" + hl(r.high) + ">" + name(r.high) + " " +
+      r.high.pts.toFixed(1) + "</span>";
+    let html = '<div class="table-wrap" tabindex="0"><table class="slot-table spread-table">' +
+      "<thead><tr><th>Player</th><th>Pos</th>" +
+      '<th class="game-col">Game</th>' +
+      '<th style="text-align:right">Proj</th><th style="text-align:right">Gap</th>' +
+      '<th class="spread-strip">' + (spreadNumbers ? "Each source, half-PPR"
+        : '<span class="spread-axis"><span>&minus;' + half + "</span><span>consensus</span>" +
+          "<span>+" + half + " pts</span></span>") + "</th>" +
+      '<th class="spread-ends-h">Low &middot; High</th></tr></thead><tbody>';
+    for (const r of shown) {
+      const strip = spreadNumbers
+        ? '<div class="spread-nums">' + r.dots.map((d) =>
+            "<span" + hl(d) + ">" + name(d) + " " + d.pts.toFixed(1) + "</span>")
+            .join(" &middot; ") + "</div>"
+        : spreadStrip(r, half);
+      html += "<tr>" +
+        '<td class="player-name"><span class="pname">' + escapeHtml(r.name) + "</span>" +
+        gameSub(gameLabel(r.matchup) || "-") + "</td>" +
+        '<td><span class="pos-badge pos-' + escapeHtml(r.position) + '">' +
+        escapeHtml(r.position) + "</span></td>" +
+        '<td class="weekly-game game-col">' + escapeHtml(gameLabel(r.matchup) || "-") + "</td>" +
+        '<td style="text-align:right"><span class="market-pts">' + r.cons.toFixed(1) +
+        "</span></td>" +
+        '<td class="spread-gap">' + r.gap.toFixed(1) + "</td>" +
+        '<td class="spread-strip">' + strip + "</td>" +
+        '<td class="spread-ends">' + ends(r) + "</td></tr>";
+    }
+    html += "</tbody></table></div>";
+    if (rows.length > SPREAD_LIMIT) {
+      html += '<div class="spread-more"><button class="fmt-btn" id="spread-all">' +
+        (spreadAll ? "Show top " + SPREAD_LIMIT + " only"
+          : "Show all " + rows.length + " players") + "</button></div>";
+    }
+    $out.innerHTML = html;
+    const $all = document.getElementById("spread-all");
+    if ($all) $all.addEventListener("click", () => { spreadAll = !spreadAll; renderSpread(); });
+  }
+
+  async function showSpreadView() {
+    await loadData();
+    renderSpread();
+  }
+
+  (function wireSpread() {
+    const $view = document.getElementById("spread-view");
+    if (!$view) return;
+    $view.querySelectorAll(".spread-pos .chip").forEach((b) => {
+      b.addEventListener("click", () => {
+        spreadPos = b.dataset.pos;
+        $view.querySelectorAll(".spread-pos .chip").forEach((x) =>
+          x.classList.toggle("active", x === b));
+        renderSpread();
+      });
+    });
+    const $sel = document.getElementById("spread-book");
+    if ($sel) $sel.addEventListener("change", () => { spreadBook = $sel.value; renderSpread(); });
+    const $num = document.getElementById("spread-numbers");
+    if ($num) $num.addEventListener("change", () => { spreadNumbers = $num.checked; renderSpread(); });
+  })();
 
   async function showRootingView() {
     await loadData();
@@ -3046,7 +3249,7 @@
    * window.LINEUP_DEFAULT_VIEW; a URL hash overrides it, so an existing
    * deep-link still works. Falls back to the first tab when neither is set.
    */
-  const VALID_VIEWS = new Set(["sitstart", "sleeper", "rooting"]);
+  const VALID_VIEWS = new Set(["sitstart", "sleeper", "rooting", "spread"]);
   const hashView = (window.location.hash || "").replace(/^#/, "");
   const wanted = VALID_VIEWS.has(hashView) ? hashView
     : VALID_VIEWS.has(window.LINEUP_DEFAULT_VIEW) ? window.LINEUP_DEFAULT_VIEW

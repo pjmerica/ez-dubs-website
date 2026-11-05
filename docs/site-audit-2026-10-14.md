@@ -909,6 +909,42 @@ covers the bye case. `lineup_page.test.js` faked every kickoff three days
 out, which on a Monday crossed the week cut and emptied its board; it now
 uses ten minutes.
 
+### 42. Book Spread page; count props read as lines (2026-11-05)
+
+- **Dotted chip edges removed** (user's call). On Start/Sit a dotted bottom
+  edge marked a book line where the books disagreed. Nearly every multi-book
+  line differs a little, nothing explained the mark, and it read as the dashed
+  "projected" border. Dashed now means only projected; the tooltip still lists
+  each book.
+- **New page, Book Spread** (`dashboards/nfl-book-spread/`, user's request):
+  players ranked by the gap between the lowest and the highest book's half-PPR
+  projection, one dot per book on a shared scale centred on the consensus,
+  Kalshi hollow. A book's dot uses its own lines, with the consensus filling
+  the stats it skipped, so a dot moves only on what that book priced. Not one
+  colour per book: the data-viz rules cap distinguishable hues on one row at
+  three. Instead the lowest and highest books are named in text, a Highlight
+  picker paints one book red on every row, and "Show numbers" lists every
+  value. Position filter, top 40 with Show all. A fourth view in upstream
+  `lineup/`, ported like the other two, and added to the NFL menu, the sitemap
+  and the a11y, CSP, shared-app and NFL-page checks.
+- **Count props were read as raw lines.** Building the page showed QBs at the
+  top with 4-point gaps that weren't disagreements. Books post passing TDs and
+  receptions at half-point lines but pick different main lines at different
+  prices: Dak Prescott was 2.5 at +155 on DraftKings and 1.5 at -250 on BetMGM,
+  a full touchdown apart as lines and about the same opinion as prices. The
+  same reading fed Start/Sit and ran low for skewed counts (Justin Herbert's
+  0.5 at -250 is ~1.2 expected TDs, so ~3 points short). Upstream's Odds API
+  scraper now stores each such quote as the Poisson mean its line and price
+  imply, after a 2.25-point vig haircut (`_count_mean`; the posted line is kept
+  as `posted`), and Kalshi's dot uses its ladder expectation for those stats.
+  With that applied to the day's data, the widest gaps fell from 4.6 to 1.7
+  points and the list mixed RBs and QBs. QB projections on Start/Sit move up a
+  little as a result (an even-money 1.5 is ~1.6 expected TDs). Covered by
+  upstream `tests/count_conversion.test.py`.
+- Not done: a link-preview screenshot for the new page. `render_previews.js`
+  needs a local browser, which couldn't run in this session, so the page uses
+  the default logo preview until it is re-run.
+
 ## Found but not fixed here
 
 ### Privacy: what still links the site to the GitHub account

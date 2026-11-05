@@ -11,8 +11,10 @@ real Sleeper leagues live in the browser.
 |---|---|---|
 | Start/Sit | `dashboards/nfl-start-sit/` | the Sleeper Start/Sit tab |
 | Root For/Against | `dashboards/nfl-rooting/` | the Root For/Against tab |
+| Book Spread | `dashboards/nfl-book-spread/` | the Book Spread tab (2026-11-05) |
 
-Both are in the top nav under **NFL → Redraft/In-Season**.
+All three are in the top nav under **NFL → Redraft/In-Season**, and all three
+load the same `nfl-shared/app.js` and the one `nfl-start-sit/data/`.
 
 ## The thing to understand first
 
