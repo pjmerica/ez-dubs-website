@@ -941,6 +941,12 @@ uses ten minutes.
   points and the list mixed RBs and QBs. QB projections on Start/Sit move up a
   little as a result (an even-money 1.5 is ~1.6 expected TDs). Covered by
   upstream `tests/count_conversion.test.py`.
+- **Position badges failed contrast on every NFL page.** CI's axe run flagged
+  the new page's QB, RB and TE badges at 3.9-4.4:1: dark text on an 18% tint
+  of the same colour. Start/Sit and Root For/Against carry the same badges,
+  but their tables appear only after a Sleeper sign-in, which the audit never
+  does, so it had gone unseen. They are outlined text now (the port's
+  `NFL_SITE_CSS`), as on the Best Ball pages.
 - Not done: a link-preview screenshot for the new page. `render_previews.js`
   needs a local browser, which couldn't run in this session, so the page uses
   the default logo preview until it is re-run.

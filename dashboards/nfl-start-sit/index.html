@@ -74,6 +74,11 @@
   .locked-row, tr.row-nan, .stat-off { opacity: 1; }
   .locked-row td, .locked-row .player-name, tr.row-nan td, .stat-off { color: var(--muted); }
   .locked-row .slot-badge, .locked-row .pos-badge { background: transparent; border: 1px solid currentColor; }
+  /* Position badges are outlined text, as on the Best Ball pages. The 18%
+     tints behind them took QB, RB and TE to 3.9-4.4:1, under AA; axe caught
+     it on Book Spread (2026-11-05), the first NFL table it sees without a
+     Sleeper sign-in. The text colours alone pass on paper. */
+  .pos-badge { background: transparent; border: 1px solid currentColor; }
   /* Source Serif sets wider than the old system font, so at 390px a settled
      lineup ran 25px past its scroll box (383 in 358). Tighter cells win it back. */
   @media (max-width: 600px) {
