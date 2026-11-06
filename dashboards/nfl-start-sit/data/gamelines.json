@@ -1,10 +1,10 @@
 {
  "source": "The Odds API",
  "region": "us",
- "lastUpdated": "2026-11-05T20:55:30+00:00",
+ "lastUpdated": "2026-11-05T23:58:33+00:00",
  "gameCount": 28,
- "quotaUsed": "497",
- "quotaRemaining": "19503",
+ "quotaUsed": "589",
+ "quotaRemaining": "19411",
  "note": "Median spread and total across books. Implied team total = total/2 - spread/2. Used to score D/ST and K, which have no prop market.",
  "games": [
   {
@@ -14,18 +14,18 @@
    "homeName": "Baltimore Ravens",
    "awayName": "Jacksonville Jaguars",
    "kickoff": "2026-11-06T01:15:00Z",
-   "total": 39.5,
-   "homeSpread": 10.0,
+   "total": 40.0,
+   "homeSpread": 9.5,
    "teams": {
     "BAL": {
-     "implied": 14.75,
-     "spread": 10.0,
+     "implied": 15.25,
+     "spread": 9.5,
      "oppImplied": 24.75
     },
     "JAC": {
      "implied": 24.75,
-     "spread": -10.0,
-     "oppImplied": 14.75
+     "spread": -9.5,
+     "oppImplied": 15.25
     }
    },
    "bookCount": 11
@@ -290,18 +290,18 @@
    "homeName": "New England Patriots",
    "awayName": "Green Bay Packers",
    "kickoff": "2026-11-08T21:25:00Z",
-   "total": 45.5,
+   "total": 45.0,
    "homeSpread": -3.0,
    "teams": {
     "NE": {
-     "implied": 24.25,
+     "implied": 24.0,
      "spread": -3.0,
-     "oppImplied": 21.25
+     "oppImplied": 21.0
     },
     "GB": {
-     "implied": 21.25,
+     "implied": 21.0,
      "spread": 3.0,
-     "oppImplied": 24.25
+     "oppImplied": 24.0
     }
    },
    "bookCount": 11
@@ -336,18 +336,18 @@
    "homeName": "Minnesota Vikings",
    "awayName": "Buffalo Bills",
    "kickoff": "2026-11-10T01:15:00Z",
-   "total": 45.0,
+   "total": 44.5,
    "homeSpread": 3.0,
    "teams": {
     "MIN": {
-     "implied": 21.0,
+     "implied": 20.75,
      "spread": 3.0,
-     "oppImplied": 24.0
+     "oppImplied": 23.75
     },
     "BUF": {
-     "implied": 24.0,
+     "implied": 23.75,
      "spread": -3.0,
-     "oppImplied": 21.0
+     "oppImplied": 20.75
     }
    },
    "bookCount": 11
