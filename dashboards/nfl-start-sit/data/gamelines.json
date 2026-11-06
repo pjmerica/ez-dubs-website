@@ -1,10 +1,10 @@
 {
  "source": "The Odds API",
  "region": "us",
- "lastUpdated": "2026-11-05T23:58:33+00:00",
- "gameCount": 28,
- "quotaUsed": "589",
- "quotaRemaining": "19411",
+ "lastUpdated": "2026-11-06T02:58:30+00:00",
+ "gameCount": 26,
+ "quotaUsed": "675",
+ "quotaRemaining": "19325",
  "note": "Median spread and total across books. Implied team total = total/2 - spread/2. Used to score D/ST and K, which have no prop market.",
  "games": [
   {
@@ -28,7 +28,8 @@
      "oppImplied": 15.25
     }
    },
-   "bookCount": 11
+   "bookCount": 11,
+   "lockedAtKickoff": true
   },
   {
    "matchup": "CINATL",
@@ -537,29 +538,6 @@
    "bookCount": 7
   },
   {
-   "matchup": "JACTEN",
-   "home": "TEN",
-   "away": "JAC",
-   "homeName": "Tennessee Titans",
-   "awayName": "Jacksonville Jaguars",
-   "kickoff": "2026-11-15T18:00:00Z",
-   "total": 44.5,
-   "homeSpread": 9.5,
-   "teams": {
-    "TEN": {
-     "implied": 17.5,
-     "spread": 9.5,
-     "oppImplied": 27.0
-    },
-    "JAC": {
-     "implied": 27.0,
-     "spread": -9.5,
-     "oppImplied": 17.5
-    }
-   },
-   "bookCount": 7
-  },
-  {
    "matchup": "LARARI",
    "home": "ARI",
    "away": "LAR",
@@ -627,29 +605,6 @@
     }
    },
    "bookCount": 7
-  },
-  {
-   "matchup": "LACBAL",
-   "home": "BAL",
-   "away": "LAC",
-   "homeName": "Baltimore Ravens",
-   "awayName": "Los Angeles Chargers",
-   "kickoff": "2026-11-17T01:15:00Z",
-   "total": 38.5,
-   "homeSpread": -1.5,
-   "teams": {
-    "BAL": {
-     "implied": 20.0,
-     "spread": -1.5,
-     "oppImplied": 18.5
-    },
-    "LAC": {
-     "implied": 18.5,
-     "spread": 1.5,
-     "oppImplied": 20.0
-    }
-   },
-   "bookCount": 3
   }
  ]
 }
