@@ -1,10 +1,10 @@
 {
  "source": "The Odds API",
  "region": "us",
- "lastUpdated": "2026-11-06T20:11:48+00:00",
+ "lastUpdated": "2026-11-07T18:31:55+00:00",
  "gameCount": 27,
- "quotaUsed": "761",
- "quotaRemaining": "19239",
+ "quotaUsed": "847",
+ "quotaRemaining": "19153",
  "note": "Median spread and total across books. Implied team total = total/2 - spread/2. Used to score D/ST and K, which have no prop market.",
  "games": [
   {
@@ -84,17 +84,17 @@
    "awayName": "Dallas Cowboys",
    "kickoff": "2026-11-08T18:00:00Z",
    "total": 51.5,
-   "homeSpread": 5.5,
+   "homeSpread": 4.5,
    "teams": {
     "IND": {
-     "implied": 23.0,
-     "spread": 5.5,
-     "oppImplied": 28.5
+     "implied": 23.5,
+     "spread": 4.5,
+     "oppImplied": 28.0
     },
     "DAL": {
-     "implied": 28.5,
-     "spread": -5.5,
-     "oppImplied": 23.0
+     "implied": 28.0,
+     "spread": -4.5,
+     "oppImplied": 23.5
     }
    },
    "bookCount": 11
@@ -106,18 +106,18 @@
    "homeName": "Miami Dolphins",
    "awayName": "Detroit Lions",
    "kickoff": "2026-11-08T18:00:00Z",
-   "total": 50.5,
+   "total": 50.0,
    "homeSpread": 6.5,
    "teams": {
     "MIA": {
-     "implied": 22.0,
+     "implied": 21.75,
      "spread": 6.5,
-     "oppImplied": 28.5
+     "oppImplied": 28.25
     },
     "DET": {
-     "implied": 28.5,
+     "implied": 28.25,
      "spread": -6.5,
-     "oppImplied": 22.0
+     "oppImplied": 21.75
     }
    },
    "bookCount": 11
@@ -129,18 +129,18 @@
    "homeName": "Kansas City Chiefs",
    "awayName": "New York Jets",
    "kickoff": "2026-11-08T18:00:00Z",
-   "total": 48.0,
+   "total": 47.5,
    "homeSpread": -9.5,
    "teams": {
     "KC": {
-     "implied": 28.75,
+     "implied": 28.5,
      "spread": -9.5,
-     "oppImplied": 19.25
+     "oppImplied": 19.0
     },
     "NYJ": {
-     "implied": 19.25,
+     "implied": 19.0,
      "spread": 9.5,
-     "oppImplied": 28.75
+     "oppImplied": 28.5
     }
    },
    "bookCount": 11
@@ -199,17 +199,17 @@
    "awayName": "Houston Texans",
    "kickoff": "2026-11-08T21:05:00Z",
    "total": 40.5,
-   "homeSpread": 5.5,
+   "homeSpread": 6.0,
    "teams": {
     "LAC": {
-     "implied": 17.5,
-     "spread": 5.5,
-     "oppImplied": 23.0
+     "implied": 17.25,
+     "spread": 6.0,
+     "oppImplied": 23.25
     },
     "HOU": {
-     "implied": 23.0,
-     "spread": -5.5,
-     "oppImplied": 17.5
+     "implied": 23.25,
+     "spread": -6.0,
+     "oppImplied": 17.25
     }
    },
    "bookCount": 11
@@ -222,17 +222,17 @@
    "awayName": "Las Vegas Raiders",
    "kickoff": "2026-11-08T21:05:00Z",
    "total": 52.0,
-   "homeSpread": -10.0,
+   "homeSpread": -9.5,
    "teams": {
     "SF": {
-     "implied": 31.0,
-     "spread": -10.0,
-     "oppImplied": 21.0
+     "implied": 30.75,
+     "spread": -9.5,
+     "oppImplied": 21.25
     },
     "LV": {
-     "implied": 21.0,
-     "spread": 10.0,
-     "oppImplied": 31.0
+     "implied": 21.25,
+     "spread": 9.5,
+     "oppImplied": 30.75
     }
    },
    "bookCount": 11
@@ -327,7 +327,7 @@
      "oppImplied": 20.5
     }
    },
-   "bookCount": 11
+   "bookCount": 10
   },
   {
    "matchup": "WASNYG",
@@ -360,17 +360,17 @@
    "awayName": "New England Patriots",
    "kickoff": "2026-11-15T14:30:00Z",
    "total": 49.5,
-   "homeSpread": -0.5,
+   "homeSpread": -1.0,
    "teams": {
     "DET": {
-     "implied": 25.0,
-     "spread": -0.5,
-     "oppImplied": 24.5
+     "implied": 25.25,
+     "spread": -1.0,
+     "oppImplied": 24.25
     },
     "NE": {
-     "implied": 24.5,
-     "spread": 0.5,
-     "oppImplied": 25.0
+     "implied": 24.25,
+     "spread": 1.0,
+     "oppImplied": 25.25
     }
    },
    "bookCount": 8
@@ -396,7 +396,7 @@
      "oppImplied": 21.75
     }
    },
-   "bookCount": 7
+   "bookCount": 8
   },
   {
    "matchup": "BUFNYJ",
@@ -405,21 +405,21 @@
    "homeName": "New York Jets",
    "awayName": "Buffalo Bills",
    "kickoff": "2026-11-15T18:00:00Z",
-   "total": 51.0,
+   "total": 50.75,
    "homeSpread": 7.5,
    "teams": {
     "NYJ": {
-     "implied": 21.75,
+     "implied": 21.62,
      "spread": 7.5,
-     "oppImplied": 29.25
+     "oppImplied": 29.12
     },
     "BUF": {
-     "implied": 29.25,
+     "implied": 29.12,
      "spread": -7.5,
-     "oppImplied": 21.75
+     "oppImplied": 21.62
     }
    },
-   "bookCount": 7
+   "bookCount": 8
   },
   {
    "matchup": "CARNO",
@@ -442,7 +442,7 @@
      "oppImplied": 22.75
     }
    },
-   "bookCount": 7
+   "bookCount": 8
   },
   {
    "matchup": "HOUCLE",
@@ -465,7 +465,7 @@
      "oppImplied": 18.0
     }
    },
-   "bookCount": 7
+   "bookCount": 8
   },
   {
    "matchup": "MINGB",
@@ -488,7 +488,7 @@
      "oppImplied": 22.25
     }
    },
-   "bookCount": 4
+   "bookCount": 5
   },
   {
    "matchup": "MIAIND",
@@ -511,7 +511,7 @@
      "oppImplied": 22.25
     }
    },
-   "bookCount": 7
+   "bookCount": 8
   },
   {
    "matchup": "JACTEN",
@@ -520,21 +520,21 @@
    "homeName": "Tennessee Titans",
    "awayName": "Jacksonville Jaguars",
    "kickoff": "2026-11-15T18:00:00Z",
-   "total": 44.75,
+   "total": 44.5,
    "homeSpread": 10.0,
    "teams": {
     "TEN": {
-     "implied": 17.38,
+     "implied": 17.25,
      "spread": 10.0,
-     "oppImplied": 27.38
+     "oppImplied": 27.25
     },
     "JAC": {
-     "implied": 27.38,
+     "implied": 27.25,
      "spread": -10.0,
-     "oppImplied": 17.38
+     "oppImplied": 17.25
     }
    },
-   "bookCount": 4
+   "bookCount": 5
   },
   {
    "matchup": "LARARI",
@@ -590,17 +590,17 @@
    "awayName": "Pittsburgh Steelers",
    "kickoff": "2026-11-16T01:20:00Z",
    "total": 47.5,
-   "homeSpread": -3.5,
+   "homeSpread": -3.0,
    "teams": {
     "CIN": {
-     "implied": 25.5,
-     "spread": -3.5,
-     "oppImplied": 22.0
+     "implied": 25.25,
+     "spread": -3.0,
+     "oppImplied": 22.25
     },
     "PIT": {
-     "implied": 22.0,
-     "spread": 3.5,
-     "oppImplied": 25.5
+     "implied": 22.25,
+     "spread": 3.0,
+     "oppImplied": 25.25
     }
    },
    "bookCount": 7
