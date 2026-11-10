@@ -951,6 +951,42 @@ uses ten minutes.
   needs a local browser, which couldn't run in this session, so the page uses
   the default logo preview until it is re-run.
 
+### 43. Closing-lines archive, scored against results (2026-11-10)
+
+- **The lines were only in git history** (user asked whether they were saved).
+  Every refresh was a commit, so 84 Odds API and 91 Kalshi snapshots existed,
+  but nothing marked a closing line and no results sat beside them. Upstream now
+  has `nfl-props/archive/2026/week-NN.json` (user's request), one per finished
+  week. For every game and player-game it holds the last committed snapshot
+  before ESPN's kickoff (each book's line and price, the consensus, Kalshi), the
+  opening consensus, Sleeper's actual stat line and ESPN's final score.
+  Backfilled for weeks 1-9: about 3,800 player-games, 3.8 MB.
+  `build_lines_archive.py` builds it from git history, and `nfl-archive.yml`
+  runs it Tuesday and Friday at no credit cost. A week is rebuilt for 14 days to
+  pick up stat corrections, then left alone.
+- **Closing means the last saved snapshot.** Since the Sunday pre-kickoff
+  refreshes (week 7), that is usually 20 minutes out. Weeks 1 and 4 have one
+  saved snapshot a day or three before their games. Each row records `closeAt`.
+- **`score_lines_archive.py` writes `scorecard.json`.** Each source is scored
+  against the consensus on the same player-games, because books price different
+  players. Results over weeks 1-9:
+  - The eight books and Kalshi are within a few hundredths of a yard or catch of
+    each other. No book is meaningfully sharper.
+  - Closing lines beat opening ones only slightly (rushing 17.7 to 17.4 yards).
+  - Anytime-TD prices average 18.5% against 15.7% scored, the books' margin.
+    Kalshi runs higher (22.3% against 18.6%) and scores worst on that market.
+  - Game totals went over 53% of the time, and home teams covered 43%.
+- **Kalshi's count lines are medians, the books' are means.** Kalshi posts
+  receptions and passing TDs as ladders and the scraper reads the 50% point;
+  its `expected` field is null for those stats. Scoring a mean against a
+  median with absolute error favoured Kalshi for the convention alone, so the
+  scorecard converts each book's mean to the same ladder median first. The
+  same mismatch reaches Book Spread, whose Kalshi dot falls back to that
+  median for those two stats: about a third of a catch low. Not fixed yet.
+- Also fixed on the way: upstream's `books_page.test.js` matched "Maye" inside
+  "Mayer", and the lineup page's four view tabs pushed a 360px phone sideways
+  (they wrap now).
+
 ## Found but not fixed here
 
 ### Privacy: what still links the site to the GitHub account

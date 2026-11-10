@@ -129,6 +129,13 @@ from line and price** (`_count_mean` in AI_Agent_work's
 main lines at very different prices, which read as a 4-point disagreement that
 wasn't one.
 
+**Past lines and results live upstream (2026-11-10):** AI_Agent_work's
+`nfl-props/archive/<season>/week-NN.json` holds every finished week's closing
+lines (each book's line and price, Kalshi) beside Sleeper's actual stats and
+ESPN's scores, and `scorecard.json` compares the sources. Built from git history
+by `build_lines_archive.py` (`nfl-archive.yml`, Tuesday and Friday); its
+`README.md` there explains the layout. Nothing on this site reads it yet.
+
 Two things that look like mistakes and are not:
 
 - **Both pages load the same `dashboards/nfl-shared/app.js`.** They are two URLs
