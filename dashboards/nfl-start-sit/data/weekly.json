@@ -1,31 +1,32 @@
 {
-  "lastUpdated": "2026-11-10T17:21:56+00:00",
+  "lastUpdated": "2026-11-12T09:34:43+00:00",
   "season": "2026",
   "source": "Kalshi (per-game)",
   "note": "Per-game player props for the upcoming slate. Kalshi purges settled markets, so whatever is open is the next set of games -- there is no way to fetch a week that has already been played.",
   "week": 10,
   "kickoffs": [
     "26NOV12",
-    "26NOV15"
+    "26NOV15",
+    "26NOV16"
   ],
-  "gameCount": 2,
-  "playerGameCount": 39,
+  "gameCount": 14,
+  "playerGameCount": 287,
   "matchupConflicts": [],
   "statCounts": {
-    "receptions": 10,
-    "rec_yds": 17,
-    "any_tds": 39,
-    "rush_yds": 9,
-    "pass_yds": 3,
-    "pass_tds": 3
+    "receptions": 14,
+    "rec_yds": 115,
+    "any_tds": 287,
+    "rush_yds": 71,
+    "pass_yds": 25,
+    "pass_tds": 25
   },
   "seriesMarketCounts": {
-    "KXNFLREC": 67,
-    "KXNFLRECYDS": 176,
-    "KXNFLRSHYDS": 86,
-    "KXNFLPASSYDS": 29,
-    "KXNFLPASSTDS": 14,
-    "KXNFLTD": 74
+    "KXNFLREC": 89,
+    "KXNFLRECYDS": 1229,
+    "KXNFLRSHYDS": 639,
+    "KXNFLPASSYDS": 238,
+    "KXNFLPASSTDS": 105,
+    "KXNFLTD": 523
   },
   "players": [
     {
@@ -42,14 +43,14 @@
           "confidentRungs": 9
         },
         "rec_yds": {
-          "line": 41.9,
+          "line": 36.8,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 13,
           "confidentRungs": 13
         },
         "any_tds": {
-          "line": 0.26,
+          "line": 0.19,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -64,21 +65,21 @@
       "matchup": "WASNYG",
       "stats": {
         "receptions": {
-          "line": 1.4,
+          "line": 1.6,
           "lineSource": "fitted",
           "expected": null,
           "rungs": 4,
           "confidentRungs": 4
         },
         "rec_yds": {
-          "line": 8.7,
+          "line": 9.6,
           "lineSource": "fitted",
           "expected": null,
           "rungs": 6,
           "confidentRungs": 6
         },
         "rush_yds": {
-          "line": 25.5,
+          "line": 27.6,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 10,
@@ -94,24 +95,67 @@
       }
     },
     {
+      "name": "Cam Skattebo",
+      "game": "26NOV12:WASNYG",
+      "kickoff": "26NOV12",
+      "matchup": "WASNYG",
+      "stats": {
+        "receptions": {
+          "line": 1.3,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 4
+        },
+        "rec_yds": {
+          "line": 8.8,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 6,
+          "confidentRungs": 6
+        },
+        "rush_yds": {
+          "line": 53.1,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 11,
+          "confidentRungs": 11
+        },
+        "any_tds": {
+          "line": 0.51,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
       "name": "Chig Okonkwo",
       "game": "26NOV12:WASNYG",
       "kickoff": "26NOV12",
       "matchup": "WASNYG",
       "stats": {
+        "receptions": {
+          "line": 3.6,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 8
+        },
         "rec_yds": {
-          "line": 35.6,
+          "line": 35.3,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 12,
-          "confidentRungs": 12
+          "confidentRungs": 11
         },
         "any_tds": {
-          "line": 0.265,
+          "line": 0.235,
           "lineSource": "expected",
           "expected": null,
-          "rungs": 2,
-          "confidentRungs": 2
+          "rungs": 3,
+          "confidentRungs": 3
         }
       }
     },
@@ -121,15 +165,22 @@
       "kickoff": "26NOV12",
       "matchup": "WASNYG",
       "stats": {
+        "receptions": {
+          "line": 1.4,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 4
+        },
         "rec_yds": {
-          "line": 15.9,
+          "line": 15.4,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 9,
           "confidentRungs": 9
         },
         "any_tds": {
-          "line": 0.115,
+          "line": 0.11,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -151,21 +202,21 @@
           "confidentRungs": 4
         },
         "rec_yds": {
-          "line": 9.4,
+          "line": 9.2,
           "lineSource": "fitted",
           "expected": null,
           "rungs": 6,
           "confidentRungs": 6
         },
         "rush_yds": {
-          "line": 24.8,
+          "line": 24.2,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 13,
           "confidentRungs": 13
         },
         "any_tds": {
-          "line": 0.31,
+          "line": 0.3,
           "lineSource": "expected",
           "expected": null,
           "rungs": 3,
@@ -202,14 +253,14 @@
           "confidentRungs": 9
         },
         "rec_yds": {
-          "line": 49.0,
+          "line": 48.4,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 12,
-          "confidentRungs": 12
+          "confidentRungs": 9
         },
         "any_tds": {
-          "line": 0.38,
+          "line": 0.385,
           "lineSource": "expected",
           "expected": null,
           "rungs": 3,
@@ -218,58 +269,43 @@
       }
     },
     {
-      "name": "Jaden Bradley",
-      "game": "26NOV12:WASNYG",
-      "kickoff": "26NOV12",
-      "matchup": "WASNYG",
-      "stats": {
-        "any_tds": {
-          "line": 0.065,
-          "lineSource": "expected",
-          "expected": null,
-          "rungs": 1,
-          "confidentRungs": 1
-        }
-      }
-    },
-    {
-      "name": "Jayden Daniels",
+      "name": "J.J. McCarthy",
       "game": "26NOV12:WASNYG",
       "kickoff": "26NOV12",
       "matchup": "WASNYG",
       "stats": {
         "rush_yds": {
-          "line": 35.0,
+          "line": 15.4,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 8,
+          "confidentRungs": 8
+        },
+        "pass_yds": {
+          "line": 206.0,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 10,
           "confidentRungs": 10
         },
-        "pass_yds": {
-          "line": 200.4,
-          "lineSource": "interpolated",
-          "expected": null,
-          "rungs": 9,
-          "confidentRungs": 9
-        },
         "pass_tds": {
-          "line": 1.1,
+          "line": 1.2,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 4,
           "confidentRungs": 4
         },
         "any_tds": {
-          "line": 0.315,
+          "line": 0.17,
           "lineSource": "expected",
           "expected": null,
-          "rungs": 3,
-          "confidentRungs": 3
+          "rungs": 2,
+          "confidentRungs": 2
         }
       }
     },
     {
-      "name": "John Bates",
+      "name": "Jaden Bradley",
       "game": "26NOV12:WASNYG",
       "kickoff": "26NOV12",
       "matchup": "WASNYG",
@@ -284,13 +320,64 @@
       }
     },
     {
+      "name": "Jayden Daniels",
+      "game": "26NOV12:WASNYG",
+      "kickoff": "26NOV12",
+      "matchup": "WASNYG",
+      "stats": {
+        "rush_yds": {
+          "line": 36.1,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 8
+        },
+        "pass_yds": {
+          "line": 202.0,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "pass_tds": {
+          "line": 1.1,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 4
+        },
+        "any_tds": {
+          "line": 0.285,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "John Bates",
+      "game": "26NOV12:WASNYG",
+      "kickoff": "26NOV12",
+      "matchup": "WASNYG",
+      "stats": {
+        "any_tds": {
+          "line": 0.045,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
       "name": "Luke McCaffrey",
       "game": "26NOV12:WASNYG",
       "kickoff": "26NOV12",
       "matchup": "WASNYG",
       "stats": {
         "any_tds": {
-          "line": 0.095,
+          "line": 0.06,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -305,21 +392,21 @@
       "matchup": "WASNYG",
       "stats": {
         "receptions": {
-          "line": 2.0,
+          "line": 2.1,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 6,
           "confidentRungs": 6
         },
         "rec_yds": {
-          "line": 25.1,
+          "line": 26.2,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 10,
-          "confidentRungs": 10
+          "confidentRungs": 9
         },
         "any_tds": {
-          "line": 0.18,
+          "line": 0.19,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -338,17 +425,17 @@
           "lineSource": "interpolated",
           "expected": 5.8,
           "rungs": 11,
-          "confidentRungs": 11
+          "confidentRungs": 10
         },
         "rec_yds": {
-          "line": 67.1,
+          "line": 69.9,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 14,
           "confidentRungs": 14
         },
         "any_tds": {
-          "line": 0.455,
+          "line": 0.44,
           "lineSource": "expected",
           "expected": null,
           "rungs": 3,
@@ -363,7 +450,7 @@
       "matchup": "WASNYG",
       "stats": {
         "any_tds": {
-          "line": 0.135,
+          "line": 0.14,
           "lineSource": "expected",
           "expected": null,
           "rungs": 1,
@@ -385,21 +472,21 @@
           "confidentRungs": 6
         },
         "rec_yds": {
-          "line": 12.6,
+          "line": 12.4,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 8,
           "confidentRungs": 8
         },
         "rush_yds": {
-          "line": 37.2,
+          "line": 37.6,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 10,
           "confidentRungs": 10
         },
         "any_tds": {
-          "line": 0.415,
+          "line": 0.405,
           "lineSource": "expected",
           "expected": null,
           "rungs": 3,
@@ -421,14 +508,14 @@
           "confidentRungs": 9
         },
         "rec_yds": {
-          "line": 40.6,
+          "line": 39.2,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 12,
           "confidentRungs": 12
         },
         "any_tds": {
-          "line": 0.33,
+          "line": 0.325,
           "lineSource": "expected",
           "expected": null,
           "rungs": 3,
@@ -450,7 +537,7 @@
           "confidentRungs": 4
         },
         "rec_yds": {
-          "line": 4.7,
+          "line": 5.0,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 7,
@@ -466,27 +553,56 @@
       }
     },
     {
-      "name": "Van Jefferson",
+      "name": "Treylon Burks",
       "game": "26NOV12:WASNYG",
       "kickoff": "26NOV12",
       "matchup": "WASNYG",
       "stats": {
         "receptions": {
-          "line": 1.5,
+          "line": 2.0,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 5,
           "confidentRungs": 5
         },
         "rec_yds": {
-          "line": 15.2,
+          "line": 12.7,
           "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 12,
+          "confidentRungs": 10
+        },
+        "any_tds": {
+          "line": 0.205,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Van Jefferson",
+      "game": "26NOV12:WASNYG",
+      "kickoff": "26NOV12",
+      "matchup": "WASNYG",
+      "stats": {
+        "receptions": {
+          "line": 1.0,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 5,
+          "confidentRungs": 5
+        },
+        "rec_yds": {
+          "line": 8.0,
+          "lineSource": "fitted",
           "expected": null,
           "rungs": 8,
           "confidentRungs": 8
         },
         "any_tds": {
-          "line": 0.16,
+          "line": 0.1,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -510,20 +626,609 @@
       }
     },
     {
+      "name": "AJ Barner",
+      "game": "26NOV15:SEALV",
+      "kickoff": "26NOV15",
+      "matchup": "SEALV",
+      "stats": {
+        "rec_yds": {
+          "line": 22.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "any_tds": {
+          "line": 0.27,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "ARI Cardinals D/ST",
+      "game": "26NOV15:LARARI",
+      "kickoff": "26NOV15",
+      "matchup": "LARARI",
+      "stats": {
+        "any_tds": {
+          "line": 0.085,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "ATL Falcons D/ST",
+      "game": "26NOV15:KCATL",
+      "kickoff": "26NOV15",
+      "matchup": "KCATL",
+      "stats": {
+        "any_tds": {
+          "line": 0.085,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Aaron Jones Sr.",
+      "game": "26NOV15:MINGB",
+      "kickoff": "26NOV15",
+      "matchup": "MINGB",
+      "stats": {
+        "rec_yds": {
+          "line": 10.1,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 6,
+          "confidentRungs": 6
+        },
+        "rush_yds": {
+          "line": 28.1,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "any_tds": {
+          "line": 0.275,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Aaron Rodgers",
+      "game": "26NOV15:PITCIN",
+      "kickoff": "26NOV15",
+      "matchup": "PITCIN",
+      "stats": {
+        "rush_yds": {
+          "line": 3.5,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        },
+        "pass_yds": {
+          "line": 240.2,
+          "lineSource": "interpolated",
+          "expected": 227.1,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "pass_tds": {
+          "line": 1.4,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 4
+        },
+        "any_tds": {
+          "line": 0.06,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Adonai Mitchell",
+      "game": "26NOV15:BUFNYJ",
+      "kickoff": "26NOV15",
+      "matchup": "BUFNYJ",
+      "stats": {
+        "any_tds": {
+          "line": 0.24,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Alvin Kamara",
+      "game": "26NOV15:CARNO",
+      "kickoff": "26NOV15",
+      "matchup": "CARNO",
+      "stats": {
+        "any_tds": {
+          "line": 0.355,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Ameer Abdullah",
+      "game": "26NOV15:JACTEN",
+      "kickoff": "26NOV15",
+      "matchup": "JACTEN",
+      "stats": {
+        "any_tds": {
+          "line": 0.12,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
       "name": "Amon-Ra St. Brown",
       "game": "26NOV15:NEDET",
       "kickoff": "26NOV15",
       "matchup": "NEDET",
       "stats": {
         "rec_yds": {
-          "line": 78.8,
+          "line": 82.1,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 13,
           "confidentRungs": 13
         },
         "any_tds": {
-          "line": 0.6,
+          "line": 0.57,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Andrew Armstrong",
+      "game": "26NOV15:KCATL",
+      "kickoff": "26NOV15",
+      "matchup": "KCATL",
+      "stats": {
+        "any_tds": {
+          "line": 0.05,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Anthony Gould",
+      "game": "26NOV15:MIAIND",
+      "kickoff": "26NOV15",
+      "matchup": "MIAIND",
+      "stats": {
+        "any_tds": {
+          "line": 0.09,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Ashton Dulin",
+      "game": "26NOV15:MIAIND",
+      "kickoff": "26NOV15",
+      "matchup": "MIAIND",
+      "stats": {
+        "any_tds": {
+          "line": 0.125,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Ashton Jeanty",
+      "game": "26NOV15:SEALV",
+      "kickoff": "26NOV15",
+      "matchup": "SEALV",
+      "stats": {
+        "rec_yds": {
+          "line": 24.3,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "rush_yds": {
+          "line": 34.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "any_tds": {
+          "line": 0.4,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Audric Estime",
+      "game": "26NOV15:CARNO",
+      "kickoff": "26NOV15",
+      "matchup": "CARNO",
+      "stats": {
+        "any_tds": {
+          "line": 0.445,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Austin Hooper",
+      "game": "26NOV15:KCATL",
+      "kickoff": "26NOV15",
+      "matchup": "KCATL",
+      "stats": {
+        "any_tds": {
+          "line": 0.05,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "BUF Bills D/ST",
+      "game": "26NOV15:BUFNYJ",
+      "kickoff": "26NOV15",
+      "matchup": "BUFNYJ",
+      "stats": {
+        "any_tds": {
+          "line": 0.1,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Ben Yurosek",
+      "game": "26NOV15:MINGB",
+      "kickoff": "26NOV15",
+      "matchup": "MINGB",
+      "stats": {
+        "any_tds": {
+          "line": 0.075,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Bhayshul Tuten",
+      "game": "26NOV15:JACTEN",
+      "kickoff": "26NOV15",
+      "matchup": "JACTEN",
+      "stats": {
+        "rec_yds": {
+          "line": 10.9,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 7,
+          "confidentRungs": 7
+        },
+        "rush_yds": {
+          "line": 66.6,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 11,
+          "confidentRungs": 11
+        },
+        "any_tds": {
+          "line": 0.68,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Bijan Robinson",
+      "game": "26NOV15:KCATL",
+      "kickoff": "26NOV15",
+      "matchup": "KCATL",
+      "stats": {
+        "rec_yds": {
+          "line": 28.3,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "rush_yds": {
+          "line": 88.8,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 13,
+          "confidentRungs": 13
+        },
+        "any_tds": {
+          "line": 0.8,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Blake Corum",
+      "game": "26NOV15:LARARI",
+      "kickoff": "26NOV15",
+      "matchup": "LARARI",
+      "stats": {
+        "rec_yds": {
+          "line": 7.5,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 7,
+          "confidentRungs": 7
+        },
+        "rush_yds": {
+          "line": 55.3,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 11,
+          "confidentRungs": 11
+        },
+        "any_tds": {
+          "line": 0.555,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Blake Whiteheart",
+      "game": "26NOV15:HOUCLE",
+      "kickoff": "26NOV15",
+      "matchup": "HOUCLE",
+      "stats": {
+        "any_tds": {
+          "line": 0.065,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Braelon Allen",
+      "game": "26NOV15:BUFNYJ",
+      "kickoff": "26NOV15",
+      "matchup": "BUFNYJ",
+      "stats": {
+        "rush_yds": {
+          "line": 34.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 11,
+          "confidentRungs": 11
+        },
+        "any_tds": {
+          "line": 0.375,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Brandin Cooks",
+      "game": "26NOV15:SFDAL",
+      "kickoff": "26NOV15",
+      "matchup": "SFDAL",
+      "stats": {
+        "any_tds": {
+          "line": 0.06,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Brandon Smith",
+      "game": "26NOV15:PITCIN",
+      "kickoff": "26NOV15",
+      "matchup": "PITCIN",
+      "stats": {
+        "any_tds": {
+          "line": 0.06,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Breece Hall",
+      "game": "26NOV15:BUFNYJ",
+      "kickoff": "26NOV15",
+      "matchup": "BUFNYJ",
+      "stats": {
+        "rec_yds": {
+          "line": 16.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 8,
+          "confidentRungs": 8
+        },
+        "rush_yds": {
+          "line": 51.8,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 11,
+          "confidentRungs": 11
+        },
+        "any_tds": {
+          "line": 0.54,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Brenton Strange",
+      "game": "26NOV15:JACTEN",
+      "kickoff": "26NOV15",
+      "matchup": "JACTEN",
+      "stats": {
+        "rec_yds": {
+          "line": 35.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 12,
+          "confidentRungs": 12
+        },
+        "any_tds": {
+          "line": 0.3,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Brevyn Spann-Ford",
+      "game": "26NOV15:SFDAL",
+      "kickoff": "26NOV15",
+      "matchup": "SFDAL",
+      "stats": {
+        "any_tds": {
+          "line": 0.245,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Brian Thomas Jr.",
+      "game": "26NOV15:JACTEN",
+      "kickoff": "26NOV15",
+      "matchup": "JACTEN",
+      "stats": {
+        "any_tds": {
+          "line": 0.215,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Brock Bowers",
+      "game": "26NOV15:SEALV",
+      "kickoff": "26NOV15",
+      "matchup": "SEALV",
+      "stats": {
+        "rec_yds": {
+          "line": 57.0,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 12,
+          "confidentRungs": 12
+        },
+        "any_tds": {
+          "line": 0.325,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Brock Purdy",
+      "game": "26NOV15:SFDAL",
+      "kickoff": "26NOV15",
+      "matchup": "SFDAL",
+      "stats": {
+        "rush_yds": {
+          "line": 18.8,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 8,
+          "confidentRungs": 8
+        },
+        "pass_yds": {
+          "line": 257.8,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "pass_tds": {
+          "line": 2.0,
+          "lineSource": "interpolated",
+          "expected": 2.0,
+          "rungs": 5,
+          "confidentRungs": 5
+        },
+        "any_tds": {
+          "line": 0.27,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -538,11 +1243,524 @@
       "matchup": "NEDET",
       "stats": {
         "any_tds": {
-          "line": 0.065,
+          "line": 0.06,
           "lineSource": "expected",
           "expected": null,
           "rungs": 1,
           "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Bryce Lance",
+      "game": "26NOV15:CARNO",
+      "kickoff": "26NOV15",
+      "matchup": "CARNO",
+      "stats": {
+        "any_tds": {
+          "line": 0.08,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Bryce Young",
+      "game": "26NOV15:CARNO",
+      "kickoff": "26NOV15",
+      "matchup": "CARNO",
+      "stats": {
+        "rush_yds": {
+          "line": 9.4,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 7,
+          "confidentRungs": 6
+        },
+        "pass_yds": {
+          "line": 249.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "pass_tds": {
+          "line": 1.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 4
+        },
+        "any_tds": {
+          "line": 0.14,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Brycen Tremayne",
+      "game": "26NOV15:CARNO",
+      "kickoff": "26NOV15",
+      "matchup": "CARNO",
+      "stats": {
+        "any_tds": {
+          "line": 0.07,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "C.J. Stroud",
+      "game": "26NOV15:HOUCLE",
+      "kickoff": "26NOV15",
+      "matchup": "HOUCLE",
+      "stats": {
+        "rush_yds": {
+          "line": 9.0,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 6,
+          "confidentRungs": 6
+        },
+        "pass_yds": {
+          "line": 244.5,
+          "lineSource": "interpolated",
+          "expected": 232.3,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "pass_tds": {
+          "line": 1.4,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 4
+        },
+        "any_tds": {
+          "line": 0.155,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "CAR Panthers D/ST",
+      "game": "26NOV15:CARNO",
+      "kickoff": "26NOV15",
+      "matchup": "CARNO",
+      "stats": {
+        "any_tds": {
+          "line": 0.085,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "CIN Bengals D/ST",
+      "game": "26NOV15:PITCIN",
+      "kickoff": "26NOV15",
+      "matchup": "PITCIN",
+      "stats": {
+        "any_tds": {
+          "line": 0.095,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "CJ Daniels",
+      "game": "26NOV15:LARARI",
+      "kickoff": "26NOV15",
+      "matchup": "LARARI",
+      "stats": {
+        "any_tds": {
+          "line": 0.08,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "CLE Browns D/ST",
+      "game": "26NOV15:HOUCLE",
+      "kickoff": "26NOV15",
+      "matchup": "HOUCLE",
+      "stats": {
+        "any_tds": {
+          "line": 0.095,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Caleb Douglas",
+      "game": "26NOV15:MIAIND",
+      "kickoff": "26NOV15",
+      "matchup": "MIAIND",
+      "stats": {
+        "rec_yds": {
+          "line": 38.1,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 12,
+          "confidentRungs": 12
+        },
+        "any_tds": {
+          "line": 0.21,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Calvin Ridley",
+      "game": "26NOV15:JACTEN",
+      "kickoff": "26NOV15",
+      "matchup": "JACTEN",
+      "stats": {
+        "rec_yds": {
+          "line": 13.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 8,
+          "confidentRungs": 8
+        },
+        "any_tds": {
+          "line": 0.115,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Cam Ward",
+      "game": "26NOV15:JACTEN",
+      "kickoff": "26NOV15",
+      "matchup": "JACTEN",
+      "stats": {
+        "rush_yds": {
+          "line": 9.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 6,
+          "confidentRungs": 6
+        },
+        "pass_yds": {
+          "line": 202.8,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "pass_tds": {
+          "line": 0.9,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 4
+        },
+        "any_tds": {
+          "line": 0.165,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Camden Brown",
+      "game": "26NOV15:SFDAL",
+      "kickoff": "26NOV15",
+      "matchup": "SFDAL",
+      "stats": {
+        "any_tds": {
+          "line": 0.055,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Carson Beck",
+      "game": "26NOV15:LARARI",
+      "kickoff": "26NOV15",
+      "matchup": "LARARI",
+      "stats": {
+        "rush_yds": {
+          "line": 13.3,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 8,
+          "confidentRungs": 8
+        },
+        "pass_yds": {
+          "line": 181.0,
+          "lineSource": "interpolated",
+          "expected": 175.7,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "pass_tds": {
+          "line": 0.7,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        },
+        "any_tds": {
+          "line": 0.135,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "CeeDee Lamb",
+      "game": "26NOV15:SFDAL",
+      "kickoff": "26NOV15",
+      "matchup": "SFDAL",
+      "stats": {
+        "rec_yds": {
+          "line": 87.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 15,
+          "confidentRungs": 15
+        },
+        "any_tds": {
+          "line": 0.61,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Charlie Woerner",
+      "game": "26NOV15:KCATL",
+      "kickoff": "26NOV15",
+      "matchup": "KCATL",
+      "stats": {
+        "any_tds": {
+          "line": 0.05,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Chase Brown",
+      "game": "26NOV15:PITCIN",
+      "kickoff": "26NOV15",
+      "matchup": "PITCIN",
+      "stats": {
+        "rec_yds": {
+          "line": 24.1,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "rush_yds": {
+          "line": 44.0,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "any_tds": {
+          "line": 0.605,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Chimere Dike",
+      "game": "26NOV15:JACTEN",
+      "kickoff": "26NOV15",
+      "matchup": "JACTEN",
+      "stats": {
+        "any_tds": {
+          "line": 0.095,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Chris Olave",
+      "game": "26NOV15:CARNO",
+      "kickoff": "26NOV15",
+      "matchup": "CARNO",
+      "stats": {
+        "rec_yds": {
+          "line": 75.0,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 12,
+          "confidentRungs": 11
+        },
+        "any_tds": {
+          "line": 0.455,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Chris Rodriguez Jr.",
+      "game": "26NOV15:JACTEN",
+      "kickoff": "26NOV15",
+      "matchup": "JACTEN",
+      "stats": {
+        "any_tds": {
+          "line": 0.42,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Christian McCaffrey",
+      "game": "26NOV15:SFDAL",
+      "kickoff": "26NOV15",
+      "matchup": "SFDAL",
+      "stats": {
+        "rec_yds": {
+          "line": 32.9,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 11,
+          "confidentRungs": 11
+        },
+        "rush_yds": {
+          "line": 60.6,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "any_tds": {
+          "line": 1.0,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Christian Watson",
+      "game": "26NOV15:MINGB",
+      "kickoff": "26NOV15",
+      "matchup": "MINGB",
+      "stats": {
+        "rec_yds": {
+          "line": 73.0,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 13,
+          "confidentRungs": 13
+        },
+        "any_tds": {
+          "line": 0.46,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Chuba Hubbard",
+      "game": "26NOV15:CARNO",
+      "kickoff": "26NOV15",
+      "matchup": "CARNO",
+      "stats": {
+        "rec_yds": {
+          "line": 18.0,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 8,
+          "confidentRungs": 8
+        },
+        "rush_yds": {
+          "line": 79.1,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 12,
+          "confidentRungs": 12
+        },
+        "any_tds": {
+          "line": 0.695,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Cooper Kupp",
+      "game": "26NOV15:SEALV",
+      "kickoff": "26NOV15",
+      "matchup": "SEALV",
+      "stats": {
+        "rec_yds": {
+          "line": 20.3,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "any_tds": {
+          "line": 0.21,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
         }
       }
     },
@@ -553,18 +1771,48 @@
       "matchup": "NEDET",
       "stats": {
         "rush_yds": {
-          "line": 52.0,
+          "line": 52.5,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 11,
           "confidentRungs": 11
         },
         "any_tds": {
-          "line": 0.515,
+          "line": 0.49,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
           "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Cyrus Allen",
+      "game": "26NOV15:KCATL",
+      "kickoff": "26NOV15",
+      "matchup": "KCATL",
+      "stats": {
+        "any_tds": {
+          "line": 0.08,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "DAL Cowboys D/ST",
+      "game": "26NOV15:SFDAL",
+      "kickoff": "26NOV15",
+      "matchup": "SFDAL",
+      "stats": {
+        "any_tds": {
+          "line": 0.085,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
         }
       }
     },
@@ -575,11 +1823,245 @@
       "matchup": "NEDET",
       "stats": {
         "any_tds": {
-          "line": 0.1,
+          "line": 0.095,
           "lineSource": "expected",
           "expected": null,
           "rungs": 1,
           "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "DJ Moore",
+      "game": "26NOV15:BUFNYJ",
+      "kickoff": "26NOV15",
+      "matchup": "BUFNYJ",
+      "stats": {
+        "rec_yds": {
+          "line": 44.3,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 12,
+          "confidentRungs": 12
+        },
+        "any_tds": {
+          "line": 0.34,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "DK Metcalf",
+      "game": "26NOV15:PITCIN",
+      "kickoff": "26NOV15",
+      "matchup": "PITCIN",
+      "stats": {
+        "rec_yds": {
+          "line": 50.4,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 13,
+          "confidentRungs": 13
+        },
+        "any_tds": {
+          "line": 0.37,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Dak Prescott",
+      "game": "26NOV15:SFDAL",
+      "kickoff": "26NOV15",
+      "matchup": "SFDAL",
+      "stats": {
+        "rush_yds": {
+          "line": 9.5,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 6,
+          "confidentRungs": 6
+        },
+        "pass_yds": {
+          "line": 273.4,
+          "lineSource": "interpolated",
+          "expected": 255.2,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "pass_tds": {
+          "line": 1.8,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 5,
+          "confidentRungs": 4
+        },
+        "any_tds": {
+          "line": 0.155,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Dalton Kincaid",
+      "game": "26NOV15:BUFNYJ",
+      "kickoff": "26NOV15",
+      "matchup": "BUFNYJ",
+      "stats": {
+        "rec_yds": {
+          "line": 39.1,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 12,
+          "confidentRungs": 12
+        },
+        "any_tds": {
+          "line": 0.33,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Dalton Schultz",
+      "game": "26NOV15:HOUCLE",
+      "kickoff": "26NOV15",
+      "matchup": "HOUCLE",
+      "stats": {
+        "rec_yds": {
+          "line": 30.8,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 11,
+          "confidentRungs": 11
+        },
+        "any_tds": {
+          "line": 0.23,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Daniel Bellinger",
+      "game": "26NOV15:JACTEN",
+      "kickoff": "26NOV15",
+      "matchup": "JACTEN",
+      "stats": {
+        "any_tds": {
+          "line": 0.06,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Daniel Jones",
+      "game": "26NOV15:MIAIND",
+      "kickoff": "26NOV15",
+      "matchup": "MIAIND",
+      "stats": {
+        "rush_yds": {
+          "line": 9.6,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 6,
+          "confidentRungs": 6
+        },
+        "pass_yds": {
+          "line": 184.7,
+          "lineSource": "interpolated",
+          "expected": 178.6,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "pass_tds": {
+          "line": 1.0,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 4
+        },
+        "any_tds": {
+          "line": 0.14,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Darnell Washington",
+      "game": "26NOV15:PITCIN",
+      "kickoff": "26NOV15",
+      "matchup": "PITCIN",
+      "stats": {
+        "rec_yds": {
+          "line": 26.6,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 11,
+          "confidentRungs": 11
+        },
+        "any_tds": {
+          "line": 0.285,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Darren Waller",
+      "game": "26NOV15:CARNO",
+      "kickoff": "26NOV15",
+      "matchup": "CARNO",
+      "stats": {
+        "rec_yds": {
+          "line": 21.8,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 11,
+          "confidentRungs": 10
+        },
+        "any_tds": {
+          "line": 0.265,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Dawson Knox",
+      "game": "26NOV15:BUFNYJ",
+      "kickoff": "26NOV15",
+      "matchup": "BUFNYJ",
+      "stats": {
+        "any_tds": {
+          "line": 0.19,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
         }
       }
     },
@@ -590,7 +2072,7 @@
       "matchup": "NEDET",
       "stats": {
         "any_tds": {
-          "line": 0.055,
+          "line": 0.05,
           "lineSource": "expected",
           "expected": null,
           "rungs": 1,
@@ -605,7 +2087,176 @@
       "matchup": "NEDET",
       "stats": {
         "any_tds": {
-          "line": 0.29,
+          "line": 0.305,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Deion Burks",
+      "game": "26NOV15:MIAIND",
+      "kickoff": "26NOV15",
+      "matchup": "MIAIND",
+      "stats": {
+        "any_tds": {
+          "line": 0.125,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Demarcus Robinson",
+      "game": "26NOV15:SFDAL",
+      "kickoff": "26NOV15",
+      "matchup": "SFDAL",
+      "stats": {
+        "any_tds": {
+          "line": 0.23,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Denzel Boston",
+      "game": "26NOV15:HOUCLE",
+      "kickoff": "26NOV15",
+      "matchup": "HOUCLE",
+      "stats": {
+        "rec_yds": {
+          "line": 47.6,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 13,
+          "confidentRungs": 13
+        },
+        "any_tds": {
+          "line": 0.275,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Deshaun Watson",
+      "game": "26NOV15:HOUCLE",
+      "kickoff": "26NOV15",
+      "matchup": "HOUCLE",
+      "stats": {
+        "rush_yds": {
+          "line": 26.8,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 8,
+          "confidentRungs": 8
+        },
+        "pass_yds": {
+          "line": 209.5,
+          "lineSource": "interpolated",
+          "expected": 200.7,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "pass_tds": {
+          "line": 1.0,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        },
+        "any_tds": {
+          "line": 0.17,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Devaughn Vele",
+      "game": "26NOV15:CARNO",
+      "kickoff": "26NOV15",
+      "matchup": "CARNO",
+      "stats": {
+        "rec_yds": {
+          "line": 28.7,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 11,
+          "confidentRungs": 11
+        },
+        "any_tds": {
+          "line": 0.205,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Devin Duvernay",
+      "game": "26NOV15:LARARI",
+      "kickoff": "26NOV15",
+      "matchup": "LARARI",
+      "stats": {
+        "any_tds": {
+          "line": 0.105,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Dohnte Meyers",
+      "game": "26NOV15:PITCIN",
+      "kickoff": "26NOV15",
+      "matchup": "PITCIN",
+      "stats": {
+        "rec_yds": {
+          "line": 19.0,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "any_tds": {
+          "line": 0.16,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Drake London",
+      "game": "26NOV15:KCATL",
+      "kickoff": "26NOV15",
+      "matchup": "KCATL",
+      "stats": {
+        "rec_yds": {
+          "line": 70.6,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 12,
+          "confidentRungs": 12
+        },
+        "any_tds": {
+          "line": 0.42,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -620,14 +2271,14 @@
       "matchup": "NEDET",
       "stats": {
         "rush_yds": {
-          "line": 23.9,
+          "line": 25.6,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 8,
           "confidentRungs": 8
         },
         "pass_yds": {
-          "line": 258.7,
+          "line": 258.8,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 10,
@@ -641,7 +2292,51 @@
           "confidentRungs": 5
         },
         "any_tds": {
-          "line": 0.245,
+          "line": 0.26,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Drew Sample",
+      "game": "26NOV15:PITCIN",
+      "kickoff": "26NOV15",
+      "matchup": "PITCIN",
+      "stats": {
+        "any_tds": {
+          "line": 0.1,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Dylan Sampson",
+      "game": "26NOV15:HOUCLE",
+      "kickoff": "26NOV15",
+      "matchup": "HOUCLE",
+      "stats": {
+        "rec_yds": {
+          "line": 21.6,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "rush_yds": {
+          "line": 18.8,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 8,
+          "confidentRungs": 8
+        },
+        "any_tds": {
+          "line": 0.225,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -656,7 +2351,7 @@
       "matchup": "NEDET",
       "stats": {
         "any_tds": {
-          "line": 0.165,
+          "line": 0.17,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -680,17 +2375,415 @@
       }
     },
     {
+      "name": "Elic Ayomanor",
+      "game": "26NOV15:JACTEN",
+      "kickoff": "26NOV15",
+      "matchup": "JACTEN",
+      "stats": {
+        "rec_yds": {
+          "line": 22.8,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "any_tds": {
+          "line": 0.15,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Elijah Higgins",
+      "game": "26NOV15:LARARI",
+      "kickoff": "26NOV15",
+      "matchup": "LARARI",
+      "stats": {
+        "rec_yds": {
+          "line": 17.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "any_tds": {
+          "line": 0.135,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Emanuel Wilson",
+      "game": "26NOV15:SEALV",
+      "kickoff": "26NOV15",
+      "matchup": "SEALV",
+      "stats": {
+        "any_tds": {
+          "line": 0.06,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Emmett Johnson",
+      "game": "26NOV15:KCATL",
+      "kickoff": "26NOV15",
+      "matchup": "KCATL",
+      "stats": {
+        "rec_yds": {
+          "line": 11.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 7,
+          "confidentRungs": 7
+        },
+        "rush_yds": {
+          "line": 9.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 6,
+          "confidentRungs": 6
+        },
+        "any_tds": {
+          "line": 0.185,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Eric Saubert",
+      "game": "26NOV15:SEALV",
+      "kickoff": "26NOV15",
+      "matchup": "SEALV",
+      "stats": {
+        "any_tds": {
+          "line": 0.045,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Evan Hull",
+      "game": "26NOV15:LARARI",
+      "kickoff": "26NOV15",
+      "matchup": "LARARI",
+      "stats": {
+        "any_tds": {
+          "line": 0.035,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Fernando Mendoza",
+      "game": "26NOV15:SEALV",
+      "kickoff": "26NOV15",
+      "matchup": "SEALV",
+      "stats": {
+        "rush_yds": {
+          "line": 13.1,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 6,
+          "confidentRungs": 5
+        },
+        "pass_yds": {
+          "line": 187.7,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "pass_tds": {
+          "line": 0.8,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        },
+        "any_tds": {
+          "line": 0.145,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Foster Moreau",
+      "game": "26NOV15:HOUCLE",
+      "kickoff": "26NOV15",
+      "matchup": "HOUCLE",
+      "stats": {
+        "any_tds": {
+          "line": 0.125,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "GB Packers D/ST",
+      "game": "26NOV15:MINGB",
+      "kickoff": "26NOV15",
+      "matchup": "MINGB",
+      "stats": {
+        "any_tds": {
+          "line": 0.125,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Gavin Bartholomew",
+      "game": "26NOV15:MINGB",
+      "kickoff": "26NOV15",
+      "matchup": "MINGB",
+      "stats": {
+        "any_tds": {
+          "line": 0.045,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Geno Smith",
+      "game": "26NOV15:BUFNYJ",
+      "kickoff": "26NOV15",
+      "matchup": "BUFNYJ",
+      "stats": {
+        "pass_yds": {
+          "line": 219.0,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "pass_tds": {
+          "line": 1.1,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 4
+        },
+        "any_tds": {
+          "line": 0.09,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "George Holani",
+      "game": "26NOV15:SEALV",
+      "kickoff": "26NOV15",
+      "matchup": "SEALV",
+      "stats": {
+        "any_tds": {
+          "line": 0.07,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "George Kittle",
+      "game": "26NOV15:SFDAL",
+      "kickoff": "26NOV15",
+      "matchup": "SFDAL",
+      "stats": {
+        "rec_yds": {
+          "line": 61.8,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 15,
+          "confidentRungs": 15
+        },
+        "any_tds": {
+          "line": 0.55,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Germie Bernard",
+      "game": "26NOV15:PITCIN",
+      "kickoff": "26NOV15",
+      "matchup": "PITCIN",
+      "stats": {
+        "rec_yds": {
+          "line": 47.8,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 12,
+          "confidentRungs": 12
+        },
+        "any_tds": {
+          "line": 0.275,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Greg Dulcich",
+      "game": "26NOV15:MIAIND",
+      "kickoff": "26NOV15",
+      "matchup": "MIAIND",
+      "stats": {
+        "rec_yds": {
+          "line": 32.6,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 11,
+          "confidentRungs": 11
+        },
+        "any_tds": {
+          "line": 0.19,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Gunnar Helm",
+      "game": "26NOV15:JACTEN",
+      "kickoff": "26NOV15",
+      "matchup": "JACTEN",
+      "stats": {
+        "rec_yds": {
+          "line": 21.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "any_tds": {
+          "line": 0.14,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "HOU Texans D/ST",
+      "game": "26NOV15:HOUCLE",
+      "kickoff": "26NOV15",
+      "matchup": "HOUCLE",
+      "stats": {
+        "any_tds": {
+          "line": 0.09,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Harold Fannin Jr.",
+      "game": "26NOV15:HOUCLE",
+      "kickoff": "26NOV15",
+      "matchup": "HOUCLE",
+      "stats": {
+        "rec_yds": {
+          "line": 38.9,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 11,
+          "confidentRungs": 11
+        },
+        "any_tds": {
+          "line": 0.275,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
       "name": "Hunter Henry",
       "game": "26NOV15:NEDET",
       "kickoff": "26NOV15",
       "matchup": "NEDET",
       "stats": {
         "any_tds": {
-          "line": 0.295,
+          "line": 0.3,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
           "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Hunter Luepke",
+      "game": "26NOV15:SFDAL",
+      "kickoff": "26NOV15",
+      "matchup": "SFDAL",
+      "stats": {
+        "any_tds": {
+          "line": 0.05,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "IND Colts D/ST",
+      "game": "26NOV15:MIAIND",
+      "kickoff": "26NOV15",
+      "matchup": "MIAIND",
+      "stats": {
+        "any_tds": {
+          "line": 0.105,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
         }
       }
     },
@@ -701,14 +2794,177 @@
       "matchup": "NEDET",
       "stats": {
         "rec_yds": {
-          "line": 19.8,
+          "line": 17.3,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 10,
           "confidentRungs": 10
         },
         "any_tds": {
-          "line": 0.18,
+          "line": 0.185,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Isaiah Williams",
+      "game": "26NOV15:BUFNYJ",
+      "kickoff": "26NOV15",
+      "matchup": "BUFNYJ",
+      "stats": {
+        "any_tds": {
+          "line": 0.105,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "JAC Jaguars D/ST",
+      "game": "26NOV15:JACTEN",
+      "kickoff": "26NOV15",
+      "matchup": "JACTEN",
+      "stats": {
+        "any_tds": {
+          "line": 0.09,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Ja'Marr Chase",
+      "game": "26NOV15:PITCIN",
+      "kickoff": "26NOV15",
+      "matchup": "PITCIN",
+      "stats": {
+        "rec_yds": {
+          "line": 89.0,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 14,
+          "confidentRungs": 14
+        },
+        "any_tds": {
+          "line": 0.655,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Jack Bech",
+      "game": "26NOV15:SEALV",
+      "kickoff": "26NOV15",
+      "matchup": "SEALV",
+      "stats": {
+        "any_tds": {
+          "line": 0.06,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Jack Endries",
+      "game": "26NOV15:PITCIN",
+      "kickoff": "26NOV15",
+      "matchup": "PITCIN",
+      "stats": {
+        "any_tds": {
+          "line": 0.06,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Jackson Hawes",
+      "game": "26NOV15:BUFNYJ",
+      "kickoff": "26NOV15",
+      "matchup": "BUFNYJ",
+      "stats": {
+        "any_tds": {
+          "line": 0.065,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Jacob Cowing",
+      "game": "26NOV15:SFDAL",
+      "kickoff": "26NOV15",
+      "matchup": "SFDAL",
+      "stats": {
+        "any_tds": {
+          "line": 0.085,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Jadarian Price",
+      "game": "26NOV15:SEALV",
+      "kickoff": "26NOV15",
+      "matchup": "SEALV",
+      "stats": {
+        "rec_yds": {
+          "line": 10.9,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 7,
+          "confidentRungs": 7
+        },
+        "rush_yds": {
+          "line": 39.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "any_tds": {
+          "line": 0.4,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Jahan Dotson",
+      "game": "26NOV15:KCATL",
+      "kickoff": "26NOV15",
+      "matchup": "KCATL",
+      "stats": {
+        "rec_yds": {
+          "line": 28.1,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 11,
+          "confidentRungs": 11
+        },
+        "any_tds": {
+          "line": 0.21,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -723,21 +2979,124 @@
       "matchup": "NEDET",
       "stats": {
         "rec_yds": {
-          "line": 28.6,
+          "line": 30.7,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 11,
           "confidentRungs": 11
         },
         "rush_yds": {
-          "line": 97.7,
+          "line": 95.6,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 14,
           "confidentRungs": 14
         },
         "any_tds": {
-          "line": 0.975,
+          "line": 1.05,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Jakobi Meyers",
+      "game": "26NOV15:JACTEN",
+      "kickoff": "26NOV15",
+      "matchup": "JACTEN",
+      "stats": {
+        "any_tds": {
+          "line": 0.32,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Jalen Coker",
+      "game": "26NOV15:CARNO",
+      "kickoff": "26NOV15",
+      "matchup": "CARNO",
+      "stats": {
+        "rec_yds": {
+          "line": 46.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 12,
+          "confidentRungs": 12
+        },
+        "any_tds": {
+          "line": 0.315,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Jalen Nailor",
+      "game": "26NOV15:SEALV",
+      "kickoff": "26NOV15",
+      "matchup": "SEALV",
+      "stats": {
+        "rec_yds": {
+          "line": 12.4,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 8,
+          "confidentRungs": 8
+        },
+        "any_tds": {
+          "line": 0.12,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Jalen Royals",
+      "game": "26NOV15:KCATL",
+      "kickoff": "26NOV15",
+      "matchup": "KCATL",
+      "stats": {
+        "any_tds": {
+          "line": 0.07,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "James Cook III",
+      "game": "26NOV15:BUFNYJ",
+      "kickoff": "26NOV15",
+      "matchup": "BUFNYJ",
+      "stats": {
+        "rec_yds": {
+          "line": 8.6,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 7,
+          "confidentRungs": 7
+        },
+        "rush_yds": {
+          "line": 90.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 13,
+          "confidentRungs": 13
+        },
+        "any_tds": {
+          "line": 0.76,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -752,14 +3111,14 @@
       "matchup": "NEDET",
       "stats": {
         "rec_yds": {
-          "line": 53.8,
+          "line": 54.5,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 13,
           "confidentRungs": 13
         },
         "any_tds": {
-          "line": 0.36,
+          "line": 0.375,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -774,32 +3133,839 @@
       "matchup": "NEDET",
       "stats": {
         "rush_yds": {
-          "line": 1.6,
+          "line": 3.1,
           "lineSource": "fitted",
           "expected": null,
           "rungs": 2,
           "confidentRungs": 2
         },
         "pass_yds": {
-          "line": 267.0,
+          "line": 265.2,
           "lineSource": "interpolated",
-          "expected": null,
+          "expected": 254.5,
           "rungs": 10,
           "confidentRungs": 10
         },
         "pass_tds": {
-          "line": 1.9,
+          "line": 1.8,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 5,
           "confidentRungs": 5
         },
         "any_tds": {
-          "line": 0.05,
+          "line": 0.045,
           "lineSource": "expected",
           "expected": null,
           "rungs": 1,
           "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Javonte Williams",
+      "game": "26NOV15:SFDAL",
+      "kickoff": "26NOV15",
+      "matchup": "SFDAL",
+      "stats": {
+        "rec_yds": {
+          "line": 12.3,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 8,
+          "confidentRungs": 8
+        },
+        "rush_yds": {
+          "line": 64.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 12,
+          "confidentRungs": 12
+        },
+        "any_tds": {
+          "line": 0.76,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Jaxon Smith-Njigba",
+      "game": "26NOV15:SEALV",
+      "kickoff": "26NOV15",
+      "matchup": "SEALV",
+      "stats": {
+        "rec_yds": {
+          "line": 85.4,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 14,
+          "confidentRungs": 14
+        },
+        "any_tds": {
+          "line": 0.56,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Jaylen Warren",
+      "game": "26NOV15:PITCIN",
+      "kickoff": "26NOV15",
+      "matchup": "PITCIN",
+      "stats": {
+        "rec_yds": {
+          "line": 25.1,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "rush_yds": {
+          "line": 65.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 11,
+          "confidentRungs": 11
+        },
+        "any_tds": {
+          "line": 0.64,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Jaylen Wright",
+      "game": "26NOV15:MIAIND",
+      "kickoff": "26NOV15",
+      "matchup": "MIAIND",
+      "stats": {
+        "any_tds": {
+          "line": 0.12,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Jerry Jeudy",
+      "game": "26NOV15:HOUCLE",
+      "kickoff": "26NOV15",
+      "matchup": "HOUCLE",
+      "stats": {
+        "rec_yds": {
+          "line": 14.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 8,
+          "confidentRungs": 8
+        },
+        "any_tds": {
+          "line": 0.115,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Joe Burrow",
+      "game": "26NOV15:PITCIN",
+      "kickoff": "26NOV15",
+      "matchup": "PITCIN",
+      "stats": {
+        "rush_yds": {
+          "line": 7.2,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 6,
+          "confidentRungs": 6
+        },
+        "pass_yds": {
+          "line": 293.0,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "pass_tds": {
+          "line": 2.0,
+          "lineSource": "interpolated",
+          "expected": 2.1,
+          "rungs": 5,
+          "confidentRungs": 5
+        },
+        "any_tds": {
+          "line": 0.16,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "John Metchie III",
+      "game": "26NOV15:CARNO",
+      "kickoff": "26NOV15",
+      "matchup": "CARNO",
+      "stats": {
+        "any_tds": {
+          "line": 0.12,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Jonathan Taylor",
+      "game": "26NOV15:MIAIND",
+      "kickoff": "26NOV15",
+      "matchup": "MIAIND",
+      "stats": {
+        "rec_yds": {
+          "line": 20.9,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "rush_yds": {
+          "line": 62.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 11,
+          "confidentRungs": 11
+        },
+        "any_tds": {
+          "line": 0.675,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Jonnu Smith",
+      "game": "26NOV15:MINGB",
+      "kickoff": "26NOV15",
+      "matchup": "MINGB",
+      "stats": {
+        "any_tds": {
+          "line": 0.23,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 0
+        }
+      }
+    },
+    {
+      "name": "Jordan Addison",
+      "game": "26NOV15:MINGB",
+      "kickoff": "26NOV15",
+      "matchup": "MINGB",
+      "stats": {
+        "rec_yds": {
+          "line": 41.0,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 12,
+          "confidentRungs": 12
+        },
+        "any_tds": {
+          "line": 0.28,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Jordan Love",
+      "game": "26NOV15:MINGB",
+      "kickoff": "26NOV15",
+      "matchup": "MINGB",
+      "stats": {
+        "rush_yds": {
+          "line": 4.6,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 6,
+          "confidentRungs": 6
+        },
+        "pass_yds": {
+          "line": 257.8,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "pass_tds": {
+          "line": 1.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 4
+        },
+        "any_tds": {
+          "line": 0.105,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Jordan Mason",
+      "game": "26NOV15:MINGB",
+      "kickoff": "26NOV15",
+      "matchup": "MINGB",
+      "stats": {
+        "rush_yds": {
+          "line": 43.4,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 12,
+          "confidentRungs": 12
+        },
+        "any_tds": {
+          "line": 0.355,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Jordan Watkins",
+      "game": "26NOV15:SFDAL",
+      "kickoff": "26NOV15",
+      "matchup": "SFDAL",
+      "stats": {
+        "any_tds": {
+          "line": 0.24,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Jordyn Tyson",
+      "game": "26NOV15:CARNO",
+      "kickoff": "26NOV15",
+      "matchup": "CARNO",
+      "stats": {
+        "rec_yds": {
+          "line": 41.4,
+          "lineSource": "interpolated",
+          "expected": 44.2,
+          "rungs": 11,
+          "confidentRungs": 11
+        },
+        "any_tds": {
+          "line": 0.225,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Josh Allen",
+      "game": "26NOV15:BUFNYJ",
+      "kickoff": "26NOV15",
+      "matchup": "BUFNYJ",
+      "stats": {
+        "rush_yds": {
+          "line": 29.1,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 11,
+          "confidentRungs": 11
+        },
+        "pass_yds": {
+          "line": 231.9,
+          "lineSource": "interpolated",
+          "expected": 221.3,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "pass_tds": {
+          "line": 1.6,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 5,
+          "confidentRungs": 5
+        },
+        "any_tds": {
+          "line": 0.73,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Josh Cameron",
+      "game": "26NOV15:JACTEN",
+      "kickoff": "26NOV15",
+      "matchup": "JACTEN",
+      "stats": {
+        "any_tds": {
+          "line": 0.175,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Josh Downs",
+      "game": "26NOV15:KCATL",
+      "kickoff": "26NOV15",
+      "matchup": "KCATL",
+      "stats": {
+        "rec_yds": {
+          "line": 25.7,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "any_tds": {
+          "line": 0.225,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Justin Jefferson",
+      "game": "26NOV15:MINGB",
+      "kickoff": "26NOV15",
+      "matchup": "MINGB",
+      "stats": {
+        "rec_yds": {
+          "line": 78.9,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 13,
+          "confidentRungs": 13
+        },
+        "any_tds": {
+          "line": 0.445,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Juwan Johnson",
+      "game": "26NOV15:CARNO",
+      "kickoff": "26NOV15",
+      "matchup": "CARNO",
+      "stats": {
+        "rec_yds": {
+          "line": 24.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "any_tds": {
+          "line": 0.28,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "KC Chiefs D/ST",
+      "game": "26NOV15:KCATL",
+      "kickoff": "26NOV15",
+      "matchup": "KCATL",
+      "stats": {
+        "any_tds": {
+          "line": 0.09,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "KC Concepcion Jr.",
+      "game": "26NOV15:HOUCLE",
+      "kickoff": "26NOV15",
+      "matchup": "HOUCLE",
+      "stats": {
+        "rec_yds": {
+          "line": 47.4,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 12,
+          "confidentRungs": 12
+        },
+        "any_tds": {
+          "line": 0.275,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Kaelon Black",
+      "game": "26NOV15:SFDAL",
+      "kickoff": "26NOV15",
+      "matchup": "SFDAL",
+      "stats": {
+        "rush_yds": {
+          "line": 33.3,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 11,
+          "confidentRungs": 11
+        },
+        "any_tds": {
+          "line": 0.295,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Kaleb Johnson",
+      "game": "26NOV15:MINGB",
+      "kickoff": "26NOV15",
+      "matchup": "MINGB",
+      "stats": {
+        "rush_yds": {
+          "line": 29.1,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "any_tds": {
+          "line": 0.3,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Kayshon Boutte",
+      "game": "26NOV15:HOUCLE",
+      "kickoff": "26NOV15",
+      "matchup": "HOUCLE",
+      "stats": {
+        "any_tds": {
+          "line": 0.015,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Kaytron Allen",
+      "game": "26NOV15:MIAIND",
+      "kickoff": "26NOV15",
+      "matchup": "MIAIND",
+      "stats": {
+        "any_tds": {
+          "line": 0.075,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Keenan Allen",
+      "game": "26NOV15:SFDAL",
+      "kickoff": "26NOV15",
+      "matchup": "SFDAL",
+      "stats": {
+        "any_tds": {
+          "line": 0.23,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Keleki Latu",
+      "game": "26NOV15:BUFNYJ",
+      "kickoff": "26NOV15",
+      "matchup": "BUFNYJ",
+      "stats": {
+        "any_tds": {
+          "line": 0.04,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Kenneth Walker III",
+      "game": "26NOV15:KCATL",
+      "kickoff": "26NOV15",
+      "matchup": "KCATL",
+      "stats": {
+        "rec_yds": {
+          "line": 19.7,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "rush_yds": {
+          "line": 88.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 13,
+          "confidentRungs": 13
+        },
+        "any_tds": {
+          "line": 0.88,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Kenyon Sadiq",
+      "game": "26NOV15:BUFNYJ",
+      "kickoff": "26NOV15",
+      "matchup": "BUFNYJ",
+      "stats": {
+        "any_tds": {
+          "line": 0.16,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Keon Coleman",
+      "game": "26NOV15:BUFNYJ",
+      "kickoff": "26NOV15",
+      "matchup": "BUFNYJ",
+      "stats": {
+        "rec_yds": {
+          "line": 27.0,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 11,
+          "confidentRungs": 11
+        },
+        "any_tds": {
+          "line": 0.295,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Kevin Coleman Jr.",
+      "game": "26NOV15:MIAIND",
+      "kickoff": "26NOV15",
+      "matchup": "MIAIND",
+      "stats": {
+        "any_tds": {
+          "line": 0.055,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Khalil Herbert",
+      "game": "26NOV15:KCATL",
+      "kickoff": "26NOV15",
+      "matchup": "KCATL",
+      "stats": {
+        "rush_yds": {
+          "line": 10.1,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 6,
+          "confidentRungs": 6
+        },
+        "any_tds": {
+          "line": 0.12,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Khalil Shakir",
+      "game": "26NOV15:BUFNYJ",
+      "kickoff": "26NOV15",
+      "matchup": "BUFNYJ",
+      "stats": {
+        "rec_yds": {
+          "line": 42.8,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 12,
+          "confidentRungs": 12
+        },
+        "any_tds": {
+          "line": 0.24,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Konata Mumpfield",
+      "game": "26NOV15:LARARI",
+      "kickoff": "26NOV15",
+      "matchup": "LARARI",
+      "stats": {
+        "rec_yds": {
+          "line": 9.8,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 11,
+          "confidentRungs": 1
+        },
+        "any_tds": {
+          "line": 0.26,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Kyle Juszczyk",
+      "game": "26NOV15:SFDAL",
+      "kickoff": "26NOV15",
+      "matchup": "SFDAL",
+      "stats": {
+        "any_tds": {
+          "line": 0.12,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Kyle McCord",
+      "game": "26NOV15:MIAIND",
+      "kickoff": "26NOV15",
+      "matchup": "MIAIND",
+      "stats": {
+        "rush_yds": {
+          "line": 7.9,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 6,
+          "confidentRungs": 6
+        },
+        "pass_yds": {
+          "line": 163.1,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 8,
+          "confidentRungs": 8
+        },
+        "pass_tds": {
+          "line": 0.8,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        },
+        "any_tds": {
+          "line": 0.085,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Kyle Pitts Sr.",
+      "game": "26NOV15:KCATL",
+      "kickoff": "26NOV15",
+      "matchup": "KCATL",
+      "stats": {
+        "rec_yds": {
+          "line": 36.8,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 11,
+          "confidentRungs": 11
+        },
+        "any_tds": {
+          "line": 0.26,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
         }
       }
     },
@@ -810,7 +3976,7 @@
       "matchup": "NEDET",
       "stats": {
         "any_tds": {
-          "line": 0.17,
+          "line": 0.155,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
@@ -819,10 +3985,285 @@
       }
     },
     {
+      "name": "Kyren Williams",
+      "game": "26NOV15:LARARI",
+      "kickoff": "26NOV15",
+      "matchup": "LARARI",
+      "stats": {
+        "rec_yds": {
+          "line": 20.1,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "rush_yds": {
+          "line": 65.4,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "any_tds": {
+          "line": 0.66,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "LA Rams D/ST",
+      "game": "26NOV15:LARARI",
+      "kickoff": "26NOV15",
+      "matchup": "LARARI",
+      "stats": {
+        "any_tds": {
+          "line": 0.14,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "LV Raiders D/ST",
+      "game": "26NOV15:SEALV",
+      "kickoff": "26NOV15",
+      "matchup": "SEALV",
+      "stats": {
+        "any_tds": {
+          "line": 0.085,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
       "name": "Lan Larison",
       "game": "26NOV15:NEDET",
       "kickoff": "26NOV15",
       "matchup": "NEDET",
+      "stats": {
+        "any_tds": {
+          "line": 0.2,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Laquon Treadwell",
+      "game": "26NOV15:MIAIND",
+      "kickoff": "26NOV15",
+      "matchup": "MIAIND",
+      "stats": {
+        "any_tds": {
+          "line": 0.175,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "LeQuint Allen Jr.",
+      "game": "26NOV15:JACTEN",
+      "kickoff": "26NOV15",
+      "matchup": "JACTEN",
+      "stats": {
+        "any_tds": {
+          "line": 0.075,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Luke Farrell",
+      "game": "26NOV15:SFDAL",
+      "kickoff": "26NOV15",
+      "matchup": "SFDAL",
+      "stats": {
+        "any_tds": {
+          "line": 0.06,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Luke Schoonmaker",
+      "game": "26NOV15:SFDAL",
+      "kickoff": "26NOV15",
+      "matchup": "SFDAL",
+      "stats": {
+        "any_tds": {
+          "line": 0.085,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "MIA Dolphins D/ST",
+      "game": "26NOV15:MIAIND",
+      "kickoff": "26NOV15",
+      "matchup": "MIAIND",
+      "stats": {
+        "any_tds": {
+          "line": 0.1,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "MIN Vikings D/ST",
+      "game": "26NOV15:MINGB",
+      "kickoff": "26NOV15",
+      "matchup": "MINGB",
+      "stats": {
+        "any_tds": {
+          "line": 0.09,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Mack Hollins",
+      "game": "26NOV15:NEDET",
+      "kickoff": "26NOV15",
+      "matchup": "NEDET",
+      "stats": {
+        "any_tds": {
+          "line": 0.28,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Malik McClain",
+      "game": "26NOV15:BUFNYJ",
+      "kickoff": "26NOV15",
+      "matchup": "BUFNYJ",
+      "stats": {
+        "any_tds": {
+          "line": 0.05,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Malik Washington",
+      "game": "26NOV15:MIAIND",
+      "kickoff": "26NOV15",
+      "matchup": "MIAIND",
+      "stats": {
+        "rec_yds": {
+          "line": 28.1,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 11,
+          "confidentRungs": 11
+        },
+        "any_tds": {
+          "line": 0.22,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "MarShawn Lloyd",
+      "game": "26NOV15:MINGB",
+      "kickoff": "26NOV15",
+      "matchup": "MINGB",
+      "stats": {
+        "rush_yds": {
+          "line": 10.8,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 7,
+          "confidentRungs": 3
+        },
+        "any_tds": {
+          "line": 0.11,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Mark Redman",
+      "game": "26NOV15:MINGB",
+      "kickoff": "26NOV15",
+      "matchup": "MINGB",
+      "stats": {
+        "any_tds": {
+          "line": 0.04,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Marvin Harrison Jr.",
+      "game": "26NOV15:HOUCLE",
+      "kickoff": "26NOV15",
+      "matchup": "HOUCLE",
+      "stats": {
+        "rec_yds": {
+          "line": 18.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 8,
+          "confidentRungs": 8
+        },
+        "any_tds": {
+          "line": 0.125,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Mason Taylor",
+      "game": "26NOV15:BUFNYJ",
+      "kickoff": "26NOV15",
+      "matchup": "BUFNYJ",
       "stats": {
         "any_tds": {
           "line": 0.18,
@@ -834,17 +4275,200 @@
       }
     },
     {
-      "name": "Mack Hollins",
-      "game": "26NOV15:NEDET",
+      "name": "Matthew Golden",
+      "game": "26NOV15:MINGB",
       "kickoff": "26NOV15",
-      "matchup": "NEDET",
+      "matchup": "MINGB",
       "stats": {
+        "rec_yds": {
+          "line": 69.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 13,
+          "confidentRungs": 13
+        },
         "any_tds": {
-          "line": 0.275,
+          "line": 0.445,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
           "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Matthew Stafford",
+      "game": "26NOV15:LARARI",
+      "kickoff": "26NOV15",
+      "matchup": "LARARI",
+      "stats": {
+        "pass_yds": {
+          "line": 210.9,
+          "lineSource": "interpolated",
+          "expected": 202.7,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "pass_tds": {
+          "line": 1.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 4
+        },
+        "any_tds": {
+          "line": 0.045,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Michael Carter",
+      "game": "26NOV15:JACTEN",
+      "kickoff": "26NOV15",
+      "matchup": "JACTEN",
+      "stats": {
+        "any_tds": {
+          "line": 0.125,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Michael Mayer",
+      "game": "26NOV15:SEALV",
+      "kickoff": "26NOV15",
+      "matchup": "SEALV",
+      "stats": {
+        "rec_yds": {
+          "line": 21.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "any_tds": {
+          "line": 0.17,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Michael Penix Jr.",
+      "game": "26NOV15:KCATL",
+      "kickoff": "26NOV15",
+      "matchup": "KCATL",
+      "stats": {
+        "rush_yds": {
+          "line": 7.6,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 5,
+          "confidentRungs": 5
+        },
+        "pass_yds": {
+          "line": 219.8,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "pass_tds": {
+          "line": 1.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 4
+        },
+        "any_tds": {
+          "line": 0.08,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Mike Gesicki",
+      "game": "26NOV15:PITCIN",
+      "kickoff": "26NOV15",
+      "matchup": "PITCIN",
+      "stats": {
+        "rec_yds": {
+          "line": 24.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "any_tds": {
+          "line": 0.295,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Mike Washington Jr.",
+      "game": "26NOV15:SEALV",
+      "kickoff": "26NOV15",
+      "matchup": "SEALV",
+      "stats": {
+        "rush_yds": {
+          "line": 26.3,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "any_tds": {
+          "line": 0.24,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Mitchell Evans",
+      "game": "26NOV15:CARNO",
+      "kickoff": "26NOV15",
+      "matchup": "CARNO",
+      "stats": {
+        "any_tds": {
+          "line": 0.09,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Myles Price",
+      "game": "26NOV15:MINGB",
+      "kickoff": "26NOV15",
+      "matchup": "MINGB",
+      "stats": {
+        "any_tds": {
+          "line": 0.095,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
         }
       }
     },
@@ -855,7 +4479,457 @@
       "matchup": "NEDET",
       "stats": {
         "any_tds": {
-          "line": 0.09,
+          "line": 0.105,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "NO Saints D/ST",
+      "game": "26NOV15:CARNO",
+      "kickoff": "26NOV15",
+      "matchup": "CARNO",
+      "stats": {
+        "any_tds": {
+          "line": 0.085,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "NY Jets D/ST",
+      "game": "26NOV15:BUFNYJ",
+      "kickoff": "26NOV15",
+      "matchup": "BUFNYJ",
+      "stats": {
+        "any_tds": {
+          "line": 0.1,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Nate Boerkircher",
+      "game": "26NOV15:JACTEN",
+      "kickoff": "26NOV15",
+      "matchup": "JACTEN",
+      "stats": {
+        "any_tds": {
+          "line": 0.18,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Nicholas Singleton",
+      "game": "26NOV15:JACTEN",
+      "kickoff": "26NOV15",
+      "matchup": "JACTEN",
+      "stats": {
+        "any_tds": {
+          "line": 0.07,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Nico Collins",
+      "game": "26NOV15:HOUCLE",
+      "kickoff": "26NOV15",
+      "matchup": "HOUCLE",
+      "stats": {
+        "rec_yds": {
+          "line": 56.3,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 13,
+          "confidentRungs": 13
+        },
+        "any_tds": {
+          "line": 0.435,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Noah Fant",
+      "game": "26NOV15:CARNO",
+      "kickoff": "26NOV15",
+      "matchup": "CARNO",
+      "stats": {
+        "any_tds": {
+          "line": 0.15,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Noah Gray",
+      "game": "26NOV15:KCATL",
+      "kickoff": "26NOV15",
+      "matchup": "KCATL",
+      "stats": {
+        "rec_yds": {
+          "line": 11.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 7,
+          "confidentRungs": 7
+        },
+        "any_tds": {
+          "line": 0.12,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Olamide Zaccheaus",
+      "game": "26NOV15:KCATL",
+      "kickoff": "26NOV15",
+      "matchup": "KCATL",
+      "stats": {
+        "rec_yds": {
+          "line": 8.8,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 6,
+          "confidentRungs": 6
+        },
+        "any_tds": {
+          "line": 0.105,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Ollie Gordon II",
+      "game": "26NOV15:MIAIND",
+      "kickoff": "26NOV15",
+      "matchup": "MIAIND",
+      "stats": {
+        "rush_yds": {
+          "line": 71.4,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 13,
+          "confidentRungs": 13
+        },
+        "any_tds": {
+          "line": 0.505,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "PIT Steelers D/ST",
+      "game": "26NOV15:PITCIN",
+      "kickoff": "26NOV15",
+      "matchup": "PITCIN",
+      "stats": {
+        "any_tds": {
+          "line": 0.095,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Parker Washington",
+      "game": "26NOV15:JACTEN",
+      "kickoff": "26NOV15",
+      "matchup": "JACTEN",
+      "stats": {
+        "rec_yds": {
+          "line": 62.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 14,
+          "confidentRungs": 14
+        },
+        "any_tds": {
+          "line": 0.485,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Pat Freiermuth",
+      "game": "26NOV15:PITCIN",
+      "kickoff": "26NOV15",
+      "matchup": "PITCIN",
+      "stats": {
+        "any_tds": {
+          "line": 0.25,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Patrick Mahomes",
+      "game": "26NOV15:KCATL",
+      "kickoff": "26NOV15",
+      "matchup": "KCATL",
+      "stats": {
+        "rush_yds": {
+          "line": 10.4,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 7,
+          "confidentRungs": 7
+        },
+        "pass_yds": {
+          "line": 241.7,
+          "lineSource": "interpolated",
+          "expected": 231.6,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "pass_tds": {
+          "line": 1.7,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 5,
+          "confidentRungs": 5
+        },
+        "any_tds": {
+          "line": 0.175,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Pierre Strong Jr.",
+      "game": "26NOV15:MINGB",
+      "kickoff": "26NOV15",
+      "matchup": "MINGB",
+      "stats": {
+        "rush_yds": {
+          "line": 11.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 7,
+          "confidentRungs": 7
+        },
+        "any_tds": {
+          "line": 0.225,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Quinshon Judkins",
+      "game": "26NOV15:HOUCLE",
+      "kickoff": "26NOV15",
+      "matchup": "HOUCLE",
+      "stats": {
+        "rec_yds": {
+          "line": 6.6,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 5,
+          "confidentRungs": 5
+        },
+        "rush_yds": {
+          "line": 43.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "any_tds": {
+          "line": 0.4,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Rashee Rice",
+      "game": "26NOV15:KCATL",
+      "kickoff": "26NOV15",
+      "matchup": "KCATL",
+      "stats": {
+        "rec_yds": {
+          "line": 55.1,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 12,
+          "confidentRungs": 12
+        },
+        "any_tds": {
+          "line": 0.33,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Rashid Shaheed",
+      "game": "26NOV15:SEALV",
+      "kickoff": "26NOV15",
+      "matchup": "SEALV",
+      "stats": {
+        "any_tds": {
+          "line": 0.17,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Ray Davis",
+      "game": "26NOV15:BUFNYJ",
+      "kickoff": "26NOV15",
+      "matchup": "BUFNYJ",
+      "stats": {
+        "any_tds": {
+          "line": 0.095,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Reggie Virgil",
+      "game": "26NOV15:LARARI",
+      "kickoff": "26NOV15",
+      "matchup": "LARARI",
+      "stats": {
+        "rec_yds": {
+          "line": 22.7,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 11,
+          "confidentRungs": 11
+        },
+        "any_tds": {
+          "line": 0.14,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Rico Dowdle",
+      "game": "26NOV15:PITCIN",
+      "kickoff": "26NOV15",
+      "matchup": "PITCIN",
+      "stats": {
+        "rec_yds": {
+          "line": 13.8,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 7,
+          "confidentRungs": 7
+        },
+        "rush_yds": {
+          "line": 29.0,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "any_tds": {
+          "line": 0.38,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Ryan Flournoy",
+      "game": "26NOV15:SFDAL",
+      "kickoff": "26NOV15",
+      "matchup": "SFDAL",
+      "stats": {
+        "any_tds": {
+          "line": 0.32,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "SEA Seahawks D/ST",
+      "game": "26NOV15:SEALV",
+      "kickoff": "26NOV15",
+      "matchup": "SEALV",
+      "stats": {
+        "any_tds": {
+          "line": 0.13,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "SF 49ers D/ST",
+      "game": "26NOV15:SFDAL",
+      "kickoff": "26NOV15",
+      "matchup": "SFDAL",
+      "stats": {
+        "any_tds": {
+          "line": 0.1,
           "lineSource": "expected",
           "expected": null,
           "rungs": 1,
@@ -870,7 +4944,361 @@
       "matchup": "NEDET",
       "stats": {
         "rec_yds": {
-          "line": 41.7,
+          "line": 42.1,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 12,
+          "confidentRungs": 12
+        },
+        "any_tds": {
+          "line": 0.365,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Samaje Perine",
+      "game": "26NOV15:PITCIN",
+      "kickoff": "26NOV15",
+      "matchup": "PITCIN",
+      "stats": {
+        "rush_yds": {
+          "line": 20.8,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "any_tds": {
+          "line": 0.31,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Savion Williams",
+      "game": "26NOV15:MINGB",
+      "kickoff": "26NOV15",
+      "matchup": "MINGB",
+      "stats": {
+        "rec_yds": {
+          "line": 19.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "any_tds": {
+          "line": 0.205,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Seth McGowan",
+      "game": "26NOV15:MIAIND",
+      "kickoff": "26NOV15",
+      "matchup": "MIAIND",
+      "stats": {
+        "rush_yds": {
+          "line": 23.3,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "any_tds": {
+          "line": 0.265,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Simi Fehoko",
+      "game": "26NOV15:LARARI",
+      "kickoff": "26NOV15",
+      "matchup": "LARARI",
+      "stats": {
+        "rec_yds": {
+          "line": 14.8,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "any_tds": {
+          "line": 0.09,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Sione Vaki",
+      "game": "26NOV15:NEDET",
+      "kickoff": "26NOV15",
+      "matchup": "NEDET",
+      "stats": {
+        "rush_yds": {
+          "line": 9.2,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 8,
+          "confidentRungs": 6
+        },
+        "any_tds": {
+          "line": 0.18,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Skyler Bell",
+      "game": "26NOV15:BUFNYJ",
+      "kickoff": "26NOV15",
+      "matchup": "BUFNYJ",
+      "stats": {
+        "any_tds": {
+          "line": 0.07,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "T.J. Hockenson",
+      "game": "26NOV15:MINGB",
+      "kickoff": "26NOV15",
+      "matchup": "MINGB",
+      "stats": {
+        "rec_yds": {
+          "line": 38.9,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 11,
+          "confidentRungs": 11
+        },
+        "any_tds": {
+          "line": 0.27,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "TEN Titans D/ST",
+      "game": "26NOV15:JACTEN",
+      "kickoff": "26NOV15",
+      "matchup": "JACTEN",
+      "stats": {
+        "any_tds": {
+          "line": 0.075,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Tai Felton",
+      "game": "26NOV15:MINGB",
+      "kickoff": "26NOV15",
+      "matchup": "MINGB",
+      "stats": {
+        "any_tds": {
+          "line": 0.045,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Tank Dell",
+      "game": "26NOV15:HOUCLE",
+      "kickoff": "26NOV15",
+      "matchup": "HOUCLE",
+      "stats": {
+        "rec_yds": {
+          "line": 32.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 12,
+          "confidentRungs": 12
+        },
+        "any_tds": {
+          "line": 0.24,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Tee Higgins",
+      "game": "26NOV15:PITCIN",
+      "kickoff": "26NOV15",
+      "matchup": "PITCIN",
+      "stats": {
+        "rec_yds": {
+          "line": 75.1,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 13,
+          "confidentRungs": 13
+        },
+        "any_tds": {
+          "line": 0.55,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 3,
+          "confidentRungs": 3
+        }
+      }
+    },
+    {
+      "name": "Tetairoa McMillan",
+      "game": "26NOV15:CARNO",
+      "kickoff": "26NOV15",
+      "matchup": "CARNO",
+      "stats": {
+        "rec_yds": {
+          "line": 65.3,
+          "lineSource": "interpolated",
+          "expected": 67.0,
+          "rungs": 13,
+          "confidentRungs": 13
+        },
+        "any_tds": {
+          "line": 0.42,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Tim Patrick",
+      "game": "26NOV15:BUFNYJ",
+      "kickoff": "26NOV15",
+      "matchup": "BUFNYJ",
+      "stats": {
+        "any_tds": {
+          "line": 0.165,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 0
+        }
+      }
+    },
+    {
+      "name": "Tommy Tremble",
+      "game": "26NOV15:CARNO",
+      "kickoff": "26NOV15",
+      "matchup": "CARNO",
+      "stats": {
+        "any_tds": {
+          "line": 0.165,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Tony Pollard",
+      "game": "26NOV15:JACTEN",
+      "kickoff": "26NOV15",
+      "matchup": "JACTEN",
+      "stats": {
+        "rec_yds": {
+          "line": 12.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 7,
+          "confidentRungs": 7
+        },
+        "rush_yds": {
+          "line": 56.3,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 11,
+          "confidentRungs": 11
+        },
+        "any_tds": {
+          "line": 0.49,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Tory Horton",
+      "game": "26NOV15:SEALV",
+      "kickoff": "26NOV15",
+      "matchup": "SEALV",
+      "stats": {
+        "any_tds": {
+          "line": 0.12,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Travis Hunter",
+      "game": "26NOV15:JACTEN",
+      "kickoff": "26NOV15",
+      "matchup": "JACTEN",
+      "stats": {
+        "any_tds": {
+          "line": 0.11,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Travis Kelce",
+      "game": "26NOV15:KCATL",
+      "kickoff": "26NOV15",
+      "matchup": "KCATL",
+      "stats": {
+        "rec_yds": {
+          "line": 45.3,
           "lineSource": "interpolated",
           "expected": null,
           "rungs": 12,
@@ -886,24 +5314,815 @@
       }
     },
     {
-      "name": "Sione Vaki",
-      "game": "26NOV15:NEDET",
+      "name": "Tre Tucker",
+      "game": "26NOV15:SEALV",
       "kickoff": "26NOV15",
-      "matchup": "NEDET",
+      "matchup": "SEALV",
       "stats": {
-        "rush_yds": {
-          "line": 11.1,
+        "rec_yds": {
+          "line": 27.2,
           "lineSource": "interpolated",
           "expected": null,
-          "rungs": 8,
-          "confidentRungs": 8
+          "rungs": 11,
+          "confidentRungs": 11
         },
         "any_tds": {
-          "line": 0.115,
+          "line": 0.185,
           "lineSource": "expected",
           "expected": null,
           "rungs": 2,
           "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Trevor Etienne",
+      "game": "26NOV15:CARNO",
+      "kickoff": "26NOV15",
+      "matchup": "CARNO",
+      "stats": {
+        "any_tds": {
+          "line": 0.1,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Trevor Lawrence",
+      "game": "26NOV15:JACTEN",
+      "kickoff": "26NOV15",
+      "matchup": "JACTEN",
+      "stats": {
+        "rush_yds": {
+          "line": 9.3,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 6,
+          "confidentRungs": 6
+        },
+        "pass_yds": {
+          "line": 240.2,
+          "lineSource": "interpolated",
+          "expected": 228.5,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "pass_tds": {
+          "line": 1.8,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 5,
+          "confidentRungs": 5
+        },
+        "any_tds": {
+          "line": 0.195,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Trey McBride",
+      "game": "26NOV15:LARARI",
+      "kickoff": "26NOV15",
+      "matchup": "LARARI",
+      "stats": {
+        "rec_yds": {
+          "line": 59.9,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 11,
+          "confidentRungs": 11
+        },
+        "any_tds": {
+          "line": 0.29,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Tucker Kraft",
+      "game": "26NOV15:MINGB",
+      "kickoff": "26NOV15",
+      "matchup": "MINGB",
+      "stats": {
+        "rec_yds": {
+          "line": 37.1,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 11,
+          "confidentRungs": 11
+        },
+        "any_tds": {
+          "line": 0.32,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Tutu Atwell",
+      "game": "26NOV15:LARARI",
+      "kickoff": "26NOV15",
+      "matchup": "LARARI",
+      "stats": {
+        "rec_yds": {
+          "line": 11.9,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 12,
+          "confidentRungs": 2
+        },
+        "any_tds": {
+          "line": 0.205,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Ty Johnson",
+      "game": "26NOV15:BUFNYJ",
+      "kickoff": "26NOV15",
+      "matchup": "BUFNYJ",
+      "stats": {
+        "any_tds": {
+          "line": 0.185,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Tyler Allgeier",
+      "game": "26NOV15:LARARI",
+      "kickoff": "26NOV15",
+      "matchup": "LARARI",
+      "stats": {
+        "rush_yds": {
+          "line": 44.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 13,
+          "confidentRungs": 13
+        },
+        "any_tds": {
+          "line": 0.38,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Tyler Higbee",
+      "game": "26NOV15:LARARI",
+      "kickoff": "26NOV15",
+      "matchup": "LARARI",
+      "stats": {
+        "rec_yds": {
+          "line": 15.3,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 13,
+          "confidentRungs": 3
+        },
+        "any_tds": {
+          "line": 0.25,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Tyler Shough",
+      "game": "26NOV15:CARNO",
+      "kickoff": "26NOV15",
+      "matchup": "CARNO",
+      "stats": {
+        "rush_yds": {
+          "line": 11.9,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 8,
+          "confidentRungs": 5
+        },
+        "pass_yds": {
+          "line": 254.9,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "pass_tds": {
+          "line": 1.6,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 5,
+          "confidentRungs": 5
+        },
+        "any_tds": {
+          "line": 0.28,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Tyler Warren",
+      "game": "26NOV15:MIAIND",
+      "kickoff": "26NOV15",
+      "matchup": "MIAIND",
+      "stats": {
+        "rec_yds": {
+          "line": 46.4,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 11,
+          "confidentRungs": 11
+        },
+        "any_tds": {
+          "line": 0.295,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Wan'Dale Robinson",
+      "game": "26NOV15:JACTEN",
+      "kickoff": "26NOV15",
+      "matchup": "JACTEN",
+      "stats": {
+        "rec_yds": {
+          "line": 34.7,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "any_tds": {
+          "line": 0.195,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Woody Marks",
+      "game": "26NOV15:HOUCLE",
+      "kickoff": "26NOV15",
+      "matchup": "HOUCLE",
+      "stats": {
+        "rec_yds": {
+          "line": 11.3,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 7,
+          "confidentRungs": 7
+        },
+        "rush_yds": {
+          "line": 61.9,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "any_tds": {
+          "line": 0.12,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Xavier Hutchinson",
+      "game": "26NOV15:HOUCLE",
+      "kickoff": "26NOV15",
+      "matchup": "HOUCLE",
+      "stats": {
+        "rec_yds": {
+          "line": 27.2,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 10
+        },
+        "any_tds": {
+          "line": 0.205,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Xavier Smith",
+      "game": "26NOV15:LARARI",
+      "kickoff": "26NOV15",
+      "matchup": "LARARI",
+      "stats": {
+        "any_tds": {
+          "line": 0.1,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Xavier Worthy",
+      "game": "26NOV15:KCATL",
+      "kickoff": "26NOV15",
+      "matchup": "KCATL",
+      "stats": {
+        "rec_yds": {
+          "line": 11.4,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 5
+        },
+        "any_tds": {
+          "line": 0.125,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Zach Charbonnet",
+      "game": "26NOV15:SEALV",
+      "kickoff": "26NOV15",
+      "matchup": "SEALV",
+      "stats": {
+        "rec_yds": {
+          "line": 9.5,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 7,
+          "confidentRungs": 7
+        },
+        "rush_yds": {
+          "line": 60.1,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 9
+        },
+        "any_tds": {
+          "line": 0.55,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "BAL Ravens D/ST",
+      "game": "26NOV16:LACBAL",
+      "kickoff": "26NOV16",
+      "matchup": "LACBAL",
+      "stats": {
+        "any_tds": {
+          "line": 0.105,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Charlie Kolar",
+      "game": "26NOV16:LACBAL",
+      "kickoff": "26NOV16",
+      "matchup": "LACBAL",
+      "stats": {
+        "any_tds": {
+          "line": 0.1,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Derrick Henry",
+      "game": "26NOV16:LACBAL",
+      "kickoff": "26NOV16",
+      "matchup": "LACBAL",
+      "stats": {
+        "rec_yds": {
+          "line": null,
+          "lineSource": null,
+          "expected": null,
+          "rungs": 5,
+          "confidentRungs": 0
+        },
+        "rush_yds": {
+          "line": 27.6,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 13,
+          "confidentRungs": 0
+        },
+        "any_tds": {
+          "line": 0.67,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Ja'Kobi Lane",
+      "game": "26NOV16:LACBAL",
+      "kickoff": "26NOV16",
+      "matchup": "LACBAL",
+      "stats": {
+        "rec_yds": {
+          "line": 0.1,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 0
+        },
+        "any_tds": {
+          "line": 0.16,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Jacoby Brissett",
+      "game": "26NOV16:LACBAL",
+      "kickoff": "26NOV16",
+      "matchup": "LACBAL",
+      "stats": {
+        "rush_yds": {
+          "line": 0.0,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 5,
+          "confidentRungs": 0
+        },
+        "pass_yds": {
+          "line": 278.3,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 1
+        },
+        "pass_tds": {
+          "line": 1.3,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 4,
+          "confidentRungs": 0
+        },
+        "any_tds": {
+          "line": 0.12,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Josh Cuevas",
+      "game": "26NOV16:LACBAL",
+      "kickoff": "26NOV16",
+      "matchup": "LACBAL",
+      "stats": {
+        "rec_yds": {
+          "line": null,
+          "lineSource": null,
+          "expected": null,
+          "rungs": 7,
+          "confidentRungs": 0
+        },
+        "any_tds": {
+          "line": 0.235,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 0
+        }
+      }
+    },
+    {
+      "name": "Justice Hill",
+      "game": "26NOV16:LACBAL",
+      "kickoff": "26NOV16",
+      "matchup": "LACBAL",
+      "stats": {
+        "rec_yds": {
+          "line": null,
+          "lineSource": null,
+          "expected": null,
+          "rungs": 7,
+          "confidentRungs": 0
+        },
+        "rush_yds": {
+          "line": 0.5,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 8,
+          "confidentRungs": 0
+        },
+        "any_tds": {
+          "line": 0.15,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "KeAndre Lambert-Smith",
+      "game": "26NOV16:LACBAL",
+      "kickoff": "26NOV16",
+      "matchup": "LACBAL",
+      "stats": {
+        "any_tds": {
+          "line": 0.095,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Keaton Mitchell",
+      "game": "26NOV16:LACBAL",
+      "kickoff": "26NOV16",
+      "matchup": "LACBAL",
+      "stats": {
+        "rec_yds": {
+          "line": null,
+          "lineSource": null,
+          "expected": null,
+          "rungs": 7,
+          "confidentRungs": 0
+        },
+        "rush_yds": {
+          "line": 10.4,
+          "lineSource": "interpolated",
+          "expected": null,
+          "rungs": 6,
+          "confidentRungs": 0
+        },
+        "any_tds": {
+          "line": 0.285,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Kimani Vidal",
+      "game": "26NOV16:LACBAL",
+      "kickoff": "26NOV16",
+      "matchup": "LACBAL",
+      "stats": {
+        "rec_yds": {
+          "line": null,
+          "lineSource": null,
+          "expected": null,
+          "rungs": 6,
+          "confidentRungs": 0
+        },
+        "rush_yds": {
+          "line": 2.3,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 8,
+          "confidentRungs": 0
+        },
+        "any_tds": {
+          "line": 0.125,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "LA Chargers D/ST",
+      "game": "26NOV16:LACBAL",
+      "kickoff": "26NOV16",
+      "matchup": "LACBAL",
+      "stats": {
+        "any_tds": {
+          "line": 0.085,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Mark Andrews",
+      "game": "26NOV16:LACBAL",
+      "kickoff": "26NOV16",
+      "matchup": "LACBAL",
+      "stats": {
+        "rec_yds": {
+          "line": 0.0,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 9,
+          "confidentRungs": 0
+        },
+        "any_tds": {
+          "line": 0.2,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Matt Hibner",
+      "game": "26NOV16:LACBAL",
+      "kickoff": "26NOV16",
+      "matchup": "LACBAL",
+      "stats": {
+        "any_tds": {
+          "line": 0.225,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 1,
+          "confidentRungs": 0
+        }
+      }
+    },
+    {
+      "name": "Omarion Hampton",
+      "game": "26NOV16:LACBAL",
+      "kickoff": "26NOV16",
+      "matchup": "LACBAL",
+      "stats": {
+        "rec_yds": {
+          "line": null,
+          "lineSource": null,
+          "expected": null,
+          "rungs": 5,
+          "confidentRungs": 0
+        },
+        "rush_yds": {
+          "line": 12.2,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 10,
+          "confidentRungs": 0
+        },
+        "any_tds": {
+          "line": 0.19,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Oronde Gadsden",
+      "game": "26NOV16:LACBAL",
+      "kickoff": "26NOV16",
+      "matchup": "LACBAL",
+      "stats": {
+        "any_tds": {
+          "line": 0.32,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Quentin Johnston",
+      "game": "26NOV16:LACBAL",
+      "kickoff": "26NOV16",
+      "matchup": "LACBAL",
+      "stats": {
+        "any_tds": {
+          "line": 0.12,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Rashod Bateman",
+      "game": "26NOV16:LACBAL",
+      "kickoff": "26NOV16",
+      "matchup": "LACBAL",
+      "stats": {
+        "rec_yds": {
+          "line": 7.6,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 11,
+          "confidentRungs": 0
+        },
+        "any_tds": {
+          "line": 0.11,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 2
+        }
+      }
+    },
+    {
+      "name": "Tre' Harris",
+      "game": "26NOV16:LACBAL",
+      "kickoff": "26NOV16",
+      "matchup": "LACBAL",
+      "stats": {
+        "any_tds": {
+          "line": 0.31,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 1
+        }
+      }
+    },
+    {
+      "name": "Zay Flowers",
+      "game": "26NOV16:LACBAL",
+      "kickoff": "26NOV16",
+      "matchup": "LACBAL",
+      "stats": {
+        "rec_yds": {
+          "line": 54.8,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 15,
+          "confidentRungs": 0
+        },
+        "rush_yds": {
+          "line": 6.0,
+          "lineSource": "fitted",
+          "expected": null,
+          "rungs": 5,
+          "confidentRungs": 0
+        },
+        "any_tds": {
+          "line": 0.535,
+          "lineSource": "expected",
+          "expected": null,
+          "rungs": 2,
+          "confidentRungs": 0
         }
       }
     }
