@@ -1,10 +1,10 @@
 {
  "source": "The Odds API",
  "region": "us",
- "lastUpdated": "2026-11-13T00:00:12+00:00",
- "gameCount": 27,
- "quotaUsed": "1350",
- "quotaRemaining": "18650",
+ "lastUpdated": "2026-11-13T03:02:55+00:00",
+ "gameCount": 25,
+ "quotaUsed": "1430",
+ "quotaRemaining": "18570",
  "note": "Median spread and total across books. Implied team total = total/2 - spread/2. Used to score D/ST and K, which have no prop market.",
  "games": [
   {
@@ -28,7 +28,8 @@
      "oppImplied": 21.25
     }
    },
-   "bookCount": 11
+   "bookCount": 11,
+   "lockedAtKickoff": true
   },
   {
    "matchup": "NEDET",
@@ -37,18 +38,18 @@
    "homeName": "Detroit Lions",
    "awayName": "New England Patriots",
    "kickoff": "2026-11-15T14:30:00Z",
-   "total": 51.0,
+   "total": 49.5,
    "homeSpread": -2.5,
    "teams": {
     "DET": {
-     "implied": 26.75,
+     "implied": 26.0,
      "spread": -2.5,
-     "oppImplied": 24.25
+     "oppImplied": 23.5
     },
     "NE": {
-     "implied": 24.25,
+     "implied": 23.5,
      "spread": 2.5,
-     "oppImplied": 26.75
+     "oppImplied": 26.0
     }
    },
    "bookCount": 11
@@ -560,29 +561,6 @@
    "bookCount": 8
   },
   {
-   "matchup": "JACNYG",
-   "home": "NYG",
-   "away": "JAC",
-   "homeName": "New York Giants",
-   "awayName": "Jacksonville Jaguars",
-   "kickoff": "2026-11-22T21:25:00Z",
-   "total": 44.5,
-   "homeSpread": 6.0,
-   "teams": {
-    "NYG": {
-     "implied": 19.25,
-     "spread": 6.0,
-     "oppImplied": 25.25
-    },
-    "JAC": {
-     "implied": 25.25,
-     "spread": -6.0,
-     "oppImplied": 19.25
-    }
-   },
-   "bookCount": 8
-  },
-  {
    "matchup": "MINSF",
    "home": "SF",
    "away": "MIN",
@@ -601,29 +579,6 @@
      "implied": 21.0,
      "spread": 3.5,
      "oppImplied": 24.5
-    }
-   },
-   "bookCount": 8
-  },
-  {
-   "matchup": "CINWAS",
-   "home": "WAS",
-   "away": "CIN",
-   "homeName": "Washington Commanders",
-   "awayName": "Cincinnati Bengals",
-   "kickoff": "2026-11-24T01:15:00Z",
-   "total": 51.5,
-   "homeSpread": 4.0,
-   "teams": {
-    "WAS": {
-     "implied": 23.75,
-     "spread": 4.0,
-     "oppImplied": 27.75
-    },
-    "CIN": {
-     "implied": 27.75,
-     "spread": -4.0,
-     "oppImplied": 23.75
     }
    },
    "bookCount": 8
