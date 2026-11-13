@@ -140,6 +140,13 @@ a:hover { color: var(--red); }
         outline: 2px solid var(--red); outline-offset: 2px;
     }
     .site-nav { flex-wrap: wrap; gap: 10px; padding: 10px 16px; }
+    /* The open menu is about 860px tall, more than most phones show, and the
+       nav is sticky: whatever fell below the screen (Arb Calculator, Blog,
+       Contact on a 390x664 view) stayed there until the end of the page. The
+       nav now stops at the screen's height and scrolls inside itself, without
+       dragging the page behind it. Closed, it is 57px and this does nothing.
+       100vh first for browsers without dvh. (2026-11-13) */
+    .site-nav { max-height: 100vh; max-height: 100dvh; overflow-y: auto; overscroll-behavior: contain; }
     .site-nav .brand { font-size: 1.5rem; }
     .site-nav .nav-toggle-label {
         display: flex; flex-direction: column; gap: 4px;

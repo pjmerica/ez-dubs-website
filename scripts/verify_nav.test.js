@@ -116,6 +116,12 @@ for (const [name, rel] of PAGES) {
   check(`${name}: menu toggle is focusable at phone widths`,
         /@media \(max-width: \d+px\) \{[\s\S]*?\.site-nav \.nav-toggle \{[^}]*display: block/.test(css) &&
         /\.nav-toggle:focus-visible ~ \.nav-toggle-label/.test(css));
+  // The open menu is taller than most phone screens and the nav is sticky, so
+  // without a height cap and its own scroll the last entries sat below the
+  // screen and could not be reached (measured 2026-11-13: four of them on a
+  // 390x664 view). Adding a menu entry makes this matter more, not less.
+  check(`${name}: open phone menu is capped to the screen and scrolls`,
+        /@media \(max-width: \d+px\) \{[\s\S]*?\.site-nav \{[^}]*max-height: 100dvh[^}]*overflow-y: auto/.test(css));
 
   // External links in the nav should not leak the referrer or opener.
   for (const m of nav.matchAll(/<a\b[^>]*target="_blank"[^>]*>/gi)) {

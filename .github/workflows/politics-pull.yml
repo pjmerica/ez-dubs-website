@@ -1,15 +1,21 @@
 name: Election Forecast Pull
 
+# Scheduled cron disabled 2026-11-13: the forecast locked at 6 p.m. Eastern on
+# Election Day (LOCK_AT in scripts/pull_politics.py), and since then every run
+# installed Node and Chrome only to log "nothing to do", twelve times a day.
+# The pages and data are the final forecast and stay as they are. A manual
+# dispatch still works but writes nothing while the lock is in place. For a
+# future election: move or remove LOCK_AT, then uncomment the schedule.
 on:
-  schedule:
-    # The Politics pages mirror the election forecast built in
-    # pjmerica/polling-agg-2026, which refreshes its market prices every two
-    # hours (:41 past odd UTC hours) and re-runs the model after its twice-daily
-    # poll refresh. This runs every two hours in between. GitHub starts this
-    # account's cron runs 1.5-4.5 hours late, so exact offsets do not matter;
-    # a run that finds nothing new commits nothing. Not on the hour, where the
-    # scheduler is busiest, and clear of the other workflows' :00/:30/:45.
-    - cron: '20 */2 * * *'
+  # schedule:
+  #   # The Politics pages mirror the election forecast built in
+  #   # pjmerica/polling-agg-2026, which refreshes its market prices every two
+  #   # hours (:41 past odd UTC hours) and re-runs the model after its twice-daily
+  #   # poll refresh. This runs every two hours in between. GitHub starts this
+  #   # account's cron runs 1.5-4.5 hours late, so exact offsets do not matter;
+  #   # a run that finds nothing new commits nothing. Not on the hour, where the
+  #   # scheduler is busiest, and clear of the other workflows' :00/:30/:45.
+  #   - cron: '20 */2 * * *'
   workflow_dispatch:
     inputs:
       wait_until:

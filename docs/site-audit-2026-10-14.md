@@ -949,7 +949,7 @@ uses ten minutes.
   `NFL_SITE_CSS`), as on the Best Ball pages.
 - Not done: a link-preview screenshot for the new page. `render_previews.js`
   needs a local browser, which couldn't run in this session, so the page uses
-  the default logo preview until it is re-run.
+  the default logo preview until it is re-run. (Done 2026-11-13, item 44.)
 
 ### 43. Closing-lines archive, scored against results (2026-11-10)
 
@@ -986,6 +986,41 @@ uses ten minutes.
 - Also fixed on the way: upstream's `books_page.test.js` matched "Maye" inside
   "Mayer", and the lineup page's four view tabs pushed a 360px phone sideways
   (they wrap now).
+
+### 44. Phone menu, arbs load position, stale previews, election cron (2026-11-13)
+
+A pass over every page in real Chrome at 1440px and 390px. Nothing was failing:
+no console errors, failed requests or sideways scroll, and axe clean. Four
+things fixed:
+
+- **The phone menu's last entries could not be reached.** Open, the menu is
+  864px tall, and the nav is sticky, so whatever fell below the screen stayed
+  there until the very end of the page. Opened part-way down Best Ball Prices
+  on a 390x664 view (an iPhone with Safari's bars showing), Arb Calculator,
+  Blog, Contact and Buy Me a Coffee were all off-screen, and scrolling another
+  2,000px did not bring them up. At 1080px and below the nav now stops at the
+  screen's height and scrolls inside itself (`assets/site.css`, one rule, on
+  every page). The stylesheet tag went to `box-score-6` on the six hand-made
+  pages and, through the port, the three NFL pages.
+- **Arbitrage Picks opened scrolled 368px down on a phone.** The password box
+  had `autofocus`, and the browser scrolls a focused field into view, so a
+  visitor arrived below the heading and the "Prices as of" line. Removed; the
+  page opens at the top.
+- **The home page's link preview still said Election Day.** `home.png` was
+  last shot on Nov. 3 and read "Democrats 82% to win the Senate", "The forecast
+  locks at 6 p.m." and Week 8. Re-shot: it now shows the past-tense "Final"
+  copy. Book Spread, which item 42 left on the logo, has its screenshot too.
+- **The election cron is off.** Since the lock it had run twelve times a day,
+  installing Node and Chrome each time to log "nothing to do". Its schedule is
+  commented out, like the ADP cron's; manual dispatch remains.
+
+Found and left for the owner to decide: the home page still leads with the
+forecast (and never says how it did), the calculator rejects prices typed in
+cents ("42") though the picks page quotes cents, Race by Race draws all 506
+races (183,000px on a phone), Best Ball Prices' phone cards run 320px a player
+with no way to sort, Start/Sit shows a first-time visitor nothing without a
+Sleeper username, and a clicked desktop menu stays open until something else
+is clicked.
 
 ## Found but not fixed here
 

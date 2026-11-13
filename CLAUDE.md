@@ -50,10 +50,14 @@ publishes them on its own Pages site; the user gave permission to edit that repo
   `?v=`, so a data change rebuilds the page too and Pages' 10-minute cache cannot
   pair a new page with old data. A data file that fails to load shows the site's
   one `.load-error` notice (built into the page shell by the script).
-- **Schedule:** `.github/workflows/politics-pull.yml`, every two hours at :20.
-  Upstream refreshes markets every two hours and re-runs the model after its
-  twice-daily poll refresh. Each data change is a commit (forecast_data.js is
-  the big one); that history growth was accepted for the election window.
+- **Schedule: off since 2026-11-13.** `.github/workflows/politics-pull.yml` ran
+  every two hours at :20 through the election (upstream refreshes markets every
+  two hours and re-runs the model after its twice-daily poll refresh). After the
+  lock each run only logged "nothing to do", so its `schedule:` block is
+  commented out, like the ADP cron's; `workflow_dispatch` remains. For a future
+  election, move or remove `LOCK_AT` first, then uncomment it. The politics
+  pages still link `site.css?v=box-score-5`, the tag they were last built with;
+  that is harmless (see "The look").
 - **The forecast is locked at 6 p.m. Eastern on Election Day (user, 2026-11-03).**
   `LOCK_AT` in `pull_politics.py` (23:00 UTC Nov. 3): after it the script logs
   and writes nothing, so the pages, the four data files and `summary.json` are
@@ -289,10 +293,17 @@ corners, rules and dotted row lines instead of boxes, no emoji in the UI.
   switch to Google Fonts without changing the CSP on every page. 404.html can't
   link site.css (its CSP allows inline styles only), so it carries its own
   `@font-face` copies by absolute path.
-- **site.css is linked as `site.css?v=box-score-5`** so a deploy does not pair
+- **site.css is linked as `site.css?v=box-score-6`** so a deploy does not pair
   new HTML with the 10-minute-cached old stylesheet. Bump the tag on the six
   hand-made pages after any site.css change and re-run the NFL port (it copies
-  the link from the calculator).
+  the link from the calculator). The two politics pages are locked and keep the
+  tag they were built with; an older tag only means that page's visitors get a
+  site.css change up to 10 minutes later.
+- **The phone menu scrolls inside itself** (2026-11-13). Open, it is about
+  860px tall, and the nav is sticky, so on most phones its last entries sat
+  below the screen and could not be scrolled to. At 1080px and below
+  `.site-nav` has `max-height: 100dvh; overflow-y: auto`, and
+  `verify_nav.test.js` fails if that rule goes.
 - **Shared page pieces** in site.css: `.kicker` (red label over a headline)
   and `.headline` (condensed capitals). Not `.num`: the NFL app has its own.
   `.load-error` is the one notice a page shows when its data file fails
