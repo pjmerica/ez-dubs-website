@@ -1,10 +1,10 @@
 {
  "source": "The Odds API",
  "region": "us",
- "lastUpdated": "2026-11-13T20:44:14+00:00",
+ "lastUpdated": "2026-11-14T18:59:16+00:00",
  "gameCount": 26,
- "quotaUsed": "1510",
- "quotaRemaining": "18490",
+ "quotaUsed": "1590",
+ "quotaRemaining": "18410",
  "note": "Median spread and total across books. Implied team total = total/2 - spread/2. Used to score D/ST and K, which have no prop market.",
  "games": [
   {
@@ -15,17 +15,17 @@
    "awayName": "New England Patriots",
    "kickoff": "2026-11-15T14:30:00Z",
    "total": 49.5,
-   "homeSpread": -3.0,
+   "homeSpread": -2.5,
    "teams": {
     "DET": {
-     "implied": 26.25,
-     "spread": -3.0,
-     "oppImplied": 23.25
+     "implied": 26.0,
+     "spread": -2.5,
+     "oppImplied": 23.5
     },
     "NE": {
-     "implied": 23.25,
-     "spread": 3.0,
-     "oppImplied": 26.25
+     "implied": 23.5,
+     "spread": 2.5,
+     "oppImplied": 26.0
     }
    },
    "bookCount": 11
@@ -51,7 +51,7 @@
      "oppImplied": 22.0
     }
    },
-   "bookCount": 11
+   "bookCount": 10
   },
   {
    "matchup": "BUFNYJ",
@@ -84,20 +84,20 @@
    "awayName": "Carolina Panthers",
    "kickoff": "2026-11-15T18:00:00Z",
    "total": 49.0,
-   "homeSpread": -2.5,
+   "homeSpread": -2.0,
    "teams": {
     "NO": {
-     "implied": 25.75,
-     "spread": -2.5,
-     "oppImplied": 23.25
+     "implied": 25.5,
+     "spread": -2.0,
+     "oppImplied": 23.5
     },
     "CAR": {
-     "implied": 23.25,
-     "spread": 2.5,
-     "oppImplied": 25.75
+     "implied": 23.5,
+     "spread": 2.0,
+     "oppImplied": 25.5
     }
    },
-   "bookCount": 10
+   "bookCount": 11
   },
   {
    "matchup": "HOUCLE",
@@ -153,17 +153,17 @@
    "awayName": "Miami Dolphins",
    "kickoff": "2026-11-15T18:00:00Z",
    "total": 37.5,
-   "homeSpread": -4.0,
+   "homeSpread": -4.5,
    "teams": {
     "IND": {
-     "implied": 20.75,
-     "spread": -4.0,
-     "oppImplied": 16.75
+     "implied": 21.0,
+     "spread": -4.5,
+     "oppImplied": 16.5
     },
     "MIA": {
-     "implied": 16.75,
-     "spread": 4.0,
-     "oppImplied": 20.75
+     "implied": 16.5,
+     "spread": 4.5,
+     "oppImplied": 21.0
     }
    },
    "bookCount": 11
@@ -452,17 +452,17 @@
    "awayName": "Tampa Bay Buccaneers",
    "kickoff": "2026-11-22T18:00:00Z",
    "total": 47.5,
-   "homeSpread": -3.5,
+   "homeSpread": -3.25,
    "teams": {
     "DET": {
-     "implied": 25.5,
-     "spread": -3.5,
-     "oppImplied": 22.0
+     "implied": 25.38,
+     "spread": -3.25,
+     "oppImplied": 22.12
     },
     "TB": {
-     "implied": 22.0,
-     "spread": 3.5,
-     "oppImplied": 25.5
+     "implied": 22.12,
+     "spread": 3.25,
+     "oppImplied": 25.38
     }
    },
    "bookCount": 8
@@ -603,7 +603,7 @@
      "oppImplied": 23.75
     }
    },
-   "bookCount": 4
+   "bookCount": 5
   }
  ]
 }
