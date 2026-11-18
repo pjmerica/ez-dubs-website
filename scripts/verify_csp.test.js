@@ -187,7 +187,8 @@ function run(url) {
 
   for (const [slug, viewId] of [["nfl-start-sit", "sleeper-view"],
                                 ["nfl-rooting", "rooting-view"],
-                                ["nfl-book-spread", "spread-view"]]) {
+                                ["nfl-book-spread", "spread-view"],
+                                ["nfl-projections", "proj-view"]]) {
     const url = `http://127.0.0.1:${PORT}/dashboards/${slug}/index.html`;
     // Headless Chrome occasionally exits before --dump-dom has written the DOM,
     // giving an empty capture. That is a harness artefact, not a broken page, so

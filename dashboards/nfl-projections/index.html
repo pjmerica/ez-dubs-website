@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://api.sleeper.app; font-src 'self'; base-uri 'self'; form-action 'none'">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vegas Projections · EZ Dubs Analytics</title>
+  <meta name="description" content="Every NFL player with a betting line this week, with the stat lines and fantasy points those lines imply in PPR, half PPR or standard." />
+  <link rel="icon" href="/EDA.png" type="image/png" />
+  <meta property="og:title" content="Vegas Projections | EZ Dubs Analytics" />
+  <meta property="og:description" content="Every NFL player with a betting line this week, with the stat lines and fantasy points those lines imply in PPR, half PPR or standard." />
+  <meta property="og:url" content="https://ezdubsanalytics.com/dashboards/nfl-projections/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://ezdubsanalytics.com/assets/previews/nfl-projections.png?v=6a3f8f935a" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://ezdubsanalytics.com/assets/previews/nfl-projections.png?v=6a3f8f935a" />
+  <link rel="stylesheet" href="../nfl-shared/style.css?v=2278d14d64" />
+<link rel="stylesheet" href="../../assets/site.css?v=box-score-6">
+<style>
+
+    </style>
+<style>
+  /* EZ Dubs chrome for the NFL pages; added by port_lineup_to_ezdubs.py. */
+  body { padding: 0; font-family: var(--serif); background: var(--paper); color: var(--ink); }
+  .container { padding: 36px 24px 0; }
+  header h1 {
+    font-family: var(--display); font-weight: 800; text-transform: uppercase;
+    font-size: clamp(2.4rem, 5vw, 3.4rem); line-height: 0.98; margin: 0 0 10px; color: var(--ink);
+  }
+  header .subtitle { color: var(--ink-2); font-size: 1.1rem; line-height: 1.55; margin-bottom: 22px; }
+  /* The verdict panels: a rule above, no box. Kept here on purpose since only
+     the calculator's body and footer rules are lifted (chrome_rules). */
+  .verdict { background: transparent; border: 0; border-top: 2px solid var(--rule);
+             border-radius: 0; padding: 14px 0; margin-bottom: 14px; }
+  /* Callouts lose the left-border box: rules above and below instead. */
+  .callout { background: transparent; border: 0; border-top: 1px solid var(--rule);
+             border-bottom: 1px solid var(--rule); border-radius: 0; padding: 12px 0;
+             color: var(--ink-2); font-size: 0.95rem; }
+  .callout strong { color: var(--ink); }
+  .callout-error { border-color: var(--red); color: var(--red); }
+  @media (max-width: 720px) {
+    body { padding: 0; }
+    .container { padding: 24px 16px 0; }
+  }
+  .site-nav .caret { color: inherit; }
+  .fmt-btn, .chip, .view-tab, .source-tab {
+    font-family: var(--display); font-weight: 700; font-size: 1rem;
+    text-transform: uppercase; letter-spacing: 0.03em;
+  }
+  .fmt-btn.active, .chip.active, .view-tab.active, .source-tab.active {
+    background: var(--ink); border-color: var(--ink); color: var(--paper);
+  }
+  .chip:hover, .player-tag:hover, #search:focus, #roster-input:focus,
+  #roster-search:focus, .h2h-picker input:focus, .roster-paste textarea:focus {
+    border-color: var(--red);
+  }
+  .delta-toggle input, .market-toggles input, .book-toggle-list input { accent-color: var(--ink); }
+  /* The template's 13px checkboxes are a small target on a phone. */
+  .market-toggles input[type="checkbox"], .book-toggle-list input[type="checkbox"] { width: 18px; height: 18px; }
+  table { font-variant-numeric: tabular-nums; }
+  .sources-note { font-family: var(--mono); color: var(--muted); font-size: 0.72rem; text-align: center; margin: 4px 0 8px; }
+  /* Small uppercase labels are mono on every other page; the template sets
+     them in the body face, which here is the serif. */
+  .rankings thead th, .sitstart-label, .slot-table th, .sitstart-section,
+  .h2h-card-sub, .matchup-league { font-family: var(--mono); letter-spacing: 0.04em; }
+  /* The template's bare footer rule centres its text; the site footer is left-aligned. */
+  .site-footer { text-align: left; font-size: 0.75rem; }
+  /* The template fades settled rows and dropped stats with opacity, which takes
+     every colour in them below AA: axe found 68 failures on a signed-in lineup
+     (2026-10-27; the old navy theme had 58 of the same). Muted ink at full
+     opacity reads as settled and still passes. */
+  .locked-row, tr.row-nan, .stat-off { opacity: 1; }
+  .locked-row td, .locked-row .player-name, tr.row-nan td, .stat-off { color: var(--muted); }
+  .locked-row .slot-badge, .locked-row .pos-badge { background: transparent; border: 1px solid currentColor; }
+  /* Position badges are outlined text, as on the Best Ball pages. The 18%
+     tints behind them took QB, RB and TE to 3.9-4.4:1, under AA; axe caught
+     it on Book Spread (2026-11-05), the first NFL table it sees without a
+     Sleeper sign-in. The text colours alone pass on paper. */
+  .pos-badge { background: transparent; border: 1px solid currentColor; }
+  /* Source Serif sets wider than the old system font, so at 390px a settled
+     lineup ran 25px past its scroll box (383 in 358). Tighter cells win it back. */
+  @media (max-width: 600px) {
+    .slot-table th, .slot-table td { padding-left: 8px; padding-right: 8px; }
+  }
+  /* The template's outlined, filled panels become rules, as on the rest of the
+     site: the help disclosure, the book picker, the coverage note, the lineup
+     table and its section heads. */
+  .help { border: 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); background: transparent; }
+  .help > summary { padding: 10px 0; font-family: var(--display); font-weight: 700; font-size: 1rem;
+                    text-transform: uppercase; letter-spacing: 0.03em; color: var(--ink); }
+  .help-body { padding: 12px 0 14px; }
+  .market-toggles { background: transparent; border: 0; border-top: 1px solid var(--rule); padding: 12px 0 4px; }
+  .coverage-note { background: transparent; border: 0; border-top: 2px solid var(--rule); padding: 10px 0; }
+  .coverage-note.early { background: transparent; border-top-color: var(--amber); }
+  .table-wrap { background: transparent; border: 0; border-top: 2px solid var(--rule); }
+  .slot-table th, .rankings thead th { background: transparent; }
+  .slot-table th:first-child, .slot-table td:first-child { padding-left: 0; }
+  .slot-table th:last-child, .slot-table td:last-child { padding-right: 0; }
+  .locked-row td { background: transparent; }
+  .sitstart-total, .sitstart-section { background: transparent; padding-left: 0; padding-right: 0; }
+  /* On a phone the player cell ran to three lines: name, then a tag such as
+     PLAYED, then the team. The name (span.pname, from lineup/app.js) takes the
+     first line and the tags and team share the second. */
+  @media (max-width: 600px) {
+    .slot-table td.player-name .pname { display: block; }
+    .slot-table td.player-name .pname ~ .game-sub { display: inline; margin-left: 6px; }
+    .slot-table td.player-name .pname + span { margin-left: 0; }
+  }
+</style>
+</head>
+<body>
+    <nav class="site-nav">
+        <a class="brand" href="../../">EZ Dubs <span class="accent">Analytics</span></a>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Menu">
+        <label for="nav-toggle" class="nav-toggle-label">
+            <span></span><span></span><span></span>
+        </label>
+        <div class="nav-tabs">
+            <a href="../../">Home</a>
+            <div class="nav-dd">
+                <button type="button" class="nav-dd-btn has-active">NFL <span class="caret" aria-hidden="true">▾</span></button>
+                <div class="nav-dd-menu">
+                    <div class="nav-dd-sub">
+                        <button type="button" class="nav-dd-sub-btn">Best Ball <span class="caret" aria-hidden="true">▸</span></button>
+                        <div class="nav-dd-sub-menu">
+                            <a href="../best-ball-prices/">Price Differences</a>
+                            <a href="../best-ball-history/">History Risers/Fallers</a>
+                        </div>
+                    </div>
+                    <div class="nav-dd-sub">
+                        <button type="button" class="nav-dd-sub-btn has-active">Redraft/In-Season <span class="caret" aria-hidden="true">▸</span></button>
+                        <div class="nav-dd-sub-menu">
+                            <a href="../nfl-start-sit/">Start/Sit</a>
+                            <a href="../nfl-rooting/">Root For/Against</a>
+                            <a href="../nfl-book-spread/">Book Spread</a>
+                            <a href="../nfl-projections/" class="active">Vegas Projections</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="nav-dd">
+                <button type="button" class="nav-dd-btn">Politics <span class="caret" aria-hidden="true">▾</span></button>
+                <div class="nav-dd-menu">
+                    <a href="../politics-map/">Forecast Map</a>
+                    <a href="../politics-forecast/">Race by Race</a>
+                </div>
+            </div>
+            <div class="nav-dd">
+                <button type="button" class="nav-dd-btn">Prediction Markets <span class="caret" aria-hidden="true">▾</span></button>
+                <div class="nav-dd-menu">
+                    <a href="../prediction-arbitrage/">Today's Arbitrage Picks</a>
+                    <a href="./">Arb Calculator</a>
+                </div>
+            </div>
+            <a href="https://substack.com/@ezdubsanalytics" target="_blank" rel="noopener">Blog (Substack) ↗</a>
+            <a href="../../contact.html">Contact</a>
+        </div>
+        <div class="nav-spacer"></div>
+        <a class="bmc-btn" href="https://buymeacoffee.com/ezdubsanalytics" target="_blank" rel="noopener">Buy me a coffee</a>
+    </nav>
+  <script>window.LINEUP_DEFAULT_VIEW = "proj"; window.LINEUP_DATA_DIR = "../nfl-start-sit/data/";</script>
+
+  <div class="container">
+    <header>
+      
+      <h1>Vegas Projections</h1>
+      <p class="subtitle">
+        Every player with a betting line for <span id="week-label">this week</span>, and the fantasy points those lines imply.
+      </p>
+    </header>
+
+
+    <main>
+
+
+
+
+      <div id="proj-view" class="hidden">
+        <div class="callout">
+          <strong>Every player the betting markets have priced, scored from those lines.</strong>
+          Each stat is the sportsbooks' consensus line, with Kalshi filling any
+          stat no book posted, and the points are those lines scored in the format
+          you pick. No season projection is mixed in: what you see is what the
+          markets imply.
+        </div>
+
+        <div class="spread-controls proj-controls">
+          <div class="proj-fmt" role="group" aria-label="Scoring">
+            <button class="chip" data-fmt="ppr" aria-pressed="false">PPR</button>
+            <button class="chip active" data-fmt="half" aria-pressed="true">Half PPR</button>
+            <button class="chip" data-fmt="std" aria-pressed="false">Standard</button>
+          </div>
+          <div class="proj-pos" role="group" aria-label="Position">
+            <button class="chip active" data-pos="ALL" aria-pressed="true">All</button>
+            <button class="chip" data-pos="QB" aria-pressed="false">QB</button>
+            <button class="chip" data-pos="RB" aria-pressed="false">RB</button>
+            <button class="chip" data-pos="WR" aria-pressed="false">WR</button>
+            <button class="chip" data-pos="TE" aria-pressed="false">TE</button>
+          </div>
+          <input type="search" id="proj-search" class="proj-search" autocomplete="off"
+                 spellcheck="false" placeholder="Search player or team"
+                 aria-label="Search player or team" />
+        </div>
+        <div class="spread-controls proj-toggles">
+          <label class="spread-pick">
+            <input type="checkbox" id="proj-tdonly" />
+            <span>Include players with only a touchdown line<span id="proj-tdonly-n"></span></span>
+          </label>
+          <label class="spread-pick">
+            <input type="checkbox" id="proj-started" />
+            <span>Include games that have kicked off<span id="proj-started-n"></span></span>
+          </label>
+        </div>
+
+        <details class="help">
+          <summary>How the projections are worked out</summary>
+          <div class="help-body">
+            <p>Every number is a betting line. Yardage is the median of the
+            books' lines for that stat. Receptions and passing touchdowns are
+            the expected count the books' line and price imply, since books
+            post different half-point lines at very different prices.
+            <strong>TDs</strong> is expected rushing plus receiving touchdowns,
+            from the anytime-touchdown price. Where no book posted a stat,
+            Kalshi's line stands in. Hover a number for how many books priced it
+            and their range.</p>
+
+            <p>The points are the standard scoring of those lines: a point per
+            10 rushing or receiving yards, per 25 passing yards, 6 per rushing or
+            receiving touchdown and 4 per passing touchdown, plus a point per
+            catch in PPR or half a point in half PPR. Interceptions and fumbles
+            are not counted, because no market prices them.</p>
+
+            <p>A stat no market priced is a dash, and counts as zero. Most
+            players have only a touchdown line, which on its own is a few
+            points, so they are hidden until you tick the box above; Start/Sit
+            fills their yardage from a season projection instead. A game that
+            has kicked off shows its last lines before kickoff.</p>
+          </div>
+        </details>
+
+        <div id="proj-output">
+          <div class="empty">Loading this week's lines&hellip;</div>
+        </div>
+      </div>
+      <p class="sources-note">Lines from DraftKings, FanDuel, BetMGM, Caesars, Bovada, BetRivers, BetOnline, Fanatics and Kalshi.</p>
+    </main>
+  </div>
+
+    <footer class="site-footer">
+        <p class="disclaimer-line">EZ Dubs Analytics is for entertainment and research only. Prices may be stale. Verify everything before placing bets.</p>
+        <div class="footer-row">
+            <span>&copy; EZ Dubs Analytics</span>
+            <span>
+                <a href="../../contact.html">Contact</a>
+                &nbsp;·&nbsp;
+                <a href="https://substack.com/@ezdubsanalytics" target="_blank" rel="noopener">Blog (Substack)</a>
+            </span>
+        </div>
+    </footer>
+  <script src="../nfl-shared/app.js?v=2278d14d64"></script>
+</body>
+</html>

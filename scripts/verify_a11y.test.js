@@ -35,6 +35,7 @@ const PAGES = ["/", "/contact.html", "/404.html",
   "/dashboards/best-ball-prices/", "/dashboards/best-ball-history/",
   "/dashboards/prediction-arbitrage/", "/dashboards/arb-calculator/?ayes=0.42&bno=0.55",
   "/dashboards/nfl-start-sit/", "/dashboards/nfl-rooting/", "/dashboards/nfl-book-spread/",
+  "/dashboards/nfl-projections/",
   "/dashboards/politics-map/", "/dashboards/politics-forecast/"];
 const VIEWPORTS = [{ width: 1440, height: 900 }, { width: 390, height: 844, isMobile: true }];
 

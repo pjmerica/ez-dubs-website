@@ -583,6 +583,39 @@ tr.row-nan:hover { opacity: 0.85; }
   .spread-svg, .spread-table .spread-axis { width: 200px; }
 }
 
+/* ── Vegas Projections view (2026-11-17) ─────────────────────────────────────
+   Every priced player's market lines and the points they score. Reuses the
+   Book Spread controls row, the lineup table and its phone rules (the Game
+   column moves under the name below 600px). Points sit straight after the
+   position so they stay on screen on a phone; the stat lines are a swipe away. */
+.proj-controls { margin-bottom: 8px; }
+.proj-toggles { margin-bottom: 14px; }
+.proj-fmt, .proj-pos { display: flex; flex-wrap: wrap; gap: 6px; }
+.proj-search {
+  font: inherit; font-size: 14px; padding: 7px 10px; min-width: 210px;
+  background: #f3f0e8; color: #1a1a1a; border: 1px solid #8a8478;
+  border-radius: 0; outline: none;
+}
+.proj-search:focus { border-color: #1a1a1a; }
+.proj-meta { margin: 0 0 8px; }
+.proj-table th.pj-num, .proj-table td.pj-num {
+  text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums;
+}
+.proj-table td.proj-pts { font-weight: 700; }
+/* The header buttons sort. They take the header's own type, and a 24px
+   minimum height so a finger can hit an 11px label. */
+.proj-sort {
+  background: none; border: 0; margin: 0; padding: 4px 0; min-height: 24px;
+  font: inherit; color: inherit; letter-spacing: inherit; text-transform: inherit;
+  cursor: pointer; display: inline-flex; align-items: center; gap: 3px;
+}
+.proj-sort:hover { color: #1a1a1a; }
+.proj-arrow { display: inline-block; min-width: 10px; font-size: 10px; }
+.proj-table .proj-tag { cursor: default; }
+@media (max-width: 600px) {
+  .proj-search { min-width: 0; width: 100%; }
+}
+
 /* ── Start/Sit view ───────────────────────────────────────────────────────── */
 .sitstart-grid {
   display: grid;

@@ -1022,6 +1022,47 @@ with no way to sort, Start/Sit shows a first-time visitor nothing without a
 Sleeper username, and a clicked desktop menu stays open until something else
 is clicked.
 
+### 45. Vegas Projections page; Book Spread had no CSP (2026-11-17)
+
+- **New page, Vegas Projections** (`dashboards/nfl-projections/`, user's
+  request: "all players by their implied Vegas lines", PPR, half PPR and
+  standard). One row per priced QB, RB, WR and TE: passing yards and TDs,
+  rushing yards, receptions, receiving yards, expected rushing and receiving
+  TDs, and the points those lines score. Points sit right after the position,
+  so they stay on screen on a phone. Sort by any column (unpriced stats sort
+  last), position chips, search, top 100 with Show all. A fifth view in
+  upstream `lineup/`, ported like the others, added to the NFL menu on every
+  page, the sitemap, the previews and the a11y, CSP, shared-app and NFL-page
+  checks.
+- **Market lines only.** Start/Sit fills a touchdown-only player's yardage from
+  a season projection so it can rank him. That fill is dropped here: on the
+  Tuesday this was built, Jahmyr Gibbs, Justin Herbert and Patrick Mahomes had
+  only a touchdown priced, and the fill would have put them near the top as if
+  the markets said so. Such players (277 of ~360) are behind "Include players
+  with only a touchdown line", tagged and showing dashes.
+- **Positions.** The pool takes positions from the season projections, which
+  miss 84 of 424 lined players (backups, mostly), and its loose
+  initials-plus-surname fallback calls CJ Williams a QB. This page tries an
+  exact projection match, then Sleeper's map, then the loose match. Book
+  Spread still uses the pool's lookup and skips those players; not changed.
+- **DraftKings scoring was asked for, then dropped** by the user mid-build. A
+  bonus model was calibrated first, from upstream's closing-lines archive: a
+  logistic in log(line) for P(300+ passing, 100+ rushing or receiving yards)
+  matched the season's bonus counts. Unused; noted in case it comes back.
+- **Book Spread had no Content-Security-Policy** since it was added on 11-05.
+  The port keeps only the `<meta http-equiv>` tags a page already has, and a
+  new page has none. Added to it and to the new page (Start/Sit's policy);
+  `verify_nfl_pages.test.js` now checks every NFL page carries one, and runs
+  Book Spread and Vegas Projections end to end without a sign-in (Book Spread
+  had never been run there).
+- **Upstream** (AI_Agent_work): `tests/projections_view.test.js`, 40 checks,
+  including every top player's points against a hand scoring of the data files
+  in all three formats; it fails on a broken half-PPR rate and on a leaked
+  projection fill. `lineup_page.test.js` had begun failing on the day's data:
+  it searched "goul" for Anthony Gould, a backup with a line but no projected
+  position, whom the search correctly does not offer. It now samples only
+  players the projections list. Upstream offline suite: 30 of 30.
+
 ## Found but not fixed here
 
 ### Privacy: what still links the site to the GitHub account

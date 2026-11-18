@@ -2795,17 +2795,20 @@
   const $lgView = document.getElementById("sleeper-view");
   const $rtView = document.getElementById("rooting-view");
   const $spView = document.getElementById("spread-view");
+  const $pjView = document.getElementById("proj-view");
 
   function showView(name) {
     if ($ssView) $ssView.classList.toggle("hidden", name !== "sitstart");
     if ($lgView) $lgView.classList.toggle("hidden", name !== "sleeper");
     if ($rtView) $rtView.classList.toggle("hidden", name !== "rooting");
     if ($spView) $spView.classList.toggle("hidden", name !== "spread");
+    if ($pjView) $pjView.classList.toggle("hidden", name !== "proj");
     document.querySelectorAll(".view-tab").forEach((t) =>
       t.classList.toggle("active", t.dataset.view === name));
     if (name === "sitstart") showSitStartView();
     else if (name === "rooting") showRootingView();
     else if (name === "spread") showSpreadView();
+    else if (name === "proj") showProjView();
     else showLeaguesView();
   }
 
@@ -3039,6 +3042,268 @@
     if ($sel) $sel.addEventListener("change", () => { spreadBook = $sel.value; renderSpread(); });
     const $num = document.getElementById("spread-numbers");
     if ($num) $num.addEventListener("change", () => { spreadNumbers = $num.checked; renderSpread(); });
+  })();
+
+  /* ── Vegas Projections ──────────────────────────────────────────────────────
+   * Every player with a betting line this week, each stat's market line and the
+   * points those lines score in PPR, half PPR or standard (2026-11-17, asked for
+   * as "all players by their implied Vegas lines").
+   *
+   * Market lines only. buildSitStartPoolFull fills a touchdown-only player's
+   * yardage from a season projection (lineSource "projected") so Start/Sit can
+   * rank him; that fill is dropped here, because this view is what the markets
+   * imply and nothing else. Lines are the raw consensus (stat.line), not the
+   * Start/Sit book filter: this view has no book picker, and a book unticked on
+   * another tab should not quietly change it. Scored by pointsFromLines, the
+   * same function as Start/Sit and Book Spread, so a fully priced player's
+   * half-PPR number here is the one Start/Sit shows.
+   */
+  const PROJ_LIMIT = 100;
+  const PROJ_POS = new Set(["QB", "RB", "WR", "TE"]);
+  const PROJ_STATS = ["pass_yds", "pass_tds", "rush_yds", "receptions", "rec_yds", "any_tds"];
+  const PROJ_FMT_LABEL = { ppr: "PPR", half: "half PPR", std: "standard" };
+  let projFmt = "half", projPos = "ALL", projQuery = "", projAll = false;
+  let projTdOnly = false, projStarted = false;
+  let projSort = { key: "pts", desc: true };
+
+  /* A player's position.
+   *
+   * The pool takes it from the season projections, which miss players they do
+   * not project: 84 of 424 players with a line on 2026-11-17, mostly backups
+   * with only a touchdown price, who would vanish from this list. Their loose
+   * initial-plus-surname fallback also misnames a few (it calls CJ Williams a
+   * QB, from Caleb Williams's row). So: an exact projection match, then
+   * Sleeper's own position, then the loose match.
+   */
+  function projPosition(name, luts, sleeperBy) {
+    const exact = lookupProjExact(luts.clay, name) || lookupProjExact(luts.fp, name);
+    if (exact && exact.position) return exact.position;
+    const s = sleeperBy.get(normPlayerName(name));
+    if (s && s[1]) return s[1];
+    const loose = lookupProj(luts.clay, name) || lookupProj(luts.fp, name);
+    return (loose && loose.position) || null;
+  }
+
+  function buildProjRows() {
+    const pool = buildSitStartPoolFull();
+    const luts = { clay: buildProjLookup(cache["clay"]), fp: buildProjLookup(cache["data"]) };
+    const sleeperBy = new Map();
+    for (const p of Object.values(((cache["sleeperPlayers"] || {}).players) || {})) {
+      if (Array.isArray(p) && p[0]) sleeperBy.set(normPlayerName(p[0]), p);
+    }
+    const rows = [];
+    for (const [, pp] of pool) {
+      const lines = {}, src = {};
+      for (const k of PROJ_STATS) {
+        const s = pp.stats[k];
+        if (!s || s.line == null || s.lineSource === "projected") continue;
+        lines[k] = s.line;
+        src[k] = s;
+      }
+      const priced = Object.keys(lines);
+      if (!priced.length) continue;
+      const position = projPosition(pp.name, luts, sleeperBy);
+      if (!PROJ_POS.has(position)) continue;     // team D/ST rows, unknown players
+      const s = sleeperBy.get(normPlayerName(pp.name));
+      rows.push({
+        name: pp.name, position, matchup: pp.matchup,
+        team: (s && s[2]) || "",
+        lines, src,
+        tdOnly: priced.length === 1 && priced[0] === "any_tds",
+        started: playerHasKickedOff(pp),
+        pts: { ppr: pointsFromLines(lines, "ppr"), half: pointsFromLines(lines, "half"),
+               std: pointsFromLines(lines, "std") },
+      });
+    }
+    return rows;
+  }
+
+  // "Median of 7 books, 62.5 to 66.5", or which single source posted it.
+  const projDp = (k) => (k === "pass_tds" || k === "any_tds") ? 2 : 1;
+
+  function projSourceNote(s, k) {
+    const dp = projDp(k);
+    if (s.lineSource === "books") {
+      const n = s.books || (s.quotes || []).length;
+      if (n === 1 && s.quotes && s.quotes[0]) return "1 book: " + sourceLabel(s.quotes[0].book);
+      const range = (s.min != null && s.max != null && s.min !== s.max)
+        ? ", " + (+s.min).toFixed(dp) + " to " + (+s.max).toFixed(dp) : "";
+      return "Median of " + n + " books" + range;
+    }
+    return "Kalshi";
+  }
+
+  function projCell(r, k) {
+    const v = r.lines[k];
+    if (v == null) return '<td class="pj-num c-dim" aria-label="not priced">&ndash;</td>';
+    const dp = projDp(k);
+    return '<td class="pj-num" title="' + escapeHtml(projSourceNote(r.src[k], k)) + '">' +
+      v.toFixed(dp) + "</td>";
+  }
+
+  const PROJ_COLS = [
+    // key, header, numeric, title
+    ["name", "Player", false, ""],
+    ["position", "Pos", false, ""],
+    ["game", "Game", false, ""],
+    ["pts", "Pts", true, "Points from these lines in the chosen scoring"],
+    ["pass_yds", "Pass Yds", true, "Passing yards line"],
+    ["pass_tds", "Pass TD", true, "Expected passing touchdowns"],
+    ["rush_yds", "Rush Yds", true, "Rushing yards line"],
+    ["receptions", "Rec", true, "Expected receptions"],
+    ["rec_yds", "Rec Yds", true, "Receiving yards line"],
+    ["any_tds", "TDs", true, "Expected rushing plus receiving touchdowns, from the anytime-touchdown price"],
+  ];
+
+  function projSortValue(r, key) {
+    if (key === "pts") return r.pts[projFmt];
+    if (key === "name") return r.name.toLowerCase();
+    if (key === "position") return r.position;
+    if (key === "game") return gameLabel(r.matchup) || "";
+    return r.lines[key];
+  }
+
+  function renderProj() {
+    const $out = document.getElementById("proj-output");
+    if (!$out) return;
+    const all = buildProjRows();
+    const nTd = all.filter((r) => r.tdOnly && (projStarted || !r.started)).length;
+    const nStarted = all.filter((r) => r.started && (projTdOnly || !r.tdOnly)).length;
+    const $tdn = document.getElementById("proj-tdonly-n");
+    if ($tdn) $tdn.textContent = " (" + nTd + ")";
+    const $stn = document.getElementById("proj-started-n");
+    if ($stn) $stn.textContent = " (" + nStarted + ")";
+
+    const q = projQuery.trim().toLowerCase();
+    let rows = all.filter((r) =>
+      (projTdOnly || !r.tdOnly) && (projStarted || !r.started) &&
+      (projPos === "ALL" || r.position === projPos) &&
+      (!q || r.name.toLowerCase().includes(q) || r.team.toLowerCase() === q ||
+       (gameLabel(r.matchup) || "").toLowerCase().includes(q)));
+
+    if (!rows.length) {
+      // Say which filter emptied the list: by Monday night every game has
+      // kicked off, and early in the week most players have only a TD line.
+      const live = all.filter((r) => projStarted || !r.started);
+      const msg = !all.length
+        ? "No player has a line yet. Lines for the coming week usually post by Thursday."
+        : !live.length
+          ? "Every game with a line has kicked off. Tick “Include games that have kicked off” to see their closing lines."
+          : !live.some((r) => projTdOnly || !r.tdOnly)
+            ? "So far only touchdown lines are posted. Tick “Include players with only a touchdown line” to see them."
+            : "No player matches these filters.";
+      $out.innerHTML = '<div class="empty">' + msg + "</div>";
+      return;
+    }
+
+    // Sort: the chosen column, unpriced stats last either way, then points.
+    const { key, desc } = projSort;
+    rows.sort((a, b) => {
+      const va = projSortValue(a, key), vb = projSortValue(b, key);
+      if (va == null && vb != null) return 1;
+      if (vb == null && va != null) return -1;
+      if (va != null && vb != null && va !== vb) {
+        const c = typeof va === "string" ? va.localeCompare(vb) : va - vb;
+        return desc ? -c : c;
+      }
+      return b.pts[projFmt] - a.pts[projFmt];
+    });
+    const shown = projAll ? rows : rows.slice(0, PROJ_LIMIT);
+
+    const asOf = [cache["oddsapi"], cache["weekly"]]
+      .map((f) => Date.parse((f && f.lastUpdated) || "")).filter(isFinite);
+    const when = asOf.length ? new Date(Math.max(...asOf)).toLocaleString("en-US",
+      { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" }) : "";
+    let html = '<p class="weekly-meta proj-meta">' +
+      (rows.length > shown.length ? "Top " + shown.length + " of " : "") + rows.length +
+      " player" + (rows.length === 1 ? "" : "s") + " &middot; " + PROJ_FMT_LABEL[projFmt] +
+      (when ? " &middot; lines as of " + escapeHtml(when) : "") + "</p>";
+
+    html += '<div class="table-wrap" tabindex="0" role="region" aria-label="Projections">' +
+      '<table class="slot-table proj-table"><thead><tr>';
+    for (const [k, label, numeric, title] of PROJ_COLS) {
+      const on = projSort.key === k;
+      const aria = on ? (projSort.desc ? "descending" : "ascending") : "none";
+      html += '<th scope="col" aria-sort="' + aria + '" class="' +
+        (numeric ? "pj-num" : "") + (k === "game" ? " game-col" : "") + (k === "pts" ? " proj-pts-h" : "") + '"' +
+        (title ? ' title="' + escapeHtml(title) + '"' : "") + ">" +
+        '<button type="button" class="proj-sort" data-key="' + k + '">' + label +
+        '<span class="proj-arrow" aria-hidden="true">' + (on ? (projSort.desc ? "&#9660;" : "&#9650;") : "") +
+        "</span></button></th>";
+    }
+    html += "</tr></thead><tbody>";
+    for (const r of shown) {
+      const game = gameLabel(r.matchup) || "-";
+      const tags = (r.tdOnly ? ' <span class="proj-tag">Only TD priced</span>' : "") +
+        (r.started ? ' <span class="injury-tag c-dim">Kicked off</span>' : "");
+      html += "<tr" + (r.started ? ' class="locked-row"' : "") + ">" +
+        '<td class="player-name"><span class="pname">' + escapeHtml(r.name) + "</span>" +
+        tags + gameSub(game) + "</td>" +
+        '<td><span class="pos-badge pos-' + escapeHtml(r.position) + '">' +
+        escapeHtml(r.position) + "</span></td>" +
+        '<td class="weekly-game game-col">' + escapeHtml(game) + "</td>" +
+        '<td class="pj-num proj-pts"><span class="market-pts">' + r.pts[projFmt].toFixed(1) + "</span></td>" +
+        PROJ_STATS.map((k) => projCell(r, k)).join("") + "</tr>";
+    }
+    html += "</tbody></table></div>";
+    if (rows.length > PROJ_LIMIT) {
+      html += '<div class="spread-more"><button class="fmt-btn" id="proj-all">' +
+        (projAll ? "Show top " + PROJ_LIMIT + " only" : "Show all " + rows.length + " players") +
+        "</button></div>";
+    }
+    $out.innerHTML = html;
+  }
+
+  async function showProjView() {
+    await loadData();
+    // Sleeper's player map supplies positions the projections lack. Loaded
+    // here as well as at sign-in, since this view needs no sign-in; without it
+    // the view still works, a little shorter.
+    if (!cache["sleeperPlayers"]) {
+      try { cache["sleeperPlayers"] = await fetchJson("sleeper_players.json"); }
+      catch (e) { /* positions fall back to the projections */ }
+    }
+    renderProj();
+  }
+
+  (function wireProj() {
+    const $view = document.getElementById("proj-view");
+    if (!$view) return;
+    const chips = (sel, attr, set) => {
+      $view.querySelectorAll(sel + " .chip").forEach((b) => {
+        b.addEventListener("click", () => {
+          set(b.dataset[attr]);
+          $view.querySelectorAll(sel + " .chip").forEach((x) => {
+            x.classList.toggle("active", x === b);
+            x.setAttribute("aria-pressed", x === b ? "true" : "false");
+          });
+          renderProj();
+        });
+      });
+    };
+    chips(".proj-fmt", "fmt", (v) => { projFmt = v; });
+    chips(".proj-pos", "pos", (v) => { projPos = v; });
+    const $q = document.getElementById("proj-search");
+    if ($q) $q.addEventListener("input", () => { projQuery = $q.value; renderProj(); });
+    const $td = document.getElementById("proj-tdonly");
+    if ($td) $td.addEventListener("change", () => { projTdOnly = $td.checked; renderProj(); });
+    const $st = document.getElementById("proj-started");
+    if ($st) $st.addEventListener("change", () => { projStarted = $st.checked; renderProj(); });
+    const $out = document.getElementById("proj-output");
+    if ($out) $out.addEventListener("click", (e) => {
+      const t = e.target && e.target.closest ? e.target : null;
+      if (!t) return;
+      if (t.closest("#proj-all")) { projAll = !projAll; renderProj(); return; }
+      const b = t.closest(".proj-sort");
+      if (!b) return;
+      const k = b.dataset.key;
+      // Numbers open biggest first, words A to Z; a second click flips it.
+      projSort = projSort.key === k ? { key: k, desc: !projSort.desc }
+        : { key: k, desc: !["name", "position", "game"].includes(k) };
+      renderProj();
+      const again = $out.querySelector('.proj-sort[data-key="' + k + '"]');
+      if (again) again.focus();
+    });
   })();
 
   async function showRootingView() {
@@ -3292,7 +3557,7 @@
    * window.LINEUP_DEFAULT_VIEW; a URL hash overrides it, so an existing
    * deep-link still works. Falls back to the first tab when neither is set.
    */
-  const VALID_VIEWS = new Set(["sitstart", "sleeper", "rooting", "spread"]);
+  const VALID_VIEWS = new Set(["sitstart", "sleeper", "rooting", "spread", "proj"]);
   const hashView = (window.location.hash || "").replace(/^#/, "");
   const wanted = VALID_VIEWS.has(hashView) ? hashView
     : VALID_VIEWS.has(window.LINEUP_DEFAULT_VIEW) ? window.LINEUP_DEFAULT_VIEW

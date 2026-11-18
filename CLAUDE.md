@@ -116,17 +116,36 @@ publishes them on its own Pages site; the user gave permission to edit that repo
 
 ## NFL Redraft/In-Season pages (2026-10-01)
 
-`dashboards/nfl-start-sit/`, `dashboards/nfl-rooting/` and (2026-11-05)
-`dashboards/nfl-book-spread/`, ported from the `lineup/` page in
-`pjmerica/AI_Agent_work`. Full detail in **`dashboards/NFL_REDRAFT.md`** -- read
-that before changing any of them.
+`dashboards/nfl-start-sit/`, `dashboards/nfl-rooting/`, (2026-11-05)
+`dashboards/nfl-book-spread/` and (2026-11-17) `dashboards/nfl-projections/`,
+ported from the `lineup/` page in `pjmerica/AI_Agent_work`. Full detail in
+**`dashboards/NFL_REDRAFT.md`** -- read that before changing any of them.
+
+**Vegas Projections** (user's request, 2026-11-17) lists every QB, RB, WR and
+TE with a betting line this week: each stat's consensus line (Kalshi where no
+book posted one) and the points those lines score in PPR, half PPR or
+standard, by `pointsFromLines`, so a fully priced player's half-PPR number
+matches Start/Sit. Market lines only: Start/Sit's season-projection fill for
+touchdown-only players is dropped, and those players (277 of ~360 on a
+Tuesday) are hidden behind a checkbox. The user asked for DraftKings scoring
+too, then dropped it; don't add it back unasked. Positions come from an exact
+projection match, then Sleeper's map, then the loose initials match, because
+the pool's own position lookup misses ~84 lined players and calls CJ Williams
+a QB. Book Spread still uses the pool's lookup, so it silently skips those 84.
+
+**A new NFL page needs its CSP added by hand once.** The port carries only the
+`<meta http-equiv>` tags a page already has, so a new page starts without a
+Content-Security-Policy. Book Spread went without one from 11-05 to 11-17.
+Copy Start/Sit's tag into the new `index.html` after the first port;
+`verify_nfl_pages.test.js` now fails if any NFL page lacks one.
 
 **Book Spread** ranks players by how far apart the sportsbooks' projections are:
 one dot per book (Kalshi hollow), each scored half-PPR from that book's own
 lines with the consensus filling stats it did not price. Books are not given a
 colour each (nine identities on one row cannot all stay distinguishable); a
 "Highlight" picker paints one book red across every row instead. It needs no
-sign-in, so the Sleeper end-to-end run in `verify_nfl_pages` does not cover it.
+sign-in; `verify_nfl_pages` runs it (and Vegas Projections) from the data
+files without one since 2026-11-17.
 Passing-TD and receptions quotes reach it, and Start/Sit, as **expected counts
 from line and price** (`_count_mean` in AI_Agent_work's
 `fetch_oddsapi_weekly_props.py`), not raw half-point lines: books post different

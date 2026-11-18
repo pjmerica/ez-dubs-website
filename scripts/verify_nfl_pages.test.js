@@ -42,6 +42,7 @@ const htmlPages = [
   "dashboards/nfl-start-sit/index.html",
   "dashboards/nfl-rooting/index.html",
   "dashboards/nfl-book-spread/index.html",
+  "dashboards/nfl-projections/index.html",
 ];
 for (const rel of htmlPages) {
   const f = path.join(REPO, rel);
@@ -82,11 +83,11 @@ for (const rel of htmlPages) {
 console.log("");
 console.log("=== one view per page, no tab strip ===");
 for (const [slug, view] of [["nfl-start-sit", "sleeper"], ["nfl-rooting", "rooting"],
-                            ["nfl-book-spread", "spread"]]) {
+                            ["nfl-book-spread", "spread"], ["nfl-projections", "proj"]]) {
   const raw = fs.readFileSync(
     path.join(REPO, "dashboards", slug, "index.html"), "utf8");
   check(slug + " has no tab strip", !raw.includes('id="view-tabs"'));
-  const views = [...raw.matchAll(/id="(sitstart|sleeper|rooting|spread)-view"/g)]
+  const views = [...raw.matchAll(/id="(sitstart|sleeper|rooting|spread|proj)-view"/g)]
     .map((m) => m[1]);
   check(slug + " carries only the " + view + " view",
     views.length === 1 && views[0] === view, views.join(", ") || "(none)");
@@ -99,6 +100,7 @@ for (const [rel, want] of [
   ["dashboards/nfl-start-sit/index.html", "Start/Sit"],
   ["dashboards/nfl-rooting/index.html", "Root For/Against"],
   ["dashboards/nfl-book-spread/index.html", "Book Spread"],
+  ["dashboards/nfl-projections/index.html", "Vegas Projections"],
   ["dashboards/best-ball-prices/index.html", "Price Differences"],
 ]) {
   const dom = new JSDOM(fs.readFileSync(path.join(REPO, rel), "utf8"));
@@ -128,7 +130,20 @@ check("it lives in the shared directory",
 check("only nfl-start-sit carries data/",
   fs.existsSync(path.join(REPO, "dashboards/nfl-start-sit/data/weekly.json")) &&
   !fs.existsSync(path.join(REPO, "dashboards/nfl-rooting/data")) &&
-  !fs.existsSync(path.join(REPO, "dashboards/nfl-book-spread/data")));
+  !fs.existsSync(path.join(REPO, "dashboards/nfl-book-spread/data")) &&
+  !fs.existsSync(path.join(REPO, "dashboards/nfl-projections/data")));
+
+// Every NFL page carries the Content-Security-Policy. The port keeps only the
+// <meta http-equiv> tags a page already has, so a NEW page starts without one:
+// Book Spread went without from 2026-11-05 until 2026-11-17, and verify_csp
+// (which checks that a policy does not break a page) could not notice.
+console.log("");
+console.log("=== every NFL page has a CSP ===");
+for (const slug of ["nfl-start-sit", "nfl-rooting", "nfl-book-spread", "nfl-projections"]) {
+  const raw = fs.readFileSync(path.join(REPO, "dashboards", slug, "index.html"), "utf8");
+  check(slug + " has a Content-Security-Policy",
+    /<meta http-equiv="Content-Security-Policy" content="default-src 'self';/.test(raw));
+}
 
 // ---- both pages actually run ----------------------------------------------
 async function runPage(slug, expectView) {
@@ -198,7 +213,7 @@ async function runPage(slug, expectView) {
   console.log("=== " + slug + " ===");
   check("config read from the page",
     window.LINEUP_DEFAULT_VIEW === expectView, window.LINEUP_DEFAULT_VIEW);
-  const shown = ["sitstart", "sleeper", "rooting"]
+  const shown = ["sitstart", "sleeper", "rooting", "spread", "proj"]
     .filter((v) => $(v + "-view") && !$(v + "-view").classList.contains("hidden"));
   check("opens on the " + expectView + " tab",
     shown.length === 1 && shown[0] === expectView, shown.join(","));
@@ -229,7 +244,52 @@ async function runPage(slug, expectView) {
   return errors.length + missing.length;
 }
 
+// The two pages that need no sign-in: they render straight from the data
+// files. Before 2026-11-17 Book Spread was never run here at all.
+async function runOpenPage(slug, expectView, outId) {
+  const dir = path.join(REPO, "dashboards", slug);
+  const raw = fs.readFileSync(path.join(dir, "index.html"), "utf8");
+  const dom = new JSDOM(raw, { runScripts: "outside-only", pretendToBeVisual: true,
+    url: "https://ezdubsanalytics.com/dashboards/" + slug + "/" });
+  const { window } = dom;
+  Object.defineProperty(window, "localStorage", { value: { getItem: () => null, setItem() {}, removeItem() {} } });
+  const cfg = raw.match(/window\.LINEUP_DEFAULT_VIEW = "(\w+)".*?window\.LINEUP_DATA_DIR = "([^"]+)"/);
+  if (cfg) { window.LINEUP_DEFAULT_VIEW = cfg[1]; window.LINEUP_DATA_DIR = cfg[2]; }
+  const missing = [];
+  window.fetch = async (u) => {
+    const want = String(u).split("?")[0];
+    const f = path.resolve(dir, want);
+    if (!/^https?:/.test(want) && fs.existsSync(f)) {
+      return { ok: true, status: 200, json: async () => JSON.parse(fs.readFileSync(f, "utf8")) };
+    }
+    missing.push(want);
+    return { ok: false, status: 404, json: async () => null };
+  };
+  const errors = [];
+  window.addEventListener("error", (e) => errors.push(String(e.error || e.message)));
+  window.eval(fs.readFileSync(path.join(REPO, "dashboards", "nfl-shared", "app.js"), "utf8"));
+  await new Promise((r) => setTimeout(r, 1500));
+  const $ = (id) => window.document.getElementById(id);
+  console.log("");
+  console.log("=== " + slug + " ===");
+  check("config read from the page", window.LINEUP_DEFAULT_VIEW === expectView, window.LINEUP_DEFAULT_VIEW);
+  check("its view is the one shown", $(expectView + "-view") && !$(expectView + "-view").classList.contains("hidden"));
+  check("no 404s", missing.length === 0, [...new Set(missing)].join(", "));
+  // A table, or one of the page's own honest-empty notices: midweek nothing is
+  // posted, by Monday night every game has kicked off (Projections hides those
+  // by default), early in the week only touchdown lines exist. Never "Loading".
+  const out = $(outId);
+  const txt = out ? out.textContent.replace(/\s+/g, " ").trim() : "";
+  const rows = out ? out.querySelectorAll("tbody tr").length : 0;
+  check("rendered from the data", rows > 0 ||
+    /usually post by Thursday|Every game with a line has kicked off|only touchdown lines are posted/.test(txt),
+    rows + " rows; " + txt.slice(0, 70));
+  check("no console errors", errors.length === 0, errors.slice(0, 2).join(" | "));
+}
+
 (async () => {
+  await runOpenPage("nfl-book-spread", "spread", "spread-output");
+  await runOpenPage("nfl-projections", "proj", "proj-output");
   await runPage("nfl-start-sit", "sleeper");
   await runPage("nfl-rooting", "rooting");
   console.log("");

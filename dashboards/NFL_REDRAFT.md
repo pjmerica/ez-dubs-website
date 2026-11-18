@@ -2,7 +2,7 @@
 
 **Added:** 2026-10-01 · **Source repo:** `pjmerica/AI_Agent_work`
 
-Two in-season NFL dashboards, ported from the `lineup/` page in
+Four in-season NFL dashboards (two at first, in 2026-10), ported from the `lineup/` page in
 [AI_Agent_work](https://github.com/pjmerica/AI_Agent_work). They project fantasy
 points from betting markets rather than from a ranking model, and read a user's
 real Sleeper leagues live in the browser.
@@ -12,13 +12,22 @@ real Sleeper leagues live in the browser.
 | Start/Sit | `dashboards/nfl-start-sit/` | the Sleeper Start/Sit tab |
 | Root For/Against | `dashboards/nfl-rooting/` | the Root For/Against tab |
 | Book Spread | `dashboards/nfl-book-spread/` | the Book Spread tab (2026-11-05) |
+| Vegas Projections | `dashboards/nfl-projections/` | the Vegas Projections tab (2026-11-17) |
 
-All three are in the top nav under **NFL → Redraft/In-Season**, and all three
+All four are in the top nav under **NFL → Redraft/In-Season**, and all four
 load the same `nfl-shared/app.js` and the one `nfl-start-sit/data/`.
+
+**Vegas Projections** is every priced QB, RB, WR and TE: each stat's consensus
+line and the points those lines score in PPR, half PPR or standard. Market
+lines only, so players with nothing but a touchdown price (most of the board)
+are behind a checkbox rather than ranked on a season estimate. Sortable by any
+column, with a position filter and a search box. A new NFL page needs
+Start/Sit's Content-Security-Policy tag copied in once by hand; the port keeps
+it after that (see CLAUDE.md).
 
 ## The thing to understand first
 
-**These are two URLs serving one application.** Both pages load the same
+**These are four URLs serving one application.** Every page loads the same
 `dashboards/nfl-shared/app.js`; each only sets which tab opens first:
 
 ```html
@@ -28,13 +37,13 @@ load the same `nfl-shared/app.js` and the one `nfl-start-sit/data/`.
 
 Do **not** copy `app.js` into each page directory to make them independent. That
 logic — Sleeper rosters, league scoring, the projection merge — is the same for
-both views, and duplicating it is how the source repo got two silent drift bugs
+every view, and duplicating it is how the source repo got two silent drift bugs
 (a fix landed in one copy and not the other; see `tests/apps_agree.test.js`
 there). A reader arriving at `nfl-rooting/` and finding no `app.js` is the
 intended design, not a missing file.
 
-All three tabs are reachable from either page. The nav entries are deep links to
-the two people actually want.
+The port strips the tab bar and every other view from each page, so each page
+shows only its own view; the nav links them together.
 
 ## Where the data lives
 
@@ -48,8 +57,8 @@ the two people actually want.
 | `sleeper_players.json` | trimmed Sleeper player map, plus injury status |
 | `clay.json`, `data.json` | season projections, used to fill in unpriced players |
 
-`nfl-rooting` points at this same directory, so the payload is stored and fetched
-once.
+The other three pages point at this same directory, so the payload is stored and
+fetched once.
 
 ## Keeping the data fresh
 
