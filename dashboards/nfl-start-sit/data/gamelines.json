@@ -1,10 +1,10 @@
 {
  "source": "The Odds API",
  "region": "us",
- "lastUpdated": "2026-11-20T01:06:43+00:00",
- "gameCount": 29,
- "quotaUsed": "2230",
- "quotaRemaining": "17770",
+ "lastUpdated": "2026-11-20T03:48:27+00:00",
+ "gameCount": 27,
+ "quotaUsed": "2304",
+ "quotaRemaining": "17696",
  "note": "Median spread and total across books. Implied team total = total/2 - spread/2. Used to score D/ST and K, which have no prop market.",
  "games": [
   {
@@ -28,7 +28,8 @@
      "oppImplied": 28.25
     }
    },
-   "bookCount": 12
+   "bookCount": 12,
+   "lockedAtKickoff": true
   },
   {
    "matchup": "ARIKC",
@@ -38,17 +39,17 @@
    "awayName": "Arizona Cardinals",
    "kickoff": "2026-11-22T18:00:00Z",
    "total": 40.75,
-   "homeSpread": -16.5,
+   "homeSpread": -16.25,
    "teams": {
     "KC": {
-     "implied": 28.62,
-     "spread": -16.5,
-     "oppImplied": 12.12
+     "implied": 28.5,
+     "spread": -16.25,
+     "oppImplied": 12.25
     },
     "ARI": {
-     "implied": 12.12,
-     "spread": 16.5,
-     "oppImplied": 28.62
+     "implied": 12.25,
+     "spread": 16.25,
+     "oppImplied": 28.5
     }
    },
    "bookCount": 12
@@ -445,29 +446,6 @@
    "bookCount": 7
   },
   {
-   "matchup": "BALHOU",
-   "home": "HOU",
-   "away": "BAL",
-   "homeName": "Houston Texans",
-   "awayName": "Baltimore Ravens",
-   "kickoff": "2026-11-29T18:00:00Z",
-   "total": 44.5,
-   "homeSpread": -6.0,
-   "teams": {
-    "HOU": {
-     "implied": 25.25,
-     "spread": -6.0,
-     "oppImplied": 19.25
-    },
-    "BAL": {
-     "implied": 19.25,
-     "spread": 6.0,
-     "oppImplied": 25.25
-    }
-   },
-   "bookCount": 7
-  },
-  {
    "matchup": "NOCIN",
    "home": "CIN",
    "away": "NO",
@@ -486,29 +464,6 @@
      "implied": 21.25,
      "spread": 10.0,
      "oppImplied": 31.25
-    }
-   },
-   "bookCount": 7
-  },
-  {
-   "matchup": "NYGIND",
-   "home": "IND",
-   "away": "NYG",
-   "homeName": "Indianapolis Colts",
-   "awayName": "New York Giants",
-   "kickoff": "2026-11-29T18:00:00Z",
-   "total": 44.5,
-   "homeSpread": 4.0,
-   "teams": {
-    "IND": {
-     "implied": 20.25,
-     "spread": 4.0,
-     "oppImplied": 24.25
-    },
-    "NYG": {
-     "implied": 24.25,
-     "spread": -4.0,
-     "oppImplied": 20.25
     }
    },
    "bookCount": 7
