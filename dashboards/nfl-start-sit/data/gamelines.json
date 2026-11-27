@@ -1,10 +1,10 @@
 {
  "source": "The Odds API",
  "region": "us",
- "lastUpdated": "2026-11-26T22:46:50+00:00",
+ "lastUpdated": "2026-11-27T02:04:41+00:00",
  "gameCount": 25,
- "quotaUsed": "2946",
- "quotaRemaining": "17054",
+ "quotaUsed": "3020",
+ "quotaRemaining": "16980",
  "note": "Median spread and total across books. Implied team total = total/2 - spread/2. Used to score D/ST and K, which have no prop market.",
  "games": [
   {
@@ -76,7 +76,8 @@
      "oppImplied": 24.5
     }
    },
-   "bookCount": 12
+   "bookCount": 12,
+   "lockedAtKickoff": true
   },
   {
    "matchup": "DENPIT",
@@ -86,17 +87,17 @@
    "awayName": "Denver Broncos",
    "kickoff": "2026-11-27T20:00:00Z",
    "total": 37.0,
-   "homeSpread": 4.5,
+   "homeSpread": 5.0,
    "teams": {
     "PIT": {
-     "implied": 16.25,
-     "spread": 4.5,
-     "oppImplied": 20.75
+     "implied": 16.0,
+     "spread": 5.0,
+     "oppImplied": 21.0
     },
     "DEN": {
-     "implied": 20.75,
-     "spread": -4.5,
-     "oppImplied": 16.25
+     "implied": 21.0,
+     "spread": -5.0,
+     "oppImplied": 16.0
     }
    },
    "bookCount": 12
@@ -375,7 +376,7 @@
      "oppImplied": 21.5
     }
    },
-   "bookCount": 7
+   "bookCount": 4
   },
   {
    "matchup": "CINCLE",
@@ -536,7 +537,7 @@
      "oppImplied": 15.5
     }
    },
-   "bookCount": 7
+   "bookCount": 5
   },
   {
    "matchup": "CARMIN",
